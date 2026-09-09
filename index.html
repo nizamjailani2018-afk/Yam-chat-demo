@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat</title>
+<title>YAM Chat V2</title>
 
 <style>
 * {
@@ -14,8 +14,7 @@
 }
 
 body {
-  background: #f2f4f8;
-  color: #222;
+  background: #eef2f7;
 }
 
 .app {
@@ -23,28 +22,35 @@ body {
   margin: auto;
   min-height: 100vh;
   background: white;
+  position: relative;
 }
 
 .header {
   background: #1877f2;
   color: white;
-  padding: 22px 18px;
-  font-size: 25px;
+  padding: 20px;
+  font-size: 24px;
   font-weight: bold;
 }
 
 .search {
+  width: calc(100% - 30px);
   margin: 15px;
   padding: 13px;
-  border: none;
+  border: 0;
   border-radius: 25px;
   background: #f0f2f5;
-  width: calc(100% - 30px);
   font-size: 15px;
 }
 
 .section {
-  padding: 5px 15px 80px;
+  padding: 0 15px 80px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
 }
 
 .chat {
@@ -52,6 +58,7 @@ body {
   align-items: center;
   padding: 15px 5px;
   border-bottom: 1px solid #eee;
+  cursor: pointer;
 }
 
 .avatar {
@@ -69,17 +76,18 @@ body {
 
 .name {
   font-weight: bold;
-  margin-bottom: 5px;
 }
 
 .message {
   color: #777;
   font-size: 14px;
+  margin-top: 5px;
 }
 
 .online {
-  color: #20b455;
+  color: #20a957;
   font-size: 12px;
+  margin-top: 4px;
 }
 
 .bottom {
@@ -87,33 +95,93 @@ body {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 480px;
   width: 100%;
+  max-width: 480px;
   background: white;
   border-top: 1px solid #ddd;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
+  padding: 9px 0;
 }
 
 .nav {
-  border: none;
+  border: 0;
   background: none;
-  font-size: 12px;
   color: #555;
   cursor: pointer;
 }
 
 .nav span {
   display: block;
-  font-size: 23px;
+  font-size: 22px;
   margin-bottom: 3px;
 }
 
-.title {
-  font-size: 20px;
-  font-weight: bold;
+.chat-screen {
+  display: none;
+  min-height: 100vh;
+  background: #f5f7fa;
+  position: relative;
+}
+
+.chat-header {
+  background: #1877f2;
+  color: white;
+  padding: 17px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.back {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.chat-body {
+  padding: 20px 15px 80px;
+}
+
+.bubble {
+  max-width: 75%;
+  padding: 11px 14px;
+  border-radius: 18px;
   margin: 10px 0;
+  background: white;
+}
+
+.me {
+  margin-left: auto;
+  background: #1877f2;
+  color: white;
+}
+
+.input-area {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 480px;
+  background: white;
+  padding: 10px;
+  display: flex;
+  gap: 8px;
+  border-top: 1px solid #ddd;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 22px;
+}
+
+.input-area button {
+  border: 0;
+  border-radius: 50%;
+  width: 45px;
+  background: #1877f2;
+  color: white;
+  font-size: 18px;
 }
 </style>
 </head>
@@ -122,77 +190,147 @@ body {
 
 <div class="app">
 
-  <div class="header">
-    💬 YAM Chat
+  <div id="home">
+
+    <div class="header">
+      💬 YAM Chat
+    </div>
+
+    <input class="search"
+           placeholder="🔍 Cari kawan atau mesej...">
+
+    <div class="section">
+
+      <div class="title">Chats</div>
+
+      <div class="chat" onclick="openChat('Ahmad','A')">
+        <div class="avatar">A</div>
+        <div>
+          <div class="name">Ahmad</div>
+          <div class="message">Hai bro! Apa khabar?</div>
+          <div class="online">● Online</div>
+        </div>
+      </div>
+
+      <div class="chat" onclick="openChat('Siti','S')">
+        <div class="avatar">S</div>
+        <div>
+          <div class="name">Siti</div>
+          <div class="message">Jumpa nanti 👍</div>
+          <div class="online">● Online</div>
+        </div>
+      </div>
+
+      <div class="chat" onclick="openChat('John','J')">
+        <div class="avatar">J</div>
+        <div>
+          <div class="name">John</div>
+          <div class="message">Hello 👋</div>
+          <div class="online">● Online</div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 
-  <input class="search"
-         type="text"
-         placeholder="🔍 Cari kawan atau mesej...">
+  <div id="chatScreen" class="chat-screen">
 
-  <div class="section">
-
-    <div class="title">Chats</div>
-
-    <div class="chat">
-      <div class="avatar">A</div>
+    <div class="chat-header">
+      <div class="back" onclick="closeChat()">‹</div>
+      <div class="avatar" id="chatAvatar">A</div>
       <div>
-        <div class="name">Ahmad</div>
-        <div class="message">Hai bro! Apa khabar?</div>
-        <div class="online">● Online</div>
+        <b id="chatName">Ahmad</b>
+        <div style="font-size:12px;">● Online</div>
       </div>
     </div>
 
-    <div class="chat">
-      <div class="avatar">S</div>
-      <div>
-        <div class="name">Siti</div>
-        <div class="message">Jumpa nanti 👍</div>
-        <div class="online">● Online</div>
+    <div class="chat-body" id="messages">
+
+      <div class="bubble">
+        Hai! Selamat datang di YAM Chat 👋
       </div>
+
+      <div class="bubble me">
+        Hai Ahmad! 😎
+      </div>
+
     </div>
 
-    <div class="chat">
-      <div class="avatar">J</div>
-      <div>
-        <div class="name">John</div>
-        <div class="message">Hello 👋</div>
-        <div class="online">● Online</div>
-      </div>
+    <div class="input-area">
+      <input id="messageInput"
+             placeholder="Tulis mesej..."
+             onkeydown="if(event.key==='Enter') sendMessage()">
+
+      <button onclick="sendMessage()">➤</button>
     </div>
 
   </div>
 
-</div>
+  <div class="bottom">
 
-<div class="bottom">
+    <button class="nav" onclick="showPage('Chats')">
+      <span>💬</span>
+      Chats
+    </button>
 
-  <button class="nav" onclick="showMessage('Chats')">
-    <span>💬</span>
-    Chats
-  </button>
+    <button class="nav" onclick="showPage('Friends')">
+      <span>👥</span>
+      Friends
+    </button>
 
-  <button class="nav" onclick="showMessage('Friends')">
-    <span>👥</span>
-    Friends
-  </button>
+    <button class="nav" onclick="showPage('Rooms')">
+      <span>🌏</span>
+      Rooms
+    </button>
 
-  <button class="nav" onclick="showMessage('Rooms')">
-    <span>🌏</span>
-    Rooms
-  </button>
+    <button class="nav" onclick="showPage('Profile')">
+      <span>👤</span>
+      Profile
+    </button>
 
-  <button class="nav" onclick="showMessage('Profile')">
-    <span>👤</span>
-    Profile
-  </button>
+  </div>
 
 </div>
 
 <script>
-function showMessage(page) {
-  alert("YAM Chat: " + page + " sedang dibuka 🚀");
+
+function openChat(name, letter) {
+  document.getElementById("home").style.display = "none";
+  document.getElementById("chatScreen").style.display = "block";
+
+  document.getElementById("chatName").innerText = name;
+  document.getElementById("chatAvatar").innerText = letter;
 }
+
+function closeChat() {
+  document.getElementById("chatScreen").style.display = "none";
+  document.getElementById("home").style.display = "block";
+}
+
+function sendMessage() {
+
+  let input = document.getElementById("messageInput");
+  let text = input.value.trim();
+
+  if (text === "") return;
+
+  let message = document.createElement("div");
+
+  message.className = "bubble me";
+  message.innerText = text;
+
+  document.getElementById("messages").appendChild(message);
+
+  input.value = "";
+
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+function showPage(page) {
+  alert("YAM Chat • " + page + " 🚀");
+}
+
 </script>
 
 </body>
