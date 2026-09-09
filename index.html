@@ -3,1156 +3,1068 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V3.1</title>
+<title>YAM Chat V4</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
 }
 
-body {
-  background: #eef2f7;
+body{
+    background:#eef2f7;
 }
 
-.app {
-  max-width: 480px;
-  margin: auto;
-  min-height: 100vh;
-  background: white;
-  position: relative;
+button{
+    cursor:pointer;
+}
+
+.app{
+    max-width:480px;
+    margin:auto;
+    min-height:100vh;
+    background:white;
+}
+
+/* LOGIN */
+.auth{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+    background:linear-gradient(135deg,#1976d2,#42a5f5);
+}
+
+.auth-box{
+    width:100%;
+    background:white;
+    padding:30px 25px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.logo{
+    text-align:center;
+    font-size:32px;
+    font-weight:bold;
+    color:#1976d2;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#777;
+    margin-bottom:25px;
+}
+
+.auth-box input{
+    width:100%;
+    padding:14px;
+    margin-bottom:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
+}
+
+.auth-box button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#1976d2;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.switch{
+    text-align:center;
+    margin-top:18px;
+    color:#1976d2;
+    cursor:pointer;
+}
+
+.error{
+    color:#d32f2f;
+    text-align:center;
+    margin-bottom:12px;
+    font-size:14px;
 }
 
 /* HEADER */
+.header{
+    background:#1976d2;
+    color:white;
+    padding:16px;
+}
 
-.header {
-  background: #1877f2;
-  color: white;
-  padding: 20px;
-  font-size: 24px;
-  font-weight: bold;
+.header-title{
+    font-size:21px;
+    font-weight:bold;
+}
+
+.header-sub{
+    font-size:13px;
+    opacity:.9;
+    margin-top:4px;
 }
 
 /* SEARCH */
-
-.search {
-  width: calc(100% - 30px);
-  margin: 15px;
-  padding: 13px 18px;
-  border: 0;
-  outline: none;
-  border-radius: 25px;
-  background: #f0f2f5;
-  font-size: 15px;
+.search{
+    padding:12px;
 }
 
-/* HOME */
-
-.section {
-  padding: 0 15px 90px;
+.search input{
+    width:100%;
+    padding:12px 15px;
+    border:1px solid #ddd;
+    border-radius:20px;
 }
 
-.title {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 10px 0;
+/* CHAT LIST */
+.chat-item{
+    display:flex;
+    align-items:center;
+    padding:14px;
+    border-bottom:1px solid #eee;
 }
 
-.chat {
-  display: flex;
-  align-items: center;
-  padding: 15px 5px;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
+.avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#1976d2;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    margin-right:12px;
 }
 
-.chat:hover {
-  background: #f7f9fc;
+.chat-info{
+    flex:1;
 }
 
-.avatar {
-  width: 50px;
-  height: 50px;
-  min-width: 50px;
-  border-radius: 50%;
-  background: #1877f2;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  margin-right: 13px;
+.chat-name{
+    font-weight:bold;
 }
 
-.name {
-  font-weight: bold;
+.chat-preview{
+    color:#777;
+    font-size:13px;
+    margin-top:4px;
 }
 
-.message {
-  color: #777;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-.online {
-  color: #20a957;
-  font-size: 12px;
-  margin-top: 4px;
+.chat-item button{
+    background:#1976d2;
+    color:white;
+    border:0;
+    padding:8px 12px;
+    border-radius:8px;
 }
 
 /* BOTTOM */
-
-.bottom {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 480px;
-  background: white;
-  border-top: 1px solid #ddd;
-  display: flex;
-  justify-content: space-around;
-  padding: 9px 0;
-  z-index: 20;
+.bottom{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    max-width:480px;
+    display:flex;
+    background:white;
+    border-top:1px solid #ddd;
 }
 
-.nav {
-  border: 0;
-  background: none;
-  color: #555;
-  cursor: pointer;
-  font-size: 12px;
+.bottom button{
+    flex:1;
+    border:0;
+    background:white;
+    padding:12px 5px;
+    font-size:12px;
 }
 
-.nav span {
-  display: block;
-  font-size: 22px;
-  margin-bottom: 3px;
-}
-
-/* CHAT SCREEN */
-
-.chat-screen {
-  display: none;
-  min-height: 100vh;
-  background: #f5f7fa;
-  position: relative;
-}
-
-.chat-header {
-  background: #1877f2;
-  color: white;
-  padding: 12px 15px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  position: sticky;
-  top: 0;
-  z-index: 5;
-}
-
-.chat-header .avatar {
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
-  margin-right: 0;
-  background: white;
-  color: #1877f2;
-}
-
-.back {
-  font-size: 30px;
-  cursor: pointer;
-}
-
-.chat-body {
-  padding: 20px 15px 90px;
-  min-height: calc(100vh - 70px);
-}
-
-.bubble {
-  max-width: 78%;
-  padding: 10px 13px;
-  border-radius: 18px;
-  margin: 10px 0;
-  background: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  word-wrap: break-word;
-}
-
-.me {
-  margin-left: auto;
-  background: #1877f2;
-  color: white;
-}
-
-.time {
-  display: block;
-  font-size: 10px;
-  opacity: 0.65;
-  margin-top: 4px;
-  text-align: right;
-}
-
-/* INPUT */
-
-.input-area {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  max-width: 480px;
-  background: white;
-  padding: 10px;
-  display: flex;
-  gap: 8px;
-  border-top: 1px solid #ddd;
-  z-index: 30;
-}
-
-.input-area input {
-  flex: 1;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  outline: none;
-  border-radius: 22px;
-  font-size: 15px;
-}
-
-.input-area button {
-  border: 0;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  background: #1877f2;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-/* CHAT TOOLS */
-
-.chat-tools {
-  display: flex;
-  justify-content: flex-end;
-  padding: 8px 15px 0;
-}
-
-.delete-btn {
-  border: 0;
-  background: white;
-  color: #e53935;
-  padding: 7px 10px;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 12px;
+.bottom button.active{
+    color:#1976d2;
+    font-weight:bold;
 }
 
 /* PAGES */
-
-.page {
-  display: none;
-  min-height: 100vh;
-  padding-bottom: 90px;
-  background: white;
+.page{
+    padding-bottom:70px;
 }
 
-.page-header {
-  background: #1877f2;
-  color: white;
-  padding: 20px;
-  font-size: 22px;
-  font-weight: bold;
+.hidden{
+    display:none !important;
 }
 
 /* PROFILE */
-
-.profile-box {
-  text-align: center;
-  padding: 30px 20px;
+.profile{
+    text-align:center;
+    padding:30px 20px;
 }
 
-.profile-avatar {
-  width: 95px;
-  height: 95px;
-  border-radius: 50%;
-  background: #1877f2;
-  color: white;
-  font-size: 38px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
+.profile-avatar{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#1976d2;
+    color:white;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:35px;
+    font-weight:bold;
 }
 
-.profile-name {
-  font-size: 23px;
-  font-weight: bold;
-  margin-top: 15px;
+.profile h2{
+    margin-top:15px;
 }
 
-.profile-status {
-  color: #777;
-  margin-top: 7px;
+.profile p{
+    color:#777;
+    margin:7px;
 }
 
-.profile-card {
-  margin: 20px 15px;
-  padding: 20px;
-  background: #f5f7fa;
-  border-radius: 15px;
+.profile button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:0;
+    border-radius:10px;
+    background:#1976d2;
+    color:white;
 }
 
-.profile-card label {
-  display: block;
-  font-size: 13px;
-  color: #666;
-  margin-bottom: 6px;
+.logout{
+    background:#d32f2f !important;
 }
 
-.profile-card input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  outline: none;
+/* FRIENDS / ROOMS */
+.card{
+    margin:12px;
+    padding:16px;
+    border:1px solid #eee;
+    border-radius:12px;
 }
 
-.save-btn {
-  width: 100%;
-  padding: 13px;
-  border: 0;
-  border-radius: 10px;
-  background: #1877f2;
-  color: white;
-  font-size: 15px;
-  cursor: pointer;
+.card button{
+    float:right;
+    background:#1976d2;
+    color:white;
+    border:0;
+    padding:7px 12px;
+    border-radius:8px;
 }
 
-/* FRIENDS */
-
-.friend {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #eee;
+/* CHAT SCREEN */
+.chat-screen{
+    min-height:100vh;
+    background:#eef2f7;
 }
 
-.friend .avatar {
-  margin-right: 12px;
+.chat-header{
+    background:#1976d2;
+    color:white;
+    padding:15px;
+    display:flex;
+    align-items:center;
 }
 
-.friend button {
-  margin-left: auto;
-  border: 0;
-  background: #1877f2;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 18px;
+.back{
+    margin-right:15px;
+    font-size:22px;
+    cursor:pointer;
 }
 
-/* ROOMS */
-
-.room {
-  margin: 15px;
-  padding: 18px;
-  border-radius: 15px;
-  background: #f5f7fa;
-  cursor: pointer;
+.messages{
+    padding:15px;
+    padding-bottom:85px;
 }
 
-.room-title {
-  font-weight: bold;
-  font-size: 17px;
+.message{
+    max-width:75%;
+    padding:10px 13px;
+    border-radius:15px;
+    margin-bottom:9px;
 }
 
-.room-info {
-  color: #777;
-  margin-top: 5px;
-  font-size: 13px;
+.me{
+    background:#1976d2;
+    color:white;
+    margin-left:auto;
 }
 
-/* EMPTY */
+.them{
+    background:white;
+}
 
-.empty {
-  text-align: center;
-  color: #777;
-  padding: 30px 10px;
+.message-time{
+    font-size:10px;
+    opacity:.7;
+    margin-top:4px;
+}
+
+.chat-input{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    max-width:480px;
+    background:white;
+    padding:10px;
+    display:flex;
+    gap:8px;
+}
+
+.chat-input input{
+    flex:1;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:20px;
+}
+
+.chat-input button{
+    width:50px;
+    border:0;
+    border-radius:50%;
+    background:#1976d2;
+    color:white;
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<!-- LOGIN / REGISTER -->
+<div id="authPage" class="auth">
 
-  <!-- HOME -->
+    <div class="auth-box">
 
-  <div id="home">
-
-    <div class="header">
-      💬 YAM Chat
-    </div>
-
-    <input
-      id="searchInput"
-      class="search"
-      placeholder="🔍 Cari kawan atau mesej..."
-      oninput="searchChats()"
-    >
-
-    <div class="section">
-
-      <div class="title">Chats</div>
-
-      <div id="chatList">
-
-        <div class="chat" data-name="Ahmad"
-             onclick="openChat('Ahmad','A')">
-
-          <div class="avatar">A</div>
-
-          <div>
-            <div class="name">Ahmad</div>
-            <div class="message" id="preview-Ahmad">
-              Hai bro! Apa khabar?
-            </div>
-            <div class="online">● Online</div>
-          </div>
-
+        <div class="logo">💬 YAM Chat</div>
+        <div class="subtitle" id="authTitle">
+            Login ke akaun anda
         </div>
 
-        <div class="chat" data-name="Siti"
-             onclick="openChat('Siti','S')">
+        <div id="error" class="error"></div>
 
-          <div class="avatar">S</div>
+        <input id="username"
+               type="text"
+               placeholder="Nama pengguna">
 
-          <div>
-            <div class="name">Siti</div>
-            <div class="message" id="preview-Siti">
-              Jumpa nanti 👍
-            </div>
-            <div class="online">● Online</div>
-          </div>
+        <input id="password"
+               type="password"
+               placeholder="Kata laluan">
 
+        <button onclick="authAction()" id="authButton">
+            LOGIN
+        </button>
+
+        <div class="switch" onclick="switchAuth()" id="switchText">
+            Belum ada akaun? Daftar
         </div>
 
-        <div class="chat" data-name="John"
-             onclick="openChat('John','J')">
-
-          <div class="avatar">J</div>
-
-          <div>
-            <div class="name">John</div>
-            <div class="message" id="preview-John">
-              Hello 👋
-            </div>
-            <div class="online">● Online</div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div id="noResults" class="empty" style="display:none;">
-        Tiada kawan dijumpai.
-      </div>
-
     </div>
-
-  </div>
-
-  <!-- CHAT -->
-
-  <div id="chatScreen" class="chat-screen">
-
-    <div class="chat-header">
-
-      <div class="back" onclick="closeChat()">‹</div>
-
-      <div class="avatar" id="chatAvatar">A</div>
-
-      <div>
-        <b id="chatName">Ahmad</b>
-        <div style="font-size:12px;">● Online</div>
-      </div>
-
-    </div>
-
-    <div class="chat-tools">
-
-      <button class="delete-btn"
-              onclick="deleteCurrentChat()">
-        🗑️ Padam chat
-      </button>
-
-    </div>
-
-    <div class="chat-body" id="messages"></div>
-
-    <div class="input-area">
-
-      <input
-        id="messageInput"
-        placeholder="Tulis mesej..."
-        onkeydown="if(event.key==='Enter') sendMessage()"
-      >
-
-      <button onclick="sendMessage()">➤</button>
-
-    </div>
-
-  </div>
-
-  <!-- FRIENDS -->
-
-  <div id="friendsPage" class="page">
-
-    <div class="page-header">
-      👥 Friends
-    </div>
-
-    <div class="friend">
-
-      <div class="avatar">A</div>
-
-      <div>
-        <b>Ahmad</b>
-        <div class="online">● Online</div>
-      </div>
-
-      <button onclick="openChat('Ahmad','A')">
-        Chat
-      </button>
-
-    </div>
-
-    <div class="friend">
-
-      <div class="avatar">S</div>
-
-      <div>
-        <b>Siti</b>
-        <div class="online">● Online</div>
-      </div>
-
-      <button onclick="openChat('Siti','S')">
-        Chat
-      </button>
-
-    </div>
-
-    <div class="friend">
-
-      <div class="avatar">J</div>
-
-      <div>
-        <b>John</b>
-        <div class="online">● Online</div>
-      </div>
-
-      <button onclick="openChat('John','J')">
-        Chat
-      </button>
-
-    </div>
-
-  </div>
-
-  <!-- ROOMS -->
-
-  <div id="roomsPage" class="page">
-
-    <div class="page-header">
-      🌏 YAM Rooms
-    </div>
-
-    <div class="room">
-
-      <div class="room-title">
-        🇲🇾 YAM Malaysia
-      </div>
-
-      <div class="room-info">
-        Ruang sembang Malaysia
-      </div>
-
-    </div>
-
-    <div class="room">
-
-      <div class="room-title">
-        🌴 YAM Sabah
-      </div>
-
-      <div class="room-info">
-        Komuniti Sabah
-      </div>
-
-    </div>
-
-    <div class="room">
-
-      <div class="room-title">
-        🚗 Automotif
-      </div>
-
-      <div class="room-info">
-        Sembang kereta dan automotif
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- PROFILE -->
-
-  <div id="profilePage" class="page">
-
-    <div class="page-header">
-      👤 Profile
-    </div>
-
-    <div class="profile-box">
-
-      <div class="profile-avatar" id="profileAvatar">
-        N
-      </div>
-
-      <div class="profile-name" id="profileName">
-        Nizam
-      </div>
-
-      <div class="profile-status" id="profileStatus">
-        Pengguna YAM Chat
-      </div>
-
-    </div>
-
-    <div class="profile-card">
-
-      <label>Nama</label>
-
-      <input
-        id="nameInput"
-        placeholder="Masukkan nama"
-      >
-
-      <label>Status</label>
-
-      <input
-        id="statusInput"
-        placeholder="Masukkan status"
-      >
-
-      <button class="save-btn"
-              onclick="saveProfile()">
-        💾 Simpan Profile
-      </button>
-
-    </div>
-
-  </div>
-
-  <!-- BOTTOM NAV -->
-
-  <div class="bottom">
-
-    <button class="nav" onclick="showPage('Chats')">
-      <span>💬</span>
-      Chats
-    </button>
-
-    <button class="nav" onclick="showPage('Friends')">
-      <span>👥</span>
-      Friends
-    </button>
-
-    <button class="nav" onclick="showPage('Rooms')">
-      <span>🌏</span>
-      Rooms
-    </button>
-
-    <button class="nav" onclick="showPage('Profile')">
-      <span>👤</span>
-      Profile
-    </button>
-
-  </div>
 
 </div>
 
+
+<!-- MAIN APP -->
+<div id="mainApp" class="app hidden">
+
+    <!-- HOME -->
+    <div id="homePage" class="page">
+
+        <div class="header">
+            <div class="header-title">💬 YAM Chat</div>
+            <div class="header-sub" id="welcomeText">
+                Selamat datang
+            </div>
+        </div>
+
+        <div class="search">
+            <input type="text"
+                   id="searchInput"
+                   placeholder="🔍 Cari chat..."
+                   oninput="searchChats()">
+        </div>
+
+        <div id="chatList"></div>
+
+    </div>
+
+
+    <!-- FRIENDS -->
+    <div id="friendsPage" class="page hidden">
+
+        <div class="header">
+            <div class="header-title">👥 Friends</div>
+        </div>
+
+        <div class="card">
+            <b>Ahmad</b>
+            <button onclick="openChat('Ahmad')">Chat</button>
+            <br>
+            <small>Online</small>
+        </div>
+
+        <div class="card">
+            <b>Siti</b>
+            <button onclick="openChat('Siti')">Chat</button>
+            <br>
+            <small>Online</small>
+        </div>
+
+        <div class="card">
+            <b>John</b>
+            <button onclick="openChat('John')">Chat</button>
+            <br>
+            <small>Offline</small>
+        </div>
+
+    </div>
+
+
+    <!-- ROOMS -->
+    <div id="roomsPage" class="page hidden">
+
+        <div class="header">
+            <div class="header-title">🌎 YAM Rooms</div>
+        </div>
+
+        <div class="card">
+            🇲🇾 <b>YAM Malaysia</b>
+            <p>Ruang sembang Malaysia</p>
+        </div>
+
+        <div class="card">
+            🌴 <b>YAM Sabah</b>
+            <p>Ruang sembang Sabah</p>
+        </div>
+
+        <div class="card">
+            🚗 <b>Automotif</b>
+            <p>Sembang kereta dan motor</p>
+        </div>
+
+    </div>
+
+
+    <!-- PROFILE -->
+    <div id="profilePage" class="page hidden">
+
+        <div class="header">
+            <div class="header-title">👤 Profile</div>
+        </div>
+
+        <div class="profile">
+
+            <div class="profile-avatar" id="profileAvatar">
+                Y
+            </div>
+
+            <h2 id="profileName">
+                User
+            </h2>
+
+            <p id="profileStatus">
+                YAM Chat user
+            </p>
+
+            <button onclick="editProfile()">
+                ✏️ Edit Profile
+            </button>
+
+            <br>
+
+            <button class="logout" onclick="logout()">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom">
+
+        <button id="navChats"
+                class="active"
+                onclick="showPage('homePage',this)">
+            💬<br>Chats
+        </button>
+
+        <button onclick="showPage('friendsPage',this)">
+            👥<br>Friends
+        </button>
+
+        <button onclick="showPage('roomsPage',this)">
+            🌎<br>Rooms
+        </button>
+
+        <button onclick="showPage('profilePage',this)">
+            👤<br>Profile
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- CHAT SCREEN -->
+<div id="chatScreen" class="chat-screen hidden">
+
+    <div class="chat-header">
+
+        <div class="back" onclick="closeChat()">
+            ←
+        </div>
+
+        <div>
+            <b id="chatTitle">Chat</b>
+            <div style="font-size:12px;">
+                YAM Chat
+            </div>
+        </div>
+
+    </div>
+
+    <div id="messages" class="messages"></div>
+
+    <div class="chat-input">
+
+        <input id="messageInput"
+               type="text"
+               placeholder="Taip mesej..."
+               onkeydown="if(event.key==='Enter') sendMessage()">
+
+        <button onclick="sendMessage()">
+            ➤
+        </button>
+
+    </div>
+
+</div>
+
+
 <script>
 
-/* CURRENT CHAT */
+/* =========================
+   AUTH
+========================= */
 
-let currentUser = "";
+let registerMode = false;
 
-/* DEFAULT CHAT */
+function switchAuth(){
 
-const defaultMessages = {
+    registerMode = !registerMode;
 
-  Ahmad: [
-    {
-      text: "Hai! Selamat datang di YAM Chat 👋",
-      me: false,
-      time: getTime()
-    },
-    {
-      text: "Hai Ahmad! 😎",
-      me: true,
-      time: getTime()
+    document.getElementById("error").innerText = "";
+
+    if(registerMode){
+
+        document.getElementById("authTitle").innerText =
+            "Buat akaun YAM Chat";
+
+        document.getElementById("authButton").innerText =
+            "DAFTAR";
+
+        document.getElementById("switchText").innerText =
+            "Sudah ada akaun? Login";
+
+    }else{
+
+        document.getElementById("authTitle").innerText =
+            "Login ke akaun anda";
+
+        document.getElementById("authButton").innerText =
+            "LOGIN";
+
+        document.getElementById("switchText").innerText =
+            "Belum ada akaun? Daftar";
     }
-  ],
-
-  Siti: [
-    {
-      text: "Jumpa nanti 👍",
-      me: false,
-      time: getTime()
-    }
-  ],
-
-  John: [
-    {
-      text: "Hello 👋",
-      me: false,
-      time: getTime()
-    }
-  ]
-
-};
-
-/* STORAGE */
-
-function getStorageKey(name) {
-  return "yamchat_" + name;
 }
 
-function getMessages(name) {
 
-  const saved =
-    localStorage.getItem(
-      getStorageKey(name)
-    );
+function authAction(){
 
-  if (saved) {
-    return JSON.parse(saved);
-  }
+    const username =
+        document.getElementById("username").value.trim();
 
-  return defaultMessages[name] || [];
-}
+    const password =
+        document.getElementById("password").value;
 
-function saveMessages(name, messages) {
+    const error =
+        document.getElementById("error");
 
-  localStorage.setItem(
-    getStorageKey(name),
-    JSON.stringify(messages)
-  );
+    if(!username || !password){
 
-}
+        error.innerText =
+            "Sila isi nama pengguna dan kata laluan.";
 
-/* TIME */
-
-function getTime() {
-
-  const now = new Date();
-
-  return now.toLocaleTimeString("ms-MY", {
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-
-}
-
-/* OPEN CHAT */
-
-function openChat(name, letter) {
-
-  currentUser = name;
-
-  hideAllPages();
-
-  document.getElementById(
-    "chatScreen"
-  ).style.display = "block";
-
-  document.getElementById(
-    "chatName"
-  ).innerText = name;
-
-  document.getElementById(
-    "chatAvatar"
-  ).innerText = letter;
-
-  loadMessages();
-
-  document.getElementById(
-    "messageInput"
-  ).focus();
-
-}
-
-/* CLOSE CHAT */
-
-function closeChat() {
-
-  document.getElementById(
-    "chatScreen"
-  ).style.display = "none";
-
-  document.getElementById(
-    "home"
-  ).style.display = "block";
-
-  updatePreviews();
-
-}
-
-/* LOAD */
-
-function loadMessages() {
-
-  const container =
-    document.getElementById("messages");
-
-  container.innerHTML = "";
-
-  const messages =
-    getMessages(currentUser);
-
-  if (messages.length === 0) {
-
-    container.innerHTML =
-      '<div class="empty">Belum ada mesej.</div>';
-
-    return;
-
-  }
-
-  messages.forEach(function(msg) {
-
-    const bubble =
-      document.createElement("div");
-
-    bubble.className =
-      msg.me
-        ? "bubble me"
-        : "bubble";
-
-    bubble.innerText =
-      msg.text;
-
-    const time =
-      document.createElement("span");
-
-    time.className = "time";
-    time.innerText = msg.time;
-
-    bubble.appendChild(time);
-
-    container.appendChild(bubble);
-
-  });
-
-  window.scrollTo(
-    0,
-    document.body.scrollHeight
-  );
-
-}
-
-/* SEND */
-
-function sendMessage() {
-
-  const input =
-    document.getElementById(
-      "messageInput"
-    );
-
-  const text =
-    input.value.trim();
-
-  if (text === "") return;
-
-  const messages =
-    getMessages(currentUser);
-
-  messages.push({
-
-    text: text,
-    me: true,
-    time: getTime()
-
-  });
-
-  saveMessages(
-    currentUser,
-    messages
-  );
-
-  input.value = "";
-
-  loadMessages();
-
-  updatePreviews();
-
-}
-
-/* DELETE */
-
-function deleteCurrentChat() {
-
-  if (!currentUser) return;
-
-  const ok =
-    confirm(
-      "Padam semua mesej dengan " +
-      currentUser +
-      "?"
-    );
-
-  if (!ok) return;
-
-  localStorage.removeItem(
-    getStorageKey(currentUser)
-  );
-
-  loadMessages();
-
-  updatePreviews();
-
-}
-
-/* SEARCH */
-
-function searchChats() {
-
-  const query =
-    document.getElementById(
-      "searchInput"
-    ).value
-    .toLowerCase()
-    .trim();
-
-  const chats =
-    document.querySelectorAll(".chat");
-
-  let found = false;
-
-  chats.forEach(function(chat) {
-
-    const name =
-      chat
-        .getAttribute("data-name")
-        .toLowerCase();
-
-    if (name.includes(query)) {
-
-      chat.style.display = "flex";
-      found = true;
-
-    } else {
-
-      chat.style.display = "none";
-
+        return;
     }
 
-  });
+    if(password.length < 4){
 
-  document.getElementById(
-    "noResults"
-  ).style.display =
-    found ? "none" : "block";
+        error.innerText =
+            "Kata laluan mesti sekurang-kurangnya 4 aksara.";
 
-}
+        return;
+    }
 
-/* PREVIEW */
 
-function updatePreviews() {
+    const accounts =
+        JSON.parse(localStorage.getItem("yam_accounts") || "{}");
 
-  ["Ahmad", "Siti", "John"]
-    .forEach(function(name) {
 
-      const messages =
-        getMessages(name);
+    if(registerMode){
 
-      const preview =
-        document.getElementById(
-          "preview-" + name
+        if(accounts[username]){
+
+            error.innerText =
+                "Nama pengguna sudah digunakan.";
+
+            return;
+        }
+
+        accounts[username] = {
+            password: password
+        };
+
+        localStorage.setItem(
+            "yam_accounts",
+            JSON.stringify(accounts)
         );
 
-      if (!preview) return;
+        localStorage.setItem(
+            "yam_current_user",
+            username
+        );
 
-      if (messages.length > 0) {
+        startApp();
 
-        preview.innerText =
-          messages[
-            messages.length - 1
-          ].text;
+    }else{
 
-      }
+        if(!accounts[username] ||
+           accounts[username].password !== password){
 
-    });
+            error.innerText =
+                "Nama pengguna atau kata laluan salah.";
 
+            return;
+        }
+
+        localStorage.setItem(
+            "yam_current_user",
+            username
+        );
+
+        startApp();
+    }
 }
 
-/* HIDE ALL */
 
-function hideAllPages() {
+/* =========================
+   START APP
+========================= */
 
-  document.getElementById(
-    "home"
-  ).style.display = "none";
+function startApp(){
 
-  document.getElementById(
-    "friendsPage"
-  ).style.display = "none";
+    document.getElementById("authPage")
+        .classList.add("hidden");
 
-  document.getElementById(
-    "roomsPage"
-  ).style.display = "none";
-
-  document.getElementById(
-    "profilePage"
-  ).style.display = "none";
-
-  document.getElementById(
-    "chatScreen"
-  ).style.display = "none";
-
-}
-
-/* NAVIGATION */
-
-function showPage(page) {
-
-  hideAllPages();
-
-  if (page === "Chats") {
-
-    document.getElementById(
-      "home"
-    ).style.display = "block";
-
-  }
-
-  if (page === "Friends") {
-
-    document.getElementById(
-      "friendsPage"
-    ).style.display = "block";
-
-  }
-
-  if (page === "Rooms") {
-
-    document.getElementById(
-      "roomsPage"
-    ).style.display = "block";
-
-  }
-
-  if (page === "Profile") {
-
-    document.getElementById(
-      "profilePage"
-    ).style.display = "block";
+    document.getElementById("mainApp")
+        .classList.remove("hidden");
 
     loadProfile();
 
-  }
+    updateChatList();
 
 }
 
-/* PROFILE */
 
-function loadProfile() {
+/* =========================
+   LOGOUT
+========================= */
 
-  const name =
-    localStorage.getItem(
-      "yam_profile_name"
-    ) || "Nizam";
+function logout(){
 
-  const status =
-    localStorage.getItem(
-      "yam_profile_status"
-    ) || "Pengguna YAM Chat";
+    localStorage.removeItem("yam_current_user");
 
-  document.getElementById(
-    "profileName"
-  ).innerText = name;
+    document.getElementById("mainApp")
+        .classList.add("hidden");
 
-  document.getElementById(
-    "profileStatus"
-  ).innerText = status;
+    document.getElementById("chatScreen")
+        .classList.add("hidden");
 
-  document.getElementById(
-    "nameInput"
-  ).value = name;
+    document.getElementById("authPage")
+        .classList.remove("hidden");
 
-  document.getElementById(
-    "statusInput"
-  ).value = status;
-
-  document.getElementById(
-    "profileAvatar"
-  ).innerText =
-    name.charAt(0).toUpperCase();
-
+    document.getElementById("username").value="";
+    document.getElementById("password").value="";
 }
 
-/* SAVE PROFILE */
 
-function saveProfile() {
+/* =========================
+   PROFILE
+========================= */
 
-  const name =
-    document.getElementById(
-      "nameInput"
-    ).value.trim();
+function loadProfile(){
 
-  const status =
-    document.getElementById(
-      "statusInput"
-    ).value.trim();
+    const user =
+        localStorage.getItem("yam_current_user");
 
-  if (name === "") {
+    if(!user) return;
 
-    alert(
-      "Sila masukkan nama dahulu."
+    const status =
+        localStorage.getItem(
+            "yam_status_" + user
+        ) || "YAM Chat user";
+
+    document.getElementById("welcomeText")
+        .innerText =
+        "Selamat datang, " + user;
+
+    document.getElementById("profileName")
+        .innerText = user;
+
+    document.getElementById("profileStatus")
+        .innerText = status;
+
+    document.getElementById("profileAvatar")
+        .innerText =
+        user.charAt(0).toUpperCase();
+}
+
+
+function editProfile(){
+
+    const user =
+        localStorage.getItem("yam_current_user");
+
+    if(!user) return;
+
+    const newName =
+        prompt("Nama pengguna:", user);
+
+    if(newName === null) return;
+
+    const cleanName = newName.trim();
+
+    if(cleanName === "") return;
+
+    const newStatus =
+        prompt(
+            "Status:",
+            localStorage.getItem(
+                "yam_status_" + user
+            ) || "YAM Chat user"
+        );
+
+    if(newStatus !== null){
+
+        localStorage.setItem(
+            "yam_status_" + user,
+            newStatus
+        );
+    }
+
+    loadProfile();
+}
+
+
+/* =========================
+   PAGES
+========================= */
+
+function showPage(pageId,button){
+
+    document.querySelectorAll(".page")
+        .forEach(page =>
+            page.classList.add("hidden")
+        );
+
+    document.getElementById(pageId)
+        .classList.remove("hidden");
+
+    document.querySelectorAll(".bottom button")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    if(pageId === "homePage"){
+        updateChatList();
+    }
+}
+
+
+/* =========================
+   CHAT LIST
+========================= */
+
+const friends = [
+    "Ahmad",
+    "Siti",
+    "John"
+];
+
+
+function updateChatList(){
+
+    const list =
+        document.getElementById("chatList");
+
+    list.innerHTML = "";
+
+    friends.forEach(name => {
+
+        const key =
+            "yamchat_" +
+            localStorage.getItem("yam_current_user") +
+            "_" +
+            name;
+
+        const messages =
+            JSON.parse(
+                localStorage.getItem(key) || "[]"
+            );
+
+        let preview = "Belum ada mesej";
+
+        if(messages.length > 0){
+
+            preview =
+                messages[messages.length - 1].text;
+        }
+
+        const item =
+            document.createElement("div");
+
+        item.className = "chat-item";
+
+        item.innerHTML = `
+            <div class="avatar">
+                ${name.charAt(0)}
+            </div>
+
+            <div class="chat-info">
+                <div class="chat-name">${name}</div>
+                <div class="chat-preview">
+                    ${preview}
+                </div>
+            </div>
+
+            <button onclick="openChat('${name}')">
+                Chat
+            </button>
+        `;
+
+        list.appendChild(item);
+    });
+}
+
+
+function searchChats(){
+
+    const search =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    document.querySelectorAll(".chat-item")
+        .forEach(item => {
+
+            item.style.display =
+                item.innerText
+                    .toLowerCase()
+                    .includes(search)
+                    ? "flex"
+                    : "none";
+        });
+}
+
+
+/* =========================
+   OPEN CHAT
+========================= */
+
+let currentChat = "";
+
+
+function openChat(name){
+
+    currentChat = name;
+
+    document.getElementById("mainApp")
+        .classList.add("hidden");
+
+    document.getElementById("chatScreen")
+        .classList.remove("hidden");
+
+    document.getElementById("chatTitle")
+        .innerText = name;
+
+    loadMessages();
+}
+
+
+/* =========================
+   CLOSE CHAT
+========================= */
+
+function closeChat(){
+
+    document.getElementById("chatScreen")
+        .classList.add("hidden");
+
+    document.getElementById("mainApp")
+        .classList.remove("hidden");
+
+    updateChatList();
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+function getChatKey(){
+
+    const user =
+        localStorage.getItem("yam_current_user");
+
+    return "yamchat_" + user + "_" + currentChat;
+}
+
+
+function loadMessages(){
+
+    const key = getChatKey();
+
+    let messages =
+        JSON.parse(
+            localStorage.getItem(key) || "[]"
+        );
+
+
+    if(messages.length === 0){
+
+        messages = [
+            {
+                sender:"them",
+                text:"Hai! Selamat datang di YAM Chat 👋",
+                time:""
+            }
+        ];
+
+        localStorage.setItem(
+            key,
+            JSON.stringify(messages)
+        );
+    }
+
+
+    const box =
+        document.getElementById("messages");
+
+    box.innerHTML = "";
+
+
+    messages.forEach(msg => {
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "message " +
+            (msg.sender === "me"
+                ? "me"
+                : "them");
+
+        div.innerHTML = `
+            <div>${msg.text}</div>
+            <div class="message-time">
+                ${msg.time}
+            </div>
+        `;
+
+        box.appendChild(div);
+    });
+
+    box.scrollTop = box.scrollHeight;
+}
+
+
+/* =========================
+   SEND MESSAGE
+========================= */
+
+function sendMessage(){
+
+    const input =
+        document.getElementById("messageInput");
+
+    const text =
+        input.value.trim();
+
+    if(!text) return;
+
+    const key = getChatKey();
+
+    const messages =
+        JSON.parse(
+            localStorage.getItem(key) || "[]"
+        );
+
+    const now =
+        new Date().toLocaleTimeString(
+            "ms-MY",
+            {
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        );
+
+    messages.push({
+
+        sender:"me",
+        text:text,
+        time:now
+
+    });
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(messages)
     );
 
-    return;
+    input.value = "";
 
-  }
-
-  localStorage.setItem(
-    "yam_profile_name",
-    name
-  );
-
-  localStorage.setItem(
-    "yam_profile_status",
-    status || "Pengguna YAM Chat"
-  );
-
-  loadProfile();
-
-  alert(
-    "Profile YAM Chat berjaya disimpan! ✅"
-  );
-
+    loadMessages();
 }
 
-/* START */
 
-loadProfile();
-updatePreviews();
+/* =========================
+   AUTO LOGIN
+========================= */
+
+window.onload = function(){
+
+    const currentUser =
+        localStorage.getItem("yam_current_user");
+
+    if(currentUser){
+
+        startApp();
+
+    }
+
+};
 
 </script>
 
