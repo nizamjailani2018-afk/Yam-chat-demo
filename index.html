@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V3</title>
+<title>YAM Chat V3.1</title>
 
 <style>
 * {
@@ -25,6 +25,8 @@ body {
   position: relative;
 }
 
+/* HEADER */
+
 .header {
   background: #1877f2;
   color: white;
@@ -32,6 +34,8 @@ body {
   font-size: 24px;
   font-weight: bold;
 }
+
+/* SEARCH */
 
 .search {
   width: calc(100% - 30px);
@@ -44,8 +48,10 @@ body {
   font-size: 15px;
 }
 
+/* HOME */
+
 .section {
-  padding: 0 15px 85px;
+  padding: 0 15px 90px;
 }
 
 .title {
@@ -96,6 +102,8 @@ body {
   margin-top: 4px;
 }
 
+/* BOTTOM */
+
 .bottom {
   position: fixed;
   bottom: 0;
@@ -108,7 +116,7 @@ body {
   display: flex;
   justify-content: space-around;
   padding: 9px 0;
-  z-index: 10;
+  z-index: 20;
 }
 
 .nav {
@@ -166,7 +174,6 @@ body {
 }
 
 .bubble {
-  position: relative;
   max-width: 78%;
   padding: 10px 13px;
   border-radius: 18px;
@@ -190,6 +197,8 @@ body {
   text-align: right;
 }
 
+/* INPUT */
+
 .input-area {
   position: fixed;
   bottom: 0;
@@ -200,7 +209,7 @@ body {
   display: flex;
   gap: 8px;
   border-top: 1px solid #ddd;
-  z-index: 10;
+  z-index: 30;
 }
 
 .input-area input {
@@ -223,6 +232,8 @@ body {
   cursor: pointer;
 }
 
+/* CHAT TOOLS */
+
 .chat-tools {
   display: flex;
   justify-content: flex-end;
@@ -231,12 +242,138 @@ body {
 
 .delete-btn {
   border: 0;
-  background: #fff;
+  background: white;
   color: #e53935;
   padding: 7px 10px;
   border-radius: 15px;
   cursor: pointer;
   font-size: 12px;
+}
+
+/* PAGES */
+
+.page {
+  display: none;
+  min-height: 100vh;
+  padding-bottom: 90px;
+  background: white;
+}
+
+.page-header {
+  background: #1877f2;
+  color: white;
+  padding: 20px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* PROFILE */
+
+.profile-box {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.profile-avatar {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background: #1877f2;
+  color: white;
+  font-size: 38px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.profile-name {
+  font-size: 23px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.profile-status {
+  color: #777;
+  margin-top: 7px;
+}
+
+.profile-card {
+  margin: 20px 15px;
+  padding: 20px;
+  background: #f5f7fa;
+  border-radius: 15px;
+}
+
+.profile-card label {
+  display: block;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.profile-card input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  outline: none;
+}
+
+.save-btn {
+  width: 100%;
+  padding: 13px;
+  border: 0;
+  border-radius: 10px;
+  background: #1877f2;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* FRIENDS */
+
+.friend {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.friend .avatar {
+  margin-right: 12px;
+}
+
+.friend button {
+  margin-left: auto;
+  border: 0;
+  background: #1877f2;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 18px;
+}
+
+/* ROOMS */
+
+.room {
+  margin: 15px;
+  padding: 18px;
+  border-radius: 15px;
+  background: #f5f7fa;
+  cursor: pointer;
+}
+
+.room-title {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.room-info {
+  color: #777;
+  margin-top: 5px;
+  font-size: 13px;
 }
 
 /* EMPTY */
@@ -254,6 +391,7 @@ body {
 <div class="app">
 
   <!-- HOME -->
+
   <div id="home">
 
     <div class="header">
@@ -273,8 +411,11 @@ body {
 
       <div id="chatList">
 
-        <div class="chat" data-name="Ahmad" onclick="openChat('Ahmad','A')">
+        <div class="chat" data-name="Ahmad"
+             onclick="openChat('Ahmad','A')">
+
           <div class="avatar">A</div>
+
           <div>
             <div class="name">Ahmad</div>
             <div class="message" id="preview-Ahmad">
@@ -282,10 +423,14 @@ body {
             </div>
             <div class="online">● Online</div>
           </div>
+
         </div>
 
-        <div class="chat" data-name="Siti" onclick="openChat('Siti','S')">
+        <div class="chat" data-name="Siti"
+             onclick="openChat('Siti','S')">
+
           <div class="avatar">S</div>
+
           <div>
             <div class="name">Siti</div>
             <div class="message" id="preview-Siti">
@@ -293,10 +438,14 @@ body {
             </div>
             <div class="online">● Online</div>
           </div>
+
         </div>
 
-        <div class="chat" data-name="John" onclick="openChat('John','J')">
+        <div class="chat" data-name="John"
+             onclick="openChat('John','J')">
+
           <div class="avatar">J</div>
+
           <div>
             <div class="name">John</div>
             <div class="message" id="preview-John">
@@ -304,6 +453,7 @@ body {
             </div>
             <div class="online">● Online</div>
           </div>
+
         </div>
 
       </div>
@@ -317,6 +467,7 @@ body {
   </div>
 
   <!-- CHAT -->
+
   <div id="chatScreen" class="chat-screen">
 
     <div class="chat-header">
@@ -333,9 +484,12 @@ body {
     </div>
 
     <div class="chat-tools">
-      <button class="delete-btn" onclick="deleteCurrentChat()">
+
+      <button class="delete-btn"
+              onclick="deleteCurrentChat()">
         🗑️ Padam chat
       </button>
+
     </div>
 
     <div class="chat-body" id="messages"></div>
@@ -354,7 +508,158 @@ body {
 
   </div>
 
+  <!-- FRIENDS -->
+
+  <div id="friendsPage" class="page">
+
+    <div class="page-header">
+      👥 Friends
+    </div>
+
+    <div class="friend">
+
+      <div class="avatar">A</div>
+
+      <div>
+        <b>Ahmad</b>
+        <div class="online">● Online</div>
+      </div>
+
+      <button onclick="openChat('Ahmad','A')">
+        Chat
+      </button>
+
+    </div>
+
+    <div class="friend">
+
+      <div class="avatar">S</div>
+
+      <div>
+        <b>Siti</b>
+        <div class="online">● Online</div>
+      </div>
+
+      <button onclick="openChat('Siti','S')">
+        Chat
+      </button>
+
+    </div>
+
+    <div class="friend">
+
+      <div class="avatar">J</div>
+
+      <div>
+        <b>John</b>
+        <div class="online">● Online</div>
+      </div>
+
+      <button onclick="openChat('John','J')">
+        Chat
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ROOMS -->
+
+  <div id="roomsPage" class="page">
+
+    <div class="page-header">
+      🌏 YAM Rooms
+    </div>
+
+    <div class="room">
+
+      <div class="room-title">
+        🇲🇾 YAM Malaysia
+      </div>
+
+      <div class="room-info">
+        Ruang sembang Malaysia
+      </div>
+
+    </div>
+
+    <div class="room">
+
+      <div class="room-title">
+        🌴 YAM Sabah
+      </div>
+
+      <div class="room-info">
+        Komuniti Sabah
+      </div>
+
+    </div>
+
+    <div class="room">
+
+      <div class="room-title">
+        🚗 Automotif
+      </div>
+
+      <div class="room-info">
+        Sembang kereta dan automotif
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PROFILE -->
+
+  <div id="profilePage" class="page">
+
+    <div class="page-header">
+      👤 Profile
+    </div>
+
+    <div class="profile-box">
+
+      <div class="profile-avatar" id="profileAvatar">
+        N
+      </div>
+
+      <div class="profile-name" id="profileName">
+        Nizam
+      </div>
+
+      <div class="profile-status" id="profileStatus">
+        Pengguna YAM Chat
+      </div>
+
+    </div>
+
+    <div class="profile-card">
+
+      <label>Nama</label>
+
+      <input
+        id="nameInput"
+        placeholder="Masukkan nama"
+      >
+
+      <label>Status</label>
+
+      <input
+        id="statusInput"
+        placeholder="Masukkan status"
+      >
+
+      <button class="save-btn"
+              onclick="saveProfile()">
+        💾 Simpan Profile
+      </button>
+
+    </div>
+
+  </div>
+
   <!-- BOTTOM NAV -->
+
   <div class="bottom">
 
     <button class="nav" onclick="showPage('Chats')">
@@ -383,7 +688,11 @@ body {
 
 <script>
 
+/* CURRENT CHAT */
+
 let currentUser = "";
+
+/* DEFAULT CHAT */
 
 const defaultMessages = {
 
@@ -426,7 +735,10 @@ function getStorageKey(name) {
 
 function getMessages(name) {
 
-  let saved = localStorage.getItem(getStorageKey(name));
+  const saved =
+    localStorage.getItem(
+      getStorageKey(name)
+    );
 
   if (saved) {
     return JSON.parse(saved);
@@ -436,10 +748,12 @@ function getMessages(name) {
 }
 
 function saveMessages(name, messages) {
+
   localStorage.setItem(
     getStorageKey(name),
     JSON.stringify(messages)
   );
+
 }
 
 /* TIME */
@@ -461,30 +775,45 @@ function openChat(name, letter) {
 
   currentUser = name;
 
-  document.getElementById("home").style.display = "none";
-  document.getElementById("chatScreen").style.display = "block";
+  hideAllPages();
 
-  document.getElementById("chatName").innerText = name;
-  document.getElementById("chatAvatar").innerText = letter;
+  document.getElementById(
+    "chatScreen"
+  ).style.display = "block";
+
+  document.getElementById(
+    "chatName"
+  ).innerText = name;
+
+  document.getElementById(
+    "chatAvatar"
+  ).innerText = letter;
 
   loadMessages();
 
-  document.getElementById("messageInput").focus();
+  document.getElementById(
+    "messageInput"
+  ).focus();
 
 }
 
-/* CLOSE */
+/* CLOSE CHAT */
 
 function closeChat() {
 
-  document.getElementById("chatScreen").style.display = "none";
-  document.getElementById("home").style.display = "block";
+  document.getElementById(
+    "chatScreen"
+  ).style.display = "none";
+
+  document.getElementById(
+    "home"
+  ).style.display = "block";
 
   updatePreviews();
 
 }
 
-/* LOAD MESSAGES */
+/* LOAD */
 
 function loadMessages() {
 
@@ -511,9 +840,12 @@ function loadMessages() {
       document.createElement("div");
 
     bubble.className =
-      msg.me ? "bubble me" : "bubble";
+      msg.me
+        ? "bubble me"
+        : "bubble";
 
-    bubble.innerText = msg.text;
+    bubble.innerText =
+      msg.text;
 
     const time =
       document.createElement("span");
@@ -539,7 +871,9 @@ function loadMessages() {
 function sendMessage() {
 
   const input =
-    document.getElementById("messageInput");
+    document.getElementById(
+      "messageInput"
+    );
 
   const text =
     input.value.trim();
@@ -557,7 +891,10 @@ function sendMessage() {
 
   });
 
-  saveMessages(currentUser, messages);
+  saveMessages(
+    currentUser,
+    messages
+  );
 
   input.value = "";
 
@@ -573,14 +910,14 @@ function deleteCurrentChat() {
 
   if (!currentUser) return;
 
-  const confirmDelete =
+  const ok =
     confirm(
       "Padam semua mesej dengan " +
       currentUser +
       "?"
     );
 
-  if (!confirmDelete) return;
+  if (!ok) return;
 
   localStorage.removeItem(
     getStorageKey(currentUser)
@@ -597,11 +934,11 @@ function deleteCurrentChat() {
 function searchChats() {
 
   const query =
-    document
-      .getElementById("searchInput")
-      .value
-      .toLowerCase()
-      .trim();
+    document.getElementById(
+      "searchInput"
+    ).value
+    .toLowerCase()
+    .trim();
 
   const chats =
     document.querySelectorAll(".chat");
@@ -628,7 +965,9 @@ function searchChats() {
 
   });
 
-  document.getElementById("noResults").style.display =
+  document.getElementById(
+    "noResults"
+  ).style.display =
     found ? "none" : "block";
 
 }
@@ -637,43 +976,182 @@ function searchChats() {
 
 function updatePreviews() {
 
-  ["Ahmad", "Siti", "John"].forEach(function(name) {
+  ["Ahmad", "Siti", "John"]
+    .forEach(function(name) {
 
-    const messages =
-      getMessages(name);
+      const messages =
+        getMessages(name);
 
-    const preview =
-      document.getElementById(
-        "preview-" + name
-      );
+      const preview =
+        document.getElementById(
+          "preview-" + name
+        );
 
-    if (!preview) return;
+      if (!preview) return;
 
-    if (messages.length > 0) {
+      if (messages.length > 0) {
 
-      preview.innerText =
-        messages[messages.length - 1].text;
+        preview.innerText =
+          messages[
+            messages.length - 1
+          ].text;
 
-    }
+      }
 
-  });
+    });
 
 }
 
-/* NAV */
+/* HIDE ALL */
+
+function hideAllPages() {
+
+  document.getElementById(
+    "home"
+  ).style.display = "none";
+
+  document.getElementById(
+    "friendsPage"
+  ).style.display = "none";
+
+  document.getElementById(
+    "roomsPage"
+  ).style.display = "none";
+
+  document.getElementById(
+    "profilePage"
+  ).style.display = "none";
+
+  document.getElementById(
+    "chatScreen"
+  ).style.display = "none";
+
+}
+
+/* NAVIGATION */
 
 function showPage(page) {
 
+  hideAllPages();
+
+  if (page === "Chats") {
+
+    document.getElementById(
+      "home"
+    ).style.display = "block";
+
+  }
+
+  if (page === "Friends") {
+
+    document.getElementById(
+      "friendsPage"
+    ).style.display = "block";
+
+  }
+
+  if (page === "Rooms") {
+
+    document.getElementById(
+      "roomsPage"
+    ).style.display = "block";
+
+  }
+
+  if (page === "Profile") {
+
+    document.getElementById(
+      "profilePage"
+    ).style.display = "block";
+
+    loadProfile();
+
+  }
+
+}
+
+/* PROFILE */
+
+function loadProfile() {
+
+  const name =
+    localStorage.getItem(
+      "yam_profile_name"
+    ) || "Nizam";
+
+  const status =
+    localStorage.getItem(
+      "yam_profile_status"
+    ) || "Pengguna YAM Chat";
+
+  document.getElementById(
+    "profileName"
+  ).innerText = name;
+
+  document.getElementById(
+    "profileStatus"
+  ).innerText = status;
+
+  document.getElementById(
+    "nameInput"
+  ).value = name;
+
+  document.getElementById(
+    "statusInput"
+  ).value = status;
+
+  document.getElementById(
+    "profileAvatar"
+  ).innerText =
+    name.charAt(0).toUpperCase();
+
+}
+
+/* SAVE PROFILE */
+
+function saveProfile() {
+
+  const name =
+    document.getElementById(
+      "nameInput"
+    ).value.trim();
+
+  const status =
+    document.getElementById(
+      "statusInput"
+    ).value.trim();
+
+  if (name === "") {
+
+    alert(
+      "Sila masukkan nama dahulu."
+    );
+
+    return;
+
+  }
+
+  localStorage.setItem(
+    "yam_profile_name",
+    name
+  );
+
+  localStorage.setItem(
+    "yam_profile_status",
+    status || "Pengguna YAM Chat"
+  );
+
+  loadProfile();
+
   alert(
-    "YAM Chat • " +
-    page +
-    "\n\nFungsi ini kita akan bina dalam versi seterusnya 🚀"
+    "Profile YAM Chat berjaya disimpan! ✅"
   );
 
 }
 
-/* INITIAL */
+/* START */
 
+loadProfile();
 updatePreviews();
 
 </script>
