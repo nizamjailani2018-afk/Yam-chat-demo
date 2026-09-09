@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YAM Chat</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f2f4f8;
+  color: #222;
+}
+
+.app {
+  max-width: 480px;
+  margin: auto;
+  min-height: 100vh;
+  background: white;
+}
+
+.header {
+  background: #1877f2;
+  color: white;
+  padding: 22px 18px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.search {
+  margin: 15px;
+  padding: 13px;
+  border: none;
+  border-radius: 25px;
+  background: #f0f2f5;
+  width: calc(100% - 30px);
+  font-size: 15px;
+}
+
+.section {
+  padding: 5px 15px 80px;
+}
+
+.chat {
+  display: flex;
+  align-items: center;
+  padding: 15px 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #1877f2;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 13px;
+}
+
+.name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.message {
+  color: #777;
+  font-size: 14px;
+}
+
+.online {
+  color: #20b455;
+  font-size: 12px;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 480px;
+  width: 100%;
+  background: white;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.nav {
+  border: none;
+  background: none;
+  font-size: 12px;
+  color: #555;
+  cursor: pointer;
+}
+
+.nav span {
+  display: block;
+  font-size: 23px;
+  margin-bottom: 3px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="header">
+    💬 YAM Chat
+  </div>
+
+  <input class="search"
+         type="text"
+         placeholder="🔍 Cari kawan atau mesej...">
+
+  <div class="section">
+
+    <div class="title">Chats</div>
+
+    <div class="chat">
+      <div class="avatar">A</div>
+      <div>
+        <div class="name">Ahmad</div>
+        <div class="message">Hai bro! Apa khabar?</div>
+        <div class="online">● Online</div>
+      </div>
+    </div>
+
+    <div class="chat">
+      <div class="avatar">S</div>
+      <div>
+        <div class="name">Siti</div>
+        <div class="message">Jumpa nanti 👍</div>
+        <div class="online">● Online</div>
+      </div>
+    </div>
+
+    <div class="chat">
+      <div class="avatar">J</div>
+      <div>
+        <div class="name">John</div>
+        <div class="message">Hello 👋</div>
+        <div class="online">● Online</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="bottom">
+
+  <button class="nav" onclick="showMessage('Chats')">
+    <span>💬</span>
+    Chats
+  </button>
+
+  <button class="nav" onclick="showMessage('Friends')">
+    <span>👥</span>
+    Friends
+  </button>
+
+  <button class="nav" onclick="showMessage('Rooms')">
+    <span>🌏</span>
+    Rooms
+  </button>
+
+  <button class="nav" onclick="showMessage('Profile')">
+    <span>👤</span>
+    Profile
+  </button>
+
+</div>
+
+<script>
+function showMessage(page) {
+  alert("YAM Chat: " + page + " sedang dibuka 🚀");
+}
+</script>
+
+</body>
+</html>
