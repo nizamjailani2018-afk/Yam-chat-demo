@@ -417,45 +417,47 @@ button{
 
 /* ================= PROFILE V4.4.3 ================= */
 
+#profilePage{
+    margin-left:-15px;
+    margin-right:-15px;
+    margin-top:-15px;
+}
+
 .profile-main{
     background:white;
-    border-radius:0 0 18px 18px;
+    border-radius:0;
     overflow:hidden;
     box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
-/*
-   Cover dibuat full width.
-   main mempunyai padding 15px,
-   jadi cover ditarik keluar supaya
-   memenuhi lebar skrin.
-*/
+/* FULL SCREEN COVER */
 
 .profile-cover{
-    height:280px;
-    margin-left:-15px;
-    margin-right:-15px;
-    margin-top:-15px;
+    width:100%;
+    height:360px;
 
     background:linear-gradient(135deg,#2563eb,#111827);
     background-size:cover;
     background-position:center;
+
     position:relative;
-    overflow:hidden;
+    overflow:visible;
 }
 
 .cover-dark{
     position:absolute;
     inset:0;
+
     background:linear-gradient(
         to bottom,
         rgba(0,0,0,.05),
-        rgba(0,0,0,.38)
+        rgba(0,0,0,.42)
     );
+
     pointer-events:none;
 }
 
-/* CAMERA + 3 DOT */
+/* ================= CAMERA + 3 DOT ================= */
 
 .profile-top-actions{
     position:absolute;
@@ -464,18 +466,19 @@ button{
     right:15px;
 
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     justify-content:space-between;
 
-    z-index:5;
+    z-index:50;
 }
 
 .profile-top-actions button{
     width:44px;
     height:44px;
+
     border-radius:50%;
 
-    background:rgba(255,255,255,.92);
+    background:rgba(255,255,255,.94);
     color:#222;
 
     font-size:21px;
@@ -484,21 +487,102 @@ button{
     align-items:center;
     justify-content:center;
 
-    box-shadow:0 3px 10px rgba(0,0,0,.18);
+    box-shadow:0 3px 12px rgba(0,0,0,.22);
+
+    transition:.15s;
 }
 
 .profile-top-actions button:hover{
     background:white;
-    transform:scale(1.04);
+    transform:scale(1.05);
 }
 
-/* PROFILE INFO */
+/* ================= THREE DOT AREA ================= */
+
+.profile-menu-wrap{
+    position:relative;
+    display:flex;
+    justify-content:flex-end;
+}
+
+/* MENU KELUAR DEKAT 3 TITIK */
+
+.profile-menu{
+    position:absolute;
+
+    top:52px;
+    right:0;
+
+    width:205px;
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:6px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.25);
+
+    border:1px solid rgba(0,0,0,.08);
+
+    z-index:100;
+}
+
+/* little arrow */
+
+.profile-menu::before{
+    content:"";
+
+    position:absolute;
+
+    top:-7px;
+    right:14px;
+
+    width:14px;
+    height:14px;
+
+    background:white;
+
+    transform:rotate(45deg);
+
+    border-left:1px solid rgba(0,0,0,.08);
+    border-top:1px solid rgba(0,0,0,.08);
+}
+
+.profile-menu-item{
+    position:relative;
+    z-index:2;
+
+    padding:13px 12px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    background:white;
+}
+
+.profile-menu-item:hover{
+    background:#f1f5f9;
+}
+
+.profile-menu-item.logout-item{
+    color:#dc2626;
+}
+
+/* ================= PROFILE ================= */
 
 .profile-picture-wrap{
     padding:0 18px;
+
     margin-top:-60px;
+
     position:relative;
-    z-index:10;
+
+    z-index:20;
 }
 
 .profile-picture{
@@ -506,9 +590,11 @@ button{
     height:115px;
 
     border-radius:50%;
+
     border:5px solid white;
 
     object-fit:cover;
+
     background:#2563eb;
 
     box-shadow:0 4px 14px rgba(0,0,0,.2);
@@ -539,11 +625,7 @@ button{
     white-space:pre-wrap;
 }
 
-/*
-   Button besar bawah hanya untuk
-   gambar, status dan music.
-   4 menu utama berada dalam ⋮.
-*/
+/* ================= PROFILE EXTRA BUTTONS ================= */
 
 .profile-buttons{
     display:grid;
@@ -555,42 +637,14 @@ button{
 .profile-buttons button{
     padding:12px 8px;
     border-radius:11px;
+
     background:#eef2ff;
     color:#2563eb;
+
     font-weight:bold;
 }
 
-/* PROFILE 3 DOT MENU */
-
-.profile-menu{
-    background:white;
-    border-top:1px solid #eee;
-    border-bottom:1px solid #eee;
-    padding:5px 15px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.05);
-}
-
-.profile-menu-item{
-    padding:15px 5px;
-    border-bottom:1px solid #eee;
-    cursor:pointer;
-    font-weight:500;
-}
-
-.profile-menu-item:last-child{
-    border-bottom:0;
-}
-
-.profile-menu-item:hover{
-    background:#f8fafc;
-}
-
-.profile-menu-item.logout-item{
-    color:#dc2626;
-}
-
-/* INFO */
+/* ================= INFO ================= */
 
 .info-title{
     padding:15px 15px 5px;
@@ -617,7 +671,7 @@ button{
     font-weight:500;
 }
 
-/* MUSIC */
+/* ================= MUSIC ================= */
 
 .music-box{
     margin:0 15px 15px;
@@ -655,21 +709,28 @@ button{
     right:0;
     bottom:0;
     z-index:200;
+
     height:65px;
+
     background:white;
+
     display:grid;
     grid-template-columns:repeat(4,1fr);
+
     box-shadow:0 -2px 12px rgba(0,0,0,.1);
 }
 
 .nav-btn{
     background:white;
     color:#777;
+
     font-size:12px;
+
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
+
     gap:3px;
 }
 
@@ -688,10 +749,14 @@ button{
     position:fixed;
     inset:0;
     z-index:500;
+
     background:rgba(0,0,0,.55);
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:18px;
 }
 
@@ -703,9 +768,13 @@ button{
     width:100%;
     max-width:500px;
     max-height:90vh;
+
     overflow:auto;
+
     background:white;
+
     border-radius:18px;
+
     padding:20px;
 }
 
@@ -743,7 +812,9 @@ button{
     position:fixed;
     inset:0;
     z-index:400;
+
     background:#eef2f7;
+
     display:none;
     flex-direction:column;
 }
@@ -754,11 +825,16 @@ button{
 
 .chat-head{
     height:60px;
+
     background:white;
+
     display:flex;
     align-items:center;
+
     gap:10px;
+
     padding:0 12px;
+
     box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
@@ -779,37 +855,52 @@ button{
 
 .chat-message{
     max-width:75%;
+
     padding:10px 12px;
+
     border-radius:15px;
+
     margin-bottom:9px;
+
     background:white;
+
     box-shadow:0 2px 5px rgba(0,0,0,.05);
 }
 
 .chat-message.mine{
     margin-left:auto;
+
     background:#2563eb;
     color:white;
 }
 
 .chat-foot{
     background:white;
+
     padding:10px;
+
     display:flex;
+
     gap:8px;
 }
 
 .chat-foot input{
     flex:1;
+
     padding:12px;
+
     border:1px solid #ddd;
+
     border-radius:12px;
 }
 
 .chat-foot button{
     padding:0 17px;
+
     border-radius:12px;
+
     background:#2563eb;
+
     color:white;
 }
 
@@ -828,7 +919,7 @@ button{
 @media(max-width:430px){
 
     .profile-cover{
-        height:255px;
+        height:330px;
     }
 
     .profile-picture{
@@ -838,6 +929,11 @@ button{
 
     .profile-picture-wrap{
         margin-top:-55px;
+    }
+
+    .profile-menu{
+        width:190px;
+        right:0;
     }
 
     .profile-buttons{
@@ -1027,7 +1123,7 @@ button{
 
             <div class="profile-main">
 
-                <!-- COVER FULL WIDTH -->
+                <!-- ================= FULL COVER ================= -->
 
                 <div
                     id="profileCover"
@@ -1035,31 +1131,71 @@ button{
 
                     <div class="cover-dark"></div>
 
+
+                    <!-- TOP ACTIONS -->
+
                     <div class="profile-top-actions">
 
                         <!-- CAMERA -->
 
                         <button
                             onclick="changeCover()"
-                            title="Tukar Cover">
+                            title="Tukar Background Cover">
                             📷
                         </button>
 
 
-                        <!-- THREE DOT -->
+                        <!-- THREE DOT + MENU -->
 
-                        <button
-                            onclick="openProfileMenu()"
-                            title="Menu">
-                            ⋮
-                        </button>
+                        <div class="profile-menu-wrap">
+
+                            <button
+                                onclick="openProfileMenu()"
+                                title="Menu Profile">
+                                ⋮
+                            </button>
+
+
+                            <!-- MENU TERUS DEKAT 3 TITIK -->
+
+                            <div
+                                id="profileMenu"
+                                class="profile-menu hidden">
+
+                                <div
+                                    class="profile-menu-item"
+                                    onclick="editProfile()">
+                                    ✏️ Edit Profile
+                                </div>
+
+                                <div
+                                    class="profile-menu-item"
+                                    onclick="changeName()">
+                                    ✍️ Tukar Nama
+                                </div>
+
+                                <div
+                                    class="profile-menu-item"
+                                    onclick="changePassword()">
+                                    🔑 Tukar Password
+                                </div>
+
+                                <div
+                                    class="profile-menu-item logout-item"
+                                    onclick="logout()">
+                                    🚪 Log Out
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
                 </div>
 
 
-                <!-- PROFILE -->
+                <!-- ================= PROFILE INFO ================= -->
 
                 <div class="profile-picture-wrap">
 
@@ -1069,21 +1205,25 @@ button{
                         src=""
                         alt="Profile">
 
+
                     <div
                         id="profileName"
                         class="profile-name">
                     </div>
+
 
                     <div
                         id="profileUsername"
                         class="profile-username">
                     </div>
 
+
                     <div
                         id="profileStatus"
                         class="profile-status"
                         onclick="editStatus()">
                     </div>
+
 
                     <div
                         id="profileBio"
@@ -1093,51 +1233,13 @@ button{
                 </div>
 
 
-                <!-- 3 DOT MENU -->
-
-                <div
-                    id="profileMenu"
-                    class="profile-menu hidden">
-
-                    <div
-                        class="profile-menu-item"
-                        onclick="editProfile()">
-                        ✏️ Edit Profile
-                    </div>
-
-                    <div
-                        class="profile-menu-item"
-                        onclick="changeName()">
-                        📝 Tukar Nama
-                    </div>
-
-                    <div
-                        class="profile-menu-item"
-                        onclick="changePassword()">
-                        🔑 Tukar Password
-                    </div>
-
-                    <div
-                        class="profile-menu-item logout-item"
-                        onclick="logout()">
-                        🚪 Log Out
-                    </div>
-
-                </div>
-
-
-                <!-- PROFILE EXTRA BUTTONS -->
+                <!-- ================= EXTRA BUTTONS ================= -->
 
                 <div class="profile-buttons">
 
                     <button
                         onclick="changeProfilePicture()">
                         🖼️ Tukar Gambar
-                    </button>
-
-                    <button
-                        onclick="changeCover()">
-                        📷 Tukar Cover
                     </button>
 
                     <button
@@ -1150,10 +1252,15 @@ button{
                         🎵 Music
                     </button>
 
+                    <button
+                        onclick="openPrivacy()">
+                        🔒 Privacy
+                    </button>
+
                 </div>
 
 
-                <!-- MUSIC -->
+                <!-- ================= MUSIC ================= -->
 
                 <div
                     id="musicArea"
@@ -1161,7 +1268,7 @@ button{
                 </div>
 
 
-                <!-- INFO -->
+                <!-- ================= INFO ================= -->
 
                 <div class="info-title">
                     ℹ️ Maklumat Profile
@@ -1353,7 +1460,8 @@ button{
 
 /* =========================================================
    YAM CHAT V4.4.3
-   FULL COVER + CAMERA + 3 DOT PROFILE MENU
+   FULL SCREEN COVER
+   CAMERA + THREE DOT MENU
 ========================================================= */
 
 
@@ -1664,6 +1772,8 @@ function register(){
 function logout(){
 
     if(!confirm("Log Out dari YAM?")) return;
+
+    closeProfileMenu();
 
     localStorage.removeItem(
         "yam_current_user"
@@ -3089,7 +3199,7 @@ document.getElementById(
 );
 
 
-/* ================= 3 DOT MENU ================= */
+/* ================= PROFILE MENU ================= */
 
 function openProfileMenu(){
 
@@ -3103,13 +3213,27 @@ function openProfileMenu(){
 }
 
 
+function closeProfileMenu(){
+
+    const menu =
+        document.getElementById(
+            "profileMenu"
+        );
+
+    if(menu){
+
+        menu.classList.add("hidden");
+
+    }
+
+}
+
+
 /* ================= EDIT PROFILE ================= */
 
 function editProfile(){
 
-    document.getElementById(
-        "profileMenu"
-    ).classList.add("hidden");
+    closeProfileMenu();
 
     const profile =
         getProfileData(currentUser);
@@ -3225,9 +3349,7 @@ function saveProfile(){
 
 function changeName(){
 
-    document.getElementById(
-        "profileMenu"
-    ).classList.add("hidden");
+    closeProfileMenu();
 
     const profile =
         getProfileData(currentUser);
@@ -3245,7 +3367,7 @@ function changeName(){
     `;
 
     openModal(
-        "📝 Tukar Nama",
+        "✍️ Tukar Nama",
         content,
         saveName
     );
@@ -3349,9 +3471,7 @@ function saveStatus(){
 
 function changePassword(){
 
-    document.getElementById(
-        "profileMenu"
-    ).classList.add("hidden");
+    closeProfileMenu();
 
     const content = `
 
@@ -3433,6 +3553,39 @@ function savePassword(){
     closeModal();
 
     alert("Password berjaya ditukar.");
+
+}
+
+
+/* ================= PRIVACY ================= */
+
+function openPrivacy(){
+
+    const content = `
+
+        <div style="
+            padding:12px;
+            background:#f8fafc;
+            border-radius:12px;
+            line-height:1.5;
+        ">
+
+            🔒 <b>Privacy YAM</b>
+
+            <br><br>
+
+            Tetapan privacy demo akan
+            digunakan untuk profile ini.
+
+        </div>
+
+    `;
+
+    openModal(
+        "🔒 Privacy",
+        content,
+        closeModal
+    );
 
 }
 
@@ -3769,7 +3922,7 @@ function sendChat(){
 }
 
 
-/* ENTER CHAT */
+/* ================= ENTER CHAT ================= */
 
 document.getElementById(
     "chatInput"
