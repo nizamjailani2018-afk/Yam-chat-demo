@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.4.4</title>
+<title>YAM Chat V4.4.5</title>
 
 <style>
 *{
@@ -460,6 +460,38 @@ button{
     pointer-events:none;
 }
 
+/* ================= MUSIC BUTTON - KIRI ATAS COVER ================= */
+
+.profile-music-button{
+    position:absolute;
+    top:15px;
+    left:15px;
+    width:44px;
+    height:44px;
+    min-width:44px;
+    min-height:44px;
+    padding:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.96);
+    color:#222;
+    font-size:21px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.22);
+    z-index:50;
+    transition:.15s;
+}
+
+.profile-music-button:hover{
+    background:white;
+    transform:scale(1.05);
+}
+
+.profile-music-button:active{
+    transform:scale(.96);
+}
+
 /* ================= CAMERA + THREE DOT ================= */
 
 .profile-top-actions{
@@ -638,7 +670,7 @@ button{
 
 .profile-buttons{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(2,1fr);
     gap:8px;
     padding:16px;
 }
@@ -923,6 +955,7 @@ button{
     .profile-buttons{
         grid-template-columns:1fr 1fr;
     }
+
 }
 
 </style>
@@ -1112,6 +1145,19 @@ button{
 
                     <div class="cover-dark"></div>
 
+                    <!-- MUSIC BUTTON - KIRI ATAS -->
+
+                    <button
+                        type="button"
+                        class="profile-music-button"
+                        onclick="openMusic()"
+                        title="Tambah / Tukar Music">
+                        🎵
+                    </button>
+
+
+                    <!-- CAMERA + THREE DOT - KANAN ATAS -->
+
                     <div class="profile-top-actions">
 
                         <button
@@ -1215,14 +1261,12 @@ button{
                 </div>
 
 
+                <!-- MUSIC BUTTON SUDAH DIBUANG DARI SINI -->
+
                 <div class="profile-buttons">
 
                     <button onclick="editStatus()">
                         🟢 Status
-                    </button>
-
-                    <button onclick="openMusic()">
-                        🎵 Music
                     </button>
 
                     <button onclick="openPrivacy()">
@@ -1231,6 +1275,8 @@ button{
 
                 </div>
 
+
+                <!-- MUSIC PLAYER KEKAL DI SINI SELEPAS UPLOAD -->
 
                 <div
                     id="musicArea"
@@ -1424,10 +1470,9 @@ button{
 <script>
 
 /* =========================================================
-   YAM CHAT V4.4.4
-   PROFILE CAMERA BUTTON
-   FULL SCREEN COVER
-   THREE DOT MENU
+   YAM CHAT V4.4.5
+   MUSIC BUTTON DI KIRI ATAS COVER
+   CAMERA COVER + THREE DOT DI KANAN ATAS
 ========================================================= */
 
 let currentUser =
@@ -3764,9 +3809,17 @@ function openPrivacy(){
 
 function openMusic(){
 
-    document.getElementById(
-        "musicFile"
-    ).click();
+    const input =
+        document.getElementById(
+            "musicFile"
+        );
+
+    if(input){
+
+        input.value = "";
+        input.click();
+
+    }
 
 }
 
