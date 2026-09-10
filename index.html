@@ -327,7 +327,7 @@ body{
     flex:1;
     border:none;
     background:#f8fafc;
-    padding:9px;
+    padding:9px 5px;
     border-radius:9px;
     cursor:pointer;
     font-weight:bold;
@@ -349,8 +349,28 @@ body{
     font-size:13px;
 }
 
+.comment-head{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
 .comment-name{
     font-weight:bold;
+    flex:1;
+}
+
+.comment-tools{
+    display:flex;
+    gap:4px;
+}
+
+.comment-tool{
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    font-size:13px;
+    padding:2px 4px;
 }
 
 .comment-row{
@@ -375,13 +395,18 @@ body{
     font-weight:bold;
 }
 
+.share-box{
+    text-align:center;
+    line-height:1.5;
+}
+
 /* =========================
    PROFILE
 ========================= */
 
 .profile-cover{
     height:210px;
-    border-radius:16px;
+    border-radius:16px 16px 0 0;
     overflow:hidden;
     background:linear-gradient(135deg,#1976d2,#90caf9);
     position:relative;
@@ -393,10 +418,11 @@ body{
     object-fit:cover;
 }
 
+/* Cover diteruskan sehingga bawah 3 butang */
 .profile-card{
     background:white;
-    border-radius:16px;
-    margin-top:-35px;
+    border-radius:0 0 16px 16px;
+    margin-top:0;
     position:relative;
     padding:14px;
     box-shadow:0 2px 8px rgba(0,0,0,.1);
@@ -865,6 +891,7 @@ body{
 ========================= */
 
 @media(max-width:500px){
+
     .page{
         padding:10px;
     }
@@ -888,15 +915,17 @@ body{
     .post-media{
         max-height:560px;
     }
+
+    .action-btn{
+        font-size:12px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     LOGIN PAGE
-===================================================== -->
+<!-- LOGIN -->
 
 <div id="loginPage">
 
@@ -940,9 +969,7 @@ body{
 </div>
 
 
-<!-- =====================================================
-     APP
-===================================================== -->
+<!-- APP -->
 
 <div id="app">
 
@@ -962,6 +989,7 @@ body{
 
 
     <!-- HOME -->
+
     <div
         id="homePage"
         class="page">
@@ -1033,6 +1061,7 @@ body{
 
 
     <!-- FRIENDS -->
+
     <div
         id="friendsPage"
         class="page">
@@ -1047,6 +1076,7 @@ body{
 
 
     <!-- ROOMS -->
+
     <div
         id="roomsPage"
         class="page">
@@ -1061,6 +1091,7 @@ body{
 
 
     <!-- PROFILE -->
+
     <div
         id="profilePage"
         class="page">
@@ -1111,9 +1142,7 @@ body{
 </div>
 
 
-<!-- =====================================================
-     HIDDEN FILE INPUTS
-===================================================== -->
+<!-- FILE INPUTS -->
 
 <input
     id="profileFile"
@@ -1126,8 +1155,7 @@ body{
     id="coverFile"
     type="file"
     accept="image/*"
-    style="display:none"
-    onchange="changeCover(event)">
+    style="display:none">
 
 <input
     id="postImageFile"
@@ -1158,9 +1186,7 @@ body{
     onchange="handleMarketImage(event)">
 
 
-<!-- =====================================================
-     MODAL
-===================================================== -->
+<!-- MODAL -->
 
 <div
     id="modalBg"
@@ -1190,9 +1216,7 @@ body{
 </div>
 
 
-<!-- =====================================================
-     CHAT
-===================================================== -->
+<!-- CHAT -->
 
 <div
     id="chatBg"
@@ -1333,15 +1357,10 @@ async function saveMedia(file){
         tx.objectStore(MEDIA_STORE).put({
 
             id:id,
-
             name:file.name,
-
             type:file.type,
-
             size:file.size,
-
             blob:file,
-
             created:Date.now()
 
         });
@@ -1934,7 +1953,6 @@ function handlePostImage(event){
     }
 
     selectedPostFile=file;
-
     selectedPostType="image";
 
     const url=
@@ -1978,7 +1996,6 @@ function handlePostVideo(event){
     }
 
     selectedPostFile=file;
-
     selectedPostType="video";
 
     const url=
@@ -2187,7 +2204,6 @@ function cancelPost(){
         .value="";
 
     selectedPostFile=null;
-
     selectedPostType="text";
 
     document
@@ -2310,34 +2326,78 @@ async function renderFeed(){
 
         }
 
+        const likes=
+            post.likes || [];
+
+        const comments=
+            post.comments || [];
+
+        const blocked=
+            post.blockedUsers || [];
+
         const liked=
-            (post.likes||[])
-            .includes(currentUser);
+            likes.includes(currentUser);
+
+        const visibleComments=
+            comments.filter(
+                c=>!blocked.includes(c.user)
+            );
 
         let commentsHtml="";
 
         if(
             !post.hiddenComments
             &&
-            post.comments
-            &&
-            post.comments.length
+            visibleComments.length
         ){
 
             commentsHtml=
-                post.comments
-                .filter(
-                    c=>
-                    !(post.blockedUsers||[])
-                    .includes(c.user)
-                )
+                visibleComments
                 .map(c=>`
 
                     <div class="comment">
 
-                        <span class="comment-name">
-                            ${escapeHtml(c.user)}
-                        </span>
+                        <div class="comment-head">
+
+                            <span class="comment-name">
+                                ${escapeHtml(c.user)}
+                            </span>
+
+                            ${
+                                post.owner===currentUser
+                                ?
+                                `
+                                <div class="comment-tools">
+
+                                    <button
+                                        class="comment-tool"
+                                        title="Padam komen"
+                                        onclick="deleteComment(${post.id},${c.id})">
+                                        🗑️
+                                    </button>
+
+                                    ${
+                                        blocked.includes(c.user)
+                                        ?
+                                        ""
+                                        :
+                                        `
+                                        <button
+                                            class="comment-tool"
+                                            title="Block pengguna"
+                                            onclick="blockCommentUser(${post.id},'${escapeHtml(c.user)}')">
+                                            🚫
+                                        </button>
+                                        `
+                                    }
+
+                                </div>
+                                `
+                                :
+                                ""
+                            }
+
+                        </div>
 
                         <div>
                             ${escapeHtml(c.text)}
@@ -2406,14 +2466,20 @@ async function renderFeed(){
                         class="action-btn ${liked?"liked":""}"
                         onclick="toggleLike(${post.id})">
                         ${liked?"❤️":"♡"}
-                        ${(post.likes||[]).length}
+                        ${likes.length}
                     </button>
 
                     <button
                         class="action-btn"
                         onclick="focusComment(${post.id})">
                         💬
-                        ${(post.comments||[]).length}
+                        ${visibleComments.length}
+                    </button>
+
+                    <button
+                        class="action-btn"
+                        onclick="sharePost(${post.id})">
+                        🔗 Share
                     </button>
 
                 </div>
@@ -2422,34 +2488,70 @@ async function renderFeed(){
                     class="comments"
                     id="comments-${post.id}">
 
-                    ${commentsHtml}
-
                     ${
-                        !post.hiddenComments
+                        post.hiddenComments
                         ?
                         `
-                        <div class="comment-row">
-
-                            <input
-                                id="comment-${post.id}"
-                                class="comment-input"
-                                placeholder="Tulis komen...">
-
+                        ${
+                            post.owner===currentUser
+                            ?
+                            `
                             <button
-                                class="comment-send"
-                                onclick="addComment(${post.id})">
-                                ↗
+                                class="small-btn"
+                                onclick="toggleComments(${post.id})">
+                                👁️ Tunjukkan komen
                             </button>
-
-                        </div>
+                            `
+                            :
+                            `
+                            <div
+                                style="
+                                    color:#6b7280;
+                                    font-size:12px;
+                                    padding:8px">
+                                Komen disembunyikan oleh author.
+                            </div>
+                            `
+                        }
                         `
                         :
                         `
-                        <button
-                            class="small-btn"
-                            onclick="toggleComments(${post.id})">
-                            Tunjukkan komen
-                        </button>
+                        ${commentsHtml}
+
+                        ${
+                            blocked.includes(currentUser)
+                            ?
+                            `
+                            <div
+                                style="
+                                    color:#b91c1c;
+                                    font-size:12px;
+                                    margin-top:9px;
+                                    padding:8px;
+                                    background:#fee2e2;
+                                    border-radius:9px">
+                                🚫 Anda telah disekat daripada komen pada post ini.
+                            </div>
+                            `
+                            :
+                            `
+                            <div class="comment-row">
+
+                                <input
+                                    id="comment-${post.id}"
+                                    class="comment-input"
+                                    placeholder="Tulis komen..."
+                                    onkeydown="if(event.key==='Enter')addComment(${post.id})">
+
+                                <button
+                                    class="comment-send"
+                                    onclick="addComment(${post.id})">
+                                    ↗
+                                </button>
+
+                            </div>
+                            `
+                        }
                         `
                     }
 
@@ -2506,6 +2608,111 @@ function toggleLike(id){
 
 
 /* =====================================================
+   SHARE
+===================================================== */
+
+function sharePost(id){
+
+    const posts=getPosts();
+
+    const post=
+        posts.find(p=>p.id===id);
+
+    if(!post){
+        return;
+    }
+
+    const shareText=
+        "Post YAM Chat oleh @"+post.owner+
+        (post.text ? "\n\n"+post.text : "");
+
+    if(
+        navigator.share
+    ){
+
+        navigator.share({
+
+            title:"YAM Chat",
+            text:shareText
+
+        }).catch(()=>{});
+
+        return;
+
+    }
+
+    openModal(
+        "🔗 Share Post",
+        `
+            <div class="share-box">
+
+                <p>
+                    ${escapeHtml(shareText)}
+                </p>
+
+                <br>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="copyShareText(${id})">
+                    📋 Salin
+                </button>
+
+            </div>
+        `
+    );
+
+}
+
+
+function copyShareText(id){
+
+    const posts=getPosts();
+
+    const post=
+        posts.find(p=>p.id===id);
+
+    if(!post){
+        return;
+    }
+
+    const text=
+        "Post YAM Chat oleh @"+post.owner+
+        (post.text ? "\n\n"+post.text : "");
+
+    if(
+        navigator.clipboard
+        &&
+        navigator.clipboard.writeText
+    ){
+
+        navigator.clipboard
+            .writeText(text)
+            .then(()=>{
+
+                closeModal();
+
+                alert("Post berjaya disalin untuk share.");
+
+            })
+            .catch(()=>{
+
+                alert("Tidak dapat menyalin.");
+
+            });
+
+    }else{
+
+        closeModal();
+
+        alert("Fungsi salin tidak disokong browser ini.");
+
+    }
+
+}
+
+
+/* =====================================================
    COMMENT
 ===================================================== */
 
@@ -2539,9 +2746,37 @@ function addComment(id){
         post.comments=[];
     }
 
+    if(!post.blockedUsers){
+        post.blockedUsers=[];
+    }
+
+    if(
+        post.blockedUsers.includes(currentUser)
+    ){
+
+        alert(
+            "Anda telah disekat daripada komen pada post ini."
+        );
+
+        return;
+
+    }
+
+    if(post.hiddenComments){
+
+        alert(
+            "Komen untuk post ini sedang disembunyikan oleh author."
+        );
+
+        return;
+
+    }
+
     post.comments.push({
 
-        id:Date.now(),
+        id:
+            Date.now()+
+            Math.floor(Math.random()*1000),
 
         user:currentUser,
 
@@ -2559,6 +2794,25 @@ function addComment(id){
 
 
 function focusComment(id){
+
+    const posts=getPosts();
+
+    const post=
+        posts.find(p=>p.id===id);
+
+    if(
+        post &&
+        (post.blockedUsers||[])
+        .includes(currentUser)
+    ){
+
+        alert(
+            "Anda telah disekat daripada komen pada post ini."
+        );
+
+        return;
+
+    }
 
     const input=
         document
@@ -2589,6 +2843,10 @@ function focusComment(id){
 }
 
 
+/* =====================================================
+   HIDE / SHOW COMMENTS
+===================================================== */
+
 function toggleComments(id){
 
     const posts=getPosts();
@@ -2600,8 +2858,169 @@ function toggleComments(id){
         return;
     }
 
+    if(post.owner!==currentUser){
+
+        alert(
+            "Hanya author post boleh mengurus komen."
+        );
+
+        return;
+
+    }
+
     post.hiddenComments=
         !post.hiddenComments;
+
+    savePosts(posts);
+
+    renderFeed();
+
+}
+
+
+/* =====================================================
+   DELETE COMMENT
+===================================================== */
+
+function deleteComment(postId,commentId){
+
+    const posts=getPosts();
+
+    const post=
+        posts.find(p=>p.id===postId);
+
+    if(!post){
+        return;
+    }
+
+    if(post.owner!==currentUser){
+
+        alert(
+            "Hanya author post boleh padam komen."
+        );
+
+        return;
+
+    }
+
+    const comment=
+        (post.comments||[])
+        .find(c=>c.id===commentId);
+
+    if(!comment){
+        return;
+    }
+
+    if(
+        !confirm(
+            "Padam komen daripada @"+
+            comment.user+
+            "?"
+        )
+    ){
+
+        return;
+
+    }
+
+    post.comments=
+        (post.comments||[])
+        .filter(
+            c=>c.id!==commentId
+        );
+
+    savePosts(posts);
+
+    renderFeed();
+
+}
+
+
+/* =====================================================
+   BLOCK COMMENT USER
+===================================================== */
+
+function blockCommentUser(postId,username){
+
+    const posts=getPosts();
+
+    const post=
+        posts.find(p=>p.id===postId);
+
+    if(!post){
+        return;
+    }
+
+    if(post.owner!==currentUser){
+
+        alert(
+            "Hanya author post boleh block pengguna."
+        );
+
+        return;
+
+    }
+
+    if(username===currentUser){
+
+        alert(
+            "Author tidak boleh block diri sendiri."
+        );
+
+        return;
+
+    }
+
+    if(!post.blockedUsers){
+        post.blockedUsers=[];
+    }
+
+    if(
+        post.blockedUsers.includes(username)
+    ){
+
+        post.blockedUsers=
+            post.blockedUsers.filter(
+                u=>u!==username
+            );
+
+    }else{
+
+        post.blockedUsers.push(username);
+
+    }
+
+    savePosts(posts);
+
+    renderFeed();
+
+}
+
+
+/* =====================================================
+   UNBLOCK USER
+===================================================== */
+
+function unblockCommentUser(postId,username){
+
+    const posts=getPosts();
+
+    const post=
+        posts.find(p=>p.id===postId);
+
+    if(!post){
+        return;
+    }
+
+    if(post.owner!==currentUser){
+        return;
+    }
+
+    post.blockedUsers=
+        (post.blockedUsers||[])
+        .filter(
+            u=>u!==username
+        );
 
     savePosts(posts);
 
@@ -2616,19 +3035,247 @@ function toggleComments(id){
 
 function postOwnerMenu(id){
 
+    const posts=getPosts();
+
+    const post=
+        posts.find(p=>p.id===id);
+
+    if(!post){
+        return;
+    }
+
+    if(post.owner!==currentUser){
+        return;
+    }
+
+    const blocked=
+        post.blockedUsers || [];
+
+    const blockedHtml=
+        blocked.length
+        ?
+        `
+        <div
+            style="
+                margin-top:12px;
+                background:#f8fafc;
+                padding:10px;
+                border-radius:10px">
+
+            <div
+                style="
+                    font-weight:bold;
+                    margin-bottom:7px">
+                🚫 Pengguna disekat
+            </div>
+
+            ${
+                blocked.map(user=>`
+
+                    <div
+                        style="
+                            display:flex;
+                            align-items:center;
+                            gap:6px;
+                            margin-top:6px">
+
+                        <span style="flex:1">
+                            @${escapeHtml(user)}
+                        </span>
+
+                        <button
+                            class="small-btn"
+                            onclick="unblockCommentUser(${id},'${escapeHtml(user)}')">
+                            Buka Block
+                        </button>
+
+                    </div>
+
+                `).join("")
+            }
+
+        </div>
+        `
+        :
+        `
+        <div
+            style="
+                margin-top:10px;
+                color:#6b7280;
+                font-size:12px">
+            Tiada pengguna yang disekat.
+        </div>
+        `;
+
     openModal(
         "Post",
         `
+
             <button
                 class="btn btn-gray"
+                onclick="toggleComments(${id});closeModal()">
+                ${
+                    post.hiddenComments
+                    ?
+                    "👁️ Tunjukkan Komen"
+                    :
+                    "🙈 Hide Komen"
+                }
+            </button>
+
+            <div style="height:8px"></div>
+
+            <button
+                class="btn btn-gray"
+                onclick="managePostComments(${id})">
+                💬 Urus Komen
+            </button>
+
+            <div style="height:8px"></div>
+
+            <button
+                class="btn"
+                style="background:#fee2e2;color:#b91c1c"
                 onclick="deletePost(${id})">
                 🗑️ Padam Post
             </button>
+
+            ${blockedHtml}
+
         `
     );
 
 }
 
+
+/* =====================================================
+   MANAGE COMMENTS
+===================================================== */
+
+function managePostComments(id){
+
+    const posts=getPosts();
+
+    const post=
+        posts.find(p=>p.id===id);
+
+    if(!post){
+        return;
+    }
+
+    if(post.owner!==currentUser){
+        return;
+    }
+
+    const comments=
+        post.comments || [];
+
+    const blocked=
+        post.blockedUsers || [];
+
+    let html="";
+
+    if(!comments.length){
+
+        html+=`
+            <div class="empty">
+                Belum ada komen.
+            </div>
+        `;
+
+    }else{
+
+        comments.forEach(comment=>{
+
+            const isBlocked=
+                blocked.includes(comment.user);
+
+            html+=`
+
+                <div class="comment">
+
+                    <div class="comment-head">
+
+                        <span class="comment-name">
+                            @${escapeHtml(comment.user)}
+                        </span>
+
+                        ${
+                            isBlocked
+                            ?
+                            `
+                            <span
+                                style="
+                                    font-size:10px;
+                                    color:#b91c1c">
+                                BLOCKED
+                            </span>
+                            `
+                            :
+                            ""
+                        }
+
+                    </div>
+
+                    <div>
+                        ${escapeHtml(comment.text)}
+                    </div>
+
+                    <div
+                        style="
+                            display:flex;
+                            gap:5px;
+                            margin-top:7px">
+
+                        <button
+                            class="small-btn"
+                            style="background:#fee2e2;color:#b91c1c"
+                            onclick="deleteComment(${id},${comment.id});managePostComments(${id})">
+                            🗑️ Padam
+                        </button>
+
+                        ${
+                            isBlocked
+                            ?
+                            `
+                            <button
+                                class="small-btn"
+                                onclick="unblockCommentUser(${id},'${escapeHtml(comment.user)}');managePostComments(${id})">
+                                Buka Block
+                            </button>
+                            `
+                            :
+                            `
+                            <button
+                                class="small-btn"
+                                style="background:#fef3c7;color:#92400e"
+                                onclick="blockCommentUser(${id},'${escapeHtml(comment.user)}');managePostComments(${id})">
+                                🚫 Block
+                            </button>
+                            `
+                        }
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+    openModal(
+        "💬 Urus Komen",
+        html
+    );
+
+}
+
+
+/* =====================================================
+   DELETE POST
+===================================================== */
 
 async function deletePost(id){
 
@@ -2643,6 +3290,16 @@ async function deletePost(id){
         return;
     }
 
+    if(post.owner!==currentUser){
+
+        alert(
+            "Hanya author boleh padam post."
+        );
+
+        return;
+
+    }
+
     if(
         !confirm(
             "Padam post ini?"
@@ -2653,9 +3310,17 @@ async function deletePost(id){
 
     if(post.mediaId){
 
-        await deleteMedia(
-            post.mediaId
-        );
+        try{
+
+            await deleteMedia(
+                post.mediaId
+            );
+
+        }catch(e){
+
+            console.error(e);
+
+        }
 
     }
 
@@ -2854,6 +3519,12 @@ function renderProfile(){
             )}
         </div>
         `;
+
+    /*
+       Profile cover + card.
+       Cover sekarang bersambung dengan bahagian
+       profile sehingga bawah 3 butang.
+    */
 
     area.innerHTML=`
 
@@ -3716,6 +4387,7 @@ function handleCover(event){
 
 }
 
+
 document
     .getElementById("coverFile")
     .addEventListener(
@@ -3797,7 +4469,6 @@ function handleMusic(event){
                 JSON.stringify({
 
                     name:file.name,
-
                     data:e.target.result
 
                 })
