@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.3.8</title>
+<title>YAM Chat V4.4</title>
 
 <style>
 *{
@@ -14,164 +14,129 @@
 }
 
 body{
-    background:#eef2f7;
+    background:#eef2f6;
+    color:#222;
 }
 
-.app{
-    max-width:480px;
-    margin:auto;
-    min-height:100vh;
-    background:white;
-    position:relative;
+button,
+input,
+textarea{
+    font-family:Arial,sans-serif;
+}
+
+button{
+    cursor:pointer;
+    border:0;
+}
+
+.hidden{
+    display:none !important;
 }
 
 /* =========================
-   AUTH
+   LOGIN
 ========================= */
 
-.auth{
+#authView{
     min-height:100vh;
-    padding:40px 25px;
     display:flex;
-    flex-direction:column;
+    align-items:center;
     justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#1976d2,#42a5f5);
 }
 
-.logo{
+.auth-box{
+    width:100%;
+    max-width:390px;
+    background:white;
+    border-radius:20px;
+    padding:28px 22px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.auth-logo{
     text-align:center;
-    font-size:35px;
+    font-size:34px;
     font-weight:bold;
     color:#1976d2;
-    margin-bottom:10px;
+    margin-bottom:5px;
 }
 
-.auth-subtitle{
+.auth-sub{
     text-align:center;
     color:#777;
-    margin-bottom:30px;
+    font-size:13px;
+    margin-bottom:25px;
 }
 
-.auth input{
+.auth-box input{
     width:100%;
     padding:13px;
-    margin-bottom:12px;
     border:1px solid #ddd;
-    border-radius:9px;
-    font-size:15px;
+    border-radius:10px;
+    margin-bottom:12px;
+    outline:none;
 }
 
-.auth button{
+.auth-box input:focus{
+    border-color:#1976d2;
+}
+
+.auth-btn{
     width:100%;
     padding:13px;
-    border:0;
-    border-radius:9px;
+    border-radius:10px;
     background:#1976d2;
     color:white;
-    font-size:16px;
-    cursor:pointer;
+    font-weight:bold;
 }
 
 .auth-switch{
     text-align:center;
-    margin-top:18px;
+    margin-top:15px;
     color:#1976d2;
-    cursor:pointer;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.header{
-    background:#1976d2;
-    color:white;
-    padding:16px;
-    font-size:20px;
-    font-weight:bold;
-}
-
-/* =========================
-   SEARCH
-========================= */
-
-.search{
-    padding:10px;
-    background:#f5f7fa;
-}
-
-.search input{
-    width:100%;
-    padding:11px;
-    border:1px solid #ddd;
-    border-radius:20px;
-}
-
-/* =========================
-   PAGE
-========================= */
-
-.page{
-    display:none;
-    padding-bottom:75px;
-}
-
-.page.active{
-    display:block;
-}
-
-/* =========================
-   CHAT LIST
-========================= */
-
-.chat-list{
-    padding-bottom:75px;
-}
-
-.chat-item{
-    display:flex;
-    align-items:center;
-    padding:14px;
-    border-bottom:1px solid #eee;
-    cursor:pointer;
-}
-
-.avatar{
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    background:#1976d2;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    margin-right:12px;
-    overflow:hidden;
-    flex-shrink:0;
-}
-
-.avatar img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.chat-info{
-    flex:1;
-    min-width:0;
-}
-
-.chat-name{
-    font-weight:bold;
-}
-
-.chat-preview{
-    color:#777;
     font-size:13px;
-    margin-top:4px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    cursor:pointer;
+}
+
+/* =========================
+   APP
+========================= */
+
+#appView{
+    min-height:100vh;
+    padding-bottom:70px;
+}
+
+.topbar{
+    height:58px;
+    background:#1976d2;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 16px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+
+.topbar-title{
+    font-size:21px;
+    font-weight:bold;
+}
+
+.topbar-user{
+    font-size:12px;
+    opacity:.9;
+}
+
+.main-content{
+    max-width:700px;
+    margin:auto;
+    padding:12px;
 }
 
 /* =========================
@@ -181,547 +146,508 @@ body{
 .bottom-nav{
     position:fixed;
     bottom:0;
-    width:100%;
-    max-width:480px;
-    height:62px;
+    left:0;
+    right:0;
+    height:65px;
     background:white;
     border-top:1px solid #ddd;
     display:flex;
-    z-index:100;
+    z-index:500;
+    box-shadow:0 -2px 10px rgba(0,0,0,.08);
 }
 
-.bottom-nav button{
+.nav-btn{
     flex:1;
-    border:0;
     background:white;
     color:#777;
-    font-size:12px;
-    cursor:pointer;
-    touch-action:manipulation;
+    font-size:11px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
 }
 
-.bottom-nav button.active{
+.nav-btn .icon{
+    font-size:21px;
+}
+
+.nav-btn.active{
     color:#1976d2;
     font-weight:bold;
 }
 
-/* =====================================================
-   PROFILE V4.3.8
-===================================================== */
-
-.profile{
-    position:relative;
-    min-height:calc(100vh - 62px);
-    padding-bottom:90px;
-    overflow:hidden;
-    background:linear-gradient(135deg,#1976d2,#64b5f6);
-    background-size:cover;
-    background-position:center top;
-    background-repeat:no-repeat;
-}
-
-.profile::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        to bottom,
-        rgba(0,0,0,.18) 0%,
-        rgba(0,0,0,.12) 45%,
-        rgba(0,0,0,.48) 100%
-    );
-    z-index:1;
-    pointer-events:none;
-}
-
 /* =========================
-   PROFILE BUTTON AREA
+   FEED
 ========================= */
 
-.profile-controls{
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    height:75px;
-    z-index:9999;
-    pointer-events:none;
-}
-
-/* =========================
-   MUSIC BUTTON - TOP LEFT
-========================= */
-
-.profile-music-button{
-    position:absolute;
-    left:12px;
-    top:12px;
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    border:2px solid white;
-    background:rgba(0,0,0,.55);
-    color:white;
-    font-size:20px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 2px 8px rgba(0,0,0,.35);
-    z-index:10000;
-    pointer-events:auto;
-    touch-action:manipulation;
-    -webkit-tap-highlight-color:transparent;
-}
-
-.profile-music-button:active{
-    transform:scale(.94);
-}
-
-/* =========================
-   THREE DOT
-========================= */
-
-.profile-three-dot-wrap{
-    position:absolute;
-    right:12px;
-    top:12px;
-    width:40px;
-    height:40px;
-    z-index:10000;
-    pointer-events:auto;
-}
-
-.profile-three-dot{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    border:2px solid white;
-    background:rgba(0,0,0,.55);
-    color:white;
-    font-size:23px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 2px 8px rgba(0,0,0,.35);
-    pointer-events:auto;
-    touch-action:manipulation;
-    -webkit-tap-highlight-color:transparent;
-}
-
-.profile-dropdown{
-    display:none;
-    position:absolute;
-    right:0;
-    top:48px;
-    width:210px;
+.feed-create{
     background:white;
+    border-radius:14px;
+    padding:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    margin-bottom:12px;
+}
+
+.feed-create-title{
+    font-weight:bold;
+    margin-bottom:10px;
+    color:#1976d2;
+}
+
+#postText{
+    width:100%;
+    min-height:85px;
+    resize:none;
     border:1px solid #ddd;
     border-radius:10px;
-    box-shadow:0 4px 15px rgba(0,0,0,.25);
-    overflow:hidden;
-    z-index:20000;
-    pointer-events:auto;
+    padding:11px;
+    outline:none;
 }
 
-.profile-dropdown.show{
-    display:block;
+#postText:focus{
+    border-color:#1976d2;
 }
 
-.profile-dropdown button{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-bottom:1px solid #eee;
-    background:white;
-    color:#222;
-    text-align:left;
-    cursor:pointer;
-    font-size:14px;
-    touch-action:manipulation;
-}
-
-.profile-dropdown button:last-child{
-    border-bottom:0;
-}
-
-.profile-dropdown button:active{
-    background:#eeeeee;
-}
-
-.profile-dropdown .logout-option{
-    color:#d32f2f;
-}
-
-/* =========================
-   COVER CAMERA
-========================= */
-
-.cover-camera{
-    position:absolute;
-    right:62px;
-    top:12px;
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    border:3px solid white;
-    background:#1976d2;
-    color:white;
-    cursor:pointer;
-    z-index:10001;
-    pointer-events:auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:17px;
-    touch-action:manipulation;
-    -webkit-tap-highlight-color:transparent;
-    box-shadow:0 2px 8px rgba(0,0,0,.35);
-}
-
-/* =========================
-   PROFILE CONTENT
-========================= */
-
-.profile-top,
-.profile-info,
-.profile-music{
-    position:relative;
-    z-index:20;
-}
-
-.profile-top{
-    text-align:center;
-    margin-top:0;
-    padding:85px 20px 15px;
-}
-
-.profile-avatar-wrap{
-    position:relative;
-    width:110px;
-    height:110px;
-    margin:auto;
-    z-index:50;
-}
-
-.profile-avatar{
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    background:#1976d2;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
-    font-weight:bold;
-    overflow:hidden;
-    border:5px solid white;
-    box-shadow:0 3px 12px rgba(0,0,0,.3);
-}
-
-.profile-avatar img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-/* =========================
-   PROFILE PHOTO CAMERA
-========================= */
-
-.camera-btn{
-    position:absolute;
-    right:0;
-    bottom:0;
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    border:3px solid white;
-    background:#1976d2;
-    color:white;
-    cursor:pointer;
-    z-index:10002;
-    pointer-events:auto;
-    touch-action:manipulation;
-    -webkit-tap-highlight-color:transparent;
-    box-shadow:0 2px 7px rgba(0,0,0,.35);
-}
-
-.cover-camera:active,
-.profile-three-dot:active,
-.camera-btn:active{
-    transform:scale(.94);
-}
-
-/* =========================
-   PROFILE NAME
-========================= */
-
-.profile-name{
-    color:white;
-    font-size:23px;
-    font-weight:bold;
+.media-selected{
     margin-top:10px;
-    text-shadow:0 2px 5px rgba(0,0,0,.55);
-}
-
-/* =========================
-   PROFILE STATUS BUTTON
-========================= */
-
-.profile-status-button{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:5px;
-    margin-top:6px;
-    padding:6px 12px;
-    border:1px solid rgba(255,255,255,.65);
-    border-radius:20px;
-    background:rgba(0,0,0,.25);
-    color:white;
-    font-size:13px;
-    cursor:pointer;
-    text-shadow:0 1px 4px rgba(0,0,0,.5);
-    box-shadow:0 2px 6px rgba(0,0,0,.18);
-    touch-action:manipulation;
-    -webkit-tap-highlight-color:transparent;
-}
-
-.profile-status-button:active{
-    transform:scale(.96);
-}
-
-.status-dot{
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#4caf50;
-    box-shadow:0 0 5px rgba(76,175,80,.8);
-}
-
-.profile-bio{
-    color:white;
-    margin-top:8px;
-    font-size:14px;
-    text-shadow:0 1px 4px rgba(0,0,0,.55);
-}
-
-/* =====================================================
-   PROFILE MUSIC
-===================================================== */
-
-.profile-music{
-    display:none;
-    margin:10px 20px 15px;
-    padding:14px;
-    background:rgba(0,0,0,.28);
-    border:1px solid rgba(255,255,255,.25);
-    border-radius:14px;
-}
-
-.profile-music.show{
-    display:block;
-}
-
-.music-title{
-    color:white;
-    font-weight:bold;
-    font-size:15px;
-    margin-bottom:9px;
-}
-
-.music-name{
-    color:rgba(255,255,255,.9);
+    padding:9px;
+    border-radius:8px;
+    background:#f1f5f9;
     font-size:12px;
-    margin-bottom:10px;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
+    color:#555;
 }
 
-.music-player{
-    width:100%;
-    height:42px;
-}
-
-.music-buttons{
+.create-actions{
     display:flex;
     gap:8px;
     margin-top:10px;
 }
 
-.music-buttons button{
+.create-actions button{
     flex:1;
-    padding:9px 5px;
-    border:1px solid rgba(255,255,255,.6);
-    border-radius:8px;
-    background:rgba(255,255,255,.95);
-    color:#222;
-    font-size:12px;
-    cursor:pointer;
-    touch-action:manipulation;
+    padding:10px;
+    border-radius:9px;
+    background:#e3f2fd;
+    color:#1976d2;
+    font-weight:bold;
 }
 
-.music-buttons button:active{
-    transform:scale(.97);
-}
-
-.music-empty{
-    color:rgba(255,255,255,.8);
-    font-size:12px;
-    line-height:1.5;
-}
-
-/* =========================
-   PROFILE INFO
-========================= */
-
-.profile-info{
-    margin:10px 20px 0;
-    padding:0 12px;
-    border-top:1px solid rgba(255,255,255,.35);
-    background:rgba(0,0,0,.25);
-    border-radius:14px;
-    overflow:hidden;
-}
-
-.info-row{
-    display:flex;
-    align-items:center;
-    padding:13px 5px;
-    border-bottom:1px solid rgba(255,255,255,.25);
-}
-
-.info-row:last-child{
-    border-bottom:0;
-}
-
-.info-icon{
-    width:38px;
-    font-size:20px;
-}
-
-.info-content{
-    flex:1;
-}
-
-.info-label{
-    font-size:11px;
-    color:rgba(255,255,255,.78);
-}
-
-.info-value{
-    margin-top:3px;
-    font-size:14px;
+.create-actions button.post-btn{
+    background:#1976d2;
     color:white;
 }
 
-.private-text{
-    color:rgba(255,255,255,.75);
+.feed-empty{
+    text-align:center;
+    padding:35px 15px;
+    color:#888;
+}
+
+/* =========================
+   POST
+========================= */
+
+.post-card{
+    background:white;
+    border-radius:14px;
+    margin-bottom:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    overflow:hidden;
+}
+
+.post-head{
+    display:flex;
+    align-items:center;
+    padding:13px;
+    gap:10px;
+}
+
+.avatar{
+    width:43px;
+    height:43px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#ddd;
+}
+
+.avatar-small{
+    width:32px;
+    height:32px;
+}
+
+.post-user{
+    flex:1;
+}
+
+.post-user-name{
+    font-weight:bold;
+    font-size:14px;
+}
+
+.post-time{
+    font-size:11px;
+    color:#888;
+    margin-top:3px;
+}
+
+.post-menu{
+    width:32px;
+    height:32px;
+    background:#f2f2f2;
+    border-radius:50%;
+    font-size:18px;
+}
+
+.post-body{
+    padding:0 13px 12px;
+}
+
+.post-text{
+    font-size:14px;
+    line-height:1.5;
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+
+.post-media{
+    width:100%;
+    max-height:500px;
+    object-fit:contain;
+    display:block;
+    background:#000;
+    margin-top:10px;
+}
+
+.post-video{
+    width:100%;
+    max-height:500px;
+    background:#000;
+    margin-top:10px;
+}
+
+.post-stats{
+    display:flex;
+    justify-content:space-between;
+    padding:9px 13px;
+    color:#777;
+    font-size:12px;
+    border-top:1px solid #eee;
+}
+
+.post-buttons{
+    display:flex;
+    border-top:1px solid #eee;
+}
+
+.post-action{
+    flex:1;
+    padding:11px 5px;
+    background:white;
+    color:#666;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.post-action.liked{
+    color:#e53935;
+}
+
+.post-comments{
+    border-top:1px solid #eee;
+    padding:10px 13px;
+}
+
+.comment-box{
+    display:flex;
+    gap:7px;
+    margin-bottom:10px;
+}
+
+.comment-input{
+    flex:1;
+    border:1px solid #ddd;
+    border-radius:18px;
+    padding:9px 12px;
+    outline:none;
+}
+
+.comment-send{
+    width:38px;
+    border-radius:50%;
+    background:#1976d2;
+    color:white;
+}
+
+.comment{
+    display:flex;
+    gap:8px;
+    margin-top:9px;
+}
+
+.comment-content{
+    flex:1;
+    background:#f1f3f5;
+    border-radius:12px;
+    padding:8px 10px;
+}
+
+.comment-name{
+    font-size:12px;
+    font-weight:bold;
+}
+
+.comment-text{
+    font-size:13px;
+    margin-top:3px;
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+
+.comment-actions{
+    margin-top:5px;
+    display:flex;
+    gap:8px;
+}
+
+.comment-actions button{
+    background:transparent;
+    font-size:10px;
+    color:#777;
+}
+
+.hidden-comment{
+    color:#999;
+    font-size:12px;
     font-style:italic;
 }
 
 /* =========================
-   EDIT PROFILE
+   DROPDOWN
 ========================= */
 
-.edit-profile{
-    padding:20px;
-    padding-bottom:90px;
+.dropdown{
+    position:fixed;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+    z-index:1000;
+    min-width:190px;
+    overflow:hidden;
 }
 
-.edit-title{
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-
-.form-group{
-    margin-bottom:15px;
-}
-
-.form-group label{
+.dropdown button{
     display:block;
+    width:100%;
+    padding:12px;
+    text-align:left;
+    background:white;
     font-size:13px;
-    color:#555;
+}
+
+.dropdown button:hover{
+    background:#f1f5f9;
+}
+
+.dropdown button.danger{
+    color:#d32f2f;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-card{
+    background:white;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.cover{
+    height:190px;
+    background:linear-gradient(135deg,#1976d2,#64b5f6);
+    background-size:cover;
+    background-position:center;
+    position:relative;
+}
+
+.cover-camera{
+    position:absolute;
+    top:12px;
+    left:12px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:rgba(0,0,0,.45);
+    color:white;
+    font-size:18px;
+}
+
+.profile-menu-btn{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:rgba(0,0,0,.45);
+    color:white;
+    font-size:20px;
+}
+
+.profile-photo-wrap{
+    margin-top:-55px;
+    position:relative;
+    display:flex;
+    justify-content:center;
+}
+
+.profile-photo{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    border:5px solid white;
+    object-fit:cover;
+    background:#ddd;
+}
+
+.photo-camera{
+    position:absolute;
+    bottom:4px;
+    margin-left:78px;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#1976d2;
+    color:white;
+}
+
+.profile-info{
+    text-align:center;
+    padding:10px 20px 20px;
+}
+
+.profile-name{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.profile-status{
+    margin-top:5px;
+    color:#1976d2;
+    font-size:13px;
+    cursor:pointer;
+}
+
+.profile-bio{
+    margin-top:10px;
+    color:#666;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.profile-details{
+    padding:0 20px 20px;
+}
+
+.profile-detail{
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+    font-size:13px;
+}
+
+.profile-detail b{
+    display:inline-block;
+    width:100px;
+}
+
+.profile-music{
+    position:relative;
+    z-index:20;
+    margin:15px 20px;
+    padding:14px;
+    border-radius:14px;
+    background:rgba(255,255,255,.94);
+    box-shadow:0 3px 10px rgba(0,0,0,.18);
+}
+
+.profile-music-title{
+    color:#1976d2;
+    font-weight:bold;
+    font-size:15px;
     margin-bottom:6px;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea{
+.profile-music-name{
+    color:#555;
+    font-size:12px;
+    margin-bottom:10px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.profile-music audio{
     width:100%;
-    padding:11px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    font-size:14px;
+    height:42px;
+    display:none;
 }
 
-.form-group textarea{
-    min-height:80px;
-    resize:vertical;
+.profile-music audio.ready{
+    display:block;
 }
 
-.privacy-row{
+.profile-music-actions{
     display:flex;
     gap:8px;
-    margin-top:7px;
 }
 
-.privacy-row button{
+.profile-music-actions button{
     flex:1;
-    padding:7px;
-    border:1px solid #ddd;
-    background:white;
-    border-radius:7px;
-    cursor:pointer;
-}
-
-.privacy-row button.selected{
-    background:#1976d2;
-    color:white;
-    border-color:#1976d2;
-}
-
-.save-profile{
-    width:100%;
-    padding:13px;
+    padding:10px 8px;
     border:0;
-    border-radius:9px;
+    border-radius:8px;
     background:#1976d2;
     color:white;
-    font-size:16px;
-    margin-top:10px;
-    cursor:pointer;
+    font-size:12px;
 }
 
-.cancel-edit{
-    width:100%;
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:9px;
-    background:white;
-    margin-top:8px;
-    cursor:pointer;
+.profile-music-actions button.remove{
+    background:#d32f2f;
+}
+
+.profile-music-hint{
+    color:#777;
+    font-size:11px;
+    line-height:1.4;
+    margin-top:9px;
 }
 
 /* =========================
    FRIENDS
 ========================= */
 
-.section-title{
+.section-card{
+    background:white;
+    border-radius:14px;
     padding:15px;
+    margin-bottom:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.section-title{
     font-size:18px;
     font-weight:bold;
+    margin-bottom:12px;
+    color:#1976d2;
 }
 
 .friend-item{
     display:flex;
     align-items:center;
-    padding:14px;
+    gap:10px;
+    padding:11px 0;
     border-bottom:1px solid #eee;
 }
 
@@ -729,909 +655,3221 @@ body{
     flex:1;
 }
 
-.friend-item button{
-    border:0;
+.friend-name{
+    font-weight:bold;
+    font-size:14px;
+}
+
+.friend-status{
+    font-size:11px;
+    color:#777;
+    margin-top:3px;
+}
+
+.friend-chat{
+    padding:8px 11px;
+    border-radius:8px;
     background:#1976d2;
     color:white;
-    padding:8px 12px;
-    border-radius:7px;
-    cursor:pointer;
+    font-size:12px;
 }
 
 /* =========================
    ROOMS
 ========================= */
 
-.room-title{
-    padding:15px 15px 5px;
-    color:#777;
-    font-size:13px;
-}
-
 .room-item{
+    padding:14px;
+    border-radius:12px;
+    background:#f4f7fa;
+    margin-bottom:9px;
     display:flex;
     align-items:center;
-    padding:14px;
-    border-bottom:1px solid #eee;
-    cursor:pointer;
+    gap:10px;
+}
+
+.room-icon{
+    font-size:28px;
 }
 
 .room-info{
     flex:1;
 }
 
-.room-item button{
-    border:0;
-    background:#1976d2;
-    color:white;
-    padding:8px 12px;
-    border-radius:7px;
-    cursor:pointer;
+.room-name{
+    font-weight:bold;
 }
 
-.room-icon{
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    background:#e8f1fb;
+.room-desc{
+    color:#777;
+    font-size:11px;
+    margin-top:3px;
+}
+
+.room-open{
+    padding:8px 11px;
+    background:#1976d2;
+    color:white;
+    border-radius:8px;
+    font-size:12px;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:800;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:23px;
-    margin-right:12px;
-}
-
-.room-back{
-    padding:12px 15px;
-    border:0;
-    background:white;
-    color:#1976d2;
-    font-size:15px;
-    cursor:pointer;
-}
-
-.room-country-title{
     padding:15px;
-    font-size:20px;
-    font-weight:bold;
-    border-bottom:1px solid #eee;
 }
 
-.region-item{
-    display:flex;
-    align-items:center;
-    padding:14px 15px;
-    border-bottom:1px solid #eee;
-    cursor:pointer;
-}
-
-.region-icon{
-    font-size:25px;
-    width:45px;
-}
-
-.region-info{
-    flex:1;
-}
-
-.region-arrow{
-    color:#aaa;
-    font-size:20px;
-}
-
-/* =========================
-   GROUP ROOM
-========================= */
-
-#groupRoomScreen{
-    display:none;
-    position:fixed;
-    inset:0;
+.modal{
+    width:100%;
+    max-width:500px;
+    max-height:90vh;
     background:white;
-    max-width:480px;
-    margin:auto;
-    z-index:300;
+    border-radius:16px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
 }
 
-.group-room-header{
-    height:60px;
+.modal-head{
+    padding:14px;
     background:#1976d2;
     color:white;
     display:flex;
     align-items:center;
-    padding:8px 10px;
 }
 
-.group-back{
-    border:0;
-    background:none;
-    color:white;
-    font-size:26px;
-    margin-right:8px;
-    cursor:pointer;
-}
-
-.group-room-title{
+.modal-title{
     flex:1;
-}
-
-.group-room-name{
     font-weight:bold;
 }
 
-.group-room-subtitle{
-    font-size:11px;
-    opacity:.85;
-}
-
-.group-room-body{
-    height:calc(100vh - 120px);
-    display:flex;
-    background:#eef2f7;
-}
-
-.room-users{
-    width:125px;
-    background:white;
-    border-right:1px solid #ddd;
-    overflow-y:auto;
-}
-
-.room-users-title{
-    padding:12px 8px;
-    font-size:12px;
-    color:#777;
-    font-weight:bold;
-    border-bottom:1px solid #eee;
-}
-
-.room-user{
-    display:flex;
-    align-items:center;
-    padding:9px 7px;
-    border-bottom:1px solid #f1f1f1;
-    font-size:12px;
-}
-
-.room-user-dot{
-    width:9px;
-    height:9px;
+.modal-close{
+    width:32px;
+    height:32px;
     border-radius:50%;
-    background:#4caf50;
-    margin-right:7px;
+    background:rgba(255,255,255,.2);
+    color:white;
 }
 
-.room-messages{
+.chat-messages{
     flex:1;
-    overflow-y:auto;
-    padding:12px;
-}
-
-.room-message{
-    background:white;
-    padding:8px 10px;
-    border-radius:10px;
-    margin-bottom:8px;
-    max-width:90%;
-    word-wrap:break-word;
-}
-
-.room-message.me{
-    margin-left:auto;
-    background:#1976d2;
-    color:white;
-}
-
-.room-message-user{
-    font-size:11px;
-    font-weight:bold;
-    margin-bottom:3px;
-}
-
-.room-message-time{
-    font-size:9px;
-    opacity:.6;
-    margin-top:4px;
-}
-
-.room-empty{
-    text-align:center;
-    color:#888;
-    margin-top:30px;
-    font-size:13px;
-}
-
-.group-room-input{
-    position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    height:60px;
-    background:white;
-    border-top:1px solid #ddd;
-    display:flex;
-    padding:8px;
-}
-
-.group-room-input input{
-    flex:1;
-    border:1px solid #ddd;
-    border-radius:20px;
-    padding:10px 14px;
-}
-
-.group-room-input button{
-    width:55px;
-    margin-left:7px;
-    border:0;
-    border-radius:20px;
-    background:#1976d2;
-    color:white;
-    font-size:18px;
-    cursor:pointer;
-}
-
-/* =========================
-   NORMAL CHAT
-========================= */
-
-#chatScreen{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:white;
-    max-width:480px;
-    margin:auto;
-    z-index:200;
-}
-
-.chat-header{
-    height:60px;
-    background:#1976d2;
-    color:white;
-    display:flex;
-    align-items:center;
-    padding:8px 10px;
-}
-
-.back-btn{
-    border:0;
-    background:none;
-    color:white;
-    font-size:25px;
-    margin-right:8px;
-    cursor:pointer;
-}
-
-.chat-user{
-    flex:1;
-}
-
-.chat-user-name{
-    font-weight:bold;
-}
-
-.chat-user-status{
-    font-size:12px;
-    opacity:.85;
-}
-
-.delete-chat{
-    background:#d32f2f;
-    color:white;
-    border:0;
-    padding:7px 9px;
-    border-radius:8px;
-    font-size:11px;
-    cursor:pointer;
-}
-
-.messages{
-    height:calc(100vh - 120px);
     overflow-y:auto;
     padding:15px;
-    background:#eef2f7;
+    background:#eef2f6;
+    min-height:300px;
 }
 
-.message{
+.msg{
+    margin-bottom:9px;
+    display:flex;
+}
+
+.msg.mine{
+    justify-content:flex-end;
+}
+
+.msg-bubble{
     max-width:75%;
-    padding:9px 11px;
-    border-radius:12px;
-    margin-bottom:10px;
-    word-wrap:break-word;
+    padding:9px 12px;
+    border-radius:14px;
+    background:white;
+    font-size:13px;
+    white-space:pre-wrap;
+    word-break:break-word;
 }
 
-.message.me{
-    margin-left:auto;
+.msg.mine .msg-bubble{
     background:#1976d2;
     color:white;
 }
 
-.message.them{
-    margin-right:auto;
-    background:white;
-    color:#222;
-}
-
-.message-time{
-    font-size:10px;
-    opacity:.65;
-    margin-top:5px;
-}
-
-.delete-message{
-    border:0;
-    background:none;
-    color:#d32f2f;
-    font-size:11px;
-    margin-top:5px;
-    cursor:pointer;
-}
-
-.message.me .delete-message{
-    color:#ffe0e0;
-}
-
-.empty-message{
-    text-align:center;
-    color:#888;
-    margin-top:30px;
+.chat-input-row{
+    display:flex;
+    gap:7px;
+    padding:10px;
+    border-top:1px solid #ddd;
 }
 
 .chat-input{
-    position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    height:60px;
-    background:white;
-    border-top:1px solid #ddd;
-    display:flex;
-    padding:8px;
-}
-
-.chat-input input{
     flex:1;
     border:1px solid #ddd;
     border-radius:20px;
-    padding:10px 14px;
+    padding:10px 13px;
+    outline:none;
 }
 
-.chat-input button{
-    width:55px;
-    margin-left:7px;
-    border:0;
-    border-radius:20px;
+.chat-send{
+    width:42px;
+    border-radius:50%;
     background:#1976d2;
     color:white;
-    font-size:18px;
-    cursor:pointer;
 }
 
 /* =========================
-   FILE INPUT
+   EDIT PROFILE
 ========================= */
 
-.hidden-file-input{
-    position:absolute;
-    width:1px;
-    height:1px;
-    opacity:0;
-    pointer-events:none;
+.form-body{
+    padding:15px;
+    overflow-y:auto;
+}
+
+.form-group{
+    margin-bottom:12px;
+}
+
+.form-group label{
+    display:block;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:9px;
+    padding:10px;
+    outline:none;
+}
+
+.form-group textarea{
+    resize:vertical;
+    min-height:70px;
+}
+
+.save-btn{
+    width:100%;
+    padding:12px;
+    border-radius:9px;
+    background:#1976d2;
+    color:white;
+    font-weight:bold;
+}
+
+/* =========================
+   COMMENT MANAGEMENT
+========================= */
+
+.manage-list{
+    padding:15px;
+    overflow-y:auto;
+}
+
+.manage-user{
+    padding:12px;
+    border-bottom:1px solid #eee;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.manage-user-info{
+    flex:1;
+}
+
+.manage-user-name{
+    font-weight:bold;
+    font-size:13px;
+}
+
+.manage-user-status{
+    font-size:11px;
+    color:#777;
+    margin-top:3px;
+}
+
+.manage-btn{
+    padding:8px 10px;
+    border-radius:8px;
+    font-size:11px;
+}
+
+.manage-btn.block{
+    background:#d32f2f;
+    color:white;
+}
+
+.manage-btn.unblock{
+    background:#2e7d32;
+    color:white;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:500px){
+
+    .main-content{
+        padding:8px;
+    }
+
+    .cover{
+        height:170px;
+    }
+
+    .post-card{
+        border-radius:10px;
+    }
+
+    .profile-music{
+        margin-left:12px;
+        margin-right:12px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
-
 <!-- =========================
      AUTH
 ========================= -->
 
-<div id="authScreen" class="auth">
+<div id="authView">
 
-    <div class="logo">💬 YAM Chat</div>
+    <div class="auth-box">
 
-    <div class="auth-subtitle">
-        Chat mudah bersama kawan
-    </div>
+        <div class="auth-logo">YAM</div>
 
-    <input id="authName"
-           type="text"
-           placeholder="Nama">
+        <div class="auth-sub">
+            YAM Chat V4.4
+        </div>
 
-    <input id="authUsername"
-           type="text"
-           placeholder="Username">
+        <div id="loginForm">
 
-    <input id="authPassword"
-           type="password"
-           placeholder="Password">
+            <input
+                id="loginUsername"
+                type="text"
+                placeholder="Username"
+                autocomplete="username">
 
-    <button onclick="authAction()"
-            id="authButton">
-        Login
-    </button>
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="Password"
+                autocomplete="current-password">
 
-    <div class="auth-switch"
-         onclick="switchAuth()"
-         id="authSwitch">
-        Belum ada akaun? Daftar
+            <button
+                class="auth-btn"
+                onclick="login();">
+                LOGIN
+            </button>
+
+            <div
+                class="auth-switch"
+                onclick="showRegister();">
+                Belum ada akaun? Daftar
+            </div>
+
+        </div>
+
+        <div id="registerForm" class="hidden">
+
+            <input
+                id="registerUsername"
+                type="text"
+                placeholder="Username">
+
+            <input
+                id="registerName"
+                type="text"
+                placeholder="Nama">
+
+            <input
+                id="registerPassword"
+                type="password"
+                placeholder="Password">
+
+            <button
+                class="auth-btn"
+                onclick="register();">
+                DAFTAR
+            </button>
+
+            <div
+                class="auth-switch"
+                onclick="showLogin();">
+                Sudah ada akaun? Login
+            </div>
+
+        </div>
+
     </div>
 
 </div>
 
+
 <!-- =========================
-     MAIN APP
+     APP
 ========================= -->
 
-<div id="mainApp" style="display:none;">
+<div id="appView" class="hidden">
 
-    <div class="header">
-        💬 YAM Chat
-    </div>
+    <div class="topbar">
 
-    <!-- CHATS -->
-
-    <div id="chatsPage"
-         class="page active">
-
-        <div class="search">
-
-            <input id="searchInput"
-                   type="text"
-                   placeholder="🔎 Cari chat..."
-                   oninput="searchChats()">
-
+        <div class="topbar-title">
+            YAM Chat
         </div>
 
-        <div id="chatList"
-             class="chat-list">
+        <div
+            id="topbarUser"
+            class="topbar-user">
         </div>
 
     </div>
 
-    <!-- FRIENDS -->
 
-    <div id="friendsPage"
-         class="page">
+    <main class="main-content">
 
-        <div class="section-title">
-            👥 Friends
-        </div>
+        <!-- HOME -->
 
-        <div id="friendsList"></div>
+        <section id="homeView">
 
-    </div>
+            <div class="feed-create">
 
-    <!-- ROOMS -->
-
-    <div id="roomsPage"
-         class="page">
-
-        <div id="roomsMain">
-
-            <div class="section-title">
-                🌍 YAM World Rooms
-            </div>
-
-            <div class="room-title">
-                Room utama
-            </div>
-
-            <div class="room-item"
-                 onclick="openRoomCountry('Malaysia')">
-
-                <div class="room-icon">🇲🇾</div>
-
-                <div class="room-info">
-                    <b>YAM Malaysia</b>
-                    <div class="chat-preview">
-                        Room Malaysia
-                    </div>
+                <div class="feed-create-title">
+                    📝 Apa yang anda fikirkan?
                 </div>
 
-                <button type="button">Masuk</button>
+                <textarea
+                    id="postText"
+                    placeholder="Tulis sesuatu..."></textarea>
 
-            </div>
-
-            <div class="room-item"
-                 onclick="openRoomCountry('Philippines')">
-
-                <div class="room-icon">🇵🇭</div>
-
-                <div class="room-info">
-                    <b>YAM Philippines</b>
-                    <div class="chat-preview">
-                        Room Philippines
-                    </div>
+                <div
+                    id="selectedMedia"
+                    class="media-selected hidden">
                 </div>
 
-                <button type="button">Masuk</button>
-
-            </div>
-
-            <div class="room-item"
-                 onclick="openRoomCountry('Indonesia')">
-
-                <div class="room-icon">🇮🇩</div>
-
-                <div class="room-info">
-                    <b>YAM Indonesia</b>
-                    <div class="chat-preview">
-                        Room Indonesia
-                    </div>
-                </div>
-
-                <button type="button">Masuk</button>
-
-            </div>
-
-            <div class="room-item"
-                 onclick="openRoomCountry('Singapore')">
-
-                <div class="room-icon">🇸🇬</div>
-
-                <div class="room-info">
-                    <b>YAM Singapore</b>
-                    <div class="chat-preview">
-                        Room Singapore
-                    </div>
-                </div>
-
-                <button type="button">Masuk</button>
-
-            </div>
-
-            <div class="room-item"
-                 onclick="openRoomCountry('Brunei')">
-
-                <div class="room-icon">🇧🇳</div>
-
-                <div class="room-info">
-                    <b>YAM Brunei</b>
-                    <div class="chat-preview">
-                        Room Brunei
-                    </div>
-                </div>
-
-                <button type="button">Masuk</button>
-
-            </div>
-
-            <div class="room-item"
-                 onclick="openRoomCountry('World')">
-
-                <div class="room-icon">🌏</div>
-
-                <div class="room-info">
-                    <b>YAM World</b>
-                    <div class="chat-preview">
-                        Sembang seluruh dunia
-                    </div>
-                </div>
-
-                <button type="button">Masuk</button>
-
-            </div>
-
-        </div>
-
-        <div id="roomRegionPage"
-             style="display:none;">
-
-            <button class="room-back"
-                    onclick="closeRoomCountry()">
-
-                ← Kembali
-
-            </button>
-
-            <div id="roomCountryTitle"
-                 class="room-country-title">
-            </div>
-
-            <div id="regionList"></div>
-
-        </div>
-
-    </div>
-
-    <!-- =========================
-         PROFILE
-    ========================= -->
-
-    <div id="profilePage"
-         class="page">
-
-        <div class="profile">
-
-            <div class="profile-controls">
-
-                <!-- MUSIC BUTTON TOP LEFT -->
-
-                <button
-                    type="button"
-                    class="profile-music-button"
-                    id="profileMusicButton"
-                    onclick="toggleProfileMusic();"
-                    title="Music Profile">
-
-                    🎵
-
-                </button>
-
-                <!-- THREE DOT TOP RIGHT -->
-
-                <div class="profile-three-dot-wrap">
+                <div class="create-actions">
 
                     <button
-                        type="button"
-                        class="profile-three-dot"
-                        id="profileMenuButton"
-                        onclick="toggleProfileMenu();">
-
-                        ⋮
-
+                        onclick="choosePostImage();">
+                        🖼️ Gambar
                     </button>
 
-                    <div id="profileDropdown"
-                         class="profile-dropdown">
+                    <button
+                        onclick="choosePostVideo();">
+                        🎥 Video
+                    </button>
 
-                        <button
-                            type="button"
-                            onclick="openEditProfile();">
-
-                            ✏️ Edit Profile
-
-                        </button>
-
-                        <button
-                            type="button"
-                            onclick="changeName();">
-
-                            👤 Tukar Nama
-
-                        </button>
-
-                        <button
-                            type="button"
-                            onclick="changePassword();">
-
-                            🔐 Tukar Password
-
-                        </button>
-
-                        <button
-                            type="button"
-                            class="logout-option"
-                            onclick="logout();">
-
-                            🚪 Logout
-
-                        </button>
-
-                    </div>
+                    <button
+                        class="post-btn"
+                        onclick="createPost();">
+                        🚀 Post
+                    </button>
 
                 </div>
 
-                <!-- COVER CAMERA KEKAL -->
+            </div>
 
-                <button
-                    type="button"
-                    class="cover-camera"
-                    id="coverCameraButton"
-                    onclick="changeCoverPhoto();">
+            <div id="feedList"></div>
 
-                    📷
+        </section>
 
-                </button>
+
+        <!-- FRIENDS -->
+
+        <section
+            id="friendsView"
+            class="hidden">
+
+            <div class="section-card">
+
+                <div class="section-title">
+                    👥 Friends
+                </div>
+
+                <div id="friendsList"></div>
 
             </div>
 
-            <div class="profile-top">
+        </section>
 
-                <div class="profile-avatar-wrap">
 
-                    <div id="profileAvatar"
-                         class="profile-avatar">
+        <!-- ROOMS -->
 
-                        Y
+        <section
+            id="roomsView"
+            class="hidden">
 
-                    </div>
+            <div class="section-card">
+
+                <div class="section-title">
+                    🌎 YAM Rooms
+                </div>
+
+                <div id="roomsList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROFILE -->
+
+        <section
+            id="profileView"
+            class="hidden">
+
+            <div class="profile-card">
+
+                <div
+                    id="profileCover"
+                    class="cover">
 
                     <button
-                        type="button"
-                        class="camera-btn"
-                        id="profileCameraButton"
-                        onclick="changeProfilePicture();">
-
+                        class="cover-camera"
+                        onclick="changeCover();">
                         📷
+                    </button>
 
+                    <button
+                        class="profile-menu-btn"
+                        onclick="openProfileMenu();">
+                        ⋮
                     </button>
 
                 </div>
 
-                <div id="profileName"
-                     class="profile-name">
+                <div class="profile-photo-wrap">
 
-                    User
+                    <img
+                        id="profilePhoto"
+                        class="profile-photo"
+                        src=""
+                        alt="Profile">
+
+                    <button
+                        class="photo-camera"
+                        onclick="changeProfilePicture();">
+                        📷
+                    </button>
 
                 </div>
 
-                <button
-                    type="button"
-                    id="profileStatus"
-                    class="profile-status-button"
-                    onclick="editStatus();">
+                <div class="profile-info">
 
-                    <span class="status-dot"></span>
-                    <span id="profileStatusText">Online</span>
+                    <div
+                        id="profileName"
+                        class="profile-name">
+                    </div>
 
-                </button>
+                    <div
+                        id="profileStatus"
+                        class="profile-status"
+                        onclick="editStatus();">
+                    </div>
 
-                <div id="profileBio"
-                     class="profile-bio">
+                    <div
+                        id="profileBio"
+                        class="profile-bio">
+                    </div>
+
+                </div>
+
+                <div
+                    id="profileDetails"
+                    class="profile-details">
                 </div>
 
             </div>
 
-            <!-- =========================
-                 PROFILE MUSIC
-            ========================= -->
 
-            <div id="profileMusic"
-                 class="profile-music">
+            <!-- MUSIC PROFILE -->
 
-                <div class="music-title">
-                    🎵 Profile Music
+            <div class="profile-music">
+
+                <div class="profile-music-title">
+                    🎵 Music Profile
                 </div>
 
-                <div id="musicContent">
+                <div
+                    id="profileMusicName"
+                    class="profile-music-name">
+                    Belum ada lagu dipilih
+                </div>
+
+                <audio
+                    id="profileMusicPlayer"
+                    controls
+                    preload="metadata">
+                </audio>
+
+                <div class="profile-music-actions">
+
+                    <button
+                        type="button"
+                        onclick="changeProfileMusic();">
+                        🎵 Pilih Lagu
+                    </button>
+
+                    <button
+                        type="button"
+                        class="remove"
+                        onclick="removeProfileMusic();">
+                        🗑️ Buang
+                    </button>
+
+                </div>
+
+                <div class="profile-music-hint">
+                    Pilih lagu dari phone. Browser biasanya perlukan pengguna tekan ▶️ untuk mula bermain.
                 </div>
 
             </div>
 
-            <div id="profileInfo"
-                 class="profile-info">
-            </div>
+        </section>
 
-        </div>
+    </main>
+
+
+    <!-- BOTTOM NAV -->
+
+    <nav class="bottom-nav">
+
+        <button
+            class="nav-btn active"
+            id="navHome"
+            onclick="showView('home');">
+
+            <span class="icon">🏠</span>
+            Home
+
+        </button>
+
+        <button
+            class="nav-btn"
+            id="navFriends"
+            onclick="showView('friends');">
+
+            <span class="icon">👥</span>
+            Friends
+
+        </button>
+
+        <button
+            class="nav-btn"
+            id="navRooms"
+            onclick="showView('rooms');">
+
+            <span class="icon">🌎</span>
+            Rooms
+
+        </button>
+
+        <button
+            class="nav-btn"
+            id="navProfile"
+            onclick="showView('profile');">
+
+            <span class="icon">👤</span>
+            Profile
+
+        </button>
+
+    </nav>
+
+</div>
+
+
+<!-- =========================
+     HIDDEN FILE INPUTS
+========================= -->
+
+<input
+    id="profilePictureInput"
+    type="file"
+    accept="image/*"
+    style="display:none;">
+
+<input
+    id="coverInput"
+    type="file"
+    accept="image/*"
+    style="display:none;">
+
+<input
+    id="profileMusicInput"
+    type="file"
+    accept="audio/*"
+    style="display:none;">
+
+<input
+    id="postImageInput"
+    type="file"
+    accept="image/*"
+    style="display:none;">
+
+<input
+    id="postVideoInput"
+    type="file"
+    accept="video/*"
+    style="display:none;">
+
+
+<!-- =========================
+     OVERLAY
+========================= -->
+
+<div
+    id="overlay"
+    class="overlay hidden">
+
+    <div
+        id="modal"
+        class="modal">
 
     </div>
 
-    <!-- =========================
-         EDIT PROFILE
-    ========================= -->
+</div>
 
-    <div id="editProfilePage"
-         class="page">
 
-        <div class="edit-profile">
+<!-- =========================
+     DROPDOWN
+========================= -->
 
-            <div class="edit-title">
+<div
+    id="dropdown"
+    class="dropdown hidden">
+</div>
+
+
+<script>
+
+/* =====================================================
+   YAM CHAT V4.4
+===================================================== */
+
+
+/* =========================
+   STORAGE HELPERS
+========================= */
+
+function getAccounts(){
+
+    try{
+        return JSON.parse(
+            localStorage.getItem("yam_accounts") || "[]"
+        );
+    }catch(e){
+        return [];
+    }
+}
+
+function saveAccounts(accounts){
+
+    localStorage.setItem(
+        "yam_accounts",
+        JSON.stringify(accounts)
+    );
+}
+
+function getCurrentUser(){
+
+    return localStorage.getItem("yam_current_user");
+}
+
+function setCurrentUser(username){
+
+    localStorage.setItem(
+        "yam_current_user",
+        username
+    );
+}
+
+function clearCurrentUser(){
+
+    localStorage.removeItem(
+        "yam_current_user"
+    );
+}
+
+function getAccount(username){
+
+    const accounts = getAccounts();
+
+    return accounts.find(
+        a => a.username === username
+    );
+}
+
+function getDisplayName(username){
+
+    const account = getAccount(username);
+
+    return account
+        ? (account.name || username)
+        : username;
+}
+
+
+/* =========================
+   DEFAULT AVATAR
+========================= */
+
+function defaultAvatar(){
+
+    return "data:image/svg+xml;charset=UTF-8," +
+    encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="200"
+             height="200"
+             viewBox="0 0 200 200">
+
+            <rect width="200"
+                  height="200"
+                  fill="#e0e0e0"/>
+
+            <circle
+                cx="100"
+                cy="75"
+                r="40"
+                fill="#9e9e9e"/>
+
+            <path
+                d="M35 180
+                   C40 130 70 115 100 115
+                   C130 115 160 130 165 180Z"
+                fill="#9e9e9e"/>
+
+        </svg>
+    `);
+}
+
+function getProfilePicture(username){
+
+    return localStorage.getItem(
+        "yam_picture_" + username
+    ) || defaultAvatar();
+}
+
+
+/* =========================
+   AUTH
+========================= */
+
+function showLogin(){
+
+    document.getElementById(
+        "loginForm"
+    ).classList.remove("hidden");
+
+    document.getElementById(
+        "registerForm"
+    ).classList.add("hidden");
+}
+
+function showRegister(){
+
+    document.getElementById(
+        "loginForm"
+    ).classList.add("hidden");
+
+    document.getElementById(
+        "registerForm"
+    ).classList.remove("hidden");
+}
+
+function register(){
+
+    const username =
+        document.getElementById(
+            "registerUsername"
+        ).value.trim();
+
+    const name =
+        document.getElementById(
+            "registerName"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "registerPassword"
+        ).value;
+
+    if(!username || !name || !password){
+
+        alert("Sila lengkapkan semua maklumat.");
+        return;
+    }
+
+    if(username.length < 3){
+
+        alert("Username mesti sekurang-kurangnya 3 aksara.");
+        return;
+    }
+
+    const accounts = getAccounts();
+
+    if(accounts.some(
+        a => a.username.toLowerCase()
+        === username.toLowerCase()
+    )){
+
+        alert("Username sudah digunakan.");
+        return;
+    }
+
+    accounts.push({
+        username:username,
+        name:name,
+        password:password,
+        birthday:"",
+        location:"",
+        job:"",
+        gender:"",
+        bio:""
+    });
+
+    saveAccounts(accounts);
+
+    alert("Akaun YAM berjaya dibuat.");
+
+    document.getElementById(
+        "registerUsername"
+    ).value = "";
+
+    document.getElementById(
+        "registerName"
+    ).value = "";
+
+    document.getElementById(
+        "registerPassword"
+    ).value = "";
+
+    showLogin();
+}
+
+function login(){
+
+    const username =
+        document.getElementById(
+            "loginUsername"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+    const account = getAccount(username);
+
+    if(!account){
+
+        alert("Akaun tidak dijumpai.");
+        return;
+    }
+
+    if(account.password !== password){
+
+        alert("Password salah.");
+        return;
+    }
+
+    setCurrentUser(account.username);
+
+    startApp();
+}
+
+function logout(){
+
+    if(!confirm("Logout dari YAM Chat?")){
+        return;
+    }
+
+    clearCurrentUser();
+
+    document.getElementById(
+        "appView"
+    ).classList.add("hidden");
+
+    document.getElementById(
+        "authView"
+    ).classList.remove("hidden");
+
+    showLogin();
+}
+
+
+/* =========================
+   APP START
+========================= */
+
+function startApp(){
+
+    document.getElementById(
+        "authView"
+    ).classList.add("hidden");
+
+    document.getElementById(
+        "appView"
+    ).classList.remove("hidden");
+
+    const user = getCurrentUser();
+
+    document.getElementById(
+        "topbarUser"
+    ).innerText =
+        getDisplayName(user);
+
+    loadProfile();
+
+    renderFeed();
+
+    renderFriends();
+
+    renderRooms();
+
+    showView("home");
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showView(view){
+
+    const views = [
+        "homeView",
+        "friendsView",
+        "roomsView",
+        "profileView"
+    ];
+
+    views.forEach(id => {
+
+        document.getElementById(id)
+            .classList.add("hidden");
+
+    });
+
+    const navs = [
+        "navHome",
+        "navFriends",
+        "navRooms",
+        "navProfile"
+    ];
+
+    navs.forEach(id => {
+
+        document.getElementById(id)
+            .classList.remove("active");
+
+    });
+
+    if(view === "home"){
+
+        document.getElementById(
+            "homeView"
+        ).classList.remove("hidden");
+
+        document.getElementById(
+            "navHome"
+        ).classList.add("active");
+
+        renderFeed();
+    }
+
+    if(view === "friends"){
+
+        document.getElementById(
+            "friendsView"
+        ).classList.remove("hidden");
+
+        document.getElementById(
+            "navFriends"
+        ).classList.add("active");
+
+        renderFriends();
+    }
+
+    if(view === "rooms"){
+
+        document.getElementById(
+            "roomsView"
+        ).classList.remove("hidden");
+
+        document.getElementById(
+            "navRooms"
+        ).classList.add("active");
+
+        renderRooms();
+    }
+
+    if(view === "profile"){
+
+        document.getElementById(
+            "profileView"
+        ).classList.remove("hidden");
+
+        document.getElementById(
+            "navProfile"
+        ).classList.add("active");
+
+        loadProfile();
+    }
+}
+
+
+/* =====================================================
+   SOCIAL FEED
+===================================================== */
+
+function getPosts(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                "yam_posts"
+            ) || "[]"
+        );
+
+    }catch(e){
+
+        return [];
+    }
+}
+
+function savePosts(posts){
+
+    localStorage.setItem(
+        "yam_posts",
+        JSON.stringify(posts)
+    );
+}
+
+
+/* =========================
+   POST MEDIA
+========================= */
+
+let selectedPostFile = null;
+let selectedPostType = null;
+
+function choosePostImage(){
+
+    const input =
+        document.getElementById(
+            "postImageInput"
+        );
+
+    input.value = "";
+    input.click();
+}
+
+function choosePostVideo(){
+
+    const input =
+        document.getElementById(
+            "postVideoInput"
+        );
+
+    input.value = "";
+    input.click();
+}
+
+function handlePostFile(file,type){
+
+    if(!file){
+        return;
+    }
+
+    if(type === "image" &&
+       !file.type.startsWith("image/")){
+
+        alert("Sila pilih gambar.");
+        return;
+    }
+
+    if(type === "video" &&
+       !file.type.startsWith("video/")){
+
+        alert("Sila pilih video.");
+        return;
+    }
+
+    const maxSize =
+        type === "image"
+        ? 3 * 1024 * 1024
+        : 6 * 1024 * 1024;
+
+    if(file.size > maxSize){
+
+        alert(
+            type === "image"
+            ? "Gambar demo maksimum 3MB."
+            : "Video demo maksimum 6MB."
+        );
+
+        return;
+    }
+
+    selectedPostFile = file;
+    selectedPostType = type;
+
+    const box =
+        document.getElementById(
+            "selectedMedia"
+        );
+
+    box.classList.remove("hidden");
+
+    box.innerText =
+        (type === "image" ? "🖼️ " : "🎥 ")
+        + file.name
+        + " — "
+        + formatFileSize(file.size);
+}
+
+function formatFileSize(bytes){
+
+    if(bytes < 1024){
+        return bytes + " B";
+    }
+
+    if(bytes < 1024 * 1024){
+
+        return (
+            bytes / 1024
+        ).toFixed(1)
+        + " KB";
+    }
+
+    return (
+        bytes / (1024 * 1024)
+    ).toFixed(1)
+    + " MB";
+}
+
+
+/* =========================
+   CREATE POST
+========================= */
+
+function createPost(){
+
+    const user = getCurrentUser();
+
+    if(!user){
+        return;
+    }
+
+    const text =
+        document.getElementById(
+            "postText"
+        ).value.trim();
+
+    if(!text && !selectedPostFile){
+
+        alert(
+            "Tulis sesuatu atau pilih gambar/video."
+        );
+
+        return;
+    }
+
+    const finishPost = function(
+        mediaData
+    ){
+
+        const posts = getPosts();
+
+        const post = {
+
+            id:
+                "post_"
+                + Date.now()
+                + "_"
+                + Math.random()
+                    .toString(36)
+                    .slice(2,8),
+
+            username:user,
+
+            text:text,
+
+            mediaType:
+                selectedPostType || null,
+
+            mediaData:
+                mediaData || null,
+
+            mediaName:
+                selectedPostFile
+                ? selectedPostFile.name
+                : null,
+
+            createdAt:Date.now(),
+
+            likes:[],
+
+            comments:[],
+
+            blockedCommenters:[]
+
+        };
+
+        posts.unshift(post);
+
+        try{
+
+            savePosts(posts);
+
+            document.getElementById(
+                "postText"
+            ).value = "";
+
+            selectedPostFile = null;
+            selectedPostType = null;
+
+            const box =
+                document.getElementById(
+                    "selectedMedia"
+                );
+
+            box.classList.add("hidden");
+            box.innerText = "";
+
+            renderFeed();
+
+            alert("🚀 Post berjaya diterbitkan.");
+
+        }catch(error){
+
+            alert(
+                "Post gagal disimpan. Storage browser mungkin penuh."
+            );
+        }
+    };
+
+    if(selectedPostFile){
+
+        const reader =
+            new FileReader();
+
+        reader.onload = function(e){
+
+            finishPost(
+                e.target.result
+            );
+
+        };
+
+        reader.onerror = function(){
+
+            alert("Fail media tidak dapat dibaca.");
+        };
+
+        reader.readAsDataURL(
+            selectedPostFile
+        );
+
+    }else{
+
+        finishPost(null);
+    }
+}
+
+
+/* =========================
+   TIME
+========================= */
+
+function formatPostTime(timestamp){
+
+    const diff =
+        Date.now() - timestamp;
+
+    const minute =
+        60 * 1000;
+
+    const hour =
+        60 * minute;
+
+    const day =
+        24 * hour;
+
+    if(diff < minute){
+        return "Baru sahaja";
+    }
+
+    if(diff < hour){
+
+        return Math.floor(
+            diff / minute
+        ) + " minit lalu";
+    }
+
+    if(diff < day){
+
+        return Math.floor(
+            diff / hour
+        ) + " jam lalu";
+    }
+
+    if(diff < 7 * day){
+
+        return Math.floor(
+            diff / day
+        ) + " hari lalu";
+    }
+
+    return new Date(
+        timestamp
+    ).toLocaleDateString(
+        "ms-MY"
+    );
+}
+
+
+/* =========================
+   SAFE TEXT
+========================= */
+
+function escapeHtml(value){
+
+    return String(value || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+/* =========================
+   RENDER FEED
+========================= */
+
+function renderFeed(){
+
+    const box =
+        document.getElementById(
+            "feedList"
+        );
+
+    if(!box){
+        return;
+    }
+
+    const posts = getPosts();
+
+    if(posts.length === 0){
+
+        box.innerHTML = `
+            <div class="feed-empty">
+                📝 Belum ada post.<br>
+                Jadilah orang pertama membuat post di YAM!
+            </div>
+        `;
+
+        return;
+    }
+
+    box.innerHTML = "";
+
+    posts.forEach(post => {
+
+        box.appendChild(
+            buildPostElement(post)
+        );
+
+    });
+}
+
+
+/* =========================
+   BUILD POST
+========================= */
+
+function buildPostElement(post){
+
+    const currentUser =
+        getCurrentUser();
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+    card.className =
+        "post-card";
+
+    const head =
+        document.createElement(
+            "div"
+        );
+
+    head.className =
+        "post-head";
+
+    const avatar =
+        document.createElement(
+            "img"
+        );
+
+    avatar.className =
+        "avatar";
+
+    avatar.src =
+        getProfilePicture(
+            post.username
+        );
+
+    const userBox =
+        document.createElement(
+            "div"
+        );
+
+    userBox.className =
+        "post-user";
+
+    const name =
+        document.createElement(
+            "div"
+        );
+
+    name.className =
+        "post-user-name";
+
+    name.textContent =
+        getDisplayName(
+            post.username
+        );
+
+    const time =
+        document.createElement(
+            "div"
+        );
+
+    time.className =
+        "post-time";
+
+    time.textContent =
+        formatPostTime(
+            post.createdAt
+        );
+
+    userBox.appendChild(name);
+    userBox.appendChild(time);
+
+    const menu =
+        document.createElement(
+            "button"
+        );
+
+    menu.className =
+        "post-menu";
+
+    menu.textContent = "⋮";
+
+    menu.onclick = function(e){
+
+        e.stopPropagation();
+
+        openPostMenu(
+            post.id,
+            menu
+        );
+    };
+
+    head.appendChild(avatar);
+    head.appendChild(userBox);
+    head.appendChild(menu);
+
+
+    const body =
+        document.createElement(
+            "div"
+        );
+
+    body.className =
+        "post-body";
+
+    if(post.text){
+
+        const text =
+            document.createElement(
+                "div"
+            );
+
+        text.className =
+            "post-text";
+
+        text.textContent =
+            post.text;
+
+        body.appendChild(text);
+    }
+
+
+    if(post.mediaType === "image" &&
+       post.mediaData){
+
+        const img =
+            document.createElement(
+                "img"
+            );
+
+        img.className =
+            "post-media";
+
+        img.src =
+            post.mediaData;
+
+        img.alt =
+            post.mediaName || "Gambar post";
+
+        body.appendChild(img);
+    }
+
+
+    if(post.mediaType === "video" &&
+       post.mediaData){
+
+        const video =
+            document.createElement(
+                "video"
+            );
+
+        video.className =
+            "post-video";
+
+        video.controls = true;
+
+        video.preload = "metadata";
+
+        video.src =
+            post.mediaData;
+
+        body.appendChild(video);
+    }
+
+
+    const stats =
+        document.createElement(
+            "div"
+        );
+
+    stats.className =
+        "post-stats";
+
+    const likeCount =
+        post.likes
+        ? post.likes.length
+        : 0;
+
+    const visibleComments =
+        post.comments
+        ? post.comments.filter(
+            c => !c.hidden
+        ).length
+        : 0;
+
+    const left =
+        document.createElement(
+            "span"
+        );
+
+    left.textContent =
+        "❤️ "
+        + likeCount
+        + " Like";
+
+    const right =
+        document.createElement(
+            "span"
+        );
+
+    right.textContent =
+        "💬 "
+        + visibleComments
+        + " Komen";
+
+    stats.appendChild(left);
+    stats.appendChild(right);
+
+
+    const buttons =
+        document.createElement(
+            "div"
+        );
+
+    buttons.className =
+        "post-buttons";
+
+    const likeBtn =
+        document.createElement(
+            "button"
+        );
+
+    likeBtn.className =
+        "post-action";
+
+    const hasLiked =
+        post.likes &&
+        post.likes.includes(
+            currentUser
+        );
+
+    if(hasLiked){
+        likeBtn.classList.add(
+            "liked"
+        );
+    }
+
+    likeBtn.textContent =
+        hasLiked
+        ? "❤️ Liked"
+        : "🤍 Like";
+
+    likeBtn.onclick = function(){
+
+        toggleLike(
+            post.id
+        );
+    };
+
+
+    const commentBtn =
+        document.createElement(
+            "button"
+        );
+
+    commentBtn.className =
+        "post-action";
+
+    commentBtn.textContent =
+        "💬 Komen";
+
+    commentBtn.onclick =
+        function(){
+
+            const input =
+                document.querySelector(
+                    `[data-comment-input="${post.id}"]`
+                );
+
+            if(input){
+
+                input.focus();
+
+                input.scrollIntoView({
+                    behavior:"smooth",
+                    block:"center"
+                });
+            }
+        };
+
+
+    buttons.appendChild(likeBtn);
+    buttons.appendChild(commentBtn);
+
+
+    const commentsBox =
+        document.createElement(
+            "div"
+        );
+
+    commentsBox.className =
+        "post-comments";
+
+
+    const blocked =
+        post.blockedCommenters &&
+        post.blockedCommenters.includes(
+            currentUser
+        );
+
+
+    if(!blocked){
+
+        const commentBox =
+            document.createElement(
+                "div"
+            );
+
+        commentBox.className =
+            "comment-box";
+
+        const input =
+            document.createElement(
+                "input"
+            );
+
+        input.className =
+            "comment-input";
+
+        input.placeholder =
+            "Tulis komen...";
+
+        input.dataset.commentInput =
+            post.id;
+
+        input.onkeydown =
+            function(e){
+
+                if(e.key === "Enter"){
+
+                    e.preventDefault();
+
+                    addComment(
+                        post.id
+                    );
+                }
+            };
+
+
+        const send =
+            document.createElement(
+                "button"
+            );
+
+        send.className =
+            "comment-send";
+
+        send.textContent =
+            "➤";
+
+        send.onclick =
+            function(){
+
+                addComment(
+                    post.id
+                );
+            };
+
+
+        commentBox.appendChild(input);
+        commentBox.appendChild(send);
+
+        commentsBox.appendChild(
+            commentBox
+        );
+
+    }else{
+
+        const blockedMessage =
+            document.createElement(
+                "div"
+            );
+
+        blockedMessage.className =
+            "hidden-comment";
+
+        blockedMessage.textContent =
+            "🚫 Anda telah disekat daripada mengomen post ini.";
+
+        commentsBox.appendChild(
+            blockedMessage
+        );
+    }
+
+
+    const comments =
+        post.comments || [];
+
+    comments.forEach(comment => {
+
+        if(comment.hidden &&
+           post.username !== currentUser){
+
+            return;
+        }
+
+        commentsBox.appendChild(
+            buildCommentElement(
+                post,
+                comment
+            )
+        );
+
+    });
+
+
+    card.appendChild(head);
+    card.appendChild(body);
+    card.appendChild(stats);
+    card.appendChild(buttons);
+    card.appendChild(commentsBox);
+
+    return card;
+}
+
+
+/* =========================
+   LIKE
+========================= */
+
+function toggleLike(postId){
+
+    const user =
+        getCurrentUser();
+
+    const posts =
+        getPosts();
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    if(!Array.isArray(post.likes)){
+        post.likes = [];
+    }
+
+    const index =
+        post.likes.indexOf(
+            user
+        );
+
+    if(index >= 0){
+
+        post.likes.splice(
+            index,
+            1
+        );
+
+    }else{
+
+        post.likes.push(
+            user
+        );
+    }
+
+    savePosts(posts);
+
+    renderFeed();
+}
+
+
+/* =========================
+   COMMENTS
+========================= */
+
+function addComment(postId){
+
+    const user =
+        getCurrentUser();
+
+    const posts =
+        getPosts();
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    if(
+        post.blockedCommenters &&
+        post.blockedCommenters.includes(user)
+    ){
+
+        alert(
+            "Anda telah disekat daripada mengomen post ini."
+        );
+
+        return;
+    }
+
+    const input =
+        document.querySelector(
+            `[data-comment-input="${postId}"]`
+        );
+
+    if(!input){
+        return;
+    }
+
+    const text =
+        input.value.trim();
+
+    if(!text){
+        return;
+    }
+
+    if(!Array.isArray(post.comments)){
+        post.comments = [];
+    }
+
+    post.comments.push({
+
+        id:
+            "comment_"
+            + Date.now()
+            + "_"
+            + Math.random()
+                .toString(36)
+                .slice(2,7),
+
+        username:user,
+
+        text:text,
+
+        createdAt:Date.now(),
+
+        hidden:false
+
+    });
+
+    savePosts(posts);
+
+    renderFeed();
+}
+
+
+/* =========================
+   BUILD COMMENT
+========================= */
+
+function buildCommentElement(
+    post,
+    comment
+){
+
+    const currentUser =
+        getCurrentUser();
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+    row.className =
+        "comment";
+
+    const avatar =
+        document.createElement(
+            "img"
+        );
+
+    avatar.className =
+        "avatar avatar-small";
+
+    avatar.src =
+        getProfilePicture(
+            comment.username
+        );
+
+    const content =
+        document.createElement(
+            "div"
+        );
+
+    content.className =
+        "comment-content";
+
+    if(comment.hidden){
+
+        const hidden =
+            document.createElement(
+                "div"
+            );
+
+        hidden.className =
+            "hidden-comment";
+
+        hidden.textContent =
+            "🙈 Komen ini disembunyikan oleh pemilik post.";
+
+        content.appendChild(hidden);
+
+    }else{
+
+        const name =
+            document.createElement(
+                "div"
+            );
+
+        name.className =
+            "comment-name";
+
+        name.textContent =
+            getDisplayName(
+                comment.username
+            );
+
+        const text =
+            document.createElement(
+                "div"
+            );
+
+        text.className =
+            "comment-text";
+
+        text.textContent =
+            comment.text;
+
+        const actions =
+            document.createElement(
+                "div"
+            );
+
+        actions.className =
+            "comment-actions";
+
+
+        /* POST OWNER */
+
+        if(post.username === currentUser){
+
+            const hideBtn =
+                document.createElement(
+                    "button"
+                );
+
+            hideBtn.textContent =
+                "🙈 Hide";
+
+            hideBtn.onclick =
+                function(){
+
+                    toggleHideComment(
+                        post.id,
+                        comment.id
+                    );
+                };
+
+            actions.appendChild(
+                hideBtn
+            );
+
+
+            const blockBtn =
+                document.createElement(
+                    "button"
+                );
+
+            blockBtn.textContent =
+                "🚫 Block user";
+
+            blockBtn.onclick =
+                function(){
+
+                    blockCommenter(
+                        post.id,
+                        comment.username
+                    );
+                };
+
+            actions.appendChild(
+                blockBtn
+            );
+        }
+
+
+        /* COMMENT OWNER */
+
+        if(comment.username === currentUser){
+
+            const deleteBtn =
+                document.createElement(
+                    "button"
+                );
+
+            deleteBtn.textContent =
+                "🗑️ Delete";
+
+            deleteBtn.onclick =
+                function(){
+
+                    deleteComment(
+                        post.id,
+                        comment.id
+                    );
+                };
+
+            actions.appendChild(
+                deleteBtn
+            );
+        }
+
+
+        content.appendChild(name);
+        content.appendChild(text);
+        content.appendChild(actions);
+    }
+
+    row.appendChild(avatar);
+    row.appendChild(content);
+
+    return row;
+}
+
+
+/* =========================
+   HIDE / UNHIDE COMMENT
+========================= */
+
+function toggleHideComment(
+    postId,
+    commentId
+){
+
+    const posts =
+        getPosts();
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    if(post.username !== getCurrentUser()){
+
+        alert(
+            "Hanya pemilik post boleh hide komen."
+        );
+
+        return;
+    }
+
+    const comment =
+        post.comments.find(
+            c => c.id === commentId
+        );
+
+    if(!comment){
+        return;
+    }
+
+    comment.hidden =
+        !comment.hidden;
+
+    savePosts(posts);
+
+    renderFeed();
+}
+
+
+/* =========================
+   DELETE COMMENT
+========================= */
+
+function deleteComment(
+    postId,
+    commentId
+){
+
+    const posts =
+        getPosts();
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    const comment =
+        post.comments.find(
+            c => c.id === commentId
+        );
+
+    if(!comment){
+        return;
+    }
+
+    if(
+        comment.username !==
+        getCurrentUser()
+    ){
+
+        alert(
+            "Anda hanya boleh buang komen sendiri."
+        );
+
+        return;
+    }
+
+    if(!confirm(
+        "Buang komen ini?"
+    )){
+
+        return;
+    }
+
+    post.comments =
+        post.comments.filter(
+            c => c.id !== commentId
+        );
+
+    savePosts(posts);
+
+    renderFeed();
+}
+
+
+/* =========================
+   BLOCK COMMENTER
+========================= */
+
+function blockCommenter(
+    postId,
+    username
+){
+
+    if(username === getCurrentUser()){
+
+        alert(
+            "Tidak boleh block diri sendiri."
+        );
+
+        return;
+    }
+
+    const posts =
+        getPosts();
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    if(post.username !== getCurrentUser()){
+
+        alert(
+            "Hanya pemilik post boleh block commenter."
+        );
+
+        return;
+    }
+
+    if(!confirm(
+        "Block "
+        + getDisplayName(username)
+        + " daripada komen post ini?"
+    )){
+
+        return;
+    }
+
+    if(!Array.isArray(
+        post.blockedCommenters
+    )){
+
+        post.blockedCommenters = [];
+    }
+
+    if(
+        !post.blockedCommenters.includes(
+            username
+        )
+    ){
+
+        post.blockedCommenters.push(
+            username
+        );
+    }
+
+    savePosts(posts);
+
+    renderFeed();
+}
+
+
+/* =========================
+   MANAGE COMMENT USERS
+========================= */
+
+function openCommentManagement(
+    postId
+){
+
+    const posts =
+        getPosts();
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    if(post.username !== getCurrentUser()){
+
+        alert(
+            "Hanya pemilik post boleh mengurus komen."
+        );
+
+        return;
+    }
+
+    const modal =
+        document.getElementById(
+            "modal"
+        );
+
+    const blocked =
+        post.blockedCommenters || [];
+
+    const users = [];
+
+    (post.comments || []).forEach(
+        comment => {
+
+            if(
+                comment.username !==
+                post.username &&
+                !users.includes(
+                    comment.username
+                )
+            ){
+
+                users.push(
+                    comment.username
+                );
+            }
+        }
+    );
+
+    blocked.forEach(
+        username => {
+
+            if(!users.includes(username)){
+
+                users.push(username);
+            }
+        }
+    );
+
+
+    modal.innerHTML = `
+        <div class="modal-head">
+            <div class="modal-title">
+                🚫 Pengurusan Komen
+            </div>
+            <button
+                class="modal-close"
+                onclick="closeOverlay();">
+                ✕
+            </button>
+        </div>
+
+        <div class="manage-list"
+             id="manageList">
+        </div>
+    `;
+
+    const list =
+        document.getElementById(
+            "manageList"
+        );
+
+    if(users.length === 0){
+
+        list.innerHTML = `
+            <div class="feed-empty">
+                Belum ada pengguna untuk diurus.
+            </div>
+        `;
+
+    }else{
+
+        users.forEach(username => {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "manage-user";
+
+            const avatar =
+                document.createElement(
+                    "img"
+                );
+
+            avatar.className =
+                "avatar avatar-small";
+
+            avatar.src =
+                getProfilePicture(
+                    username
+                );
+
+            const info =
+                document.createElement(
+                    "div"
+                );
+
+            info.className =
+                "manage-user-info";
+
+            const name =
+                document.createElement(
+                    "div"
+                );
+
+            name.className =
+                "manage-user-name";
+
+            name.textContent =
+                getDisplayName(
+                    username
+                );
+
+            const status =
+                document.createElement(
+                    "div"
+                );
+
+            status.className =
+                "manage-user-status";
+
+            const isBlocked =
+                blocked.includes(
+                    username
+                );
+
+            status.textContent =
+                isBlocked
+                ? "🚫 Disekat"
+                : "✅ Boleh komen";
+
+            info.appendChild(name);
+            info.appendChild(status);
+
+            const btn =
+                document.createElement(
+                    "button"
+                );
+
+            btn.className =
+                "manage-btn "
+                + (
+                    isBlocked
+                    ? "unblock"
+                    : "block"
+                );
+
+            btn.textContent =
+                isBlocked
+                ? "Unblock"
+                : "Block";
+
+            btn.onclick =
+                function(){
+
+                    toggleBlockUser(
+                        postId,
+                        username
+                    );
+                };
+
+            row.appendChild(avatar);
+            row.appendChild(info);
+            row.appendChild(btn);
+
+            list.appendChild(row);
+        });
+    }
+
+    openOverlay();
+}
+
+
+/* =========================
+   BLOCK / UNBLOCK
+========================= */
+
+function toggleBlockUser(
+    postId,
+    username
+){
+
+    const posts =
+        getPosts();
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    if(!Array.isArray(
+        post.blockedCommenters
+    )){
+
+        post.blockedCommenters = [];
+    }
+
+    const index =
+        post.blockedCommenters.indexOf(
+            username
+        );
+
+    if(index >= 0){
+
+        post.blockedCommenters.splice(
+            index,
+            1
+        );
+
+    }else{
+
+        post.blockedCommenters.push(
+            username
+        );
+    }
+
+    savePosts(posts);
+
+    openCommentManagement(
+        postId
+    );
+
+    renderFeed();
+}
+
+
+/* =========================
+   POST MENU
+========================= */
+
+function openPostMenu(
+    postId,
+    button
+){
+
+    const posts =
+        getPosts();
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    const dropdown =
+        document.getElementById(
+            "dropdown"
+        );
+
+    dropdown.innerHTML = "";
+
+    const rect =
+        button.getBoundingClientRect();
+
+    dropdown.style.top =
+        (rect.bottom + 5)
+        + "px";
+
+    dropdown.style.right =
+        "12px";
+
+    dropdown.style.left =
+        "auto";
+
+    if(post.username === getCurrentUser()){
+
+        addDropdownButton(
+            dropdown,
+            "🗑️ Delete Post",
+            true,
+            function(){
+
+                deletePost(
+                    postId
+                );
+            }
+        );
+
+        addDropdownButton(
+            dropdown,
+            "⚙️ Urus Komen",
+            false,
+            function(){
+
+                closeDropdown();
+
+                openCommentManagement(
+                    postId
+                );
+            }
+        );
+    }else{
+
+        addDropdownButton(
+            dropdown,
+            "⚠️ Report Post",
+            false,
+            function(){
+
+                closeDropdown();
+
+                alert(
+                    "Fungsi report akan disambungkan ke server nanti."
+                );
+            }
+        );
+    }
+
+    dropdown.classList.remove(
+        "hidden"
+    );
+}
+
+function addDropdownButton(
+    parent,
+    text,
+    danger,
+    action
+){
+
+    const btn =
+        document.createElement(
+            "button"
+        );
+
+    btn.textContent =
+        text;
+
+    if(danger){
+
+        btn.classList.add(
+            "danger"
+        );
+    }
+
+    btn.onclick =
+        action;
+
+    parent.appendChild(btn);
+}
+
+function closeDropdown(){
+
+    document.getElementById(
+        "dropdown"
+    ).classList.add(
+        "hidden"
+    );
+}
+
+
+/* =========================
+   DELETE POST
+========================= */
+
+function deletePost(postId){
+
+    const posts =
+        getPosts();
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    if(post.username !== getCurrentUser()){
+
+        alert(
+            "Anda hanya boleh delete post sendiri."
+        );
+
+        return;
+    }
+
+    if(!confirm(
+        "Delete post ini?"
+    )){
+
+        return;
+    }
+
+    const newPosts =
+        posts.filter(
+            p => p.id !== postId
+        );
+
+    try{
+
+        savePosts(newPosts);
+
+        renderFeed();
+
+    }catch(e){
+
+        alert(
+            "Post gagal dipadam."
+        );
+    }
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+
+/* =========================
+   LOAD PROFILE
+========================= */
+
+function loadProfile(){
+
+    const username =
+        getCurrentUser();
+
+    if(!username){
+        return;
+    }
+
+    const account =
+        getAccount(username);
+
+    if(!account){
+        return;
+    }
+
+    document.getElementById(
+        "profileName"
+    ).innerText =
+        account.name || username;
+
+    document.getElementById(
+        "profileStatus"
+    ).innerText =
+        localStorage.getItem(
+            "yam_status_" + username
+        ) || "Set status";
+
+    document.getElementById(
+        "profileBio"
+    ).innerText =
+        account.bio || "Belum ada bio.";
+
+    document.getElementById(
+        "profilePhoto"
+    ).src =
+        getProfilePicture(username);
+
+    const cover =
+        localStorage.getItem(
+            "yam_cover_" + username
+        );
+
+    const coverBox =
+        document.getElementById(
+            "profileCover"
+        );
+
+    if(cover){
+
+        coverBox.style.backgroundImage =
+            "url('" + cover + "')";
+
+    }else{
+
+        coverBox.style.backgroundImage =
+            "linear-gradient(135deg,#1976d2,#64b5f6)";
+    }
+
+
+    document.getElementById(
+        "profileDetails"
+    ).innerHTML = `
+        <div class="profile-detail">
+            <b>Username</b>
+            ${escapeHtml(username)}
+        </div>
+
+        <div class="profile-detail">
+            <b>Birthday</b>
+            ${escapeHtml(account.birthday || "-")}
+        </div>
+
+        <div class="profile-detail">
+            <b>Location</b>
+            ${escapeHtml(account.location || "-")}
+        </div>
+
+        <div class="profile-detail">
+            <b>Job</b>
+            ${escapeHtml(account.job || "-")}
+        </div>
+
+        <div class="profile-detail">
+            <b>Gender</b>
+            ${escapeHtml(account.gender || "-")}
+        </div>
+    `;
+
+    loadProfileMusic();
+}
+
+
+/* =========================
+   PROFILE MENU
+========================= */
+
+function openProfileMenu(){
+
+    closeDropdown();
+
+    const dropdown =
+        document.getElementById(
+            "dropdown"
+        );
+
+    dropdown.innerHTML = "";
+
+    addDropdownButton(
+        dropdown,
+        "✏️ Edit Profile",
+        false,
+        function(){
+
+            closeDropdown();
+
+            openEditProfile();
+        }
+    );
+
+    addDropdownButton(
+        dropdown,
+        "📝 Tukar Nama",
+        false,
+        function(){
+
+            closeDropdown();
+
+            changeName();
+        }
+    );
+
+    addDropdownButton(
+        dropdown,
+        "🔐 Tukar Password",
+        false,
+        function(){
+
+            closeDropdown();
+
+            changePassword();
+        }
+    );
+
+    addDropdownButton(
+        dropdown,
+        "🚪 Logout",
+        true,
+        function(){
+
+            closeDropdown();
+
+            logout();
+        }
+    );
+
+    dropdown.style.top =
+        "55px";
+
+    dropdown.style.right =
+        "12px";
+
+    dropdown.style.left =
+        "auto";
+
+    dropdown.classList.remove(
+        "hidden"
+    );
+}
+
+
+/* =========================
+   CHANGE NAME
+========================= */
+
+function changeName(){
+
+    const username =
+        getCurrentUser();
+
+    const account =
+        getAccount(username);
+
+    if(!account){
+        return;
+    }
+
+    const name =
+        prompt(
+            "Masukkan nama baru:",
+            account.name || ""
+        );
+
+    if(name === null){
+        return;
+    }
+
+    const newName =
+        name.trim();
+
+    if(!newName){
+
+        alert(
+            "Nama tidak boleh kosong."
+        );
+
+        return;
+    }
+
+    const accounts =
+        getAccounts();
+
+    const target =
+        accounts.find(
+            a => a.username === username
+        );
+
+    target.name =
+        newName;
+
+    saveAccounts(accounts);
+
+    loadProfile();
+
+    document.getElementById(
+        "topbarUser"
+    ).innerText =
+        newName;
+
+    renderFeed();
+
+    alert(
+        "Nama berjaya ditukar."
+    );
+}
+
+
+/* =========================
+   CHANGE PASSWORD
+========================= */
+
+function changePassword(){
+
+    const username =
+        getCurrentUser();
+
+    const account =
+        getAccount(username);
+
+    if(!account){
+        return;
+    }
+
+    const oldPassword =
+        prompt(
+            "Password lama:"
+        );
+
+    if(oldPassword === null){
+        return;
+    }
+
+    if(oldPassword !== account.password){
+
+        alert(
+            "Password lama salah."
+        );
+
+        return;
+    }
+
+    const newPassword =
+        prompt(
+            "Password baru:"
+        );
+
+    if(newPassword === null){
+        return;
+    }
+
+    if(newPassword.length < 4){
+
+        alert(
+            "Password mesti sekurang-kurangnya 4 aksara."
+        );
+
+        return;
+    }
+
+    const accounts =
+        getAccounts();
+
+    const target =
+        accounts.find(
+            a => a.username === username
+        );
+
+    target.password =
+        newPassword;
+
+    saveAccounts(accounts);
+
+    alert(
+        "Password berjaya ditukar."
+    );
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+function editStatus(){
+
+    const username =
+        getCurrentUser();
+
+    const current =
+        localStorage.getItem(
+            "yam_status_" + username
+        ) || "";
+
+    const status =
+        prompt(
+            "Masukkan status:",
+            current
+        );
+
+    if(status === null){
+        return;
+    }
+
+    localStorage.setItem(
+        "yam_status_" + username,
+        status.trim()
+    );
+
+    loadProfile();
+}
+
+
+/* =========================
+   EDIT PROFILE
+========================= */
+
+function openEditProfile(){
+
+    const username =
+        getCurrentUser();
+
+    const account =
+        getAccount(username);
+
+    if(!account){
+        return;
+    }
+
+    const modal =
+        document.getElementById(
+            "modal"
+        );
+
+    modal.innerHTML = `
+
+        <div class="modal-head">
+
+            <div class="modal-title">
                 ✏️ Edit Profile
             </div>
 
-            <div class="form-group">
+            <button
+                class="modal-close"
+                onclick="closeOverlay();">
+                ✕
+            </button>
 
+        </div>
+
+        <div class="form-body">
+
+            <div class="form-group">
                 <label>Nama</label>
-
-                <input id="editName"
-                       type="text">
-
-                <div class="privacy-row">
-
-                    <button id="namePublic"
-                            onclick="setPrivacy('name','public')">
-
-                        🌐 Public
-
-                    </button>
-
-                    <button id="namePrivate"
-                            onclick="setPrivacy('name','private')">
-
-                        🔒 Private
-
-                    </button>
-
-                </div>
-
+                <input
+                    id="editName"
+                    value="${escapeHtml(account.name || "")}">
             </div>
 
             <div class="form-group">
-
                 <label>Birthday</label>
-
-                <input id="editBirthday"
-                       type="date">
-
-                <div class="privacy-row">
-
-                    <button id="birthdayPublic"
-                            onclick="setPrivacy('birthday','public')">
-
-                        🌐 Public
-
-                    </button>
-
-                    <button id="birthdayPrivate"
-                            onclick="setPrivacy('birthday','private')">
-
-                        🔒 Private
-
-                    </button>
-
-                </div>
-
+                <input
+                    id="editBirthday"
+                    type="date"
+                    value="${escapeHtml(account.birthday || "")}">
             </div>
 
             <div class="form-group">
-
-                <label>Current Location</label>
-
-                <input id="editLocation"
-                       type="text"
-                       placeholder="Contoh: Kota Kinabalu">
-
-                <div class="privacy-row">
-
-                    <button id="locationPublic"
-                            onclick="setPrivacy('location','public')">
-
-                        🌐 Public
-
-                    </button>
-
-                    <button id="locationPrivate"
-                            onclick="setPrivacy('location','private')">
-
-                        🔒 Private
-
-                    </button>
-
-                </div>
-
+                <label>Location</label>
+                <input
+                    id="editLocation"
+                    value="${escapeHtml(account.location || "")}">
             </div>
 
             <div class="form-group">
-
-                <label>Pekerjaan</label>
-
-                <input id="editJob"
-                       type="text"
-                       placeholder="Contoh: Business">
-
-                <div class="privacy-row">
-
-                    <button id="jobPublic"
-                            onclick="setPrivacy('job','public')">
-
-                        🌐 Public
-
-                    </button>
-
-                    <button id="jobPrivate"
-                            onclick="setPrivacy('job','private')">
-
-                        🔒 Private
-
-                    </button>
-
-                </div>
-
+                <label>Job</label>
+                <input
+                    id="editJob"
+                    value="${escapeHtml(account.job || "")}">
             </div>
 
             <div class="form-group">
-
-                <label>Jantina</label>
+                <label>Gender</label>
 
                 <select id="editGender">
 
-                    <option value="">Pilih</option>
+                    <option value="">
+                        Pilih
+                    </option>
 
                     <option value="Lelaki">
                         Lelaki
@@ -1643,551 +3881,117 @@ body{
 
                 </select>
 
-                <div class="privacy-row">
-
-                    <button id="genderPublic"
-                            onclick="setPrivacy('gender','public')">
-
-                        🌐 Public
-
-                    </button>
-
-                    <button id="genderPrivate"
-                            onclick="setPrivacy('gender','private')">
-
-                        🔒 Private
-
-                    </button>
-
-                </div>
-
             </div>
 
             <div class="form-group">
-
                 <label>Bio</label>
 
-                <textarea id="editBio"
-                          placeholder="Ceritakan sedikit tentang diri..."></textarea>
-
-                <div class="privacy-row">
-
-                    <button id="bioPublic"
-                            onclick="setPrivacy('bio','public')">
-
-                        🌐 Public
-
-                    </button>
-
-                    <button id="bioPrivate"
-                            onclick="setPrivacy('bio','private')">
-
-                        🔒 Private
-
-                    </button>
-
-                </div>
+                <textarea
+                    id="editBio"
+                    placeholder="Tentang anda..."></textarea>
 
             </div>
 
-            <button class="save-profile"
-                    onclick="saveProfile();">
-
-                💾 Simpan Profile
-
-            </button>
-
-            <button class="cancel-edit"
-                    onclick="cancelEditProfile();">
-
-                Batal
-
+            <button
+                class="save-btn"
+                onclick="saveEditProfile();">
+                💾 Simpan
             </button>
 
         </div>
-
-    </div>
-
-    <!-- =========================
-         BOTTOM NAV
-    ========================= -->
-
-    <div class="bottom-nav">
-
-        <button id="navChats"
-                class="active"
-                onclick="showPage('chatsPage',this)">
-
-            💬<br>
-            Chats
-
-        </button>
-
-        <button id="navFriends"
-                onclick="showPage('friendsPage',this)">
-
-            👥<br>
-            Friends
-
-        </button>
-
-        <button id="navRooms"
-                onclick="showPage('roomsPage',this)">
-
-            🌍<br>
-            Rooms
-
-        </button>
-
-        <button id="navProfile"
-                onclick="showPage('profilePage',this)">
-
-            👤<br>
-            Profile
-
-        </button>
-
-    </div>
-
-</div>
-
-<!-- =========================
-     NORMAL CHAT SCREEN
-========================= -->
-
-<div id="chatScreen">
-
-    <div class="chat-header">
-
-        <button class="back-btn"
-                onclick="closeChat()">
-
-            ‹
-
-        </button>
-
-        <div class="chat-user">
-
-            <div id="chatUserName"
-                 class="chat-user-name">
-
-                User
-
-            </div>
-
-            <div class="chat-user-status">
-                Online
-            </div>
-
-        </div>
-
-        <button class="delete-chat"
-                onclick="deleteWholeChat()">
-
-            🗑️ Padam
-
-        </button>
-
-    </div>
-
-    <div id="messages"
-         class="messages">
-    </div>
-
-    <div class="chat-input">
-
-        <input id="messageInput"
-               type="text"
-               placeholder="Tulis mesej..."
-               onkeydown="handleMessageKey(event)">
-
-        <button onclick="sendMessage()">
-            ➤
-        </button>
-
-    </div>
-
-</div>
-
-<!-- =========================
-     GROUP ROOM SCREEN
-========================= -->
-
-<div id="groupRoomScreen">
-
-    <div class="group-room-header">
-
-        <button class="group-back"
-                onclick="closeGroupRoom()">
-
-            ‹
-
-        </button>
-
-        <div class="group-room-title">
-
-            <div id="groupRoomName"
-                 class="group-room-name">
-
-                YAM Room
-
-            </div>
-
-            <div id="groupRoomSubtitle"
-                 class="group-room-subtitle">
-
-                0 pengguna
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="group-room-body">
-
-        <div class="room-users">
-
-            <div class="room-users-title">
-                👥 Users
-            </div>
-
-            <div id="roomUsersList"></div>
-
-        </div>
-
-        <div id="roomMessages"
-             class="room-messages">
-        </div>
-
-    </div>
-
-    <div class="group-room-input">
-
-        <input id="roomMessageInput"
-               type="text"
-               placeholder="Tulis mesej dalam room..."
-               onkeydown="handleRoomKey(event)">
-
-        <button onclick="sendRoomMessage()">
-            ➤
-        </button>
-
-    </div>
-
-</div>
-
-<!-- =========================
-     FILE INPUTS
-========================= -->
-
-<input id="profilePictureInput"
-       class="hidden-file-input"
-       type="file"
-       accept="image/*">
-
-<input id="coverPhotoInput"
-       class="hidden-file-input"
-       type="file"
-       accept="image/*">
-
-<input id="profileMusicInput"
-       class="hidden-file-input"
-       type="file"
-       accept="audio/*">
-
-<script>
-
-let registerMode = false;
-
-/* =====================================================
-   AUTH
-===================================================== */
-
-function switchAuth(){
-
-    registerMode = !registerMode;
-
-    const name =
-        document.getElementById("authName");
-
-    const button =
-        document.getElementById("authButton");
-
-    const switchText =
-        document.getElementById("authSwitch");
-
-    if(registerMode){
-
-        name.style.display = "block";
-
-        button.innerText = "Daftar";
-
-        switchText.innerText =
-            "Sudah ada akaun? Login";
-
-    }else{
-
-        name.style.display = "none";
-
-        button.innerText = "Login";
-
-        switchText.innerText =
-            "Belum ada akaun? Daftar";
-
-    }
-
+    `;
+
+    document.getElementById(
+        "editGender"
+    ).value =
+        account.gender || "";
+
+    document.getElementById(
+        "editBio"
+    ).value =
+        account.bio || "";
+
+    openOverlay();
 }
 
-function authAction(){
-
-    const name =
-        document.getElementById("authName").value.trim();
+function saveEditProfile(){
 
     const username =
-        document.getElementById("authUsername").value.trim();
+        getCurrentUser();
 
-    const password =
-        document.getElementById("authPassword").value;
+    const accounts =
+        getAccounts();
 
-    if(!username || !password){
-
-        alert("Sila isi username dan password.");
-
-        return;
-
-    }
-
-    let accounts =
-        JSON.parse(
-            localStorage.getItem("yam_accounts") || "{}"
+    const account =
+        accounts.find(
+            a => a.username === username
         );
-
-    if(registerMode){
-
-        if(!name){
-
-            alert("Sila masukkan nama.");
-
-            return;
-
-        }
-
-        if(accounts[username]){
-
-            alert("Username sudah digunakan.");
-
-            return;
-
-        }
-
-        accounts[username] = {
-
-            name:name,
-            password:password,
-            birthday:"",
-            location:"",
-            job:"",
-            gender:"",
-            bio:""
-
-        };
-
-        saveAccounts(accounts);
-
-        localStorage.setItem(
-            "yam_current_user",
-            username
-        );
-
-        startApp();
-
-    }else{
-
-        if(
-            !accounts[username] ||
-            accounts[username].password !== password
-        ){
-
-            alert("Username atau password salah.");
-
-            return;
-
-        }
-
-        localStorage.setItem(
-            "yam_current_user",
-            username
-        );
-
-        startApp();
-
-    }
-
-}
-
-function getCurrentUser(){
-
-    return localStorage.getItem(
-        "yam_current_user"
-    );
-
-}
-
-function getAccounts(){
-
-    return JSON.parse(
-        localStorage.getItem("yam_accounts") || "{}"
-    );
-
-}
-
-function saveAccounts(accounts){
-
-    localStorage.setItem(
-        "yam_accounts",
-        JSON.stringify(accounts)
-    );
-
-}
-
-function startApp(){
-
-    document.getElementById(
-        "authScreen"
-    ).style.display = "none";
-
-    document.getElementById(
-        "mainApp"
-    ).style.display = "block";
-
-    loadProfile();
-    updateChatList();
-    loadFriends();
-
-}
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-function loadProfile(){
-
-    const username = getCurrentUser();
-
-    if(!username){
-        return;
-    }
-
-    const accounts = getAccounts();
-
-    const account = accounts[username];
 
     if(!account){
         return;
     }
 
-    const name = account.name || username;
-
-    document.getElementById(
-        "profileName"
-    ).innerText = name;
-
-    const avatar =
-        document.getElementById("profileAvatar");
-
-    const picture =
-        localStorage.getItem(
-            "yam_picture_" + username
-        );
-
-    if(picture){
-
-        avatar.innerHTML = "";
-
-        const img =
-            document.createElement("img");
-
-        img.src = picture;
-        img.alt = "Profile";
-
-        avatar.appendChild(img);
-
-    }else{
-
-        avatar.innerText =
-            name.charAt(0).toUpperCase();
-
-    }
-
-    const status =
-        localStorage.getItem(
-            "yam_status_" + username
-        ) || "Online";
-
-    const statusText =
+    account.name =
         document.getElementById(
-            "profileStatusText"
+            "editName"
+        ).value.trim();
+
+    account.birthday =
+        document.getElementById(
+            "editBirthday"
+        ).value;
+
+    account.location =
+        document.getElementById(
+            "editLocation"
+        ).value.trim();
+
+    account.job =
+        document.getElementById(
+            "editJob"
+        ).value.trim();
+
+    account.gender =
+        document.getElementById(
+            "editGender"
+        ).value;
+
+    account.bio =
+        document.getElementById(
+            "editBio"
+        ).value.trim();
+
+    if(!account.name){
+
+        alert(
+            "Nama tidak boleh kosong."
         );
 
-    if(statusText){
-        statusText.innerText = status;
-    }
-
-    document.getElementById(
-        "profileBio"
-    ).innerText =
-        account.bio || "";
-
-    const cover =
-        localStorage.getItem(
-            "yam_cover_" + username
-        );
-
-    const profileBox =
-        document.querySelector(".profile");
-
-    if(profileBox){
-
-        if(cover){
-
-            profileBox.style.backgroundImage =
-                'url("' + cover + '")';
-
-        }else{
-
-            profileBox.style.backgroundImage =
-                "linear-gradient(135deg,#1976d2,#64b5f6)";
-
-        }
-
-    }
-
-    loadProfileMusic();
-    loadProfileInfo();
-
-}
-
-/* =====================================================
-   PROFILE MUSIC BUTTON
-===================================================== */
-
-function toggleProfileMusic(){
-
-    const music =
-        document.getElementById("profileMusic");
-
-    if(!music){
         return;
     }
 
-    music.classList.toggle("show");
+    saveAccounts(accounts);
 
+    closeOverlay();
+
+    loadProfile();
+
+    document.getElementById(
+        "topbarUser"
+    ).innerText =
+        account.name;
+
+    renderFeed();
+
+    alert(
+        "Profile berjaya dikemaskini."
+    );
 }
 
-/* =====================================================
+
+/* =========================
    PROFILE PICTURE
-===================================================== */
+========================= */
 
 function changeProfilePicture(){
 
@@ -2196,17 +4000,9 @@ function changeProfilePicture(){
             "profilePictureInput"
         );
 
-    if(!input){
-
-        alert("Profile photo input tidak dijumpai.");
-
-        return;
-
-    }
-
     input.value = "";
-    input.click();
 
+    input.click();
 }
 
 function saveProfilePicture(event){
@@ -2221,81 +4017,71 @@ function saveProfilePicture(event){
 
     if(!file.type.startsWith("image/")){
 
-        alert("Sila pilih fail gambar.");
-
-        event.target.value = "";
+        alert(
+            "Sila pilih gambar."
+        );
 
         return;
+    }
 
+    if(file.size > 3 * 1024 * 1024){
+
+        alert(
+            "Gambar maksimum 3MB."
+        );
+
+        return;
     }
 
     const reader =
         new FileReader();
 
-    reader.onload = function(e){
+    reader.onload =
+        function(e){
 
-        const username =
-            getCurrentUser();
+            const username =
+                getCurrentUser();
 
-        if(!username){
-            return;
-        }
+            try{
 
-        try{
+                localStorage.setItem(
+                    "yam_picture_" + username,
+                    e.target.result
+                );
 
-            localStorage.setItem(
-                "yam_picture_" + username,
-                e.target.result
-            );
+                loadProfile();
 
-        }catch(error){
+                renderFeed();
 
-            alert(
-                "Gambar terlalu besar untuk disimpan."
-            );
+            }catch(error){
 
-            return;
-
-        }
-
-        loadProfile();
-        updateChatList();
-
-        alert(
-            "Profile photo berjaya ditukar."
-        );
-
-    };
+                alert(
+                    "Gambar tidak dapat disimpan. Storage mungkin penuh."
+                );
+            }
+        };
 
     reader.readAsDataURL(file);
-
 }
 
-/* =====================================================
-   COVER PHOTO
-===================================================== */
 
-function changeCoverPhoto(){
+/* =========================
+   COVER
+========================= */
+
+function changeCover(){
 
     const input =
         document.getElementById(
-            "coverPhotoInput"
+            "coverInput"
         );
 
-    if(!input){
-
-        alert("Cover photo input tidak dijumpai.");
-
-        return;
-
-    }
-
     input.value = "";
-    input.click();
 
+    input.click();
 }
 
-function saveCoverPhoto(event){
+function saveCover(event){
 
     const file =
         event.target.files &&
@@ -2307,57 +4093,54 @@ function saveCoverPhoto(event){
 
     if(!file.type.startsWith("image/")){
 
-        alert("Sila pilih fail gambar.");
-
-        event.target.value = "";
+        alert(
+            "Sila pilih gambar."
+        );
 
         return;
+    }
 
+    if(file.size > 4 * 1024 * 1024){
+
+        alert(
+            "Cover maksimum 4MB."
+        );
+
+        return;
     }
 
     const reader =
         new FileReader();
 
-    reader.onload = function(e){
+    reader.onload =
+        function(e){
 
-        const username =
-            getCurrentUser();
+            const username =
+                getCurrentUser();
 
-        if(!username){
-            return;
-        }
+            try{
 
-        try{
+                localStorage.setItem(
+                    "yam_cover_" + username,
+                    e.target.result
+                );
 
-            localStorage.setItem(
-                "yam_cover_" + username,
-                e.target.result
-            );
+                loadProfile();
 
-        }catch(error){
+            }catch(error){
 
-            alert(
-                "Gambar terlalu besar untuk disimpan."
-            );
-
-            return;
-
-        }
-
-        loadProfile();
-
-        alert(
-            "Background photo berjaya ditukar."
-        );
-
-    };
+                alert(
+                    "Cover tidak dapat disimpan. Storage mungkin penuh."
+                );
+            }
+        };
 
     reader.readAsDataURL(file);
-
 }
 
+
 /* =====================================================
-   PROFILE MUSIC
+   MUSIC PROFILE
 ===================================================== */
 
 function changeProfileMusic(){
@@ -2369,15 +4152,16 @@ function changeProfileMusic(){
 
     if(!input){
 
-        alert("Music input tidak dijumpai.");
+        alert(
+            "Music input tidak dijumpai."
+        );
 
         return;
-
     }
 
     input.value = "";
-    input.click();
 
+    input.click();
 }
 
 function saveProfileMusic(event){
@@ -2393,13 +4177,12 @@ function saveProfileMusic(event){
     if(!file.type.startsWith("audio/")){
 
         alert(
-            "Sila pilih fail audio/music."
+            "Sila pilih fail audio/muzik."
         );
 
         event.target.value = "";
 
         return;
-
     }
 
     const maxSize =
@@ -2408,62 +4191,54 @@ function saveProfileMusic(event){
     if(file.size > maxSize){
 
         alert(
-            "Music terlalu besar.\n\n" +
-            "Untuk versi ini pilih fail audio " +
-            "di bawah 8MB."
+            "Lagu terlalu besar. Untuk versi demo ini, pilih fail audio 8MB atau lebih kecil."
         );
 
         event.target.value = "";
 
         return;
-
     }
 
     const reader =
         new FileReader();
 
-    reader.onload = function(e){
+    reader.onload =
+        function(e){
 
-        const username =
-            getCurrentUser();
+            const username =
+                getCurrentUser();
 
-        if(!username){
-            return;
-        }
+            if(!username){
+                return;
+            }
 
-        try{
+            try{
 
-            localStorage.setItem(
-                "yam_music_" + username,
-                e.target.result
-            );
+                localStorage.setItem(
+                    "yam_music_" + username,
+                    e.target.result
+                );
 
-            localStorage.setItem(
-                "yam_music_name_" + username,
-                file.name
-            );
+                localStorage.setItem(
+                    "yam_music_name_" + username,
+                    file.name
+                );
 
-        }catch(error){
+                loadProfileMusic();
 
-            alert(
-                "Music tidak dapat disimpan. " +
-                "Ruang browser mungkin sudah penuh."
-            );
+                alert(
+                    "🎵 Lagu profile berjaya disimpan."
+                );
 
-            return;
+            }catch(error){
 
-        }
-
-        loadProfileMusic();
-
-        alert(
-            "🎵 Music berjaya dipasang pada Profile."
-        );
-
-    };
+                alert(
+                    "Lagu tidak dapat disimpan. Storage browser mungkin penuh."
+                );
+            }
+        };
 
     reader.readAsDataURL(file);
-
 }
 
 function loadProfileMusic(){
@@ -2471,12 +4246,22 @@ function loadProfileMusic(){
     const username =
         getCurrentUser();
 
-    const box =
+    const player =
         document.getElementById(
-            "musicContent"
+            "profileMusicPlayer"
         );
 
-    if(!box || !username){
+    const nameBox =
+        document.getElementById(
+            "profileMusicName"
+        );
+
+    if(
+        !username ||
+        !player ||
+        !nameBox
+    ){
+
         return;
     }
 
@@ -2488,121 +4273,88 @@ function loadProfileMusic(){
     const musicName =
         localStorage.getItem(
             "yam_music_name_" + username
-        ) || "Profile Music";
+        );
 
-    box.innerHTML = "";
+    if(music){
 
-    if(!music){
+        player.src =
+            music;
 
-        box.innerHTML = `
+        player.classList.add(
+            "ready"
+        );
 
-            <div class="music-empty">
+        nameBox.innerText =
+            musicName ||
+            "Lagu profile";
 
-                Belum ada music dipasang.<br>
-                Tambahkan lagu dari phone anda.
+    }else{
 
-            </div>
+        player.pause();
 
-            <div class="music-buttons">
+        player.removeAttribute(
+            "src"
+        );
 
-                <button
-                    type="button"
-                    onclick="changeProfileMusic();">
+        player.load();
 
-                    🎵 Add Music
+        player.classList.remove(
+            "ready"
+        );
 
-                </button>
-
-            </div>
-
-        `;
-
-        return;
-
+        nameBox.innerText =
+            "Belum ada lagu dipilih";
     }
-
-    const name =
-        document.createElement("div");
-
-    name.className =
-        "music-name";
-
-    name.innerText =
-        "🎵 " + musicName;
-
-    const audio =
-        document.createElement("audio");
-
-    audio.className =
-        "music-player";
-
-    audio.controls = true;
-    audio.preload = "metadata";
-    audio.src = music;
-
-    const buttons =
-        document.createElement("div");
-
-    buttons.className =
-        "music-buttons";
-
-    const changeButton =
-        document.createElement("button");
-
-    changeButton.type = "button";
-
-    changeButton.innerText =
-        "🔄 Tukar Music";
-
-    changeButton.onclick =
-        function(){
-
-            changeProfileMusic();
-
-        };
-
-    const removeButton =
-        document.createElement("button");
-
-    removeButton.type = "button";
-
-    removeButton.innerText =
-        "🗑️ Remove";
-
-    removeButton.onclick =
-        function(){
-
-            removeProfileMusic();
-
-        };
-
-    buttons.appendChild(
-        changeButton
-    );
-
-    buttons.appendChild(
-        removeButton
-    );
-
-    box.appendChild(name);
-    box.appendChild(audio);
-    box.appendChild(buttons);
-
 }
 
 function removeProfileMusic(){
-
-    if(!confirm(
-        "Betul mahu buang music dari Profile?"
-    )){
-        return;
-    }
 
     const username =
         getCurrentUser();
 
     if(!username){
         return;
+    }
+
+    const music =
+        localStorage.getItem(
+            "yam_music_" + username
+        );
+
+    if(!music){
+
+        alert(
+            "Belum ada lagu untuk dibuang."
+        );
+
+        return;
+    }
+
+    if(!confirm(
+        "Buang lagu dari profile?"
+    )){
+
+        return;
+    }
+
+    const player =
+        document.getElementById(
+            "profileMusicPlayer"
+        );
+
+    if(player){
+
+        player.pause();
+
+        player.removeAttribute(
+            "src"
+        );
+
+        player.load();
+
+        player.classList.remove(
+            "ready"
+        );
     }
 
     localStorage.removeItem(
@@ -2616,788 +4368,16 @@ function removeProfileMusic(){
     loadProfileMusic();
 
     alert(
-        "Music sudah dibuang dari Profile."
+        "🎵 Lagu profile sudah dibuang."
     );
-
 }
 
-/* =====================================================
-   PROFILE MENU
-===================================================== */
-
-function toggleProfileMenu(){
-
-    const menu =
-        document.getElementById(
-            "profileDropdown"
-        );
-
-    if(!menu){
-        return;
-    }
-
-    if(menu.classList.contains("show")){
-
-        menu.classList.remove("show");
-
-    }else{
-
-        menu.classList.add("show");
-
-    }
-
-}
-
-function closeProfileMenu(){
-
-    const menu =
-        document.getElementById(
-            "profileDropdown"
-        );
-
-    if(menu){
-
-        menu.classList.remove("show");
-
-    }
-
-}
-
-/* =====================================================
-   EDIT PROFILE
-===================================================== */
-
-let editPrivacy = {};
-
-function openEditProfile(){
-
-    closeProfileMenu();
-
-    const username =
-        getCurrentUser();
-
-    if(!username){
-        return;
-    }
-
-    const accounts =
-        getAccounts();
-
-    const account =
-        accounts[username] || {};
-
-    editPrivacy =
-        JSON.parse(
-            JSON.stringify(
-                getProfilePrivacy()
-            )
-        );
-
-    document.getElementById(
-        "editName"
-    ).value =
-        account.name || "";
-
-    document.getElementById(
-        "editBirthday"
-    ).value =
-        account.birthday || "";
-
-    document.getElementById(
-        "editLocation"
-    ).value =
-        account.location || "";
-
-    document.getElementById(
-        "editJob"
-    ).value =
-        account.job || "";
-
-    document.getElementById(
-        "editGender"
-    ).value =
-        account.gender || "";
-
-    document.getElementById(
-        "editBio"
-    ).value =
-        account.bio || "";
-
-    updatePrivacyButtons();
-
-    showPage(
-        "editProfilePage",
-        document.getElementById("navProfile")
-    );
-
-}
-
-/* =====================================================
-   PROFILE PRIVACY
-===================================================== */
-
-function getProfilePrivacy(){
-
-    const username =
-        getCurrentUser();
-
-    let privacy =
-        JSON.parse(
-            localStorage.getItem(
-                "yam_privacy_" + username
-            ) || "null"
-        );
-
-    if(!privacy){
-
-        privacy = {
-
-            name:"public",
-            birthday:"private",
-            location:"private",
-            job:"public",
-            gender:"private",
-            bio:"public"
-
-        };
-
-        localStorage.setItem(
-            "yam_privacy_" + username,
-            JSON.stringify(privacy)
-        );
-
-    }
-
-    return privacy;
-
-}
-
-function setPrivacy(field,value){
-
-    editPrivacy[field] = value;
-
-    updatePrivacyButtons();
-
-}
-
-function updatePrivacyButtons(){
-
-    const fields = [
-        "name",
-        "birthday",
-        "location",
-        "job",
-        "gender",
-        "bio"
-    ];
-
-    fields.forEach(field => {
-
-        const publicButton =
-            document.getElementById(
-                field + "Public"
-            );
-
-        const privateButton =
-            document.getElementById(
-                field + "Private"
-            );
-
-        if(publicButton){
-
-            publicButton.classList.toggle(
-                "selected",
-                editPrivacy[field] === "public"
-            );
-
-        }
-
-        if(privateButton){
-
-            privateButton.classList.toggle(
-                "selected",
-                editPrivacy[field] === "private"
-            );
-
-        }
-
-    });
-
-}
-
-/* =====================================================
-   SAVE PROFILE
-===================================================== */
-
-function saveProfile(){
-
-    const username =
-        getCurrentUser();
-
-    if(!username){
-        return;
-    }
-
-    const accounts =
-        getAccounts();
-
-    if(!accounts[username]){
-        return;
-    }
-
-    const newName =
-        document.getElementById(
-            "editName"
-        ).value.trim();
-
-    if(!newName){
-
-        alert("Nama tidak boleh kosong.");
-
-        return;
-
-    }
-
-    accounts[username].name =
-        newName;
-
-    accounts[username].birthday =
-        document.getElementById(
-            "editBirthday"
-        ).value;
-
-    accounts[username].location =
-        document.getElementById(
-            "editLocation"
-        ).value.trim();
-
-    accounts[username].job =
-        document.getElementById(
-            "editJob"
-        ).value.trim();
-
-    accounts[username].gender =
-        document.getElementById(
-            "editGender"
-        ).value;
-
-    accounts[username].bio =
-        document.getElementById(
-            "editBio"
-        ).value.trim();
-
-    saveAccounts(accounts);
-
-    localStorage.setItem(
-        "yam_privacy_" + username,
-        JSON.stringify(editPrivacy)
-    );
-
-    loadProfile();
-    updateChatList();
-
-    alert(
-        "Profile berjaya disimpan."
-    );
-
-    showPage(
-        "profilePage",
-        document.getElementById("navProfile")
-    );
-
-}
-
-/* =====================================================
-   CANCEL EDIT
-===================================================== */
-
-function cancelEditProfile(){
-
-    showPage(
-        "profilePage",
-        document.getElementById("navProfile")
-    );
-
-}
-
-/* =====================================================
-   CHANGE NAME
-===================================================== */
-
-function changeName(){
-
-    closeProfileMenu();
-
-    const username =
-        getCurrentUser();
-
-    const accounts =
-        getAccounts();
-
-    if(!accounts[username]){
-        return;
-    }
-
-    const oldName =
-        accounts[username].name ||
-        username;
-
-    const newName =
-        prompt(
-            "Masukkan nama baru:",
-            oldName
-        );
-
-    if(newName === null){
-        return;
-    }
-
-    const cleanName =
-        newName.trim();
-
-    if(!cleanName){
-
-        alert("Nama tidak boleh kosong.");
-
-        return;
-
-    }
-
-    accounts[username].name =
-        cleanName;
-
-    saveAccounts(accounts);
-
-    loadProfile();
-    updateChatList();
-
-}
-
-/* =====================================================
-   EDIT STATUS
-===================================================== */
-
-function editStatus(){
-
-    const username =
-        getCurrentUser();
-
-    if(!username){
-        return;
-    }
-
-    const oldStatus =
-        localStorage.getItem(
-            "yam_status_" + username
-        ) || "Online";
-
-    const newStatus =
-        prompt(
-            "Tulis status anda:",
-            oldStatus
-        );
-
-    if(newStatus === null){
-        return;
-    }
-
-    const cleanStatus =
-        newStatus.trim();
-
-    if(!cleanStatus){
-
-        alert(
-            "Status tidak boleh kosong."
-        );
-
-        return;
-
-    }
-
-    if(cleanStatus.length > 60){
-
-        alert(
-            "Status maksimum 60 aksara."
-        );
-
-        return;
-
-    }
-
-    localStorage.setItem(
-        "yam_status_" + username,
-        cleanStatus
-    );
-
-    loadProfile();
-
-}
-
-/* =====================================================
-   CHANGE PASSWORD
-===================================================== */
-
-function changePassword(){
-
-    closeProfileMenu();
-
-    const username =
-        getCurrentUser();
-
-    const accounts =
-        getAccounts();
-
-    if(!accounts[username]){
-        return;
-    }
-
-    const oldPassword =
-        prompt(
-            "Masukkan password lama:"
-        );
-
-    if(oldPassword === null){
-        return;
-    }
-
-    if(
-        oldPassword !==
-        accounts[username].password
-    ){
-
-        alert(
-            "Password lama salah."
-        );
-
-        return;
-
-    }
-
-    const newPassword =
-        prompt(
-            "Masukkan password baru:"
-        );
-
-    if(newPassword === null){
-        return;
-    }
-
-    if(
-        !newPassword ||
-        newPassword.length < 4
-    ){
-
-        alert(
-            "Password baru mesti sekurang-kurangnya 4 aksara."
-        );
-
-        return;
-
-    }
-
-    const confirmPassword =
-        prompt(
-            "Masukkan semula password baru:"
-        );
-
-    if(
-        newPassword !==
-        confirmPassword
-    ){
-
-        alert(
-            "Password baru tidak sama."
-        );
-
-        return;
-
-    }
-
-    accounts[username].password =
-        newPassword;
-
-    saveAccounts(accounts);
-
-    alert(
-        "Password berjaya ditukar."
-    );
-
-}
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-function logout(){
-
-    closeProfileMenu();
-
-    if(!confirm(
-        "Betul mahu logout?"
-    )){
-        return;
-    }
-
-    localStorage.removeItem(
-        "yam_current_user"
-    );
-
-    document.getElementById(
-        "mainApp"
-    ).style.display = "none";
-
-    document.getElementById(
-        "authScreen"
-    ).style.display = "flex";
-
-}
-
-/* =====================================================
-   PROFILE INFO
-===================================================== */
-
-function loadProfileInfo(){
-
-    const username =
-        getCurrentUser();
-
-    if(!username){
-        return;
-    }
-
-    const accounts =
-        getAccounts();
-
-    const account =
-        accounts[username];
-
-    if(!account){
-        return;
-    }
-
-    const privacy =
-        getProfilePrivacy();
-
-    const box =
-        document.getElementById(
-            "profileInfo"
-        );
-
-    if(!box){
-        return;
-    }
-
-    box.innerHTML = "";
-
-    const fields = [
-
-        {
-            key:"name",
-            icon:"👤",
-            label:"Nama",
-            value:account.name || username
-        },
-
-        {
-            key:"birthday",
-            icon:"🎂",
-            label:"Birthday",
-            value:account.birthday || ""
-        },
-
-        {
-            key:"location",
-            icon:"📍",
-            label:"Current Location",
-            value:account.location || ""
-        },
-
-        {
-            key:"job",
-            icon:"💼",
-            label:"Pekerjaan",
-            value:account.job || ""
-        },
-
-        {
-            key:"gender",
-            icon:"⚧️",
-            label:"Jantina",
-            value:account.gender || ""
-        },
-
-        {
-            key:"bio",
-            icon:"📝",
-            label:"Bio",
-            value:account.bio || ""
-        }
-
-    ];
-
-    fields.forEach(field => {
-
-        const row =
-            document.createElement("div");
-
-        row.className =
-            "info-row";
-
-        const icon =
-            document.createElement("div");
-
-        icon.className =
-            "info-icon";
-
-        icon.innerText =
-            field.icon;
-
-        const content =
-            document.createElement("div");
-
-        content.className =
-            "info-content";
-
-        const label =
-            document.createElement("div");
-
-        label.className =
-            "info-label";
-
-        label.innerText =
-            field.label;
-
-        const value =
-            document.createElement("div");
-
-        value.className =
-            "info-value";
-
-        if(
-            privacy[field.key] ===
-            "private"
-        ){
-
-            value.className +=
-                " private-text";
-
-            value.innerText =
-                "🔒 Private";
-
-        }else{
-
-            value.innerText =
-                field.value ||
-                "Belum diisi";
-
-        }
-
-        content.appendChild(label);
-        content.appendChild(value);
-
-        row.appendChild(icon);
-        row.appendChild(content);
-
-        box.appendChild(row);
-
-    });
-
-}
-
-/* =====================================================
-   PAGE
-===================================================== */
-
-function showPage(pageId,button){
-
-    document
-        .querySelectorAll(".page")
-        .forEach(page => {
-
-            page.classList.remove(
-                "active"
-            );
-
-        });
-
-    const target =
-        document.getElementById(pageId);
-
-    if(target){
-
-        target.classList.add(
-            "active"
-        );
-
-    }
-
-    document
-        .querySelectorAll(
-            ".bottom-nav button"
-        )
-        .forEach(btn => {
-
-            btn.classList.remove(
-                "active"
-            );
-
-        });
-
-    if(button){
-
-        button.classList.add(
-            "active"
-        );
-
-    }
-
-    if(pageId === "chatsPage"){
-
-        updateChatList();
-
-    }
-
-    if(pageId === "friendsPage"){
-
-        loadFriends();
-
-    }
-
-    if(pageId === "roomsPage"){
-
-        closeRoomCountry();
-
-    }
-
-    if(pageId === "profilePage"){
-
-        loadProfile();
-
-    }
-
-}
 
 /* =====================================================
    FRIENDS
 ===================================================== */
 
-const friends = [
-
-    {
-        name:"Ahmad"
-    },
-
-    {
-        name:"Siti"
-    },
-
-    {
-        name:"John"
-    }
-
-];
-
-function loadFriends(){
+function renderFriends(){
 
     const box =
         document.getElementById(
@@ -3408,78 +4388,390 @@ function loadFriends(){
         return;
     }
 
+    const current =
+        getCurrentUser();
+
+    const demoFriends = [
+        {
+            username:"ahmad",
+            name:"Ahmad",
+            status:"Online"
+        },
+        {
+            username:"siti",
+            name:"Siti",
+            status:"Available"
+        },
+        {
+            username:"john",
+            name:"John",
+            status:"Online"
+        }
+    ];
+
     box.innerHTML = "";
 
-    friends.forEach(friend => {
+    demoFriends
+        .filter(
+            f => f.username !== current
+        )
+        .forEach(friend => {
 
-        const item =
-            document.createElement(
-                "div"
-            );
-
-        item.className =
-            "friend-item";
-
-        item.innerHTML = `
-
-            <div class="avatar">
-                ${friend.name.charAt(0)}
-            </div>
-
-            <div class="friend-info">
-
-                <b>${friend.name}</b>
-
-                <div class="chat-preview">
-                    Kawan YAM
-                </div>
-
-            </div>
-
-            <button type="button">
-                Chat
-            </button>
-
-        `;
-
-        item
-            .querySelector("button")
-            .onclick = function(){
-
-                openChat(
-                    friend.name
+            const row =
+                document.createElement(
+                    "div"
                 );
 
-            };
+            row.className =
+                "friend-item";
 
-        box.appendChild(item);
+            const img =
+                document.createElement(
+                    "img"
+                );
 
-    });
+            img.className =
+                "avatar";
 
+            img.src =
+                getProfilePicture(
+                    friend.username
+                );
+
+            const info =
+                document.createElement(
+                    "div"
+                );
+
+            info.className =
+                "friend-info";
+
+            const name =
+                document.createElement(
+                    "div"
+                );
+
+            name.className =
+                "friend-name";
+
+            name.textContent =
+                friend.name;
+
+            const status =
+                document.createElement(
+                    "div"
+                );
+
+            status.className =
+                "friend-status";
+
+            status.textContent =
+                friend.status;
+
+            info.appendChild(name);
+            info.appendChild(status);
+
+            const btn =
+                document.createElement(
+                    "button"
+                );
+
+            btn.className =
+                "friend-chat";
+
+            btn.textContent =
+                "Chat";
+
+            btn.onclick =
+                function(){
+
+                    openChat(
+                        friend.username,
+                        friend.name
+                    );
+                };
+
+            row.appendChild(img);
+            row.appendChild(info);
+            row.appendChild(btn);
+
+            box.appendChild(row);
+        });
 }
+
 
 /* =====================================================
    CHAT
 ===================================================== */
 
-let currentChat = null;
+function getChatKey(friend){
 
-function getChatKey(){
-
-    return (
-        "yamchat_" +
-        getCurrentUser() +
-        "_" +
-        currentChat
-    );
-
+    return "yamchat_"
+        + getCurrentUser()
+        + "_"
+        + friend;
 }
 
-function updateChatList(){
+function getChatMessages(friend){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                getChatKey(friend)
+            ) || "[]"
+        );
+
+    }catch(e){
+
+        return [];
+    }
+}
+
+function saveChatMessages(
+    friend,
+    messages
+){
+
+    localStorage.setItem(
+        getChatKey(friend),
+        JSON.stringify(messages)
+    );
+}
+
+function openChat(
+    username,
+    name
+){
+
+    const modal =
+        document.getElementById(
+            "modal"
+        );
+
+    modal.innerHTML = `
+
+        <div class="modal-head">
+
+            <div class="modal-title">
+                💬 ${escapeHtml(name)}
+            </div>
+
+            <button
+                class="modal-close"
+                onclick="closeOverlay();">
+                ✕
+            </button>
+
+        </div>
+
+        <div
+            id="chatMessages"
+            class="chat-messages">
+        </div>
+
+        <div class="chat-input-row">
+
+            <input
+                id="chatInput"
+                class="chat-input"
+                placeholder="Tulis mesej...">
+
+            <button
+                class="chat-send"
+                onclick="sendChatMessage(
+                    '${escapeHtml(username)}'
+                );">
+                ➤
+            </button>
+
+        </div>
+    `;
+
+    openOverlay();
+
+    renderChatMessages(
+        username
+    );
+
+    const input =
+        document.getElementById(
+            "chatInput"
+        );
+
+    input.onkeydown =
+        function(e){
+
+            if(e.key === "Enter"){
+
+                e.preventDefault();
+
+                sendChatMessage(
+                    username
+                );
+            }
+        };
+
+    input.focus();
+}
+
+function renderChatMessages(
+    friend
+){
 
     const box =
         document.getElementById(
-            "chatList"
+            "chatMessages"
+        );
+
+    if(!box){
+        return;
+    }
+
+    const messages =
+        getChatMessages(friend);
+
+    box.innerHTML = "";
+
+    messages.forEach(
+        message => {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "msg "
+                + (
+                    message.username ===
+                    getCurrentUser()
+                    ? "mine"
+                    : ""
+                );
+
+            const bubble =
+                document.createElement(
+                    "div"
+                );
+
+            bubble.className =
+                "msg-bubble";
+
+            bubble.textContent =
+                message.text;
+
+            row.appendChild(
+                bubble
+            );
+
+            box.appendChild(
+                row
+            );
+        }
+    );
+
+    box.scrollTop =
+        box.scrollHeight;
+}
+
+function sendChatMessage(
+    friend
+){
+
+    const input =
+        document.getElementById(
+            "chatInput"
+        );
+
+    if(!input){
+        return;
+    }
+
+    const text =
+        input.value.trim();
+
+    if(!text){
+        return;
+    }
+
+    const messages =
+        getChatMessages(friend);
+
+    messages.push({
+
+        username:
+            getCurrentUser(),
+
+        text:text,
+
+        createdAt:
+            Date.now()
+
+    });
+
+    saveChatMessages(
+        friend,
+        messages
+    );
+
+    input.value = "";
+
+    renderChatMessages(
+        friend
+    );
+}
+
+
+/* =====================================================
+   ROOMS
+===================================================== */
+
+const yamRooms = [
+
+    {
+        country:"Malaysia",
+        icon:"🇲🇾",
+        desc:"Sabah, Sarawak, KL dan negeri-negeri Malaysia"
+    },
+
+    {
+        country:"Philippines",
+        icon:"🇵🇭",
+        desc:"Luzon, Visayas dan Mindanao"
+    },
+
+    {
+        country:"Indonesia",
+        icon:"🇮🇩",
+        desc:"Indonesia dan wilayah-wilayahnya"
+    },
+
+    {
+        country:"Singapore",
+        icon:"🇸🇬",
+        desc:"Singapore"
+    },
+
+    {
+        country:"Brunei",
+        icon:"🇧🇳",
+        desc:"Brunei Darussalam"
+    },
+
+    {
+        country:"World",
+        icon:"🌎",
+        desc:"YAM users seluruh dunia"
+    }
+
+];
+
+function renderRooms(){
+
+    const box =
+        document.getElementById(
+            "roomsList"
         );
 
     if(!box){
@@ -3488,798 +4780,247 @@ function updateChatList(){
 
     box.innerHTML = "";
 
-    friends.forEach(friend => {
+    yamRooms.forEach(
+        room => {
 
-        const key =
-            "yamchat_" +
-            getCurrentUser() +
-            "_" +
-            friend.name;
+            const row =
+                document.createElement(
+                    "div"
+                );
 
-        const messages =
-            JSON.parse(
-                localStorage.getItem(
-                    key
-                ) || "[]"
-            );
+            row.className =
+                "room-item";
 
-        let preview =
-            "Belum ada mesej";
-
-        if(messages.length){
-
-            preview =
-                messages[
-                    messages.length - 1
-                ].text;
-
-        }
-
-        const item =
-            document.createElement(
-                "div"
-            );
-
-        item.className =
-            "chat-item";
-
-        item.innerHTML = `
-
-            <div class="avatar">
-                ${friend.name.charAt(0)}
-            </div>
-
-            <div class="chat-info">
-
-                <div class="chat-name">
-                    ${friend.name}
+            row.innerHTML = `
+                <div class="room-icon">
+                    ${room.icon}
                 </div>
 
-                <div class="chat-preview">
-                    ${preview}
+                <div class="room-info">
+
+                    <div class="room-name">
+                        ${room.country}
+                    </div>
+
+                    <div class="room-desc">
+                        ${room.desc}
+                    </div>
+
                 </div>
+            `;
 
-            </div>
-
-        `;
-
-        item.onclick = function(){
-
-            openChat(
-                friend.name
-            );
-
-        };
-
-        box.appendChild(item);
-
-    });
-
-}
-
-function searchChats(){
-
-    const input =
-        document.getElementById(
-            "searchInput"
-        );
-
-    if(!input){
-        return;
-    }
-
-    const search =
-        input.value.toLowerCase();
-
-    document
-        .querySelectorAll(
-            ".chat-item"
-        )
-        .forEach(item => {
-
-            const name =
-                item
-                .querySelector(
-                    ".chat-name"
-                )
-                .innerText
-                .toLowerCase();
-
-            item.style.display =
-                name.includes(search)
-                ? "flex"
-                : "none";
-
-        });
-
-}
-
-function openChat(name){
-
-    currentChat = name;
-
-    document.getElementById(
-        "chatUserName"
-    ).innerText = name;
-
-    document.getElementById(
-        "chatScreen"
-    ).style.display = "block";
-
-    loadMessages();
-
-}
-
-function closeChat(){
-
-    document.getElementById(
-        "chatScreen"
-    ).style.display = "none";
-
-    currentChat = null;
-
-    updateChatList();
-
-}
-
-function loadMessages(){
-
-    const messages =
-        JSON.parse(
-            localStorage.getItem(
-                getChatKey()
-            ) || "[]"
-        );
-
-    const box =
-        document.getElementById(
-            "messages"
-        );
-
-    box.innerHTML = "";
-
-    if(!messages.length){
-
-        box.innerHTML =
-            `<div class="empty-message">
-                Belum ada mesej.
-            </div>`;
-
-        return;
-
-    }
-
-    messages.forEach(
-        function(msg,index){
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-            div.className =
-                "message " +
-                (
-                    msg.sender === "me"
-                    ? "me"
-                    : "them"
-                );
-
-            const textDiv =
-                document.createElement(
-                    "div"
-                );
-
-            textDiv.innerText =
-                msg.text;
-
-            const timeDiv =
-                document.createElement(
-                    "div"
-                );
-
-            timeDiv.className =
-                "message-time";
-
-            timeDiv.innerText =
-                msg.time || "";
-
-            const deleteBtn =
+            const btn =
                 document.createElement(
                     "button"
                 );
 
-            deleteBtn.className =
-                "delete-message";
+            btn.className =
+                "room-open";
 
-            deleteBtn.innerText =
-                "🗑️ Padam mesej";
+            btn.textContent =
+                "Masuk";
 
-            deleteBtn.onclick =
+            btn.onclick =
                 function(){
 
-                    deleteMessage(
-                        index
+                    openRoom(
+                        room.country,
+                        room.icon
                     );
-
                 };
 
-            div.appendChild(
-                textDiv
-            );
+            row.appendChild(btn);
 
-            div.appendChild(
-                timeDiv
-            );
-
-            div.appendChild(
-                deleteBtn
-            );
-
-            box.appendChild(
-                div
-            );
-
+            box.appendChild(row);
         }
     );
-
-    box.scrollTop =
-        box.scrollHeight;
-
 }
 
-function sendMessage(){
+function getRoomKey(country){
+
+    return "yamroom_"
+        + country;
+}
+
+function getRoomMessages(country){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                getRoomKey(country)
+            ) || "[]"
+        );
+
+    }catch(e){
+
+        return [];
+    }
+}
+
+function saveRoomMessages(
+    country,
+    messages
+){
+
+    localStorage.setItem(
+        getRoomKey(country),
+        JSON.stringify(messages)
+    );
+}
+
+function openRoom(
+    country,
+    icon
+){
+
+    const modal =
+        document.getElementById(
+            "modal"
+        );
+
+    modal.innerHTML = `
+
+        <div class="modal-head">
+
+            <div class="modal-title">
+                ${icon} ${escapeHtml(country)} Room
+            </div>
+
+            <button
+                class="modal-close"
+                onclick="closeOverlay();">
+                ✕
+            </button>
+
+        </div>
+
+        <div
+            id="roomMessages"
+            class="chat-messages">
+        </div>
+
+        <div class="chat-input-row">
+
+            <input
+                id="roomInput"
+                class="chat-input"
+                placeholder="Tulis mesej room...">
+
+            <button
+                class="chat-send"
+                onclick="sendRoomMessage(
+                    '${escapeHtml(country)}'
+                );">
+                ➤
+            </button>
+
+        </div>
+    `;
+
+    openOverlay();
+
+    renderRoomMessages(
+        country
+    );
 
     const input =
         document.getElementById(
-            "messageInput"
+            "roomInput"
         );
 
-    const text =
-        input.value.trim();
+    input.onkeydown =
+        function(e){
 
-    if(!text){
-        return;
-    }
+            if(e.key === "Enter"){
 
-    let messages =
-        JSON.parse(
-            localStorage.getItem(
-                getChatKey()
-            ) || "[]"
-        );
+                e.preventDefault();
 
-    messages.push({
-
-        sender:"me",
-
-        text:text,
-
-        time:
-            new Date()
-            .toLocaleTimeString(
-                "ms-MY",
-                {
-                    hour:"2-digit",
-                    minute:"2-digit"
-                }
-            )
-
-    });
-
-    localStorage.setItem(
-        getChatKey(),
-        JSON.stringify(messages)
-    );
-
-    input.value = "";
-
-    loadMessages();
-    updateChatList();
-
-}
-
-function handleMessageKey(event){
-
-    if(event.key === "Enter"){
-
-        sendMessage();
-
-    }
-
-}
-
-function deleteMessage(index){
-
-    if(!confirm(
-        "Betul mahu padam mesej ini?"
-    )){
-        return;
-    }
-
-    let messages =
-        JSON.parse(
-            localStorage.getItem(
-                getChatKey()
-            ) || "[]"
-        );
-
-    messages.splice(
-        index,
-        1
-    );
-
-    localStorage.setItem(
-        getChatKey(),
-        JSON.stringify(messages)
-    );
-
-    loadMessages();
-    updateChatList();
-
-}
-
-function deleteWholeChat(){
-
-    if(!confirm(
-        "Betul mahu padam seluruh chat ini?"
-    )){
-        return;
-    }
-
-    localStorage.removeItem(
-        getChatKey()
-    );
-
-    closeChat();
-
-}
-
-/* =====================================================
-   ROOMS
-===================================================== */
-
-const roomData = {
-
-    Malaysia:{
-        flag:"🇲🇾",
-        regions:[
-            ["Sabah","🌴"],
-            ["Sarawak","🌿"],
-            ["Selangor","🏙️"],
-            ["Johor","🌇"],
-            ["Pahang","🌳"],
-            ["Perak","⛰️"],
-            ["Kedah","🌾"],
-            ["Kelantan","🌴"],
-            ["Terengganu","🏖️"],
-            ["Negeri Sembilan","🏡"],
-            ["Melaka","🏛️"],
-            ["Pulau Pinang","🌆"],
-            ["Perlis","🌾"],
-            ["Kuala Lumpur","🏙️"],
-            ["Putrajaya","🏢"],
-            ["Labuan","🌊"]
-        ]
-    },
-
-    Philippines:{
-        flag:"🇵🇭",
-        regions:[
-            ["Manila","🏙️"],
-            ["Cebu","🏝️"],
-            ["Davao","🌴"],
-            ["Luzon","🏔️"],
-            ["Visayas","🏝️"],
-            ["Mindanao","🌴"],
-            ["Palawan","🏖️"]
-        ]
-    },
-
-    Indonesia:{
-        flag:"🇮🇩",
-        regions:[
-            ["Jakarta","🏙️"],
-            ["Java","🌋"],
-            ["Sumatra","🌴"],
-            ["Kalimantan","🌿"],
-            ["Sulawesi","🏝️"],
-            ["Bali","🏖️"],
-            ["Papua","⛰️"]
-        ]
-    },
-
-    Singapore:{
-        flag:"🇸🇬",
-        regions:[
-            ["Central Region","🏙️"],
-            ["East Region","🌇"],
-            ["North Region","🌿"],
-            ["North-East Region","🏡"],
-            ["West Region","🌆"]
-        ]
-    },
-
-    Brunei:{
-        flag:"🇧🇳",
-        regions:[
-            ["Brunei-Muara","🏙️"],
-            ["Belait","🌿"],
-            ["Tutong","🌴"],
-            ["Temburong","🌳"]
-        ]
-    },
-
-    World:{
-        flag:"🌏",
-        regions:[
-            ["Asia","🌏"],
-            ["Europe","🌍"],
-            ["Africa","🌍"],
-            ["North America","🌎"],
-            ["South America","🌎"],
-            ["Oceania","🌏"],
-            ["Middle East","🕌"]
-        ]
-    }
-
-};
-
-function openRoomCountry(country){
-
-    const data =
-        roomData[country];
-
-    if(!data){
-        return;
-    }
-
-    document.getElementById(
-        "roomsMain"
-    ).style.display = "none";
-
-    document.getElementById(
-        "roomRegionPage"
-    ).style.display = "block";
-
-    document.getElementById(
-        "roomCountryTitle"
-    ).innerText =
-        data.flag +
-        " YAM " +
-        country;
-
-    const list =
-        document.getElementById(
-            "regionList"
-        );
-
-    list.innerHTML = "";
-
-    data.regions.forEach(
-        function(region){
-
-            const item =
-                document.createElement(
-                    "div"
+                sendRoomMessage(
+                    country
                 );
+            }
+        };
 
-            item.className =
-                "region-item";
-
-            item.innerHTML = `
-
-                <div class="region-icon">
-                    ${region[1]}
-                </div>
-
-                <div class="region-info">
-
-                    <b>
-                        YAM ${region[0]}
-                    </b>
-
-                    <div class="chat-preview">
-                        Room ${region[0]}
-                    </div>
-
-                </div>
-
-                <div class="region-arrow">
-                    ›
-                </div>
-
-            `;
-
-            item.onclick =
-                function(){
-
-                    openSpecificRoom(
-                        country,
-                        region[0]
-                    );
-
-                };
-
-            list.appendChild(
-                item
-            );
-
-        }
-    );
-
+    input.focus();
 }
 
-function closeRoomCountry(){
-
-    const main =
-        document.getElementById(
-            "roomsMain"
-        );
-
-    const region =
-        document.getElementById(
-            "roomRegionPage"
-        );
-
-    if(main){
-        main.style.display = "block";
-    }
-
-    if(region){
-        region.style.display = "none";
-    }
-
-}
-
-let currentRoom = null;
-
-function getRoomKey(){
-
-    if(!currentRoom){
-        return "";
-    }
-
-    return (
-        "yamroom_" +
-        currentRoom.country +
-        "_" +
-        currentRoom.region
-    );
-
-}
-
-function getRoomUsers(){
-
-    const currentUser =
-        getCurrentUser();
-
-    const accounts =
-        getAccounts();
-
-    const currentName =
-        accounts[currentUser]?.name ||
-        currentUser ||
-        "User";
-
-    return [
-
-        {
-            username:currentUser,
-            name:currentName,
-            me:true
-        },
-
-        {
-            username:"ahmad",
-            name:"Ahmad",
-            me:false
-        },
-
-        {
-            username:"siti",
-            name:"Siti",
-            me:false
-        },
-
-        {
-            username:"john",
-            name:"John",
-            me:false
-        }
-
-    ];
-
-}
-
-function openSpecificRoom(
-    country,
-    region
+function renderRoomMessages(
+    country
 ){
-
-    currentRoom = {
-
-        country:country,
-        region:region
-
-    };
-
-    document.getElementById(
-        "groupRoomScreen"
-    ).style.display = "block";
-
-    document.getElementById(
-        "groupRoomName"
-    ).innerText =
-        "🌍 YAM " +
-        region;
-
-    loadRoomUsers();
-    loadRoomMessages();
-
-}
-
-function loadRoomUsers(){
-
-    const users =
-        getRoomUsers();
-
-    const list =
-        document.getElementById(
-            "roomUsersList"
-        );
-
-    list.innerHTML = "";
-
-    users.forEach(
-        user => {
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-            item.className =
-                "room-user";
-
-            item.innerHTML = `
-
-                <div class="room-user-dot">
-                </div>
-
-                <div>
-                    ${user.name}
-                    ${user.me ? " (Anda)" : ""}
-                </div>
-
-            `;
-
-            list.appendChild(item);
-
-        }
-    );
-
-    document.getElementById(
-        "groupRoomSubtitle"
-    ).innerText =
-        users.length +
-        " pengguna dalam room";
-
-}
-
-function loadRoomMessages(){
-
-    const key =
-        getRoomKey();
-
-    let messages =
-        JSON.parse(
-            localStorage.getItem(
-                key
-            ) || "[]"
-        );
 
     const box =
         document.getElementById(
             "roomMessages"
         );
 
-    box.innerHTML = "";
-
-    if(!messages.length){
-
-        box.innerHTML =
-            `<div class="room-empty">
-                Belum ada mesej.<br>
-                Mulakan sembang dalam room! 👋
-            </div>`;
-
+    if(!box){
         return;
-
     }
 
-    messages.forEach(
-        msg => {
+    const messages =
+        getRoomMessages(country);
 
-            const div =
+    box.innerHTML = "";
+
+    messages.forEach(
+        message => {
+
+            const row =
                 document.createElement(
                     "div"
                 );
 
-            div.className =
-                "room-message " +
-                (
-                    msg.username ===
+            row.className =
+                "msg "
+                + (
+                    message.username ===
                     getCurrentUser()
-                    ? "me"
+                    ? "mine"
                     : ""
                 );
 
-            const userDiv =
+            const bubble =
                 document.createElement(
                     "div"
                 );
 
-            userDiv.className =
-                "room-message-user";
+            bubble.className =
+                "msg-bubble";
 
-            userDiv.innerText =
-                msg.name ||
-                msg.username;
+            bubble.textContent =
+                getDisplayName(
+                    message.username
+                )
+                + ": "
+                + message.text;
 
-            const textDiv =
-                document.createElement(
-                    "div"
-                );
-
-            textDiv.innerText =
-                msg.text;
-
-            const timeDiv =
-                document.createElement(
-                    "div"
-                );
-
-            timeDiv.className =
-                "room-message-time";
-
-            timeDiv.innerText =
-                msg.time || "";
-
-            div.appendChild(
-                userDiv
-            );
-
-            div.appendChild(
-                textDiv
-            );
-
-            div.appendChild(
-                timeDiv
+            row.appendChild(
+                bubble
             );
 
             box.appendChild(
-                div
+                row
             );
-
         }
     );
 
     box.scrollTop =
         box.scrollHeight;
-
 }
 
-function sendRoomMessage(){
-
-    if(!currentRoom){
-        return;
-    }
+function sendRoomMessage(
+    country
+){
 
     const input =
         document.getElementById(
-            "roomMessageInput"
+            "roomInput"
         );
+
+    if(!input){
+        return;
+    }
 
     const text =
         input.value.trim();
@@ -4288,183 +5029,188 @@ function sendRoomMessage(){
         return;
     }
 
-    const username =
-        getCurrentUser();
-
-    const accounts =
-        getAccounts();
-
-    const name =
-        accounts[username]?.name ||
-        username ||
-        "User";
-
-    const key =
-        getRoomKey();
-
-    let messages =
-        JSON.parse(
-            localStorage.getItem(
-                key
-            ) || "[]"
-        );
+    const messages =
+        getRoomMessages(country);
 
     messages.push({
 
-        username:username,
-
-        name:name,
+        username:
+            getCurrentUser(),
 
         text:text,
 
-        time:
-            new Date()
-            .toLocaleTimeString(
-                "ms-MY",
-                {
-                    hour:"2-digit",
-                    minute:"2-digit"
-                }
-            )
+        createdAt:
+            Date.now()
 
     });
 
-    localStorage.setItem(
-        key,
-        JSON.stringify(messages)
+    saveRoomMessages(
+        country,
+        messages
     );
 
     input.value = "";
 
-    loadRoomMessages();
-
+    renderRoomMessages(
+        country
+    );
 }
 
-function handleRoomKey(event){
-
-    if(event.key === "Enter"){
-
-        sendRoomMessage();
-
-    }
-
-}
-
-function closeGroupRoom(){
-
-    document.getElementById(
-        "groupRoomScreen"
-    ).style.display = "none";
-
-    currentRoom = null;
-
-}
 
 /* =====================================================
-   FILE INPUT EVENTS
+   OVERLAY
 ===================================================== */
 
-const profilePictureInput =
+function openOverlay(){
+
     document.getElementById(
-        "profilePictureInput"
+        "overlay"
+    ).classList.remove(
+        "hidden"
     );
-
-if(profilePictureInput){
-
-    profilePictureInput.addEventListener(
-        "change",
-        saveProfilePicture
-    );
-
 }
 
-const coverPhotoInput =
+function closeOverlay(){
+
     document.getElementById(
-        "coverPhotoInput"
+        "overlay"
+    ).classList.add(
+        "hidden"
     );
-
-if(coverPhotoInput){
-
-    coverPhotoInput.addEventListener(
-        "change",
-        saveCoverPhoto
-    );
-
 }
 
-const profileMusicInput =
-    document.getElementById(
-        "profileMusicInput"
-    );
+document.getElementById(
+    "overlay"
+).addEventListener(
+    "click",
+    function(e){
 
-if(profileMusicInput){
+        if(e.target === this){
 
-    profileMusicInput.addEventListener(
-        "change",
-        saveProfileMusic
-    );
+            closeOverlay();
+        }
+    }
+);
 
-}
 
 /* =====================================================
-   CLOSE PROFILE MENU WHEN TAP OUTSIDE
+   GLOBAL INPUT LISTENERS
+===================================================== */
+
+document.getElementById(
+    "profilePictureInput"
+).addEventListener(
+    "change",
+    saveProfilePicture
+);
+
+document.getElementById(
+    "coverInput"
+).addEventListener(
+    "change",
+    saveCover
+);
+
+document.getElementById(
+    "profileMusicInput"
+).addEventListener(
+    "change",
+    saveProfileMusic
+);
+
+document.getElementById(
+    "postImageInput"
+).addEventListener(
+    "change",
+    function(){
+
+        const file =
+            this.files &&
+            this.files[0];
+
+        handlePostFile(
+            file,
+            "image"
+        );
+    }
+);
+
+document.getElementById(
+    "postVideoInput"
+).addEventListener(
+    "change",
+    function(){
+
+        const file =
+            this.files &&
+            this.files[0];
+
+        handlePostFile(
+            file,
+            "video"
+        );
+    }
+);
+
+
+/* =====================================================
+   OUTSIDE CLICK DROPDOWN
 ===================================================== */
 
 document.addEventListener(
     "click",
-    function(event){
+    function(e){
 
-        const menu =
+        const dropdown =
             document.getElementById(
-                "profileDropdown"
-            );
-
-        const wrap =
-            document.querySelector(
-                ".profile-three-dot-wrap"
+                "dropdown"
             );
 
         if(
-            menu &&
-            wrap &&
-            !wrap.contains(
-                event.target
+            !dropdown.contains(e.target) &&
+            !e.target.classList.contains(
+                "post-menu"
+            ) &&
+            !e.target.classList.contains(
+                "profile-menu-btn"
             )
         ){
 
-            menu.classList.remove(
-                "show"
-            );
-
+            closeDropdown();
         }
-
     }
 );
+
 
 /* =====================================================
    START
 ===================================================== */
 
-window.onload = function(){
+(function(){
 
-    const currentUser =
-        localStorage.getItem(
-            "yam_current_user"
-        );
+    const user =
+        getCurrentUser();
 
-    if(currentUser){
+    if(user && getAccount(user)){
 
         startApp();
 
     }else{
 
         document.getElementById(
-            "authName"
-        ).style.display = "none";
+            "authView"
+        ).classList.remove(
+            "hidden"
+        );
 
+        document.getElementById(
+            "appView"
+        ).classList.add(
+            "hidden"
+        );
     }
 
-};
+})();
 
 </script>
 
