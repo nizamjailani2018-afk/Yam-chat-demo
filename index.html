@@ -248,6 +248,40 @@ body{
     pointer-events:none;
 }
 
+/* =========================
+   MUSIC BUTTON - TOP LEFT
+========================= */
+
+.profile-music-button{
+    position:absolute;
+    left:12px;
+    top:12px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:2px solid white;
+    background:rgba(0,0,0,.55);
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.35);
+    z-index:10000;
+    pointer-events:auto;
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.profile-music-button:active{
+    transform:scale(.94);
+}
+
+/* =========================
+   THREE DOT
+========================= */
+
 .profile-three-dot-wrap{
     position:absolute;
     right:12px;
@@ -480,11 +514,16 @@ body{
 ===================================================== */
 
 .profile-music{
+    display:none;
     margin:10px 20px 15px;
     padding:14px;
     background:rgba(0,0,0,.28);
     border:1px solid rgba(255,255,255,.25);
     border-radius:14px;
+}
+
+.profile-music.show{
+    display:block;
 }
 
 .music-title{
@@ -1311,6 +1350,21 @@ body{
 
             <div class="profile-controls">
 
+                <!-- MUSIC BUTTON TOP LEFT -->
+
+                <button
+                    type="button"
+                    class="profile-music-button"
+                    id="profileMusicButton"
+                    onclick="toggleProfileMusic();"
+                    title="Music Profile">
+
+                    🎵
+
+                </button>
+
+                <!-- THREE DOT TOP RIGHT -->
+
                 <div class="profile-three-dot-wrap">
 
                     <button
@@ -1362,6 +1416,8 @@ body{
                     </div>
 
                 </div>
+
+                <!-- COVER CAMERA KEKAL -->
 
                 <button
                     type="button"
@@ -2109,6 +2165,23 @@ function loadProfile(){
 
     loadProfileMusic();
     loadProfileInfo();
+
+}
+
+/* =====================================================
+   PROFILE MUSIC BUTTON
+===================================================== */
+
+function toggleProfileMusic(){
+
+    const music =
+        document.getElementById("profileMusic");
+
+    if(!music){
+        return;
+    }
+
+    music.classList.toggle("show");
 
 }
 
