@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.4.3</title>
+<title>YAM Chat V4.4.4</title>
 
 <style>
 *{
@@ -466,7 +466,6 @@ button{
     position:absolute;
     top:15px;
     right:15px;
-    left:auto;
     display:flex;
     align-items:center;
     justify-content:flex-end;
@@ -477,8 +476,11 @@ button{
 .profile-top-actions button{
     width:44px;
     height:44px;
+    min-width:44px;
+    min-height:44px;
+    padding:0;
     border-radius:50%;
-    background:rgba(255,255,255,.94);
+    background:rgba(255,255,255,.96);
     color:#222;
     font-size:21px;
     display:flex;
@@ -493,7 +495,7 @@ button{
     transform:scale(1.05);
 }
 
-/* ================= THREE DOT AREA ================= */
+/* ================= THREE DOT MENU ================= */
 
 .profile-menu-wrap{
     position:relative;
@@ -511,7 +513,7 @@ button{
     padding:6px;
     box-shadow:0 8px 25px rgba(0,0,0,.25);
     border:1px solid rgba(0,0,0,.08);
-    z-index:100;
+    z-index:1000;
 }
 
 .profile-menu::before{
@@ -554,12 +556,13 @@ button{
     z-index:20;
 }
 
-/* ================= NEW PROFILE PICTURE CAMERA ================= */
+/* ================= PROFILE PICTURE CAMERA ================= */
 
 .profile-picture-box{
     position:relative;
     width:115px;
     height:115px;
+    display:block;
 }
 
 .profile-picture{
@@ -569,32 +572,41 @@ button{
     border:5px solid white;
     object-fit:cover;
     background:#2563eb;
-    box-shadow:0 4px 14px rgba(0,0,0,.2);
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
     display:block;
 }
 
 .profile-picture-camera{
     position:absolute;
-    right:0;
-    bottom:0;
-    width:38px;
-    height:38px;
+    right:-3px;
+    bottom:-3px;
+    width:40px;
+    height:40px;
+    min-width:40px;
+    min-height:40px;
+    padding:0;
     border-radius:50%;
-    background:white;
-    color:#222;
-    font-size:18px;
+    background:#2563eb;
+    color:white;
+    font-size:19px;
+    line-height:1;
     display:flex;
     align-items:center;
     justify-content:center;
-    box-shadow:0 3px 10px rgba(0,0,0,.25);
+    box-shadow:0 3px 10px rgba(0,0,0,.35);
     border:3px solid white;
-    z-index:30;
+    z-index:9999;
+    cursor:pointer;
     transition:.15s;
 }
 
 .profile-picture-camera:hover{
-    transform:scale(1.05);
-    background:#f8fafc;
+    transform:scale(1.08);
+    background:#1d4ed8;
+}
+
+.profile-picture-camera:active{
+    transform:scale(.96);
 }
 
 .profile-name{
@@ -891,9 +903,13 @@ button{
     }
 
     .profile-picture-camera{
-        width:36px;
-        height:36px;
+        width:37px;
+        height:37px;
+        min-width:37px;
+        min-height:37px;
         font-size:17px;
+        right:-3px;
+        bottom:-3px;
     }
 
     .profile-picture-wrap{
@@ -902,7 +918,6 @@ button{
 
     .profile-menu{
         width:195px;
-        right:0;
     }
 
     .profile-buttons{
@@ -1091,32 +1106,25 @@ button{
 
             <div class="profile-main">
 
-                <!-- ================= FULL COVER ================= -->
-
                 <div
                     id="profileCover"
                     class="profile-cover">
 
                     <div class="cover-dark"></div>
 
-                    <!-- CAMERA + THREE DOT -->
-
                     <div class="profile-top-actions">
 
-                        <!-- COVER CAMERA -->
-
                         <button
+                            type="button"
                             onclick="changeCover()"
                             title="Tukar Background Cover">
                             📷
                         </button>
 
-
-                        <!-- THREE DOT + MENU -->
-
                         <div class="profile-menu-wrap">
 
                             <button
+                                type="button"
                                 onclick="openProfileMenu()"
                                 title="Menu Profile">
                                 ⋮
@@ -1159,11 +1167,7 @@ button{
                 </div>
 
 
-                <!-- ================= PROFILE INFO ================= -->
-
                 <div class="profile-picture-wrap">
-
-                    <!-- PROFILE PICTURE + CAMERA -->
 
                     <div class="profile-picture-box">
 
@@ -1174,6 +1178,7 @@ button{
                             alt="Profile">
 
                         <button
+                            type="button"
                             class="profile-picture-camera"
                             onclick="changeProfilePicture()"
                             title="Tukar Gambar Profile">
@@ -1210,39 +1215,28 @@ button{
                 </div>
 
 
-                <!-- ================= EXTRA BUTTONS ================= -->
-
                 <div class="profile-buttons">
 
-                    <!-- Tukar Gambar sudah dibuang -->
-
-                    <button
-                        onclick="editStatus()">
+                    <button onclick="editStatus()">
                         🟢 Status
                     </button>
 
-                    <button
-                        onclick="openMusic()">
+                    <button onclick="openMusic()">
                         🎵 Music
                     </button>
 
-                    <button
-                        onclick="openPrivacy()">
+                    <button onclick="openPrivacy()">
                         🔒 Privacy
                     </button>
 
                 </div>
 
 
-                <!-- ================= MUSIC ================= -->
-
                 <div
                     id="musicArea"
                     class="music-box hidden">
                 </div>
 
-
-                <!-- ================= INFO ================= -->
 
                 <div class="info-title">
                     ℹ️ Maklumat Profile
@@ -1274,7 +1268,6 @@ button{
 
         </button>
 
-
         <button
             id="navFriends"
             class="nav-btn"
@@ -1285,7 +1278,6 @@ button{
 
         </button>
 
-
         <button
             id="navRooms"
             class="nav-btn"
@@ -1295,7 +1287,6 @@ button{
             Rooms
 
         </button>
-
 
         <button
             id="navProfile"
@@ -1410,12 +1401,10 @@ button{
 
     </div>
 
-
     <div
         id="chatBody"
         class="chat-body">
     </div>
-
 
     <div class="chat-foot">
 
@@ -1435,14 +1424,11 @@ button{
 <script>
 
 /* =========================================================
-   YAM CHAT V4.4.3
+   YAM CHAT V4.4.4
    PROFILE CAMERA BUTTON
    FULL SCREEN COVER
    THREE DOT MENU
 ========================================================= */
-
-
-/* ================= GLOBAL ================= */
 
 let currentUser =
     localStorage.getItem("yam_current_user") || null;
@@ -1495,7 +1481,6 @@ function getAccounts(){
 
 }
 
-
 function saveAccounts(accounts){
 
     localStorage.setItem(
@@ -1504,7 +1489,6 @@ function saveAccounts(accounts){
     );
 
 }
-
 
 function getProfileData(username){
 
@@ -1528,7 +1512,6 @@ function getProfileData(username){
 
 }
 
-
 function saveCurrentProfile(data){
 
     const accounts = getAccounts();
@@ -1538,7 +1521,6 @@ function saveCurrentProfile(data){
     saveAccounts(accounts);
 
 }
-
 
 function escapeHtml(text){
 
@@ -1551,7 +1533,6 @@ function escapeHtml(text){
 
 }
 
-
 function getAvatar(username){
 
     return localStorage.getItem(
@@ -1559,7 +1540,6 @@ function getAvatar(username){
     ) || "";
 
 }
-
 
 function avatarHtml(username){
 
@@ -1599,7 +1579,6 @@ function avatarHtml(username){
     `;
 
 }
-
 
 function timeAgo(timestamp){
 
@@ -1691,7 +1670,6 @@ function login(){
 
 }
 
-
 function register(){
 
     const username =
@@ -1744,7 +1722,6 @@ function register(){
     startApp();
 
 }
-
 
 function logout(){
 
@@ -2088,7 +2065,14 @@ function cancelPost(){
 
     selectedPostFile = null;
 
-    selectPostType("text");
+    selectedPostType = "text";
+
+    document
+        .querySelectorAll(".post-option")
+        .forEach(btn => btn.classList.remove("active"));
+
+    document.getElementById("textPostBtn")
+        .classList.add("active");
 
 }
 
@@ -2970,8 +2954,6 @@ function renderProfile(){
         getProfileData(currentUser);
 
 
-    /* PICTURE */
-
     const picture =
         document.getElementById(
             "profilePicture"
@@ -3030,8 +3012,6 @@ function renderProfile(){
     }
 
 
-    /* NAME */
-
     document.getElementById(
         "profileName"
     ).textContent =
@@ -3039,15 +3019,11 @@ function renderProfile(){
         currentUser;
 
 
-    /* USERNAME */
-
     document.getElementById(
         "profileUsername"
     ).textContent =
         "@" + currentUser;
 
-
-    /* STATUS */
 
     document.getElementById(
         "profileStatus"
@@ -3059,16 +3035,12 @@ function renderProfile(){
         );
 
 
-    /* BIO */
-
     document.getElementById(
         "profileBio"
     ).textContent =
         profile.bio ||
         "Belum ada bio.";
 
-
-    /* COVER */
 
     const cover =
         localStorage.getItem(
@@ -3095,16 +3067,12 @@ function renderProfile(){
     }
 
 
-    /* TOP USER */
-
     document.getElementById(
         "topUser"
     ).textContent =
         profile.name ||
         currentUser;
 
-
-    /* INFO */
 
     document.getElementById(
         "profileInfo"
@@ -3117,9 +3085,7 @@ function renderProfile(){
             </div>
 
             <div class="info-value">
-
                 @${escapeHtml(currentUser)}
-
             </div>
 
         </div>
@@ -3132,14 +3098,12 @@ function renderProfile(){
             </div>
 
             <div class="info-value">
-
                 ${
                     escapeHtml(
                         profile.birthday ||
                         "Belum diisi"
                     )
                 }
-
             </div>
 
         </div>
@@ -3152,14 +3116,12 @@ function renderProfile(){
             </div>
 
             <div class="info-value">
-
                 ${
                     escapeHtml(
                         profile.location ||
                         "Belum diisi"
                     )
                 }
-
             </div>
 
         </div>
@@ -3172,14 +3134,12 @@ function renderProfile(){
             </div>
 
             <div class="info-value">
-
                 ${
                     escapeHtml(
                         profile.job ||
                         "Belum diisi"
                     )
                 }
-
             </div>
 
         </div>
@@ -3192,14 +3152,12 @@ function renderProfile(){
             </div>
 
             <div class="info-value">
-
                 ${
                     escapeHtml(
                         profile.gender ||
                         "Belum diisi"
                     )
                 }
-
             </div>
 
         </div>
@@ -3213,9 +3171,16 @@ function renderProfile(){
 
 function changeProfilePicture(){
 
-    document.getElementById(
-        "profileFile"
-    ).click();
+    const input =
+        document.getElementById(
+            "profileFile"
+        );
+
+    if(input){
+
+        input.click();
+
+    }
 
 }
 
@@ -3275,9 +3240,16 @@ document.getElementById(
 
 function changeCover(){
 
-    document.getElementById(
-        "coverFile"
-    ).click();
+    const input =
+        document.getElementById(
+            "coverFile"
+        );
+
+    if(input){
+
+        input.click();
+
+    }
 
 }
 
