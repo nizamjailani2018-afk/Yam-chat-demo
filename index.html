@@ -469,11 +469,17 @@ body.profile-active #profilePage{
     background-repeat:no-repeat;
 }
 
+/* =========================================================
+   COVER OVERLAY
+   DIUBAH SUPAYA TIADA LAGI KESAN GELAP
+   ATAU PERBEZAAN WARNA ATAS/BAWAH
+========================================================= */
+
 .profile-main::before{
     content:"";
     position:absolute;
     inset:0;
-    background:rgba(0,0,0,.22);
+    background:transparent;
     z-index:0;
     pointer-events:none;
 }
@@ -488,7 +494,6 @@ body.profile-active #profilePage{
 .profile-cover{
     width:100vw;
 
-    /* DIUBAH UNTUK KURANGKAN RUANG ATAS */
     height:300px;
 
     margin-left:calc(50% - 50vw);
@@ -505,15 +510,17 @@ body.profile-active #profilePage{
     z-index:2;
 }
 
+/* =========================================================
+   COVER DARK
+   DIUBAH TRANSPARENT
+   SUPAYA COVER PHOTO TERANG SEKATA
+========================================================= */
+
 .cover-dark{
     position:absolute;
     inset:0;
 
-    background:linear-gradient(
-        to bottom,
-        rgba(0,0,0,.05),
-        rgba(0,0,0,.32)
-    );
+    background:transparent;
 
     pointer-events:none;
 }
@@ -660,7 +667,6 @@ body.profile-active #profilePage{
 .profile-picture-wrap{
     padding:0 18px;
 
-    /* NAIK DAN RAPAT DENGAN COVER */
     margin-top:-80px;
 
     position:relative;
@@ -1587,6 +1593,7 @@ body.profile-active #profilePage{
 
 /* =========================================================
    YAM CHAT V4.4.7
+   COVER PHOTO LIGHT / EVEN FIX
    PROFILE SPACING FIX
    FULL PROFILE BACKGROUND
    MUSIC SYSTEM
