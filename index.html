@@ -13,6 +13,12 @@
     font-family:Arial,sans-serif;
 }
 
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+}
+
 body{
     background:#eef2f7;
     color:#222;
@@ -415,7 +421,7 @@ button{
     font-size:13px;
 }
 
-/* ================= PROFILE V4.4.3 ================= */
+/* ================= PROFILE ================= */
 
 #profilePage{
     margin-left:-15px;
@@ -430,11 +436,14 @@ button{
     box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
-/* FULL SCREEN COVER */
+/* ================= FULL SCREEN COVER ================= */
 
 .profile-cover{
-    width:100%;
+    width:100vw;
     height:360px;
+
+    margin-left:calc(50% - 50vw);
+    margin-right:calc(50% - 50vw);
 
     background:linear-gradient(135deg,#2563eb,#111827);
     background-size:cover;
@@ -457,17 +466,20 @@ button{
     pointer-events:none;
 }
 
-/* ================= CAMERA + 3 DOT ================= */
+/* ================= CAMERA + THREE DOT ================= */
 
 .profile-top-actions{
     position:absolute;
+
     top:15px;
-    left:15px;
     right:15px;
+    left:auto;
 
     display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
+    align-items:center;
+    justify-content:flex-end;
+
+    gap:8px;
 
     z-index:50;
 }
@@ -501,11 +513,12 @@ button{
 
 .profile-menu-wrap{
     position:relative;
+
     display:flex;
     justify-content:flex-end;
 }
 
-/* MENU KELUAR DEKAT 3 TITIK */
+/* MENU BETUL-BETUL DI BAWAH 3 TITIK */
 
 .profile-menu{
     position:absolute;
@@ -513,7 +526,7 @@ button{
     top:52px;
     right:0;
 
-    width:205px;
+    width:220px;
 
     background:white;
 
@@ -529,7 +542,7 @@ button{
     z-index:100;
 }
 
-/* little arrow */
+/* LITTLE ARROW */
 
 .profile-menu::before{
     content:"";
@@ -573,7 +586,7 @@ button{
     color:#dc2626;
 }
 
-/* ================= PROFILE ================= */
+/* ================= PROFILE INFO ================= */
 
 .profile-picture-wrap{
     padding:0 18px;
@@ -932,7 +945,7 @@ button{
     }
 
     .profile-menu{
-        width:190px;
+        width:195px;
         right:0;
     }
 
@@ -1132,7 +1145,7 @@ button{
                     <div class="cover-dark"></div>
 
 
-                    <!-- TOP ACTIONS -->
+                    <!-- CAMERA + THREE DOT -->
 
                     <div class="profile-top-actions">
 
@@ -1156,7 +1169,7 @@ button{
                             </button>
 
 
-                            <!-- MENU TERUS DEKAT 3 TITIK -->
+                            <!-- MENU DEKAT 3 TITIK -->
 
                             <div
                                 id="profileMenu"
@@ -1814,6 +1827,8 @@ function startApp(){
 /* ================= NAV ================= */
 
 function showPage(page){
+
+    closeProfileMenu();
 
     document.querySelectorAll(".page")
         .forEach(el => {
@@ -3207,6 +3222,8 @@ function openProfileMenu(){
         document.getElementById(
             "profileMenu"
         );
+
+    if(!menu) return;
 
     menu.classList.toggle("hidden");
 
