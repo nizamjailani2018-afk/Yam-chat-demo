@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.3.1</title>
+<title>YAM Chat V4.3.2</title>
 
 <style>
 *{
@@ -196,12 +196,31 @@ body{
     padding-bottom:90px;
 }
 
+/* V4.3.2 COVER */
+
 .profile-cover{
-    height:170px;
+    height:180px;
     background:linear-gradient(135deg,#1976d2,#64b5f6);
     background-size:cover;
-    background-position:center;
+    background-position:center center;
+    background-repeat:no-repeat;
     position:relative;
+    overflow:hidden;
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+}
+
+.profile-cover::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.08) 0%,
+        rgba(0,0,0,.02) 45%,
+        rgba(0,0,0,.30) 100%
+    );
+    pointer-events:none;
+    z-index:1;
 }
 
 .cover-camera{
@@ -215,6 +234,15 @@ body{
     background:#1976d2;
     color:white;
     cursor:pointer;
+    z-index:4;
+    box-shadow:0 2px 7px rgba(0,0,0,.25);
+}
+
+@media (max-width:480px){
+    .profile-cover{
+        height:180px;
+        background-position:center center;
+    }
 }
 
 .profile-top{
@@ -282,7 +310,7 @@ body{
     font-size:14px;
 }
 
-/* THREE DOT - DI ATAS COVER */
+/* THREE DOT */
 
 .profile-three-dot-wrap{
     position:absolute;
@@ -365,7 +393,7 @@ body{
     font-style:italic;
 }
 
-/* OUTSIDE PROFILE ACTIONS */
+/* PROFILE ACTIONS */
 
 .profile-actions{
     display:flex;
@@ -882,7 +910,6 @@ body{
 
 </div>
 
-
 <!-- MAIN -->
 
 <div id="mainApp" style="display:none;">
@@ -890,7 +917,6 @@ body{
     <div class="header">
         💬 YAM Chat
     </div>
-
 
     <!-- CHATS -->
 
@@ -907,7 +933,6 @@ body{
 
     </div>
 
-
     <!-- FRIENDS -->
 
     <div id="friendsPage" class="page">
@@ -919,7 +944,6 @@ body{
         <div id="friendsList"></div>
 
     </div>
-
 
     <!-- ROOMS -->
 
@@ -951,7 +975,6 @@ body{
 
             </div>
 
-
             <div class="room-item"
                  onclick="openRoomCountry('Philippines')">
 
@@ -967,7 +990,6 @@ body{
                 <button>Masuk</button>
 
             </div>
-
 
             <div class="room-item"
                  onclick="openRoomCountry('Indonesia')">
@@ -985,7 +1007,6 @@ body{
 
             </div>
 
-
             <div class="room-item"
                  onclick="openRoomCountry('Singapore')">
 
@@ -1002,7 +1023,6 @@ body{
 
             </div>
 
-
             <div class="room-item"
                  onclick="openRoomCountry('Brunei')">
 
@@ -1018,7 +1038,6 @@ body{
                 <button>Masuk</button>
 
             </div>
-
 
             <div class="room-item"
                  onclick="openRoomCountry('World')">
@@ -1038,7 +1057,6 @@ body{
 
         </div>
 
-
         <div id="roomRegionPage" style="display:none;">
 
             <button class="room-back"
@@ -1056,7 +1074,6 @@ body{
 
     </div>
 
-
     <!-- PROFILE -->
 
     <div id="profilePage" class="page">
@@ -1065,8 +1082,6 @@ body{
 
             <div id="profileCover"
                  class="profile-cover">
-
-                <!-- THREE DOT DI ATAS COVER -->
 
                 <div class="profile-three-dot-wrap">
 
@@ -1086,16 +1101,12 @@ body{
 
                 </div>
 
-
-                <!-- COVER CAMERA -->
-
                 <button class="cover-camera"
                         onclick="changeCoverPhoto()">
                     📷
                 </button>
 
             </div>
-
 
             <div class="profile-top">
 
@@ -1129,9 +1140,6 @@ body{
 
             </div>
 
-
-            <!-- DI LUAR TITIK 3 -->
-
             <div class="profile-actions">
 
                 <button onclick="changeName()">
@@ -1148,7 +1156,6 @@ body{
 
             </div>
 
-
             <div id="profileInfo"
                  class="profile-info">
             </div>
@@ -1156,7 +1163,6 @@ body{
         </div>
 
     </div>
-
 
     <!-- EDIT PROFILE -->
 
@@ -1167,7 +1173,6 @@ body{
             <div class="edit-title">
                 ✏️ Edit Profile
             </div>
-
 
             <div class="form-group">
 
@@ -1191,7 +1196,6 @@ body{
 
             </div>
 
-
             <div class="form-group">
 
                 <label>Birthday</label>
@@ -1213,7 +1217,6 @@ body{
                 </div>
 
             </div>
-
 
             <div class="form-group">
 
@@ -1239,7 +1242,6 @@ body{
 
             </div>
 
-
             <div class="form-group">
 
                 <label>Pekerjaan</label>
@@ -1263,7 +1265,6 @@ body{
                 </div>
 
             </div>
-
 
             <div class="form-group">
 
@@ -1293,7 +1294,6 @@ body{
 
             </div>
 
-
             <div class="form-group">
 
                 <label>Bio</label>
@@ -1318,7 +1318,6 @@ body{
 
             </div>
 
-
             <button class="save-profile"
                     onclick="saveProfile()">
                 💾 Simpan Profile
@@ -1332,7 +1331,6 @@ body{
         </div>
 
     </div>
-
 
     <!-- NAV -->
 
@@ -1362,7 +1360,6 @@ body{
     </div>
 
 </div>
-
 
 <!-- NORMAL CHAT -->
 
@@ -1395,11 +1392,9 @@ body{
 
     </div>
 
-
     <div id="messages"
          class="messages">
     </div>
-
 
     <div class="chat-input">
 
@@ -1415,7 +1410,6 @@ body{
     </div>
 
 </div>
-
 
 <!-- GROUP ROOM CHAT -->
 
@@ -1444,7 +1438,6 @@ body{
 
     </div>
 
-
     <div class="group-room-body">
 
         <div class="room-users">
@@ -1457,13 +1450,11 @@ body{
 
         </div>
 
-
         <div id="roomMessages"
              class="room-messages">
         </div>
 
     </div>
-
 
     <div class="group-room-input">
 
@@ -1480,7 +1471,6 @@ body{
 
 </div>
 
-
 <!-- FILE INPUT -->
 
 <input id="profilePictureInput"
@@ -1494,7 +1484,6 @@ body{
        accept="image/*"
        style="display:none"
        onchange="saveCoverPhoto(event)">
-
 
 <script>
 
@@ -1533,7 +1522,6 @@ function switchAuth(){
 
     }
 }
-
 
 function authAction(){
 
@@ -1620,10 +1608,7 @@ function authAction(){
     }
 }
 
-
-/* =========================
-   ACCOUNT
-========================= */
+/* ACCOUNT */
 
 function getCurrentUser(){
 
@@ -1632,7 +1617,6 @@ function getCurrentUser(){
     );
 
 }
-
 
 function getAccounts(){
 
@@ -1644,7 +1628,6 @@ function getAccounts(){
 
 }
 
-
 function saveAccounts(accounts){
 
     localStorage.setItem(
@@ -1654,10 +1637,7 @@ function saveAccounts(accounts){
 
 }
 
-
-/* =========================
-   START / LOGOUT
-========================= */
+/* START / LOGOUT */
 
 function startApp(){
 
@@ -1674,7 +1654,6 @@ function startApp(){
     loadFriends();
 
 }
-
 
 function logout(){
 
@@ -1700,11 +1679,7 @@ function logout(){
 
 }
 
-
-/* =========================
-   PRIVACY
-   PHOTO TIDAK ADA PRIVACY
-========================= */
+/* PRIVACY */
 
 function getProfilePrivacy(){
 
@@ -1742,10 +1717,7 @@ function getProfilePrivacy(){
 
 }
 
-
-/* =========================
-   PROFILE
-========================= */
+/* PROFILE */
 
 function loadProfile(){
 
@@ -1769,15 +1741,9 @@ function loadProfile(){
     const name =
         account.name || username;
 
-
     document.getElementById(
         "profileName"
     ).innerText = name;
-
-
-    /* PROFILE PHOTO
-       SENTIASA PUBLIC
-    */
 
     const avatar =
         document.getElementById(
@@ -1809,9 +1775,6 @@ function loadProfile(){
 
     }
 
-
-    /* STATUS */
-
     const status =
         localStorage.getItem(
             "yam_status_" + username
@@ -1821,18 +1784,10 @@ function loadProfile(){
         "profileStatus"
     ).innerText = status;
 
-
-    /* BIO */
-
     document.getElementById(
         "profileBio"
     ).innerText =
         account.bio || "";
-
-
-    /* COVER
-       SENTIASA PUBLIC
-    */
 
     const cover =
         localStorage.getItem(
@@ -1856,15 +1811,11 @@ function loadProfile(){
 
     }
 
-
     loadProfileInfo();
 
 }
 
-
-/* =========================
-   PROFILE INFO
-========================= */
+/* PROFILE INFO */
 
 function loadProfileInfo(){
 
@@ -1887,7 +1838,6 @@ function loadProfileInfo(){
 
     box.innerHTML = "";
 
-
     const fields = [
 
         ["🎂","Birthday","birthday"],
@@ -1897,7 +1847,6 @@ function loadProfileInfo(){
         ["📝","Bio","bio"]
 
     ];
-
 
     fields.forEach(field => {
 
@@ -1958,10 +1907,7 @@ function loadProfileInfo(){
 
 }
 
-
-/* =========================
-   PROFILE PHOTO
-========================= */
+/* PROFILE PHOTO */
 
 function changeProfilePicture(){
 
@@ -1972,7 +1918,6 @@ function changeProfilePicture(){
     ).click();
 
 }
-
 
 function saveProfilePicture(event){
 
@@ -2017,10 +1962,7 @@ function saveProfilePicture(event){
 
 }
 
-
-/* =========================
-   COVER PHOTO
-========================= */
+/* COVER PHOTO */
 
 function changeCoverPhoto(){
 
@@ -2031,7 +1973,6 @@ function changeCoverPhoto(){
     ).click();
 
 }
-
 
 function saveCoverPhoto(event){
 
@@ -2075,10 +2016,7 @@ function saveCoverPhoto(event){
 
 }
 
-
-/* =========================
-   THREE DOT
-========================= */
+/* THREE DOT */
 
 function toggleProfileMenu(event){
 
@@ -2092,7 +2030,6 @@ function toggleProfileMenu(event){
 
 }
 
-
 function closeProfileMenu(){
 
     document
@@ -2101,13 +2038,9 @@ function closeProfileMenu(){
 
 }
 
-
-/* =========================
-   EDIT PROFILE
-========================= */
+/* EDIT PROFILE */
 
 let editPrivacy = {};
-
 
 function openEditProfile(){
 
@@ -2129,45 +2062,37 @@ function openEditProfile(){
             )
         );
 
-
     document.getElementById(
         "editName"
     ).value =
         account.name || "";
-
 
     document.getElementById(
         "editBirthday"
     ).value =
         account.birthday || "";
 
-
     document.getElementById(
         "editLocation"
     ).value =
         account.location || "";
-
 
     document.getElementById(
         "editJob"
     ).value =
         account.job || "";
 
-
     document.getElementById(
         "editGender"
     ).value =
         account.gender || "";
-
 
     document.getElementById(
         "editBio"
     ).value =
         account.bio || "";
 
-
     updatePrivacyButtons();
-
 
     showPage(
         "editProfilePage",
@@ -2175,7 +2100,6 @@ function openEditProfile(){
     );
 
 }
-
 
 function setPrivacy(field,value){
 
@@ -2185,7 +2109,6 @@ function setPrivacy(field,value){
     updatePrivacyButtons();
 
 }
-
 
 function updatePrivacyButtons(){
 
@@ -2199,7 +2122,6 @@ function updatePrivacyButtons(){
         "bio"
 
     ];
-
 
     fields.forEach(field => {
 
@@ -2235,7 +2157,6 @@ function updatePrivacyButtons(){
 
 }
 
-
 function saveProfile(){
 
     const username =
@@ -2248,7 +2169,6 @@ function saveProfile(){
         return;
     }
 
-
     const newName =
         document.getElementById(
             "editName"
@@ -2260,7 +2180,6 @@ function saveProfile(){
         return;
 
     }
-
 
     accounts[username].name =
         newName;
@@ -2290,22 +2209,17 @@ function saveProfile(){
             "editBio"
         ).value.trim();
 
-
     saveAccounts(accounts);
-
 
     localStorage.setItem(
         "yam_privacy_" + username,
         JSON.stringify(editPrivacy)
     );
 
-
     loadProfile();
     updateChatList();
 
-
     alert("Profile berjaya disimpan.");
-
 
     showPage(
         "profilePage",
@@ -2313,7 +2227,6 @@ function saveProfile(){
     );
 
 }
-
 
 function cancelEditProfile(){
 
@@ -2324,10 +2237,7 @@ function cancelEditProfile(){
 
 }
 
-
-/* =========================
-   CHANGE NAME
-========================= */
+/* CHANGE NAME */
 
 function changeName(){
 
@@ -2370,10 +2280,7 @@ function changeName(){
 
 }
 
-
-/* =========================
-   STATUS
-========================= */
+/* STATUS */
 
 function editStatus(){
 
@@ -2411,10 +2318,7 @@ function editStatus(){
 
 }
 
-
-/* =========================
-   PASSWORD
-========================= */
+/* PASSWORD */
 
 function changePassword(){
 
@@ -2492,10 +2396,7 @@ function changePassword(){
 
 }
 
-
-/* =========================
-   PAGES
-========================= */
+/* PAGES */
 
 function showPage(pageId,button){
 
@@ -2507,11 +2408,9 @@ function showPage(pageId,button){
 
         });
 
-
     document
         .getElementById(pageId)
         .classList.add("active");
-
 
     document
         .querySelectorAll(".bottom-nav button")
@@ -2521,13 +2420,11 @@ function showPage(pageId,button){
 
         });
 
-
     if(button){
 
         button.classList.add("active");
 
     }
-
 
     if(pageId === "chatsPage"){
 
@@ -2535,13 +2432,11 @@ function showPage(pageId,button){
 
     }
 
-
     if(pageId === "roomsPage"){
 
         closeRoomCountry();
 
     }
-
 
     if(pageId === "profilePage"){
 
@@ -2551,10 +2446,7 @@ function showPage(pageId,button){
 
 }
 
-
-/* =========================
-   FRIENDS
-========================= */
+/* FRIENDS */
 
 const friends = [
 
@@ -2564,7 +2456,6 @@ const friends = [
 
 ];
 
-
 function loadFriends(){
 
     const box =
@@ -2573,7 +2464,6 @@ function loadFriends(){
         );
 
     box.innerHTML = "";
-
 
     friends.forEach(friend => {
 
@@ -2605,7 +2495,6 @@ function loadFriends(){
 
         `;
 
-
         item.querySelector("button")
             .onclick =
             function(){
@@ -2616,20 +2505,15 @@ function loadFriends(){
 
             };
 
-
         box.appendChild(item);
 
     });
 
 }
 
-
-/* =========================
-   NORMAL CHAT
-========================= */
+/* NORMAL CHAT */
 
 let currentChat = null;
-
 
 function getChatKey(){
 
@@ -2641,7 +2525,6 @@ function getChatKey(){
     );
 
 }
-
 
 function updateChatList(){
 
@@ -2656,7 +2539,6 @@ function updateChatList(){
 
     box.innerHTML = "";
 
-
     friends.forEach(friend => {
 
         const key =
@@ -2665,16 +2547,13 @@ function updateChatList(){
             "_" +
             friend.name;
 
-
         const messages =
             JSON.parse(
                 localStorage.getItem(key) || "[]"
             );
 
-
         let preview =
             "Belum ada mesej";
-
 
         if(messages.length){
 
@@ -2683,13 +2562,11 @@ function updateChatList(){
 
         }
 
-
         const item =
             document.createElement("div");
 
         item.className =
             "chat-item";
-
 
         item.innerHTML = `
 
@@ -2711,7 +2588,6 @@ function updateChatList(){
 
         `;
 
-
         item.onclick =
             function(){
 
@@ -2721,13 +2597,11 @@ function updateChatList(){
 
             };
 
-
         box.appendChild(item);
 
     });
 
 }
-
 
 function searchChats(){
 
@@ -2737,7 +2611,6 @@ function searchChats(){
         )
         .value
         .toLowerCase();
-
 
     document
         .querySelectorAll(".chat-item")
@@ -2749,7 +2622,6 @@ function searchChats(){
                 .innerText
                 .toLowerCase();
 
-
             item.style.display =
                 name.includes(search)
                 ? "flex"
@@ -2758,7 +2630,6 @@ function searchChats(){
         });
 
 }
-
 
 function openChat(name){
 
@@ -2777,7 +2648,6 @@ function openChat(name){
 
 }
 
-
 function closeChat(){
 
     document.getElementById(
@@ -2790,7 +2660,6 @@ function closeChat(){
 
 }
 
-
 function loadMessages(){
 
     const messages =
@@ -2800,14 +2669,12 @@ function loadMessages(){
             ) || "[]"
         );
 
-
     const box =
         document.getElementById(
             "messages"
         );
 
     box.innerHTML = "";
-
 
     if(!messages.length){
 
@@ -2819,7 +2686,6 @@ function loadMessages(){
         return;
 
     }
-
 
     messages.forEach(
         function(msg,index){
@@ -2835,13 +2701,11 @@ function loadMessages(){
                     : "them"
                 );
 
-
             const textDiv =
                 document.createElement("div");
 
             textDiv.innerText =
                 msg.text;
-
 
             const timeDiv =
                 document.createElement("div");
@@ -2851,7 +2715,6 @@ function loadMessages(){
 
             timeDiv.innerText =
                 msg.time || "";
-
 
             const deleteBtn =
                 document.createElement("button");
@@ -2869,7 +2732,6 @@ function loadMessages(){
 
                 };
 
-
             div.appendChild(textDiv);
             div.appendChild(timeDiv);
             div.appendChild(deleteBtn);
@@ -2879,12 +2741,10 @@ function loadMessages(){
         }
     );
 
-
     box.scrollTop =
         box.scrollHeight;
 
 }
-
 
 function sendMessage(){
 
@@ -2900,14 +2760,12 @@ function sendMessage(){
         return;
     }
 
-
     let messages =
         JSON.parse(
             localStorage.getItem(
                 getChatKey()
             ) || "[]"
         );
-
 
     messages.push({
 
@@ -2924,12 +2782,10 @@ function sendMessage(){
 
     });
 
-
     localStorage.setItem(
         getChatKey(),
         JSON.stringify(messages)
     );
-
 
     input.value = "";
 
@@ -2937,7 +2793,6 @@ function sendMessage(){
     updateChatList();
 
 }
-
 
 function handleMessageKey(event){
 
@@ -2949,7 +2804,6 @@ function handleMessageKey(event){
 
 }
 
-
 function deleteMessage(index){
 
     if(!confirm(
@@ -2960,7 +2814,6 @@ function deleteMessage(index){
 
     }
 
-
     let messages =
         JSON.parse(
             localStorage.getItem(
@@ -2968,24 +2821,20 @@ function deleteMessage(index){
             ) || "[]"
         );
 
-
     messages.splice(
         index,
         1
     );
-
 
     localStorage.setItem(
         getChatKey(),
         JSON.stringify(messages)
     );
 
-
     loadMessages();
     updateChatList();
 
 }
-
 
 function deleteWholeChat(){
 
@@ -2997,20 +2846,15 @@ function deleteWholeChat(){
 
     }
 
-
     localStorage.removeItem(
         getChatKey()
     );
-
 
     closeChat();
 
 }
 
-
-/* =========================
-   ROOM DATA
-========================= */
+/* ROOM DATA */
 
 const roomData = {
 
@@ -3041,7 +2885,6 @@ const roomData = {
 
     },
 
-
     Philippines:{
 
         flag:"🇵🇭",
@@ -3059,7 +2902,6 @@ const roomData = {
         ]
 
     },
-
 
     Indonesia:{
 
@@ -3079,7 +2921,6 @@ const roomData = {
 
     },
 
-
     Singapore:{
 
         flag:"🇸🇬",
@@ -3096,7 +2937,6 @@ const roomData = {
 
     },
 
-
     Brunei:{
 
         flag:"🇧🇳",
@@ -3111,7 +2951,6 @@ const roomData = {
         ]
 
     },
-
 
     World:{
 
@@ -3133,10 +2972,7 @@ const roomData = {
 
 };
 
-
-/* =========================
-   OPEN COUNTRY
-========================= */
+/* OPEN COUNTRY */
 
 function openRoomCountry(country){
 
@@ -3147,16 +2983,13 @@ function openRoomCountry(country){
         return;
     }
 
-
     document.getElementById(
         "roomsMain"
     ).style.display = "none";
 
-
     document.getElementById(
         "roomRegionPage"
     ).style.display = "block";
-
 
     document.getElementById(
         "roomCountryTitle"
@@ -3165,14 +2998,12 @@ function openRoomCountry(country){
         " YAM " +
         country;
 
-
     const list =
         document.getElementById(
             "regionList"
         );
 
     list.innerHTML = "";
-
 
     data.regions.forEach(
         function(region){
@@ -3182,7 +3013,6 @@ function openRoomCountry(country){
 
             item.className =
                 "region-item";
-
 
             item.innerHTML = `
 
@@ -3208,7 +3038,6 @@ function openRoomCountry(country){
 
             `;
 
-
             item.onclick =
                 function(){
 
@@ -3219,7 +3048,6 @@ function openRoomCountry(country){
 
                 };
 
-
             list.appendChild(item);
 
         }
@@ -3227,13 +3055,11 @@ function openRoomCountry(country){
 
 }
 
-
 function closeRoomCountry(){
 
     document.getElementById(
         "roomsMain"
     ).style.display = "block";
-
 
     document.getElementById(
         "roomRegionPage"
@@ -3241,13 +3067,9 @@ function closeRoomCountry(){
 
 }
 
-
-/* =========================
-   GROUP ROOM
-========================= */
+/* GROUP ROOM */
 
 let currentRoom = null;
-
 
 function getRoomKey(){
 
@@ -3264,14 +3086,7 @@ function getRoomKey(){
 
 }
 
-
 function getRoomUsers(){
-
-    /*
-      Demo users.
-      Nanti database akan gantikan
-      bahagian ini dengan pengguna sebenar.
-    */
 
     const currentUser =
         getCurrentUser();
@@ -3283,7 +3098,6 @@ function getRoomUsers(){
         accounts[currentUser]?.name ||
         currentUser ||
         "User";
-
 
     return [
 
@@ -3315,7 +3129,6 @@ function getRoomUsers(){
 
 }
 
-
 function openSpecificRoom(
     country,
     region
@@ -3328,23 +3141,19 @@ function openSpecificRoom(
 
     };
 
-
     document.getElementById(
         "groupRoomScreen"
     ).style.display = "block";
-
 
     document.getElementById(
         "groupRoomName"
     ).innerText =
         "🌍 YAM " + region;
 
-
     loadRoomUsers();
     loadRoomMessages();
 
 }
-
 
 function loadRoomUsers(){
 
@@ -3358,7 +3167,6 @@ function loadRoomUsers(){
 
     list.innerHTML = "";
 
-
     users.forEach(user => {
 
         const item =
@@ -3366,7 +3174,6 @@ function loadRoomUsers(){
 
         item.className =
             "room-user";
-
 
         item.innerHTML = `
 
@@ -3379,11 +3186,9 @@ function loadRoomUsers(){
 
         `;
 
-
         list.appendChild(item);
 
     });
-
 
     document.getElementById(
         "groupRoomSubtitle"
@@ -3392,7 +3197,6 @@ function loadRoomUsers(){
         " pengguna dalam room";
 
 }
-
 
 function loadRoomMessages(){
 
@@ -3404,14 +3208,12 @@ function loadRoomMessages(){
             localStorage.getItem(key) || "[]"
         );
 
-
     const box =
         document.getElementById(
             "roomMessages"
         );
 
     box.innerHTML = "";
-
 
     if(!messages.length){
 
@@ -3424,7 +3226,6 @@ function loadRoomMessages(){
         return;
 
     }
-
 
     messages.forEach(msg => {
 
@@ -3439,7 +3240,6 @@ function loadRoomMessages(){
                 : ""
             );
 
-
         const userDiv =
             document.createElement("div");
 
@@ -3449,13 +3249,11 @@ function loadRoomMessages(){
         userDiv.innerText =
             msg.name || msg.username;
 
-
         const textDiv =
             document.createElement("div");
 
         textDiv.innerText =
             msg.text;
-
 
         const timeDiv =
             document.createElement("div");
@@ -3466,22 +3264,18 @@ function loadRoomMessages(){
         timeDiv.innerText =
             msg.time || "";
 
-
         div.appendChild(userDiv);
         div.appendChild(textDiv);
         div.appendChild(timeDiv);
-
 
         box.appendChild(div);
 
     });
 
-
     box.scrollTop =
         box.scrollHeight;
 
 }
-
 
 function sendRoomMessage(){
 
@@ -3489,21 +3283,17 @@ function sendRoomMessage(){
         return;
     }
 
-
     const input =
         document.getElementById(
             "roomMessageInput"
         );
 
-
     const text =
         input.value.trim();
-
 
     if(!text){
         return;
     }
-
 
     const username =
         getCurrentUser();
@@ -3516,16 +3306,13 @@ function sendRoomMessage(){
         username ||
         "User";
 
-
     const key =
         getRoomKey();
-
 
     let messages =
         JSON.parse(
             localStorage.getItem(key) || "[]"
         );
-
 
     messages.push({
 
@@ -3543,19 +3330,16 @@ function sendRoomMessage(){
 
     });
 
-
     localStorage.setItem(
         key,
         JSON.stringify(messages)
     );
-
 
     input.value = "";
 
     loadRoomMessages();
 
 }
-
 
 function handleRoomKey(event){
 
@@ -3567,22 +3351,17 @@ function handleRoomKey(event){
 
 }
 
-
 function closeGroupRoom(){
 
     document.getElementById(
         "groupRoomScreen"
     ).style.display = "none";
 
-
     currentRoom = null;
 
 }
 
-
-/* =========================
-   CLOSE MENU
-========================= */
+/* CLOSE MENU */
 
 document.addEventListener(
     "click",
@@ -3614,10 +3393,7 @@ document.addEventListener(
     }
 );
 
-
-/* =========================
-   AUTO LOGIN
-========================= */
+/* AUTO LOGIN */
 
 window.onload =
     function(){
@@ -3626,7 +3402,6 @@ window.onload =
             localStorage.getItem(
                 "yam_current_user"
             );
-
 
         if(currentUser){
 
