@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.4.2</title>
+<title>YAM Chat V4.4.3</title>
 
 <style>
 *{
@@ -415,21 +415,33 @@ button{
     font-size:13px;
 }
 
-/* ================= PROFILE LAMA ================= */
+/* ================= PROFILE V4.4.3 ================= */
 
 .profile-main{
     background:white;
-    border-radius:18px;
+    border-radius:0 0 18px 18px;
     overflow:hidden;
     box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
+/*
+   Cover dibuat full width.
+   main mempunyai padding 15px,
+   jadi cover ditarik keluar supaya
+   memenuhi lebar skrin.
+*/
+
 .profile-cover{
-    height:210px;
+    height:280px;
+    margin-left:-15px;
+    margin-right:-15px;
+    margin-top:-15px;
+
     background:linear-gradient(135deg,#2563eb,#111827);
     background-size:cover;
     background-position:center;
     position:relative;
+    overflow:hidden;
 }
 
 .cover-dark{
@@ -438,46 +450,74 @@ button{
     background:linear-gradient(
         to bottom,
         rgba(0,0,0,.05),
-        rgba(0,0,0,.35)
+        rgba(0,0,0,.38)
     );
+    pointer-events:none;
 }
+
+/* CAMERA + 3 DOT */
 
 .profile-top-actions{
     position:absolute;
-    top:12px;
-    right:12px;
+    top:15px;
+    left:15px;
+    right:15px;
+
     display:flex;
-    gap:7px;
+    align-items:center;
+    justify-content:space-between;
+
+    z-index:5;
 }
 
 .profile-top-actions button{
-    width:42px;
-    height:42px;
+    width:44px;
+    height:44px;
     border-radius:50%;
-    background:rgba(255,255,255,.9);
-    font-size:19px;
+
+    background:rgba(255,255,255,.92);
+    color:#222;
+
+    font-size:21px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.18);
 }
+
+.profile-top-actions button:hover{
+    background:white;
+    transform:scale(1.04);
+}
+
+/* PROFILE INFO */
 
 .profile-picture-wrap{
     padding:0 18px;
-    margin-top:-55px;
+    margin-top:-60px;
     position:relative;
+    z-index:10;
 }
 
 .profile-picture{
-    width:110px;
-    height:110px;
+    width:115px;
+    height:115px;
+
     border-radius:50%;
     border:5px solid white;
+
     object-fit:cover;
     background:#2563eb;
-    box-shadow:0 4px 12px rgba(0,0,0,.18);
+
+    box-shadow:0 4px 14px rgba(0,0,0,.2);
 }
 
 .profile-name{
-    font-size:24px;
+    font-size:25px;
     font-weight:bold;
-    margin-top:9px;
+    margin-top:10px;
 }
 
 .profile-username{
@@ -499,6 +539,12 @@ button{
     white-space:pre-wrap;
 }
 
+/*
+   Button besar bawah hanya untuk
+   gambar, status dan music.
+   4 menu utama berada dalam ⋮.
+*/
+
 .profile-buttons{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -514,25 +560,37 @@ button{
     font-weight:bold;
 }
 
-.profile-buttons button.logout{
-    background:#fee2e2;
-    color:#dc2626;
-}
+/* PROFILE 3 DOT MENU */
 
 .profile-menu{
+    background:white;
     border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
     padding:5px 15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
 }
 
 .profile-menu-item{
-    padding:14px 5px;
+    padding:15px 5px;
     border-bottom:1px solid #eee;
     cursor:pointer;
+    font-weight:500;
 }
 
 .profile-menu-item:last-child{
     border-bottom:0;
 }
+
+.profile-menu-item:hover{
+    background:#f8fafc;
+}
+
+.profile-menu-item.logout-item{
+    color:#dc2626;
+}
+
+/* INFO */
 
 .info-title{
     padding:15px 15px 5px;
@@ -558,6 +616,8 @@ button{
 .info-value{
     font-weight:500;
 }
+
+/* MUSIC */
 
 .music-box{
     margin:0 15px 15px;
@@ -766,19 +826,26 @@ button{
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:430px){
+
     .profile-cover{
-        height:185px;
+        height:255px;
     }
 
     .profile-picture{
-        width:100px;
-        height:100px;
+        width:105px;
+        height:105px;
+    }
+
+    .profile-picture-wrap{
+        margin-top:-55px;
     }
 
     .profile-buttons{
         grid-template-columns:1fr 1fr;
     }
+
 }
+
 </style>
 </head>
 
@@ -787,27 +854,42 @@ button{
 <!-- ================= LOGIN ================= -->
 
 <div id="loginPage">
+
     <div class="login-box">
-        <div class="logo">YAM</div>
-        <div class="login-sub">Chat • Friends • Rooms • Social</div>
 
-        <input id="loginUsername"
-               class="input"
-               placeholder="Username">
+        <div class="logo">
+            YAM
+        </div>
 
-        <input id="loginPassword"
-               class="input"
-               type="password"
-               placeholder="Password">
+        <div class="login-sub">
+            Chat • Friends • Rooms • Social
+        </div>
 
-        <button class="primary-btn" onclick="login()">
+        <input
+            id="loginUsername"
+            class="input"
+            placeholder="Username">
+
+        <input
+            id="loginPassword"
+            class="input"
+            type="password"
+            placeholder="Password">
+
+        <button
+            class="primary-btn"
+            onclick="login()">
             🔐 LOGIN
         </button>
 
-        <button class="secondary-btn" onclick="register()">
+        <button
+            class="secondary-btn"
+            onclick="register()">
             📝 DAFTAR AKAUN
         </button>
+
     </div>
+
 </div>
 
 
@@ -816,14 +898,26 @@ button{
 <div id="app">
 
     <div class="topbar">
-        <div class="top-logo">YAM</div>
-        <div id="topUser" class="top-user"></div>
+
+        <div class="top-logo">
+            YAM
+        </div>
+
+        <div
+            id="topUser"
+            class="top-user">
+        </div>
+
     </div>
+
 
     <main class="main">
 
-        <!-- HOME -->
-        <section id="homePage" class="page active">
+        <!-- ================= HOME ================= -->
+
+        <section
+            id="homePage"
+            class="page active">
 
             <div class="create-box">
 
@@ -833,43 +927,54 @@ button{
 
                 <div class="post-options">
 
-                    <button id="textPostBtn"
-                            class="post-option active"
-                            onclick="selectPostType('text')">
+                    <button
+                        id="textPostBtn"
+                        class="post-option active"
+                        onclick="selectPostType('text')">
                         📝 TULISAN
                     </button>
 
-                    <button id="imagePostBtn"
-                            class="post-option"
-                            onclick="selectPostType('image')">
+                    <button
+                        id="imagePostBtn"
+                        class="post-option"
+                        onclick="selectPostType('image')">
                         🖼️ GAMBAR
                     </button>
 
-                    <button id="videoPostBtn"
-                            class="post-option"
-                            onclick="selectPostType('video')">
+                    <button
+                        id="videoPostBtn"
+                        class="post-option"
+                        onclick="selectPostType('video')">
                         🎥 VIDEO
                     </button>
 
                 </div>
 
-                <div id="postEditor" class="post-editor">
 
-                    <textarea id="postText"
-                              placeholder="Apa yang anda fikirkan?"></textarea>
+                <div
+                    id="postEditor"
+                    class="post-editor">
 
-                    <div id="mediaPreview"
-                         class="media-preview"></div>
+                    <textarea
+                        id="postText"
+                        placeholder="Apa yang anda fikirkan?"></textarea>
+
+                    <div
+                        id="mediaPreview"
+                        class="media-preview">
+                    </div>
 
                     <div class="editor-actions">
 
-                        <button class="cancel-btn"
-                                onclick="cancelPost()">
+                        <button
+                            class="cancel-btn"
+                            onclick="cancelPost()">
                             Batal
                         </button>
 
-                        <button class="post-btn"
-                                onclick="createPost()">
+                        <button
+                            class="post-btn"
+                            onclick="createPost()">
                             🚀 POST
                         </button>
 
@@ -884,8 +989,11 @@ button{
         </section>
 
 
-        <!-- FRIENDS -->
-        <section id="friendsPage" class="page">
+        <!-- ================= FRIENDS ================= -->
+
+        <section
+            id="friendsPage"
+            class="page">
 
             <div class="section-title">
                 👥 Friends
@@ -896,8 +1004,11 @@ button{
         </section>
 
 
-        <!-- ROOMS -->
-        <section id="roomsPage" class="page">
+        <!-- ================= ROOMS ================= -->
+
+        <section
+            id="roomsPage"
+            class="page">
 
             <div class="section-title">
                 🌎 YAM Rooms
@@ -908,26 +1019,38 @@ button{
         </section>
 
 
-        <!-- PROFILE -->
-        <section id="profilePage" class="page">
+        <!-- ================= PROFILE ================= -->
+
+        <section
+            id="profilePage"
+            class="page">
 
             <div class="profile-main">
 
-                <!-- COVER -->
-                <div id="profileCover"
-                     class="profile-cover">
+                <!-- COVER FULL WIDTH -->
+
+                <div
+                    id="profileCover"
+                    class="profile-cover">
 
                     <div class="cover-dark"></div>
 
                     <div class="profile-top-actions">
 
-                        <button onclick="changeCover()"
-                                title="Tukar Cover">
-                            🌄
+                        <!-- CAMERA -->
+
+                        <button
+                            onclick="changeCover()"
+                            title="Tukar Cover">
+                            📷
                         </button>
 
-                        <button onclick="openProfileMenu()"
-                                title="Menu">
+
+                        <!-- THREE DOT -->
+
+                        <button
+                            onclick="openProfileMenu()"
+                            title="Menu">
                             ⋮
                         </button>
 
@@ -937,110 +1060,116 @@ button{
 
 
                 <!-- PROFILE -->
+
                 <div class="profile-picture-wrap">
 
-                    <img id="profilePicture"
-                         class="profile-picture"
-                         src=""
-                         alt="Profile">
+                    <img
+                        id="profilePicture"
+                        class="profile-picture"
+                        src=""
+                        alt="Profile">
 
-                    <div id="profileName"
-                         class="profile-name"></div>
-
-                    <div id="profileUsername"
-                         class="profile-username"></div>
-
-                    <div id="profileStatus"
-                         class="profile-status"
-                         onclick="editStatus()">
+                    <div
+                        id="profileName"
+                        class="profile-name">
                     </div>
 
-                    <div id="profileBio"
-                         class="profile-bio">
+                    <div
+                        id="profileUsername"
+                        class="profile-username">
+                    </div>
+
+                    <div
+                        id="profileStatus"
+                        class="profile-status"
+                        onclick="editStatus()">
+                    </div>
+
+                    <div
+                        id="profileBio"
+                        class="profile-bio">
                     </div>
 
                 </div>
 
 
-                <!-- BUTTONS -->
-                <div class="profile-buttons">
+                <!-- 3 DOT MENU -->
 
-                    <button onclick="changeProfilePicture()">
-                        🖼️ Tukar Gambar
-                    </button>
+                <div
+                    id="profileMenu"
+                    class="profile-menu hidden">
 
-                    <button onclick="changeCover()">
-                        🌄 Tukar Cover
-                    </button>
-
-                    <button onclick="editProfile()">
-                        ✏️ Edit Profile
-                    </button>
-
-                    <button onclick="editStatus()">
-                        🟢 Status
-                    </button>
-
-                    <button onclick="openMusic()">
-                        🎵 Music
-                    </button>
-
-                    <button onclick="changePassword()">
-                        🔑 Password
-                    </button>
-
-                    <button onclick="openPrivacy()">
-                        🔒 Privacy
-                    </button>
-
-                    <button class="logout"
-                            onclick="logout()">
-                        🚪 Logout
-                    </button>
-
-                </div>
-
-
-                <!-- PROFILE MENU -->
-                <div id="profileMenu"
-                     class="profile-menu hidden">
-
-                    <div class="profile-menu-item"
-                         onclick="editProfile()">
+                    <div
+                        class="profile-menu-item"
+                        onclick="editProfile()">
                         ✏️ Edit Profile
                     </div>
 
-                    <div class="profile-menu-item"
-                         onclick="openPrivacy()">
-                        🔒 Privacy Settings
+                    <div
+                        class="profile-menu-item"
+                        onclick="changeName()">
+                        📝 Tukar Nama
                     </div>
 
-                    <div class="profile-menu-item"
-                         onclick="changePassword()">
+                    <div
+                        class="profile-menu-item"
+                        onclick="changePassword()">
                         🔑 Tukar Password
                     </div>
 
-                    <div class="profile-menu-item"
-                         onclick="logout()">
-                        🚪 Logout
+                    <div
+                        class="profile-menu-item logout-item"
+                        onclick="logout()">
+                        🚪 Log Out
                     </div>
+
+                </div>
+
+
+                <!-- PROFILE EXTRA BUTTONS -->
+
+                <div class="profile-buttons">
+
+                    <button
+                        onclick="changeProfilePicture()">
+                        🖼️ Tukar Gambar
+                    </button>
+
+                    <button
+                        onclick="changeCover()">
+                        📷 Tukar Cover
+                    </button>
+
+                    <button
+                        onclick="editStatus()">
+                        🟢 Status
+                    </button>
+
+                    <button
+                        onclick="openMusic()">
+                        🎵 Music
+                    </button>
 
                 </div>
 
 
                 <!-- MUSIC -->
-                <div id="musicArea"
-                     class="music-box hidden">
+
+                <div
+                    id="musicArea"
+                    class="music-box hidden">
                 </div>
 
 
                 <!-- INFO -->
+
                 <div class="info-title">
                     ℹ️ Maklumat Profile
                 </div>
 
-                <div id="profileInfo"
-                     class="info-list">
+                <div
+                    id="profileInfo"
+                    class="info-list">
                 </div>
 
             </div>
@@ -1050,36 +1179,51 @@ button{
     </main>
 
 
-    <!-- BOTTOM NAV -->
+    <!-- ================= BOTTOM NAV ================= -->
 
     <nav class="bottom-nav">
 
-        <button id="navHome"
-                class="nav-btn active"
-                onclick="showPage('home')">
+        <button
+            id="navHome"
+            class="nav-btn active"
+            onclick="showPage('home')">
+
             <span>🏠</span>
             Home
+
         </button>
 
-        <button id="navFriends"
-                class="nav-btn"
-                onclick="showPage('friends')">
+
+        <button
+            id="navFriends"
+            class="nav-btn"
+            onclick="showPage('friends')">
+
             <span>👥</span>
             Friends
+
         </button>
 
-        <button id="navRooms"
-                class="nav-btn"
-                onclick="showPage('rooms')">
+
+        <button
+            id="navRooms"
+            class="nav-btn"
+            onclick="showPage('rooms')">
+
             <span>🌎</span>
             Rooms
+
         </button>
 
-        <button id="navProfile"
-                class="nav-btn"
-                onclick="showPage('profile')">
+
+        <button
+            id="navProfile"
+            class="nav-btn"
+            onclick="showPage('profile')">
+
             <span>👤</span>
             Profile
+
         </button>
 
     </nav>
@@ -1089,54 +1233,65 @@ button{
 
 <!-- ================= FILE INPUTS ================= -->
 
-<input id="profileFile"
-       type="file"
-       accept="image/*"
-       class="hidden">
+<input
+    id="profileFile"
+    type="file"
+    accept="image/*"
+    class="hidden">
 
-<input id="coverFile"
-       type="file"
-       accept="image/*"
-       class="hidden">
+<input
+    id="coverFile"
+    type="file"
+    accept="image/*"
+    class="hidden">
 
-<input id="postImageFile"
-       type="file"
-       accept="image/*"
-       class="hidden">
+<input
+    id="postImageFile"
+    type="file"
+    accept="image/*"
+    class="hidden">
 
-<input id="postVideoFile"
-       type="file"
-       accept="video/*"
-       class="hidden">
+<input
+    id="postVideoFile"
+    type="file"
+    accept="video/*"
+    class="hidden">
 
-<input id="musicFile"
-       type="file"
-       accept="audio/*"
-       class="hidden">
+<input
+    id="musicFile"
+    type="file"
+    accept="audio/*"
+    class="hidden">
 
 
 <!-- ================= MODAL ================= -->
 
-<div id="modalBg"
-     class="modal-bg">
+<div
+    id="modalBg"
+    class="modal-bg">
 
     <div class="modal">
 
-        <div id="modalTitle"
-             class="modal-title">
+        <div
+            id="modalTitle"
+            class="modal-title">
         </div>
 
-        <div id="modalContent"></div>
+        <div
+            id="modalContent">
+        </div>
 
         <div class="modal-actions">
 
-            <button class="modal-cancel"
-                    onclick="closeModal()">
+            <button
+                class="modal-cancel"
+                onclick="closeModal()">
                 Batal
             </button>
 
-            <button id="modalOk"
-                    class="modal-ok">
+            <button
+                id="modalOk"
+                class="modal-ok">
                 OK
             </button>
 
@@ -1149,35 +1304,41 @@ button{
 
 <!-- ================= CHAT ================= -->
 
-<div id="chatOverlay"
-     class="chat-overlay">
+<div
+    id="chatOverlay"
+    class="chat-overlay">
 
     <div class="chat-head">
 
-        <button class="chat-back"
-                onclick="closeChat()">
+        <button
+            class="chat-back"
+            onclick="closeChat()">
             ←
         </button>
 
-        <img id="chatAvatar"
-             class="avatar-small"
-             src=""
-             alt="">
+        <img
+            id="chatAvatar"
+            class="avatar-small"
+            src=""
+            alt="">
 
-        <div id="chatTitle"
-             class="chat-title">
+        <div
+            id="chatTitle"
+            class="chat-title">
         </div>
 
     </div>
 
-    <div id="chatBody"
-         class="chat-body">
+    <div
+        id="chatBody"
+        class="chat-body">
     </div>
 
     <div class="chat-foot">
 
-        <input id="chatInput"
-               placeholder="Tulis mesej...">
+        <input
+            id="chatInput"
+            placeholder="Tulis mesej...">
 
         <button onclick="sendChat()">
             ➤
@@ -1191,8 +1352,8 @@ button{
 <script>
 
 /* =========================================================
-   YAM CHAT V4.4.2
-   PROFILE LAMA + HOME SOCIAL
+   YAM CHAT V4.4.3
+   FULL COVER + CAMERA + 3 DOT PROFILE MENU
 ========================================================= */
 
 
@@ -1502,7 +1663,7 @@ function register(){
 
 function logout(){
 
-    if(!confirm("Logout dari YAM?")) return;
+    if(!confirm("Log Out dari YAM?")) return;
 
     localStorage.removeItem(
         "yam_current_user"
@@ -1971,8 +2132,9 @@ function renderFeed(){
                     </div>
 
 
-                    <div id="comments-${post.id}"
-                         class="comments">
+                    <div
+                        id="comments-${post.id}"
+                        class="comments">
 
                         ${renderComments(post)}
 
@@ -2927,6 +3089,20 @@ document.getElementById(
 );
 
 
+/* ================= 3 DOT MENU ================= */
+
+function openProfileMenu(){
+
+    const menu =
+        document.getElementById(
+            "profileMenu"
+        );
+
+    menu.classList.toggle("hidden");
+
+}
+
+
 /* ================= EDIT PROFILE ================= */
 
 function editProfile(){
@@ -3041,6 +3217,75 @@ function saveProfile(){
     renderProfile();
     renderFeed();
     renderFriends();
+
+}
+
+
+/* ================= TUKAR NAMA ================= */
+
+function changeName(){
+
+    document.getElementById(
+        "profileMenu"
+    ).classList.add("hidden");
+
+    const profile =
+        getProfileData(currentUser);
+
+    const content = `
+
+        <input
+            id="newName"
+            class="input"
+            value="${escapeHtml(
+                profile.name || ""
+            )}"
+            placeholder="Nama baru">
+
+    `;
+
+    openModal(
+        "📝 Tukar Nama",
+        content,
+        saveName
+    );
+
+}
+
+
+function saveName(){
+
+    const input =
+        document.getElementById(
+            "newName"
+        );
+
+    if(!input) return;
+
+    const newName =
+        input.value.trim();
+
+    if(!newName){
+
+        alert("Sila masukkan nama.");
+
+        return;
+    }
+
+    const profile =
+        getProfileData(currentUser);
+
+    profile.name = newName;
+
+    saveCurrentProfile(profile);
+
+    closeModal();
+
+    renderProfile();
+    renderFeed();
+    renderFriends();
+
+    alert("Nama berjaya ditukar.");
 
 }
 
@@ -3188,115 +3433,6 @@ function savePassword(){
     closeModal();
 
     alert("Password berjaya ditukar.");
-
-}
-
-
-/* ================= PROFILE MENU ================= */
-
-function openProfileMenu(){
-
-    const menu =
-        document.getElementById(
-            "profileMenu"
-        );
-
-    menu.classList.toggle("hidden");
-
-}
-
-
-/* ================= PRIVACY ================= */
-
-function openPrivacy(){
-
-    document.getElementById(
-        "profileMenu"
-    ).classList.add("hidden");
-
-    let privacy =
-        JSON.parse(
-            localStorage.getItem(
-                "yam_privacy_" +
-                currentUser
-            ) || "{}"
-        );
-
-    const content = `
-
-        <label style="
-            display:block;
-            margin-bottom:12px;
-        ">
-
-            <input
-                id="privacyProfile"
-                type="checkbox"
-                ${
-                    privacy.profilePublic !== false
-                    ? "checked"
-                    : ""
-                }>
-
-            Profile boleh dilihat
-
-        </label>
-
-
-        <label style="
-            display:block;
-            margin-bottom:12px;
-        ">
-
-            <input
-                id="privacyPosts"
-                type="checkbox"
-                ${
-                    privacy.postsPublic !== false
-                    ? "checked"
-                    : ""
-                }>
-
-            Post boleh dilihat
-
-        </label>
-
-    `;
-
-    openModal(
-        "🔒 Privacy",
-        content,
-        savePrivacy
-    );
-
-}
-
-
-function savePrivacy(){
-
-    const privacy = {
-
-        profilePublic:
-            document.getElementById(
-                "privacyProfile"
-            ).checked,
-
-        postsPublic:
-            document.getElementById(
-                "privacyPosts"
-            ).checked
-
-    };
-
-    localStorage.setItem(
-        "yam_privacy_" +
-        currentUser,
-        JSON.stringify(privacy)
-    );
-
-    closeModal();
-
-    alert("Privacy settings disimpan.");
 
 }
 
