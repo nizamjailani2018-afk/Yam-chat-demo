@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.3.2</title>
+<title>YAM Chat V4.3.3</title>
 
 <style>
 *{
@@ -190,43 +190,64 @@ body{
     font-weight:bold;
 }
 
-/* PROFILE */
+/* =====================================================
+   PROFILE V4.3.3
+   COVER PHOTO FULL PROFILE
+===================================================== */
 
 .profile{
+    position:relative;
+    min-height:calc(100vh - 62px);
     padding-bottom:90px;
-}
-
-/* V4.3.2 COVER */
-
-.profile-cover{
-    height:180px;
+    overflow:hidden;
     background:linear-gradient(135deg,#1976d2,#64b5f6);
     background-size:cover;
-    background-position:center center;
+    background-position:center top;
     background-repeat:no-repeat;
-    position:relative;
-    overflow:hidden;
-    box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
 
-.profile-cover::after{
+/* Overlay supaya tulisan lebih jelas */
+
+.profile::before{
     content:"";
     position:absolute;
     inset:0;
     background:linear-gradient(
         to bottom,
-        rgba(0,0,0,.08) 0%,
-        rgba(0,0,0,.02) 45%,
-        rgba(0,0,0,.30) 100%
+        rgba(0,0,0,.18) 0%,
+        rgba(0,0,0,.12) 45%,
+        rgba(0,0,0,.45) 100%
     );
+    z-index:0;
     pointer-events:none;
-    z-index:1;
 }
+
+/* Cover sekarang menjadi layer transparent
+   yang memenuhi seluruh profile */
+
+.profile-cover{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:transparent !important;
+    box-shadow:none;
+    z-index:1;
+    overflow:visible;
+    pointer-events:none;
+}
+
+.profile-cover::after{
+    display:none;
+}
+
+/* CAMERA COVER */
 
 .cover-camera{
     position:absolute;
-    right:12px;
-    bottom:12px;
+    right:60px;
+    top:12px;
+    bottom:auto;
     width:38px;
     height:38px;
     border-radius:50%;
@@ -236,78 +257,7 @@ body{
     cursor:pointer;
     z-index:4;
     box-shadow:0 2px 7px rgba(0,0,0,.25);
-}
-
-@media (max-width:480px){
-    .profile-cover{
-        height:180px;
-        background-position:center center;
-    }
-}
-
-.profile-top{
-    text-align:center;
-    position:relative;
-    margin-top:-55px;
-    padding:0 20px 15px;
-}
-
-.profile-avatar-wrap{
-    position:relative;
-    width:110px;
-    height:110px;
-    margin:auto;
-}
-
-.profile-avatar{
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    background:#1976d2;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
-    font-weight:bold;
-    overflow:hidden;
-    border:5px solid white;
-}
-
-.profile-avatar img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.camera-btn{
-    position:absolute;
-    right:0;
-    bottom:0;
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    border:3px solid white;
-    background:#1976d2;
-    color:white;
-    cursor:pointer;
-}
-
-.profile-name{
-    font-size:23px;
-    font-weight:bold;
-    margin-top:10px;
-}
-
-.profile-status{
-    color:#777;
-    margin-top:5px;
-}
-
-.profile-bio{
-    color:#555;
-    margin-top:8px;
-    font-size:14px;
+    pointer-events:auto;
 }
 
 /* THREE DOT */
@@ -317,6 +267,7 @@ body{
     right:12px;
     top:12px;
     z-index:4;
+    pointer-events:auto;
 }
 
 .profile-three-dot{
@@ -357,16 +308,106 @@ body{
     cursor:pointer;
 }
 
+/* PROFILE CONTENT */
+
+.profile-top,
+.profile-actions,
+.profile-info{
+    position:relative;
+    z-index:2;
+}
+
+.profile-top{
+    text-align:center;
+    margin-top:0;
+    padding:85px 20px 15px;
+}
+
+.profile-avatar-wrap{
+    position:relative;
+    width:110px;
+    height:110px;
+    margin:auto;
+}
+
+.profile-avatar{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:#1976d2;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    font-weight:bold;
+    overflow:hidden;
+    border:5px solid white;
+    box-shadow:0 3px 12px rgba(0,0,0,.3);
+}
+
+.profile-avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.camera-btn{
+    position:absolute;
+    right:0;
+    bottom:0;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    border:3px solid white;
+    background:#1976d2;
+    color:white;
+    cursor:pointer;
+}
+
+/* WHITE TEXT */
+
+.profile-name{
+    color:white;
+    font-size:23px;
+    font-weight:bold;
+    margin-top:10px;
+    text-shadow:0 2px 5px rgba(0,0,0,.45);
+}
+
+.profile-status{
+    color:rgba(255,255,255,.9);
+    margin-top:5px;
+    text-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+
+.profile-bio{
+    color:white;
+    margin-top:8px;
+    font-size:14px;
+    text-shadow:0 1px 4px rgba(0,0,0,.5);
+}
+
+/* PROFILE INFO */
+
 .profile-info{
     margin:10px 20px 0;
-    border-top:1px solid #eee;
+    padding:0 12px;
+    border-top:1px solid rgba(255,255,255,.35);
+    background:rgba(0,0,0,.22);
+    border-radius:14px;
+    overflow:hidden;
 }
 
 .info-row{
     display:flex;
     align-items:center;
     padding:13px 5px;
-    border-bottom:1px solid #eee;
+    border-bottom:1px solid rgba(255,255,255,.25);
+}
+
+.info-row:last-child{
+    border-bottom:0;
 }
 
 .info-icon{
@@ -380,16 +421,17 @@ body{
 
 .info-label{
     font-size:11px;
-    color:#888;
+    color:rgba(255,255,255,.75);
 }
 
 .info-value{
     margin-top:3px;
     font-size:14px;
+    color:white;
 }
 
 .private-text{
-    color:#888;
+    color:rgba(255,255,255,.75);
     font-style:italic;
 }
 
@@ -404,9 +446,10 @@ body{
 .profile-actions button{
     flex:1;
     padding:10px 5px;
-    border:1px solid #ddd;
+    border:1px solid rgba(255,255,255,.7);
     border-radius:8px;
-    background:white;
+    background:rgba(255,255,255,.95);
+    color:#222;
     cursor:pointer;
     font-size:12px;
 }
@@ -1299,8 +1342,7 @@ body{
                 <label>Bio</label>
 
                 <textarea id="editBio"
-                          placeholder="Ceritakan sedikit tentang diri...">
-                </textarea>
+                          placeholder="Ceritakan sedikit tentang diri..."></textarea>
 
                 <div class="privacy-row">
 
@@ -1757,8 +1799,7 @@ function loadProfile(){
 
     if(picture){
 
-        avatar.innerHTML =
-            "";
+        avatar.innerHTML = "";
 
         const img =
             document.createElement("img");
@@ -1789,25 +1830,26 @@ function loadProfile(){
     ).innerText =
         account.bio || "";
 
+    /* V4.3.3
+       COVER PHOTO DIPASANG PADA SELURUH PROFILE */
+
     const cover =
         localStorage.getItem(
             "yam_cover_" + username
         );
 
-    const coverBox =
-        document.getElementById(
-            "profileCover"
-        );
+    const profileBox =
+        document.querySelector(".profile");
 
     if(cover){
 
-        coverBox.style.backgroundImage =
+        profileBox.style.backgroundImage =
             `url("${cover}")`;
 
     }else{
 
-        coverBox.style.backgroundImage =
-            "";
+        profileBox.style.backgroundImage =
+            "linear-gradient(135deg,#1976d2,#64b5f6)";
 
     }
 
