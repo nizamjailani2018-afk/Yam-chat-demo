@@ -278,17 +278,27 @@ body.profile-active #profilePage{
     outline:none;
 }
 
+/* MEDIA PREVIEW - DIBESARKAN */
+
 .media-preview{
     margin-top:10px;
+    width:100%;
 }
 
 .media-preview img,
 .media-preview video{
+    display:block;
     width:100%;
-    max-height:350px;
+    max-width:100%;
+    max-height:600px;
+    height:auto;
     object-fit:contain;
     border-radius:12px;
     background:#000;
+}
+
+.media-preview video{
+    min-height:180px;
 }
 
 .editor-actions{
@@ -369,12 +379,21 @@ body.profile-active #profilePage{
     line-height:1.5;
 }
 
+/* POST MEDIA - LEBIH BESAR */
+
 .post-media{
+    display:block;
     width:100%;
-    max-height:450px;
+    max-width:100%;
+    max-height:650px;
+    height:auto;
     object-fit:contain;
     border-radius:12px;
     background:#000;
+}
+
+.post-media video{
+    width:100%;
 }
 
 .post-actions{
@@ -745,7 +764,7 @@ body.profile-active #profilePage{
 }
 
 /* =========================
-   PROFILE MEDIA GRID
+   PROFILE IMAGE GRID
 ========================= */
 
 .profile-media-grid{
@@ -762,11 +781,44 @@ body.profile-active #profilePage{
     position:relative;
 }
 
-.profile-media-item img,
-.profile-media-item video{
+.profile-media-item img{
     width:100%;
     height:100%;
     object-fit:cover;
+    display:block;
+}
+
+/* =========================
+   PROFILE VIDEO - BESAR
+========================= */
+
+.profile-video-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.profile-video-card{
+    background:#f8fafc;
+    border-radius:12px;
+    padding:8px;
+    overflow:hidden;
+}
+
+.profile-video-card video{
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:600px;
+    object-fit:contain;
+    border-radius:10px;
+    background:#000;
+}
+
+.profile-video-date{
+    padding:8px 3px 2px;
+    color:#777;
+    font-size:12px;
 }
 
 .video-mark{
@@ -1104,6 +1156,10 @@ body.profile-active #profilePage{
     border-radius:16px;
 }
 
+/* =========================
+   MOBILE MEDIA
+========================= */
+
 @media(max-width:430px){
 
     .profile-cover{
@@ -1130,6 +1186,19 @@ body.profile-active #profilePage{
 
     .market-image{
         height:190px;
+    }
+
+    .post-media{
+        max-height:520px;
+    }
+
+    .media-preview img,
+    .media-preview video{
+        max-height:520px;
+    }
+
+    .profile-video-card video{
+        max-height:520px;
     }
 }
 
@@ -1615,7 +1684,7 @@ placeholder="Tulis mesej...">
 <script>
 
 /* =====================================================
-   YAM CHAT V4.5
+   YAM CHAT V4.5 MEDIA FIX
 ===================================================== */
 
 let currentUser =
@@ -1660,10 +1729,24 @@ localStorage.getItem("yam_accounts")||"{}"
 
 function saveAccounts(accounts){
 
+try{
+
 localStorage.setItem(
 "yam_accounts",
 JSON.stringify(accounts)
 );
+
+return true;
+
+}catch(error){
+
+alert(
+"Data akaun gagal disimpan kerana ruang browser penuh."
+);
+
+return false;
+
+}
 
 }
 
@@ -1695,6 +1778,32 @@ const accounts=getAccounts();
 accounts[currentUser]=data;
 
 saveAccounts(accounts);
+
+}
+
+
+/* =========================
+   SAFE STORAGE
+========================= */
+
+function safeSetItem(key,value,errorMessage){
+
+try{
+
+localStorage.setItem(key,value);
+
+return true;
+
+}catch(error){
+
+alert(
+errorMessage||
+"Data gagal disimpan. Ruang browser mungkin sudah penuh."
+);
+
+return false;
+
+}
 
 }
 
@@ -1829,7 +1938,8 @@ job:"",
 gender:""
 };
 
-saveAccounts(accounts);
+if(!saveAccounts(accounts))
+return;
 
 }
 
@@ -1842,10 +1952,11 @@ return;
 
 currentUser=username;
 
-localStorage.setItem(
+if(!safeSetItem(
 "yam_current_user",
-currentUser
-);
+currentUser,
+"Login gagal disimpan."
+))return;
 
 startApp();
 
@@ -1890,14 +2001,16 @@ job:"",
 gender:""
 };
 
-saveAccounts(accounts);
+if(!saveAccounts(accounts))
+return;
 
 currentUser=username;
 
-localStorage.setItem(
+if(!safeSetItem(
 "yam_current_user",
-currentUser
-);
+currentUser,
+"Daftar gagal disimpan."
+))return;
 
 startApp();
 
@@ -2051,6 +2164,9 @@ if(type==="text"){
 document.getElementById("textPostBtn")
 .classList.add("active");
 
+document.getElementById("mediaPreview")
+.innerHTML="";
+
 }
 
 if(type==="image"){
@@ -2100,7 +2216,11 @@ reader.onload=function(e){
 
 document.getElementById("mediaPreview")
 .innerHTML=
-`<img src="${e.target.result}">`;
+`
+<img
+src="${e.target.result}"
+alt="Preview gambar">
+`;
 
 };
 
@@ -2133,7 +2253,14 @@ reader.onload=function(e){
 
 document.getElementById("mediaPreview")
 .innerHTML=
-`<video src="${e.target.result}" controls></video>`;
+`
+<video
+src="${e.target.result}"
+controls
+playsinline
+preload="metadata">
+</video>
+`;
 
 };
 
@@ -2192,10 +2319,14 @@ blockedUsers:[]
 
 });
 
-localStorage.setItem(
+const saved=safeSetItem(
 "yam_posts",
-JSON.stringify(posts)
+JSON.stringify(posts),
+"❌ Post gagal disimpan.\n\nRuang simpan browser mungkin sudah penuh. Untuk video, cuba gunakan video yang lebih pendek/kecil."
 );
+
+if(!saved)
+return;
 
 cancelPost();
 renderFeed();
@@ -2205,6 +2336,12 @@ renderFeed();
 if(selectedPostFile){
 
 const reader=new FileReader();
+
+reader.onerror=function(){
+
+alert("Fail media tidak dapat dibaca.");
+
+};
 
 reader.onload=function(e){
 
@@ -2292,8 +2429,10 @@ let media="";
 if(post.type==="image"&&post.media){
 
 media=`
-<img class="post-media"
-src="${post.media}">
+<img
+class="post-media"
+src="${post.media}"
+alt="Post gambar">
 `;
 
 }
@@ -2301,9 +2440,12 @@ src="${post.media}">
 if(post.type==="video"&&post.media){
 
 media=`
-<video class="post-media"
+<video
+class="post-media"
 src="${post.media}"
-controls>
+controls
+playsinline
+preload="metadata">
 </video>
 `;
 
@@ -2422,9 +2564,10 @@ post.likes.splice(index,1);
 else
 post.likes.push(currentUser);
 
-localStorage.setItem(
+safeSetItem(
 "yam_posts",
-JSON.stringify(posts)
+JSON.stringify(posts),
+"Like gagal disimpan kerana ruang browser penuh."
 );
 
 renderFeed();
@@ -2578,10 +2721,11 @@ time:Date.now()
 
 });
 
-localStorage.setItem(
+if(!safeSetItem(
 "yam_posts",
-JSON.stringify(posts)
-);
+JSON.stringify(posts),
+"Komen gagal disimpan kerana ruang browser penuh."
+))return;
 
 renderFeed();
 
@@ -2711,10 +2855,11 @@ post.comments=
 c=>String(c.id)!==String(commentId)
 );
 
-localStorage.setItem(
+if(!safeSetItem(
 "yam_posts",
-JSON.stringify(posts)
-);
+JSON.stringify(posts),
+"Komen gagal dipadam kerana ruang browser penuh."
+))return;
 
 renderFeed();
 
@@ -2736,10 +2881,11 @@ return;
 
 post.hiddenComments=!post.hiddenComments;
 
-localStorage.setItem(
+if(!safeSetItem(
 "yam_posts",
-JSON.stringify(posts)
-);
+JSON.stringify(posts),
+"Perubahan gagal disimpan."
+))return;
 
 renderFeed();
 
@@ -2770,10 +2916,11 @@ post.comments=
 c=>c.user!==username
 );
 
-localStorage.setItem(
+if(!safeSetItem(
 "yam_posts",
-JSON.stringify(posts)
-);
+JSON.stringify(posts),
+"Block gagal disimpan."
+))return;
 
 renderFeed();
 
@@ -2823,12 +2970,14 @@ posts.filter(
 p=>String(p.id)!==String(id)
 );
 
-localStorage.setItem(
+if(!safeSetItem(
 "yam_posts",
-JSON.stringify(updated)
-);
+JSON.stringify(updated),
+"Post gagal dipadam."
+))return;
 
 renderFeed();
+renderProfileContent();
 
 }
 
@@ -2847,7 +2996,7 @@ input.focus();
 
 
 /* =====================================================
-   PROFILE TABS V4.5
+   PROFILE TABS
 ===================================================== */
 
 function showProfileTab(tab){
@@ -2954,8 +3103,10 @@ let media="";
 if(post.type==="image"&&post.media){
 
 media=`
-<img class="post-media"
-src="${post.media}">
+<img
+class="post-media"
+src="${post.media}"
+alt="Gambar post">
 `;
 
 }
@@ -2963,9 +3114,12 @@ src="${post.media}">
 if(post.type==="video"&&post.media){
 
 media=`
-<video class="post-media"
+<video
+class="post-media"
 src="${post.media}"
-controls>
+controls
+playsinline
+preload="metadata">
 </video>
 `;
 
@@ -3041,7 +3195,8 @@ ${posts.map(post=>`
 
 <div class="profile-media-item">
 
-<img src="${post.media}"
+<img
+src="${post.media}"
 alt="Gambar">
 
 </div>
@@ -3056,7 +3211,7 @@ alt="Gambar">
 
 
 /* =========================
-   PROFILE VIDEOS
+   PROFILE VIDEOS - FIX
 ========================= */
 
 function renderProfileVideos(area){
@@ -3083,19 +3238,21 @@ return;
 
 area.innerHTML=`
 
-<div class="profile-media-grid">
+<div class="profile-video-list">
 
 ${posts.map(post=>`
 
-<div class="profile-media-item">
+<div class="profile-video-card">
 
 <video
 src="${post.media}"
-controls>
+controls
+playsinline
+preload="metadata">
 </video>
 
-<div class="video-mark">
-▶
+<div class="profile-video-date">
+🎥 ${timeAgo(post.time)}
 </div>
 
 </div>
@@ -3110,7 +3267,7 @@ controls>
 
 
 /* =====================================================
-   MARKET V4.5
+   MARKET
 ===================================================== */
 
 function getMarket(){
@@ -3123,9 +3280,10 @@ localStorage.getItem("yam_market")||"[]"
 
 function saveMarket(items){
 
-localStorage.setItem(
+return safeSetItem(
 "yam_market",
-JSON.stringify(items)
+JSON.stringify(items),
+"Market gagal disimpan. Ruang browser mungkin penuh."
 );
 
 }
@@ -3168,9 +3326,7 @@ html+=`
 
 🛒 Belum ada barang dalam Market.<br><br>
 
-${currentUser===currentUser
-?"Tambah barang pertama anda di sini."
-:""}
+Tambah barang pertama anda di sini.
 
 </div>
 
@@ -3369,8 +3525,9 @@ preview.innerHTML=`
 <img
 src="${e.target.result}"
 style="
+display:block;
 width:100%;
-max-height:250px;
+max-height:300px;
 object-fit:contain;
 border-radius:12px;
 background:#111;">
@@ -3432,9 +3589,8 @@ time:Date.now()
 
 });
 
-try{
-
-saveMarket(items);
+if(!saveMarket(items))
+return;
 
 selectedMarketImage=null;
 
@@ -3445,14 +3601,6 @@ renderProfileContent();
 alert(
 "Barang berjaya dimasukkan ke Market."
 );
-
-}catch(error){
-
-alert(
-"Market gagal disimpan. Gambar mungkin terlalu besar."
-);
-
-}
 
 }
 
@@ -3491,7 +3639,8 @@ items.filter(
 x=>String(x.id)!==String(id)
 );
 
-saveMarket(updated);
+if(!saveMarket(updated))
+return;
 
 renderProfileContent();
 
@@ -3838,10 +3987,11 @@ const reader=new FileReader();
 
 reader.onload=function(e){
 
-localStorage.setItem(
+if(!safeSetItem(
 "yam_picture_"+currentUser,
-e.target.result
-);
+e.target.result,
+"❌ Gambar profile gagal disimpan. Ruang browser mungkin penuh."
+))return;
 
 renderProfile();
 renderFeed();
@@ -3893,10 +4043,11 @@ const reader=new FileReader();
 
 reader.onload=function(e){
 
-localStorage.setItem(
+if(!safeSetItem(
 "yam_cover_"+currentUser,
-e.target.result
-);
+e.target.result,
+"❌ Cover gagal disimpan. Ruang browser mungkin penuh."
+))return;
 
 renderProfile();
 
@@ -4630,10 +4781,11 @@ text:text,
 time:Date.now()
 });
 
-localStorage.setItem(
+if(!safeSetItem(
 chatKey(),
-JSON.stringify(messages)
-);
+JSON.stringify(messages),
+"Mesej gagal disimpan kerana ruang browser penuh."
+))return;
 
 input.value="";
 
@@ -4752,10 +4904,11 @@ time:Date.now()
 
 });
 
-localStorage.setItem(
+if(!safeSetItem(
 key,
-JSON.stringify(messages)
-);
+JSON.stringify(messages),
+"Mesej room gagal disimpan."
+))return;
 
 closeModal();
 
