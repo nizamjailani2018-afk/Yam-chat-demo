@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.3.4</title>
+<title>YAM Chat V4.3.5</title>
 
 <style>
 *{
@@ -192,8 +192,8 @@ body{
 }
 
 /* =====================================================
-   PROFILE V4.3.4
-   FULL SCREEN COVER + CLICKABLE CONTROLS
+   PROFILE V4.3.5
+   BUTTON CLICK FIX
 ===================================================== */
 
 .profile{
@@ -207,8 +207,6 @@ body{
     background-repeat:no-repeat;
 }
 
-/* DARK OVERLAY */
-
 .profile::before{
     content:"";
     position:absolute;
@@ -219,126 +217,63 @@ body{
         rgba(0,0,0,.12) 45%,
         rgba(0,0,0,.48) 100%
     );
-    z-index:0;
+    z-index:1;
     pointer-events:none;
 }
 
-/* COVER LAYER */
+/* CONTROL LAYER */
 
-.profile-cover{
+.profile-controls{
     position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    background:transparent !important;
-    box-shadow:none;
-    overflow:visible;
-
-    /* Penting:
-       layer ini tidak menangkap klik */
+    top:0;
+    left:0;
+    right:0;
+    height:70px;
+    z-index:1000;
     pointer-events:none;
-
-    z-index:2;
 }
 
-.profile-cover::after{
-    display:none;
-}
-
-/* =====================================================
-   COVER CAMERA
-   Diletakkan sebagai clickable control
-===================================================== */
-
-.cover-camera{
-    position:absolute;
-    right:60px;
-    top:12px;
-
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-    border:3px solid white;
-
-    background:#1976d2;
-    color:white;
-
-    cursor:pointer;
-
-    z-index:20;
-
-    box-shadow:
-        0 2px 8px rgba(0,0,0,.35);
-
-    pointer-events:auto;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:17px;
-}
-
-/* =====================================================
-   THREE DOT
-===================================================== */
+/* 3 DOT */
 
 .profile-three-dot-wrap{
     position:absolute;
     right:12px;
     top:12px;
-
-    z-index:20;
-
+    z-index:1001;
     pointer-events:auto;
 }
 
 .profile-three-dot{
     width:40px;
     height:40px;
-
     border-radius:50%;
     border:2px solid white;
-
-    background:rgba(0,0,0,.38);
+    background:rgba(0,0,0,.45);
     color:white;
-
     font-size:23px;
-
     cursor:pointer;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
-    box-shadow:
-        0 2px 8px rgba(0,0,0,.3);
-
+    box-shadow:0 2px 8px rgba(0,0,0,.35);
     pointer-events:auto;
+    touch-action:manipulation;
 }
+
+/* DROPDOWN */
 
 .profile-dropdown{
     display:none;
-
     position:absolute;
     right:0;
     top:48px;
-
     width:190px;
-
     background:white;
-
     border:1px solid #ddd;
     border-radius:10px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.25);
-
+    box-shadow:0 4px 15px rgba(0,0,0,.25);
     overflow:hidden;
-
-    z-index:50;
-
+    z-index:2000;
     pointer-events:auto;
 }
 
@@ -349,18 +284,14 @@ body{
 .profile-dropdown button{
     width:100%;
     padding:13px;
-
     border:0;
     border-bottom:1px solid #eee;
-
     background:white;
     color:#222;
-
     text-align:left;
-
     cursor:pointer;
-
     font-size:14px;
+    touch-action:manipulation;
 }
 
 .profile-dropdown button:last-child{
@@ -371,57 +302,66 @@ body{
     background:#f5f5f5;
 }
 
+/* COVER CAMERA */
+
+.cover-camera{
+    position:absolute;
+    right:62px;
+    top:12px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:3px solid white;
+    background:#1976d2;
+    color:white;
+    cursor:pointer;
+    z-index:1002;
+    box-shadow:0 2px 8px rgba(0,0,0,.35);
+    pointer-events:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:17px;
+    touch-action:manipulation;
+}
+
 /* PROFILE CONTENT */
 
 .profile-top,
 .profile-actions,
 .profile-info{
     position:relative;
-    z-index:5;
+    z-index:10;
 }
 
 .profile-top{
     text-align:center;
-
     margin-top:0;
-
-    padding:
-        85px
-        20px
-        15px;
+    padding:85px 20px 15px;
 }
 
 .profile-avatar-wrap{
     position:relative;
-
     width:110px;
     height:110px;
-
     margin:auto;
+    z-index:30;
 }
 
 .profile-avatar{
     width:110px;
     height:110px;
-
     border-radius:50%;
-
     background:#1976d2;
     color:white;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:40px;
     font-weight:bold;
-
     overflow:hidden;
-
     border:5px solid white;
-
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.3);
+    box-shadow:0 3px 12px rgba(0,0,0,.3);
 }
 
 .profile-avatar img{
@@ -430,96 +370,60 @@ body{
     object-fit:cover;
 }
 
+/* PROFILE PHOTO CAMERA */
+
 .camera-btn{
     position:absolute;
-
     right:0;
     bottom:0;
-
     width:35px;
     height:35px;
-
     border-radius:50%;
-
     border:3px solid white;
-
     background:#1976d2;
     color:white;
-
     cursor:pointer;
-
-    z-index:15;
+    z-index:1003;
+    pointer-events:auto;
+    touch-action:manipulation;
+    box-shadow:0 2px 7px rgba(0,0,0,.35);
 }
-
-/* WHITE TEXT */
 
 .profile-name{
     color:white;
-
     font-size:23px;
     font-weight:bold;
-
     margin-top:10px;
-
-    text-shadow:
-        0 2px 5px rgba(0,0,0,.55);
+    text-shadow:0 2px 5px rgba(0,0,0,.55);
 }
 
 .profile-status{
     color:rgba(255,255,255,.95);
-
     margin-top:5px;
-
-    text-shadow:
-        0 1px 4px rgba(0,0,0,.5);
+    text-shadow:0 1px 4px rgba(0,0,0,.5);
 }
 
 .profile-bio{
     color:white;
-
     margin-top:8px;
-
     font-size:14px;
-
-    text-shadow:
-        0 1px 4px rgba(0,0,0,.55);
+    text-shadow:0 1px 4px rgba(0,0,0,.55);
 }
 
-/* PROFILE INFO */
-
 .profile-info{
-    margin:
-        10px
-        20px
-        0;
-
-    padding:
-        0
-        12px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.35);
-
-    background:
-        rgba(0,0,0,.25);
-
+    margin:10px 20px 0;
+    padding:0 12px;
+    border-top:1px solid rgba(255,255,255,.35);
+    background:rgba(0,0,0,.25);
     border-radius:14px;
-
     overflow:hidden;
 }
 
 .info-row{
     display:flex;
     align-items:center;
-
-    padding:
-        13px
-        5px;
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.25);
+    padding:13px 5px;
+    border-bottom:1px solid rgba(255,255,255,.25);
 }
 
 .info-row:last-child{
@@ -551,38 +455,20 @@ body{
     font-style:italic;
 }
 
-/* PROFILE ACTIONS */
-
 .profile-actions{
     display:flex;
     gap:8px;
-
-    padding:
-        0
-        20px
-        15px;
+    padding:0 20px 15px;
 }
 
 .profile-actions button{
     flex:1;
-
-    padding:
-        10px
-        5px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.7);
-
+    padding:10px 5px;
+    border:1px solid rgba(255,255,255,.7);
     border-radius:8px;
-
-    background:
-        rgba(255,255,255,.95);
-
+    background:rgba(255,255,255,.95);
     color:#222;
-
     cursor:pointer;
-
     font-size:12px;
 }
 
@@ -605,10 +491,8 @@ body{
 
 .form-group label{
     display:block;
-
     font-size:13px;
     color:#555;
-
     margin-bottom:6px;
 }
 
@@ -616,15 +500,9 @@ body{
 .form-group select,
 .form-group textarea{
     width:100%;
-
     padding:11px;
-
-    border:
-        1px solid
-        #ddd;
-
+    border:1px solid #ddd;
     border-radius:8px;
-
     font-size:14px;
 }
 
@@ -641,17 +519,10 @@ body{
 
 .privacy-row button{
     flex:1;
-
     padding:7px;
-
-    border:
-        1px solid
-        #ddd;
-
+    border:1px solid #ddd;
     background:white;
-
     border-radius:7px;
-
     cursor:pointer;
 }
 
@@ -663,37 +534,23 @@ body{
 
 .save-profile{
     width:100%;
-
     padding:13px;
-
     border:0;
     border-radius:9px;
-
     background:#1976d2;
     color:white;
-
     font-size:16px;
-
     margin-top:10px;
-
     cursor:pointer;
 }
 
 .cancel-edit{
     width:100%;
-
     padding:12px;
-
-    border:
-        1px solid
-        #ddd;
-
+    border:1px solid #ddd;
     border-radius:9px;
-
     background:white;
-
     margin-top:8px;
-
     cursor:pointer;
 }
 
@@ -701,7 +558,6 @@ body{
 
 .section-title{
     padding:15px;
-
     font-size:18px;
     font-weight:bold;
 }
@@ -709,12 +565,8 @@ body{
 .friend-item{
     display:flex;
     align-items:center;
-
     padding:14px;
-
-    border-bottom:
-        1px solid
-        #eee;
+    border-bottom:1px solid #eee;
 }
 
 .friend-info{
@@ -723,42 +575,26 @@ body{
 
 .friend-item button{
     border:0;
-
     background:#1976d2;
     color:white;
-
-    padding:
-        8px
-        12px;
-
+    padding:8px 12px;
     border-radius:7px;
-
     cursor:pointer;
 }
 
 /* ROOMS */
 
 .room-title{
-    padding:
-        15px
-        15px
-        5px;
-
+    padding:15px 15px 5px;
     color:#777;
-
     font-size:13px;
 }
 
 .room-item{
     display:flex;
     align-items:center;
-
     padding:14px;
-
-    border-bottom:
-        1px solid
-        #eee;
-
+    border-bottom:1px solid #eee;
     cursor:pointer;
 }
 
@@ -768,74 +604,46 @@ body{
 
 .room-item button{
     border:0;
-
     background:#1976d2;
     color:white;
-
-    padding:
-        8px
-        12px;
-
+    padding:8px 12px;
     border-radius:7px;
-
     cursor:pointer;
 }
 
 .room-icon{
     width:45px;
     height:45px;
-
     border-radius:50%;
-
     background:#e8f1fb;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:23px;
-
     margin-right:12px;
 }
 
 .room-back{
-    padding:
-        12px
-        15px;
-
+    padding:12px 15px;
     border:0;
-
     background:white;
     color:#1976d2;
-
     font-size:15px;
-
     cursor:pointer;
 }
 
 .room-country-title{
     padding:15px;
-
     font-size:20px;
     font-weight:bold;
-
-    border-bottom:
-        1px solid
-        #eee;
+    border-bottom:1px solid #eee;
 }
 
 .region-item{
     display:flex;
     align-items:center;
-
-    padding:
-        14px
-        15px;
-
-    border-bottom:
-        1px solid
-        #eee;
-
+    padding:14px 15px;
+    border-bottom:1px solid #eee;
     cursor:pointer;
 }
 
@@ -857,44 +665,29 @@ body{
 
 #groupRoomScreen{
     display:none;
-
     position:fixed;
     inset:0;
-
     background:white;
-
     max-width:480px;
-
     margin:auto;
-
     z-index:300;
 }
 
 .group-room-header{
     height:60px;
-
     background:#1976d2;
     color:white;
-
     display:flex;
     align-items:center;
-
-    padding:
-        8px
-        10px;
+    padding:8px 10px;
 }
 
 .group-back{
     border:0;
-
     background:none;
-
     color:white;
-
     font-size:26px;
-
     margin-right:8px;
-
     cursor:pointer;
 }
 
@@ -912,172 +705,109 @@ body{
 }
 
 .group-room-body{
-    height:
-        calc(100vh - 120px);
-
+    height:calc(100vh - 120px);
     display:flex;
-
     background:#eef2f7;
 }
 
 .room-users{
     width:125px;
-
     background:white;
-
-    border-right:
-        1px solid
-        #ddd;
-
+    border-right:1px solid #ddd;
     overflow-y:auto;
 }
 
 .room-users-title{
-    padding:
-        12px
-        8px;
-
+    padding:12px 8px;
     font-size:12px;
     color:#777;
-
     font-weight:bold;
-
-    border-bottom:
-        1px solid
-        #eee;
+    border-bottom:1px solid #eee;
 }
 
 .room-user{
     display:flex;
     align-items:center;
-
-    padding:
-        9px
-        7px;
-
-    border-bottom:
-        1px solid
-        #f1f1f1;
-
+    padding:9px 7px;
+    border-bottom:1px solid #f1f1f1;
     font-size:12px;
 }
 
 .room-user-dot{
     width:9px;
     height:9px;
-
     border-radius:50%;
-
     background:#4caf50;
-
     margin-right:7px;
 }
 
 .room-messages{
     flex:1;
-
     overflow-y:auto;
-
     padding:12px;
 }
 
 .room-message{
     background:white;
-
-    padding:
-        8px
-        10px;
-
+    padding:8px 10px;
     border-radius:10px;
-
     margin-bottom:8px;
-
     max-width:90%;
-
     word-wrap:break-word;
 }
 
 .room-message.me{
     margin-left:auto;
-
     background:#1976d2;
-
     color:white;
 }
 
 .room-message-user{
     font-size:11px;
     font-weight:bold;
-
     margin-bottom:3px;
 }
 
 .room-message-time{
     font-size:9px;
-
     opacity:.6;
-
     margin-top:4px;
 }
 
 .room-empty{
     text-align:center;
-
     color:#888;
-
     margin-top:30px;
-
     font-size:13px;
 }
 
 .group-room-input{
     position:absolute;
-
     bottom:0;
     left:0;
     right:0;
-
     height:60px;
-
     background:white;
-
-    border-top:
-        1px solid
-        #ddd;
-
+    border-top:1px solid #ddd;
     display:flex;
-
     padding:8px;
 }
 
 .group-room-input input{
     flex:1;
-
-    border:
-        1px solid
-        #ddd;
-
+    border:1px solid #ddd;
     border-radius:20px;
-
-    padding:
-        10px
-        14px;
+    padding:10px 14px;
 }
 
 .group-room-input button{
     width:55px;
-
     margin-left:7px;
-
     border:0;
-
     border-radius:20px;
-
     background:#1976d2;
     color:white;
-
     font-size:18px;
-
     cursor:pointer;
 }
 
@@ -1085,44 +815,29 @@ body{
 
 #chatScreen{
     display:none;
-
     position:fixed;
     inset:0;
-
     background:white;
-
     max-width:480px;
-
     margin:auto;
-
     z-index:200;
 }
 
 .chat-header{
     height:60px;
-
     background:#1976d2;
     color:white;
-
     display:flex;
     align-items:center;
-
-    padding:
-        8px
-        10px;
+    padding:8px 10px;
 }
 
 .back-btn{
     border:0;
-
     background:none;
-
     color:white;
-
     font-size:25px;
-
     margin-right:8px;
-
     cursor:pointer;
 }
 
@@ -1142,78 +857,52 @@ body{
 .delete-chat{
     background:#d32f2f;
     color:white;
-
     border:0;
-
-    padding:
-        7px
-        9px;
-
+    padding:7px 9px;
     border-radius:8px;
-
     font-size:11px;
-
     cursor:pointer;
 }
 
 .messages{
-    height:
-        calc(100vh - 120px);
-
+    height:calc(100vh - 120px);
     overflow-y:auto;
-
     padding:15px;
-
     background:#eef2f7;
 }
 
 .message{
     max-width:75%;
-
-    padding:
-        9px
-        11px;
-
+    padding:9px 11px;
     border-radius:12px;
-
     margin-bottom:10px;
-
     word-wrap:break-word;
 }
 
 .message.me{
     margin-left:auto;
-
     background:#1976d2;
     color:white;
 }
 
 .message.them{
     margin-right:auto;
-
     background:white;
     color:#222;
 }
 
 .message-time{
     font-size:10px;
-
     opacity:.65;
-
     margin-top:5px;
 }
 
 .delete-message{
     border:0;
-
     background:none;
-
     color:#d32f2f;
-
     font-size:11px;
-
     margin-top:5px;
-
     cursor:pointer;
 }
 
@@ -1223,60 +912,37 @@ body{
 
 .empty-message{
     text-align:center;
-
     color:#888;
-
     margin-top:30px;
 }
 
 .chat-input{
     position:absolute;
-
     bottom:0;
     left:0;
     right:0;
-
     height:60px;
-
     background:white;
-
-    border-top:
-        1px solid
-        #ddd;
-
+    border-top:1px solid #ddd;
     display:flex;
-
     padding:8px;
 }
 
 .chat-input input{
     flex:1;
-
-    border:
-        1px solid
-        #ddd;
-
+    border:1px solid #ddd;
     border-radius:20px;
-
-    padding:
-        10px
-        14px;
+    padding:10px 14px;
 }
 
 .chat-input button{
     width:55px;
-
     margin-left:7px;
-
     border:0;
-
     border-radius:20px;
-
     background:#1976d2;
     color:white;
-
     font-size:18px;
-
     cursor:pointer;
 }
 </style>
@@ -1285,8 +951,6 @@ body{
 <body>
 
 <div class="app">
-
-<!-- AUTH -->
 
 <div id="authScreen" class="auth">
 
@@ -1321,15 +985,11 @@ body{
 
 </div>
 
-<!-- MAIN -->
-
 <div id="mainApp" style="display:none;">
 
     <div class="header">
         💬 YAM Chat
     </div>
-
-    <!-- CHATS -->
 
     <div id="chatsPage"
          class="page active">
@@ -1349,8 +1009,6 @@ body{
 
     </div>
 
-    <!-- FRIENDS -->
-
     <div id="friendsPage"
          class="page">
 
@@ -1361,8 +1019,6 @@ body{
         <div id="friendsList"></div>
 
     </div>
-
-    <!-- ROOMS -->
 
     <div id="roomsPage"
          class="page">
@@ -1513,24 +1169,20 @@ body{
 
     </div>
 
-    <!-- PROFILE -->
-
     <div id="profilePage"
          class="page">
 
         <div class="profile">
 
-            <!-- CONTROL LAYER -->
-
-            <div id="profileCover"
-                 class="profile-cover">
+            <!-- PROFILE CONTROLS -->
+            <div class="profile-controls">
 
                 <div class="profile-three-dot-wrap">
 
                     <button
                         type="button"
                         class="profile-three-dot"
-                        onclick="toggleProfileMenu(event)">
+                        id="profileMenuButton">
 
                         ⋮
 
@@ -1541,7 +1193,7 @@ body{
 
                         <button
                             type="button"
-                            onclick="openEditProfile()">
+                            id="editProfileButton">
 
                             ✏️ Edit Profile
 
@@ -1554,15 +1206,13 @@ body{
                 <button
                     type="button"
                     class="cover-camera"
-                    onclick="changeCoverPhoto()">
+                    id="coverCameraButton">
 
                     📷
 
                 </button>
 
             </div>
-
-            <!-- PROFILE CONTENT -->
 
             <div class="profile-top">
 
@@ -1578,7 +1228,7 @@ body{
                     <button
                         type="button"
                         class="camera-btn"
-                        onclick="changeProfilePicture()">
+                        id="profileCameraButton">
 
                         📷
 
@@ -1642,8 +1292,6 @@ body{
 
     </div>
 
-    <!-- EDIT PROFILE -->
-
     <div id="editProfilePage"
          class="page">
 
@@ -1662,17 +1310,15 @@ body{
 
                 <div class="privacy-row">
 
-                    <button
-                        id="namePublic"
-                        onclick="setPrivacy('name','public')">
+                    <button id="namePublic"
+                            onclick="setPrivacy('name','public')">
 
                         🌐 Public
 
                     </button>
 
-                    <button
-                        id="namePrivate"
-                        onclick="setPrivacy('name','private')">
+                    <button id="namePrivate"
+                            onclick="setPrivacy('name','private')">
 
                         🔒 Private
 
@@ -1691,17 +1337,15 @@ body{
 
                 <div class="privacy-row">
 
-                    <button
-                        id="birthdayPublic"
-                        onclick="setPrivacy('birthday','public')">
+                    <button id="birthdayPublic"
+                            onclick="setPrivacy('birthday','public')">
 
                         🌐 Public
 
                     </button>
 
-                    <button
-                        id="birthdayPrivate"
-                        onclick="setPrivacy('birthday','private')">
+                    <button id="birthdayPrivate"
+                            onclick="setPrivacy('birthday','private')">
 
                         🔒 Private
 
@@ -1721,17 +1365,15 @@ body{
 
                 <div class="privacy-row">
 
-                    <button
-                        id="locationPublic"
-                        onclick="setPrivacy('location','public')">
+                    <button id="locationPublic"
+                            onclick="setPrivacy('location','public')">
 
                         🌐 Public
 
                     </button>
 
-                    <button
-                        id="locationPrivate"
-                        onclick="setPrivacy('location','private')">
+                    <button id="locationPrivate"
+                            onclick="setPrivacy('location','private')">
 
                         🔒 Private
 
@@ -1751,17 +1393,15 @@ body{
 
                 <div class="privacy-row">
 
-                    <button
-                        id="jobPublic"
-                        onclick="setPrivacy('job','public')">
+                    <button id="jobPublic"
+                            onclick="setPrivacy('job','public')">
 
                         🌐 Public
 
                     </button>
 
-                    <button
-                        id="jobPrivate"
-                        onclick="setPrivacy('job','private')">
+                    <button id="jobPrivate"
+                            onclick="setPrivacy('job','private')">
 
                         🔒 Private
 
@@ -1777,9 +1417,7 @@ body{
 
                 <select id="editGender">
 
-                    <option value="">
-                        Pilih
-                    </option>
+                    <option value="">Pilih</option>
 
                     <option value="Lelaki">
                         Lelaki
@@ -1793,17 +1431,15 @@ body{
 
                 <div class="privacy-row">
 
-                    <button
-                        id="genderPublic"
-                        onclick="setPrivacy('gender','public')">
+                    <button id="genderPublic"
+                            onclick="setPrivacy('gender','public')">
 
                         🌐 Public
 
                     </button>
 
-                    <button
-                        id="genderPrivate"
-                        onclick="setPrivacy('gender','private')">
+                    <button id="genderPrivate"
+                            onclick="setPrivacy('gender','private')">
 
                         🔒 Private
 
@@ -1817,24 +1453,20 @@ body{
 
                 <label>Bio</label>
 
-                <textarea
-                    id="editBio"
-                    placeholder="Ceritakan sedikit tentang diri...">
-                </textarea>
+                <textarea id="editBio"
+                          placeholder="Ceritakan sedikit tentang diri..."></textarea>
 
                 <div class="privacy-row">
 
-                    <button
-                        id="bioPublic"
-                        onclick="setPrivacy('bio','public')">
+                    <button id="bioPublic"
+                            onclick="setPrivacy('bio','public')">
 
                         🌐 Public
 
                     </button>
 
-                    <button
-                        id="bioPrivate"
-                        onclick="setPrivacy('bio','private')">
+                    <button id="bioPrivate"
+                            onclick="setPrivacy('bio','private')">
 
                         🔒 Private
 
@@ -1844,17 +1476,15 @@ body{
 
             </div>
 
-            <button
-                class="save-profile"
-                onclick="saveProfile()">
+            <button class="save-profile"
+                    onclick="saveProfile()">
 
                 💾 Simpan Profile
 
             </button>
 
-            <button
-                class="cancel-edit"
-                onclick="cancelEditProfile()">
+            <button class="cancel-edit"
+                    onclick="cancelEditProfile()">
 
                 Batal
 
@@ -1864,41 +1494,35 @@ body{
 
     </div>
 
-    <!-- NAV -->
-
     <div class="bottom-nav">
 
-        <button
-            id="navChats"
-            class="active"
-            onclick="showPage('chatsPage',this)">
+        <button id="navChats"
+                class="active"
+                onclick="showPage('chatsPage',this)">
 
             💬<br>
             Chats
 
         </button>
 
-        <button
-            id="navFriends"
-            onclick="showPage('friendsPage',this)">
+        <button id="navFriends"
+                onclick="showPage('friendsPage',this)">
 
             👥<br>
             Friends
 
         </button>
 
-        <button
-            id="navRooms"
-            onclick="showPage('roomsPage',this)">
+        <button id="navRooms"
+                onclick="showPage('roomsPage',this)">
 
             🌍<br>
             Rooms
 
         </button>
 
-        <button
-            id="navProfile"
-            onclick="showPage('profilePage',this)">
+        <button id="navProfile"
+                onclick="showPage('profilePage',this)">
 
             👤<br>
             Profile
@@ -1909,15 +1533,12 @@ body{
 
 </div>
 
-<!-- NORMAL CHAT -->
-
 <div id="chatScreen">
 
     <div class="chat-header">
 
-        <button
-            class="back-btn"
-            onclick="closeChat()">
+        <button class="back-btn"
+                onclick="closeChat()">
 
             ‹
 
@@ -1938,9 +1559,8 @@ body{
 
         </div>
 
-        <button
-            class="delete-chat"
-            onclick="deleteWholeChat()">
+        <button class="delete-chat"
+                onclick="deleteWholeChat()">
 
             🗑️ Padam
 
@@ -1954,11 +1574,10 @@ body{
 
     <div class="chat-input">
 
-        <input
-            id="messageInput"
-            type="text"
-            placeholder="Tulis mesej..."
-            onkeydown="handleMessageKey(event)">
+        <input id="messageInput"
+               type="text"
+               placeholder="Tulis mesej..."
+               onkeydown="handleMessageKey(event)">
 
         <button onclick="sendMessage()">
             ➤
@@ -1968,15 +1587,12 @@ body{
 
 </div>
 
-<!-- GROUP ROOM -->
-
 <div id="groupRoomScreen">
 
     <div class="group-room-header">
 
-        <button
-            class="group-back"
-            onclick="closeGroupRoom()">
+        <button class="group-back"
+                onclick="closeGroupRoom()">
 
             ‹
 
@@ -2022,11 +1638,10 @@ body{
 
     <div class="group-room-input">
 
-        <input
-            id="roomMessageInput"
-            type="text"
-            placeholder="Tulis mesej dalam room..."
-            onkeydown="handleRoomKey(event)">
+        <input id="roomMessageInput"
+               type="text"
+               placeholder="Tulis mesej dalam room..."
+               onkeydown="handleRoomKey(event)">
 
         <button onclick="sendRoomMessage()">
             ➤
@@ -2036,29 +1651,23 @@ body{
 
 </div>
 
-<!-- FILE INPUT -->
+<input id="profilePictureInput"
+       type="file"
+       accept="image/*"
+       style="display:none">
 
-<input
-    id="profilePictureInput"
-    type="file"
-    accept="image/*"
-    style="display:none"
-    onchange="saveProfilePicture(event)">
-
-<input
-    id="coverPhotoInput"
-    type="file"
-    accept="image/*"
-    style="display:none"
-    onchange="saveCoverPhoto(event)">
+<input id="coverPhotoInput"
+       type="file"
+       accept="image/*"
+       style="display:none">
 
 <script>
 
-/* =========================
-   AUTH
-========================= */
-
 let registerMode = false;
+
+/* =====================================================
+   AUTH
+===================================================== */
 
 function switchAuth(){
 
@@ -2098,27 +1707,17 @@ function switchAuth(){
 function authAction(){
 
     const name =
-        document
-        .getElementById("authName")
-        .value
-        .trim();
+        document.getElementById("authName").value.trim();
 
     const username =
-        document
-        .getElementById("authUsername")
-        .value
-        .trim();
+        document.getElementById("authUsername").value.trim();
 
     const password =
-        document
-        .getElementById("authPassword")
-        .value;
+        document.getElementById("authPassword").value;
 
     if(!username || !password){
 
-        alert(
-            "Sila isi username dan password."
-        );
+        alert("Sila isi username dan password.");
 
         return;
 
@@ -2126,18 +1725,14 @@ function authAction(){
 
     let accounts =
         JSON.parse(
-            localStorage.getItem(
-                "yam_accounts"
-            ) || "{}"
+            localStorage.getItem("yam_accounts") || "{}"
         );
 
     if(registerMode){
 
         if(!name){
 
-            alert(
-                "Sila masukkan nama."
-            );
+            alert("Sila masukkan nama.");
 
             return;
 
@@ -2145,9 +1740,7 @@ function authAction(){
 
         if(accounts[username]){
 
-            alert(
-                "Username sudah digunakan."
-            );
+            alert("Username sudah digunakan.");
 
             return;
 
@@ -2181,9 +1774,7 @@ function authAction(){
             accounts[username].password !== password
         ){
 
-            alert(
-                "Username atau password salah."
-            );
+            alert("Username atau password salah.");
 
             return;
 
@@ -2200,8 +1791,6 @@ function authAction(){
 
 }
 
-/* ACCOUNT */
-
 function getCurrentUser(){
 
     return localStorage.getItem(
@@ -2213,9 +1802,7 @@ function getCurrentUser(){
 function getAccounts(){
 
     return JSON.parse(
-        localStorage.getItem(
-            "yam_accounts"
-        ) || "{}"
+        localStorage.getItem("yam_accounts") || "{}"
     );
 
 }
@@ -2228,8 +1815,6 @@ function saveAccounts(accounts){
     );
 
 }
-
-/* START / LOGOUT */
 
 function startApp(){
 
@@ -2247,102 +1832,34 @@ function startApp(){
 
 }
 
-function logout(){
-
-    if(!confirm(
-        "Betul mahu logout?"
-    )){
-
-        return;
-
-    }
-
-    closeProfileMenu();
-
-    localStorage.removeItem(
-        "yam_current_user"
-    );
-
-    document.getElementById(
-        "mainApp"
-    ).style.display = "none";
-
-    document.getElementById(
-        "authScreen"
-    ).style.display = "flex";
-
-}
-
-/* PRIVACY */
-
-function getProfilePrivacy(){
-
-    const username =
-        getCurrentUser();
-
-    let privacy =
-        JSON.parse(
-            localStorage.getItem(
-                "yam_privacy_" + username
-            ) || "null"
-        );
-
-    if(!privacy){
-
-        privacy = {
-
-            name:"public",
-            birthday:"private",
-            location:"private",
-            job:"public",
-            gender:"private",
-            bio:"public"
-
-        };
-
-        localStorage.setItem(
-            "yam_privacy_" + username,
-            JSON.stringify(privacy)
-        );
-
-    }
-
-    return privacy;
-
-}
-
-/* PROFILE */
+/* =====================================================
+   PROFILE
+===================================================== */
 
 function loadProfile(){
 
-    const username =
-        getCurrentUser();
+    const username = getCurrentUser();
 
     if(!username){
         return;
     }
 
-    const accounts =
-        getAccounts();
+    const accounts = getAccounts();
 
-    const account =
-        accounts[username];
+    const account = accounts[username];
 
     if(!account){
         return;
     }
 
-    const name =
-        account.name || username;
+    const name = account.name || username;
 
     document.getElementById(
         "profileName"
     ).innerText = name;
 
     const avatar =
-        document.getElementById(
-            "profileAvatar"
-        );
+        document.getElementById("profileAvatar");
 
     const picture =
         localStorage.getItem(
@@ -2357,7 +1874,6 @@ function loadProfile(){
             document.createElement("img");
 
         img.src = picture;
-
         img.alt = "Profile";
 
         avatar.appendChild(img);
@@ -2383,17 +1899,13 @@ function loadProfile(){
     ).innerText =
         account.bio || "";
 
-    /* COVER */
-
     const cover =
         localStorage.getItem(
             "yam_cover_" + username
         );
 
     const profileBox =
-        document.querySelector(
-            ".profile"
-        );
+        document.querySelector(".profile");
 
     if(cover){
 
@@ -2411,110 +1923,20 @@ function loadProfile(){
 
 }
 
-/* PROFILE INFO */
-
-function loadProfileInfo(){
-
-    const username =
-        getCurrentUser();
-
-    const accounts =
-        getAccounts();
-
-    const account =
-        accounts[username] || {};
-
-    const privacy =
-        getProfilePrivacy();
-
-    const box =
-        document.getElementById(
-            "profileInfo"
-        );
-
-    box.innerHTML = "";
-
-    const fields = [
-
-        ["🎂","Birthday","birthday"],
-        ["📍","Current Location","location"],
-        ["💼","Pekerjaan","job"],
-        ["⚧️","Jantina","gender"],
-        ["📝","Bio","bio"]
-
-    ];
-
-    fields.forEach(field => {
-
-        const icon = field[0];
-        const label = field[1];
-        const key = field[2];
-
-        const row =
-            document.createElement("div");
-
-        row.className =
-            "info-row";
-
-        const value =
-            account[key] || "";
-
-        let displayValue = "";
-
-        if(
-            privacy[key] === "private"
-        ){
-
-            displayValue =
-                "🔒 Private";
-
-        }else if(value){
-
-            displayValue = value;
-
-        }else{
-
-            displayValue =
-                "Belum diisi";
-
-        }
-
-        row.innerHTML = `
-
-            <div class="info-icon">
-                ${icon}
-            </div>
-
-            <div class="info-content">
-
-                <div class="info-label">
-                    ${label}
-                </div>
-
-                <div class="info-value">
-                    ${displayValue}
-                </div>
-
-            </div>
-
-        `;
-
-        box.appendChild(row);
-
-    });
-
-}
-
-/* PROFILE PHOTO */
-
 function changeProfilePicture(){
-
-    closeProfileMenu();
 
     const input =
         document.getElementById(
             "profilePictureInput"
         );
+
+    if(!input){
+
+        alert("Profile photo input tidak dijumpai.");
+
+        return;
+
+    }
 
     input.value = "";
 
@@ -2531,13 +1953,9 @@ function saveProfilePicture(event){
         return;
     }
 
-    if(
-        !file.type.startsWith("image/")
-    ){
+    if(!file.type.startsWith("image/")){
 
-        alert(
-            "Sila pilih fail gambar."
-        );
+        alert("Sila pilih fail gambar.");
 
         return;
 
@@ -2546,43 +1964,42 @@ function saveProfilePicture(event){
     const reader =
         new FileReader();
 
-    reader.onload =
-        function(e){
+    reader.onload = function(e){
 
-            const username =
-                getCurrentUser();
+        const username = getCurrentUser();
 
-            localStorage.setItem(
-                "yam_picture_" + username,
-                e.target.result
-            );
+        localStorage.setItem(
+            "yam_picture_" + username,
+            e.target.result
+        );
 
-            loadProfile();
-            updateChatList();
+        loadProfile();
+        updateChatList();
 
-            alert(
-                "Profile photo berjaya ditukar.\nProfile Photo sentiasa Public."
-            );
+        alert(
+            "Profile photo berjaya ditukar."
+        );
 
-        };
+    };
 
     reader.readAsDataURL(file);
 
 }
 
-/* COVER PHOTO */
-
 function changeCoverPhoto(){
-
-    closeProfileMenu();
 
     const input =
         document.getElementById(
             "coverPhotoInput"
         );
 
-    /* Reset supaya gambar yang sama
-       boleh dipilih semula */
+    if(!input){
+
+        alert("Cover photo input tidak dijumpai.");
+
+        return;
+
+    }
 
     input.value = "";
 
@@ -2599,13 +2016,9 @@ function saveCoverPhoto(event){
         return;
     }
 
-    if(
-        !file.type.startsWith("image/")
-    ){
+    if(!file.type.startsWith("image/")){
 
-        alert(
-            "Sila pilih fail gambar."
-        );
+        alert("Sila pilih fail gambar.");
 
         return;
 
@@ -2614,39 +2027,32 @@ function saveCoverPhoto(event){
     const reader =
         new FileReader();
 
-    reader.onload =
-        function(e){
+    reader.onload = function(e){
 
-            const username =
-                getCurrentUser();
+        const username = getCurrentUser();
 
-            localStorage.setItem(
-                "yam_cover_" + username,
-                e.target.result
-            );
+        localStorage.setItem(
+            "yam_cover_" + username,
+            e.target.result
+        );
 
-            loadProfile();
+        loadProfile();
 
-            alert(
-                "Cover photo berjaya ditukar.\nCover Photo sentiasa Public."
-            );
+        alert(
+            "Background photo berjaya ditukar."
+        );
 
-        };
+    };
 
     reader.readAsDataURL(file);
 
 }
 
-/* THREE DOT */
+/* =====================================================
+   PROFILE MENU
+===================================================== */
 
-function toggleProfileMenu(event){
-
-    if(event){
-
-        event.preventDefault();
-        event.stopPropagation();
-
-    }
+function toggleProfileMenu(){
 
     const menu =
         document.getElementById(
@@ -2661,7 +2067,24 @@ function toggleProfileMenu(event){
 
 }
 
-/* EDIT PROFILE */
+function closeProfileMenu(){
+
+    const menu =
+        document.getElementById(
+            "profileDropdown"
+        );
+
+    if(menu){
+
+        menu.classList.remove("show");
+
+    }
+
+}
+
+/* =====================================================
+   EDIT PROFILE
+===================================================== */
 
 let editPrivacy = {};
 
@@ -2669,11 +2092,9 @@ function openEditProfile(){
 
     closeProfileMenu();
 
-    const username =
-        getCurrentUser();
+    const username = getCurrentUser();
 
-    const accounts =
-        getAccounts();
+    const accounts = getAccounts();
 
     const account =
         accounts[username] || {};
@@ -2719,17 +2140,49 @@ function openEditProfile(){
 
     showPage(
         "editProfilePage",
-        document.getElementById(
-            "navProfile"
-        )
+        document.getElementById("navProfile")
     );
+
+}
+
+function getProfilePrivacy(){
+
+    const username = getCurrentUser();
+
+    let privacy =
+        JSON.parse(
+            localStorage.getItem(
+                "yam_privacy_" + username
+            ) || "null"
+        );
+
+    if(!privacy){
+
+        privacy = {
+
+            name:"public",
+            birthday:"private",
+            location:"private",
+            job:"public",
+            gender:"private",
+            bio:"public"
+
+        };
+
+        localStorage.setItem(
+            "yam_privacy_" + username,
+            JSON.stringify(privacy)
+        );
+
+    }
+
+    return privacy;
 
 }
 
 function setPrivacy(field,value){
 
-    editPrivacy[field] =
-        value;
+    editPrivacy[field] = value;
 
     updatePrivacyButtons();
 
@@ -2738,14 +2191,12 @@ function setPrivacy(field,value){
 function updatePrivacyButtons(){
 
     const fields = [
-
         "name",
         "birthday",
         "location",
         "job",
         "gender",
         "bio"
-
     ];
 
     fields.forEach(field => {
@@ -2784,11 +2235,9 @@ function updatePrivacyButtons(){
 
 function saveProfile(){
 
-    const username =
-        getCurrentUser();
+    const username = getCurrentUser();
 
-    const accounts =
-        getAccounts();
+    const accounts = getAccounts();
 
     if(!accounts[username]){
         return;
@@ -2801,16 +2250,13 @@ function saveProfile(){
 
     if(!newName){
 
-        alert(
-            "Nama tidak boleh kosong."
-        );
+        alert("Nama tidak boleh kosong.");
 
         return;
 
     }
 
-    accounts[username].name =
-        newName;
+    accounts[username].name = newName;
 
     accounts[username].birthday =
         document.getElementById(
@@ -2847,15 +2293,11 @@ function saveProfile(){
     loadProfile();
     updateChatList();
 
-    alert(
-        "Profile berjaya disimpan."
-    );
+    alert("Profile berjaya disimpan.");
 
     showPage(
         "profilePage",
-        document.getElementById(
-            "navProfile"
-        )
+        document.getElementById("navProfile")
     );
 
 }
@@ -2864,26 +2306,19 @@ function cancelEditProfile(){
 
     showPage(
         "profilePage",
-        document.getElementById(
-            "navProfile"
-        )
+        document.getElementById("navProfile")
     );
 
 }
 
-/* CHANGE NAME */
-
 function changeName(){
 
-    const username =
-        getCurrentUser();
+    const username = getCurrentUser();
 
-    const accounts =
-        getAccounts();
+    const accounts = getAccounts();
 
     const oldName =
-        accounts[username].name ||
-        username;
+        accounts[username].name || username;
 
     const newName =
         prompt(
@@ -2895,21 +2330,17 @@ function changeName(){
         return;
     }
 
-    const cleanName =
-        newName.trim();
+    const cleanName = newName.trim();
 
     if(!cleanName){
 
-        alert(
-            "Nama tidak boleh kosong."
-        );
+        alert("Nama tidak boleh kosong.");
 
         return;
 
     }
 
-    accounts[username].name =
-        cleanName;
+    accounts[username].name = cleanName;
 
     saveAccounts(accounts);
 
@@ -2918,12 +2349,9 @@ function changeName(){
 
 }
 
-/* STATUS */
-
 function editStatus(){
 
-    const username =
-        getCurrentUser();
+    const username = getCurrentUser();
 
     const oldStatus =
         localStorage.getItem(
@@ -2940,8 +2368,7 @@ function editStatus(){
         return;
     }
 
-    const cleanStatus =
-        newStatus.trim();
+    const cleanStatus = newStatus.trim();
 
     if(!cleanStatus){
         return;
@@ -2956,55 +2383,39 @@ function editStatus(){
 
 }
 
-/* PASSWORD */
-
 function changePassword(){
 
-    const username =
-        getCurrentUser();
+    const username = getCurrentUser();
 
-    const accounts =
-        getAccounts();
+    const accounts = getAccounts();
 
     if(!accounts[username]){
         return;
     }
 
     const oldPassword =
-        prompt(
-            "Masukkan password lama:"
-        );
+        prompt("Masukkan password lama:");
 
     if(oldPassword === null){
         return;
     }
 
-    if(
-        oldPassword !==
-        accounts[username].password
-    ){
+    if(oldPassword !== accounts[username].password){
 
-        alert(
-            "Password lama salah."
-        );
+        alert("Password lama salah.");
 
         return;
 
     }
 
     const newPassword =
-        prompt(
-            "Masukkan password baru:"
-        );
+        prompt("Masukkan password baru:");
 
     if(newPassword === null){
         return;
     }
 
-    if(
-        !newPassword ||
-        newPassword.length < 4
-    ){
+    if(!newPassword || newPassword.length < 4){
 
         alert(
             "Password baru mesti sekurang-kurangnya 4 aksara."
@@ -3015,35 +2426,53 @@ function changePassword(){
     }
 
     const confirmPassword =
-        prompt(
-            "Masukkan semula password baru:"
-        );
+        prompt("Masukkan semula password baru:");
 
-    if(
-        newPassword !==
-        confirmPassword
-    ){
+    if(newPassword !== confirmPassword){
 
-        alert(
-            "Password baru tidak sama."
-        );
+        alert("Password baru tidak sama.");
 
         return;
 
     }
 
-    accounts[username].password =
-        newPassword;
+    accounts[username].password = newPassword;
 
     saveAccounts(accounts);
 
-    alert(
-        "Password berjaya ditukar."
-    );
+    alert("Password berjaya ditukar.");
 
 }
 
-/* PAGES */
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+    if(!confirm("Betul mahu logout?")){
+        return;
+    }
+
+    closeProfileMenu();
+
+    localStorage.removeItem(
+        "yam_current_user"
+    );
+
+    document.getElementById(
+        "mainApp"
+    ).style.display = "none";
+
+    document.getElementById(
+        "authScreen"
+    ).style.display = "flex";
+
+}
+
+/* =====================================================
+   PAGE
+===================================================== */
 
 function showPage(pageId,button){
 
@@ -3051,9 +2480,7 @@ function showPage(pageId,button){
         .querySelectorAll(".page")
         .forEach(page => {
 
-            page.classList.remove(
-                "active"
-            );
+            page.classList.remove("active");
 
         });
 
@@ -3062,46 +2489,34 @@ function showPage(pageId,button){
         .classList.add("active");
 
     document
-        .querySelectorAll(
-            ".bottom-nav button"
-        )
+        .querySelectorAll(".bottom-nav button")
         .forEach(btn => {
 
-            btn.classList.remove(
-                "active"
-            );
+            btn.classList.remove("active");
 
         });
 
     if(button){
-
-        button.classList.add(
-            "active"
-        );
-
+        button.classList.add("active");
     }
 
     if(pageId === "chatsPage"){
-
         updateChatList();
-
     }
 
     if(pageId === "roomsPage"){
-
         closeRoomCountry();
-
     }
 
     if(pageId === "profilePage"){
-
         loadProfile();
-
     }
 
 }
 
-/* FRIENDS */
+/* =====================================================
+   FRIENDS
+===================================================== */
 
 const friends = [
 
@@ -3125,8 +2540,7 @@ function loadFriends(){
         const item =
             document.createElement("div");
 
-        item.className =
-            "friend-item";
+        item.className = "friend-item";
 
         item.innerHTML = `
 
@@ -3144,19 +2558,14 @@ function loadFriends(){
 
             </div>
 
-            <button>
-                Chat
-            </button>
+            <button>Chat</button>
 
         `;
 
         item.querySelector("button")
-            .onclick =
-            function(){
+            .onclick = function(){
 
-                openChat(
-                    friend.name
-                );
+                openChat(friend.name);
 
             };
 
@@ -3166,7 +2575,9 @@ function loadFriends(){
 
 }
 
-/* NORMAL CHAT */
+/* =====================================================
+   CHAT
+===================================================== */
 
 let currentChat = null;
 
@@ -3184,9 +2595,7 @@ function getChatKey(){
 function updateChatList(){
 
     const box =
-        document.getElementById(
-            "chatList"
-        );
+        document.getElementById("chatList");
 
     if(!box){
         return;
@@ -3204,13 +2613,10 @@ function updateChatList(){
 
         const messages =
             JSON.parse(
-                localStorage.getItem(
-                    key
-                ) || "[]"
+                localStorage.getItem(key) || "[]"
             );
 
-        let preview =
-            "Belum ada mesej";
+        let preview = "Belum ada mesej";
 
         if(messages.length){
 
@@ -3222,12 +2628,9 @@ function updateChatList(){
         }
 
         const item =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
-        item.className =
-            "chat-item";
+        item.className = "chat-item";
 
         item.innerHTML = `
 
@@ -3249,14 +2652,11 @@ function updateChatList(){
 
         `;
 
-        item.onclick =
-            function(){
+        item.onclick = function(){
 
-                openChat(
-                    friend.name
-                );
+            openChat(friend.name);
 
-            };
+        };
 
         box.appendChild(item);
 
@@ -3268,23 +2668,17 @@ function searchChats(){
 
     const search =
         document
-        .getElementById(
-            "searchInput"
-        )
+        .getElementById("searchInput")
         .value
         .toLowerCase();
 
     document
-        .querySelectorAll(
-            ".chat-item"
-        )
+        .querySelectorAll(".chat-item")
         .forEach(item => {
 
             const name =
                 item
-                .querySelector(
-                    ".chat-name"
-                )
+                .querySelector(".chat-name")
                 .innerText
                 .toLowerCase();
 
@@ -3299,18 +2693,15 @@ function searchChats(){
 
 function openChat(name){
 
-    currentChat =
-        name;
+    currentChat = name;
 
     document.getElementById(
         "chatUserName"
-    ).innerText =
-        name;
+    ).innerText = name;
 
     document.getElementById(
         "chatScreen"
-    ).style.display =
-        "block";
+    ).style.display = "block";
 
     loadMessages();
 
@@ -3320,8 +2711,7 @@ function closeChat(){
 
     document.getElementById(
         "chatScreen"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
     currentChat = null;
 
@@ -3339,9 +2729,7 @@ function loadMessages(){
         );
 
     const box =
-        document.getElementById(
-            "messages"
-        );
+        document.getElementById("messages");
 
     box.innerHTML = "";
 
@@ -3356,70 +2744,55 @@ function loadMessages(){
 
     }
 
-    messages.forEach(
-        function(msg,index){
+    messages.forEach(function(msg,index){
 
-            const div =
-                document.createElement(
-                    "div"
-                );
+        const div =
+            document.createElement("div");
 
-            div.className =
-                "message " +
-                (
-                    msg.sender === "me"
-                    ? "me"
-                    : "them"
-                );
+        div.className =
+            "message " +
+            (
+                msg.sender === "me"
+                ? "me"
+                : "them"
+            );
 
-            const textDiv =
-                document.createElement(
-                    "div"
-                );
+        const textDiv =
+            document.createElement("div");
 
-            textDiv.innerText =
-                msg.text;
+        textDiv.innerText = msg.text;
 
-            const timeDiv =
-                document.createElement(
-                    "div"
-                );
+        const timeDiv =
+            document.createElement("div");
 
-            timeDiv.className =
-                "message-time";
+        timeDiv.className = "message-time";
 
-            timeDiv.innerText =
-                msg.time || "";
+        timeDiv.innerText = msg.time || "";
 
-            const deleteBtn =
-                document.createElement(
-                    "button"
-                );
+        const deleteBtn =
+            document.createElement("button");
 
-            deleteBtn.className =
-                "delete-message";
+        deleteBtn.className =
+            "delete-message";
 
-            deleteBtn.innerText =
-                "🗑️ Padam mesej";
+        deleteBtn.innerText =
+            "🗑️ Padam mesej";
 
-            deleteBtn.onclick =
-                function(){
+        deleteBtn.onclick = function(){
 
-                    deleteMessage(index);
+            deleteMessage(index);
 
-                };
+        };
 
-            div.appendChild(textDiv);
-            div.appendChild(timeDiv);
-            div.appendChild(deleteBtn);
+        div.appendChild(textDiv);
+        div.appendChild(timeDiv);
+        div.appendChild(deleteBtn);
 
-            box.appendChild(div);
+        box.appendChild(div);
 
-        }
-    );
+    });
 
-    box.scrollTop =
-        box.scrollHeight;
+    box.scrollTop = box.scrollHeight;
 
 }
 
@@ -3447,7 +2820,6 @@ function sendMessage(){
     messages.push({
 
         sender:"me",
-
         text:text,
 
         time:
@@ -3477,9 +2849,7 @@ function sendMessage(){
 function handleMessageKey(event){
 
     if(event.key === "Enter"){
-
         sendMessage();
-
     }
 
 }
@@ -3489,9 +2859,7 @@ function deleteMessage(index){
     if(!confirm(
         "Betul mahu padam mesej ini?"
     )){
-
         return;
-
     }
 
     let messages =
@@ -3501,10 +2869,7 @@ function deleteMessage(index){
             ) || "[]"
         );
 
-    messages.splice(
-        index,
-        1
-    );
+    messages.splice(index,1);
 
     localStorage.setItem(
         getChatKey(),
@@ -3521,9 +2886,7 @@ function deleteWholeChat(){
     if(!confirm(
         "Betul mahu padam seluruh chat ini?"
     )){
-
         return;
-
     }
 
     localStorage.removeItem(
@@ -3534,16 +2897,15 @@ function deleteWholeChat(){
 
 }
 
-/* ROOM DATA */
+/* =====================================================
+   ROOMS
+===================================================== */
 
 const roomData = {
 
     Malaysia:{
-
         flag:"🇲🇾",
-
         regions:[
-
             ["Sabah","🌴"],
             ["Sarawak","🌿"],
             ["Selangor","🏙️"],
@@ -3560,17 +2922,12 @@ const roomData = {
             ["Kuala Lumpur","🏙️"],
             ["Putrajaya","🏢"],
             ["Labuan","🌊"]
-
         ]
-
     },
 
     Philippines:{
-
         flag:"🇵🇭",
-
         regions:[
-
             ["Manila","🏙️"],
             ["Cebu","🏝️"],
             ["Davao","🌴"],
@@ -3578,17 +2935,12 @@ const roomData = {
             ["Visayas","🏝️"],
             ["Mindanao","🌴"],
             ["Palawan","🏖️"]
-
         ]
-
     },
 
     Indonesia:{
-
         flag:"🇮🇩",
-
         regions:[
-
             ["Jakarta","🏙️"],
             ["Java","🌋"],
             ["Sumatra","🌴"],
@@ -3596,48 +2948,33 @@ const roomData = {
             ["Sulawesi","🏝️"],
             ["Bali","🏖️"],
             ["Papua","⛰️"]
-
         ]
-
     },
 
     Singapore:{
-
         flag:"🇸🇬",
-
         regions:[
-
             ["Central Region","🏙️"],
             ["East Region","🌇"],
             ["North Region","🌿"],
             ["North-East Region","🏡"],
             ["West Region","🌆"]
-
         ]
-
     },
 
     Brunei:{
-
         flag:"🇧🇳",
-
         regions:[
-
             ["Brunei-Muara","🏙️"],
             ["Belait","🌿"],
             ["Tutong","🌴"],
             ["Temburong","🌳"]
-
         ]
-
     },
 
     World:{
-
         flag:"🌏",
-
         regions:[
-
             ["Asia","🌏"],
             ["Europe","🌍"],
             ["Africa","🌍"],
@@ -3645,19 +2982,14 @@ const roomData = {
             ["South America","🌎"],
             ["Oceania","🌏"],
             ["Middle East","🕌"]
-
         ]
-
     }
 
 };
 
-/* OPEN COUNTRY */
-
 function openRoomCountry(country){
 
-    const data =
-        roomData[country];
+    const data = roomData[country];
 
     if(!data){
         return;
@@ -3665,77 +2997,65 @@ function openRoomCountry(country){
 
     document.getElementById(
         "roomsMain"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
     document.getElementById(
         "roomRegionPage"
-    ).style.display =
-        "block";
+    ).style.display = "block";
 
     document.getElementById(
         "roomCountryTitle"
     ).innerText =
-        data.flag +
-        " YAM " +
-        country;
+        data.flag + " YAM " + country;
 
     const list =
-        document.getElementById(
-            "regionList"
-        );
+        document.getElementById("regionList");
 
     list.innerHTML = "";
 
-    data.regions.forEach(
-        function(region){
+    data.regions.forEach(function(region){
 
-            const item =
-                document.createElement(
-                    "div"
-                );
+        const item =
+            document.createElement("div");
 
-            item.className =
-                "region-item";
+        item.className = "region-item";
 
-            item.innerHTML = `
+        item.innerHTML = `
 
-                <div class="region-icon">
-                    ${region[1]}
+            <div class="region-icon">
+                ${region[1]}
+            </div>
+
+            <div class="region-info">
+
+                <b>
+                    YAM ${region[0]}
+                </b>
+
+                <div class="chat-preview">
+                    Room ${region[0]}
                 </div>
 
-                <div class="region-info">
+            </div>
 
-                    <b>
-                        YAM ${region[0]}
-                    </b>
+            <div class="region-arrow">
+                ›
+            </div>
 
-                    <div class="chat-preview">
-                        Room ${region[0]}
-                    </div>
+        `;
 
-                </div>
+        item.onclick = function(){
 
-                <div class="region-arrow">
-                    ›
-                </div>
+            openSpecificRoom(
+                country,
+                region[0]
+            );
 
-            `;
+        };
 
-            item.onclick =
-                function(){
+        list.appendChild(item);
 
-                    openSpecificRoom(
-                        country,
-                        region[0]
-                    );
-
-                };
-
-            list.appendChild(item);
-
-        }
-    );
+    });
 
 }
 
@@ -3743,17 +3063,13 @@ function closeRoomCountry(){
 
     document.getElementById(
         "roomsMain"
-    ).style.display =
-        "block";
+    ).style.display = "block";
 
     document.getElementById(
         "roomRegionPage"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 }
-
-/* GROUP ROOM */
 
 let currentRoom = null;
 
@@ -3777,8 +3093,7 @@ function getRoomUsers(){
     const currentUser =
         getCurrentUser();
 
-    const accounts =
-        getAccounts();
+    const accounts = getAccounts();
 
     const currentName =
         accounts[currentUser]?.name ||
@@ -3815,22 +3130,16 @@ function getRoomUsers(){
 
 }
 
-function openSpecificRoom(
-    country,
-    region
-){
+function openSpecificRoom(country,region){
 
     currentRoom = {
-
         country:country,
         region:region
-
     };
 
     document.getElementById(
         "groupRoomScreen"
-    ).style.display =
-        "block";
+    ).style.display = "block";
 
     document.getElementById(
         "groupRoomName"
@@ -3844,8 +3153,7 @@ function openSpecificRoom(
 
 function loadRoomUsers(){
 
-    const users =
-        getRoomUsers();
+    const users = getRoomUsers();
 
     const list =
         document.getElementById(
@@ -3857,12 +3165,9 @@ function loadRoomUsers(){
     users.forEach(user => {
 
         const item =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
-        item.className =
-            "room-user";
+        item.className = "room-user";
 
         item.innerHTML = `
 
@@ -3889,14 +3194,11 @@ function loadRoomUsers(){
 
 function loadRoomMessages(){
 
-    const key =
-        getRoomKey();
+    const key = getRoomKey();
 
     let messages =
         JSON.parse(
-            localStorage.getItem(
-                key
-            ) || "[]"
+            localStorage.getItem(key) || "[]"
         );
 
     const box =
@@ -3921,43 +3223,32 @@ function loadRoomMessages(){
     messages.forEach(msg => {
 
         const div =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         div.className =
             "room-message " +
             (
-                msg.username ===
-                getCurrentUser()
+                msg.username === getCurrentUser()
                 ? "me"
                 : ""
             );
 
         const userDiv =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         userDiv.className =
             "room-message-user";
 
         userDiv.innerText =
-            msg.name ||
-            msg.username;
+            msg.name || msg.username;
 
         const textDiv =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
-        textDiv.innerText =
-            msg.text;
+        textDiv.innerText = msg.text;
 
         const timeDiv =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         timeDiv.className =
             "room-message-time";
@@ -3996,25 +3287,20 @@ function sendRoomMessage(){
         return;
     }
 
-    const username =
-        getCurrentUser();
+    const username = getCurrentUser();
 
-    const accounts =
-        getAccounts();
+    const accounts = getAccounts();
 
     const name =
         accounts[username]?.name ||
         username ||
         "User";
 
-    const key =
-        getRoomKey();
+    const key = getRoomKey();
 
     let messages =
         JSON.parse(
-            localStorage.getItem(
-                key
-            ) || "[]"
+            localStorage.getItem(key) || "[]"
         );
 
     messages.push({
@@ -4049,9 +3335,7 @@ function sendRoomMessage(){
 function handleRoomKey(event){
 
     if(event.key === "Enter"){
-
         sendRoomMessage();
-
     }
 
 }
@@ -4060,70 +3344,189 @@ function closeGroupRoom(){
 
     document.getElementById(
         "groupRoomScreen"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
     currentRoom = null;
 
 }
 
-/* CLOSE MENU */
+/* =====================================================
+   IMPORTANT:
+   BUTTON EVENTS V4.3.5
+===================================================== */
 
 document.addEventListener(
-    "click",
-    function(event){
+    "DOMContentLoaded",
+    function(){
 
-        const menu =
+        const profileCamera =
             document.getElementById(
-                "profileDropdown"
+                "profileCameraButton"
             );
 
-        const wrap =
-            document.querySelector(
-                ".profile-three-dot-wrap"
+        const coverCamera =
+            document.getElementById(
+                "coverCameraButton"
             );
 
-        if(
-            menu &&
-            wrap &&
-            !wrap.contains(
-                event.target
-            )
-        ){
+        const menuButton =
+            document.getElementById(
+                "profileMenuButton"
+            );
 
-            menu.classList.remove(
-                "show"
+        const editButton =
+            document.getElementById(
+                "editProfileButton"
+            );
+
+        if(profileCamera){
+
+            profileCamera.addEventListener(
+                "click",
+                function(event){
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    changeProfilePicture();
+
+                }
             );
 
         }
+
+        if(coverCamera){
+
+            coverCamera.addEventListener(
+                "click",
+                function(event){
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    changeCoverPhoto();
+
+                }
+            );
+
+        }
+
+        if(menuButton){
+
+            menuButton.addEventListener(
+                "click",
+                function(event){
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    toggleProfileMenu();
+
+                }
+            );
+
+        }
+
+        if(editButton){
+
+            editButton.addEventListener(
+                "click",
+                function(event){
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    openEditProfile();
+
+                }
+            );
+
+        }
+
+        const pictureInput =
+            document.getElementById(
+                "profilePictureInput"
+            );
+
+        if(pictureInput){
+
+            pictureInput.addEventListener(
+                "change",
+                saveProfilePicture
+            );
+
+        }
+
+        const coverInput =
+            document.getElementById(
+                "coverPhotoInput"
+            );
+
+        if(coverInput){
+
+            coverInput.addEventListener(
+                "change",
+                saveCoverPhoto
+            );
+
+        }
+
+        document.addEventListener(
+            "click",
+            function(event){
+
+                const menu =
+                    document.getElementById(
+                        "profileDropdown"
+                    );
+
+                const wrap =
+                    document.querySelector(
+                        ".profile-three-dot-wrap"
+                    );
+
+                if(
+                    menu &&
+                    wrap &&
+                    !wrap.contains(event.target)
+                ){
+
+                    menu.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
 
     }
 );
 
-/* AUTO LOGIN */
+/* =====================================================
+   START
+===================================================== */
 
-window.onload =
-    function(){
+window.onload = function(){
 
-        const currentUser =
-            localStorage.getItem(
-                "yam_current_user"
-            );
+    const currentUser =
+        localStorage.getItem(
+            "yam_current_user"
+        );
 
-        if(currentUser){
+    if(currentUser){
 
-            startApp();
+        startApp();
 
-        }else{
+    }else{
 
-            document.getElementById(
-                "authName"
-            ).style.display =
-                "none";
+        document.getElementById(
+            "authName"
+        ).style.display = "none";
 
-        }
+    }
 
-    };
+};
 
 </script>
 
