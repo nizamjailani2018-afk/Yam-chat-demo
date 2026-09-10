@@ -51,12 +51,35 @@ button{
     box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
+/* ===== YAM CHAT LOGIN LOGO ===== */
 .logo{
-    text-align:center;
+    display:flex;
+    align-items:baseline;
+    justify-content:center;
+    gap:7px;
+    width:max-content;
+    margin:0 auto 10px;
+    padding:9px 17px;
+    background:#2563eb;
+    border-radius:16px;
+    box-shadow:0 5px 15px rgba(0,0,0,.20);
+    line-height:1;
+}
+
+.logo-yam{
     font-size:42px;
     font-weight:900;
-    color:#2563eb;
-    margin-bottom:5px;
+    letter-spacing:1px;
+    color:#ff4fa3;
+}
+
+.logo-chat{
+    font-size:18px;
+    font-weight:800;
+    font-style:italic;
+    letter-spacing:.7px;
+    color:#ff4fa3;
+    transform:skewX(-10deg);
 }
 
 .login-sub{
@@ -116,10 +139,32 @@ button{
     box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
+/* ===== YAM CHAT TOP LOGO ===== */
 .top-logo{
+    display:flex;
+    align-items:baseline;
+    gap:5px;
+    padding:6px 12px;
+    background:#2563eb;
+    border-radius:14px;
+    box-shadow:0 3px 10px rgba(0,0,0,.18);
+    line-height:1;
+}
+
+.top-logo .yam-text{
     font-size:25px;
     font-weight:900;
-    color:#2563eb;
+    letter-spacing:1px;
+    color:#ff4fa3;
+}
+
+.top-logo .chat-text{
+    font-size:13px;
+    font-weight:800;
+    font-style:italic;
+    letter-spacing:.5px;
+    color:#ff4fa3;
+    transform:skewX(-8deg);
 }
 
 .top-user{
@@ -986,6 +1031,15 @@ body.profile-active #profilePage{
     .profile-buttons{
         grid-template-columns:1fr 1fr;
     }
+
+    .top-logo .yam-text{
+        font-size:23px;
+    }
+
+    .top-logo .chat-text{
+        font-size:12px;
+    }
+
 }
 
 /* SMALL PHONE */
@@ -996,7 +1050,15 @@ body.profile-active #profilePage{
     }
 
     .top-logo{
-        font-size:23px;
+        padding:5px 10px;
+    }
+
+    .top-logo .yam-text{
+        font-size:21px;
+    }
+
+    .top-logo .chat-text{
+        font-size:11px;
     }
 
     .profile-cover{
@@ -1008,6 +1070,7 @@ body.profile-active #profilePage{
         padding-left:15px;
         padding-right:15px;
     }
+
 }
 </style>
 </head>
@@ -1019,7 +1082,10 @@ body.profile-active #profilePage{
 
     <div class="login-box">
 
-        <div class="logo">YAM</div>
+        <div class="logo">
+            <span class="logo-yam">YAM</span>
+            <span class="logo-chat">CHAT</span>
+        </div>
 
         <div class="login-sub">
             Chat • Friends • Rooms • Social
@@ -1059,7 +1125,8 @@ body.profile-active #profilePage{
     <div class="topbar">
 
         <div class="top-logo">
-            YAM
+            <span class="yam-text">YAM</span>
+            <span class="chat-text">CHAT</span>
         </div>
 
         <div
@@ -1488,7 +1555,7 @@ body.profile-active #profilePage{
 <script>
 
 /* YAM CHAT V4.4.7
-   PROFILE MENU FIX
+   YAM CHAT LOGO UPDATE
 */
 
 let currentUser=
