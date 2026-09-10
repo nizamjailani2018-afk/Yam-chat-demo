@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.5.1</title>
+<title>YAM Chat V4.5.2</title>
 
 <style>
 *{
@@ -20,101 +20,92 @@ html,body{
 }
 
 body{
-    background:#eef3ff;
-    color:#111827;
+    background:#f1f3f6;
+    color:#111;
 }
 
-/* =========================
-   LOGIN
-========================= */
+/* ================= LOGIN ================= */
 
 #loginPage{
     min-height:100vh;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     padding:20px;
-    background:linear-gradient(135deg,#0d47a1,#1976d2,#42a5f5);
+    background:linear-gradient(135deg,#111,#333,#111);
 }
 
 .login-box{
     width:100%;
     max-width:390px;
-    background:white;
-    padding:30px 22px;
-    border-radius:22px;
-    box-shadow:0 15px 40px rgba(0,0,0,.25);
+    background:#fff;
+    border-radius:20px;
+    padding:30px 24px;
+    box-shadow:0 15px 50px rgba(0,0,0,.35);
 }
 
-.logo-box{
+.logo{
     text-align:center;
+    font-size:38px;
+    font-weight:900;
+    margin-bottom:5px;
+}
+
+.logo span{
+    color:#1877f2;
+}
+
+.login-sub{
+    text-align:center;
+    color:#777;
     margin-bottom:25px;
 }
 
-.logo-main{
-    font-size:44px;
-    font-weight:900;
-    color:#ff1493;
-    letter-spacing:2px;
-}
-
-.logo-sub{
-    font-size:14px;
-    font-weight:bold;
-    color:#1976d2;
-    margin-top:-4px;
-}
-
-.input{
+.login-box input{
     width:100%;
     padding:14px;
     margin-bottom:12px;
-    border:1px solid #d1d5db;
-    border-radius:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
     outline:none;
     font-size:15px;
 }
 
-.input:focus{
-    border-color:#1976d2;
+.login-box input:focus{
+    border-color:#1877f2;
 }
 
-.btn{
+.login-btn,
+.register-btn{
     width:100%;
-    border:none;
     padding:13px;
-    border-radius:12px;
-    font-size:15px;
+    border:0;
+    border-radius:10px;
+    font-size:16px;
     font-weight:bold;
     cursor:pointer;
 }
 
-.btn-primary{
-    background:#1976d2;
-    color:white;
+.login-btn{
+    background:#1877f2;
+    color:#fff;
 }
 
-.btn-pink{
-    background:#ff1493;
-    color:white;
+.register-btn{
+    margin-top:10px;
+    background:#e9f3ff;
+    color:#1877f2;
 }
 
-.btn-gray{
-    background:#e5e7eb;
-    color:#111827;
+.login-msg{
+    text-align:center;
+    min-height:20px;
+    margin-top:12px;
+    font-size:14px;
+    color:#d00;
 }
 
-.small-btn{
-    padding:9px 13px;
-    border:none;
-    border-radius:9px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-/* =========================
-   APP
-========================= */
+/* ================= APP ================= */
 
 #app{
     display:none;
@@ -126,71 +117,76 @@ body{
     position:sticky;
     top:0;
     z-index:50;
-    height:62px;
-    background:white;
+    height:58px;
+    background:#fff;
+    border-bottom:1px solid #ddd;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 14px;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    padding:0 15px;
 }
 
 .top-logo{
-    display:flex;
-    align-items:center;
-    gap:6px;
-}
-
-.top-logo-yam{
-    font-size:24px;
+    font-size:25px;
     font-weight:900;
-    color:#ff1493;
 }
 
-.top-logo-chat{
-    font-size:12px;
-    font-weight:bold;
-    color:#1976d2;
+.top-logo span{
+    color:#1877f2;
 }
 
 .current-user{
-    font-size:13px;
+    font-size:14px;
     font-weight:bold;
-    color:#374151;
+    color:#555;
 }
 
-/* =========================
-   PAGES
-========================= */
+/* ================= PAGES ================= */
 
 .page{
     display:none;
-    max-width:720px;
-    margin:auto;
-    padding:14px;
 }
 
 .page.active{
     display:block;
 }
 
-/* =========================
-   COMPOSER
-========================= */
+.container{
+    width:100%;
+    max-width:700px;
+    margin:auto;
+    padding:12px;
+}
+
+/* ================= COMPOSER ================= */
 
 .composer{
-    background:white;
-    border-radius:16px;
+    background:#fff;
+    border-radius:14px;
     padding:14px;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
-    margin-bottom:14px;
+    box-shadow:0 1px 4px rgba(0,0,0,.08);
+    margin-bottom:12px;
+}
+
+.composer-top{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.small-avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#ddd;
 }
 
 .composer textarea{
-    width:100%;
-    min-height:85px;
-    resize:vertical;
-    border:1px solid #e5e7eb;
+    flex:1;
+    min-height:45px;
+    resize:none;
+    border:1px solid #ddd;
     border-radius:12px;
     padding:12px;
     outline:none;
@@ -198,376 +194,318 @@ body{
 
 .post-type-row{
     display:flex;
-    gap:7px;
+    gap:8px;
     margin-top:10px;
-    flex-wrap:wrap;
 }
 
-.post-type-btn{
-    border:none;
-    background:#f1f5f9;
-    padding:9px 12px;
-    border-radius:10px;
+.post-type-row button{
+    flex:1;
+    border:0;
+    padding:10px 5px;
+    border-radius:9px;
+    background:#f0f2f5;
     cursor:pointer;
-    font-weight:bold;
 }
 
-.post-type-btn.active{
-    background:#1976d2;
-    color:white;
+.post-type-row button.active{
+    background:#1877f2;
+    color:#fff;
 }
 
 .media-preview{
+    display:none;
     margin-top:10px;
 }
 
 .media-preview img,
 .media-preview video{
-    display:block;
     width:100%;
-    max-height:520px;
-    height:auto;
+    max-height:350px;
     object-fit:contain;
-    border-radius:12px;
-    background:#000;
+    border-radius:10px;
+    background:#111;
 }
 
-.file-info{
-    margin-top:7px;
-    font-size:12px;
-    color:#6b7280;
+.post-btn{
+    width:100%;
+    margin-top:10px;
+    border:0;
+    padding:12px;
+    border-radius:10px;
+    background:#1877f2;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-/* =========================
-   POST
-========================= */
+/* ================= POSTS ================= */
 
 .post{
-    background:white;
-    border-radius:16px;
-    padding:14px;
-    margin-bottom:14px;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    background:#fff;
+    border-radius:14px;
+    margin-bottom:12px;
+    overflow:hidden;
+    box-shadow:0 1px 4px rgba(0,0,0,.08);
 }
 
 .post-head{
     display:flex;
     align-items:center;
+    padding:12px;
     gap:10px;
 }
 
-.avatar{
-    width:44px;
-    height:44px;
+.post-avatar{
+    width:42px;
+    height:42px;
     border-radius:50%;
     object-fit:cover;
-    background:#dbeafe;
+    background:#ddd;
 }
 
-.avatar-placeholder{
-    width:44px;
-    height:44px;
-    border-radius:50%;
-    background:#1976d2;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-}
-
-.post-user{
-    flex:1;
-}
-
-.post-user-name{
+.post-owner{
     font-weight:bold;
 }
 
 .post-time{
-    color:#6b7280;
-    font-size:11px;
-    margin-top:3px;
+    font-size:12px;
+    color:#777;
+    margin-top:2px;
 }
 
 .post-menu{
-    border:none;
+    margin-left:auto;
+    border:0;
     background:none;
-    font-size:20px;
+    font-size:22px;
     cursor:pointer;
 }
 
 .post-text{
-    margin:12px 0;
-    line-height:1.5;
+    padding:0 12px 12px;
     white-space:pre-wrap;
     word-break:break-word;
 }
 
 .post-media{
-    display:block;
     width:100%;
-    max-height:650px;
-    height:auto;
+    max-height:550px;
     object-fit:contain;
-    border-radius:12px;
-    background:#000;
-    margin-top:10px;
+    background:#111;
 }
 
 .post-actions{
     display:flex;
-    gap:8px;
-    margin-top:12px;
     border-top:1px solid #eee;
-    padding-top:10px;
+    border-bottom:1px solid #eee;
 }
 
-.action-btn{
+.post-actions button{
     flex:1;
-    border:none;
-    background:#f8fafc;
-    padding:9px 5px;
-    border-radius:9px;
+    border:0;
+    background:#fff;
+    padding:11px 4px;
     cursor:pointer;
     font-weight:bold;
+    color:#555;
 }
 
-.action-btn.liked{
-    color:#ff1493;
+.post-actions button.liked{
+    color:#1877f2;
 }
 
-.comments{
-    margin-top:10px;
+.comment-area{
+    padding:10px;
 }
 
 .comment{
-    background:#f1f5f9;
-    padding:8px 10px;
+    background:#f0f2f5;
     border-radius:10px;
-    margin-top:7px;
+    padding:8px 10px;
+    margin-bottom:7px;
+    position:relative;
+}
+
+.comment-user{
+    font-weight:bold;
     font-size:13px;
 }
 
-.comment-head{
-    display:flex;
-    align-items:center;
-    gap:5px;
-}
-
-.comment-name{
-    font-weight:bold;
-    flex:1;
+.comment-text{
+    font-size:14px;
+    margin-top:3px;
+    word-break:break-word;
 }
 
 .comment-tools{
+    margin-top:5px;
     display:flex;
-    gap:4px;
+    gap:5px;
 }
 
-.comment-tool{
-    border:none;
-    background:transparent;
+.comment-tools button{
+    border:0;
+    background:none;
+    color:#1877f2;
+    font-size:12px;
     cursor:pointer;
-    font-size:13px;
-    padding:2px 4px;
 }
 
-.comment-row{
+.comment-input-row{
     display:flex;
-    gap:6px;
-    margin-top:9px;
+    gap:7px;
 }
 
-.comment-input{
+.comment-input-row input{
     flex:1;
     border:1px solid #ddd;
-    border-radius:9px;
-    padding:9px;
+    border-radius:20px;
+    padding:9px 12px;
+    outline:none;
 }
 
-.comment-send{
-    border:none;
-    background:#1976d2;
-    color:white;
-    border-radius:9px;
-    padding:0 12px;
-    font-weight:bold;
+.comment-input-row button{
+    border:0;
+    background:#1877f2;
+    color:#fff;
+    border-radius:20px;
+    padding:0 15px;
 }
 
-.share-box{
-    text-align:center;
-    line-height:1.5;
+.no-comments{
+    font-size:13px;
+    color:#888;
+    margin-bottom:8px;
 }
 
-/* =========================
-   PROFILE
-========================= */
+/* ================= PROFILE ================= */
 
-.profile-cover{
-    height:210px;
-    border-radius:16px 16px 0 0;
+.profile-page{
+    padding:0 0 20px;
+}
+
+.profile-hero{
+    position:relative;
+    min-height:460px;
+    background:#222;
+    background-position:center;
+    background-size:cover;
     overflow:hidden;
-    background:linear-gradient(135deg,#1976d2,#90caf9);
-    position:relative;
 }
 
-.profile-cover img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.profile-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.05),
+        rgba(0,0,0,.15) 35%,
+        rgba(0,0,0,.72) 100%
+    );
 }
 
-/* Cover diteruskan sehingga bawah 3 butang */
-.profile-card{
-    background:white;
-    border-radius:0 0 16px 16px;
-    margin-top:0;
+.profile-content{
     position:relative;
-    padding:14px;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
+    z-index:2;
+    min-height:460px;
+    padding-top:150px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+}
+
+.profile-info{
+    padding:20px 15px 15px;
+    color:#fff;
 }
 
 .profile-avatar-wrap{
-    margin-top:-55px;
+    margin-bottom:10px;
 }
 
 .profile-avatar{
-    width:100px;
-    height:100px;
+    width:105px;
+    height:105px;
     border-radius:50%;
     object-fit:cover;
-    border:4px solid white;
-    background:#1976d2;
+    border:4px solid #fff;
+    background:#ddd;
+    box-shadow:0 4px 15px rgba(0,0,0,.35);
 }
 
 .profile-name{
-    font-size:21px;
-    font-weight:bold;
-    margin-top:8px;
-}
-
-.profile-username{
-    color:#6b7280;
-    font-size:13px;
+    font-size:24px;
+    font-weight:900;
+    text-shadow:0 2px 5px rgba(0,0,0,.5);
 }
 
 .profile-bio{
-    margin-top:9px;
-    line-height:1.45;
-}
-
-.profile-status{
-    display:inline-block;
-    margin-top:9px;
-    background:#e0f2fe;
-    color:#0369a1;
-    padding:6px 9px;
-    border-radius:8px;
-    font-size:12px;
+    margin-top:5px;
+    font-size:14px;
+    opacity:.95;
 }
 
 .profile-buttons{
     display:flex;
-    gap:7px;
-    margin-top:12px;
+    gap:8px;
+    padding:10px;
 }
 
 .profile-buttons button{
     flex:1;
+    border:1px solid rgba(255,255,255,.55);
+    background:rgba(255,255,255,.90);
+    color:#111;
+    padding:11px 5px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    backdrop-filter:blur(5px);
 }
 
 .profile-tabs{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:4px;
-    margin-top:14px;
-    background:white;
-    padding:5px;
-    border-radius:12px;
-}
-
-.profile-tab{
-    border:none;
-    background:#f1f5f9;
-    padding:10px 3px;
-    border-radius:9px;
-    cursor:pointer;
-    font-size:12px;
-    font-weight:bold;
-}
-
-.profile-tab.active{
-    background:#1976d2;
-    color:white;
-}
-
-.profile-tab-content{
-    margin-top:12px;
-}
-
-.profile-media-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:5px;
-}
-
-.profile-media-item{
-    aspect-ratio:1/1;
-    background:#111827;
-    border-radius:8px;
-    overflow:hidden;
-    position:relative;
-}
-
-.profile-media-item img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-}
-
-.profile-video-list{
     display:flex;
-    flex-direction:column;
-    gap:12px;
+    background:#fff;
+    border-bottom:1px solid #ddd;
+    overflow-x:auto;
 }
 
-.profile-video-card{
-    background:white;
-    border-radius:12px;
-    padding:8px;
-    overflow:hidden;
-    box-shadow:0 2px 7px rgba(0,0,0,.07);
+.profile-tabs button{
+    min-width:100px;
+    flex:1;
+    padding:13px 8px;
+    border:0;
+    background:#fff;
+    cursor:pointer;
+    font-weight:bold;
+    color:#666;
 }
 
-.profile-video-card video{
-    width:100%;
-    height:auto;
-    max-height:520px;
-    display:block;
-    border-radius:10px;
-    background:#000;
+.profile-tabs button.active{
+    color:#1877f2;
+    border-bottom:3px solid #1877f2;
 }
 
-.profile-video-text{
-    padding:8px 3px 2px;
-    line-height:1.45;
-}
+/* ================= FRIENDS ================= */
 
-/* =========================
-   FRIENDS
-========================= */
-
-.friend-card{
-    background:white;
-    padding:12px;
+.friend-card,
+.room-card{
+    background:#fff;
     border-radius:14px;
-    margin-bottom:9px;
+    padding:13px;
+    margin-bottom:10px;
     display:flex;
     align-items:center;
-    gap:10px;
-    box-shadow:0 2px 7px rgba(0,0,0,.06);
+    gap:12px;
+    box-shadow:0 1px 4px rgba(0,0,0,.08);
+}
+
+.friend-card img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    object-fit:cover;
 }
 
 .friend-info{
@@ -578,346 +516,258 @@ body{
     font-weight:bold;
 }
 
-.friend-btn{
-    border:none;
-    background:#1976d2;
-    color:white;
-    padding:8px 11px;
+.friend-card button,
+.room-card button{
+    border:0;
+    background:#1877f2;
+    color:#fff;
     border-radius:9px;
-    font-weight:bold;
+    padding:9px 12px;
 }
 
-/* =========================
-   ROOMS
-========================= */
+/* ================= MARKET ================= */
 
-.room-card{
-    background:white;
-    padding:15px;
+.market-add{
+    background:#fff;
+    padding:14px;
     border-radius:14px;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    box-shadow:0 2px 7px rgba(0,0,0,.06);
+    margin-bottom:12px;
 }
 
-.room-info{
-    flex:1;
-}
-
-.room-name{
-    font-weight:bold;
-}
-
-.room-region{
-    color:#6b7280;
-    font-size:12px;
-    margin-top:3px;
-}
-
-.room-btn{
-    border:none;
-    background:#ff1493;
-    color:white;
-    padding:8px 12px;
-    border-radius:9px;
-    font-weight:bold;
-}
-
-/* =========================
-   MARKET
-========================= */
-
-.market-card{
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
-    margin-bottom:13px;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
-}
-
-.market-card img{
+.market-add input,
+.market-add textarea{
     width:100%;
-    max-height:360px;
-    object-fit:cover;
-    display:block;
+    margin-bottom:9px;
+    padding:11px;
+    border:1px solid #ddd;
+    border-radius:9px;
 }
 
-.market-body{
+.market-add textarea{
+    min-height:80px;
+}
+
+.market-add button{
+    width:100%;
+    padding:11px;
+    border:0;
+    border-radius:9px;
+    background:#1877f2;
+    color:#fff;
+    font-weight:bold;
+}
+
+.market-item{
+    background:#fff;
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:12px;
+}
+
+.market-item img{
+    width:100%;
+    max-height:350px;
+    object-fit:contain;
+    background:#111;
+}
+
+.market-info{
     padding:12px;
 }
 
 .market-title{
-    font-size:18px;
     font-weight:bold;
+    font-size:18px;
 }
 
 .market-price{
-    color:#e11d48;
+    color:#e53935;
+    font-size:18px;
     font-weight:bold;
-    font-size:17px;
-    margin-top:5px;
+    margin:5px 0;
 }
 
-.market-desc{
-    margin-top:6px;
-    line-height:1.4;
-}
-
-.market-actions{
-    display:flex;
-    gap:7px;
-    margin-top:10px;
-}
-
-.market-actions button{
-    flex:1;
-}
-
-/* =========================
-   MUSIC
-========================= */
-
-.music-box{
-    background:white;
-    border-radius:14px;
-    padding:14px;
-    margin-top:12px;
-}
-
-.music-box audio{
-    width:100%;
-    margin-top:8px;
-}
-
-/* =========================
-   BOTTOM NAV
-========================= */
+/* ================= NAV ================= */
 
 .bottom-nav{
     position:fixed;
+    z-index:100;
+    bottom:0;
     left:0;
     right:0;
-    bottom:0;
-    z-index:100;
     height:65px;
-    background:white;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    box-shadow:0 -2px 10px rgba(0,0,0,.1);
+    background:#fff;
+    border-top:1px solid #ddd;
+    display:flex;
 }
 
-.nav-btn{
-    border:none;
-    background:white;
-    font-size:11px;
+.bottom-nav button{
+    flex:1;
+    border:0;
+    background:#fff;
+    color:#777;
     font-weight:bold;
     cursor:pointer;
 }
 
-.nav-btn span{
-    display:block;
-    font-size:22px;
-    margin-bottom:2px;
+.bottom-nav button.active{
+    color:#1877f2;
 }
 
-.nav-btn.active{
-    color:#1976d2;
-}
-
-/* =========================
-   MODAL
-========================= */
+/* ================= MODAL ================= */
 
 .modal-bg{
     display:none;
     position:fixed;
+    z-index:200;
     inset:0;
     background:rgba(0,0,0,.55);
-    z-index:300;
     align-items:center;
     justify-content:center;
     padding:15px;
 }
 
-.modal-bg.show{
-    display:flex;
-}
-
 .modal{
     width:100%;
-    max-width:430px;
-    background:white;
-    border-radius:17px;
-    padding:18px;
-    max-height:90vh;
+    max-width:500px;
+    max-height:85vh;
     overflow-y:auto;
+    background:#fff;
+    border-radius:15px;
+    padding:18px;
 }
 
-.modal-title{
-    font-size:19px;
-    font-weight:bold;
+.modal h3{
     margin-bottom:12px;
 }
 
-.modal-actions{
-    display:flex;
-    gap:8px;
-    margin-top:15px;
+.modal button{
+    border:0;
+    padding:10px 12px;
+    border-radius:9px;
+    margin:4px 2px;
+    cursor:pointer;
 }
 
-.modal-actions button{
-    flex:1;
+.modal .danger{
+    background:#ffe7e7;
+    color:#c00;
 }
 
-/* =========================
-   CHAT
-========================= */
+.modal .primary{
+    background:#1877f2;
+    color:#fff;
+}
 
-.chat-bg{
+.modal .normal{
+    background:#eee;
+}
+
+/* ================= CHAT ================= */
+
+.chat-overlay{
     display:none;
     position:fixed;
+    z-index:150;
     inset:0;
-    background:#f1f5f9;
-    z-index:200;
-}
-
-.chat-bg.show{
-    display:flex;
-    flex-direction:column;
+    background:#f1f3f6;
 }
 
 .chat-head{
-    height:60px;
-    background:white;
+    height:58px;
+    background:#fff;
+    border-bottom:1px solid #ddd;
     display:flex;
     align-items:center;
     gap:10px;
     padding:0 12px;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
-.chat-back{
-    border:none;
+.chat-head button{
+    border:0;
     background:none;
-    font-size:24px;
-}
-
-.chat-name{
-    font-weight:bold;
+    font-size:23px;
 }
 
 .chat-messages{
-    flex:1;
+    height:calc(100vh - 116px);
     overflow-y:auto;
     padding:12px;
 }
 
-.chat-msg{
-    max-width:80%;
-    padding:9px 11px;
-    border-radius:13px;
-    margin-bottom:8px;
-    line-height:1.4;
+.chat-bubble{
+    max-width:78%;
+    padding:9px 12px;
+    border-radius:15px;
+    margin-bottom:7px;
     word-break:break-word;
 }
 
-.chat-msg.mine{
-    background:#1976d2;
-    color:white;
+.chat-me{
     margin-left:auto;
-    border-bottom-right-radius:4px;
+    background:#1877f2;
+    color:#fff;
 }
 
-.chat-msg.other{
-    background:white;
-    border-bottom-left-radius:4px;
-}
-
-.chat-input-row{
-    background:white;
-    padding:8px;
-    display:flex;
-    gap:7px;
+.chat-other{
+    background:#fff;
 }
 
 .chat-input{
+    height:58px;
+    background:#fff;
+    border-top:1px solid #ddd;
+    display:flex;
+    gap:7px;
+    padding:8px;
+}
+
+.chat-input input{
     flex:1;
     border:1px solid #ddd;
-    border-radius:10px;
+    border-radius:20px;
     padding:10px;
 }
 
-.chat-send{
-    border:none;
-    background:#1976d2;
-    color:white;
+.chat-input button{
+    border:0;
+    background:#1877f2;
+    color:#fff;
+    border-radius:20px;
     padding:0 15px;
-    border-radius:10px;
-    font-weight:bold;
 }
 
-/* =========================
-   EMPTY
-========================= */
+/* ================= EMPTY ================= */
 
 .empty{
-    background:white;
-    border-radius:14px;
-    padding:30px 15px;
     text-align:center;
-    color:#6b7280;
+    color:#888;
+    padding:30px 10px;
 }
 
-.section-title{
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:12px;
-}
-
-.storage-note{
-    background:#fff7ed;
-    border:1px solid #fed7aa;
-    color:#9a3412;
-    padding:10px;
-    border-radius:10px;
-    font-size:12px;
-    margin-top:10px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
+/* ================= MOBILE ================= */
 
 @media(max-width:500px){
-
-    .page{
-        padding:10px;
+    .profile-hero,
+    .profile-content{
+        min-height:430px;
     }
 
-    .profile-cover{
-        height:175px;
+    .profile-content{
+        padding-top:125px;
     }
 
-    .profile-tabs{
-        grid-template-columns:repeat(4,1fr);
+    .profile-avatar{
+        width:90px;
+        height:90px;
     }
 
-    .profile-tab{
-        font-size:10px;
+    .profile-name{
+        font-size:21px;
     }
 
-    .post{
-        border-radius:13px;
-    }
-
-    .post-media{
-        max-height:560px;
-    }
-
-    .action-btn{
-        font-size:12px;
+    .post-actions button{
+        font-size:13px;
     }
 }
 </style>
@@ -925,1214 +775,660 @@ body{
 
 <body>
 
-<!-- LOGIN -->
+<!-- ================= LOGIN ================= -->
 
 <div id="loginPage">
-
     <div class="login-box">
+        <div class="logo">YAM<span>CHAT</span></div>
+        <div class="login-sub">Sembang • Kawan • Komuniti</div>
 
-        <div class="logo-box">
-            <div class="logo-main">YAM</div>
-            <div class="logo-sub">YAM CHAT</div>
-        </div>
+        <input id="loginUsername" type="text" placeholder="Username">
+        <input id="loginPassword" type="password" placeholder="Password">
 
-        <input
-            id="loginUsername"
-            class="input"
-            type="text"
-            placeholder="Username"
-            autocomplete="username">
+        <button class="login-btn" onclick="login()">LOGIN</button>
+        <button class="register-btn" onclick="register()">DAFTAR AKAUN</button>
 
-        <input
-            id="loginPassword"
-            class="input"
-            type="password"
-            placeholder="Password"
-            autocomplete="current-password">
-
-        <button
-            class="btn btn-primary"
-            onclick="login()">
-            LOGIN
-        </button>
-
-        <div style="height:8px"></div>
-
-        <button
-            class="btn btn-pink"
-            onclick="register()">
-            DAFTAR AKAUN
-        </button>
-
+        <div id="loginMsg" class="login-msg"></div>
     </div>
-
 </div>
 
-
-<!-- APP -->
+<!-- ================= APP ================= -->
 
 <div id="app">
 
     <div class="topbar">
-
-        <div class="top-logo">
-            <div class="top-logo-yam">YAM</div>
-            <div class="top-logo-chat">CHAT</div>
-        </div>
-
-        <div
-            id="currentUserDisplay"
-            class="current-user">
-        </div>
-
+        <div class="top-logo">YAM<span>CHAT</span></div>
+        <div id="currentUserDisplay" class="current-user"></div>
     </div>
-
 
     <!-- HOME -->
+    <section id="homePage" class="page active">
+        <div class="container">
 
-    <div
-        id="homePage"
-        class="page">
+            <div class="composer">
+                <div class="composer-top">
+                    <img id="composerAvatar" class="small-avatar" src="">
+                    <textarea id="postText" placeholder="Apa yang anda fikirkan?"></textarea>
+                </div>
 
-        <div class="composer">
+                <div class="post-type-row">
+                    <button id="typeText" class="active" onclick="selectPostType('text')">📝 Teks</button>
+                    <button id="typeImage" onclick="selectPostType('image')">🖼️ Gambar</button>
+                    <button id="typeVideo" onclick="selectPostType('video')">🎬 Video</button>
+                </div>
 
-            <textarea
-                id="postText"
-                placeholder="Apa yang anda fikirkan?"></textarea>
+                <input id="postFile" type="file" accept="image/*,video/*" style="display:none">
 
-            <div
-                id="mediaPreview"
-                class="media-preview">
+                <div id="mediaPreview" class="media-preview"></div>
+
+                <button class="post-btn" onclick="createPost()">POST</button>
             </div>
 
-            <div
-                id="fileInfo"
-                class="file-info">
-            </div>
-
-            <div class="post-type-row">
-
-                <button
-                    id="textPostBtn"
-                    class="post-type-btn active"
-                    onclick="selectPostType('text')">
-                    📝 Teks
-                </button>
-
-                <button
-                    id="imagePostBtn"
-                    class="post-type-btn"
-                    onclick="selectPostType('image')">
-                    📷 Gambar
-                </button>
-
-                <button
-                    id="videoPostBtn"
-                    class="post-type-btn"
-                    onclick="selectPostType('video')">
-                    🎥 Video
-                </button>
-
-                <button
-                    class="small-btn"
-                    style="background:#1976d2;color:white"
-                    onclick="createPost()">
-                    POST
-                </button>
-
-                <button
-                    class="small-btn"
-                    onclick="cancelPost()">
-                    BATAL
-                </button>
-
-            </div>
-
-            <div class="storage-note">
-                📌 YAM Chat V4.5.1 menggunakan IndexedDB untuk media.
-                Gambar maksimum 3MB dan video maksimum 6MB untuk demo ini.
-            </div>
-
+            <div id="feed"></div>
         </div>
-
-        <div id="feed"></div>
-
-    </div>
-
+    </section>
 
     <!-- FRIENDS -->
-
-    <div
-        id="friendsPage"
-        class="page">
-
-        <div class="section-title">
-            👥 Friends
+    <section id="friendsPage" class="page">
+        <div class="container">
+            <h2 style="margin-bottom:12px;">Kawan</h2>
+            <div id="friendsList"></div>
         </div>
-
-        <div id="friendsList"></div>
-
-    </div>
-
+    </section>
 
     <!-- ROOMS -->
-
-    <div
-        id="roomsPage"
-        class="page">
-
-        <div class="section-title">
-            🌎 Rooms
+    <section id="roomsPage" class="page">
+        <div class="container">
+            <h2 style="margin-bottom:12px;">Rooms</h2>
+            <div id="roomsList"></div>
         </div>
-
-        <div id="roomsList"></div>
-
-    </div>
-
+    </section>
 
     <!-- PROFILE -->
+    <section id="profilePage" class="page profile-page">
 
-    <div
-        id="profilePage"
-        class="page">
+        <div id="profileHero" class="profile-hero">
 
-        <div id="profileArea"></div>
+            <div class="profile-content">
 
-    </div>
+                <div class="profile-info">
 
+                    <div class="profile-avatar-wrap">
+                        <img id="profileAvatar" class="profile-avatar" src="">
+                    </div>
+
+                    <div id="profileName" class="profile-name"></div>
+                    <div id="profileBio" class="profile-bio">Selamat datang ke profil saya di YAM Chat.</div>
+                </div>
+
+                <div class="profile-buttons">
+                    <button onclick="changeProfilePicture()">📷 Gambar</button>
+                    <button onclick="changeCover()">🖼️ Cover</button>
+                    <button onclick="openProfileMenu()">☰ Menu</button>
+                </div>
+
+            </div>
+        </div>
+
+        <input id="profileFile" type="file" accept="image/*" style="display:none">
+        <input id="coverFile" type="file" accept="image/*" style="display:none">
+
+        <div class="profile-tabs">
+            <button id="tabPost" onclick="showProfileTab('post')">Post</button>
+            <button id="tabImage" onclick="showProfileTab('image')">Gambar</button>
+            <button id="tabVideo" onclick="showProfileTab('video')">Video</button>
+            <button id="tabMarket" onclick="showProfileTab('market')">Market</button>
+        </div>
+
+        <div class="container">
+            <div id="profileTabContent"></div>
+        </div>
+
+    </section>
 
     <!-- BOTTOM NAV -->
 
     <div class="bottom-nav">
-
-        <button
-            id="navHome"
-            class="nav-btn active"
-            onclick="showPage('home')">
-            <span>🏠</span>
-            Home
-        </button>
-
-        <button
-            id="navFriends"
-            class="nav-btn"
-            onclick="showPage('friends')">
-            <span>👥</span>
-            Friends
-        </button>
-
-        <button
-            id="navRooms"
-            class="nav-btn"
-            onclick="showPage('rooms')">
-            <span>🌎</span>
-            Rooms
-        </button>
-
-        <button
-            id="navProfile"
-            class="nav-btn"
-            onclick="showPage('profile')">
-            <span>👤</span>
-            Profile
-        </button>
-
+        <button id="navHome" class="active" onclick="showPage('home')">🏠<br>Home</button>
+        <button id="navFriends" onclick="showPage('friends')">👥<br>Kawan</button>
+        <button id="navRooms" onclick="showPage('rooms')">💬<br>Rooms</button>
+        <button id="navProfile" onclick="showPage('profile')">👤<br>Profil</button>
     </div>
 
 </div>
 
+<!-- ================= MODAL ================= -->
 
-<!-- FILE INPUTS -->
-
-<input
-    id="profileFile"
-    type="file"
-    accept="image/*"
-    style="display:none"
-    onchange="changeProfilePicture(event)">
-
-<input
-    id="coverFile"
-    type="file"
-    accept="image/*"
-    style="display:none">
-
-<input
-    id="postImageFile"
-    type="file"
-    accept="image/*"
-    style="display:none"
-    onchange="handlePostImage(event)">
-
-<input
-    id="postVideoFile"
-    type="file"
-    accept="video/*"
-    style="display:none"
-    onchange="handlePostVideo(event)">
-
-<input
-    id="musicFile"
-    type="file"
-    accept="audio/*"
-    style="display:none"
-    onchange="handleMusic(event)">
-
-<input
-    id="marketImageFile"
-    type="file"
-    accept="image/*"
-    style="display:none"
-    onchange="handleMarketImage(event)">
-
-
-<!-- MODAL -->
-
-<div
-    id="modalBg"
-    class="modal-bg">
-
-    <div class="modal">
-
-        <div
-            id="modalTitle"
-            class="modal-title">
-        </div>
-
-        <div id="modalContent"></div>
-
-        <div class="modal-actions">
-
-            <button
-                class="btn btn-gray"
-                onclick="closeModal()">
-                Tutup
-            </button>
-
-        </div>
-
-    </div>
-
+<div id="modalBg" class="modal-bg" onclick="closeModalOutside(event)">
+    <div id="modal" class="modal"></div>
 </div>
 
+<!-- ================= CHAT ================= -->
 
-<!-- CHAT -->
-
-<div
-    id="chatBg"
-    class="chat-bg">
+<div id="chatOverlay" class="chat-overlay">
 
     <div class="chat-head">
-
-        <button
-            class="chat-back"
-            onclick="closeChat()">
-            ←
-        </button>
-
-        <div
-            id="chatName"
-            class="chat-name">
-        </div>
-
+        <button onclick="closeChat()">‹</button>
+        <strong id="chatTitle"></strong>
     </div>
 
-    <div
-        id="chatMessages"
-        class="chat-messages">
-    </div>
+    <div id="chatMessages" class="chat-messages"></div>
 
-    <div class="chat-input-row">
-
-        <input
-            id="chatInput"
-            class="chat-input"
-            placeholder="Tulis mesej..."
-            onkeydown="if(event.key==='Enter')sendChat()">
-
-        <button
-            class="chat-send"
-            onclick="sendChat()">
-            Hantar
-        </button>
-
+    <div class="chat-input">
+        <input id="chatInput" placeholder="Tulis mesej...">
+        <button onclick="sendChat()">Hantar</button>
     </div>
 
 </div>
-
 
 <script>
 
-/* =====================================================
-   BASIC STATE
-===================================================== */
+/* =========================================================
+   YAM CHAT V4.5.2
+   ========================================================= */
 
-let currentUser =
-    localStorage.getItem("yam_current_user") || null;
+const DEFAULT_AVATAR =
+    "data:image/svg+xml;charset=UTF-8," +
+    encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+            <rect width="200" height="200" fill="#ddd"/>
+            <circle cx="100" cy="75" r="38" fill="#aaa"/>
+            <path d="M35 180c10-45 40-65 65-65s55 20 65 65" fill="#aaa"/>
+        </svg>
+    `);
+
+let currentUser = localStorage.getItem("yam_current_user") || "";
 
 let selectedPostType = "text";
 let selectedPostFile = null;
-let selectedMarketImage = null;
-let currentChatUser = null;
-let currentProfileTab = "posts";
+let selectedMarketImage = "";
+let currentChatUser = "";
+let currentProfileTab = "post";
 
 
-/* =====================================================
-   INDEXED DB
-===================================================== */
+/* =========================================================
+   BASIC HELPERS
+   ========================================================= */
 
-const DB_NAME = "YAM_CHAT_MEDIA_DB";
-const DB_VERSION = 1;
-const MEDIA_STORE = "media";
-
-let mediaDB = null;
-
-
-function openMediaDB(){
-
-    return new Promise((resolve,reject)=>{
-
-        if(mediaDB){
-            resolve(mediaDB);
-            return;
-        }
-
-        const request =
-            indexedDB.open(DB_NAME,DB_VERSION);
-
-        request.onupgradeneeded=function(e){
-
-            const db=e.target.result;
-
-            if(!db.objectStoreNames.contains(MEDIA_STORE)){
-
-                db.createObjectStore(
-                    MEDIA_STORE,
-                    {keyPath:"id"}
-                );
-
-            }
-
-        };
-
-        request.onsuccess=function(e){
-
-            mediaDB=e.target.result;
-
-            resolve(mediaDB);
-
-        };
-
-        request.onerror=function(){
-
-            reject(request.error);
-
-        };
-
-    });
-
+function $(id){
+    return document.getElementById(id);
 }
 
-
-async function saveMedia(file){
-
-    const db=await openMediaDB();
-
-    const id=
-        "media_" +
-        Date.now() +
-        "_" +
-        Math.random()
-            .toString(36)
-            .substring(2,9);
-
-    return new Promise((resolve,reject)=>{
-
-        const tx=
-            db.transaction(
-                MEDIA_STORE,
-                "readwrite"
-            );
-
-        tx.objectStore(MEDIA_STORE).put({
-
-            id:id,
-            name:file.name,
-            type:file.type,
-            size:file.size,
-            blob:file,
-            created:Date.now()
-
-        });
-
-        tx.oncomplete=function(){
-
-            resolve(id);
-
-        };
-
-        tx.onerror=function(){
-
-            reject(tx.error);
-
-        };
-
-    });
-
-}
-
-
-async function getMedia(id){
-
-    if(!id){
-        return null;
-    }
-
-    const db=await openMediaDB();
-
-    return new Promise((resolve,reject)=>{
-
-        const tx=
-            db.transaction(
-                MEDIA_STORE,
-                "readonly"
-            );
-
-        const request=
-            tx.objectStore(MEDIA_STORE).get(id);
-
-        request.onsuccess=function(){
-
-            resolve(request.result || null);
-
-        };
-
-        request.onerror=function(){
-
-            reject(request.error);
-
-        };
-
-    });
-
-}
-
-
-async function deleteMedia(id){
-
-    if(!id){
-        return;
-    }
-
-    const db=await openMediaDB();
-
-    return new Promise((resolve,reject)=>{
-
-        const tx=
-            db.transaction(
-                MEDIA_STORE,
-                "readwrite"
-            );
-
-        tx.objectStore(MEDIA_STORE).delete(id);
-
-        tx.oncomplete=function(){
-
-            resolve();
-
-        };
-
-        tx.onerror=function(){
-
-            reject(tx.error);
-
-        };
-
-    });
-
-}
-
-
-async function clearAllMedia(){
-
-    const db=await openMediaDB();
-
-    return new Promise((resolve,reject)=>{
-
-        const tx=
-            db.transaction(
-                MEDIA_STORE,
-                "readwrite"
-            );
-
-        tx.objectStore(MEDIA_STORE).clear();
-
-        tx.oncomplete=function(){
-
-            resolve();
-
-        };
-
-        tx.onerror=function(){
-
-            reject(tx.error);
-
-        };
-
-    });
-
-}
-
-
-/* =====================================================
-   ACCOUNTS
-===================================================== */
-
-function getAccounts(){
-
-    try{
-
-        return JSON.parse(
-            localStorage.getItem("yam_accounts") || "[]"
-        );
-
-    }catch(e){
-
-        return [];
-
-    }
-
-}
-
-
-function saveAccounts(accounts){
-
-    try{
-
-        localStorage.setItem(
-            "yam_accounts",
-            JSON.stringify(accounts)
-        );
-
-        return true;
-
-    }catch(e){
-
-        alert(
-            "Akaun tidak dapat disimpan. Storage browser penuh."
-        );
-
-        return false;
-
-    }
-
-}
-
-
-function getProfileData(username){
-
-    try{
-
-        return JSON.parse(
-            localStorage.getItem(
-                "yam_profile_" + username
-            ) || "{}"
-        );
-
-    }catch(e){
-
-        return {};
-
-    }
-
-}
-
-
-function saveCurrentProfile(data){
-
-    try{
-
-        localStorage.setItem(
-            "yam_profile_" + currentUser,
-            JSON.stringify(data)
-        );
-
-        return true;
-
-    }catch(e){
-
-        alert(
-            "Profil tidak dapat disimpan. Storage browser penuh."
-        );
-
-        return false;
-
-    }
-
-}
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHtml(text){
-
-    return String(text || "")
+function escapeHtml(value){
+    return String(value ?? "")
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
+}
 
+function safeArg(value){
+    return JSON.stringify(String(value ?? ""));
+}
+
+function getAccounts(){
+    try{
+        return JSON.parse(localStorage.getItem("yam_accounts") || "{}");
+    }catch(e){
+        return {};
+    }
+}
+
+function saveAccounts(accounts){
+    localStorage.setItem("yam_accounts",JSON.stringify(accounts));
+}
+
+function getAvatar(username){
+    return localStorage.getItem("yam_picture_"+username) || DEFAULT_AVATAR;
+}
+
+function getCover(username){
+    return localStorage.getItem("yam_cover_"+username) || "";
+}
+
+function getPosts(){
+    try{
+        return JSON.parse(localStorage.getItem("yam_posts") || "[]");
+    }catch(e){
+        return [];
+    }
+}
+
+function savePosts(posts){
+    localStorage.setItem("yam_posts",JSON.stringify(posts));
+}
+
+function formatTime(timestamp){
+    const d = new Date(timestamp);
+
+    return d.toLocaleDateString("ms-MY",{
+        day:"2-digit",
+        month:"2-digit",
+        year:"numeric"
+    }) + " " +
+    d.toLocaleTimeString("ms-MY",{
+        hour:"2-digit",
+        minute:"2-digit"
+    });
 }
 
 
-/* =====================================================
-   TIME
-===================================================== */
-
-function timeAgo(time){
-
-    const diff=
-        Math.floor(
-            (Date.now()-time)/1000
-        );
-
-    if(diff<60){
-        return "baru sahaja";
-    }
-
-    if(diff<3600){
-        return Math.floor(diff/60)+" minit lalu";
-    }
-
-    if(diff<86400){
-        return Math.floor(diff/3600)+" jam lalu";
-    }
-
-    return Math.floor(diff/86400)+" hari lalu";
-
-}
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
+/* =========================================================
+   LOGIN / REGISTER — FIXED
+   ========================================================= */
 
 function login(){
 
-    const username=
-        document
-        .getElementById("loginUsername")
-        .value
-        .trim();
+    const username = $("loginUsername").value.trim();
+    const password = $("loginPassword").value;
 
-    const password=
-        document
-        .getElementById("loginPassword")
-        .value;
+    $("loginMsg").style.color = "#d00";
 
     if(!username || !password){
-
-        alert("Sila isi username dan password.");
-
+        $("loginMsg").textContent =
+            "Sila isi username dan password.";
         return;
-
     }
 
-    const accounts=getAccounts();
+    const accounts = getAccounts();
 
-    const existing=
-        accounts.find(
-            a=>a.username.toLowerCase()
-            ===username.toLowerCase()
-        );
+    const accountKey = Object.keys(accounts)
+        .find(key => key.toLowerCase() === username.toLowerCase());
 
-    if(!existing){
-
-        accounts.push({
-            username:username,
-            password:password
-        });
-
-        if(!saveAccounts(accounts)){
-            return;
-        }
-
-    }else{
-
-        if(existing.password!==password){
-
-            alert("Password salah.");
-
-            return;
-
-        }
-
+    if(!accountKey){
+        $("loginMsg").textContent =
+            "Akaun tidak dijumpai. Sila daftar akaun dahulu.";
+        return;
     }
 
-    currentUser=username;
+    if(String(accounts[accountKey].password) !== String(password)){
+        $("loginMsg").textContent =
+            "Password tidak betul.";
+        return;
+    }
+
+    currentUser = accountKey;
 
     localStorage.setItem(
         "yam_current_user",
         currentUser
     );
 
-    startApp();
+    $("loginMsg").style.color = "#168a24";
+    $("loginMsg").textContent = "Login berjaya!";
 
+    setTimeout(()=>{
+        startApp();
+    },300);
 }
 
 
 function register(){
 
-    const username=
-        document
-        .getElementById("loginUsername")
-        .value
-        .trim();
+    const username = $("loginUsername").value.trim();
+    const password = $("loginPassword").value;
 
-    const password=
-        document
-        .getElementById("loginPassword")
-        .value;
+    $("loginMsg").style.color = "#d00";
 
-    if(!username || !password){
-
-        alert("Isi username dan password dahulu.");
-
-        return;
-
-    }
-
-    const accounts=getAccounts();
-
-    if(
-        accounts.some(
-            a=>a.username.toLowerCase()
-            ===username.toLowerCase()
-        )
-    ){
-
-        alert("Username sudah digunakan.");
-
-        return;
-
-    }
-
-    accounts.push({
-        username:username,
-        password:password
-    });
-
-    if(!saveAccounts(accounts)){
+    if(username.length < 3){
+        $("loginMsg").textContent =
+            "Username mesti sekurang-kurangnya 3 aksara.";
         return;
     }
 
-    currentUser=username;
+    if(username.length > 30){
+        $("loginMsg").textContent =
+            "Username terlalu panjang.";
+        return;
+    }
+
+    if(/\s/.test(username)){
+        $("loginMsg").textContent =
+            "Username tidak boleh mempunyai ruang.";
+        return;
+    }
+
+    if(password.length < 4){
+        $("loginMsg").textContent =
+            "Password mesti sekurang-kurangnya 4 aksara.";
+        return;
+    }
+
+    const accounts = getAccounts();
+
+    const existingKey = Object.keys(accounts)
+        .find(key => key.toLowerCase() === username.toLowerCase());
+
+    if(existingKey){
+        $("loginMsg").textContent =
+            "Username sudah digunakan.";
+        return;
+    }
+
+    accounts[username] = {
+        password:password,
+        createdAt:Date.now()
+    };
+
+    saveAccounts(accounts);
 
     localStorage.setItem(
         "yam_current_user",
-        currentUser
+        username
     );
 
-    startApp();
+    currentUser = username;
 
-}
+    $("loginMsg").style.color = "#168a24";
+    $("loginMsg").textContent =
+        "Akaun berjaya didaftarkan!";
 
-
-/* =====================================================
-   START APP
-===================================================== */
-
-function startApp(){
-
-    document
-        .getElementById("loginPage")
-        .style.display="none";
-
-    document
-        .getElementById("app")
-        .style.display="block";
-
-    document
-        .getElementById("currentUserDisplay")
-        .textContent=
-        "@"+currentUser;
-
-    showPage("home");
-
+    setTimeout(()=>{
+        startApp();
+    },300);
 }
 
 
 function logout(){
 
-    localStorage.removeItem(
-        "yam_current_user"
-    );
+    localStorage.removeItem("yam_current_user");
 
-    currentUser=null;
+    currentUser = "";
 
-    location.reload();
+    $("app").style.display = "none";
+    $("loginPage").style.display = "flex";
 
+    $("loginUsername").value = "";
+    $("loginPassword").value = "";
+    $("loginMsg").textContent = "";
 }
 
 
-/* =====================================================
+/* =========================================================
+   START APP
+   ========================================================= */
+
+function startApp(){
+
+    if(!currentUser){
+        $("loginPage").style.display = "flex";
+        $("app").style.display = "none";
+        return;
+    }
+
+    $("loginPage").style.display = "none";
+    $("app").style.display = "block";
+
+    $("currentUserDisplay").textContent =
+        "@" + currentUser;
+
+    updateComposerAvatar();
+    renderFeed();
+    renderFriends();
+    renderRooms();
+    renderProfile();
+
+    showPage("home");
+}
+
+
+/* =========================================================
    NAVIGATION
-===================================================== */
+   ========================================================= */
 
 function showPage(page){
 
-    document
-        .querySelectorAll(".page")
-        .forEach(p=>p.classList.remove("active"));
+    document.querySelectorAll(".page")
+        .forEach(el => el.classList.remove("active"));
 
-    document
-        .querySelectorAll(".nav-btn")
-        .forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll(".bottom-nav button")
+        .forEach(el => el.classList.remove("active"));
 
-    if(page==="home"){
-
-        document
-            .getElementById("homePage")
-            .classList.add("active");
-
-        document
-            .getElementById("navHome")
-            .classList.add("active");
-
+    if(page === "home"){
+        $("homePage").classList.add("active");
+        $("navHome").classList.add("active");
         renderFeed();
-
     }
 
-    if(page==="friends"){
-
-        document
-            .getElementById("friendsPage")
-            .classList.add("active");
-
-        document
-            .getElementById("navFriends")
-            .classList.add("active");
-
+    if(page === "friends"){
+        $("friendsPage").classList.add("active");
+        $("navFriends").classList.add("active");
         renderFriends();
-
     }
 
-    if(page==="rooms"){
-
-        document
-            .getElementById("roomsPage")
-            .classList.add("active");
-
-        document
-            .getElementById("navRooms")
-            .classList.add("active");
-
+    if(page === "rooms"){
+        $("roomsPage").classList.add("active");
+        $("navRooms").classList.add("active");
         renderRooms();
-
     }
 
-    if(page==="profile"){
-
-        document
-            .getElementById("profilePage")
-            .classList.add("active");
-
-        document
-            .getElementById("navProfile")
-            .classList.add("active");
-
+    if(page === "profile"){
+        $("profilePage").classList.add("active");
+        $("navProfile").classList.add("active");
         renderProfile();
-
     }
 
+    window.scrollTo(0,0);
 }
 
 
-/* =====================================================
+/* =========================================================
    POST TYPE
-===================================================== */
+   ========================================================= */
 
 function selectPostType(type){
 
-    selectedPostType=type;
+    selectedPostType = type;
+    selectedPostFile = null;
 
-    selectedPostFile=null;
+    document.querySelectorAll(".post-type-row button")
+        .forEach(btn => btn.classList.remove("active"));
 
-    document
-        .querySelectorAll(".post-type-btn")
-        .forEach(btn=>{
-            btn.classList.remove("active");
+    if(type === "text"){
+        $("typeText").classList.add("active");
+        $("postFile").value = "";
+        $("mediaPreview").style.display = "none";
+        $("mediaPreview").innerHTML = "";
+        return;
+    }
+
+    if(type === "image"){
+        $("typeImage").classList.add("active");
+        $("postFile").accept = "image/*";
+    }
+
+    if(type === "video"){
+        $("typeVideo").classList.add("active");
+        $("postFile").accept = "video/*";
+    }
+
+    $("postFile").click();
+}
+
+
+/* =========================================================
+   POST MEDIA
+   ========================================================= */
+
+$("postFile").addEventListener("change",function(){
+
+    const file = this.files[0];
+
+    if(!file) return;
+
+    if(selectedPostType === "image"){
+
+        if(file.size > 3 * 1024 * 1024){
+            alert("Gambar maksimum 3MB.");
+            this.value = "";
+            return;
+        }
+    }
+
+    if(selectedPostType === "video"){
+
+        if(file.size > 6 * 1024 * 1024){
+            alert("Video maksimum 6MB.");
+            this.value = "";
+            return;
+        }
+    }
+
+    selectedPostFile = file;
+
+    const url = URL.createObjectURL(file);
+
+    $("mediaPreview").style.display = "block";
+
+    if(selectedPostType === "image"){
+        $("mediaPreview").innerHTML =
+            `<img src="${url}">`;
+    }else{
+        $("mediaPreview").innerHTML =
+            `<video src="${url}" controls></video>`;
+    }
+});
+
+
+/* =========================================================
+   INDEXED DB MEDIA
+   ========================================================= */
+
+let mediaDBPromise = null;
+
+function openMediaDB(){
+
+    if(mediaDBPromise) return mediaDBPromise;
+
+    mediaDBPromise = new Promise((resolve,reject)=>{
+
+        const request =
+            indexedDB.open("YAM_CHAT_MEDIA_DB",1);
+
+        request.onupgradeneeded = function(e){
+
+            const db = e.target.result;
+
+            if(!db.objectStoreNames.contains("media")){
+                db.createObjectStore("media",{
+                    keyPath:"id"
+                });
+            }
+        };
+
+        request.onsuccess = function(){
+            resolve(request.result);
+        };
+
+        request.onerror = function(){
+            reject(request.error);
+        };
+    });
+
+    return mediaDBPromise;
+}
+
+
+async function saveMedia(file){
+
+    if(!file) return null;
+
+    const id =
+        "media_" +
+        Date.now() +
+        "_" +
+        Math.random().toString(36).slice(2);
+
+    const buffer = await file.arrayBuffer();
+
+    const db = await openMediaDB();
+
+    await new Promise((resolve,reject)=>{
+
+        const tx =
+            db.transaction("media","readwrite");
+
+        tx.objectStore("media").put({
+            id:id,
+            name:file.name,
+            type:file.type,
+            data:buffer
         });
 
-    if(type==="text"){
+        tx.oncomplete = resolve;
+        tx.onerror = ()=>reject(tx.error);
+    });
 
-        document
-            .getElementById("textPostBtn")
-            .classList.add("active");
-
-    }
-
-    if(type==="image"){
-
-        document
-            .getElementById("imagePostBtn")
-            .classList.add("active");
-
-        document
-            .getElementById("postImageFile")
-            .click();
-
-    }
-
-    if(type==="video"){
-
-        document
-            .getElementById("videoPostBtn")
-            .classList.add("active");
-
-        document
-            .getElementById("postVideoFile")
-            .click();
-
-    }
-
+    return id;
 }
 
 
-/* =====================================================
-   FILE SIZE
-===================================================== */
+async function getMedia(id){
 
-function formatSize(bytes){
+    if(!id) return null;
 
-    if(bytes<1024){
-        return bytes+" B";
-    }
+    const db = await openMediaDB();
 
-    if(bytes<1024*1024){
+    return new Promise((resolve,reject)=>{
 
-        return (
-            bytes/1024
-        ).toFixed(1)+" KB";
+        const tx =
+            db.transaction("media","readonly");
 
-    }
+        const request =
+            tx.objectStore("media").get(id);
 
-    return (
-        bytes/(1024*1024)
-    ).toFixed(2)+" MB";
-
+        request.onsuccess = ()=>resolve(request.result || null);
+        request.onerror = ()=>reject(request.error);
+    });
 }
 
 
-/* =====================================================
-   POST IMAGE
-===================================================== */
+async function deleteMedia(id){
 
-function handlePostImage(event){
+    if(!id) return;
 
-    const file=
-        event.target.files[0];
+    const db = await openMediaDB();
 
-    if(!file){
-        return;
-    }
+    return new Promise((resolve,reject)=>{
 
-    if(file.size>3*1024*1024){
+        const tx =
+            db.transaction("media","readwrite");
 
-        alert(
-            "Gambar terlalu besar. Maksimum 3MB."
-        );
+        tx.objectStore("media").delete(id);
 
-        event.target.value="";
-
-        return;
-
-    }
-
-    selectedPostFile=file;
-    selectedPostType="image";
-
-    const url=
-        URL.createObjectURL(file);
-
-    document
-        .getElementById("mediaPreview")
-        .innerHTML=`
-            <img src="${url}" alt="Preview">
-        `;
-
-    document
-        .getElementById("fileInfo")
-        .textContent=
-        file.name+
-        " • "+
-        formatSize(file.size);
-
+        tx.oncomplete = resolve;
+        tx.onerror = ()=>reject(tx.error);
+    });
 }
 
 
-function handlePostVideo(event){
-
-    const file=
-        event.target.files[0];
-
-    if(!file){
-        return;
-    }
-
-    if(file.size>6*1024*1024){
-
-        alert(
-            "Video terlalu besar. Maksimum 6MB untuk demo."
-        );
-
-        event.target.value="";
-
-        return;
-
-    }
-
-    selectedPostFile=file;
-    selectedPostType="video";
-
-    const url=
-        URL.createObjectURL(file);
-
-    document
-        .getElementById("mediaPreview")
-        .innerHTML=`
-            <video
-                src="${url}"
-                controls
-                playsinline
-                preload="metadata">
-            </video>
-        `;
-
-    document
-        .getElementById("fileInfo")
-        .textContent=
-        file.name+
-        " • "+
-        formatSize(file.size);
-
-}
-
-
-/* =====================================================
-   POSTS STORAGE
-===================================================== */
-
-function getPosts(){
-
-    try{
-
-        return JSON.parse(
-            localStorage.getItem("yam_posts") || "[]"
-        );
-
-    }catch(e){
-
-        return [];
-
-    }
-
-}
-
-
-function savePosts(posts){
-
-    try{
-
-        localStorage.setItem(
-            "yam_posts",
-            JSON.stringify(posts)
-        );
-
-        return true;
-
-    }catch(e){
-
-        alert(
-            "Post gagal disimpan. Storage data browser penuh."
-        );
-
-        return false;
-
-    }
-
-}
-
-
-/* =====================================================
+/* =========================================================
    CREATE POST
-===================================================== */
+   ========================================================= */
 
 async function createPost(){
 
-    const text=
-        document
-        .getElementById("postText")
-        .value
-        .trim();
+    const text = $("postText").value.trim();
 
-    if(
-        selectedPostType==="text"
-        &&
-        !text
-    ){
-
-        alert("Tulis sesuatu dahulu.");
-
+    if(!text && !selectedPostFile){
+        alert("Sila tulis sesuatu atau pilih media.");
         return;
-
     }
 
-    if(
-        (
-            selectedPostType==="image"
-            ||
-            selectedPostType==="video"
-        )
-        &&
-        !selectedPostFile
-    ){
-
-        alert("Sila pilih media dahulu.");
-
-        return;
-
-    }
-
-    let mediaId="";
+    let mediaId = null;
 
     if(selectedPostFile){
 
         try{
-
-            mediaId=
-                await saveMedia(
-                    selectedPostFile
-                );
-
-        }catch(error){
-
-            console.error(error);
-
-            alert(
-                "Media gagal disimpan. Cuba fail yang lebih kecil."
-            );
-
+            mediaId = await saveMedia(selectedPostFile);
+        }catch(e){
+            alert("Gagal menyimpan media.");
             return;
-
         }
-
     }
 
-    const posts=getPosts();
+    const posts = getPosts();
 
     posts.unshift({
 
@@ -2155,293 +1451,220 @@ async function createPost(){
         hiddenComments:false,
 
         blockedUsers:[]
-
     });
 
-    if(!savePosts(posts)){
+    savePosts(posts);
 
-        if(mediaId){
+    $("postText").value = "";
+    $("postFile").value = "";
+    $("mediaPreview").style.display = "none";
+    $("mediaPreview").innerHTML = "";
 
-            await deleteMedia(mediaId);
+    selectedPostFile = null;
+    selectedPostType = "text";
 
-        }
+    document.querySelectorAll(".post-type-row button")
+        .forEach(btn=>btn.classList.remove("active"));
 
-        return;
-
-    }
-
-    cancelPost();
+    $("typeText").classList.add("active");
 
     renderFeed();
-
 }
 
 
-/* =====================================================
-   CANCEL POST
-===================================================== */
-
-function cancelPost(){
-
-    document
-        .getElementById("postText")
-        .value="";
-
-    document
-        .getElementById("mediaPreview")
-        .innerHTML="";
-
-    document
-        .getElementById("fileInfo")
-        .textContent="";
-
-    document
-        .getElementById("postImageFile")
-        .value="";
-
-    document
-        .getElementById("postVideoFile")
-        .value="";
-
-    selectedPostFile=null;
-    selectedPostType="text";
-
-    document
-        .querySelectorAll(".post-type-btn")
-        .forEach(btn=>{
-            btn.classList.remove("active");
-        });
-
-    document
-        .getElementById("textPostBtn")
-        .classList.add("active");
-
-}
-
-
-/* =====================================================
-   AVATAR HTML
-===================================================== */
-
-function avatarHtml(username){
-
-    const pic=
-        localStorage.getItem(
-            "yam_picture_"+username
-        );
-
-    if(pic){
-
-        return `
-            <img
-                class="avatar"
-                src="${pic}"
-                alt="">
-        `;
-
-    }
-
-    return `
-        <div class="avatar-placeholder">
-            ${escapeHtml(
-                username
-                .charAt(0)
-                .toUpperCase()
-            )}
-        </div>
-    `;
-
-}
-
-
-/* =====================================================
-   FEED
-===================================================== */
+/* =========================================================
+   RENDER FEED
+   ========================================================= */
 
 async function renderFeed(){
 
-    const area=
-        document.getElementById("feed");
+    const posts = getPosts();
 
-    const posts=getPosts();
-
-    if(!posts.length){
-
-        area.innerHTML=`
-            <div class="empty">
-                Belum ada post.
-                <br><br>
-                Jadilah orang pertama membuat post.
-            </div>
-        `;
-
+    if(posts.length === 0){
+        $("feed").innerHTML =
+            `<div class="empty">Belum ada posting. Jadilah orang pertama membuat posting.</div>`;
         return;
-
     }
 
-    let html="";
+    let html = "";
 
     for(const post of posts){
 
-        let mediaHtml="";
+        let mediaHtml = "";
 
         if(post.mediaId){
 
-            const media=
-                await getMedia(post.mediaId);
+            try{
 
-            if(media){
+                const media = await getMedia(post.mediaId);
 
-                const url=
-                    URL.createObjectURL(
-                        media.blob
-                    );
+                if(media){
 
-                if(post.type==="image"){
+                    const blob =
+                        new Blob(
+                            [media.data],
+                            {type:media.type}
+                        );
 
-                    mediaHtml=`
-                        <img
-                            class="post-media"
-                            src="${url}"
-                            alt="Post gambar">
-                    `;
+                    const url =
+                        URL.createObjectURL(blob);
 
+                    if(post.type === "image"){
+                        mediaHtml =
+                            `<img class="post-media" src="${url}">`;
+                    }
+
+                    if(post.type === "video"){
+                        mediaHtml =
+                            `<video class="post-media" src="${url}" controls></video>`;
+                    }
                 }
 
-                if(post.type==="video"){
-
-                    mediaHtml=`
-                        <video
-                            class="post-media"
-                            src="${url}"
-                            controls
-                            playsinline
-                            preload="metadata">
-                        </video>
-                    `;
-
-                }
-
-            }
-
+            }catch(e){}
         }
 
-        const likes=
-            post.likes || [];
+        const likes =
+            Array.isArray(post.likes)
+                ? post.likes
+                : [];
 
-        const comments=
-            post.comments || [];
+        const comments =
+            Array.isArray(post.comments)
+                ? post.comments
+                : [];
 
-        const blocked=
-            post.blockedUsers || [];
+        const blocked =
+            Array.isArray(post.blockedUsers)
+                ? post.blockedUsers
+                : [];
 
-        const liked=
+        const visibleComments =
+            post.hiddenComments
+                ? []
+                : comments.filter(
+                    c => !blocked.includes(c.user)
+                );
+
+        const liked =
             likes.includes(currentUser);
 
-        const visibleComments=
-            comments.filter(
-                c=>!blocked.includes(c.user)
-            );
+        const isOwner =
+            post.owner === currentUser;
 
-        let commentsHtml="";
+        let commentsHtml = "";
 
-        if(
-            !post.hiddenComments
-            &&
-            visibleComments.length
-        ){
+        if(post.hiddenComments){
 
-            commentsHtml=
-                visibleComments
-                .map(c=>`
+            commentsHtml =
+                `<div class="no-comments">Komen telah disembunyikan oleh pemilik posting.</div>`;
 
-                    <div class="comment">
+        }else{
 
-                        <div class="comment-head">
+            if(visibleComments.length === 0){
 
-                            <span class="comment-name">
-                                ${escapeHtml(c.user)}
-                            </span>
+                commentsHtml =
+                    `<div class="no-comments">Belum ada komen.</div>`;
 
-                            ${
-                                post.owner===currentUser
-                                ?
-                                `
+            }else{
+
+                commentsHtml =
+                    visibleComments.map(c => {
+
+                        const commentOwner =
+                            post.owner === currentUser;
+
+                        return `
+                            <div class="comment">
+
+                                <div class="comment-user">
+                                    ${escapeHtml(c.user)}
+                                </div>
+
+                                <div class="comment-text">
+                                    ${escapeHtml(c.text)}
+                                </div>
+
                                 <div class="comment-tools">
 
-                                    <button
-                                        class="comment-tool"
-                                        title="Padam komen"
-                                        onclick="deleteComment(${post.id},${c.id})">
-                                        🗑️
-                                    </button>
-
                                     ${
-                                        blocked.includes(c.user)
+                                        commentOwner
                                         ?
-                                        ""
-                                        :
                                         `
-                                        <button
-                                            class="comment-tool"
-                                            title="Block pengguna"
-                                            onclick="blockCommentUser(${post.id},'${escapeHtml(c.user)}')">
-                                            🚫
+                                        <button onclick="deleteComment(${post.id},${safeArg(c.id)})">
+                                            Padam
+                                        </button>
+
+                                        <button onclick="toggleBlockUser(${post.id},${safeArg(c.user)})">
+                                            ${
+                                                blocked.includes(c.user)
+                                                ? "Buka Block"
+                                                : "Block"
+                                            }
                                         </button>
                                         `
+                                        : ""
                                     }
 
                                 </div>
-                                `
-                                :
-                                ""
-                            }
 
-                        </div>
+                            </div>
+                        `;
 
-                        <div>
-                            ${escapeHtml(c.text)}
-                        </div>
-
-                    </div>
-
-                `)
-                .join("");
-
+                    }).join("");
+            }
         }
 
-        html+=`
+        let commentInput = "";
 
+        if(!post.hiddenComments &&
+           !blocked.includes(currentUser)){
+
+            commentInput = `
+                <div class="comment-input-row">
+                    <input
+                        id="commentInput_${post.id}"
+                        placeholder="Tulis komen..."
+                        onkeydown="if(event.key==='Enter') addComment(${post.id})"
+                    >
+                    <button onclick="addComment(${post.id})">
+                        Hantar
+                    </button>
+                </div>
+            `;
+        }
+
+        html += `
             <div class="post">
 
                 <div class="post-head">
 
-                    ${avatarHtml(post.owner)}
+                    <img
+                        class="post-avatar"
+                        src="${getAvatar(post.owner)}"
+                    >
 
-                    <div class="post-user">
-
-                        <div class="post-user-name">
+                    <div>
+                        <div class="post-owner">
                             ${escapeHtml(post.owner)}
                         </div>
 
                         <div class="post-time">
-                            ${timeAgo(post.time)}
+                            ${formatTime(post.time)}
                         </div>
-
                     </div>
 
                     ${
-                        post.owner===currentUser
+                        isOwner
                         ?
                         `
                         <button
                             class="post-menu"
-                            onclick="postOwnerMenu(${post.id})">
+                            onclick="postOwnerMenu(${post.id})"
+                        >
                             ⋮
                         </button>
                         `
-                        :
-                        ""
+                        : ""
                     }
 
                 </div>
@@ -2449,13 +1672,8 @@ async function renderFeed(){
                 ${
                     post.text
                     ?
-                    `
-                    <div class="post-text">
-                        ${escapeHtml(post.text)}
-                    </div>
-                    `
-                    :
-                    ""
+                    `<div class="post-text">${escapeHtml(post.text)}</div>`
+                    : ""
                 }
 
                 ${mediaHtml}
@@ -2463,2403 +1681,1193 @@ async function renderFeed(){
                 <div class="post-actions">
 
                     <button
-                        class="action-btn ${liked?"liked":""}"
-                        onclick="toggleLike(${post.id})">
-                        ${liked?"❤️":"♡"}
-                        ${likes.length}
+                        class="${liked ? "liked" : ""}"
+                        onclick="toggleLike(${post.id})"
+                    >
+                        👍 Like ${likes.length ? likes.length : ""}
                     </button>
 
-                    <button
-                        class="action-btn"
-                        onclick="focusComment(${post.id})">
-                        💬
-                        ${visibleComments.length}
+                    <button onclick="focusComment(${post.id})">
+                        💬 Komen ${visibleComments.length ? visibleComments.length : ""}
                     </button>
 
-                    <button
-                        class="action-btn"
-                        onclick="sharePost(${post.id})">
-                        🔗 Share
+                    <button onclick="sharePost(${post.id})">
+                        ↗ Kongsi
                     </button>
 
                 </div>
 
-                <div
-                    class="comments"
-                    id="comments-${post.id}">
-
-                    ${
-                        post.hiddenComments
-                        ?
-                        `
-                        ${
-                            post.owner===currentUser
-                            ?
-                            `
-                            <button
-                                class="small-btn"
-                                onclick="toggleComments(${post.id})">
-                                👁️ Tunjukkan komen
-                            </button>
-                            `
-                            :
-                            `
-                            <div
-                                style="
-                                    color:#6b7280;
-                                    font-size:12px;
-                                    padding:8px">
-                                Komen disembunyikan oleh author.
-                            </div>
-                            `
-                        }
-                        `
-                        :
-                        `
-                        ${commentsHtml}
-
-                        ${
-                            blocked.includes(currentUser)
-                            ?
-                            `
-                            <div
-                                style="
-                                    color:#b91c1c;
-                                    font-size:12px;
-                                    margin-top:9px;
-                                    padding:8px;
-                                    background:#fee2e2;
-                                    border-radius:9px">
-                                🚫 Anda telah disekat daripada komen pada post ini.
-                            </div>
-                            `
-                            :
-                            `
-                            <div class="comment-row">
-
-                                <input
-                                    id="comment-${post.id}"
-                                    class="comment-input"
-                                    placeholder="Tulis komen..."
-                                    onkeydown="if(event.key==='Enter')addComment(${post.id})">
-
-                                <button
-                                    class="comment-send"
-                                    onclick="addComment(${post.id})">
-                                    ↗
-                                </button>
-
-                            </div>
-                            `
-                        }
-                        `
-                    }
-
+                <div class="comment-area">
+                    ${commentsHtml}
+                    ${commentInput}
                 </div>
 
             </div>
-
         `;
-
     }
 
-    area.innerHTML=html;
-
+    $("feed").innerHTML = html;
 }
 
 
-/* =====================================================
+/* =========================================================
    LIKE
-===================================================== */
+   ========================================================= */
 
-function toggleLike(id){
+function toggleLike(postId){
 
-    const posts=getPosts();
+    const posts = getPosts();
 
-    const post=
-        posts.find(p=>p.id===id);
+    const post =
+        posts.find(p => p.id === postId);
 
-    if(!post){
-        return;
+    if(!post) return;
+
+    if(!Array.isArray(post.likes)){
+        post.likes = [];
     }
 
-    if(!post.likes){
-        post.likes=[];
-    }
-
-    const index=
+    const index =
         post.likes.indexOf(currentUser);
 
-    if(index>=0){
-
+    if(index >= 0){
         post.likes.splice(index,1);
-
     }else{
-
         post.likes.push(currentUser);
-
     }
 
     savePosts(posts);
-
     renderFeed();
-
 }
 
 
-/* =====================================================
-   SHARE
-===================================================== */
-
-function sharePost(id){
-
-    const posts=getPosts();
-
-    const post=
-        posts.find(p=>p.id===id);
-
-    if(!post){
-        return;
-    }
-
-    const shareText=
-        "Post YAM Chat oleh @"+post.owner+
-        (post.text ? "\n\n"+post.text : "");
-
-    if(
-        navigator.share
-    ){
-
-        navigator.share({
-
-            title:"YAM Chat",
-            text:shareText
-
-        }).catch(()=>{});
-
-        return;
-
-    }
-
-    openModal(
-        "🔗 Share Post",
-        `
-            <div class="share-box">
-
-                <p>
-                    ${escapeHtml(shareText)}
-                </p>
-
-                <br>
-
-                <button
-                    class="btn btn-primary"
-                    onclick="copyShareText(${id})">
-                    📋 Salin
-                </button>
-
-            </div>
-        `
-    );
-
-}
-
-
-function copyShareText(id){
-
-    const posts=getPosts();
-
-    const post=
-        posts.find(p=>p.id===id);
-
-    if(!post){
-        return;
-    }
-
-    const text=
-        "Post YAM Chat oleh @"+post.owner+
-        (post.text ? "\n\n"+post.text : "");
-
-    if(
-        navigator.clipboard
-        &&
-        navigator.clipboard.writeText
-    ){
-
-        navigator.clipboard
-            .writeText(text)
-            .then(()=>{
-
-                closeModal();
-
-                alert("Post berjaya disalin untuk share.");
-
-            })
-            .catch(()=>{
-
-                alert("Tidak dapat menyalin.");
-
-            });
-
-    }else{
-
-        closeModal();
-
-        alert("Fungsi salin tidak disokong browser ini.");
-
-    }
-
-}
-
-
-/* =====================================================
+/* =========================================================
    COMMENT
-===================================================== */
+   ========================================================= */
 
-function addComment(id){
+function focusComment(postId){
 
-    const input=
-        document
-        .getElementById("comment-"+id);
+    const input =
+        $("commentInput_"+postId);
 
-    if(!input){
-        return;
+    if(input){
+        input.focus();
+        input.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
     }
+}
 
-    const text=
+
+function addComment(postId){
+
+    const input =
+        $("commentInput_"+postId);
+
+    if(!input) return;
+
+    const text =
         input.value.trim();
 
-    if(!text){
-        return;
-    }
+    if(!text) return;
 
-    const posts=getPosts();
+    const posts = getPosts();
 
-    const post=
-        posts.find(p=>p.id===id);
+    const post =
+        posts.find(p => p.id === postId);
 
-    if(!post){
-        return;
-    }
-
-    if(!post.comments){
-        post.comments=[];
-    }
-
-    if(!post.blockedUsers){
-        post.blockedUsers=[];
-    }
-
-    if(
-        post.blockedUsers.includes(currentUser)
-    ){
-
-        alert(
-            "Anda telah disekat daripada komen pada post ini."
-        );
-
-        return;
-
-    }
+    if(!post) return;
 
     if(post.hiddenComments){
-
-        alert(
-            "Komen untuk post ini sedang disembunyikan oleh author."
-        );
-
+        alert("Komen sedang disembunyikan.");
         return;
+    }
 
+    if(!Array.isArray(post.blockedUsers)){
+        post.blockedUsers = [];
+    }
+
+    if(post.blockedUsers.includes(currentUser)){
+        alert("Anda telah di-block daripada komen pada posting ini.");
+        return;
+    }
+
+    if(!Array.isArray(post.comments)){
+        post.comments = [];
     }
 
     post.comments.push({
 
         id:
-            Date.now()+
-            Math.floor(Math.random()*1000),
+            Date.now() +
+            "_" +
+            Math.random().toString(36).slice(2),
 
         user:currentUser,
 
         text:text,
 
         time:Date.now()
-
     });
 
     savePosts(posts);
 
     renderFeed();
-
 }
 
 
-function focusComment(id){
+/* =========================================================
+   DELETE COMMENT
+   ========================================================= */
 
-    const posts=getPosts();
+function deleteComment(postId,commentId){
 
-    const post=
-        posts.find(p=>p.id===id);
+    const posts = getPosts();
 
-    if(
-        post &&
-        (post.blockedUsers||[])
-        .includes(currentUser)
-    ){
+    const post =
+        posts.find(p => p.id === postId);
 
-        alert(
-            "Anda telah disekat daripada komen pada post ini."
+    if(!post || post.owner !== currentUser){
+        return;
+    }
+
+    if(!Array.isArray(post.comments)){
+        return;
+    }
+
+    post.comments =
+        post.comments.filter(
+            c => String(c.id) !== String(commentId)
         );
 
-        return;
+    savePosts(posts);
 
-    }
-
-    const input=
-        document
-        .getElementById("comment-"+id);
-
-    if(input){
-
-        input.focus();
-
-        return;
-
-    }
-
-    const comments=
-        document.getElementById(
-            "comments-"+id
-        );
-
-    if(comments){
-
-        comments.scrollIntoView({
-            behavior:"smooth",
-            block:"center"
-        });
-
-    }
-
+    renderFeed();
 }
 
 
-/* =====================================================
-   HIDE / SHOW COMMENTS
-===================================================== */
+/* =========================================================
+   BLOCK / UNBLOCK COMMENT USER
+   ========================================================= */
 
-function toggleComments(id){
+function toggleBlockUser(postId,username){
 
-    const posts=getPosts();
+    const posts = getPosts();
 
-    const post=
-        posts.find(p=>p.id===id);
+    const post =
+        posts.find(p => p.id === postId);
 
-    if(!post){
+    if(!post || post.owner !== currentUser){
         return;
     }
 
-    if(post.owner!==currentUser){
-
-        alert(
-            "Hanya author post boleh mengurus komen."
-        );
-
-        return;
-
+    if(!Array.isArray(post.blockedUsers)){
+        post.blockedUsers = [];
     }
 
-    post.hiddenComments=
+    const index =
+        post.blockedUsers.indexOf(username);
+
+    if(index >= 0){
+        post.blockedUsers.splice(index,1);
+    }else{
+        post.blockedUsers.push(username);
+    }
+
+    savePosts(posts);
+
+    renderFeed();
+}
+
+
+function unblockUser(postId,username){
+    toggleBlockUser(postId,username);
+}
+
+
+/* =========================================================
+   POST OWNER MENU
+   ========================================================= */
+
+function postOwnerMenu(postId){
+
+    const posts = getPosts();
+
+    const post =
+        posts.find(p => p.id === postId);
+
+    if(!post || post.owner !== currentUser){
+        return;
+    }
+
+    const hiddenText =
+        post.hiddenComments
+        ? "👁️ Tunjukkan Komen"
+        : "🙈 Sembunyikan Komen";
+
+    openModal(`
+
+        <h3>Menu Posting</h3>
+
+        <button
+            class="primary"
+            onclick="toggleComments(${postId})"
+        >
+            ${hiddenText}
+        </button>
+
+        <button
+            class="normal"
+            onclick="managePostComments(${postId})"
+        >
+            💬 Urus Komen
+        </button>
+
+        <button
+            class="danger"
+            onclick="deletePost(${postId})"
+        >
+            🗑️ Padam Posting
+        </button>
+
+        <br>
+
+        <button
+            class="normal"
+            onclick="closeModal()"
+        >
+            Tutup
+        </button>
+    `);
+}
+
+
+function toggleComments(postId){
+
+    const posts = getPosts();
+
+    const post =
+        posts.find(p => p.id === postId);
+
+    if(!post || post.owner !== currentUser){
+        return;
+    }
+
+    post.hiddenComments =
         !post.hiddenComments;
 
     savePosts(posts);
 
+    closeModal();
     renderFeed();
-
 }
 
 
-/* =====================================================
-   DELETE COMMENT
-===================================================== */
-
-function deleteComment(postId,commentId){
-
-    const posts=getPosts();
-
-    const post=
-        posts.find(p=>p.id===postId);
-
-    if(!post){
-        return;
-    }
-
-    if(post.owner!==currentUser){
-
-        alert(
-            "Hanya author post boleh padam komen."
-        );
-
-        return;
-
-    }
-
-    const comment=
-        (post.comments||[])
-        .find(c=>c.id===commentId);
-
-    if(!comment){
-        return;
-    }
-
-    if(
-        !confirm(
-            "Padam komen daripada @"+
-            comment.user+
-            "?"
-        )
-    ){
-
-        return;
-
-    }
-
-    post.comments=
-        (post.comments||[])
-        .filter(
-            c=>c.id!==commentId
-        );
-
-    savePosts(posts);
-
-    renderFeed();
-
-}
-
-
-/* =====================================================
-   BLOCK COMMENT USER
-===================================================== */
-
-function blockCommentUser(postId,username){
-
-    const posts=getPosts();
-
-    const post=
-        posts.find(p=>p.id===postId);
-
-    if(!post){
-        return;
-    }
-
-    if(post.owner!==currentUser){
-
-        alert(
-            "Hanya author post boleh block pengguna."
-        );
-
-        return;
-
-    }
-
-    if(username===currentUser){
-
-        alert(
-            "Author tidak boleh block diri sendiri."
-        );
-
-        return;
-
-    }
-
-    if(!post.blockedUsers){
-        post.blockedUsers=[];
-    }
-
-    if(
-        post.blockedUsers.includes(username)
-    ){
-
-        post.blockedUsers=
-            post.blockedUsers.filter(
-                u=>u!==username
-            );
-
-    }else{
-
-        post.blockedUsers.push(username);
-
-    }
-
-    savePosts(posts);
-
-    renderFeed();
-
-}
-
-
-/* =====================================================
-   UNBLOCK USER
-===================================================== */
-
-function unblockCommentUser(postId,username){
-
-    const posts=getPosts();
-
-    const post=
-        posts.find(p=>p.id===postId);
-
-    if(!post){
-        return;
-    }
-
-    if(post.owner!==currentUser){
-        return;
-    }
-
-    post.blockedUsers=
-        (post.blockedUsers||[])
-        .filter(
-            u=>u!==username
-        );
-
-    savePosts(posts);
-
-    renderFeed();
-
-}
-
-
-/* =====================================================
-   POST OWNER MENU
-===================================================== */
-
-function postOwnerMenu(id){
-
-    const posts=getPosts();
-
-    const post=
-        posts.find(p=>p.id===id);
-
-    if(!post){
-        return;
-    }
-
-    if(post.owner!==currentUser){
-        return;
-    }
-
-    const blocked=
-        post.blockedUsers || [];
-
-    const blockedHtml=
-        blocked.length
-        ?
-        `
-        <div
-            style="
-                margin-top:12px;
-                background:#f8fafc;
-                padding:10px;
-                border-radius:10px">
-
-            <div
-                style="
-                    font-weight:bold;
-                    margin-bottom:7px">
-                🚫 Pengguna disekat
-            </div>
-
-            ${
-                blocked.map(user=>`
-
-                    <div
-                        style="
-                            display:flex;
-                            align-items:center;
-                            gap:6px;
-                            margin-top:6px">
-
-                        <span style="flex:1">
-                            @${escapeHtml(user)}
-                        </span>
-
-                        <button
-                            class="small-btn"
-                            onclick="unblockCommentUser(${id},'${escapeHtml(user)}')">
-                            Buka Block
-                        </button>
-
-                    </div>
-
-                `).join("")
-            }
-
-        </div>
-        `
-        :
-        `
-        <div
-            style="
-                margin-top:10px;
-                color:#6b7280;
-                font-size:12px">
-            Tiada pengguna yang disekat.
-        </div>
-        `;
-
-    openModal(
-        "Post",
-        `
-
-            <button
-                class="btn btn-gray"
-                onclick="toggleComments(${id});closeModal()">
-                ${
-                    post.hiddenComments
-                    ?
-                    "👁️ Tunjukkan Komen"
-                    :
-                    "🙈 Hide Komen"
-                }
-            </button>
-
-            <div style="height:8px"></div>
-
-            <button
-                class="btn btn-gray"
-                onclick="managePostComments(${id})">
-                💬 Urus Komen
-            </button>
-
-            <div style="height:8px"></div>
-
-            <button
-                class="btn"
-                style="background:#fee2e2;color:#b91c1c"
-                onclick="deletePost(${id})">
-                🗑️ Padam Post
-            </button>
-
-            ${blockedHtml}
-
-        `
-    );
-
-}
-
-
-/* =====================================================
+/* =========================================================
    MANAGE COMMENTS
-===================================================== */
+   ========================================================= */
 
-function managePostComments(id){
+function managePostComments(postId){
 
-    const posts=getPosts();
+    const posts = getPosts();
 
-    const post=
-        posts.find(p=>p.id===id);
+    const post =
+        posts.find(p => p.id === postId);
 
-    if(!post){
+    if(!post || post.owner !== currentUser){
         return;
     }
 
-    if(post.owner!==currentUser){
-        return;
-    }
+    const comments =
+        Array.isArray(post.comments)
+        ? post.comments
+        : [];
 
-    const comments=
-        post.comments || [];
+    const blocked =
+        Array.isArray(post.blockedUsers)
+        ? post.blockedUsers
+        : [];
 
-    const blocked=
-        post.blockedUsers || [];
+    let html = `
+        <h3>Urus Komen</h3>
+    `;
 
-    let html="";
+    if(comments.length === 0){
 
-    if(!comments.length){
-
-        html+=`
-            <div class="empty">
-                Belum ada komen.
-            </div>
-        `;
+        html +=
+            `<div class="empty">Belum ada komen.</div>`;
 
     }else{
 
-        comments.forEach(comment=>{
+        comments.forEach(c=>{
 
-            const isBlocked=
-                blocked.includes(comment.user);
+            const isBlocked =
+                blocked.includes(c.user);
 
-            html+=`
-
+            html += `
                 <div class="comment">
 
-                    <div class="comment-head">
-
-                        <span class="comment-name">
-                            @${escapeHtml(comment.user)}
-                        </span>
-
+                    <div class="comment-user">
+                        ${escapeHtml(c.user)}
                         ${
                             isBlocked
-                            ?
-                            `
-                            <span
-                                style="
-                                    font-size:10px;
-                                    color:#b91c1c">
-                                BLOCKED
-                            </span>
-                            `
-                            :
-                            ""
+                            ? " 🚫"
+                            : ""
                         }
-
                     </div>
 
-                    <div>
-                        ${escapeHtml(comment.text)}
+                    <div class="comment-text">
+                        ${escapeHtml(c.text)}
                     </div>
 
-                    <div
-                        style="
-                            display:flex;
-                            gap:5px;
-                            margin-top:7px">
+                    <div class="comment-tools">
 
                         <button
-                            class="small-btn"
-                            style="background:#fee2e2;color:#b91c1c"
-                            onclick="deleteComment(${id},${comment.id});managePostComments(${id})">
-                            🗑️ Padam
+                            class="danger"
+                            onclick="deleteCommentAndManage(${postId},${safeArg(c.id)})"
+                        >
+                            Padam
                         </button>
 
-                        ${
-                            isBlocked
-                            ?
-                            `
-                            <button
-                                class="small-btn"
-                                onclick="unblockCommentUser(${id},'${escapeHtml(comment.user)}');managePostComments(${id})">
-                                Buka Block
-                            </button>
-                            `
-                            :
-                            `
-                            <button
-                                class="small-btn"
-                                style="background:#fef3c7;color:#92400e"
-                                onclick="blockCommentUser(${id},'${escapeHtml(comment.user)}');managePostComments(${id})">
-                                🚫 Block
-                            </button>
-                            `
-                        }
+                        <button
+                            class="normal"
+                            onclick="toggleBlockAndManage(${postId},${safeArg(c.user)})"
+                        >
+                            ${
+                                isBlocked
+                                ? "Buka Block"
+                                : "Block"
+                            }
+                        </button>
 
                     </div>
 
                 </div>
-
             `;
-
         });
-
     }
 
-    openModal(
-        "💬 Urus Komen",
-        html
-    );
+    html += `
+        <button
+            class="primary"
+            onclick="closeModal()"
+        >
+            Selesai
+        </button>
+    `;
 
+    openModal(html);
 }
 
 
-/* =====================================================
-   DELETE POST
-===================================================== */
+function deleteCommentAndManage(postId,commentId){
 
-async function deletePost(id){
+    const posts = getPosts();
 
-    closeModal();
+    const post =
+        posts.find(p => p.id === postId);
 
-    const posts=getPosts();
-
-    const post=
-        posts.find(p=>p.id===id);
-
-    if(!post){
+    if(!post || post.owner !== currentUser){
         return;
     }
 
-    if(post.owner!==currentUser){
-
-        alert(
-            "Hanya author boleh padam post."
+    post.comments =
+        (post.comments || [])
+        .filter(
+            c => String(c.id) !== String(commentId)
         );
 
-        return;
-
-    }
-
-    if(
-        !confirm(
-            "Padam post ini?"
-        )
-    ){
-        return;
-    }
-
-    if(post.mediaId){
-
-        try{
-
-            await deleteMedia(
-                post.mediaId
-            );
-
-        }catch(e){
-
-            console.error(e);
-
-        }
-
-    }
-
-    const remaining=
-        posts.filter(
-            p=>p.id!==id
-        );
-
-    savePosts(remaining);
+    savePosts(posts);
 
     renderFeed();
 
+    managePostComments(postId);
 }
 
 
-/* =====================================================
+function toggleBlockAndManage(postId,username){
+
+    const posts = getPosts();
+
+    const post =
+        posts.find(p => p.id === postId);
+
+    if(!post || post.owner !== currentUser){
+        return;
+    }
+
+    if(!Array.isArray(post.blockedUsers)){
+        post.blockedUsers = [];
+    }
+
+    const index =
+        post.blockedUsers.indexOf(username);
+
+    if(index >= 0){
+        post.blockedUsers.splice(index,1);
+    }else{
+        post.blockedUsers.push(username);
+    }
+
+    savePosts(posts);
+
+    renderFeed();
+
+    managePostComments(postId);
+}
+
+
+/* =========================================================
+   DELETE POST
+   ========================================================= */
+
+async function deletePost(postId){
+
+    const posts = getPosts();
+
+    const index =
+        posts.findIndex(p => p.id === postId);
+
+    if(index < 0) return;
+
+    const post = posts[index];
+
+    if(post.owner !== currentUser){
+        return;
+    }
+
+    const yes =
+        confirm("Padam posting ini?");
+
+    if(!yes) return;
+
+    if(post.mediaId){
+        try{
+            await deleteMedia(post.mediaId);
+        }catch(e){}
+    }
+
+    posts.splice(index,1);
+
+    savePosts(posts);
+
+    closeModal();
+    renderFeed();
+}
+
+
+/* =========================================================
+   SHARE
+   ========================================================= */
+
+async function sharePost(postId){
+
+    const text =
+        "Lihat posting ini di YAM Chat.";
+
+    if(navigator.share){
+
+        try{
+            await navigator.share({
+                title:"YAM Chat",
+                text:text
+            });
+            return;
+        }catch(e){}
+    }
+
+    try{
+
+        await navigator.clipboard.writeText(text);
+
+        alert("Pautan/info perkongsian disalin.");
+
+    }catch(e){
+
+        alert("Kongsi: YAM Chat");
+    }
+}
+
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+function renderProfile(){
+
+    if(!currentUser) return;
+
+    $("profileName").textContent =
+        currentUser;
+
+    $("profileAvatar").src =
+        getAvatar(currentUser);
+
+    $("composerAvatar").src =
+        getAvatar(currentUser);
+
+    const cover =
+        getCover(currentUser);
+
+    if(cover){
+
+        $("profileHero").style.backgroundImage =
+            `url("${cover}")`;
+
+    }else{
+
+        $("profileHero").style.backgroundImage =
+            "linear-gradient(135deg,#1877f2,#111)";
+    }
+
+    showProfileTab(currentProfileTab);
+}
+
+
+function updateComposerAvatar(){
+
+    if(currentUser){
+        $("composerAvatar").src =
+            getAvatar(currentUser);
+    }
+}
+
+
+/* =========================================================
+   PROFILE PICTURE — FIXED
+   ========================================================= */
+
+function changeProfilePicture(){
+
+    $("profileFile").click();
+}
+
+
+$("profileFile").addEventListener(
+    "change",
+    function(event){
+
+        const file =
+            event.target.files[0];
+
+        if(!file) return;
+
+        if(file.size > 3 * 1024 * 1024){
+
+            alert("Gambar maksimum 3MB.");
+
+            event.target.value = "";
+
+            return;
+        }
+
+        const reader =
+            new FileReader();
+
+        reader.onload = function(){
+
+            localStorage.setItem(
+                "yam_picture_"+currentUser,
+                reader.result
+            );
+
+            $("profileAvatar").src =
+                reader.result;
+
+            $("composerAvatar").src =
+                reader.result;
+
+            renderFeed();
+        };
+
+        reader.readAsDataURL(file);
+    }
+);
+
+
+/* =========================================================
+   COVER
+   ========================================================= */
+
+function changeCover(){
+
+    $("coverFile").click();
+}
+
+
+$("coverFile").addEventListener(
+    "change",
+    function(event){
+
+        const file =
+            event.target.files[0];
+
+        if(!file) return;
+
+        if(file.size > 5 * 1024 * 1024){
+
+            alert("Cover maksimum 5MB.");
+
+            event.target.value = "";
+
+            return;
+        }
+
+        const reader =
+            new FileReader();
+
+        reader.onload = function(){
+
+            localStorage.setItem(
+                "yam_cover_"+currentUser,
+                reader.result
+            );
+
+            $("profileHero").style.backgroundImage =
+                `url("${reader.result}")`;
+        };
+
+        reader.readAsDataURL(file);
+    }
+);
+
+
+/* =========================================================
+   PROFILE MENU
+   ========================================================= */
+
+function openProfileMenu(){
+
+    openModal(`
+
+        <h3>Menu Profil</h3>
+
+        <button
+            class="primary"
+            onclick="changeProfilePicture();closeModal()"
+        >
+            📷 Tukar Gambar
+        </button>
+
+        <button
+            class="primary"
+            onclick="changeCover();closeModal()"
+        >
+            🖼️ Tukar Cover
+        </button>
+
+        <button
+            class="normal"
+            onclick="editBio()"
+        >
+            ✏️ Edit Bio
+        </button>
+
+        <button
+            class="danger"
+            onclick="logout();closeModal()"
+        >
+            🚪 Logout
+        </button>
+
+        <br>
+
+        <button
+            class="normal"
+            onclick="closeModal()"
+        >
+            Tutup
+        </button>
+    `);
+}
+
+
+function editBio(){
+
+    const profile =
+        JSON.parse(
+            localStorage.getItem(
+                "yam_profile_"+currentUser
+            ) || "{}"
+        );
+
+    const bio =
+        prompt(
+            "Masukkan bio:",
+            profile.bio || ""
+        );
+
+    if(bio === null) return;
+
+    profile.bio =
+        bio.substring(0,150);
+
+    localStorage.setItem(
+        "yam_profile_"+currentUser,
+        JSON.stringify(profile)
+    );
+
+    $("profileBio").textContent =
+        profile.bio ||
+        "Selamat datang ke profil saya di YAM Chat.";
+
+    closeModal();
+}
+
+
+/* =========================================================
+   PROFILE TABS
+   ========================================================= */
+
+async function showProfileTab(tab){
+
+    currentProfileTab = tab;
+
+    document.querySelectorAll(".profile-tabs button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    if(tab === "post")
+        $("tabPost").classList.add("active");
+
+    if(tab === "image")
+        $("tabImage").classList.add("active");
+
+    if(tab === "video")
+        $("tabVideo").classList.add("active");
+
+    if(tab === "market")
+        $("tabMarket").classList.add("active");
+
+    const content =
+        $("profileTabContent");
+
+    if(tab === "market"){
+
+        renderMarket();
+        return;
+    }
+
+    const posts =
+        getPosts()
+        .filter(p => p.owner === currentUser);
+
+    let filtered = posts;
+
+    if(tab === "image"){
+        filtered =
+            posts.filter(p => p.type === "image");
+    }
+
+    if(tab === "video"){
+        filtered =
+            posts.filter(p => p.type === "video");
+    }
+
+    if(filtered.length === 0){
+
+        content.innerHTML =
+            `<div class="empty">Belum ada kandungan.</div>`;
+
+        return;
+    }
+
+    let html = "";
+
+    for(const post of filtered){
+
+        let mediaHtml = "";
+
+        if(post.mediaId){
+
+            const media =
+                await getMedia(post.mediaId);
+
+            if(media){
+
+                const blob =
+                    new Blob(
+                        [media.data],
+                        {type:media.type}
+                    );
+
+                const url =
+                    URL.createObjectURL(blob);
+
+                if(post.type === "image"){
+                    mediaHtml =
+                        `<img class="post-media" src="${url}">`;
+                }
+
+                if(post.type === "video"){
+                    mediaHtml =
+                        `<video class="post-media" src="${url}" controls></video>`;
+                }
+            }
+        }
+
+        html += `
+            <div class="post">
+
+                <div class="post-head">
+
+                    <img
+                        class="post-avatar"
+                        src="${getAvatar(currentUser)}"
+                    >
+
+                    <div>
+                        <div class="post-owner">
+                            ${escapeHtml(currentUser)}
+                        </div>
+
+                        <div class="post-time">
+                            ${formatTime(post.time)}
+                        </div>
+                    </div>
+
+                </div>
+
+                ${
+                    post.text
+                    ?
+                    `<div class="post-text">${escapeHtml(post.text)}</div>`
+                    : ""
+                }
+
+                ${mediaHtml}
+
+            </div>
+        `;
+    }
+
+    content.innerHTML = html;
+}
+
+
+/* =========================================================
    FRIENDS
-===================================================== */
-
-const friends=[
-    "Ahmad",
-    "Siti",
-    "John"
-];
-
+   ========================================================= */
 
 function renderFriends(){
 
-    const area=
-        document.getElementById(
-            "friendsList"
-        );
+    const accounts =
+        getAccounts();
 
-    area.innerHTML=
-        friends.map(name=>`
+    const users =
+        Object.keys(accounts)
+        .filter(u => u !== currentUser);
+
+    const demoUsers =
+        ["Ahmad","Siti","John"];
+
+    const allUsers =
+        [...new Set([...users,...demoUsers])]
+        .filter(u => u !== currentUser);
+
+    if(allUsers.length === 0){
+
+        $("friendsList").innerHTML =
+            `<div class="empty">Belum ada kawan.</div>`;
+
+        return;
+    }
+
+    $("friendsList").innerHTML =
+        allUsers.map(user=>`
 
             <div class="friend-card">
 
-                ${avatarHtml(name)}
+                <img src="${getAvatar(user)}">
 
                 <div class="friend-info">
-
                     <div class="friend-name">
-                        ${escapeHtml(name)}
+                        ${escapeHtml(user)}
                     </div>
 
-                    <div class="post-time">
-                        Rakan YAM Chat
+                    <div style="font-size:12px;color:#777;">
+                        Pengguna YAM Chat
                     </div>
-
                 </div>
 
                 <button
-                    class="friend-btn"
-                    onclick="openChat('${escapeHtml(name)}')">
+                    onclick="openChat(${safeArg(user)})"
+                >
                     Chat
                 </button>
 
             </div>
 
         `).join("");
-
 }
 
 
-/* =====================================================
+/* =========================================================
    ROOMS
-===================================================== */
-
-const rooms=[
-
-    {
-        name:"Malaysia",
-        region:"🇲🇾 Malaysia"
-    },
-
-    {
-        name:"Philippines",
-        region:"🇵🇭 Philippines"
-    },
-
-    {
-        name:"Indonesia",
-        region:"🇮🇩 Indonesia"
-    },
-
-    {
-        name:"Singapore",
-        region:"🇸🇬 Singapore"
-    },
-
-    {
-        name:"Brunei",
-        region:"🇧🇳 Brunei"
-    },
-
-    {
-        name:"World",
-        region:"🌎 World"
-    }
-
-];
-
+   ========================================================= */
 
 function renderRooms(){
 
-    const area=
-        document.getElementById(
-            "roomsList"
-        );
+    const rooms = [
+        "Malaysia",
+        "Philippines",
+        "Indonesia",
+        "Singapore",
+        "Brunei",
+        "World"
+    ];
 
-    area.innerHTML=
+    $("roomsList").innerHTML =
         rooms.map(room=>`
 
             <div class="room-card">
 
-                <div style="font-size:30px">
-                    ${room.region.split(" ")[0]}
+                <div style="font-size:30px;">
+                    🌍
                 </div>
 
-                <div class="room-info">
-
-                    <div class="room-name">
-                        ${escapeHtml(room.name)}
+                <div style="flex:1;">
+                    <strong>${escapeHtml(room)}</strong>
+                    <div style="font-size:12px;color:#777;">
+                        Room komuniti
                     </div>
-
-                    <div class="room-region">
-                        ${escapeHtml(room.region)}
-                    </div>
-
                 </div>
 
                 <button
-                    class="room-btn"
-                    onclick="openRoom('${escapeHtml(room.name)}')">
+                    onclick="openRoom(${safeArg(room)})"
+                >
                     Masuk
                 </button>
 
             </div>
 
         `).join("");
-
 }
 
 
-/* =====================================================
-   PROFILE
-===================================================== */
-
-function renderProfile(){
-
-    const area=
-        document.getElementById(
-            "profileArea"
-        );
-
-    const data=
-        getProfileData(currentUser);
-
-    const pic=
-        localStorage.getItem(
-            "yam_picture_"+currentUser
-        );
-
-    const cover=
-        localStorage.getItem(
-            "yam_cover_"+currentUser
-        );
-
-    let avatar=
-
-        pic
-        ?
-        `
-        <img
-            class="profile-avatar"
-            src="${pic}">
-        `
-        :
-        `
-        <div
-            class="profile-avatar"
-            style="
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                background:#1976d2;
-                color:white;
-                font-size:35px;
-                font-weight:bold;
-            ">
-            ${escapeHtml(
-                currentUser
-                .charAt(0)
-                .toUpperCase()
-            )}
-        </div>
-        `;
-
-    /*
-       Profile cover + card.
-       Cover sekarang bersambung dengan bahagian
-       profile sehingga bawah 3 butang.
-    */
-
-    area.innerHTML=`
-
-        <div class="profile-cover">
-
-            ${
-                cover
-                ?
-                `<img src="${cover}" alt="">`
-                :
-                ""
-            }
-
-        </div>
-
-        <div class="profile-card">
-
-            <div class="profile-avatar-wrap">
-
-                ${avatar}
-
-            </div>
-
-            <div class="profile-name">
-                ${escapeHtml(
-                    data.name || currentUser
-                )}
-            </div>
-
-            <div class="profile-username">
-                @${escapeHtml(currentUser)}
-            </div>
-
-            ${
-                data.status
-                ?
-                `
-                <div class="profile-status">
-                    ${escapeHtml(data.status)}
-                </div>
-                `
-                :
-                ""
-            }
-
-            ${
-                data.bio
-                ?
-                `
-                <div class="profile-bio">
-                    ${escapeHtml(data.bio)}
-                </div>
-                `
-                :
-                ""
-            }
-
-            <div class="profile-buttons">
-
-                <button
-                    class="small-btn"
-                    onclick="changeProfilePicture()">
-                    📷 Gambar
-                </button>
-
-                <button
-                    class="small-btn"
-                    onclick="changeCover()">
-                    🖼️ Cover
-                </button>
-
-                <button
-                    class="small-btn"
-                    onclick="profileMenu()">
-                    ⚙️ Menu
-                </button>
-
-            </div>
-
-        </div>
-
-        <div class="profile-tabs">
-
-            <button
-                id="profileTabPosts"
-                class="profile-tab active"
-                onclick="showProfileTab('posts')">
-                📝 Post
-            </button>
-
-            <button
-                id="profileTabImages"
-                class="profile-tab"
-                onclick="showProfileTab('images')">
-                📷 Gambar
-            </button>
-
-            <button
-                id="profileTabVideos"
-                class="profile-tab"
-                onclick="showProfileTab('videos')">
-                🎥 Video
-            </button>
-
-            <button
-                id="profileTabMarket"
-                class="profile-tab"
-                onclick="showProfileTab('market')">
-                🛒 Market
-            </button>
-
-        </div>
-
-        <div
-            id="profileTabArea"
-            class="profile-tab-content">
-        </div>
-
-    `;
-
-    showProfileTab(
-        currentProfileTab
-    );
-
-}
-
-
-function showProfileTab(tab){
-
-    currentProfileTab=tab;
-
-    document
-        .querySelectorAll(".profile-tab")
-        .forEach(btn=>{
-            btn.classList.remove("active");
-        });
-
-    const button=
-        document.getElementById(
-            "profileTab"+
-            tab.charAt(0).toUpperCase()+
-            tab.slice(1)
-        );
-
-    if(button){
-        button.classList.add("active");
-    }
-
-    if(tab==="posts"){
-
-        renderProfilePosts();
-
-    }
-
-    if(tab==="images"){
-
-        renderProfileImages();
-
-    }
-
-    if(tab==="videos"){
-
-        renderProfileVideos();
-
-    }
-
-    if(tab==="market"){
-
-        renderMarket();
-
-    }
-
-}
-
-
-/* =====================================================
-   PROFILE POSTS
-===================================================== */
-
-async function renderProfilePosts(){
-
-    const area=
-        document.getElementById(
-            "profileTabArea"
-        );
-
-    const posts=
-        getPosts()
-        .filter(
-            p=>p.owner===currentUser
-        );
-
-    if(!posts.length){
-
-        area.innerHTML=`
-            <div class="empty">
-                Belum ada post anda.
-            </div>
-        `;
-
-        return;
-
-    }
-
-    let html="";
-
-    for(const post of posts){
-
-        let mediaHtml="";
-
-        if(post.mediaId){
-
-            const media=
-                await getMedia(
-                    post.mediaId
-                );
-
-            if(media){
-
-                const url=
-                    URL.createObjectURL(
-                        media.blob
-                    );
-
-                if(post.type==="image"){
-
-                    mediaHtml=`
-                        <img
-                            class="post-media"
-                            src="${url}">
-                    `;
-
-                }
-
-                if(post.type==="video"){
-
-                    mediaHtml=`
-                        <video
-                            class="post-media"
-                            src="${url}"
-                            controls
-                            playsinline
-                            preload="metadata">
-                        </video>
-                    `;
-
-                }
-
-            }
-
-        }
-
-        html+=`
-
-            <div class="post">
-
-                <div class="post-time">
-                    ${timeAgo(post.time)}
-                </div>
-
-                ${
-                    post.text
-                    ?
-                    `
-                    <div class="post-text">
-                        ${escapeHtml(post.text)}
-                    </div>
-                    `
-                    :
-                    ""
-                }
-
-                ${mediaHtml}
-
-                <div class="post-actions">
-
-                    <button
-                        class="action-btn"
-                        onclick="deletePost(${post.id})">
-                        🗑️ Padam
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-    area.innerHTML=html;
-
-}
-
-
-/* =====================================================
-   PROFILE IMAGES
-===================================================== */
-
-async function renderProfileImages(){
-
-    const area=
-        document.getElementById(
-            "profileTabArea"
-        );
-
-    const posts=
-        getPosts()
-        .filter(
-            p=>
-            p.owner===currentUser
-            &&
-            p.type==="image"
-        );
-
-    if(!posts.length){
-
-        area.innerHTML=`
-            <div class="empty">
-                Belum ada gambar.
-            </div>
-        `;
-
-        return;
-
-    }
-
-    let html=`
-        <div class="profile-media-grid">
-    `;
-
-    for(const post of posts){
-
-        const media=
-            await getMedia(
-                post.mediaId
-            );
-
-        if(!media){
-            continue;
-        }
-
-        const url=
-            URL.createObjectURL(
-                media.blob
-            );
-
-        html+=`
-
-            <div class="profile-media-item">
-
-                <img
-                    src="${url}"
-                    alt="">
-
-            </div>
-
-        `;
-
-    }
-
-    html+=`</div>`;
-
-    area.innerHTML=html;
-
-}
-
-
-/* =====================================================
-   PROFILE VIDEOS
-===================================================== */
-
-async function renderProfileVideos(){
-
-    const area=
-        document.getElementById(
-            "profileTabArea"
-        );
-
-    const posts=
-        getPosts()
-        .filter(
-            p=>
-            p.owner===currentUser
-            &&
-            p.type==="video"
-        );
-
-    if(!posts.length){
-
-        area.innerHTML=`
-            <div class="empty">
-                Belum ada video.
-            </div>
-        `;
-
-        return;
-
-    }
-
-    let html=`
-        <div class="profile-video-list">
-    `;
-
-    for(const post of posts){
-
-        const media=
-            await getMedia(
-                post.mediaId
-            );
-
-        if(!media){
-            continue;
-        }
-
-        const url=
-            URL.createObjectURL(
-                media.blob
-            );
-
-        html+=`
-
-            <div class="profile-video-card">
-
-                <video
-                    src="${url}"
-                    controls
-                    playsinline
-                    preload="metadata">
-                </video>
-
-                ${
-                    post.text
-                    ?
-                    `
-                    <div class="profile-video-text">
-                        ${escapeHtml(post.text)}
-                    </div>
-                    `
-                    :
-                    ""
-                }
-
-                <div class="post-time">
-                    ${timeAgo(post.time)}
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-    html+=`</div>`;
-
-    area.innerHTML=html;
-
-}
-
-
-/* =====================================================
-   PROFILE EDIT
-===================================================== */
-
-function profileMenu(){
-
-    openModal(
-        "Profile Menu",
-        `
-
-        <button
-            class="btn btn-primary"
-            onclick="editProfile()">
-            ✏️ Edit Profile
-        </button>
-
-        <div style="height:8px"></div>
-
-        <button
-            class="btn btn-gray"
-            onclick="changeProfileName()">
-            👤 Tukar Nama
-        </button>
-
-        <div style="height:8px"></div>
-
-        <button
-            class="btn btn-gray"
-            onclick="changePassword()">
-            🔐 Tukar Password
-        </button>
-
-        <div style="height:8px"></div>
-
-        <button
-            class="btn btn-gray"
-            onclick="showPrivacy()">
-            🔒 Privacy
-        </button>
-
-        <div style="height:8px"></div>
-
-        <button
-            class="btn"
-            style="background:#fee2e2;color:#b91c1c"
-            onclick="logout()">
-            🚪 Logout
-        </button>
-
-        <div style="height:12px"></div>
-
-        <button
-            class="btn"
-            style="background:#fef3c7;color:#92400e"
-            onclick="cleanOldMedia()">
-            🧹 Bersihkan Media Lama
-        </button>
-
-        `
-    );
-
-}
-
-
-function editProfile(){
-
-    const data=
-        getProfileData(currentUser);
-
-    openModal(
-        "Edit Profile",
-        `
-
-        <input
-            id="editName"
-            class="input"
-            placeholder="Nama"
-            value="${escapeHtml(data.name||"")}">
-
-        <textarea
-            id="editBio"
-            class="input"
-            style="min-height:100px"
-            placeholder="Bio">${escapeHtml(data.bio||"")}</textarea>
-
-        <input
-            id="editStatus"
-            class="input"
-            placeholder="Status"
-            value="${escapeHtml(data.status||"")}">
-
-        <button
-            class="btn btn-primary"
-            onclick="saveProfileEdit()">
-            Simpan
-        </button>
-
-        `
-    );
-
-}
-
-
-function saveProfileEdit(){
-
-    const data={
-
-        name:
-            document
-            .getElementById("editName")
-            .value
-            .trim(),
-
-        bio:
-            document
-            .getElementById("editBio")
-            .value
-            .trim(),
-
-        status:
-            document
-            .getElementById("editStatus")
-            .value
-            .trim()
-
-    };
-
-    if(saveCurrentProfile(data)){
-
-        closeModal();
-
-        renderProfile();
-
-    }
-
-}
-
-
-function changeProfileName(){
-
-    const data=
-        getProfileData(currentUser);
-
-    openModal(
-        "Tukar Nama",
-        `
-
-        <input
-            id="newProfileName"
-            class="input"
-            placeholder="Nama baru"
-            value="${escapeHtml(data.name||currentUser)}">
-
-        <button
-            class="btn btn-primary"
-            onclick="saveNewProfileName()">
-            Simpan
-        </button>
-
-        `
-    );
-
-}
-
-
-function saveNewProfileName(){
-
-    const data=
-        getProfileData(currentUser);
-
-    data.name=
-        document
-        .getElementById("newProfileName")
-        .value
-        .trim();
-
-    if(!data.name){
-
-        alert("Nama tidak boleh kosong.");
-
-        return;
-
-    }
-
-    saveCurrentProfile(data);
-
-    closeModal();
-
-    renderProfile();
-
-}
-
-
-function changePassword(){
-
-    openModal(
-        "Tukar Password",
-        `
-
-        <input
-            id="newPassword"
-            class="input"
-            type="password"
-            placeholder="Password baru">
-
-        <button
-            class="btn btn-primary"
-            onclick="saveNewPassword()">
-            Simpan
-        </button>
-
-        `
-    );
-
-}
-
-
-function saveNewPassword(){
-
-    const password=
-        document
-        .getElementById("newPassword")
-        .value;
-
-    if(!password){
-
-        alert("Password tidak boleh kosong.");
-
-        return;
-
-    }
-
-    const accounts=getAccounts();
-
-    const account=
-        accounts.find(
-            a=>a.username===currentUser
-        );
-
-    if(account){
-
-        account.password=password;
-
-        saveAccounts(accounts);
-
-    }
-
-    closeModal();
-
-    alert("Password berjaya ditukar.");
-
-}
-
-
-function showPrivacy(){
-
-    openModal(
-        "Privacy",
-        `
-        <p style="line-height:1.5">
-            Ini ialah versi demo YAM Chat.
-            Data semasa masih disimpan pada browser
-            peranti ini. Sistem server/database sebenar
-            akan kita bina pada peringkat seterusnya.
-        </p>
-        `
-    );
-
-}
-
-
-/* =====================================================
-   PROFILE IMAGE
-===================================================== */
-
-function changeProfilePicture(){
-
-    document
-        .getElementById("profileFile")
-        .click();
-
-}
-
-
-function changeProfilePicture(event){
-
-    if(!event || !event.target){
-
-        document
-            .getElementById("profileFile")
-            .click();
-
-        return;
-
-    }
-
-    const file=
-        event.target.files[0];
-
-    if(!file){
-        return;
-    }
-
-    if(file.size>3*1024*1024){
-
-        alert("Gambar maksimum 3MB.");
-
-        event.target.value="";
-
-        return;
-
-    }
-
-    const reader=
-        new FileReader();
-
-    reader.onload=function(e){
-
-        try{
-
-            localStorage.setItem(
-                "yam_picture_"+currentUser,
-                e.target.result
-            );
-
-            renderProfile();
-
-        }catch(error){
-
-            alert(
-                "Gambar profil tidak dapat disimpan kerana storage browser penuh."
-            );
-
-        }
-
-    };
-
-    reader.readAsDataURL(file);
-
-}
-
-
-/* =====================================================
-   COVER
-===================================================== */
-
-function changeCover(){
-
-    document
-        .getElementById("coverFile")
-        .click();
-
-}
-
-
-function handleCover(event){
-
-    const file=
-        event.target.files[0];
-
-    if(!file){
-        return;
-    }
-
-    if(file.size>4*1024*1024){
-
-        alert("Cover maksimum 4MB.");
-
-        event.target.value="";
-
-        return;
-
-    }
-
-    const reader=
-        new FileReader();
-
-    reader.onload=function(e){
-
-        try{
-
-            localStorage.setItem(
-                "yam_cover_"+currentUser,
-                e.target.result
-            );
-
-            renderProfile();
-
-        }catch(error){
-
-            alert(
-                "Cover tidak dapat disimpan kerana storage browser penuh."
-            );
-
-        }
-
-    };
-
-    reader.readAsDataURL(file);
-
-}
-
-
-document
-    .getElementById("coverFile")
-    .addEventListener(
-        "change",
-        handleCover
-    );
-
-
-/* =====================================================
-   CLEAN MEDIA
-===================================================== */
-
-async function cleanOldMedia(){
-
-    const ok=
-        confirm(
-            "Bersihkan semua media dalam IndexedDB? Post teks tidak akan dipadam, tetapi gambar/video yang berkaitan mungkin tidak lagi dipaparkan."
-        );
-
-    if(!ok){
-        return;
-    }
-
-    try{
-
-        await clearAllMedia();
-
-        closeModal();
-
-        alert(
-            "Media lama dalam IndexedDB sudah dibersihkan."
-        );
-
-        renderFeed();
-
-    }catch(e){
-
-        alert(
-            "Gagal membersihkan media."
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   MUSIC
-===================================================== */
-
-function handleMusic(event){
-
-    const file=
-        event.target.files[0];
-
-    if(!file){
-        return;
-    }
-
-    if(file.size>8*1024*1024){
-
-        alert("Music maksimum 8MB.");
-
-        event.target.value="";
-
-        return;
-
-    }
-
-    const reader=
-        new FileReader();
-
-    reader.onload=function(e){
-
-        try{
-
-            localStorage.setItem(
-                "yam_music_"+currentUser,
-                JSON.stringify({
-
-                    name:file.name,
-                    data:e.target.result
-
-                })
-            );
-
-            alert(
-                "Music berjaya disimpan."
-            );
-
-            renderProfile();
-
-        }catch(error){
-
-            alert(
-                "Music gagal disimpan kerana storage browser penuh."
-            );
-
-        }
-
-    };
-
-    reader.readAsDataURL(file);
-
-}
-
-
-/* =====================================================
+/* =========================================================
    MARKET
-===================================================== */
+   ========================================================= */
 
 function getMarket(){
 
     try{
-
         return JSON.parse(
-            localStorage.getItem(
-                "yam_market"
-            ) || "[]"
+            localStorage.getItem("yam_market") || "[]"
         );
-
     }catch(e){
-
         return [];
-
     }
-
 }
 
 
 function saveMarket(items){
 
-    try{
-
-        localStorage.setItem(
-            "yam_market",
-            JSON.stringify(items)
-        );
-
-        return true;
-
-    }catch(e){
-
-        alert(
-            "Market gagal disimpan. Storage browser penuh."
-        );
-
-        return false;
-
-    }
-
+    localStorage.setItem(
+        "yam_market",
+        JSON.stringify(items)
+    );
 }
 
 
 function renderMarket(){
 
-    const area=
-        document.getElementById(
-            "profileTabArea"
-        );
+    const content =
+        $("profileTabContent");
 
-    const items=
+    const items =
         getMarket()
-        .filter(
-            item=>item.owner===currentUser
-        );
+        .filter(item => item.owner === currentUser);
 
-    let html=`
+    let html = `
 
-        <button
-            class="btn btn-primary"
-            onclick="addMarketItem()">
-            ➕ Tambah Barang
-        </button>
+        <div class="market-add">
 
-        <div style="height:12px"></div>
+            <h3 style="margin-bottom:10px;">
+                Tambah Barang
+            </h3>
 
+            <input
+                id="marketTitle"
+                placeholder="Nama barang"
+            >
+
+            <input
+                id="marketPrice"
+                placeholder="Harga RM"
+            >
+
+            <textarea
+                id="marketDesc"
+                placeholder="Keterangan barang"
+            ></textarea>
+
+            <input
+                id="marketFile"
+                type="file"
+                accept="image/*"
+            >
+
+            <button onclick="addMarketItem()">
+                + Tambah Market
+            </button>
+
+        </div>
     `;
 
-    if(!items.length){
+    if(items.length === 0){
 
-        html+=`
+        html +=
+            `<div class="empty">Belum ada barang di Market.</div>`;
 
-            <div class="empty">
+    }else{
 
-                Belum ada barang dalam Market.
+        items.forEach(item=>{
 
-                <br><br>
-
-                Tambah barang pertama anda di sini.
-
-            </div>
-
-        `;
-
-        area.innerHTML=html;
-
-        return;
-
-    }
-
-    items.forEach(item=>{
-
-        html+=`
-
-            <div class="market-card">
-
-                ${
-                    item.image
-                    ?
-                    `<img src="${item.image}" alt="">`
-                    :
-                    ""
-                }
-
-                <div class="market-body">
-
-                    <div class="market-title">
-                        ${escapeHtml(item.title)}
-                    </div>
-
-                    <div class="market-price">
-                        RM ${escapeHtml(item.price)}
-                    </div>
+            html += `
+                <div class="market-item">
 
                     ${
-                        item.description
+                        item.image
                         ?
-                        `
-                        <div class="market-desc">
-                            ${escapeHtml(item.description)}
-                        </div>
-                        `
-                        :
-                        ""
+                        `<img src="${item.image}">`
+                        : ""
                     }
 
-                    <div class="post-time">
-                        ${timeAgo(item.time)}
-                    </div>
+                    <div class="market-info">
 
-                    <div class="market-actions">
+                        <div class="market-title">
+                            ${escapeHtml(item.title)}
+                        </div>
+
+                        <div class="market-price">
+                            RM ${escapeHtml(item.price)}
+                        </div>
+
+                        <div>
+                            ${escapeHtml(item.description)}
+                        </div>
 
                         <button
-                            class="small-btn btn-gray"
-                            onclick="deleteMarketItem(${item.id})">
+                            class="danger"
+                            onclick="deleteMarketItem(${item.id})"
+                            style="margin-top:10px;"
+                        >
                             🗑️ Padam
                         </button>
 
                     </div>
 
                 </div>
+            `;
+        });
+    }
 
-            </div>
-
-        `;
-
-    });
-
-    area.innerHTML=html;
-
+    content.innerHTML = html;
 }
 
 
 function addMarketItem(){
 
-    selectedMarketImage=null;
+    const title =
+        $("marketTitle").value.trim();
 
-    openModal(
-        "Tambah Barang",
-        `
+    const price =
+        $("marketPrice").value.trim();
 
-        <input
-            id="marketTitle"
-            class="input"
-            placeholder="Nama barang">
+    const description =
+        $("marketDesc").value.trim();
 
-        <input
-            id="marketPrice"
-            class="input"
-            placeholder="Harga">
-
-        <textarea
-            id="marketDescription"
-            class="input"
-            placeholder="Keterangan"
-            style="min-height:100px"></textarea>
-
-        <button
-            class="btn btn-gray"
-            onclick="chooseMarketImage()">
-            📷 Pilih Gambar
-        </button>
-
-        <div
-            id="marketImagePreview"
-            style="margin-top:10px">
-        </div>
-
-        <div style="height:10px"></div>
-
-        <button
-            class="btn btn-primary"
-            onclick="saveMarketItem()">
-            Simpan Barang
-        </button>
-
-        `
-    );
-
-}
-
-
-function chooseMarketImage(){
-
-    document
-        .getElementById("marketImageFile")
-        .click();
-
-}
-
-
-function handleMarketImage(event){
-
-    const file=
-        event.target.files[0];
-
-    if(!file){
-        return;
-    }
-
-    if(file.size>3*1024*1024){
-
-        alert(
-            "Gambar maksimum 3MB."
-        );
-
-        event.target.value="";
-
-        return;
-
-    }
-
-    const reader=
-        new FileReader();
-
-    reader.onload=function(e){
-
-        selectedMarketImage=
-            e.target.result;
-
-        document
-            .getElementById(
-                "marketImagePreview"
-            )
-            .innerHTML=`
-                <img
-                    src="${selectedMarketImage}"
-                    style="
-                        width:100%;
-                        max-height:250px;
-                        object-fit:cover;
-                        border-radius:10px;
-                    ">
-            `;
-
-    };
-
-    reader.readAsDataURL(file);
-
-}
-
-
-function saveMarketItem(){
-
-    const title=
-        document
-        .getElementById("marketTitle")
-        .value
-        .trim();
-
-    const price=
-        document
-        .getElementById("marketPrice")
-        .value
-        .trim();
-
-    const description=
-        document
-        .getElementById("marketDescription")
-        .value
-        .trim();
+    const file =
+        $("marketFile").files[0];
 
     if(!title || !price){
-
-        alert(
-            "Nama barang dan harga diperlukan."
-        );
-
+        alert("Sila isi nama dan harga.");
         return;
-
     }
 
-    const items=getMarket();
-
-    items.unshift({
-
-        id:Date.now(),
-
-        owner:currentUser,
-
-        title:title,
-
-        price:price,
-
-        description:description,
-
-        image:selectedMarketImage,
-
-        time:Date.now()
-
-    });
-
-    if(saveMarket(items)){
-
-        selectedMarketImage=null;
-
-        closeModal();
-
-        renderMarket();
-
+    if(file && file.size > 3 * 1024 * 1024){
+        alert("Gambar maksimum 3MB.");
+        return;
     }
 
+    const finish =
+        image => {
+
+            const items =
+                getMarket();
+
+            items.unshift({
+
+                id:Date.now(),
+
+                owner:currentUser,
+
+                title:title,
+
+                price:price,
+
+                description:description,
+
+                image:image || "",
+
+                time:Date.now()
+            });
+
+            saveMarket(items);
+
+            renderMarket();
+        };
+
+    if(file){
+
+        const reader =
+            new FileReader();
+
+        reader.onload =
+            () => finish(reader.result);
+
+        reader.readAsDataURL(file);
+
+    }else{
+
+        finish("");
+    }
 }
 
 
 function deleteMarketItem(id){
 
-    if(
-        !confirm(
-            "Padam barang ini?"
-        )
-    ){
+    const items =
+        getMarket();
+
+    const item =
+        items.find(i => i.id === id);
+
+    if(!item || item.owner !== currentUser){
         return;
     }
 
-    const items=
-        getMarket()
-        .filter(
-            item=>item.id!==id
-        );
+    if(!confirm("Padam barang ini?")){
+        return;
+    }
 
-    saveMarket(items);
+    saveMarket(
+        items.filter(i => i.id !== id)
+    );
 
     renderMarket();
-
 }
 
 
-/* =====================================================
+/* =========================================================
    CHAT
-===================================================== */
+   ========================================================= */
 
 function chatKey(a,b){
 
-    return (
-        "yamchat_"+
-        [a,b]
-        .sort()
-        .join("_")
-    );
-
+    return "yamchat_" +
+        [a,b].sort().join("_");
 }
 
 
@@ -4874,123 +2882,96 @@ function getChatMessages(a,b){
         );
 
     }catch(e){
-
         return [];
-
     }
+}
 
+
+function saveChatMessages(a,b,messages){
+
+    localStorage.setItem(
+        chatKey(a,b),
+        JSON.stringify(messages)
+    );
 }
 
 
 function openChat(username){
 
-    currentChatUser=username;
+    currentChatUser = username;
 
-    document
-        .getElementById("chatName")
-        .textContent=username;
+    $("chatTitle").textContent =
+        username;
 
-    document
-        .getElementById("chatBg")
-        .classList.add("show");
+    $("chatOverlay").style.display =
+        "block";
 
     renderChat();
 
+    setTimeout(()=>{
+        $("chatInput").focus();
+    },100);
 }
 
 
 function closeChat(){
 
-    currentChatUser=null;
+    $("chatOverlay").style.display =
+        "none";
 
-    document
-        .getElementById("chatBg")
-        .classList.remove("show");
-
+    currentChatUser = "";
 }
 
 
 function renderChat(){
 
-    if(!currentChatUser){
-        return;
-    }
-
-    const messages=
+    const messages =
         getChatMessages(
             currentUser,
             currentChatUser
         );
 
-    const area=
-        document.getElementById(
-            "chatMessages"
-        );
+    if(messages.length === 0){
 
-    if(!messages.length){
-
-        area.innerHTML=`
-            <div
-                style="
-                    text-align:center;
-                    color:#6b7280;
-                    padding:30px">
-                Belum ada mesej.
-            </div>
-        `;
+        $("chatMessages").innerHTML =
+            `<div class="empty">Belum ada mesej.</div>`;
 
         return;
-
     }
 
-    area.innerHTML=
+    $("chatMessages").innerHTML =
         messages.map(m=>`
 
             <div
-                class="chat-msg
-                ${m.user===currentUser?"mine":"other"}">
-
+                class="chat-bubble ${
+                    m.user === currentUser
+                    ? "chat-me"
+                    : "chat-other"
+                }"
+            >
                 ${escapeHtml(m.text)}
-
-                <div
-                    style="
-                        font-size:9px;
-                        opacity:.7;
-                        margin-top:3px">
-                    ${timeAgo(m.time)}
-                </div>
-
             </div>
 
         `).join("");
 
-    area.scrollTop=
-        area.scrollHeight;
-
+    $("chatMessages").scrollTop =
+        $("chatMessages").scrollHeight;
 }
 
 
 function sendChat(){
 
-    const input=
-        document.getElementById(
-            "chatInput"
-        );
+    const input =
+        $("chatInput");
 
-    const text=
+    const text =
         input.value.trim();
 
     if(!text || !currentChatUser){
         return;
     }
 
-    const key=
-        chatKey(
-            currentUser,
-            currentChatUser
-        );
-
-    const messages=
+    const messages =
         getChatMessages(
             currentUser,
             currentChatUser
@@ -5003,169 +2984,152 @@ function sendChat(){
         text:text,
 
         time:Date.now()
-
     });
 
-    try{
-
-        localStorage.setItem(
-            key,
-            JSON.stringify(messages)
-        );
-
-    }catch(e){
-
-        alert(
-            "Mesej gagal disimpan. Storage browser penuh."
-        );
-
-        return;
-
-    }
-
-    input.value="";
-
-    renderChat();
-
-}
-
-
-/* =====================================================
-   ROOM
-===================================================== */
-
-function openRoom(roomName){
-
-    openModal(
-        roomName+" Room",
-        `
-
-        <div class="empty">
-
-            🌎 Selamat datang di
-            <strong>${escapeHtml(roomName)}</strong> Room.
-
-            <br><br>
-
-            Chat room demo YAM Chat.
-
-        </div>
-
-        <div style="height:12px"></div>
-
-        <input
-            id="roomMessage"
-            class="input"
-            placeholder="Tulis mesej room...">
-
-        <button
-            class="btn btn-primary"
-            onclick="sendRoomMessage('${escapeHtml(roomName)}')">
-            Hantar
-        </button>
-
-        <div
-            id="roomMessages"
-            style="margin-top:12px">
-        </div>
-
-        `
+    saveChatMessages(
+        currentUser,
+        currentChatUser,
+        messages
     );
 
-    renderRoomMessages(roomName);
+    input.value = "";
 
+    renderChat();
 }
 
+
+$("chatInput").addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Enter"){
+            sendChat();
+        }
+    }
+);
+
+
+/* =========================================================
+   ROOMS
+   ========================================================= */
 
 function roomKey(room){
 
-    return "yamroom_"+room;
-
+    return "yamroom_" + room;
 }
 
 
-function renderRoomMessages(room){
-
-    const area=
-        document.getElementById(
-            "roomMessages"
-        );
-
-    if(!area){
-        return;
-    }
-
-    let messages=[];
+function getRoomMessages(room){
 
     try{
 
-        messages=
-            JSON.parse(
-                localStorage.getItem(
-                    roomKey(room)
-                ) || "[]"
-            );
+        return JSON.parse(
+            localStorage.getItem(
+                roomKey(room)
+            ) || "[]"
+        );
 
     }catch(e){
-
-        messages=[];
-
+        return [];
     }
-
-    area.innerHTML=
-        messages.map(m=>`
-
-            <div class="comment">
-
-                <span class="comment-name">
-                    ${escapeHtml(m.user)}
-                </span>
-
-                <div>
-                    ${escapeHtml(m.text)}
-                </div>
-
-            </div>
-
-        `).join("");
-
 }
 
 
-function sendRoomMessage(room){
+function openRoom(room){
 
-    const input=
-        document.getElementById(
-            "roomMessage"
-        );
+    const messages =
+        getRoomMessages(room);
 
-    if(!input){
-        return;
+    let html = `
+        <h3>🌍 ${escapeHtml(room)}</h3>
+
+        <div
+            id="roomMessages"
+            style="
+                max-height:350px;
+                overflow-y:auto;
+                background:#f1f3f6;
+                padding:10px;
+                border-radius:10px;
+                margin-bottom:10px;
+            "
+        >
+    `;
+
+    if(messages.length === 0){
+
+        html +=
+            `<div class="empty">Belum ada mesej.</div>`;
+
+    }else{
+
+        messages.forEach(m=>{
+
+            html += `
+                <div
+                    style="
+                        background:#fff;
+                        border-radius:9px;
+                        padding:8px;
+                        margin-bottom:6px;
+                    "
+                >
+                    <strong>${escapeHtml(m.user)}</strong>
+                    <div>${escapeHtml(m.text)}</div>
+                </div>
+            `;
+        });
     }
 
-    const text=
+    html += `
+        </div>
+
+        <input
+            id="roomInput"
+            placeholder="Tulis mesej..."
+            style="
+                width:100%;
+                padding:11px;
+                border:1px solid #ddd;
+                border-radius:9px;
+                margin-bottom:8px;
+            "
+            onkeydown="if(event.key==='Enter')sendRoom(${safeArg(room)})"
+        >
+
+        <button
+            class="primary"
+            onclick="sendRoom(${safeArg(room)})"
+        >
+            Hantar
+        </button>
+
+        <button
+            class="normal"
+            onclick="closeModal()"
+        >
+            Tutup
+        </button>
+    `;
+
+    openModal(html);
+}
+
+
+function sendRoom(room){
+
+    const input =
+        $("roomInput");
+
+    if(!input) return;
+
+    const text =
         input.value.trim();
 
-    if(!text){
-        return;
-    }
+    if(!text) return;
 
-    let messages=[];
-
-    try{
-
-        messages=
-            JSON.parse(
-                localStorage.getItem(
-                    roomKey(room)
-                ) || "[]"
-            );
-
-    }catch(e){
-
-        messages=[];
-
-    }
+    const messages =
+        getRoomMessages(room);
 
     messages.push({
 
@@ -5174,71 +3138,91 @@ function sendRoomMessage(room){
         text:text,
 
         time:Date.now()
-
     });
 
-    try{
+    localStorage.setItem(
+        roomKey(room),
+        JSON.stringify(messages)
+    );
 
-        localStorage.setItem(
-            roomKey(room),
-            JSON.stringify(messages)
-        );
-
-    }catch(e){
-
-        alert(
-            "Room gagal disimpan. Storage browser penuh."
-        );
-
-        return;
-
-    }
-
-    input.value="";
-
-    renderRoomMessages(room);
-
+    openRoom(room);
 }
 
 
-/* =====================================================
+/* =========================================================
    MODAL
-===================================================== */
+   ========================================================= */
 
-function openModal(title,content){
+function openModal(html){
 
-    document
-        .getElementById("modalTitle")
-        .textContent=title;
+    $("modal").innerHTML = html;
 
-    document
-        .getElementById("modalContent")
-        .innerHTML=content;
-
-    document
-        .getElementById("modalBg")
-        .classList.add("show");
-
+    $("modalBg").style.display =
+        "flex";
 }
 
 
 function closeModal(){
 
-    document
-        .getElementById("modalBg")
-        .classList.remove("show");
+    $("modalBg").style.display =
+        "none";
 
+    $("modal").innerHTML = "";
 }
 
 
-/* =====================================================
-   START
-===================================================== */
+function closeModalOutside(event){
+
+    if(event.target === $("modalBg")){
+        closeModal();
+    }
+}
+
+
+/* =========================================================
+   LOAD PROFILE BIO
+   ========================================================= */
+
+function loadBio(){
+
+    if(!currentUser) return;
+
+    let profile = {};
+
+    try{
+
+        profile =
+            JSON.parse(
+                localStorage.getItem(
+                    "yam_profile_"+currentUser
+                ) || "{}"
+            );
+
+    }catch(e){}
+
+    $("profileBio").textContent =
+        profile.bio ||
+        "Selamat datang ke profil saya di YAM Chat.";
+}
+
+
+/* =========================================================
+   INITIAL START
+   ========================================================= */
+
+loadBio();
 
 if(currentUser){
 
     startApp();
 
+}else{
+
+    $("loginPage").style.display =
+        "flex";
+
+    $("app").style.display =
+        "none";
 }
 
 </script>
