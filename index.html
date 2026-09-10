@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.4.1</title>
+<title>YAM Chat V4.4.2</title>
 
 <style>
 *{
@@ -14,7 +14,7 @@
 }
 
 body{
-    background:#f1f3f6;
+    background:#eef2f7;
     color:#222;
 }
 
@@ -35,216 +35,192 @@ button{
     align-items:center;
     justify-content:center;
     padding:20px;
-    background:linear-gradient(135deg,#111827,#2563eb);
+    background:linear-gradient(135deg,#2563eb,#0f172a);
 }
 
 .login-box{
     width:100%;
-    max-width:400px;
+    max-width:420px;
     background:white;
-    border-radius:22px;
-    padding:28px 22px;
-    box-shadow:0 15px 45px rgba(0,0,0,.25);
+    padding:28px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
 .logo{
     text-align:center;
-    font-size:40px;
-    font-weight:bold;
+    font-size:42px;
+    font-weight:900;
     color:#2563eb;
     margin-bottom:5px;
 }
 
-.subtitle{
+.login-sub{
     text-align:center;
     color:#777;
-    margin-bottom:22px;
+    margin-bottom:25px;
 }
 
 .input{
     width:100%;
-    padding:14px;
-    margin-bottom:12px;
+    padding:13px;
     border:1px solid #ddd;
-    border-radius:12px;
+    border-radius:10px;
+    margin-bottom:12px;
     outline:none;
 }
 
-.input:focus,
-textarea:focus{
+.input:focus{
     border-color:#2563eb;
 }
 
 .primary-btn{
     width:100%;
-    padding:14px;
-    border-radius:12px;
+    padding:13px;
+    border-radius:10px;
     background:#2563eb;
     color:white;
-    font-size:16px;
     font-weight:bold;
 }
 
 .secondary-btn{
     width:100%;
-    margin-top:10px;
     padding:13px;
-    border-radius:12px;
+    border-radius:10px;
     background:#eef2ff;
     color:#2563eb;
     font-weight:bold;
+    margin-top:10px;
 }
 
 /* ================= APP ================= */
 
 #app{
+    display:none;
     min-height:100vh;
-    padding-bottom:75px;
 }
 
 .topbar{
     position:sticky;
     top:0;
-    z-index:50;
-    height:60px;
+    z-index:100;
+    height:58px;
     background:white;
-    border-bottom:1px solid #ddd;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 16px;
+    padding:0 15px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
 .top-logo{
     font-size:25px;
-    font-weight:bold;
+    font-weight:900;
     color:#2563eb;
 }
 
 .top-user{
-    font-size:14px;
     font-weight:bold;
-    color:#555;
+    color:#444;
 }
 
-/* ================= SECTIONS ================= */
+.main{
+    max-width:700px;
+    margin:auto;
+    padding:15px;
+    padding-bottom:90px;
+}
 
 .page{
     display:none;
-    max-width:650px;
-    margin:auto;
-    padding:15px;
 }
 
 .page.active{
     display:block;
 }
 
-/* ================= POST COMPOSER ================= */
+/* ================= HOME ================= */
 
 .create-box{
     background:white;
     border-radius:18px;
     padding:15px;
-    margin-bottom:16px;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+    margin-bottom:15px;
 }
 
 .create-title{
     font-size:18px;
     font-weight:bold;
-    margin-bottom:14px;
+    margin-bottom:12px;
 }
 
 .post-options{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:9px;
-    margin-bottom:14px;
+    gap:8px;
 }
 
 .post-option{
-    min-height:75px;
-    border-radius:14px;
-    background:#f3f4f6;
-    border:2px solid transparent;
-    font-size:14px;
+    padding:13px 5px;
+    border-radius:12px;
+    background:#f1f5f9;
     font-weight:bold;
-    color:#333;
-}
-
-.post-option span{
-    display:block;
-    font-size:27px;
-    margin-bottom:5px;
+    color:#334155;
 }
 
 .post-option.active{
-    background:#eef2ff;
-    border-color:#2563eb;
-    color:#2563eb;
+    background:#2563eb;
+    color:white;
 }
 
 .post-editor{
-    border-top:1px solid #eee;
-    padding-top:14px;
+    margin-top:12px;
 }
 
-#postText{
+.post-editor textarea{
     width:100%;
-    min-height:110px;
-    resize:vertical;
+    min-height:100px;
+    resize:none;
     border:1px solid #ddd;
-    border-radius:13px;
-    padding:13px;
-    font-size:15px;
+    border-radius:12px;
+    padding:12px;
     outline:none;
 }
 
-.media-box{
-    margin-top:12px;
-    border:1px dashed #aaa;
-    border-radius:13px;
-    padding:12px;
-    text-align:center;
-    background:#fafafa;
+.media-preview{
+    margin-top:10px;
 }
 
-.media-box img,
-.media-box video{
-    max-width:100%;
-    max-height:300px;
-    border-radius:10px;
-}
-
-.media-name{
-    margin-top:8px;
-    font-size:13px;
-    color:#555;
-    word-break:break-word;
+.media-preview img,
+.media-preview video{
+    width:100%;
+    max-height:350px;
+    object-fit:contain;
+    border-radius:12px;
+    background:#000;
 }
 
 .editor-actions{
     display:flex;
     gap:8px;
-    margin-top:12px;
+    margin-top:10px;
 }
 
 .editor-actions button{
     flex:1;
-    padding:13px 8px;
-    border-radius:11px;
+    padding:12px;
+    border-radius:10px;
     font-weight:bold;
-}
-
-.post-submit{
-    background:#2563eb;
-    color:white;
 }
 
 .cancel-btn{
     background:#eee;
-    color:#333;
+}
+
+.post-btn{
+    background:#2563eb;
+    color:white;
 }
 
 /* ================= POSTS ================= */
@@ -252,37 +228,31 @@ textarea:focus{
 .post-card{
     background:white;
     border-radius:18px;
-    margin-bottom:16px;
-    overflow:hidden;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
 .post-head{
     display:flex;
     align-items:center;
-    padding:14px;
     gap:10px;
 }
 
 .avatar{
-    width:44px;
-    height:44px;
+    width:45px;
+    height:45px;
     border-radius:50%;
     object-fit:cover;
-    background:#ddd;
+    background:#2563eb;
 }
 
-.avatar-default{
-    width:44px;
-    height:44px;
+.avatar-small{
+    width:35px;
+    height:35px;
     border-radius:50%;
+    object-fit:cover;
     background:#2563eb;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:19px;
-    font-weight:bold;
 }
 
 .post-user{
@@ -302,115 +272,103 @@ textarea:focus{
 }
 
 .post-text{
-    padding:0 14px 14px;
+    margin:14px 0;
     white-space:pre-wrap;
-    word-break:break-word;
+    line-height:1.5;
 }
 
 .post-media{
     width:100%;
-    display:block;
-    max-height:500px;
+    max-height:450px;
     object-fit:contain;
-    background:#111;
+    border-radius:12px;
+    background:#000;
 }
 
 .post-actions{
     display:flex;
+    gap:5px;
+    margin-top:10px;
     border-top:1px solid #eee;
-    border-bottom:1px solid #eee;
+    padding-top:10px;
 }
 
 .post-actions button{
     flex:1;
-    background:white;
-    padding:13px 5px;
+    padding:9px 5px;
+    border-radius:9px;
+    background:#f1f5f9;
+}
+
+.post-actions button.liked{
+    color:#2563eb;
     font-weight:bold;
-    color:#555;
-}
-
-.post-actions button:hover{
-    background:#f5f5f5;
-}
-
-.post-actions .liked{
-    color:#e11d48;
-}
-
-.like-count{
-    padding:9px 14px 4px;
-    font-size:13px;
-    color:#666;
 }
 
 .comments{
-    padding:8px 14px 14px;
+    margin-top:10px;
 }
 
 .comment{
-    background:#f3f4f6;
-    border-radius:12px;
-    padding:9px;
-    margin-top:7px;
+    display:flex;
+    gap:8px;
+    margin-top:9px;
 }
 
-.comment-head{
-    display:flex;
-    justify-content:space-between;
-    font-size:13px;
+.comment-body{
+    flex:1;
+    background:#f1f5f9;
+    border-radius:12px;
+    padding:8px 10px;
+}
+
+.comment-name{
     font-weight:bold;
+    font-size:13px;
 }
 
 .comment-text{
-    margin-top:4px;
-    font-size:14px;
+    margin-top:3px;
     white-space:pre-wrap;
-    word-break:break-word;
 }
 
-.comment-hidden{
-    color:#888;
-    font-style:italic;
-}
-
-.comment-form{
+.comment-input{
     display:flex;
     gap:7px;
     margin-top:10px;
 }
 
-.comment-form input{
+.comment-input input{
     flex:1;
     border:1px solid #ddd;
-    border-radius:20px;
-    padding:11px 13px;
-    outline:none;
+    border-radius:10px;
+    padding:10px;
 }
 
-.comment-form button{
-    border-radius:20px;
-    padding:0 15px;
+.comment-input button{
     background:#2563eb;
     color:white;
-    font-weight:bold;
+    padding:0 15px;
+    border-radius:10px;
 }
 
 /* ================= FRIENDS ================= */
 
-.friend-card,
-.room-card,
-.profile-card{
-    background:white;
-    border-radius:18px;
-    padding:15px;
-    margin-bottom:12px;
-    box-shadow:0 3px 12px rgba(0,0,0,.06);
+.section-title{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:15px;
 }
 
 .friend-card{
+    background:white;
+    border-radius:15px;
+    padding:12px;
+    margin-bottom:10px;
     display:flex;
     align-items:center;
     gap:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
 }
 
 .friend-info{
@@ -422,83 +380,122 @@ textarea:focus{
 }
 
 .friend-status{
-    font-size:13px;
     color:#777;
-    margin-top:3px;
+    font-size:13px;
+    margin-top:4px;
 }
 
 .chat-btn{
     background:#2563eb;
     color:white;
     padding:9px 13px;
-    border-radius:10px;
+    border-radius:9px;
+    font-weight:bold;
 }
 
 /* ================= ROOMS ================= */
 
 .room-card{
+    background:white;
+    padding:16px;
+    border-radius:16px;
+    margin-bottom:10px;
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
     cursor:pointer;
 }
 
-.room-title{
+.room-name{
     font-weight:bold;
     font-size:17px;
 }
 
-.room-sub{
+.room-region{
     color:#777;
-    font-size:13px;
     margin-top:5px;
+    font-size:13px;
 }
 
-/* ================= PROFILE ================= */
+/* ================= PROFILE LAMA ================= */
+
+.profile-main{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
 
 .profile-cover{
-    height:180px;
-    border-radius:18px 18px 0 0;
+    height:210px;
     background:linear-gradient(135deg,#2563eb,#111827);
     background-size:cover;
     background-position:center;
     position:relative;
 }
 
-.profile-main{
-    background:white;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
+.cover-dark{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.05),
+        rgba(0,0,0,.35)
+    );
+}
+
+.profile-top-actions{
+    position:absolute;
+    top:12px;
+    right:12px;
+    display:flex;
+    gap:7px;
+}
+
+.profile-top-actions button{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:rgba(255,255,255,.9);
+    font-size:19px;
 }
 
 .profile-picture-wrap{
     padding:0 18px;
-    margin-top:-48px;
+    margin-top:-55px;
     position:relative;
 }
 
 .profile-picture{
-    width:95px;
-    height:95px;
+    width:110px;
+    height:110px;
     border-radius:50%;
     border:5px solid white;
     object-fit:cover;
     background:#2563eb;
+    box-shadow:0 4px 12px rgba(0,0,0,.18);
 }
 
 .profile-name{
-    font-size:22px;
+    font-size:24px;
     font-weight:bold;
-    margin-top:8px;
+    margin-top:9px;
+}
+
+.profile-username{
+    color:#888;
+    font-size:13px;
+    margin-top:3px;
 }
 
 .profile-status{
-    color:#666;
-    margin-top:5px;
+    color:#555;
+    margin-top:8px;
     cursor:pointer;
 }
 
 .profile-bio{
-    color:#555;
+    color:#444;
     margin-top:10px;
+    line-height:1.5;
     white-space:pre-wrap;
 }
 
@@ -506,26 +503,41 @@ textarea:focus{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:8px;
-    padding:15px;
+    padding:16px;
 }
 
 .profile-buttons button{
-    padding:11px;
-    border-radius:10px;
+    padding:12px 8px;
+    border-radius:11px;
     background:#eef2ff;
     color:#2563eb;
     font-weight:bold;
 }
 
-.music-box{
-    margin:0 15px 15px;
-    background:#f5f5f5;
-    padding:12px;
-    border-radius:12px;
+.profile-buttons button.logout{
+    background:#fee2e2;
+    color:#dc2626;
 }
 
-.music-box audio{
-    width:100%;
+.profile-menu{
+    border-top:1px solid #eee;
+    padding:5px 15px;
+}
+
+.profile-menu-item{
+    padding:14px 5px;
+    border-bottom:1px solid #eee;
+    cursor:pointer;
+}
+
+.profile-menu-item:last-child{
+    border-bottom:0;
+}
+
+.info-title{
+    padding:15px 15px 5px;
+    font-size:18px;
+    font-weight:bold;
 }
 
 .info-list{
@@ -533,182 +545,238 @@ textarea:focus{
 }
 
 .info-row{
-    padding:10px 0;
+    padding:12px 0;
     border-bottom:1px solid #eee;
+}
+
+.info-label{
+    color:#888;
+    font-size:12px;
+    margin-bottom:3px;
+}
+
+.info-value{
+    font-weight:500;
+}
+
+.music-box{
+    margin:0 15px 15px;
+    background:#f5f7fb;
+    padding:14px;
+    border-radius:14px;
+}
+
+.music-title{
+    font-weight:bold;
+    margin-bottom:9px;
+}
+
+.music-box audio{
+    width:100%;
+}
+
+.music-buttons{
+    display:flex;
+    gap:8px;
+    margin-top:9px;
+}
+
+.music-buttons button{
+    flex:1;
+    padding:9px;
+    border-radius:9px;
 }
 
 /* ================= BOTTOM NAV ================= */
 
 .bottom-nav{
     position:fixed;
-    bottom:0;
     left:0;
     right:0;
+    bottom:0;
+    z-index:200;
     height:65px;
     background:white;
-    border-top:1px solid #ddd;
-    display:flex;
-    z-index:100;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    box-shadow:0 -2px 12px rgba(0,0,0,.1);
 }
 
-.bottom-nav button{
-    flex:1;
+.nav-btn{
     background:white;
     color:#777;
     font-size:12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
 }
 
-.bottom-nav button span{
-    display:block;
-    font-size:22px;
-    margin-bottom:2px;
+.nav-btn span{
+    font-size:21px;
 }
 
-.bottom-nav button.active{
+.nav-btn.active{
     color:#2563eb;
     font-weight:bold;
 }
 
 /* ================= MODAL ================= */
 
-.modal{
+.modal-bg{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.5);
-    display:flex;
+    z-index:500;
+    background:rgba(0,0,0,.55);
+    display:none;
     align-items:center;
     justify-content:center;
-    padding:20px;
-    z-index:200;
-}
-
-.modal-box{
-    width:100%;
-    max-width:450px;
-    max-height:85vh;
-    overflow:auto;
-    background:white;
-    border-radius:18px;
     padding:18px;
 }
 
+.modal-bg.show{
+    display:flex;
+}
+
+.modal{
+    width:100%;
+    max-width:500px;
+    max-height:90vh;
+    overflow:auto;
+    background:white;
+    border-radius:18px;
+    padding:20px;
+}
+
 .modal-title{
-    font-size:19px;
+    font-size:20px;
     font-weight:bold;
     margin-bottom:15px;
 }
 
-.modal-close{
-    width:100%;
-    padding:12px;
-    border-radius:10px;
-    background:#eee;
-    margin-top:12px;
+.modal-actions{
+    display:flex;
+    gap:8px;
+    margin-top:15px;
 }
 
-.modal-list button{
-    width:100%;
+.modal-actions button{
+    flex:1;
     padding:12px;
-    margin-bottom:8px;
     border-radius:10px;
-    background:#f3f4f6;
-    text-align:left;
+    font-weight:bold;
+}
+
+.modal-ok{
+    background:#2563eb;
+    color:white;
+}
+
+.modal-cancel{
+    background:#eee;
 }
 
 /* ================= CHAT ================= */
 
-.chat-box{
+.chat-overlay{
     position:fixed;
     inset:0;
-    background:#f1f3f6;
-    z-index:150;
+    z-index:400;
+    background:#eef2f7;
     display:none;
     flex-direction:column;
 }
 
-.chat-box.show{
+.chat-overlay.show{
     display:flex;
 }
 
-.chat-header{
+.chat-head{
     height:60px;
     background:white;
-    border-bottom:1px solid #ddd;
     display:flex;
     align-items:center;
-    padding:0 12px;
     gap:10px;
+    padding:0 12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
-.chat-header button{
+.chat-back{
+    font-size:25px;
     background:transparent;
-    font-size:23px;
 }
 
-.chat-messages{
+.chat-title{
+    font-weight:bold;
+}
+
+.chat-body{
     flex:1;
     overflow:auto;
     padding:15px;
 }
 
-.msg{
-    max-width:78%;
-    padding:10px 13px;
+.chat-message{
+    max-width:75%;
+    padding:10px 12px;
     border-radius:15px;
-    margin-bottom:8px;
-    word-break:break-word;
+    margin-bottom:9px;
+    background:white;
+    box-shadow:0 2px 5px rgba(0,0,0,.05);
 }
 
-.msg.me{
+.chat-message.mine{
     margin-left:auto;
     background:#2563eb;
     color:white;
 }
 
-.msg.them{
-    background:white;
-}
-
-.chat-input{
+.chat-foot{
     background:white;
     padding:10px;
     display:flex;
     gap:8px;
 }
 
-.chat-input input{
+.chat-foot input{
     flex:1;
+    padding:12px;
     border:1px solid #ddd;
-    border-radius:20px;
-    padding:11px 14px;
-    outline:none;
+    border-radius:12px;
 }
 
-.chat-input button{
+.chat-foot button{
+    padding:0 17px;
+    border-radius:12px;
     background:#2563eb;
     color:white;
-    border-radius:20px;
-    padding:0 17px;
+}
+
+/* ================= EMPTY ================= */
+
+.empty{
+    text-align:center;
+    padding:35px 15px;
+    color:#888;
+    background:white;
+    border-radius:16px;
 }
 
 /* ================= RESPONSIVE ================= */
 
-@media(max-width:450px){
-    .post-options{
-        gap:6px;
+@media(max-width:430px){
+    .profile-cover{
+        height:185px;
     }
 
-    .post-option{
-        font-size:12px;
-        min-height:70px;
-    }
-
-    .post-option span{
-        font-size:24px;
+    .profile-picture{
+        width:100px;
+        height:100px;
     }
 
     .profile-buttons{
-        grid-template-columns:1fr;
+        grid-template-columns:1fr 1fr;
     }
 }
 </style>
@@ -719,309 +787,297 @@ textarea:focus{
 <!-- ================= LOGIN ================= -->
 
 <div id="loginPage">
-
     <div class="login-box">
-
         <div class="logo">YAM</div>
-        <div class="subtitle">YAM Chat</div>
+        <div class="login-sub">Chat • Friends • Rooms • Social</div>
 
-        <input
-            id="loginUsername"
-            class="input"
-            placeholder="Username">
+        <input id="loginUsername"
+               class="input"
+               placeholder="Username">
 
-        <input
-            id="loginPassword"
-            class="input"
-            type="password"
-            placeholder="Password">
+        <input id="loginPassword"
+               class="input"
+               type="password"
+               placeholder="Password">
 
-        <button
-            class="primary-btn"
-            onclick="login()">
-            🔐 Login
+        <button class="primary-btn" onclick="login()">
+            🔐 LOGIN
         </button>
 
-        <button
-            class="secondary-btn"
-            onclick="showRegister()">
-            ➕ Daftar Akaun
+        <button class="secondary-btn" onclick="register()">
+            📝 DAFTAR AKAUN
         </button>
-
-        <div
-            id="registerArea"
-            class="hidden"
-            style="margin-top:18px;">
-
-            <input
-                id="regUsername"
-                class="input"
-                placeholder="Username baru">
-
-            <input
-                id="regPassword"
-                class="input"
-                type="password"
-                placeholder="Password">
-
-            <button
-                class="primary-btn"
-                onclick="register()">
-                Daftar
-            </button>
-
-        </div>
-
     </div>
-
 </div>
 
 
 <!-- ================= APP ================= -->
 
-<div id="app" class="hidden">
+<div id="app">
 
     <div class="topbar">
         <div class="top-logo">YAM</div>
         <div id="topUser" class="top-user"></div>
     </div>
 
+    <main class="main">
 
-    <!-- HOME -->
+        <!-- HOME -->
+        <section id="homePage" class="page active">
 
-    <section
-        id="homePage"
-        class="page active">
+            <div class="create-box">
 
-        <div class="create-box">
-
-            <div class="create-title">
-                📝 Apa yang anda mahu post?
-            </div>
-
-            <!-- INI PILIHAN BESAR -->
-            <div class="post-options">
-
-                <button
-                    id="optionText"
-                    class="post-option active"
-                    onclick="selectPostType('text')">
-
-                    <span>📝</span>
-                    TULISAN
-
-                </button>
-
-                <button
-                    id="optionImage"
-                    class="post-option"
-                    onclick="selectPostType('image')">
-
-                    <span>🖼️</span>
-                    GAMBAR
-
-                </button>
-
-                <button
-                    id="optionVideo"
-                    class="post-option"
-                    onclick="selectPostType('video')">
-
-                    <span>🎥</span>
-                    VIDEO
-
-                </button>
-
-            </div>
-
-
-            <div
-                id="postEditor"
-                class="post-editor">
-
-                <textarea
-                    id="postText"
-                    placeholder="Tulis sesuatu..."></textarea>
-
-                <div
-                    id="mediaBox"
-                    class="media-box hidden">
+                <div class="create-title">
+                    📝 Apa yang anda mahu post?
                 </div>
 
-                <div class="editor-actions">
+                <div class="post-options">
 
-                    <button
-                        class="cancel-btn"
-                        onclick="cancelPost()">
-                        ❌ Batal
+                    <button id="textPostBtn"
+                            class="post-option active"
+                            onclick="selectPostType('text')">
+                        📝 TULISAN
                     </button>
 
-                    <button
-                        class="post-submit"
-                        onclick="createPost()">
-                        🚀 POST
+                    <button id="imagePostBtn"
+                            class="post-option"
+                            onclick="selectPostType('image')">
+                        🖼️ GAMBAR
+                    </button>
+
+                    <button id="videoPostBtn"
+                            class="post-option"
+                            onclick="selectPostType('video')">
+                        🎥 VIDEO
                     </button>
 
                 </div>
 
-            </div>
+                <div id="postEditor" class="post-editor">
 
-        </div>
+                    <textarea id="postText"
+                              placeholder="Apa yang anda fikirkan?"></textarea>
 
+                    <div id="mediaPreview"
+                         class="media-preview"></div>
 
-        <div id="feed"></div>
+                    <div class="editor-actions">
 
-    </section>
+                        <button class="cancel-btn"
+                                onclick="cancelPost()">
+                            Batal
+                        </button>
 
+                        <button class="post-btn"
+                                onclick="createPost()">
+                            🚀 POST
+                        </button>
 
-    <!-- FRIENDS -->
+                    </div>
 
-    <section
-        id="friendsPage"
-        class="page">
-
-        <div class="create-box">
-            <div class="create-title">
-                👥 Kawan
-            </div>
-        </div>
-
-        <div id="friendsList"></div>
-
-    </section>
-
-
-    <!-- ROOMS -->
-
-    <section
-        id="roomsPage"
-        class="page">
-
-        <div class="create-box">
-            <div class="create-title">
-                🌎 Rooms
-            </div>
-        </div>
-
-        <div id="roomsList"></div>
-
-    </section>
-
-
-    <!-- PROFILE -->
-
-    <section
-        id="profilePage"
-        class="page">
-
-        <div class="profile-main">
-
-            <div
-                id="profileCover"
-                class="profile-cover">
-            </div>
-
-            <div class="profile-picture-wrap">
-
-                <img
-                    id="profilePicture"
-                    class="profile-picture"
-                    src=""
-                    alt="Profile">
-
-                <div
-                    id="profileName"
-                    class="profile-name">
-                </div>
-
-                <div
-                    id="profileStatus"
-                    class="profile-status"
-                    onclick="editStatus()">
-                </div>
-
-                <div
-                    id="profileBio"
-                    class="profile-bio">
                 </div>
 
             </div>
 
+            <div id="feed"></div>
 
-            <div class="profile-buttons">
+        </section>
 
-                <button onclick="changeProfilePicture()">
-                    🖼️ Tukar Gambar
-                </button>
 
-                <button onclick="changeCover()">
-                    🌄 Tukar Cover
-                </button>
+        <!-- FRIENDS -->
+        <section id="friendsPage" class="page">
 
-                <button onclick="editProfile()">
-                    ✏️ Edit Profile
-                </button>
+            <div class="section-title">
+                👥 Friends
+            </div>
 
-                <button onclick="changePassword()">
-                    🔑 Password
-                </button>
+            <div id="friendsList"></div>
 
-                <button onclick="openMusic()">
-                    🎵 Music
-                </button>
+        </section>
 
-                <button onclick="logout()">
-                    🚪 Logout
-                </button>
+
+        <!-- ROOMS -->
+        <section id="roomsPage" class="page">
+
+            <div class="section-title">
+                🌎 YAM Rooms
+            </div>
+
+            <div id="roomsList"></div>
+
+        </section>
+
+
+        <!-- PROFILE -->
+        <section id="profilePage" class="page">
+
+            <div class="profile-main">
+
+                <!-- COVER -->
+                <div id="profileCover"
+                     class="profile-cover">
+
+                    <div class="cover-dark"></div>
+
+                    <div class="profile-top-actions">
+
+                        <button onclick="changeCover()"
+                                title="Tukar Cover">
+                            🌄
+                        </button>
+
+                        <button onclick="openProfileMenu()"
+                                title="Menu">
+                            ⋮
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROFILE -->
+                <div class="profile-picture-wrap">
+
+                    <img id="profilePicture"
+                         class="profile-picture"
+                         src=""
+                         alt="Profile">
+
+                    <div id="profileName"
+                         class="profile-name"></div>
+
+                    <div id="profileUsername"
+                         class="profile-username"></div>
+
+                    <div id="profileStatus"
+                         class="profile-status"
+                         onclick="editStatus()">
+                    </div>
+
+                    <div id="profileBio"
+                         class="profile-bio">
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="profile-buttons">
+
+                    <button onclick="changeProfilePicture()">
+                        🖼️ Tukar Gambar
+                    </button>
+
+                    <button onclick="changeCover()">
+                        🌄 Tukar Cover
+                    </button>
+
+                    <button onclick="editProfile()">
+                        ✏️ Edit Profile
+                    </button>
+
+                    <button onclick="editStatus()">
+                        🟢 Status
+                    </button>
+
+                    <button onclick="openMusic()">
+                        🎵 Music
+                    </button>
+
+                    <button onclick="changePassword()">
+                        🔑 Password
+                    </button>
+
+                    <button onclick="openPrivacy()">
+                        🔒 Privacy
+                    </button>
+
+                    <button class="logout"
+                            onclick="logout()">
+                        🚪 Logout
+                    </button>
+
+                </div>
+
+
+                <!-- PROFILE MENU -->
+                <div id="profileMenu"
+                     class="profile-menu hidden">
+
+                    <div class="profile-menu-item"
+                         onclick="editProfile()">
+                        ✏️ Edit Profile
+                    </div>
+
+                    <div class="profile-menu-item"
+                         onclick="openPrivacy()">
+                        🔒 Privacy Settings
+                    </div>
+
+                    <div class="profile-menu-item"
+                         onclick="changePassword()">
+                        🔑 Tukar Password
+                    </div>
+
+                    <div class="profile-menu-item"
+                         onclick="logout()">
+                        🚪 Logout
+                    </div>
+
+                </div>
+
+
+                <!-- MUSIC -->
+                <div id="musicArea"
+                     class="music-box hidden">
+                </div>
+
+
+                <!-- INFO -->
+                <div class="info-title">
+                    ℹ️ Maklumat Profile
+                </div>
+
+                <div id="profileInfo"
+                     class="info-list">
+                </div>
 
             </div>
 
+        </section>
 
-            <div
-                id="musicArea"
-                class="music-box hidden">
-            </div>
-
-
-            <div
-                id="profileInfo"
-                class="info-list">
-            </div>
-
-        </div>
-
-    </section>
+    </main>
 
 
     <!-- BOTTOM NAV -->
 
     <nav class="bottom-nav">
 
-        <button
-            id="navHome"
-            class="active"
-            onclick="showPage('home')">
+        <button id="navHome"
+                class="nav-btn active"
+                onclick="showPage('home')">
             <span>🏠</span>
             Home
         </button>
 
-        <button
-            id="navFriends"
-            onclick="showPage('friends')">
+        <button id="navFriends"
+                class="nav-btn"
+                onclick="showPage('friends')">
             <span>👥</span>
             Friends
         </button>
 
-        <button
-            id="navRooms"
-            onclick="showPage('rooms')">
+        <button id="navRooms"
+                class="nav-btn"
+                onclick="showPage('rooms')">
             <span>🌎</span>
             Rooms
         </button>
 
-        <button
-            id="navProfile"
-            onclick="showPage('profile')">
+        <button id="navProfile"
+                class="nav-btn"
+                onclick="showPage('profile')">
             <span>👤</span>
             Profile
         </button>
@@ -1031,97 +1087,100 @@ textarea:focus{
 </div>
 
 
-<!-- FILE INPUTS -->
+<!-- ================= FILE INPUTS ================= -->
 
-<input
-    id="postImageInput"
-    type="file"
-    accept="image/*"
-    style="display:none;">
+<input id="profileFile"
+       type="file"
+       accept="image/*"
+       class="hidden">
 
-<input
-    id="postVideoInput"
-    type="file"
-    accept="video/*"
-    style="display:none;">
+<input id="coverFile"
+       type="file"
+       accept="image/*"
+       class="hidden">
 
-<input
-    id="profileImageInput"
-    type="file"
-    accept="image/*"
-    style="display:none;">
+<input id="postImageFile"
+       type="file"
+       accept="image/*"
+       class="hidden">
 
-<input
-    id="coverImageInput"
-    type="file"
-    accept="image/*"
-    style="display:none;">
+<input id="postVideoFile"
+       type="file"
+       accept="video/*"
+       class="hidden">
 
-<input
-    id="musicInput"
-    type="file"
-    accept="audio/*"
-    style="display:none;">
+<input id="musicFile"
+       type="file"
+       accept="audio/*"
+       class="hidden">
 
 
-<!-- MODAL -->
+<!-- ================= MODAL ================= -->
 
-<div
-    id="modal"
-    class="modal hidden">
+<div id="modalBg"
+     class="modal-bg">
 
-    <div class="modal-box">
+    <div class="modal">
 
-        <div
-            id="modalTitle"
-            class="modal-title">
+        <div id="modalTitle"
+             class="modal-title">
         </div>
 
-        <div
-            id="modalContent">
-        </div>
+        <div id="modalContent"></div>
 
-        <button
-            class="modal-close"
-            onclick="closeModal()">
-            Tutup
-        </button>
+        <div class="modal-actions">
+
+            <button class="modal-cancel"
+                    onclick="closeModal()">
+                Batal
+            </button>
+
+            <button id="modalOk"
+                    class="modal-ok">
+                OK
+            </button>
+
+        </div>
 
     </div>
 
 </div>
 
 
-<!-- CHAT -->
+<!-- ================= CHAT ================= -->
 
-<div
-    id="chatBox"
-    class="chat-box">
+<div id="chatOverlay"
+     class="chat-overlay">
 
-    <div class="chat-header">
+    <div class="chat-head">
 
-        <button onclick="closeChat()">
+        <button class="chat-back"
+                onclick="closeChat()">
             ←
         </button>
 
-        <strong id="chatTitle"></strong>
+        <img id="chatAvatar"
+             class="avatar-small"
+             src=""
+             alt="">
+
+        <div id="chatTitle"
+             class="chat-title">
+        </div>
 
     </div>
 
-    <div
-        id="chatMessages"
-        class="chat-messages">
+    <div id="chatBody"
+         class="chat-body">
     </div>
 
-    <div class="chat-input">
+    <div class="chat-foot">
 
-        <input
-            id="chatInput"
-            placeholder="Tulis mesej..."
-            onkeydown="if(event.key==='Enter')sendChat();">
+        <input id="chatInput"
+               placeholder="Tulis mesej...">
 
         <button onclick="sendChat()">
-            Hantar
+            ➤
         </button>
 
     </div>
@@ -1132,20 +1191,19 @@ textarea:focus{
 <script>
 
 /* =========================================================
-   YAM CHAT V4.4.1
+   YAM CHAT V4.4.2
+   PROFILE LAMA + HOME SOCIAL
 ========================================================= */
 
-let currentUser = localStorage.getItem("yam_current_user") || null;
+
+/* ================= GLOBAL ================= */
+
+let currentUser =
+    localStorage.getItem("yam_current_user") || null;
 
 let selectedPostType = "text";
 let selectedPostFile = null;
-
 let currentChatUser = null;
-
-
-/* =========================================================
-   DEFAULT FRIENDS
-========================================================= */
 
 const friends = [
     "Ahmad",
@@ -1155,241 +1213,224 @@ const friends = [
 
 const rooms = [
     {
-        name:"🇲🇾 Malaysia",
-        regions:"Sabah • Sarawak • Kuala Lumpur • Johor"
+        name:"Malaysia",
+        region:"🇲🇾 Malaysia"
     },
     {
-        name:"🇵🇭 Philippines",
-        regions:"Manila • Cebu • Davao"
+        name:"Philippines",
+        region:"🇵🇭 Philippines"
     },
     {
-        name:"🇮🇩 Indonesia",
-        regions:"Jakarta • Bali • Kalimantan"
+        name:"Indonesia",
+        region:"🇮🇩 Indonesia"
     },
     {
-        name:"🇸🇬 Singapore",
-        regions:"Singapore"
+        name:"Singapore",
+        region:"🇸🇬 Singapore"
     },
     {
-        name:"🇧🇳 Brunei",
-        regions:"Bandar Seri Begawan • Brunei"
+        name:"Brunei",
+        region:"🇧🇳 Brunei"
     },
     {
-        name:"🌎 World",
-        regions:"International"
+        name:"World",
+        region:"🌎 World"
     }
 ];
 
 
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function escapeHtml(value){
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-}
+/* ================= HELPERS ================= */
 
 function getAccounts(){
-    try{
-        return JSON.parse(localStorage.getItem("yam_accounts") || "{}");
-    }catch(e){
-        return {};
-    }
+
+    return JSON.parse(
+        localStorage.getItem("yam_accounts") || "{}"
+    );
+
 }
 
+
 function saveAccounts(accounts){
+
     localStorage.setItem(
         "yam_accounts",
         JSON.stringify(accounts)
     );
+
 }
 
-function getPosts(){
-    try{
-        return JSON.parse(
-            localStorage.getItem("yam_posts") || "[]"
-        );
-    }catch(e){
-        return [];
-    }
-}
-
-function savePosts(posts){
-    localStorage.setItem(
-        "yam_posts",
-        JSON.stringify(posts)
-    );
-}
 
 function getProfileData(username){
 
     const accounts = getAccounts();
 
-    return accounts[username] || {
+    if(accounts[username]){
+        return accounts[username];
+    }
+
+    return {
         username:username,
         name:username,
-        status:"Online",
+        password:"",
+        status:"Available",
         bio:"",
         birthday:"",
         location:"",
         job:"",
         gender:""
     };
+
 }
+
+
+function saveCurrentProfile(data){
+
+    const accounts = getAccounts();
+
+    accounts[currentUser] = data;
+
+    saveAccounts(accounts);
+
+}
+
+
+function escapeHtml(text){
+
+    return String(text ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
 
 function getAvatar(username){
 
     return localStorage.getItem(
         "yam_picture_" + username
     ) || "";
+
 }
+
 
 function avatarHtml(username){
 
-    const pic = getAvatar(username);
+    const avatar = getAvatar(username);
 
-    if(pic){
+    if(avatar){
+
         return `
             <img
                 class="avatar"
-                src="${pic}"
-                alt="">
+                src="${avatar}"
+                alt="Profile">
         `;
+
     }
+
+    const profile = getProfileData(username);
+
+    const letter =
+        (profile.name || username || "?")
+        .charAt(0)
+        .toUpperCase();
 
     return `
-        <div class="avatar-default">
-            ${escapeHtml(
-                String(username).charAt(0).toUpperCase()
-            )}
+        <div
+            class="avatar"
+            style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                color:white;
+                font-weight:bold;
+                font-size:18px;
+            ">
+            ${escapeHtml(letter)}
         </div>
     `;
-}
 
-function formatTime(time){
-
-    const date = new Date(time);
-
-    return date.toLocaleString(
-        "ms-MY",
-        {
-            day:"2-digit",
-            month:"2-digit",
-            year:"numeric",
-            hour:"2-digit",
-            minute:"2-digit"
-        }
-    );
 }
 
 
-/* =========================================================
-   AUTH
-========================================================= */
+function timeAgo(timestamp){
 
-function showRegister(){
+    const diff =
+        Date.now() - timestamp;
 
-    document
-        .getElementById("registerArea")
-        .classList.toggle("hidden");
-}
+    const minute =
+        Math.floor(diff / 60000);
 
-function register(){
-
-    const username =
-        document
-            .getElementById("regUsername")
-            .value
-            .trim();
-
-    const password =
-        document
-            .getElementById("regPassword")
-            .value;
-
-    if(!username || !password){
-        alert("Sila isi username dan password.");
-        return;
+    if(minute < 1){
+        return "baru sahaja";
     }
 
-    const accounts = getAccounts();
-
-    if(accounts[username]){
-        alert("Username sudah digunakan.");
-        return;
+    if(minute < 60){
+        return minute + " minit lalu";
     }
 
-    accounts[username] = {
-        username:username,
-        name:username,
-        password:password,
-        status:"Online",
-        bio:"",
-        birthday:"",
-        location:"",
-        job:"",
-        gender:""
-    };
+    const hour =
+        Math.floor(minute / 60);
 
-    saveAccounts(accounts);
+    if(hour < 24){
+        return hour + " jam lalu";
+    }
 
-    alert("Akaun berjaya dibuat.");
+    const day =
+        Math.floor(hour / 24);
 
-    document.getElementById("loginUsername").value =
-        username;
+    return day + " hari lalu";
 
-    document.getElementById("loginPassword").value =
-        password;
 }
+
+
+/* ================= AUTH ================= */
 
 function login(){
 
     const username =
-        document
-            .getElementById("loginUsername")
-            .value
-            .trim();
+        document.getElementById("loginUsername")
+        .value.trim();
 
     const password =
-        document
-            .getElementById("loginPassword")
-            .value;
+        document.getElementById("loginPassword")
+        .value;
+
+    if(!username || !password){
+
+        alert("Sila isi username dan password.");
+
+        return;
+    }
 
     const accounts = getAccounts();
 
-    /* Demo account kalau belum ada */
-    if(
-        !accounts[username] &&
-        username &&
-        password
-    ){
+    if(!accounts[username]){
 
         accounts[username] = {
+
             username:username,
             name:username,
             password:password,
-            status:"Online",
+            status:"🟢 Available",
             bio:"",
             birthday:"",
             location:"",
             job:"",
             gender:""
+
         };
 
         saveAccounts(accounts);
+
     }
 
-    if(
-        !accounts[username] ||
-        accounts[username].password !== password
-    ){
+    if(accounts[username].password !== password){
 
-        alert("Username atau password salah.");
+        alert("Password tidak betul.");
+
         return;
     }
 
@@ -1397,13 +1438,71 @@ function login(){
 
     localStorage.setItem(
         "yam_current_user",
-        username
+        currentUser
     );
 
     startApp();
+
 }
 
+
+function register(){
+
+    const username =
+        document.getElementById("loginUsername")
+        .value.trim();
+
+    const password =
+        document.getElementById("loginPassword")
+        .value;
+
+    if(!username || !password){
+
+        alert("Isi username dan password dahulu.");
+
+        return;
+    }
+
+    const accounts = getAccounts();
+
+    if(accounts[username]){
+
+        alert("Username sudah digunakan.");
+
+        return;
+    }
+
+    accounts[username] = {
+
+        username:username,
+        name:username,
+        password:password,
+        status:"🟢 Available",
+        bio:"",
+        birthday:"",
+        location:"",
+        job:"",
+        gender:""
+
+    };
+
+    saveAccounts(accounts);
+
+    currentUser = username;
+
+    localStorage.setItem(
+        "yam_current_user",
+        currentUser
+    );
+
+    startApp();
+
+}
+
+
 function logout(){
+
+    if(!confirm("Logout dari YAM?")) return;
 
     localStorage.removeItem(
         "yam_current_user"
@@ -1411,136 +1510,107 @@ function logout(){
 
     currentUser = null;
 
-    document
-        .getElementById("app")
-        .classList.add("hidden");
+    document.getElementById("app")
+        .style.display = "none";
 
-    document
-        .getElementById("loginPage")
-        .classList.remove("hidden");
+    document.getElementById("loginPage")
+        .style.display = "flex";
+
 }
 
 
-/* =========================================================
-   START APP
-========================================================= */
+/* ================= START APP ================= */
 
 function startApp(){
 
-    if(!currentUser){
-        return;
-    }
+    document.getElementById("loginPage")
+        .style.display = "none";
 
-    document
-        .getElementById("loginPage")
-        .classList.add("hidden");
+    document.getElementById("app")
+        .style.display = "block";
 
-    document
-        .getElementById("app")
-        .classList.remove("hidden");
-
-    const profile =
-        getProfileData(currentUser);
-
-    document.getElementById("topUser").textContent =
-        profile.name || currentUser;
-
-    showPage("home");
-
+    renderProfile();
     renderFeed();
     renderFriends();
     renderRooms();
-    renderProfile();
     renderMusic();
+
+    showPage("home");
+
 }
 
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+/* ================= NAV ================= */
 
 function showPage(page){
 
-    const pages = [
-        "homePage",
-        "friendsPage",
-        "roomsPage",
-        "profilePage"
-    ];
+    document.querySelectorAll(".page")
+        .forEach(el => {
+            el.classList.remove("active");
+        });
 
-    pages.forEach(id=>{
-        document
-            .getElementById(id)
-            .classList.remove("active");
-    });
+    document.querySelectorAll(".nav-btn")
+        .forEach(el => {
+            el.classList.remove("active");
+        });
 
-    const navs = [
-        "navHome",
-        "navFriends",
-        "navRooms",
-        "navProfile"
-    ];
-
-    navs.forEach(id=>{
-        document
-            .getElementById(id)
-            .classList.remove("active");
-    });
 
     if(page === "home"){
-        document
-            .getElementById("homePage")
+
+        document.getElementById("homePage")
             .classList.add("active");
 
-        document
-            .getElementById("navHome")
+        document.getElementById("navHome")
             .classList.add("active");
 
         renderFeed();
+
     }
 
+
     if(page === "friends"){
-        document
-            .getElementById("friendsPage")
+
+        document.getElementById("friendsPage")
             .classList.add("active");
 
-        document
-            .getElementById("navFriends")
+        document.getElementById("navFriends")
             .classList.add("active");
 
         renderFriends();
+
     }
 
+
     if(page === "rooms"){
-        document
-            .getElementById("roomsPage")
+
+        document.getElementById("roomsPage")
             .classList.add("active");
 
-        document
-            .getElementById("navRooms")
+        document.getElementById("navRooms")
             .classList.add("active");
 
         renderRooms();
+
     }
 
+
     if(page === "profile"){
-        document
-            .getElementById("profilePage")
+
+        document.getElementById("profilePage")
             .classList.add("active");
 
-        document
-            .getElementById("navProfile")
+        document.getElementById("navProfile")
             .classList.add("active");
 
         renderProfile();
+        renderMusic();
+
     }
 
 }
 
 
-/* =========================================================
-   POST TYPE
-========================================================= */
+/* ================= POST TYPE ================= */
 
 function selectPostType(type){
 
@@ -1548,599 +1618,527 @@ function selectPostType(type){
     selectedPostFile = null;
 
     document
-        .getElementById("optionText")
-        .classList.remove("active");
+        .querySelectorAll(".post-option")
+        .forEach(btn => {
+            btn.classList.remove("active");
+        });
 
-    document
-        .getElementById("optionImage")
-        .classList.remove("active");
-
-    document
-        .getElementById("optionVideo")
-        .classList.remove("active");
 
     if(type === "text"){
 
-        document
-            .getElementById("optionText")
+        document.getElementById("textPostBtn")
             .classList.add("active");
 
-        document
-            .getElementById("postText")
-            .classList.remove("hidden");
-
-        document
-            .getElementById("postText")
-            .placeholder =
-            "Tulis sesuatu...";
-
-        document
-            .getElementById("mediaBox")
-            .classList.add("hidden");
     }
 
     if(type === "image"){
 
-        document
-            .getElementById("optionImage")
+        document.getElementById("imagePostBtn")
             .classList.add("active");
 
-        document
-            .getElementById("postText")
-            .classList.remove("hidden");
+        document.getElementById("postImageFile")
+            .click();
 
-        document
-            .getElementById("postText")
-            .placeholder =
-            "Tulis caption untuk gambar...";
-
-        choosePostImage();
     }
 
     if(type === "video"){
 
-        document
-            .getElementById("optionVideo")
+        document.getElementById("videoPostBtn")
             .classList.add("active");
 
-        document
-            .getElementById("postText")
-            .classList.remove("hidden");
+        document.getElementById("postVideoFile")
+            .click();
 
-        document
-            .getElementById("postText")
-            .placeholder =
-            "Tulis caption untuk video...";
-
-        choosePostVideo();
-    }
-}
-
-
-/* =========================================================
-   MEDIA PICKER
-========================================================= */
-
-function choosePostImage(){
-
-    const input =
-        document.getElementById(
-            "postImageInput"
-        );
-
-    input.value = "";
-    input.click();
-}
-
-function choosePostVideo(){
-
-    const input =
-        document.getElementById(
-            "postVideoInput"
-        );
-
-    input.value = "";
-    input.click();
-}
-
-document
-    .getElementById("postImageInput")
-    .addEventListener(
-        "change",
-        function(){
-
-            const file =
-                this.files && this.files[0];
-
-            if(!file) return;
-
-            if(file.size > 3 * 1024 * 1024){
-
-                alert(
-                    "Gambar terlalu besar. Maksimum 3MB."
-                );
-
-                return;
-            }
-
-            selectedPostFile = file;
-
-            showMediaPreview(
-                file,
-                "image"
-            );
-        }
-    );
-
-
-document
-    .getElementById("postVideoInput")
-    .addEventListener(
-        "change",
-        function(){
-
-            const file =
-                this.files && this.files[0];
-
-            if(!file) return;
-
-            if(file.size > 6 * 1024 * 1024){
-
-                alert(
-                    "Video terlalu besar. Maksimum 6MB untuk demo."
-                );
-
-                return;
-            }
-
-            selectedPostFile = file;
-
-            showMediaPreview(
-                file,
-                "video"
-            );
-        }
-    );
-
-
-function showMediaPreview(file,type){
-
-    const box =
-        document.getElementById(
-            "mediaBox"
-        );
-
-    box.classList.remove("hidden");
-
-    const url =
-        URL.createObjectURL(file);
-
-    if(type === "image"){
-
-        box.innerHTML = `
-            <img
-                src="${url}"
-                alt="Preview">
-            <div class="media-name">
-                🖼️ ${escapeHtml(file.name)}
-            </div>
-        `;
     }
 
-    if(type === "video"){
+}
 
-        box.innerHTML = `
-            <video
-                src="${url}"
-                controls>
-            </video>
-            <div class="media-name">
-                🎥 ${escapeHtml(file.name)}
-            </div>
-        `;
+
+/* ================= POST MEDIA ================= */
+
+document.getElementById("postImageFile")
+.addEventListener("change",function(){
+
+    const file = this.files[0];
+
+    if(!file) return;
+
+    if(file.size > 3 * 1024 * 1024){
+
+        alert("Gambar maksimum 3MB.");
+
+        this.value = "";
+
+        return;
     }
-}
+
+    selectedPostFile = file;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        document.getElementById("mediaPreview")
+            .innerHTML = `
+                <img src="${e.target.result}">
+            `;
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
 
 
-/* =========================================================
-   FILE TO DATA URL
-========================================================= */
+document.getElementById("postVideoFile")
+.addEventListener("change",function(){
 
-function fileToDataURL(file){
+    const file = this.files[0];
 
-    return new Promise(
-        (resolve,reject)=>{
+    if(!file) return;
 
-            const reader =
-                new FileReader();
+    if(file.size > 6 * 1024 * 1024){
 
-            reader.onload =
-                ()=>resolve(reader.result);
+        alert("Video maksimum 6MB.");
 
-            reader.onerror =
-                ()=>reject(
-                    new Error(
-                        "Gagal membaca file."
-                    )
-                );
+        this.value = "";
 
-            reader.readAsDataURL(file);
-        }
-    );
-}
+        return;
+    }
+
+    selectedPostFile = file;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        document.getElementById("mediaPreview")
+            .innerHTML = `
+                <video
+                    src="${e.target.result}"
+                    controls>
+                </video>
+            `;
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
 
 
-/* =========================================================
-   CREATE POST
-========================================================= */
+/* ================= CREATE POST ================= */
 
-async function createPost(){
+function createPost(){
 
     const text =
-        document
-            .getElementById("postText")
-            .value
-            .trim();
+        document.getElementById("postText")
+        .value.trim();
 
-    if(
-        selectedPostType === "text" &&
-        !text
-    ){
+    if(selectedPostType === "text" && !text){
 
-        alert("Sila tulis sesuatu.");
+        alert("Tulis sesuatu dahulu.");
+
         return;
     }
 
     if(
-        (
-            selectedPostType === "image" ||
-            selectedPostType === "video"
-        ) &&
+        (selectedPostType === "image" ||
+         selectedPostType === "video")
+        &&
         !selectedPostFile
     ){
 
-        alert(
-            "Sila pilih " +
-            (
-                selectedPostType === "image"
-                ? "gambar"
-                : "video"
-            ) +
-            " dahulu."
-        );
+        alert("Sila pilih media dahulu.");
 
         return;
     }
 
-    let mediaData = null;
+
+    const finish = function(media){
+
+        const posts =
+            JSON.parse(
+                localStorage.getItem("yam_posts") || "[]"
+            );
+
+        posts.unshift({
+
+            id:Date.now(),
+            owner:currentUser,
+            text:text,
+            type:selectedPostType,
+            media:media,
+            time:Date.now(),
+            likes:[],
+            comments:[],
+            hiddenComments:false,
+            blockedUsers:[]
+
+        });
+
+        localStorage.setItem(
+            "yam_posts",
+            JSON.stringify(posts)
+        );
+
+        cancelPost();
+        renderFeed();
+
+    };
+
 
     if(selectedPostFile){
 
-        try{
+        const reader = new FileReader();
 
-            mediaData =
-                await fileToDataURL(
-                    selectedPostFile
-                );
+        reader.onload = function(e){
 
-        }catch(e){
+            finish(e.target.result);
 
-            alert(
-                "Tidak dapat membaca media."
-            );
+        };
 
-            return;
-        }
-    }
-
-    const posts = getPosts();
-
-    const post = {
-
-        id:
-            "post_" +
-            Date.now() +
-            "_" +
-            Math.random()
-                .toString(36)
-                .slice(2,8),
-
-        username:currentUser,
-
-        text:text,
-
-        mediaType:
-            selectedPostType === "text"
-            ? null
-            : selectedPostType,
-
-        mediaData:mediaData,
-
-        mediaName:
+        reader.readAsDataURL(
             selectedPostFile
-            ? selectedPostFile.name
-            : null,
-
-        createdAt:Date.now(),
-
-        likes:[],
-
-        comments:[],
-
-        blockedCommenters:[]
-    };
-
-    posts.unshift(post);
-
-    try{
-
-        savePosts(posts);
-
-    }catch(e){
-
-        alert(
-            "Storage browser penuh. Cuba guna media yang lebih kecil."
         );
 
-        return;
+    }else{
+
+        finish("");
+
     }
 
-    cancelPost();
-
-    renderFeed();
-
-    alert("Post berjaya! 🚀");
 }
 
 
-/* =========================================================
-   CANCEL POST
-========================================================= */
+/* ================= CANCEL POST ================= */
 
 function cancelPost(){
 
-    document
-        .getElementById("postText")
+    document.getElementById("postText")
         .value = "";
 
-    document
-        .getElementById("mediaBox")
+    document.getElementById("mediaPreview")
         .innerHTML = "";
 
-    document
-        .getElementById("mediaBox")
-        .classList.add("hidden");
+    document.getElementById("postImageFile")
+        .value = "";
+
+    document.getElementById("postVideoFile")
+        .value = "";
 
     selectedPostFile = null;
 
     selectPostType("text");
+
 }
 
 
-/* =========================================================
-   RENDER FEED
-========================================================= */
+/* ================= FEED ================= */
 
 function renderFeed(){
 
     const feed =
         document.getElementById("feed");
 
-    const posts = getPosts();
+    const posts =
+        JSON.parse(
+            localStorage.getItem("yam_posts") || "[]"
+        );
+
 
     if(!posts.length){
 
         feed.innerHTML = `
-            <div class="create-box"
-                 style="text-align:center;color:#777;">
-                Belum ada post lagi.<br>
-                📝 Tulis sesuatu atau pilih 🖼️ Gambar / 🎥 Video.
+            <div class="empty">
+                Belum ada post.<br>
+                Jadilah orang pertama post di YAM.
             </div>
         `;
 
         return;
     }
 
+
     feed.innerHTML =
-        posts
-        .map(post => renderPost(post))
-        .join("");
-}
+        posts.map(post => {
 
+            const profile =
+                getProfileData(post.owner);
 
-function renderPost(post){
+            const liked =
+                (post.likes || [])
+                .includes(currentUser);
 
-    const profile =
-        getProfileData(post.username);
+            let media = "";
 
-    const liked =
-        Array.isArray(post.likes) &&
-        post.likes.includes(currentUser);
+            if(post.type === "image" && post.media){
 
-    let media = "";
+                media = `
+                    <img
+                        class="post-media"
+                        src="${post.media}">
+                `;
 
-    if(
-        post.mediaType === "image" &&
-        post.mediaData
-    ){
-
-        media = `
-            <img
-                class="post-media"
-                src="${post.mediaData}"
-                alt="Post image">
-        `;
-    }
-
-    if(
-        post.mediaType === "video" &&
-        post.mediaData
-    ){
-
-        media = `
-            <video
-                class="post-media"
-                src="${post.mediaData}"
-                controls>
-            </video>
-        `;
-    }
-
-    const likesCount =
-        Array.isArray(post.likes)
-        ? post.likes.length
-        : 0;
-
-    const commentsHtml =
-        renderComments(post);
-
-    return `
-        <article class="post-card">
-
-            <div class="post-head">
-
-                ${avatarHtml(post.username)}
-
-                <div>
-
-                    <div class="post-user">
-                        ${escapeHtml(
-                            profile.name ||
-                            post.username
-                        )}
-                    </div>
-
-                    <div class="post-time">
-                        ${formatTime(post.createdAt)}
-                    </div>
-
-                </div>
-
-                ${
-                    post.username === currentUser
-                    ? `
-                        <button
-                            class="post-menu"
-                            onclick="postOwnerMenu('${post.id}')">
-                            ⋮
-                        </button>
-                    `
-                    : ""
-                }
-
-            </div>
-
-            ${
-                post.text
-                ? `
-                    <div class="post-text">
-                        ${escapeHtml(post.text)}
-                    </div>
-                `
-                : ""
             }
 
-            ${media}
+            if(post.type === "video" && post.media){
 
-            <div class="like-count">
-                ❤️ ${likesCount}
-            </div>
+                media = `
+                    <video
+                        class="post-media"
+                        src="${post.media}"
+                        controls>
+                    </video>
+                `;
 
-            <div class="post-actions">
+            }
 
-                <button
-                    class="${liked ? "liked" : ""}"
-                    onclick="toggleLike('${post.id}')">
 
-                    ${liked ? "❤️ Liked" : "🤍 Like"}
-
-                </button>
-
-                <button
-                    onclick="focusComment('${post.id}')">
-
-                    💬 Komen
-
-                </button>
-
-                ${
-                    post.username === currentUser
-                    ? `
-                        <button
-                            onclick="manageComments('${post.id}')">
-                            ⚙️ Komen
-                        </button>
-                    `
-                    : ""
-                }
-
-            </div>
-
-            <div class="comments">
-
-                ${commentsHtml}
-
-                <div class="comment-form">
-
-                    <input
-                        id="comment_${post.id}"
-                        placeholder="Tulis komen...">
-
+            const ownerMenu =
+                post.owner === currentUser
+                ? `
                     <button
-                        onclick="addComment('${post.id}')">
-                        Hantar
+                        class="post-menu"
+                        onclick="postOwnerMenu('${post.id}')">
+                        ⋮
                     </button>
+                  `
+                : "";
 
-                </div>
 
-            </div>
+            return `
 
-        </article>
-    `;
+                <article class="post-card">
+
+                    <div class="post-head">
+
+                        ${avatarHtml(post.owner)}
+
+                        <div>
+
+                            <div class="post-user">
+                                ${escapeHtml(
+                                    profile.name ||
+                                    post.owner
+                                )}
+                            </div>
+
+                            <div class="post-time">
+                                ${timeAgo(post.time)}
+                            </div>
+
+                        </div>
+
+                        ${ownerMenu}
+
+                    </div>
+
+
+                    ${
+                        post.text
+                        ?
+                        `<div class="post-text">
+                            ${escapeHtml(post.text)}
+                         </div>`
+                        :
+                        ""
+                    }
+
+
+                    ${media}
+
+
+                    <div class="post-actions">
+
+                        <button
+                            class="${liked ? "liked" : ""}"
+                            onclick="toggleLike('${post.id}')">
+
+                            ${liked ? "💙" : "🤍"}
+                            ${(post.likes || []).length}
+
+                        </button>
+
+                        <button
+                            onclick="focusComment('${post.id}')">
+
+                            💬
+                            ${(post.comments || []).length}
+
+                        </button>
+
+                    </div>
+
+
+                    <div id="comments-${post.id}"
+                         class="comments">
+
+                        ${renderComments(post)}
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join("");
+
 }
 
 
-/* =========================================================
-   LIKE
-========================================================= */
+/* ================= LIKE ================= */
 
-function toggleLike(postId){
+function toggleLike(id){
 
-    const posts = getPosts();
+    const posts =
+        JSON.parse(
+            localStorage.getItem("yam_posts") || "[]"
+        );
 
     const post =
-        posts.find(p=>p.id === postId);
+        posts.find(p => String(p.id) === String(id));
 
     if(!post) return;
 
-    if(!Array.isArray(post.likes)){
-        post.likes = [];
-    }
+    post.likes = post.likes || [];
 
     const index =
         post.likes.indexOf(currentUser);
 
     if(index >= 0){
+
         post.likes.splice(index,1);
+
     }else{
+
         post.likes.push(currentUser);
+
     }
 
-    savePosts(posts);
+    localStorage.setItem(
+        "yam_posts",
+        JSON.stringify(posts)
+    );
 
     renderFeed();
+
 }
 
 
-/* =========================================================
-   COMMENTS
-========================================================= */
+/* ================= COMMENTS ================= */
 
-function addComment(postId){
+function renderComments(post){
+
+    let html = "";
+
+    if(post.hiddenComments){
+
+        if(post.owner === currentUser){
+
+            html += `
+                <div
+                    style="
+                        padding:10px;
+                        color:#777;
+                        text-align:center;
+                    ">
+                    🔒 Komen disembunyikan
+                </div>
+            `;
+
+        }
+
+    }else{
+
+        (post.comments || []).forEach(comment => {
+
+            const p =
+                getProfileData(comment.user);
+
+            const own =
+                comment.user === currentUser;
+
+            html += `
+
+                <div class="comment">
+
+                    ${avatarHtml(comment.user)}
+
+                    <div class="comment-body">
+
+                        <div class="comment-name">
+                            ${escapeHtml(
+                                p.name ||
+                                comment.user
+                            )}
+                        </div>
+
+                        <div class="comment-text">
+                            ${escapeHtml(
+                                comment.text
+                            )}
+                        </div>
+
+                    </div>
+
+                    ${
+                        own || post.owner === currentUser
+                        ?
+                        `
+                        <button
+                            onclick="commentMenu(
+                                '${post.id}',
+                                '${comment.id}'
+                            )"
+                            style="
+                                background:transparent;
+                                font-size:18px;
+                            ">
+                            ⋮
+                        </button>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+            `;
+
+        });
+
+    }
+
+
+    html += `
+
+        <div class="comment-input">
+
+            <input
+                id="comment-${post.id}"
+                placeholder="Tulis komen...">
+
+            <button
+                onclick="addComment('${post.id}')">
+                ➤
+            </button>
+
+        </div>
+
+    `;
+
+    return html;
+
+}
+
+
+/* ================= ADD COMMENT ================= */
+
+function addComment(id){
 
     const input =
         document.getElementById(
-            "comment_" + postId
+            "comment-" + id
         );
 
     if(!input) return;
@@ -2150,477 +2148,361 @@ function addComment(postId){
 
     if(!text) return;
 
-    const posts = getPosts();
+    const posts =
+        JSON.parse(
+            localStorage.getItem("yam_posts") || "[]"
+        );
 
     const post =
-        posts.find(p=>p.id === postId);
+        posts.find(p => String(p.id) === String(id));
 
     if(!post) return;
 
-    if(!Array.isArray(post.comments)){
-        post.comments = [];
-    }
-
-    if(!Array.isArray(post.blockedCommenters)){
-        post.blockedCommenters = [];
-    }
-
-    if(
-        post.blockedCommenters
-            .includes(currentUser)
-    ){
-
-        alert(
-            "Anda telah disekat daripada memberi komen pada post ini."
-        );
-
-        return;
-    }
+    post.comments =
+        post.comments || [];
 
     post.comments.push({
 
-        id:
-            "comment_" +
-            Date.now() +
-            "_" +
-            Math.random()
-                .toString(36)
-                .slice(2,7),
-
-        username:currentUser,
-
+        id:Date.now(),
+        user:currentUser,
         text:text,
+        time:Date.now()
 
-        hidden:false,
-
-        createdAt:Date.now()
     });
 
-    savePosts(posts);
+    localStorage.setItem(
+        "yam_posts",
+        JSON.stringify(posts)
+    );
 
     renderFeed();
+
 }
 
 
-function renderComments(post){
-
-    if(
-        !Array.isArray(post.comments) ||
-        !post.comments.length
-    ){
-
-        return "";
-    }
-
-    return post.comments
-        .map(comment => {
-
-            const profile =
-                getProfileData(
-                    comment.username
-                );
-
-            const isOwner =
-                post.username === currentUser;
-
-            const canDelete =
-                comment.username === currentUser ||
-                isOwner;
-
-            if(
-                comment.hidden &&
-                !isOwner
-            ){
-
-                return `
-                    <div class="comment">
-                        <div class="comment-hidden">
-                            Komen disembunyikan oleh pemilik post.
-                        </div>
-                    </div>
-                `;
-            }
-
-            return `
-                <div class="comment">
-
-                    <div class="comment-head">
-
-                        <span>
-                            ${escapeHtml(
-                                profile.name ||
-                                comment.username
-                            )}
-                        </span>
-
-                        ${
-                            isOwner
-                            ? `
-                                <button
-                                    onclick="commentMenu('${post.id}','${comment.id}')"
-                                    style="background:none;font-size:16px;">
-                                    ⋮
-                                </button>
-                            `
-                            : canDelete
-                            ? `
-                                <button
-                                    onclick="deleteComment('${post.id}','${comment.id}')"
-                                    style="background:none;font-size:12px;">
-                                    🗑️
-                                </button>
-                            `
-                            : ""
-                        }
-
-                    </div>
-
-                    <div class="comment-text">
-                        ${escapeHtml(comment.text)}
-                    </div>
-
-                </div>
-            `;
-        })
-        .join("");
-}
-
-
-/* =========================================================
-   HIDE / UNHIDE / DELETE COMMENT
-========================================================= */
+/* ================= COMMENT MENU ================= */
 
 function commentMenu(postId,commentId){
 
-    const posts = getPosts();
+    const posts =
+        JSON.parse(
+            localStorage.getItem("yam_posts") || "[]"
+        );
 
     const post =
-        posts.find(p=>p.id === postId);
+        posts.find(
+            p => String(p.id) === String(postId)
+        );
 
     if(!post) return;
 
     const comment =
-        post.comments.find(
-            c=>c.id === commentId
+        (post.comments || [])
+        .find(
+            c => String(c.id) === String(commentId)
         );
 
     if(!comment) return;
 
-    const hidden =
-        comment.hidden === true;
+
+    const canManage =
+        comment.user === currentUser ||
+        post.owner === currentUser;
+
+
+    if(!canManage) return;
+
+
+    let html = "";
+
+    if(post.owner === currentUser){
+
+        html += `
+            <button
+                class="secondary-btn"
+                onclick="
+                    toggleCommentVisibility('${postId}');
+                    closeModal();
+                ">
+                ${
+                    post.hiddenComments
+                    ? "👁️ Tunjukkan Komen"
+                    : "🔒 Sembunyikan Komen"
+                }
+            </button>
+        `;
+
+    }
+
+
+    html += `
+        <button
+            class="secondary-btn"
+            onclick="
+                deleteComment('${postId}','${commentId}');
+                closeModal();
+            ">
+            🗑️ Padam Komen
+        </button>
+    `;
+
+
+    if(post.owner === currentUser &&
+       comment.user !== currentUser){
+
+        html += `
+            <button
+                class="secondary-btn"
+                onclick="
+                    blockCommenter(
+                        '${postId}',
+                        '${comment.user}'
+                    );
+                    closeModal();
+                ">
+                🚫 Block Pengguna
+            </button>
+        `;
+
+    }
+
 
     openModal(
-        "Pengurusan Komen",
-        `
-            <div class="modal-list">
-
-                <button
-                    onclick="toggleCommentHidden('${postId}','${commentId}')">
-                    ${
-                        hidden
-                        ? "👁️ Tunjukkan Komen"
-                        : "🙈 Hide Komen"
-                    }
-                </button>
-
-                <button
-                    onclick="deleteComment('${postId}','${commentId}')">
-                    🗑️ Padam Komen
-                </button>
-
-                <button
-                    onclick="blockCommenter('${postId}','${comment.username}')">
-                    🚫 Block ${escapeHtml(comment.username)}
-                </button>
-
-            </div>
-        `
+        "⚙️ Komen",
+        html,
+        function(){}
     );
+
 }
 
 
-function toggleCommentHidden(postId,commentId){
-
-    const posts = getPosts();
-
-    const post =
-        posts.find(p=>p.id === postId);
-
-    if(!post) return;
-
-    const comment =
-        post.comments.find(
-            c=>c.id === commentId
-        );
-
-    if(!comment) return;
-
-    comment.hidden =
-        !comment.hidden;
-
-    savePosts(posts);
-
-    closeModal();
-
-    renderFeed();
-}
-
+/* ================= DELETE COMMENT ================= */
 
 function deleteComment(postId,commentId){
 
-    const posts = getPosts();
+    const posts =
+        JSON.parse(
+            localStorage.getItem("yam_posts") || "[]"
+        );
 
     const post =
-        posts.find(p=>p.id === postId);
+        posts.find(
+            p => String(p.id) === String(postId)
+        );
 
     if(!post) return;
 
     const comment =
-        post.comments.find(
-            c=>c.id === commentId
+        (post.comments || [])
+        .find(
+            c => String(c.id) === String(commentId)
         );
 
     if(!comment) return;
 
     if(
-        comment.username !== currentUser &&
-        post.username !== currentUser
+        comment.user !== currentUser &&
+        post.owner !== currentUser
     ){
-
-        alert(
-            "Anda tidak boleh padam komen ini."
-        );
-
         return;
     }
 
     post.comments =
-        post.comments.filter(
-            c=>c.id !== commentId
+        (post.comments || [])
+        .filter(
+            c => String(c.id) !== String(commentId)
         );
 
-    savePosts(posts);
-
-    closeModal();
-
-    renderFeed();
-}
-
-
-/* =========================================================
-   BLOCK COMMENTER
-========================================================= */
-
-function blockCommenter(postId,username){
-
-    const posts = getPosts();
-
-    const post =
-        posts.find(p=>p.id === postId);
-
-    if(!post) return;
-
-    if(post.username !== currentUser){
-
-        alert(
-            "Hanya pemilik post boleh block commenter."
-        );
-
-        return;
-    }
-
-    if(!Array.isArray(post.blockedCommenters)){
-        post.blockedCommenters = [];
-    }
-
-    if(
-        !post.blockedCommenters
-            .includes(username)
-    ){
-
-        post.blockedCommenters.push(username);
-    }
-
-    savePosts(posts);
-
-    closeModal();
-
-    alert(
-        username +
-        " telah diblock daripada komen post ini."
+    localStorage.setItem(
+        "yam_posts",
+        JSON.stringify(posts)
     );
 
     renderFeed();
+
+}
+
+
+/* ================= HIDE COMMENTS ================= */
+
+function toggleCommentVisibility(id){
+
+    const posts =
+        JSON.parse(
+            localStorage.getItem("yam_posts") || "[]"
+        );
+
+    const post =
+        posts.find(
+            p => String(p.id) === String(id)
+        );
+
+    if(!post) return;
+
+    if(post.owner !== currentUser) return;
+
+    post.hiddenComments =
+        !post.hiddenComments;
+
+    localStorage.setItem(
+        "yam_posts",
+        JSON.stringify(posts)
+    );
+
+    renderFeed();
+
+}
+
+
+/* ================= BLOCK COMMENTER ================= */
+
+function blockCommenter(postId,username){
+
+    const posts =
+        JSON.parse(
+            localStorage.getItem("yam_posts") || "[]"
+        );
+
+    const post =
+        posts.find(
+            p => String(p.id) === String(postId)
+        );
+
+    if(!post) return;
+
+    if(post.owner !== currentUser) return;
+
+    post.blockedUsers =
+        post.blockedUsers || [];
+
+    if(!post.blockedUsers.includes(username)){
+
+        post.blockedUsers.push(username);
+
+    }
+
+    post.comments =
+        (post.comments || [])
+        .filter(c => c.user !== username);
+
+    localStorage.setItem(
+        "yam_posts",
+        JSON.stringify(posts)
+    );
+
+    renderFeed();
+
 }
 
 
 function unblockCommenter(postId,username){
 
-    const posts = getPosts();
+    const posts =
+        JSON.parse(
+            localStorage.getItem("yam_posts") || "[]"
+        );
 
     const post =
-        posts.find(p=>p.id === postId);
+        posts.find(
+            p => String(p.id) === String(postId)
+        );
 
     if(!post) return;
 
-    post.blockedCommenters =
-        (post.blockedCommenters || [])
-        .filter(
-            u=>u !== username
-        );
+    post.blockedUsers =
+        (post.blockedUsers || [])
+        .filter(u => u !== username);
 
-    savePosts(posts);
-
-    closeModal();
+    localStorage.setItem(
+        "yam_posts",
+        JSON.stringify(posts)
+    );
 
     renderFeed();
+
 }
 
 
-/* =========================================================
-   COMMENT MANAGEMENT
-========================================================= */
+/* ================= POST OWNER MENU ================= */
 
-function manageComments(postId){
+function postOwnerMenu(id){
 
-    const posts = getPosts();
+    const html = `
 
-    const post =
-        posts.find(p=>p.id === postId);
+        <button
+            class="secondary-btn"
+            onclick="
+                deletePost('${id}');
+                closeModal();
+            ">
+            🗑️ Padam Post
+        </button>
 
-    if(!post) return;
-
-    const blocked =
-        post.blockedCommenters || [];
-
-    let html = "";
-
-    if(blocked.length){
-
-        html += `
-            <div style="margin-bottom:12px;font-weight:bold;">
-                🚫 Pengguna yang diblock
-            </div>
-        `;
-
-        blocked.forEach(username=>{
-
-            html += `
-                <button
-                    onclick="unblockCommenter('${postId}','${username}')">
-                    ✅ Unblock ${escapeHtml(username)}
-                </button>
-            `;
-        });
-
-    }else{
-
-        html = `
-            <div style="color:#777;">
-                Tiada pengguna yang diblock.
-            </div>
-        `;
-    }
+    `;
 
     openModal(
-        "Pengurusan Komen",
-        `<div class="modal-list">${html}</div>`
+        "⚙️ Menu Post",
+        html
     );
+
 }
 
 
-/* =========================================================
-   POST OWNER MENU
-========================================================= */
+function deletePost(id){
 
-function postOwnerMenu(postId){
-
-    openModal(
-        "Post Anda",
-        `
-            <div class="modal-list">
-
-                <button
-                    onclick="manageComments('${postId}')">
-                    ⚙️ Urus Komen
-                </button>
-
-                <button
-                    onclick="deletePost('${postId}')">
-                    🗑️ Padam Post
-                </button>
-
-            </div>
-        `
-    );
-}
-
-
-function deletePost(postId){
-
-    const posts = getPosts();
-
-    const post =
-        posts.find(p=>p.id === postId);
-
-    if(!post) return;
-
-    if(post.username !== currentUser){
-
-        alert(
-            "Anda hanya boleh padam post sendiri."
+    const posts =
+        JSON.parse(
+            localStorage.getItem("yam_posts") || "[]"
         );
 
+    const post =
+        posts.find(
+            p => String(p.id) === String(id)
+        );
+
+    if(!post) return;
+
+    if(post.owner !== currentUser){
+
+        alert("Hanya pemilik post boleh padam.");
+
         return;
     }
 
-    if(
-        !confirm(
-            "Padam post ini?"
-        )
-    ){
-
-        return;
-    }
-
-    savePosts(
+    const updated =
         posts.filter(
-            p=>p.id !== postId
-        )
+            p => String(p.id) !== String(id)
+        );
+
+    localStorage.setItem(
+        "yam_posts",
+        JSON.stringify(updated)
     );
 
-    closeModal();
-
     renderFeed();
+
 }
 
 
-/* =========================================================
-   FOCUS COMMENT
-========================================================= */
+/* ================= COMMENT FOCUS ================= */
 
-function focusComment(postId){
+function focusComment(id){
 
     const input =
         document.getElementById(
-            "comment_" + postId
+            "comment-" + id
         );
 
     if(input){
 
         input.focus();
 
-        input.scrollIntoView({
-            behavior:"smooth",
-            block:"center"
-        });
     }
+
 }
 
 
-/* =========================================================
-   FRIENDS
-========================================================= */
+/* ================= FRIENDS ================= */
 
 function renderFriends(){
 
@@ -2630,12 +2512,13 @@ function renderFriends(){
         );
 
     list.innerHTML =
-        friends.map(username=>{
+        friends.map(username => {
 
             const profile =
                 getProfileData(username);
 
             return `
+
                 <div class="friend-card">
 
                     ${avatarHtml(username)}
@@ -2652,7 +2535,7 @@ function renderFriends(){
                         <div class="friend-status">
                             ${escapeHtml(
                                 profile.status ||
-                                "Online"
+                                "Available"
                             )}
                         </div>
 
@@ -2660,20 +2543,22 @@ function renderFriends(){
 
                     <button
                         class="chat-btn"
-                        onclick="openChat('${username}')">
+                        onclick="
+                            openChat('${username}')
+                        ">
                         💬 Chat
                     </button>
 
                 </div>
+
             `;
-        })
-        .join("");
+
+        }).join("");
+
 }
 
 
-/* =========================================================
-   ROOMS
-========================================================= */
+/* ================= ROOMS ================= */
 
 function renderRooms(){
 
@@ -2683,620 +2568,795 @@ function renderRooms(){
         );
 
     list.innerHTML =
-        rooms.map(room=>{
+        rooms.map(room => {
 
             return `
+
                 <div
                     class="room-card"
-                    onclick="openRoom('${room.name}')">
+                    onclick="
+                        openRoom('${room.name}')
+                    ">
 
-                    <div class="room-title">
-                        ${room.name}
+                    <div class="room-name">
+                        ${room.region}
                     </div>
 
-                    <div class="room-sub">
-                        ${escapeHtml(room.regions)}
+                    <div class="room-region">
+                        🌎 YAM Room • Tekan untuk masuk
                     </div>
 
                 </div>
+
             `;
-        })
-        .join("");
-}
 
-
-function openRoom(roomName){
-
-    openModal(
-        roomName,
-        `
-            <div style="padding:5px 0 10px;">
-                🌎 Selamat datang ke ${escapeHtml(roomName)}.
-            </div>
-
-            <input
-                id="roomMessage"
-                class="input"
-                placeholder="Tulis mesej room...">
-
-            <button
-                class="primary-btn"
-                onclick="sendRoomMessage('${roomName}')">
-                Hantar
-            </button>
-        `
-    );
-}
-
-
-function sendRoomMessage(roomName){
-
-    const input =
-        document.getElementById(
-            "roomMessage"
-        );
-
-    if(!input) return;
-
-    const text =
-        input.value.trim();
-
-    if(!text) return;
-
-    const key =
-        "yamroom_" +
-        roomName;
-
-    let messages = [];
-
-    try{
-        messages =
-            JSON.parse(
-                localStorage.getItem(key) ||
-                "[]"
-            );
-    }catch(e){
-        messages = [];
-    }
-
-    messages.push({
-
-        username:currentUser,
-
-        text:text,
-
-        createdAt:Date.now()
-
-    });
-
-    localStorage.setItem(
-        key,
-        JSON.stringify(messages)
-    );
-
-    input.value = "";
-
-    alert("Mesej dihantar ke room demo.");
+        }).join("");
 
 }
 
 
-/* =========================================================
-   PROFILE
-========================================================= */
+/* ================= PROFILE ================= */
 
 function renderProfile(){
+
+    if(!currentUser) return;
 
     const profile =
         getProfileData(currentUser);
 
-    const picture =
-        getAvatar(currentUser);
 
-    const profileImg =
+    /* PICTURE */
+
+    const picture =
         document.getElementById(
             "profilePicture"
         );
 
-    if(picture){
+    const avatar =
+        getAvatar(currentUser);
 
-        profileImg.src = picture;
+    if(avatar){
+
+        picture.src = avatar;
 
     }else{
 
-        profileImg.src =
+        const letter =
+            (profile.name ||
+             currentUser)
+            .charAt(0)
+            .toUpperCase();
+
+        picture.src =
             "data:image/svg+xml;charset=UTF-8," +
             encodeURIComponent(`
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="200"
-                     height="200">
-                    <rect width="100%" height="100%"
-                          fill="#2563eb"/>
-                    <text x="50%" y="55%"
-                          text-anchor="middle"
-                          font-size="80"
-                          fill="white">
-                        ${String(
-                            profile.name ||
-                            currentUser
-                        ).charAt(0).toUpperCase()}
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="200"
+                    height="200">
+
+                    <rect
+                        width="200"
+                        height="200"
+                        fill="#2563eb"/>
+
+                    <text
+                        x="50%"
+                        y="58%"
+                        text-anchor="middle"
+                        font-size="90"
+                        fill="white"
+                        font-family="Arial">
+                        ${letter}
                     </text>
+
                 </svg>
             `);
+
     }
+
+
+    /* NAME */
 
     document.getElementById(
         "profileName"
     ).textContent =
-        profile.name || currentUser;
+        profile.name ||
+        currentUser;
+
+
+    /* USERNAME */
+
+    document.getElementById(
+        "profileUsername"
+    ).textContent =
+        "@" + currentUser;
+
+
+    /* STATUS */
 
     document.getElementById(
         "profileStatus"
     ).textContent =
         "🟢 " +
-        (profile.status || "Online");
+        (
+            profile.status ||
+            "Available"
+        );
+
+
+    /* BIO */
 
     document.getElementById(
         "profileBio"
     ).textContent =
-        profile.bio || "Belum ada bio.";
+        profile.bio ||
+        "Belum ada bio.";
+
+
+    /* COVER */
 
     const cover =
         localStorage.getItem(
             "yam_cover_" + currentUser
         );
 
-    const coverEl =
+    const coverElement =
         document.getElementById(
             "profileCover"
         );
 
     if(cover){
 
-        coverEl.style.backgroundImage =
+        coverElement.style.backgroundImage =
             `url("${cover}")`;
 
     }else{
 
-        coverEl.style.backgroundImage =
-            "";
+        coverElement.style.backgroundImage =
+            "linear-gradient(135deg,#2563eb,#111827)";
+
     }
+
+
+    /* TOP USER */
+
+    document.getElementById(
+        "topUser"
+    ).textContent =
+        profile.name ||
+        currentUser;
+
+
+    /* INFO */
 
     document.getElementById(
         "profileInfo"
     ).innerHTML = `
 
         <div class="info-row">
-            🎂 <strong>Birthday:</strong>
-            ${escapeHtml(profile.birthday || "-")}
+
+            <div class="info-label">
+                Username
+            </div>
+
+            <div class="info-value">
+                @${escapeHtml(currentUser)}
+            </div>
+
         </div>
 
         <div class="info-row">
-            📍 <strong>Location:</strong>
-            ${escapeHtml(profile.location || "-")}
+
+            <div class="info-label">
+                🎂 Birthday
+            </div>
+
+            <div class="info-value">
+                ${
+                    escapeHtml(
+                        profile.birthday ||
+                        "Belum diisi"
+                    )
+                }
+            </div>
+
         </div>
 
         <div class="info-row">
-            💼 <strong>Job:</strong>
-            ${escapeHtml(profile.job || "-")}
+
+            <div class="info-label">
+                📍 Location
+            </div>
+
+            <div class="info-value">
+                ${
+                    escapeHtml(
+                        profile.location ||
+                        "Belum diisi"
+                    )
+                }
+            </div>
+
         </div>
 
         <div class="info-row">
-            ⚧️ <strong>Gender:</strong>
-            ${escapeHtml(profile.gender || "-")}
+
+            <div class="info-label">
+                💼 Job
+            </div>
+
+            <div class="info-value">
+                ${
+                    escapeHtml(
+                        profile.job ||
+                        "Belum diisi"
+                    )
+                }
+            </div>
+
+        </div>
+
+        <div class="info-row">
+
+            <div class="info-label">
+                ⚧ Gender
+            </div>
+
+            <div class="info-value">
+                ${
+                    escapeHtml(
+                        profile.gender ||
+                        "Belum diisi"
+                    )
+                }
+            </div>
+
         </div>
 
     `;
 
-    document.getElementById(
-        "topUser"
-    ).textContent =
-        profile.name || currentUser;
 }
 
 
-/* =========================================================
-   PROFILE PICTURE
-========================================================= */
+/* ================= PROFILE PICTURE ================= */
 
 function changeProfilePicture(){
 
-    document
-        .getElementById(
-            "profileImageInput"
-        )
-        .click();
+    document.getElementById(
+        "profileFile"
+    ).click();
+
 }
 
-document
-    .getElementById("profileImageInput")
-    .addEventListener(
-        "change",
-        async function(){
 
-            const file =
-                this.files && this.files[0];
+document.getElementById(
+    "profileFile"
+)
+.addEventListener(
+    "change",
+    function(){
 
-            if(!file) return;
+        const file = this.files[0];
 
-            if(file.size > 3 * 1024 * 1024){
+        if(!file) return;
 
-                alert(
-                    "Gambar terlalu besar. Maksimum 3MB."
+        if(file.size > 3 * 1024 * 1024){
+
+            alert("Gambar profile maksimum 3MB.");
+
+            this.value = "";
+
+            return;
+        }
+
+        const reader =
+            new FileReader();
+
+        reader.onload =
+            function(e){
+
+                localStorage.setItem(
+                    "yam_picture_" +
+                    currentUser,
+                    e.target.result
                 );
 
-                return;
-            }
+                renderProfile();
+                renderFeed();
+                renderFriends();
 
-            const data =
-                await fileToDataURL(file);
+            };
 
-            localStorage.setItem(
-                "yam_picture_" +
-                currentUser,
-                data
-            );
+        reader.readAsDataURL(file);
 
-            renderProfile();
-            renderFeed();
-        }
-    );
+    }
+);
 
 
-/* =========================================================
-   COVER
-========================================================= */
+/* ================= COVER ================= */
 
 function changeCover(){
 
-    document
-        .getElementById(
-            "coverImageInput"
-        )
-        .click();
+    document.getElementById(
+        "coverFile"
+    ).click();
+
 }
 
-document
-    .getElementById("coverImageInput")
-    .addEventListener(
-        "change",
-        async function(){
 
-            const file =
-                this.files && this.files[0];
+document.getElementById(
+    "coverFile"
+)
+.addEventListener(
+    "change",
+    function(){
 
-            if(!file) return;
+        const file = this.files[0];
 
-            if(file.size > 4 * 1024 * 1024){
+        if(!file) return;
 
-                alert(
-                    "Cover terlalu besar. Maksimum 4MB."
+        if(file.size > 4 * 1024 * 1024){
+
+            alert("Cover maksimum 4MB.");
+
+            this.value = "";
+
+            return;
+        }
+
+        const reader =
+            new FileReader();
+
+        reader.onload =
+            function(e){
+
+                localStorage.setItem(
+                    "yam_cover_" +
+                    currentUser,
+                    e.target.result
                 );
 
-                return;
-            }
+                renderProfile();
 
-            const data =
-                await fileToDataURL(file);
+            };
 
-            localStorage.setItem(
-                "yam_cover_" +
-                currentUser,
-                data
-            );
+        reader.readAsDataURL(file);
 
-            renderProfile();
-        }
-    );
+    }
+);
 
 
-/* =========================================================
-   EDIT PROFILE
-========================================================= */
+/* ================= EDIT PROFILE ================= */
 
 function editProfile(){
+
+    document.getElementById(
+        "profileMenu"
+    ).classList.add("hidden");
 
     const profile =
         getProfileData(currentUser);
 
+    const content = `
+
+        <input
+            id="editName"
+            class="input"
+            value="${escapeHtml(
+                profile.name || ""
+            )}"
+            placeholder="Nama">
+
+        <input
+            id="editBirthday"
+            class="input"
+            value="${escapeHtml(
+                profile.birthday || ""
+            )}"
+            placeholder="Birthday">
+
+        <input
+            id="editLocation"
+            class="input"
+            value="${escapeHtml(
+                profile.location || ""
+            )}"
+            placeholder="Location">
+
+        <input
+            id="editJob"
+            class="input"
+            value="${escapeHtml(
+                profile.job || ""
+            )}"
+            placeholder="Job">
+
+        <input
+            id="editGender"
+            class="input"
+            value="${escapeHtml(
+                profile.gender || ""
+            )}"
+            placeholder="Gender">
+
+        <textarea
+            id="editBio"
+            class="input"
+            style="min-height:100px;"
+            placeholder="Bio">${escapeHtml(
+                profile.bio || ""
+            )}</textarea>
+
+    `;
+
     openModal(
-        "Edit Profile",
-        `
-
-            <input
-                id="editName"
-                class="input"
-                value="${escapeHtml(profile.name || "")}"
-                placeholder="Nama">
-
-            <input
-                id="editBirthday"
-                class="input"
-                value="${escapeHtml(profile.birthday || "")}"
-                placeholder="Birthday">
-
-            <input
-                id="editLocation"
-                class="input"
-                value="${escapeHtml(profile.location || "")}"
-                placeholder="Location">
-
-            <input
-                id="editJob"
-                class="input"
-                value="${escapeHtml(profile.job || "")}"
-                placeholder="Job">
-
-            <input
-                id="editGender"
-                class="input"
-                value="${escapeHtml(profile.gender || "")}"
-                placeholder="Gender">
-
-            <textarea
-                id="editBio"
-                class="input"
-                style="min-height:100px;"
-                placeholder="Bio">${escapeHtml(profile.bio || "")}</textarea>
-
-            <button
-                class="primary-btn"
-                onclick="saveProfile()">
-                💾 Simpan
-            </button>
-
-        `
+        "✏️ Edit Profile",
+        content,
+        saveProfile
     );
+
 }
 
 
 function saveProfile(){
 
-    const accounts = getAccounts();
-
     const profile =
-        accounts[currentUser];
-
-    if(!profile) return;
+        getProfileData(currentUser);
 
     profile.name =
-        document
-            .getElementById("editName")
-            .value
-            .trim() ||
-        currentUser;
+        document.getElementById(
+            "editName"
+        ).value.trim();
 
     profile.birthday =
-        document
-            .getElementById("editBirthday")
-            .value
-            .trim();
+        document.getElementById(
+            "editBirthday"
+        ).value.trim();
 
     profile.location =
-        document
-            .getElementById("editLocation")
-            .value
-            .trim();
+        document.getElementById(
+            "editLocation"
+        ).value.trim();
 
     profile.job =
-        document
-            .getElementById("editJob")
-            .value
-            .trim();
+        document.getElementById(
+            "editJob"
+        ).value.trim();
 
     profile.gender =
-        document
-            .getElementById("editGender")
-            .value
-            .trim();
+        document.getElementById(
+            "editGender"
+        ).value.trim();
 
     profile.bio =
-        document
-            .getElementById("editBio")
-            .value
-            .trim();
+        document.getElementById(
+            "editBio"
+        ).value.trim();
 
-    saveAccounts(accounts);
+    saveCurrentProfile(profile);
 
     closeModal();
 
     renderProfile();
     renderFeed();
+    renderFriends();
+
 }
 
 
-/* =========================================================
-   STATUS
-========================================================= */
+/* ================= STATUS ================= */
 
 function editStatus(){
 
     const profile =
         getProfileData(currentUser);
 
+    const content = `
+
+        <input
+            id="statusInput"
+            class="input"
+            value="${escapeHtml(
+                profile.status || ""
+            )}"
+            placeholder="Status anda">
+
+    `;
+
     openModal(
-        "Tukar Status",
-        `
-
-            <input
-                id="newStatus"
-                class="input"
-                value="${escapeHtml(profile.status || "")}"
-                placeholder="Status anda">
-
-            <button
-                class="primary-btn"
-                onclick="saveStatus()">
-                💾 Simpan
-            </button>
-        `
+        "🟢 Status",
+        content,
+        saveStatus
     );
+
 }
 
 
 function saveStatus(){
 
-    const accounts = getAccounts();
+    const profile =
+        getProfileData(currentUser);
 
-    if(!accounts[currentUser]) return;
+    profile.status =
+        document.getElementById(
+            "statusInput"
+        ).value.trim();
 
-    accounts[currentUser].status =
-        document
-            .getElementById("newStatus")
-            .value
-            .trim();
+    if(!profile.status){
 
-    saveAccounts(accounts);
+        profile.status =
+            "Available";
+
+    }
+
+    saveCurrentProfile(profile);
 
     closeModal();
 
     renderProfile();
+    renderFriends();
+
 }
 
 
-/* =========================================================
-   PASSWORD
-========================================================= */
+/* ================= PASSWORD ================= */
 
 function changePassword(){
 
+    document.getElementById(
+        "profileMenu"
+    ).classList.add("hidden");
+
+    const content = `
+
+        <input
+            id="oldPassword"
+            class="input"
+            type="password"
+            placeholder="Password lama">
+
+        <input
+            id="newPassword"
+            class="input"
+            type="password"
+            placeholder="Password baru">
+
+        <input
+            id="newPassword2"
+            class="input"
+            type="password"
+            placeholder="Ulang password baru">
+
+    `;
+
     openModal(
-        "Tukar Password",
-        `
-
-            <input
-                id="newPassword"
-                class="input"
-                type="password"
-                placeholder="Password baru">
-
-            <button
-                class="primary-btn"
-                onclick="savePassword()">
-                🔑 Simpan Password
-            </button>
-
-        `
+        "🔑 Tukar Password",
+        content,
+        savePassword
     );
+
 }
 
 
 function savePassword(){
 
-    const password =
-        document
-            .getElementById(
-                "newPassword"
-            )
-            .value;
+    const oldPass =
+        document.getElementById(
+            "oldPassword"
+        ).value;
 
-    if(!password){
+    const newPass =
+        document.getElementById(
+            "newPassword"
+        ).value;
 
-        alert(
-            "Sila masukkan password baru."
-        );
+    const newPass2 =
+        document.getElementById(
+            "newPassword2"
+        ).value;
+
+    const profile =
+        getProfileData(currentUser);
+
+
+    if(profile.password !== oldPass){
+
+        alert("Password lama tidak betul.");
 
         return;
     }
 
-    const accounts = getAccounts();
+    if(!newPass){
 
-    accounts[currentUser].password =
-        password;
+        alert("Masukkan password baru.");
 
-    saveAccounts(accounts);
+        return;
+    }
+
+    if(newPass !== newPass2){
+
+        alert("Password baru tidak sama.");
+
+        return;
+    }
+
+    profile.password = newPass;
+
+    saveCurrentProfile(profile);
 
     closeModal();
 
     alert("Password berjaya ditukar.");
+
 }
 
 
-/* =========================================================
-   MUSIC PROFILE
-========================================================= */
+/* ================= PROFILE MENU ================= */
+
+function openProfileMenu(){
+
+    const menu =
+        document.getElementById(
+            "profileMenu"
+        );
+
+    menu.classList.toggle("hidden");
+
+}
+
+
+/* ================= PRIVACY ================= */
+
+function openPrivacy(){
+
+    document.getElementById(
+        "profileMenu"
+    ).classList.add("hidden");
+
+    let privacy =
+        JSON.parse(
+            localStorage.getItem(
+                "yam_privacy_" +
+                currentUser
+            ) || "{}"
+        );
+
+    const content = `
+
+        <label style="
+            display:block;
+            margin-bottom:12px;
+        ">
+
+            <input
+                id="privacyProfile"
+                type="checkbox"
+                ${
+                    privacy.profilePublic !== false
+                    ? "checked"
+                    : ""
+                }>
+
+            Profile boleh dilihat
+
+        </label>
+
+
+        <label style="
+            display:block;
+            margin-bottom:12px;
+        ">
+
+            <input
+                id="privacyPosts"
+                type="checkbox"
+                ${
+                    privacy.postsPublic !== false
+                    ? "checked"
+                    : ""
+                }>
+
+            Post boleh dilihat
+
+        </label>
+
+    `;
+
+    openModal(
+        "🔒 Privacy",
+        content,
+        savePrivacy
+    );
+
+}
+
+
+function savePrivacy(){
+
+    const privacy = {
+
+        profilePublic:
+            document.getElementById(
+                "privacyProfile"
+            ).checked,
+
+        postsPublic:
+            document.getElementById(
+                "privacyPosts"
+            ).checked
+
+    };
+
+    localStorage.setItem(
+        "yam_privacy_" +
+        currentUser,
+        JSON.stringify(privacy)
+    );
+
+    closeModal();
+
+    alert("Privacy settings disimpan.");
+
+}
+
+
+/* ================= MUSIC ================= */
 
 function openMusic(){
 
-    openModal(
-        "🎵 Music Profile",
-        `
+    document.getElementById(
+        "musicFile"
+    ).click();
 
-            <p style="margin-bottom:12px;color:#666;">
-                Pilih lagu/audio dari telefon untuk
-                dimainkan pada profile demo.
-            </p>
-
-            <button
-                class="primary-btn"
-                onclick="chooseMusic()">
-                🎵 Pilih Music
-            </button>
-
-            <div
-                id="musicModalArea"
-                style="margin-top:12px;">
-            </div>
-
-        `
-    );
 }
 
 
-function chooseMusic(){
+document.getElementById(
+    "musicFile"
+)
+.addEventListener(
+    "change",
+    function(){
 
-    document
-        .getElementById("musicInput")
-        .click();
-}
+        const file = this.files[0];
 
-document
-    .getElementById("musicInput")
-    .addEventListener(
-        "change",
-        async function(){
+        if(!file) return;
 
-            const file =
-                this.files && this.files[0];
+        if(file.size > 8 * 1024 * 1024){
 
-            if(!file) return;
+            alert("Music maksimum 8MB.");
 
-            if(file.size > 8 * 1024 * 1024){
+            this.value = "";
 
-                alert(
-                    "Music terlalu besar. Maksimum 8MB."
-                );
-
-                return;
-            }
-
-            const data =
-                await fileToDataURL(file);
-
-            localStorage.setItem(
-                "yam_music_" +
-                currentUser,
-                JSON.stringify({
-                    name:file.name,
-                    data:data
-                })
-            );
-
-            renderMusic();
-
-            const area =
-                document.getElementById(
-                    "musicModalArea"
-                );
-
-            if(area){
-
-                area.innerHTML = `
-                    <p>✅ Music disimpan.</p>
-                `;
-            }
+            return;
         }
-    );
+
+        const reader =
+            new FileReader();
+
+        reader.onload =
+            function(e){
+
+                localStorage.setItem(
+                    "yam_music_" +
+                    currentUser,
+                    JSON.stringify({
+
+                        name:file.name,
+                        data:e.target.result
+
+                    })
+                );
+
+                renderMusic();
+
+            };
+
+        reader.readAsDataURL(file);
+
+    }
+);
 
 
 function renderMusic(){
@@ -3306,36 +3366,35 @@ function renderMusic(){
             "musicArea"
         );
 
-    let music = null;
+    if(!area) return;
 
-    try{
+    const music =
+        JSON.parse(
+            localStorage.getItem(
+                "yam_music_" +
+                currentUser
+            ) || "null"
+        );
 
-        music =
-            JSON.parse(
-                localStorage.getItem(
-                    "yam_music_" +
-                    currentUser
-                ) || "null"
-            );
-
-    }catch(e){
-
-        music = null;
-    }
 
     if(!music){
 
         area.classList.add("hidden");
+
         area.innerHTML = "";
+
         return;
     }
+
 
     area.classList.remove("hidden");
 
     area.innerHTML = `
 
-        <div style="font-weight:bold;margin-bottom:8px;">
-            🎵 ${escapeHtml(music.name)}
+        <div class="music-title">
+            🎵 ${escapeHtml(
+                music.name
+            )}
         </div>
 
         <audio
@@ -3343,18 +3402,26 @@ function renderMusic(){
             src="${music.data}">
         </audio>
 
-        <button
-            onclick="removeMusic()"
-            style="
-                margin-top:10px;
-                padding:9px 12px;
-                border-radius:9px;
-                background:#eee;
-            ">
-            🗑️ Buang Music
-        </button>
+        <div class="music-buttons">
+
+            <button
+                onclick="openMusic()">
+                🔄 Tukar Music
+            </button>
+
+            <button
+                onclick="removeMusic()"
+                style="
+                    background:#fee2e2;
+                    color:#dc2626;
+                ">
+                🗑️ Buang
+            </button>
+
+        </div>
 
     `;
+
 }
 
 
@@ -3367,41 +3434,10 @@ function removeMusic(){
 
     renderMusic();
 
-    closeModal();
 }
 
 
-/* =========================================================
-   CHAT
-========================================================= */
-
-function openChat(username){
-
-    currentChatUser = username;
-
-    document
-        .getElementById("chatTitle")
-        .textContent =
-        getProfileData(username).name ||
-        username;
-
-    document
-        .getElementById("chatBox")
-        .classList.add("show");
-
-    renderChat();
-}
-
-
-function closeChat(){
-
-    document
-        .getElementById("chatBox")
-        .classList.remove("show");
-
-    currentChatUser = null;
-}
-
+/* ================= CHAT ================= */
 
 function chatKey(){
 
@@ -3411,6 +3447,91 @@ function chatKey(){
         "_" +
         currentChatUser
     );
+
+}
+
+
+function openChat(username){
+
+    currentChatUser = username;
+
+    const profile =
+        getProfileData(username);
+
+    document.getElementById(
+        "chatTitle"
+    ).textContent =
+        profile.name ||
+        username;
+
+
+    const avatar =
+        getAvatar(username);
+
+    const img =
+        document.getElementById(
+            "chatAvatar"
+        );
+
+    if(avatar){
+
+        img.src = avatar;
+
+    }else{
+
+        img.src =
+            "data:image/svg+xml;charset=UTF-8," +
+            encodeURIComponent(`
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="100"
+                    height="100">
+
+                    <rect
+                        width="100"
+                        height="100"
+                        fill="#2563eb"/>
+
+                    <text
+                        x="50%"
+                        y="62%"
+                        text-anchor="middle"
+                        font-size="45"
+                        fill="white"
+                        font-family="Arial">
+                        ${
+                            (
+                                profile.name ||
+                                username
+                            )
+                            .charAt(0)
+                            .toUpperCase()
+                        }
+                    </text>
+
+                </svg>
+            `);
+
+    }
+
+
+    document.getElementById(
+        "chatOverlay"
+    ).classList.add("show");
+
+    renderChat();
+
+}
+
+
+function closeChat(){
+
+    document.getElementById(
+        "chatOverlay"
+    ).classList.remove("show");
+
+    currentChatUser = null;
+
 }
 
 
@@ -3418,45 +3539,56 @@ function renderChat(){
 
     if(!currentChatUser) return;
 
-    let messages = [];
-
-    try{
-
-        messages =
-            JSON.parse(
-                localStorage.getItem(
-                    chatKey()
-                ) || "[]"
-            );
-
-    }catch(e){
-
-        messages = [];
-    }
-
-    const box =
+    const body =
         document.getElementById(
-            "chatMessages"
+            "chatBody"
         );
 
-    box.innerHTML =
-        messages
-        .map(message=>{
+    const messages =
+        JSON.parse(
+            localStorage.getItem(
+                chatKey()
+            ) || "[]"
+        );
+
+
+    if(!messages.length){
+
+        body.innerHTML = `
+            <div class="empty">
+                Belum ada mesej.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    body.innerHTML =
+        messages.map(msg => {
+
+            const mine =
+                msg.user === currentUser;
 
             return `
-                <div class="msg ${
-                    message.username === currentUser
-                    ? "me"
-                    : "them"
-                }">
-                    ${escapeHtml(message.text)}
-                </div>
-            `;
-        })
-        .join("");
 
-    box.scrollTop =
-        box.scrollHeight;
+                <div
+                    class="
+                        chat-message
+                        ${mine ? "mine" : ""}
+                    ">
+
+                    ${escapeHtml(msg.text)}
+
+                </div>
+
+            `;
+
+        }).join("");
+
+    body.scrollTop =
+        body.scrollHeight;
+
 }
 
 
@@ -3474,29 +3606,18 @@ function sendChat(){
 
     if(!text) return;
 
-    let messages = [];
-
-    try{
-
-        messages =
-            JSON.parse(
-                localStorage.getItem(
-                    chatKey()
-                ) || "[]"
-            );
-
-    }catch(e){
-
-        messages = [];
-    }
+    const messages =
+        JSON.parse(
+            localStorage.getItem(
+                chatKey()
+            ) || "[]"
+        );
 
     messages.push({
 
-        username:currentUser,
-
+        user:currentUser,
         text:text,
-
-        createdAt:Date.now()
+        time:Date.now()
 
     });
 
@@ -3508,74 +3629,197 @@ function sendChat(){
     input.value = "";
 
     renderChat();
+
 }
 
 
-/* =========================================================
-   MODAL
-========================================================= */
+/* ENTER CHAT */
 
-function openModal(title,content){
+document.getElementById(
+    "chatInput"
+).addEventListener(
+    "keydown",
+    function(e){
 
-    document
-        .getElementById("modalTitle")
-        .textContent = title;
+        if(e.key === "Enter"){
 
-    document
-        .getElementById("modalContent")
-        .innerHTML = content;
+            sendChat();
 
-    document
-        .getElementById("modal")
-        .classList.remove("hidden");
+        }
+
+    }
+);
+
+
+/* ================= ROOM ================= */
+
+function openRoom(roomName){
+
+    const key =
+        "yamroom_" + roomName;
+
+    const messages =
+        JSON.parse(
+            localStorage.getItem(key) || "[]"
+        );
+
+    let html = `
+
+        <div
+            id="roomMessages"
+            style="
+                max-height:280px;
+                overflow:auto;
+                margin-bottom:10px;
+            ">
+
+    `;
+
+
+    if(!messages.length){
+
+        html += `
+            <div class="empty">
+                Belum ada mesej dalam room.
+            </div>
+        `;
+
+    }else{
+
+        messages.forEach(msg => {
+
+            const p =
+                getProfileData(msg.user);
+
+            html += `
+
+                <div style="
+                    padding:9px;
+                    background:#f1f5f9;
+                    border-radius:10px;
+                    margin-bottom:7px;
+                ">
+
+                    <b>
+                        ${escapeHtml(
+                            p.name ||
+                            msg.user
+                        )}
+                    </b>
+
+                    <div>
+                        ${escapeHtml(msg.text)}
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+    html += `
+
+        </div>
+
+        <input
+            id="roomInput"
+            class="input"
+            placeholder="Tulis mesej room...">
+
+    `;
+
+
+    openModal(
+        "🌎 " + roomName,
+        html,
+        function(){
+
+            const input =
+                document.getElementById(
+                    "roomInput"
+                );
+
+            const text =
+                input.value.trim();
+
+            if(!text) return;
+
+            messages.push({
+
+                user:currentUser,
+                text:text,
+                time:Date.now()
+
+            });
+
+            localStorage.setItem(
+                key,
+                JSON.stringify(messages)
+            );
+
+            closeModal();
+
+            openRoom(roomName);
+
+        }
+    );
+
+}
+
+
+/* ================= MODAL ================= */
+
+function openModal(
+    title,
+    content,
+    okFunction
+){
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent = title;
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML = content;
+
+
+    const ok =
+        document.getElementById(
+            "modalOk"
+        );
+
+    ok.onclick =
+        okFunction ||
+        closeModal;
+
+
+    document.getElementById(
+        "modalBg"
+    ).classList.add("show");
+
 }
 
 
 function closeModal(){
 
-    document
-        .getElementById("modal")
-        .classList.add("hidden");
+    document.getElementById(
+        "modalBg"
+    ).classList.remove("show");
 
-    document
-        .getElementById("modalContent")
-        .innerHTML = "";
 }
 
 
-/* =========================================================
-   START
-========================================================= */
+/* ================= INIT ================= */
 
 if(currentUser){
 
     startApp();
 
-}else{
-
-    document
-        .getElementById("loginPage")
-        .classList.remove("hidden");
-
 }
-
-
-/* =========================================================
-   ENTER KEY LOGIN
-========================================================= */
-
-document
-    .getElementById("loginPassword")
-    .addEventListener(
-        "keydown",
-        function(e){
-
-            if(e.key === "Enter"){
-                login();
-            }
-
-        }
-    );
 
 </script>
 
