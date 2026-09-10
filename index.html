@@ -428,12 +428,6 @@ button{
     margin-top:-15px;
 }
 
-/*
-    V4.4.6
-    Background profile sekarang memenuhi
-    keseluruhan profile sampai ke bawah.
-*/
-
 .profile-main{
     position:relative;
     min-height:calc(100vh - 58px);
@@ -452,11 +446,6 @@ button{
     background-repeat:no-repeat;
 }
 
-/*
-    Lapisan gelap seluruh profile.
-    Ini membantu tulisan profile masih jelas.
-*/
-
 .profile-main::before{
     content:"";
     position:absolute;
@@ -465,11 +454,6 @@ button{
     z-index:0;
     pointer-events:none;
 }
-
-/*
-    Semua kandungan profile berada
-    di atas background.
-*/
 
 .profile-main > *{
     position:relative;
@@ -675,7 +659,8 @@ button{
 .profile-picture-wrap{
     padding:0 18px;
 
-    margin-top:-60px;
+    /* DIUBAH SAHAJA: NAIK 35px */
+    margin-top:-95px;
 
     position:relative;
 
@@ -1182,7 +1167,8 @@ button{
     }
 
     .profile-picture-wrap{
-        margin-top:-55px;
+        /* DIUBAH SAHAJA: NAIK 35px */
+        margin-top:-90px;
     }
 
     .profile-menu{
@@ -3316,13 +3302,6 @@ function renderProfile(){
         "Belum ada bio.";
 
 
-    /*
-        V4.4.6
-        Background cover sekarang diletakkan
-        pada .profile-main supaya memenuhi
-        seluruh profile.
-    */
-
     const cover =
         localStorage.getItem(
             "yam_cover_" + currentUser
@@ -4063,17 +4042,6 @@ function openPrivacy(){
 
 /* ================= MUSIC V4.4.6 ================= */
 
-/*
-    Jika belum ada music:
-    tekan 🎵 → pilih music.
-
-    Jika sudah ada music:
-    tekan 🎵 → player terus muncul
-    dan YAM cuba memainkan music.
-
-    Butang Tukar Music masih tersedia.
-*/
-
 function openMusic(){
 
     const savedMusic =
@@ -4081,10 +4049,6 @@ function openMusic(){
             "yam_music_" + currentUser
         );
 
-
-    /*
-        BELUM ADA MUSIC
-    */
 
     if(!savedMusic){
 
@@ -4103,10 +4067,6 @@ function openMusic(){
         return;
     }
 
-
-    /*
-        SUDAH ADA MUSIC
-    */
 
     renderMusic(true);
 
@@ -4129,10 +4089,6 @@ document.getElementById(
         if(!file) return;
 
 
-        /*
-            Pastikan file memang audio.
-        */
-
         if(
             file.type &&
             !file.type.startsWith("audio/")
@@ -4147,10 +4103,6 @@ document.getElementById(
             return;
         }
 
-
-        /*
-            Had 8MB seperti versi lama.
-        */
 
         if(file.size > 8 * 1024 * 1024){
 
@@ -4306,11 +4258,6 @@ function renderMusic(
     `;
 
 
-    /*
-        Cuba play selepas player
-        dimasukkan ke dalam page.
-    */
-
     if(autoPlay){
 
         setTimeout(
@@ -4339,12 +4286,6 @@ function renderMusic(
 
                     playPromise.catch(
                         function(){
-
-                            /*
-                                Sesetengah browser phone
-                                menyekat autoplay.
-                                Player tetap dipaparkan.
-                            */
 
                         }
                     );
