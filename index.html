@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.4.8</title>
+<title>YAM Chat V4.4.9</title>
 
 <style>
 *{
@@ -53,8 +53,6 @@ button{
     border-radius:20px;
     box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
-
-/* ===== YAM CHAT LOGIN LOGO ===== */
 
 .logo{
     display:flex;
@@ -133,7 +131,9 @@ button{
     min-height:100vh;
 }
 
-/* ===== TOPBAR ===== */
+/* =========================
+   TOPBAR
+========================= */
 
 .topbar{
     position:sticky;
@@ -153,8 +153,8 @@ button{
 .top-logo{
     display:flex;
     align-items:baseline;
-    gap:4px;
-    padding:5px 10px;
+    gap:5px;
+    padding:6px 12px;
     background:#2563eb;
     border-radius:12px;
     box-shadow:0 3px 10px rgba(0,0,0,.18);
@@ -162,17 +162,17 @@ button{
 }
 
 .top-logo .yam-text{
-    font-size:24px;
+    font-size:30px;
     font-weight:900;
     letter-spacing:1px;
     color:#ff4fa3;
 }
 
 .top-logo .chat-text{
-    font-size:12px;
+    font-size:15px;
     font-weight:800;
     font-style:italic;
-    letter-spacing:.5px;
+    letter-spacing:.6px;
     color:#ff4fa3;
     transform:skewX(-8deg);
 }
@@ -212,9 +212,18 @@ body.profile-active .topbar{
     left:0;
     right:0;
     height:52px;
-    background:rgba(255,255,255,.94);
-    backdrop-filter:blur(8px);
-    box-shadow:0 2px 10px rgba(0,0,0,.10);
+    background:#2563eb;
+    backdrop-filter:none;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+body.profile-active .top-logo{
+    background:#2563eb;
+    box-shadow:none;
+}
+
+body.profile-active .top-user{
+    color:white;
 }
 
 body.profile-active .main{
@@ -545,7 +554,9 @@ body.profile-active #profilePage{
     z-index:1;
 }
 
-/* ===== FULL SCREEN COVER ===== */
+/* =========================
+   PROFILE COVER
+========================= */
 
 .profile-cover{
     width:100vw;
@@ -568,7 +579,9 @@ body.profile-active #profilePage{
     pointer-events:none;
 }
 
-/* ===== MUSIC BUTTON ===== */
+/* =========================
+   MUSIC BUTTON
+========================= */
 
 .profile-music-button{
     position:absolute;
@@ -596,7 +609,9 @@ body.profile-active #profilePage{
     transform:scale(1.05);
 }
 
-/* ===== CAMERA + THREE DOT ===== */
+/* =========================
+   CAMERA + THREE DOT
+========================= */
 
 .profile-top-actions{
     position:absolute;
@@ -1062,20 +1077,30 @@ body.profile-active #profilePage{
     }
 
     .top-logo{
-        padding:5px 9px;
+        padding:6px 10px;
         border-radius:11px;
+        gap:4px;
     }
 
     .top-logo .yam-text{
-        font-size:22px;
+        font-size:27px;
     }
 
     .top-logo .chat-text{
-        font-size:11px;
+        font-size:13px;
     }
 
     .top-user{
         font-size:13px;
+    }
+
+    body.profile-active .topbar{
+        height:50px;
+        background:#2563eb;
+    }
+
+    body.profile-active .top-user{
+        color:white;
     }
 
     .profile-cover{
@@ -1151,18 +1176,28 @@ body.profile-active #profilePage{
 
     .top-logo{
         padding:5px 8px;
+        gap:3px;
     }
 
     .top-logo .yam-text{
-        font-size:20px;
+        font-size:25px;
     }
 
     .top-logo .chat-text{
-        font-size:10px;
+        font-size:12px;
     }
 
     .top-user{
         font-size:12px;
+    }
+
+    body.profile-active .topbar{
+        height:48px;
+        background:#2563eb;
+    }
+
+    body.profile-active .top-user{
+        color:white;
     }
 
     .profile-cover{
@@ -1187,498 +1222,380 @@ body.profile-active #profilePage{
 
 <!-- LOGIN -->
 <div id="loginPage">
+<div class="login-box">
 
-    <div class="login-box">
+<div class="logo">
+<span class="logo-yam">YAM</span>
+<span class="logo-chat">CHAT</span>
+</div>
 
-        <div class="logo">
-            <span class="logo-yam">YAM</span>
-            <span class="logo-chat">CHAT</span>
-        </div>
+<div class="login-sub">
+Chat • Friends • Rooms • Social
+</div>
 
-        <div class="login-sub">
-            Chat • Friends • Rooms • Social
-        </div>
+<input id="loginUsername" class="input" placeholder="Username">
 
-        <input
-            id="loginUsername"
-            class="input"
-            placeholder="Username">
+<input id="loginPassword" class="input" type="password" placeholder="Password">
 
-        <input
-            id="loginPassword"
-            class="input"
-            type="password"
-            placeholder="Password">
+<button class="primary-btn" onclick="login()">
+🔐 LOGIN
+</button>
 
-        <button
-            class="primary-btn"
-            onclick="login()">
-            🔐 LOGIN
-        </button>
+<button class="secondary-btn" onclick="register()">
+📝 DAFTAR AKAUN
+</button>
 
-        <button
-            class="secondary-btn"
-            onclick="register()">
-            📝 DAFTAR AKAUN
-        </button>
-
-    </div>
-
+</div>
 </div>
 
 
 <!-- APP -->
 <div id="app">
 
-    <div class="topbar">
+<div class="topbar">
 
-        <div class="top-logo">
-            <span class="yam-text">YAM</span>
-            <span class="chat-text">CHAT</span>
-        </div>
+<div class="top-logo">
+<span class="yam-text">YAM</span>
+<span class="chat-text">CHAT</span>
+</div>
 
-        <div
-            id="topUser"
-            class="top-user">
-        </div>
+<div id="topUser" class="top-user"></div>
 
-    </div>
+</div>
 
 
-    <main class="main">
+<main class="main">
 
-        <!-- HOME -->
-        <section
-            id="homePage"
-            class="page active">
+<!-- HOME -->
+<section id="homePage" class="page active">
 
-            <div class="create-box">
+<div class="create-box">
 
-                <div class="create-title">
-                    📝 Apa yang anda mahu post?
-                </div>
+<div class="create-title">
+📝 Apa yang anda mahu post?
+</div>
 
-                <div class="post-options">
+<div class="post-options">
 
-                    <button
-                        id="textPostBtn"
-                        class="post-option active"
-                        onclick="selectPostType('text')">
-                        📝 TULISAN
-                    </button>
+<button id="textPostBtn" class="post-option active"
+onclick="selectPostType('text')">
+📝 TULISAN
+</button>
 
-                    <button
-                        id="imagePostBtn"
-                        class="post-option"
-                        onclick="selectPostType('image')">
-                        🖼️ GAMBAR
-                    </button>
+<button id="imagePostBtn" class="post-option"
+onclick="selectPostType('image')">
+🖼️ GAMBAR
+</button>
 
-                    <button
-                        id="videoPostBtn"
-                        class="post-option"
-                        onclick="selectPostType('video')">
-                        🎥 VIDEO
-                    </button>
+<button id="videoPostBtn" class="post-option"
+onclick="selectPostType('video')">
+🎥 VIDEO
+</button>
 
-                </div>
+</div>
 
-                <div
-                    id="postEditor"
-                    class="post-editor">
+<div id="postEditor" class="post-editor">
 
-                    <textarea
-                        id="postText"
-                        placeholder="Apa yang anda fikirkan?"></textarea>
+<textarea id="postText"
+placeholder="Apa yang anda fikirkan?"></textarea>
 
-                    <div
-                        id="mediaPreview"
-                        class="media-preview">
-                    </div>
+<div id="mediaPreview" class="media-preview"></div>
 
-                    <div class="editor-actions">
+<div class="editor-actions">
 
-                        <button
-                            class="cancel-btn"
-                            onclick="cancelPost()">
-                            Batal
-                        </button>
+<button class="cancel-btn" onclick="cancelPost()">
+Batal
+</button>
 
-                        <button
-                            class="post-btn"
-                            onclick="createPost()">
-                            🚀 POST
-                        </button>
+<button class="post-btn" onclick="createPost()">
+🚀 POST
+</button>
 
-                    </div>
+</div>
+</div>
+</div>
 
-                </div>
+<div id="feed"></div>
 
-            </div>
+</section>
 
-            <div id="feed"></div>
 
-        </section>
+<!-- FRIENDS -->
+<section id="friendsPage" class="page">
 
+<div class="section-title">
+👥 Friends
+</div>
 
-        <!-- FRIENDS -->
-        <section
-            id="friendsPage"
-            class="page">
+<div id="friendsList"></div>
 
-            <div class="section-title">
-                👥 Friends
-            </div>
+</section>
 
-            <div id="friendsList"></div>
 
-        </section>
+<!-- ROOMS -->
+<section id="roomsPage" class="page">
 
+<div class="section-title">
+🌎 YAM Rooms
+</div>
 
-        <!-- ROOMS -->
-        <section
-            id="roomsPage"
-            class="page">
+<div id="roomsList"></div>
 
-            <div class="section-title">
-                🌎 YAM Rooms
-            </div>
+</section>
 
-            <div id="roomsList"></div>
 
-        </section>
+<!-- PROFILE -->
+<section id="profilePage" class="page">
 
+<div class="profile-main">
 
-        <!-- PROFILE -->
-        <section
-            id="profilePage"
-            class="page">
+<div id="profileCover" class="profile-cover">
 
-            <div class="profile-main">
+<div class="cover-dark"></div>
 
-                <div
-                    id="profileCover"
-                    class="profile-cover">
+<button type="button"
+class="profile-music-button"
+onclick="openMusic()"
+title="Music">
+🎵
+</button>
 
-                    <div class="cover-dark"></div>
+<div class="profile-top-actions">
 
-                    <button
-                        type="button"
-                        class="profile-music-button"
-                        onclick="openMusic()"
-                        title="Music">
-                        🎵
-                    </button>
+<button type="button"
+onclick="changeCover()"
+title="Tukar Background Cover">
+📷
+</button>
 
-                    <div class="profile-top-actions">
+<div class="profile-menu-wrap">
 
-                        <button
-                            type="button"
-                            onclick="changeCover()"
-                            title="Tukar Background Cover">
-                            📷
-                        </button>
+<button type="button"
+onclick="openProfileMenu()"
+title="Menu Profile">
+⋮
+</button>
 
-                        <div class="profile-menu-wrap">
+<div id="profileMenu" class="profile-menu hidden">
 
-                            <button
-                                type="button"
-                                onclick="openProfileMenu()"
-                                title="Menu Profile">
-                                ⋮
-                            </button>
+<div class="profile-menu-item"
+onclick="editProfile()">
+✏️ Edit Profile
+</div>
 
-                            <div
-                                id="profileMenu"
-                                class="profile-menu hidden">
+<div class="profile-menu-item"
+onclick="changeName()">
+✍️ Tukar Nama
+</div>
 
-                                <div
-                                    class="profile-menu-item"
-                                    onclick="editProfile()">
-                                    ✏️ Edit Profile
-                                </div>
+<div class="profile-menu-item"
+onclick="changePassword()">
+🔑 Tukar Password
+</div>
 
-                                <div
-                                    class="profile-menu-item"
-                                    onclick="changeName()">
-                                    ✍️ Tukar Nama
-                                </div>
+<div class="profile-menu-item logout-item"
+onclick="logout()">
+🚪 Log Out
+</div>
 
-                                <div
-                                    class="profile-menu-item"
-                                    onclick="changePassword()">
-                                    🔑 Tukar Password
-                                </div>
+</div>
+</div>
+</div>
+</div>
 
-                                <div
-                                    class="profile-menu-item logout-item"
-                                    onclick="logout()">
-                                    🚪 Log Out
-                                </div>
 
-                            </div>
+<div class="profile-picture-wrap">
 
-                        </div>
+<div class="profile-picture-box">
 
-                    </div>
+<img id="profilePicture"
+class="profile-picture"
+src=""
+alt="Profile">
 
-                </div>
+<button type="button"
+class="profile-picture-camera"
+onclick="changeProfilePicture()"
+title="Tukar Gambar Profile">
+📷
+</button>
 
+</div>
 
-                <div class="profile-picture-wrap">
+<div id="profileName" class="profile-name"></div>
 
-                    <div class="profile-picture-box">
+<div id="profileUsername" class="profile-username"></div>
 
-                        <img
-                            id="profilePicture"
-                            class="profile-picture"
-                            src=""
-                            alt="Profile">
+<div id="profileStatus"
+class="profile-status"
+onclick="editStatus()">
+</div>
 
-                        <button
-                            type="button"
-                            class="profile-picture-camera"
-                            onclick="changeProfilePicture()"
-                            title="Tukar Gambar Profile">
-                            📷
-                        </button>
+<div id="profileBio" class="profile-bio"></div>
 
-                    </div>
+</div>
 
-                    <div
-                        id="profileName"
-                        class="profile-name">
-                    </div>
 
-                    <div
-                        id="profileUsername"
-                        class="profile-username">
-                    </div>
+<div class="profile-buttons">
 
-                    <div
-                        id="profileStatus"
-                        class="profile-status"
-                        onclick="editStatus()">
-                    </div>
+<button onclick="editStatus()">
+🟢 Status
+</button>
 
-                    <div
-                        id="profileBio"
-                        class="profile-bio">
-                    </div>
+<button onclick="openPrivacy()">
+🔒 Privacy
+</button>
 
-                </div>
+</div>
 
 
-                <div class="profile-buttons">
+<div id="musicArea" class="music-box hidden"></div>
 
-                    <button onclick="editStatus()">
-                        🟢 Status
-                    </button>
 
-                    <button onclick="openPrivacy()">
-                        🔒 Privacy
-                    </button>
+<div class="info-title">
+ℹ️ Maklumat Profile
+</div>
 
-                </div>
+<div id="profileInfo" class="info-list"></div>
 
+</div>
+</section>
 
-                <div
-                    id="musicArea"
-                    class="music-box hidden">
-                </div>
+</main>
 
 
-                <div class="info-title">
-                    ℹ️ Maklumat Profile
-                </div>
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
 
-                <div
-                    id="profileInfo"
-                    class="info-list">
-                </div>
+<button id="navHome"
+class="nav-btn active"
+onclick="showPage('home')">
+<span>🏠</span>
+Home
+</button>
 
-            </div>
+<button id="navFriends"
+class="nav-btn"
+onclick="showPage('friends')">
+<span>👥</span>
+Friends
+</button>
 
-        </section>
+<button id="navRooms"
+class="nav-btn"
+onclick="showPage('rooms')">
+<span>🌎</span>
+Rooms
+</button>
 
-    </main>
+<button id="navProfile"
+class="nav-btn"
+onclick="showPage('profile')">
+<span>👤</span>
+Profile
+</button>
 
-
-    <!-- BOTTOM NAV -->
-    <nav class="bottom-nav">
-
-        <button
-            id="navHome"
-            class="nav-btn active"
-            onclick="showPage('home')">
-
-            <span>🏠</span>
-            Home
-
-        </button>
-
-        <button
-            id="navFriends"
-            class="nav-btn"
-            onclick="showPage('friends')">
-
-            <span>👥</span>
-            Friends
-
-        </button>
-
-        <button
-            id="navRooms"
-            class="nav-btn"
-            onclick="showPage('rooms')">
-
-            <span>🌎</span>
-            Rooms
-
-        </button>
-
-        <button
-            id="navProfile"
-            class="nav-btn"
-            onclick="showPage('profile')">
-
-            <span>👤</span>
-            Profile
-
-        </button>
-
-    </nav>
+</nav>
 
 </div>
 
 
 <!-- FILE INPUTS -->
 
-<input
-    id="profileFile"
-    type="file"
-    accept="image/*"
-    class="hidden">
+<input id="profileFile"
+type="file"
+accept="image/*"
+class="hidden">
 
-<input
-    id="coverFile"
-    type="file"
-    accept="image/*"
-    class="hidden">
+<input id="coverFile"
+type="file"
+accept="image/*"
+class="hidden">
 
-<input
-    id="postImageFile"
-    type="file"
-    accept="image/*"
-    class="hidden">
+<input id="postImageFile"
+type="file"
+accept="image/*"
+class="hidden">
 
-<input
-    id="postVideoFile"
-    type="file"
-    accept="video/*"
-    class="hidden">
+<input id="postVideoFile"
+type="file"
+accept="video/*"
+class="hidden">
 
-<input
-    id="musicFile"
-    type="file"
-    accept="audio/*"
-    class="hidden">
+<input id="musicFile"
+type="file"
+accept="audio/*"
+class="hidden">
 
 
 <!-- MODAL -->
 
-<div
-    id="modalBg"
-    class="modal-bg">
+<div id="modalBg" class="modal-bg">
 
-    <div class="modal">
+<div class="modal">
 
-        <div
-            id="modalTitle"
-            class="modal-title">
-        </div>
+<div id="modalTitle" class="modal-title"></div>
 
-        <div
-            id="modalContent">
-        </div>
+<div id="modalContent"></div>
 
-        <div class="modal-actions">
+<div class="modal-actions">
 
-            <button
-                class="modal-cancel"
-                onclick="closeModal()">
-                Batal
-            </button>
+<button class="modal-cancel" onclick="closeModal()">
+Batal
+</button>
 
-            <button
-                id="modalOk"
-                class="modal-ok">
-                OK
-            </button>
+<button id="modalOk" class="modal-ok">
+OK
+</button>
 
-        </div>
-
-    </div>
-
+</div>
+</div>
 </div>
 
 
 <!-- CHAT -->
 
-<div
-    id="chatOverlay"
-    class="chat-overlay">
+<div id="chatOverlay" class="chat-overlay">
 
-    <div class="chat-head">
+<div class="chat-head">
 
-        <button
-            class="chat-back"
-            onclick="closeChat()">
-            ←
-        </button>
+<button class="chat-back" onclick="closeChat()">
+←
+</button>
 
-        <img
-            id="chatAvatar"
-            class="avatar-small"
-            src=""
-            alt="">
+<img id="chatAvatar"
+class="avatar-small"
+src=""
+alt="">
 
-        <div
-            id="chatTitle"
-            class="chat-title">
-        </div>
+<div id="chatTitle" class="chat-title"></div>
 
-    </div>
+</div>
 
-    <div
-        id="chatBody"
-        class="chat-body">
-    </div>
+<div id="chatBody" class="chat-body"></div>
 
-    <div class="chat-foot">
+<div class="chat-foot">
 
-        <input
-            id="chatInput"
-            placeholder="Tulis mesej...">
+<input id="chatInput"
+placeholder="Tulis mesej...">
 
-        <button onclick="sendChat()">
-            ➤
-        </button>
+<button onclick="sendChat()">
+➤
+</button>
 
-    </div>
-
+</div>
 </div>
 
 
 <script>
 
 /* =====================================================
-   YAM CHAT V4.4.8
-   LOGO + HEADER + PROFILE TOP SPACE UPDATE
+   YAM CHAT V4.4.9
+   FULL INDEX
 ===================================================== */
 
 let currentUser =
-    localStorage.getItem("yam_current_user") || null;
+localStorage.getItem("yam_current_user") || null;
 
 let selectedPostType = "text";
 let selectedPostFile = null;
@@ -1686,37 +1603,19 @@ let currentChatUser = null;
 
 
 const friends = [
-    "Ahmad",
-    "Siti",
-    "John"
+"Ahmad",
+"Siti",
+"John"
 ];
 
 
 const rooms = [
-    {
-        name:"Malaysia",
-        region:"🇲🇾 Malaysia"
-    },
-    {
-        name:"Philippines",
-        region:"🇵🇭 Philippines"
-    },
-    {
-        name:"Indonesia",
-        region:"🇮🇩 Indonesia"
-    },
-    {
-        name:"Singapore",
-        region:"🇸🇬 Singapore"
-    },
-    {
-        name:"Brunei",
-        region:"🇧🇳 Brunei"
-    },
-    {
-        name:"World",
-        region:"🌎 World"
-    }
+{name:"Malaysia",region:"🇲🇾 Malaysia"},
+{name:"Philippines",region:"🇵🇭 Philippines"},
+{name:"Indonesia",region:"🇮🇩 Indonesia"},
+{name:"Singapore",region:"🇸🇬 Singapore"},
+{name:"Brunei",region:"🇧🇳 Brunei"},
+{name:"World",region:"🌎 World"}
 ];
 
 
@@ -1726,52 +1625,52 @@ const rooms = [
 
 function getAccounts(){
 
-    return JSON.parse(
-        localStorage.getItem("yam_accounts") || "{}"
-    );
+return JSON.parse(
+localStorage.getItem("yam_accounts") || "{}"
+);
 
 }
 
 
 function saveAccounts(accounts){
 
-    localStorage.setItem(
-        "yam_accounts",
-        JSON.stringify(accounts)
-    );
+localStorage.setItem(
+"yam_accounts",
+JSON.stringify(accounts)
+);
 
 }
 
 
 function getProfileData(username){
 
-    const accounts = getAccounts();
+const accounts=getAccounts();
 
-    if(accounts[username])
-        return accounts[username];
+if(accounts[username])
+return accounts[username];
 
-    return {
-        username:username,
-        name:username,
-        password:"",
-        status:"Available",
-        bio:"",
-        birthday:"",
-        location:"",
-        job:"",
-        gender:""
-    };
+return{
+username:username,
+name:username,
+password:"",
+status:"Available",
+bio:"",
+birthday:"",
+location:"",
+job:"",
+gender:""
+};
 
 }
 
 
 function saveCurrentProfile(data){
 
-    const accounts = getAccounts();
+const accounts=getAccounts();
 
-    accounts[currentUser] = data;
+accounts[currentUser]=data;
 
-    saveAccounts(accounts);
+saveAccounts(accounts);
 
 }
 
@@ -1782,12 +1681,12 @@ function saveCurrentProfile(data){
 
 function escapeHtml(text){
 
-    return String(text ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+return String(text ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
@@ -1798,49 +1697,47 @@ function escapeHtml(text){
 
 function getAvatar(username){
 
-    return localStorage.getItem(
-        "yam_picture_" + username
-    ) || "";
+return localStorage.getItem(
+"yam_picture_"+username
+)||"";
 
 }
 
 
 function avatarHtml(username){
 
-    const avatar = getAvatar(username);
+const avatar=getAvatar(username);
 
-    if(avatar){
+if(avatar){
 
-        return `
-            <img
-                class="avatar"
-                src="${avatar}"
-                alt="Profile">
-        `;
+return`
+<img class="avatar"
+src="${avatar}"
+alt="Profile">
+`;
 
-    }
+}
 
-    const profile = getProfileData(username);
+const profile=getProfileData(username);
 
-    const letter =
-        (profile.name || username || "?")
-        .charAt(0)
-        .toUpperCase();
+const letter=
+(profile.name||username||"?")
+.charAt(0)
+.toUpperCase();
 
-    return `
-        <div
-            class="avatar"
-            style="
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                color:white;
-                font-weight:bold;
-                font-size:18px;
-            ">
-            ${escapeHtml(letter)}
-        </div>
-    `;
+return`
+<div class="avatar"
+style="
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-weight:bold;
+font-size:18px;
+">
+${escapeHtml(letter)}
+</div>
+`;
 
 }
 
@@ -1851,30 +1748,24 @@ function avatarHtml(username){
 
 function timeAgo(timestamp){
 
-    const diff = Date.now() - timestamp;
+const diff=Date.now()-timestamp;
 
-    const minute = Math.floor(
-        diff / 60000
-    );
+const minute=Math.floor(diff/60000);
 
-    if(minute < 1)
-        return "baru sahaja";
+if(minute<1)
+return"baru sahaja";
 
-    if(minute < 60)
-        return minute + " minit lalu";
+if(minute<60)
+return minute+" minit lalu";
 
-    const hour = Math.floor(
-        minute / 60
-    );
+const hour=Math.floor(minute/60);
 
-    if(hour < 24)
-        return hour + " jam lalu";
+if(hour<24)
+return hour+" jam lalu";
 
-    const day = Math.floor(
-        hour / 24
-    );
+const day=Math.floor(hour/24);
 
-    return day + " hari lalu";
+return day+" hari lalu";
 
 }
 
@@ -1885,125 +1776,108 @@ function timeAgo(timestamp){
 
 function login(){
 
-    const username =
-        document.getElementById(
-            "loginUsername"
-        ).value.trim();
+const username=
+document.getElementById("loginUsername")
+.value.trim();
 
-    const password =
-        document.getElementById(
-            "loginPassword"
-        ).value;
+const password=
+document.getElementById("loginPassword")
+.value;
 
-    if(!username || !password){
+if(!username||!password){
 
-        alert(
-            "Sila isi username dan password."
-        );
+alert("Sila isi username dan password.");
 
-        return;
-    }
+return;
+}
 
-    const accounts = getAccounts();
+const accounts=getAccounts();
 
-    if(!accounts[username]){
+if(!accounts[username]){
 
-        accounts[username] = {
-            username:username,
-            name:username,
-            password:password,
-            status:"🟢 Available",
-            bio:"",
-            birthday:"",
-            location:"",
-            job:"",
-            gender:""
-        };
+accounts[username]={
+username:username,
+name:username,
+password:password,
+status:"🟢 Available",
+bio:"",
+birthday:"",
+location:"",
+job:"",
+gender:""
+};
 
-        saveAccounts(accounts);
+saveAccounts(accounts);
 
-    }
+}
 
+if(accounts[username].password!==password){
 
-    if(accounts[username].password !== password){
+alert("Password tidak betul.");
 
-        alert(
-            "Password tidak betul."
-        );
+return;
+}
 
-        return;
-    }
+currentUser=username;
 
+localStorage.setItem(
+"yam_current_user",
+currentUser
+);
 
-    currentUser = username;
-
-    localStorage.setItem(
-        "yam_current_user",
-        currentUser
-    );
-
-    startApp();
+startApp();
 
 }
 
 
 function register(){
 
-    const username =
-        document.getElementById(
-            "loginUsername"
-        ).value.trim();
+const username=
+document.getElementById("loginUsername")
+.value.trim();
 
-    const password =
-        document.getElementById(
-            "loginPassword"
-        ).value;
+const password=
+document.getElementById("loginPassword")
+.value;
 
-    if(!username || !password){
+if(!username||!password){
 
-        alert(
-            "Isi username dan password dahulu."
-        );
+alert("Isi username dan password dahulu.");
 
-        return;
-    }
+return;
+}
 
-    const accounts = getAccounts();
+const accounts=getAccounts();
 
-    if(accounts[username]){
+if(accounts[username]){
 
-        alert(
-            "Username sudah digunakan."
-        );
+alert("Username sudah digunakan.");
 
-        return;
-    }
+return;
+}
 
+accounts[username]={
+username:username,
+name:username,
+password:password,
+status:"🟢 Available",
+bio:"",
+birthday:"",
+location:"",
+job:"",
+gender:""
+};
 
-    accounts[username] = {
+saveAccounts(accounts);
 
-        username:username,
-        name:username,
-        password:password,
-        status:"🟢 Available",
-        bio:"",
-        birthday:"",
-        location:"",
-        job:"",
-        gender:""
+currentUser=username;
 
-    };
+localStorage.setItem(
+"yam_current_user",
+currentUser
+);
 
-    saveAccounts(accounts);
-
-    currentUser = username;
-
-    localStorage.setItem(
-        "yam_current_user",
-        currentUser
-    );
-
-    startApp();
+startApp();
 
 }
 
@@ -2014,36 +1888,32 @@ function register(){
 
 function logout(){
 
-    closeProfileMenu();
+closeProfileMenu();
 
-    if(!confirm("Log Out dari YAM?"))
-        return;
+if(!confirm("Log Out dari YAM?"))
+return;
 
-    document.body.classList.remove(
-        "profile-active"
-    );
+document.body.classList.remove(
+"profile-active"
+);
 
-    localStorage.removeItem(
-        "yam_current_user"
-    );
+localStorage.removeItem(
+"yam_current_user"
+);
 
-    currentUser = null;
+currentUser=null;
 
-    document.getElementById(
-        "app"
-    ).style.display = "none";
+document.getElementById("app")
+.style.display="none";
 
-    document.getElementById(
-        "loginPage"
-    ).style.display = "flex";
+document.getElementById("loginPage")
+.style.display="flex";
 
-    document.getElementById(
-        "loginUsername"
-    ).value = "";
+document.getElementById("loginUsername")
+.value="";
 
-    document.getElementById(
-        "loginPassword"
-    ).value = "";
+document.getElementById("loginPassword")
+.value="";
 
 }
 
@@ -2054,21 +1924,19 @@ function logout(){
 
 function startApp(){
 
-    document.getElementById(
-        "loginPage"
-    ).style.display = "none";
+document.getElementById("loginPage")
+.style.display="none";
 
-    document.getElementById(
-        "app"
-    ).style.display = "block";
+document.getElementById("app")
+.style.display="block";
 
-    renderProfile();
-    renderFeed();
-    renderFriends();
-    renderRooms();
-    renderMusic();
+renderProfile();
+renderFeed();
+renderFriends();
+renderRooms();
+renderMusic();
 
-    showPage("home");
+showPage("home");
 
 }
 
@@ -2079,83 +1947,75 @@ function startApp(){
 
 function showPage(page){
 
-    closeProfileMenu();
+closeProfileMenu();
 
-    document.body.classList.toggle(
-        "profile-active",
-        page === "profile"
-    );
+document.body.classList.toggle(
+"profile-active",
+page==="profile"
+);
 
-    document.querySelectorAll(".page")
-        .forEach(el=>{
-            el.classList.remove("active");
-        });
+document.querySelectorAll(".page")
+.forEach(el=>{
+el.classList.remove("active");
+});
 
-    document.querySelectorAll(".nav-btn")
-        .forEach(el=>{
-            el.classList.remove("active");
-        });
-
-
-    if(page === "home"){
-
-        document.getElementById(
-            "homePage"
-        ).classList.add("active");
-
-        document.getElementById(
-            "navHome"
-        ).classList.add("active");
-
-        renderFeed();
-
-    }
+document.querySelectorAll(".nav-btn")
+.forEach(el=>{
+el.classList.remove("active");
+});
 
 
-    if(page === "friends"){
+if(page==="home"){
 
-        document.getElementById(
-            "friendsPage"
-        ).classList.add("active");
+document.getElementById("homePage")
+.classList.add("active");
 
-        document.getElementById(
-            "navFriends"
-        ).classList.add("active");
+document.getElementById("navHome")
+.classList.add("active");
 
-        renderFriends();
+renderFeed();
 
-    }
+}
 
 
-    if(page === "rooms"){
+if(page==="friends"){
 
-        document.getElementById(
-            "roomsPage"
-        ).classList.add("active");
+document.getElementById("friendsPage")
+.classList.add("active");
 
-        document.getElementById(
-            "navRooms"
-        ).classList.add("active");
+document.getElementById("navFriends")
+.classList.add("active");
 
-        renderRooms();
+renderFriends();
 
-    }
+}
 
 
-    if(page === "profile"){
+if(page==="rooms"){
 
-        document.getElementById(
-            "profilePage"
-        ).classList.add("active");
+document.getElementById("roomsPage")
+.classList.add("active");
 
-        document.getElementById(
-            "navProfile"
-        ).classList.add("active");
+document.getElementById("navRooms")
+.classList.add("active");
 
-        renderProfile();
-        renderMusic();
+renderRooms();
 
-    }
+}
+
+
+if(page==="profile"){
+
+document.getElementById("profilePage")
+.classList.add("active");
+
+document.getElementById("navProfile")
+.classList.add("active");
+
+renderProfile();
+renderMusic();
+
+}
 
 }
 
@@ -2166,48 +2026,43 @@ function showPage(page){
 
 function selectPostType(type){
 
-    selectedPostType = type;
-    selectedPostFile = null;
+selectedPostType=type;
+selectedPostFile=null;
 
-    document.querySelectorAll(".post-option")
-        .forEach(btn=>{
-            btn.classList.remove("active");
-        });
-
-
-    if(type === "text"){
-
-        document.getElementById(
-            "textPostBtn"
-        ).classList.add("active");
-
-    }
+document.querySelectorAll(".post-option")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
 
 
-    if(type === "image"){
+if(type==="text"){
 
-        document.getElementById(
-            "imagePostBtn"
-        ).classList.add("active");
+document.getElementById("textPostBtn")
+.classList.add("active");
 
-        document.getElementById(
-            "postImageFile"
-        ).click();
-
-    }
+}
 
 
-    if(type === "video"){
+if(type==="image"){
 
-        document.getElementById(
-            "videoPostBtn"
-        ).classList.add("active");
+document.getElementById("imagePostBtn")
+.classList.add("active");
 
-        document.getElementById(
-            "postVideoFile"
-        ).click();
+document.getElementById("postImageFile")
+.click();
 
-    }
+}
+
+
+if(type==="video"){
+
+document.getElementById("videoPostBtn")
+.classList.add("active");
+
+document.getElementById("postVideoFile")
+.click();
+
+}
 
 }
 
@@ -2216,92 +2071,76 @@ function selectPostType(type){
    POST IMAGE
 ========================= */
 
-document.getElementById(
-    "postImageFile"
-).addEventListener(
-    "change",
-    function(){
+document.getElementById("postImageFile")
+.addEventListener("change",function(){
 
-        const file = this.files[0];
+const file=this.files[0];
 
-        if(!file)
-            return;
+if(!file)
+return;
 
-        if(file.size > 3 * 1024 * 1024){
+if(file.size>3*1024*1024){
 
-            alert(
-                "Gambar maksimum 3MB."
-            );
+alert("Gambar maksimum 3MB.");
 
-            this.value = "";
+this.value="";
 
-            return;
-        }
+return;
+}
 
+selectedPostFile=file;
 
-        selectedPostFile = file;
+const reader=new FileReader();
 
-        const reader = new FileReader();
+reader.onload=function(e){
 
-        reader.onload = function(e){
+document.getElementById("mediaPreview")
+.innerHTML=
+`<img src="${e.target.result}">`;
 
-            document.getElementById(
-                "mediaPreview"
-            ).innerHTML =
-                `<img src="${e.target.result}">`;
+};
 
-        };
+reader.readAsDataURL(file);
 
-        reader.readAsDataURL(file);
-
-    }
-);
+});
 
 
 /* =========================
    POST VIDEO
 ========================= */
 
-document.getElementById(
-    "postVideoFile"
-).addEventListener(
-    "change",
-    function(){
+document.getElementById("postVideoFile")
+.addEventListener("change",function(){
 
-        const file = this.files[0];
+const file=this.files[0];
 
-        if(!file)
-            return;
+if(!file)
+return;
 
-        if(file.size > 6 * 1024 * 1024){
+if(file.size>6*1024*1024){
 
-            alert(
-                "Video maksimum 6MB."
-            );
+alert("Video maksimum 6MB.");
 
-            this.value = "";
+this.value="";
 
-            return;
-        }
+return;
+}
 
+selectedPostFile=file;
 
-        selectedPostFile = file;
+const reader=new FileReader();
 
-        const reader = new FileReader();
+reader.onload=function(e){
 
-        reader.onload = function(e){
+document.getElementById("mediaPreview")
+.innerHTML=
+`<video src="${e.target.result}" controls></video>`;
 
-            document.getElementById(
-                "mediaPreview"
-            ).innerHTML =
-                `<video src="${e.target.result}" controls></video>`;
+};
 
-        };
+reader.readAsDataURL(file);
 
-        reader.readAsDataURL(file);
-
-    }
-);
+});
 
 
 /* =========================
@@ -2310,97 +2149,77 @@ document.getElementById(
 
 function createPost(){
 
-    const text =
-        document.getElementById(
-            "postText"
-        ).value.trim();
+const text=
+document.getElementById("postText")
+.value.trim();
 
+if(
+selectedPostType==="text"&&!text
+){
 
-    if(
-        selectedPostType === "text" &&
-        !text
-    ){
+alert("Tulis sesuatu dahulu.");
 
-        alert(
-            "Tulis sesuatu dahulu."
-        );
+return;
+}
 
-        return;
-    }
+if(
+(
+selectedPostType==="image"||
+selectedPostType==="video"
+)&&!selectedPostFile
+){
 
+alert("Sila pilih media dahulu.");
 
-    if(
-        (
-            selectedPostType === "image" ||
-            selectedPostType === "video"
-        ) &&
-        !selectedPostFile
-    ){
+return;
+}
 
-        alert(
-            "Sila pilih media dahulu."
-        );
+const finish=function(media){
 
-        return;
-    }
+const posts=JSON.parse(
+localStorage.getItem("yam_posts")||"[]"
+);
 
+posts.unshift({
+id:Date.now(),
+owner:currentUser,
+text:text,
+type:selectedPostType,
+media:media,
+time:Date.now(),
+likes:[],
+comments:[],
+hiddenComments:false,
+blockedUsers:[]
+});
 
-    const finish = function(media){
+localStorage.setItem(
+"yam_posts",
+JSON.stringify(posts)
+);
 
-        const posts = JSON.parse(
-            localStorage.getItem(
-                "yam_posts"
-            ) || "[]"
-        );
+cancelPost();
+renderFeed();
 
+};
 
-        posts.unshift({
+if(selectedPostFile){
 
-            id:Date.now(),
-            owner:currentUser,
-            text:text,
-            type:selectedPostType,
-            media:media,
-            time:Date.now(),
-            likes:[],
-            comments:[],
-            hiddenComments:false,
-            blockedUsers:[]
+const reader=new FileReader();
 
-        });
+reader.onload=function(e){
+finish(e.target.result);
+};
 
+reader.readAsDataURL(
+selectedPostFile
+);
 
-        localStorage.setItem(
-            "yam_posts",
-            JSON.stringify(posts)
-        );
+}else{
 
+finish("");
 
-        cancelPost();
-        renderFeed();
-
-    };
-
-
-    if(selectedPostFile){
-
-        const reader = new FileReader();
-
-        reader.onload = function(e){
-
-            finish(e.target.result);
-
-        };
-
-        reader.readAsDataURL(
-            selectedPostFile
-        );
-
-    }else{
-
-        finish("");
-
-    }
+}
 
 }
 
@@ -2411,36 +2230,28 @@ function createPost(){
 
 function cancelPost(){
 
-    document.getElementById(
-        "postText"
-    ).value = "";
+document.getElementById("postText")
+.value="";
 
-    document.getElementById(
-        "mediaPreview"
-    ).innerHTML = "";
+document.getElementById("mediaPreview")
+.innerHTML="";
 
-    document.getElementById(
-        "postImageFile"
-    ).value = "";
+document.getElementById("postImageFile")
+.value="";
 
-    document.getElementById(
-        "postVideoFile"
-    ).value = "";
+document.getElementById("postVideoFile")
+.value="";
 
+selectedPostFile=null;
+selectedPostType="text";
 
-    selectedPostFile = null;
-    selectedPostType = "text";
+document.querySelectorAll(".post-option")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
 
-
-    document.querySelectorAll(".post-option")
-        .forEach(btn=>{
-            btn.classList.remove("active");
-        });
-
-
-    document.getElementById(
-        "textPostBtn"
-    ).classList.add("active");
+document.getElementById("textPostBtn")
+.classList.add("active");
 
 }
 
@@ -2451,171 +2262,147 @@ function cancelPost(){
 
 function renderFeed(){
 
-    const feed =
-        document.getElementById(
-            "feed"
-        );
+const feed=
+document.getElementById("feed");
 
-    const posts = JSON.parse(
-        localStorage.getItem(
-            "yam_posts"
-        ) || "[]"
-    );
+const posts=JSON.parse(
+localStorage.getItem("yam_posts")||"[]"
+);
 
+if(!posts.length){
 
-    if(!posts.length){
+feed.innerHTML=`
+<div class="empty">
+Belum ada post.<br>
+Jadilah orang pertama post di YAM.
+</div>
+`;
 
-        feed.innerHTML = `
-            <div class="empty">
-                Belum ada post.<br>
-                Jadilah orang pertama post di YAM.
-            </div>
-        `;
+return;
+}
 
-        return;
-    }
+feed.innerHTML=posts.map(post=>{
 
+const profile=
+getProfileData(post.owner);
 
-    feed.innerHTML = posts.map(
-        post=>{
+const liked=
+(post.likes||[])
+.includes(currentUser);
 
-            const profile =
-                getProfileData(
-                    post.owner
-                );
+let media="";
 
-            const liked =
-                (post.likes || [])
-                .includes(currentUser);
+if(
+post.type==="image"&&post.media
+){
 
+media=`
+<img
+class="post-media"
+src="${post.media}">
+`;
 
-            let media = "";
+}
 
+if(
+post.type==="video"&&post.media
+){
 
-            if(
-                post.type === "image" &&
-                post.media
-            ){
+media=`
+<video
+class="post-media"
+src="${post.media}"
+controls>
+</video>
+`;
 
-                media = `
-                    <img
-                        class="post-media"
-                        src="${post.media}">
-                `;
+}
 
-            }
+const ownerMenu=
+post.owner===currentUser
+?
+`
+<button
+class="post-menu"
+onclick="postOwnerMenu('${post.id}')">
+⋮
+</button>
+`
+:"";
 
+return`
 
-            if(
-                post.type === "video" &&
-                post.media
-            ){
+<article class="post-card">
 
-                media = `
-                    <video
-                        class="post-media"
-                        src="${post.media}"
-                        controls>
-                    </video>
-                `;
+<div class="post-head">
 
-            }
+${avatarHtml(post.owner)}
 
+<div>
 
-            const ownerMenu =
-                post.owner === currentUser
-                ?
-                `
-                <button
-                    class="post-menu"
-                    onclick="postOwnerMenu('${post.id}')">
-                    ⋮
-                </button>
-                `
-                :
-                "";
+<div class="post-user">
+${escapeHtml(
+profile.name||post.owner
+)}
+</div>
 
+<div class="post-time">
+${timeAgo(post.time)}
+</div>
 
-            return `
+</div>
 
-                <article class="post-card">
+${ownerMenu}
 
-                    <div class="post-head">
+</div>
 
-                        ${avatarHtml(post.owner)}
+${
+post.text
+?
+`
+<div class="post-text">
+${escapeHtml(post.text)}
+</div>
+`
+:""
+}
 
-                        <div>
+${media}
 
-                            <div class="post-user">
-                                ${escapeHtml(
-                                    profile.name || post.owner
-                                )}
-                            </div>
+<div class="post-actions">
 
-                            <div class="post-time">
-                                ${timeAgo(post.time)}
-                            </div>
+<button
+class="${liked?"liked":""}"
+onclick="toggleLike('${post.id}')">
 
-                        </div>
+${liked?"💙":"🤍"}
+${(post.likes||[]).length}
 
-                        ${ownerMenu}
+</button>
 
-                    </div>
+<button
+onclick="focusComment('${post.id}')">
 
+💬
+${(post.comments||[]).length}
 
-                    ${
-                        post.text
-                        ?
-                        `
-                        <div class="post-text">
-                            ${escapeHtml(post.text)}
-                        </div>
-                        `
-                        :
-                        ""
-                    }
+</button>
 
+</div>
 
-                    ${media}
+<div
+id="comments-${post.id}"
+class="comments">
 
+${renderComments(post)}
 
-                    <div class="post-actions">
+</div>
 
-                        <button
-                            class="${liked ? "liked" : ""}"
-                            onclick="toggleLike('${post.id}')">
+</article>
 
-                            ${liked ? "💙" : "🤍"}
-                            ${(post.likes || []).length}
+`;
 
-                        </button>
-
-
-                        <button
-                            onclick="focusComment('${post.id}')">
-
-                            💬
-                            ${(post.comments || []).length}
-
-                        </button>
-
-                    </div>
-
-
-                    <div
-                        id="comments-${post.id}"
-                        class="comments">
-
-                        ${renderComments(post)}
-
-                    </div>
-
-                </article>
-
-            `;
-
-        }
-    ).join("");
+}).join("");
 
 }
 
@@ -2626,44 +2413,33 @@ function renderFeed(){
 
 function toggleLike(id){
 
-    const posts = JSON.parse(
-        localStorage.getItem(
-            "yam_posts"
-        ) || "[]"
-    );
+const posts=JSON.parse(
+localStorage.getItem("yam_posts")||"[]"
+);
 
+const post=posts.find(
+p=>String(p.id)===String(id)
+);
 
-    const post = posts.find(
-        p=>String(p.id) === String(id)
-    );
+if(!post)
+return;
 
+post.likes=post.likes||[];
 
-    if(!post)
-        return;
+const index=
+post.likes.indexOf(currentUser);
 
+if(index>=0)
+post.likes.splice(index,1);
+else
+post.likes.push(currentUser);
 
-    post.likes = post.likes || [];
+localStorage.setItem(
+"yam_posts",
+JSON.stringify(posts)
+);
 
-
-    const index =
-        post.likes.indexOf(
-            currentUser
-        );
-
-
-    if(index >= 0)
-        post.likes.splice(index,1);
-    else
-        post.likes.push(currentUser);
-
-
-    localStorage.setItem(
-        "yam_posts",
-        JSON.stringify(posts)
-    );
-
-
-    renderFeed();
+renderFeed();
 
 }
 
@@ -2674,191 +2450,161 @@ function toggleLike(id){
 
 function renderComments(post){
 
-    let html = "";
+let html="";
 
+if(post.hiddenComments){
 
-    if(post.hiddenComments){
+if(post.owner===currentUser){
 
-        if(post.owner === currentUser){
+html+=`
+<div
+style="
+padding:10px;
+color:#777;
+text-align:center;
+">
+🔒 Komen disembunyikan
+</div>
+`;
 
-            html += `
-                <div
-                    style="
-                        padding:10px;
-                        color:#777;
-                        text-align:center;
-                    ">
+}
 
-                    🔒 Komen disembunyikan
+}else{
 
-                </div>
-            `;
+(post.comments||[])
+.forEach(comment=>{
 
-        }
+const p=getProfileData(
+comment.user
+);
 
-    }else{
+const own=
+comment.user===currentUser;
 
-        (post.comments || [])
-            .forEach(comment=>{
+html+=`
 
-                const p =
-                    getProfileData(
-                        comment.user
-                    );
+<div class="comment">
 
-                const own =
-                    comment.user === currentUser;
+${avatarHtml(comment.user)}
 
+<div class="comment-body">
 
-                html += `
+<div class="comment-name">
+${escapeHtml(
+p.name||comment.user
+)}
+</div>
 
-                    <div class="comment">
+<div class="comment-text">
+${escapeHtml(
+comment.text
+)}
+</div>
 
-                        ${avatarHtml(comment.user)}
+</div>
 
-                        <div class="comment-body">
+${
+own||post.owner===currentUser
+?
+`
+<button
+onclick="commentMenu(
+'${post.id}',
+'${comment.id}'
+)"
+style="
+background:transparent;
+font-size:18px;
+">
+⋮
+</button>
+`
+:""
+}
 
-                            <div class="comment-name">
-                                ${escapeHtml(
-                                    p.name || comment.user
-                                )}
-                            </div>
+</div>
 
-                            <div class="comment-text">
-                                ${escapeHtml(
-                                    comment.text
-                                )}
-                            </div>
+`;
 
-                        </div>
+});
 
+}
 
-                        ${
-                            own ||
-                            post.owner === currentUser
-                            ?
-                            `
-                            <button
-                                onclick="commentMenu(
-                                    '${post.id}',
-                                    '${comment.id}'
-                                )"
-                                style="
-                                    background:transparent;
-                                    font-size:18px;
-                                ">
-                                ⋮
-                            </button>
-                            `
-                            :
-                            ""
-                        }
+html+=`
 
-                    </div>
+<div class="comment-input">
 
-                `;
+<input
+id="comment-${post.id}"
+placeholder="Tulis komen...">
 
-            });
+<button
+onclick="addComment('${post.id}')">
+➤
+</button>
 
-    }
+</div>
 
+`;
 
-    html += `
-
-        <div class="comment-input">
-
-            <input
-                id="comment-${post.id}"
-                placeholder="Tulis komen...">
-
-            <button
-                onclick="addComment('${post.id}')">
-                ➤
-            </button>
-
-        </div>
-
-    `;
-
-
-    return html;
+return html;
 
 }
 
 
 function addComment(id){
 
-    const input =
-        document.getElementById(
-            "comment-" + id
-        );
+const input=
+document.getElementById(
+"comment-"+id
+);
 
+if(!input)
+return;
 
-    if(!input)
-        return;
+const text=input.value.trim();
 
+if(!text)
+return;
 
-    const text =
-        input.value.trim();
+const posts=JSON.parse(
+localStorage.getItem("yam_posts")||"[]"
+);
 
+const post=posts.find(
+p=>String(p.id)===String(id)
+);
 
-    if(!text)
-        return;
+if(!post)
+return;
 
+post.comments=post.comments||[];
+post.blockedUsers=post.blockedUsers||[];
 
-    const posts = JSON.parse(
-        localStorage.getItem(
-            "yam_posts"
-        ) || "[]"
-    );
+if(
+post.blockedUsers.includes(currentUser)
+){
 
+alert(
+"Anda telah diblock untuk komen pada post ini."
+);
 
-    const post = posts.find(
-        p=>String(p.id) === String(id)
-    );
+return;
+}
 
+post.comments.push({
+id:Date.now(),
+user:currentUser,
+text:text,
+time:Date.now()
+});
 
-    if(!post)
-        return;
+localStorage.setItem(
+"yam_posts",
+JSON.stringify(posts)
+);
 
-
-    post.comments =
-        post.comments || [];
-
-    post.blockedUsers =
-        post.blockedUsers || [];
-
-
-    if(
-        post.blockedUsers
-        .includes(currentUser)
-    ){
-
-        alert(
-            "Anda telah diblock untuk komen pada post ini."
-        );
-
-        return;
-    }
-
-
-    post.comments.push({
-
-        id:Date.now(),
-        user:currentUser,
-        text:text,
-        time:Date.now()
-
-    });
-
-
-    localStorage.setItem(
-        "yam_posts",
-        JSON.stringify(posts)
-    );
-
-
-    renderFeed();
+renderFeed();
 
 }
 
@@ -2867,317 +2613,250 @@ function addComment(id){
    COMMENT MENU
 ========================= */
 
-function commentMenu(
-    postId,
-    commentId
+function commentMenu(postId,commentId){
+
+const posts=JSON.parse(
+localStorage.getItem("yam_posts")||"[]"
+);
+
+const post=posts.find(
+p=>String(p.id)===String(postId)
+);
+
+if(!post)
+return;
+
+const comment=
+(post.comments||[]).find(
+c=>String(c.id)===String(commentId)
+);
+
+if(!comment)
+return;
+
+const canManage=
+comment.user===currentUser||
+post.owner===currentUser;
+
+if(!canManage)
+return;
+
+let html="";
+
+if(post.owner===currentUser){
+
+html+=`
+
+<button
+class="secondary-btn"
+onclick="
+toggleCommentVisibility(
+'${postId}'
+);
+closeModal();
+">
+
+${
+post.hiddenComments
+?"👁️ Tunjukkan Komen"
+:"🔒 Sembunyikan Komen"
+}
+
+</button>
+
+`;
+
+}
+
+html+=`
+
+<button
+class="secondary-btn"
+onclick="
+deleteComment(
+'${postId}',
+'${commentId}'
+);
+closeModal();
+">
+
+🗑️ Padam Komen
+
+</button>
+
+`;
+
+if(
+post.owner===currentUser&&
+comment.user!==currentUser
 ){
 
-    const posts = JSON.parse(
-        localStorage.getItem(
-            "yam_posts"
-        ) || "[]"
-    );
+html+=`
 
+<button
+class="secondary-btn"
+onclick="
+blockCommenter(
+'${postId}',
+'${comment.user}'
+);
+closeModal();
+">
 
-    const post = posts.find(
-        p=>String(p.id) === String(postId)
-    );
+🚫 Block Pengguna
 
+</button>
 
-    if(!post)
-        return;
+`;
 
+}
 
-    const comment =
-        (post.comments || [])
-        .find(
-            c=>String(c.id) === String(commentId)
-        );
-
-
-    if(!comment)
-        return;
-
-
-    const canManage =
-        comment.user === currentUser ||
-        post.owner === currentUser;
-
-
-    if(!canManage)
-        return;
-
-
-    let html = "";
-
-
-    if(post.owner === currentUser){
-
-        html += `
-
-            <button
-                class="secondary-btn"
-                onclick="
-                    toggleCommentVisibility(
-                        '${postId}'
-                    );
-                    closeModal();
-                ">
-
-                ${
-                    post.hiddenComments
-                    ?
-                    "👁️ Tunjukkan Komen"
-                    :
-                    "🔒 Sembunyikan Komen"
-                }
-
-            </button>
-
-        `;
-
-    }
-
-
-    html += `
-
-        <button
-            class="secondary-btn"
-            onclick="
-                deleteComment(
-                    '${postId}',
-                    '${commentId}'
-                );
-                closeModal();
-            ">
-
-            🗑️ Padam Komen
-
-        </button>
-
-    `;
-
-
-    if(
-        post.owner === currentUser &&
-        comment.user !== currentUser
-    ){
-
-        html += `
-
-            <button
-                class="secondary-btn"
-                onclick="
-                    blockCommenter(
-                        '${postId}',
-                        '${comment.user}'
-                    );
-                    closeModal();
-                ">
-
-                🚫 Block Pengguna
-
-            </button>
-
-        `;
-
-    }
-
-
-    openModal(
-        "⚙️ Komen",
-        html,
-        function(){}
-    );
+openModal(
+"⚙️ Komen",
+html,
+function(){}
+);
 
 }
 
 
-function deleteComment(
-    postId,
-    commentId
-){
+function deleteComment(postId,commentId){
 
-    const posts = JSON.parse(
-        localStorage.getItem(
-            "yam_posts"
-        ) || "[]"
-    );
+const posts=JSON.parse(
+localStorage.getItem("yam_posts")||"[]"
+);
 
+const post=posts.find(
+p=>String(p.id)===String(postId)
+);
 
-    const post = posts.find(
-        p=>String(p.id) === String(postId)
-    );
+if(!post)
+return;
 
+const comment=
+(post.comments||[]).find(
+c=>String(c.id)===String(commentId)
+);
 
-    if(!post)
-        return;
+if(!comment)
+return;
 
+if(
+comment.user!==currentUser&&
+post.owner!==currentUser
+)
+return;
 
-    const comment =
-        (post.comments || [])
-        .find(
-            c=>String(c.id) === String(commentId)
-        );
+post.comments=
+(post.comments||[]).filter(
+c=>String(c.id)!==String(commentId)
+);
 
+localStorage.setItem(
+"yam_posts",
+JSON.stringify(posts)
+);
 
-    if(!comment)
-        return;
-
-
-    if(
-        comment.user !== currentUser &&
-        post.owner !== currentUser
-    )
-        return;
-
-
-    post.comments =
-        (post.comments || [])
-        .filter(
-            c=>String(c.id) !== String(commentId)
-        );
-
-
-    localStorage.setItem(
-        "yam_posts",
-        JSON.stringify(posts)
-    );
-
-
-    renderFeed();
+renderFeed();
 
 }
 
 
 function toggleCommentVisibility(id){
 
-    const posts = JSON.parse(
-        localStorage.getItem(
-            "yam_posts"
-        ) || "[]"
-    );
+const posts=JSON.parse(
+localStorage.getItem("yam_posts")||"[]"
+);
 
+const post=posts.find(
+p=>String(p.id)===String(id)
+);
 
-    const post = posts.find(
-        p=>String(p.id) === String(id)
-    );
+if(!post)
+return;
 
+if(post.owner!==currentUser)
+return;
 
-    if(!post)
-        return;
+post.hiddenComments=
+!post.hiddenComments;
 
+localStorage.setItem(
+"yam_posts",
+JSON.stringify(posts)
+);
 
-    if(post.owner !== currentUser)
-        return;
-
-
-    post.hiddenComments =
-        !post.hiddenComments;
-
-
-    localStorage.setItem(
-        "yam_posts",
-        JSON.stringify(posts)
-    );
-
-
-    renderFeed();
+renderFeed();
 
 }
 
 
-function blockCommenter(
-    postId,
-    username
+function blockCommenter(postId,username){
+
+const posts=JSON.parse(
+localStorage.getItem("yam_posts")||"[]"
+);
+
+const post=posts.find(
+p=>String(p.id)===String(postId)
+);
+
+if(!post)
+return;
+
+if(post.owner!==currentUser)
+return;
+
+post.blockedUsers=
+post.blockedUsers||[];
+
+if(
+!post.blockedUsers.includes(username)
 ){
 
-    const posts = JSON.parse(
-        localStorage.getItem(
-            "yam_posts"
-        ) || "[]"
-    );
+post.blockedUsers.push(username);
 
+}
 
-    const post = posts.find(
-        p=>String(p.id) === String(postId)
-    );
+post.comments=
+(post.comments||[]).filter(
+c=>c.user!==username
+);
 
+localStorage.setItem(
+"yam_posts",
+JSON.stringify(posts)
+);
 
-    if(!post)
-        return;
-
-
-    if(post.owner !== currentUser)
-        return;
-
-
-    post.blockedUsers =
-        post.blockedUsers || [];
-
-
-    if(
-        !post.blockedUsers.includes(username)
-    ){
-
-        post.blockedUsers.push(username);
-
-    }
-
-
-    post.comments =
-        (post.comments || [])
-        .filter(
-            c=>c.user !== username
-        );
-
-
-    localStorage.setItem(
-        "yam_posts",
-        JSON.stringify(posts)
-    );
-
-
-    renderFeed();
+renderFeed();
 
 }
 
 
-function unblockCommenter(
-    postId,
-    username
-){
+function unblockCommenter(postId,username){
 
-    const posts = JSON.parse(
-        localStorage.getItem(
-            "yam_posts"
-        ) || "[]"
-    );
+const posts=JSON.parse(
+localStorage.getItem("yam_posts")||"[]"
+);
 
+const post=posts.find(
+p=>String(p.id)===String(postId)
+);
 
-    const post = posts.find(
-        p=>String(p.id) === String(postId)
-    );
+if(!post)
+return;
 
+post.blockedUsers=
+(post.blockedUsers||[]).filter(
+u=>u!==username
+);
 
-    if(!post)
-        return;
+localStorage.setItem(
+"yam_posts",
+JSON.stringify(posts)
+);
 
-
-    post.blockedUsers =
-        (post.blockedUsers || [])
-        .filter(
-            u=>u !== username
-        );
-
-
-    localStorage.setItem(
-        "yam_posts",
-        JSON.stringify(posts)
-    );
-
-
-    renderFeed();
+renderFeed();
 
 }
 
@@ -3188,85 +2867,75 @@ function unblockCommenter(
 
 function postOwnerMenu(id){
 
-    const html = `
+const html=`
 
-        <button
-            class="secondary-btn"
-            onclick="
-                deletePost('${id}');
-                closeModal();
-            ">
+<button
+class="secondary-btn"
+onclick="
+deletePost('${id}');
+closeModal();
+">
 
-            🗑️ Padam Post
+🗑️ Padam Post
 
-        </button>
+</button>
 
-    `;
+`;
 
-
-    openModal(
-        "⚙️ Menu Post",
-        html
-    );
+openModal(
+"⚙️ Menu Post",
+html
+);
 
 }
 
 
 function deletePost(id){
 
-    const posts = JSON.parse(
-        localStorage.getItem(
-            "yam_posts"
-        ) || "[]"
-    );
+const posts=JSON.parse(
+localStorage.getItem("yam_posts")||"[]"
+);
 
+const post=posts.find(
+p=>String(p.id)===String(id)
+);
 
-    const post = posts.find(
-        p=>String(p.id) === String(id)
-    );
+if(!post)
+return;
 
+if(post.owner!==currentUser){
 
-    if(!post)
-        return;
+alert(
+"Hanya pemilik post boleh padam."
+);
 
+return;
+}
 
-    if(post.owner !== currentUser){
+const updated=
+posts.filter(
+p=>String(p.id)!==String(id)
+);
 
-        alert(
-            "Hanya pemilik post boleh padam."
-        );
+localStorage.setItem(
+"yam_posts",
+JSON.stringify(updated)
+);
 
-        return;
-    }
-
-
-    const updated =
-        posts.filter(
-            p=>String(p.id) !== String(id)
-        );
-
-
-    localStorage.setItem(
-        "yam_posts",
-        JSON.stringify(updated)
-    );
-
-
-    renderFeed();
+renderFeed();
 
 }
 
 
 function focusComment(id){
 
-    const input =
-        document.getElementById(
-            "comment-" + id
-        );
+const input=
+document.getElementById(
+"comment-"+id
+);
 
-
-    if(input)
-        input.focus();
+if(input)
+input.focus();
 
 }
 
@@ -3277,59 +2946,52 @@ function focusComment(id){
 
 function renderFriends(){
 
-    const list =
-        document.getElementById(
-            "friendsList"
-        );
+const list=
+document.getElementById(
+"friendsList"
+);
 
+list.innerHTML=
+friends.map(username=>{
 
-    list.innerHTML =
-        friends.map(
-            username=>{
+const profile=
+getProfileData(username);
 
-                const profile =
-                    getProfileData(
-                        username
-                    );
+return`
 
+<div class="friend-card">
 
-                return `
+${avatarHtml(username)}
 
-                    <div class="friend-card">
+<div class="friend-info">
 
-                        ${avatarHtml(username)}
+<div class="friend-name">
+${escapeHtml(
+profile.name||username
+)}
+</div>
 
-                        <div class="friend-info">
+<div class="friend-status">
+${escapeHtml(
+profile.status||"Available"
+)}
+</div>
 
-                            <div class="friend-name">
-                                ${escapeHtml(
-                                    profile.name || username
-                                )}
-                            </div>
+</div>
 
-                            <div class="friend-status">
-                                ${escapeHtml(
-                                    profile.status || "Available"
-                                )}
-                            </div>
+<button
+class="chat-btn"
+onclick="openChat('${username}')">
 
-                        </div>
+💬 Chat
 
+</button>
 
-                        <button
-                            class="chat-btn"
-                            onclick="openChat('${username}')">
+</div>
 
-                            💬 Chat
+`;
 
-                        </button>
-
-                    </div>
-
-                `;
-
-            }
-        ).join("");
+}).join("");
 
 }
 
@@ -3340,32 +3002,29 @@ function renderFriends(){
 
 function renderRooms(){
 
-    const list =
-        document.getElementById(
-            "roomsList"
-        );
+const list=
+document.getElementById(
+"roomsList"
+);
 
+list.innerHTML=
+rooms.map(room=>`
 
-    list.innerHTML =
-        rooms.map(
-            room=>`
+<div
+class="room-card"
+onclick="openRoom('${room.name}')">
 
-                <div
-                    class="room-card"
-                    onclick="openRoom('${room.name}')">
+<div class="room-name">
+${room.region}
+</div>
 
-                    <div class="room-name">
-                        ${room.region}
-                    </div>
+<div class="room-region">
+🌎 YAM Room • Tekan untuk masuk
+</div>
 
-                    <div class="room-region">
-                        🌎 YAM Room • Tekan untuk masuk
-                    </div>
+</div>
 
-                </div>
-
-            `
-        ).join("");
+`).join("");
 
 }
 
@@ -3376,217 +3035,192 @@ function renderRooms(){
 
 function renderProfile(){
 
-    if(!currentUser)
-        return;
+if(!currentUser)
+return;
 
+const profile=
+getProfileData(currentUser);
 
-    const profile =
-        getProfileData(
-            currentUser
-        );
+const picture=
+document.getElementById(
+"profilePicture"
+);
 
+const avatar=
+getAvatar(currentUser);
 
-    const picture =
-        document.getElementById(
-            "profilePicture"
-        );
+if(avatar){
 
+picture.src=avatar;
 
-    const avatar =
-        getAvatar(
-            currentUser
-        );
+}else{
 
+const letter=
+(profile.name||currentUser)
+.charAt(0)
+.toUpperCase();
 
-    if(avatar){
+picture.src=
+"data:image/svg+xml;charset=UTF-8,"+
+encodeURIComponent(`
 
-        picture.src = avatar;
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="200"
+height="200">
 
-    }else{
+<rect
+width="200"
+height="200"
+fill="#2563eb"/>
 
-        const letter =
-            (profile.name || currentUser)
-            .charAt(0)
-            .toUpperCase();
+<text
+x="50%"
+y="58%"
+text-anchor="middle"
+font-size="90"
+fill="white"
+font-family="Arial">
 
+${letter}
 
-        picture.src =
-            "data:image/svg+xml;charset=UTF-8," +
-            encodeURIComponent(`
+</text>
 
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="200"
-                    height="200">
+</svg>
 
-                    <rect
-                        width="200"
-                        height="200"
-                        fill="#2563eb"/>
+`);
 
-                    <text
-                        x="50%"
-                        y="58%"
-                        text-anchor="middle"
-                        font-size="90"
-                        fill="white"
-                        font-family="Arial">
+}
 
-                        ${letter}
+document.getElementById(
+"profileName"
+).textContent=
+profile.name||currentUser;
 
-                    </text>
+document.getElementById(
+"profileUsername"
+).textContent=
+"@"+currentUser;
 
-                </svg>
+document.getElementById(
+"profileStatus"
+).textContent=
+"🟢 "+
+(profile.status||"Available");
 
-            `);
+document.getElementById(
+"profileBio"
+).textContent=
+profile.bio||"Belum ada bio.";
 
-    }
+const cover=
+localStorage.getItem(
+"yam_cover_"+currentUser
+);
 
+const profileMain=
+document.querySelector(
+".profile-main"
+);
 
-    document.getElementById(
-        "profileName"
-    ).textContent =
-        profile.name || currentUser;
+if(profileMain){
 
+if(cover){
 
-    document.getElementById(
-        "profileUsername"
-    ).textContent =
-        "@" + currentUser;
+profileMain.style.backgroundImage=
+`url("${cover}")`;
 
+}else{
 
-    document.getElementById(
-        "profileStatus"
-    ).textContent =
-        "🟢 " +
-        (
-            profile.status || "Available"
-        );
+profileMain.style.backgroundImage=
+"linear-gradient(135deg,#2563eb,#111827)";
 
+}
 
-    document.getElementById(
-        "profileBio"
-    ).textContent =
-        profile.bio ||
-        "Belum ada bio.";
+}
 
+document.getElementById(
+"topUser"
+).textContent=
+profile.name||currentUser;
 
-    const cover =
-        localStorage.getItem(
-            "yam_cover_" + currentUser
-        );
+document.getElementById(
+"profileInfo"
+).innerHTML=`
 
+<div class="info-row">
 
-    const profileMain =
-        document.querySelector(
-            ".profile-main"
-        );
+<div class="info-label">
+Username
+</div>
 
+<div class="info-value">
+@${escapeHtml(currentUser)}
+</div>
 
-    if(profileMain){
+</div>
 
-        if(cover){
+<div class="info-row">
 
-            profileMain.style.backgroundImage =
-                `url("${cover}")`;
+<div class="info-label">
+🎂 Birthday
+</div>
 
-        }else{
+<div class="info-value">
+${escapeHtml(
+profile.birthday||
+"Belum diisi"
+)}
+</div>
 
-            profileMain.style.backgroundImage =
-                "linear-gradient(135deg,#2563eb,#111827)";
+</div>
 
-        }
+<div class="info-row">
 
-    }
+<div class="info-label">
+📍 Location
+</div>
 
+<div class="info-value">
+${escapeHtml(
+profile.location||
+"Belum diisi"
+)}
+</div>
 
-    document.getElementById(
-        "topUser"
-    ).textContent =
-        profile.name || currentUser;
+</div>
 
+<div class="info-row">
 
-    document.getElementById(
-        "profileInfo"
-    ).innerHTML = `
+<div class="info-label">
+💼 Job
+</div>
 
-        <div class="info-row">
+<div class="info-value">
+${escapeHtml(
+profile.job||
+"Belum diisi"
+)}
+</div>
 
-            <div class="info-label">
-                Username
-            </div>
+</div>
 
-            <div class="info-value">
-                @${escapeHtml(currentUser)}
-            </div>
+<div class="info-row">
 
-        </div>
+<div class="info-label">
+⚧ Gender
+</div>
 
+<div class="info-value">
+${escapeHtml(
+profile.gender||
+"Belum diisi"
+)}
+</div>
 
-        <div class="info-row">
+</div>
 
-            <div class="info-label">
-                🎂 Birthday
-            </div>
-
-            <div class="info-value">
-                ${escapeHtml(
-                    profile.birthday ||
-                    "Belum diisi"
-                )}
-            </div>
-
-        </div>
-
-
-        <div class="info-row">
-
-            <div class="info-label">
-                📍 Location
-            </div>
-
-            <div class="info-value">
-                ${escapeHtml(
-                    profile.location ||
-                    "Belum diisi"
-                )}
-            </div>
-
-        </div>
-
-
-        <div class="info-row">
-
-            <div class="info-label">
-                💼 Job
-            </div>
-
-            <div class="info-value">
-                ${escapeHtml(
-                    profile.job ||
-                    "Belum diisi"
-                )}
-            </div>
-
-        </div>
-
-
-        <div class="info-row">
-
-            <div class="info-label">
-                ⚧ Gender
-            </div>
-
-            <div class="info-value">
-                ${escapeHtml(
-                    profile.gender ||
-                    "Belum diisi"
-                )}
-            </div>
-
-        </div>
-
-    `;
+`;
 
 }
 
@@ -3597,68 +3231,58 @@ function renderProfile(){
 
 function changeProfilePicture(){
 
-    const input =
-        document.getElementById(
-            "profileFile"
-        );
+const input=
+document.getElementById(
+"profileFile"
+);
 
+if(input){
 
-    if(input){
+input.value="";
+input.click();
 
-        input.value = "";
-        input.click();
-
-    }
+}
 
 }
 
 
-document.getElementById(
-    "profileFile"
-).addEventListener(
-    "change",
-    function(){
+document.getElementById("profileFile")
+.addEventListener("change",function(){
 
-        const file = this.files[0];
+const file=this.files[0];
 
-        if(!file)
-            return;
+if(!file)
+return;
 
+if(file.size>3*1024*1024){
 
-        if(file.size > 3 * 1024 * 1024){
-
-            alert(
-                "Gambar profile maksimum 3MB."
-            );
-
-            this.value = "";
-
-            return;
-        }
-
-
-        const reader = new FileReader();
-
-
-        reader.onload = function(e){
-
-            localStorage.setItem(
-                "yam_picture_" + currentUser,
-                e.target.result
-            );
-
-
-            renderProfile();
-            renderFeed();
-            renderFriends();
-
-        };
-
-
-        reader.readAsDataURL(file);
-
-    }
+alert(
+"Gambar profile maksimum 3MB."
 );
+
+this.value="";
+
+return;
+}
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+localStorage.setItem(
+"yam_picture_"+currentUser,
+e.target.result
+);
+
+renderProfile();
+renderFeed();
+renderFriends();
+
+};
+
+reader.readAsDataURL(file);
+
+});
 
 
 /* =========================
@@ -3667,66 +3291,56 @@ document.getElementById(
 
 function changeCover(){
 
-    const input =
-        document.getElementById(
-            "coverFile"
-        );
+const input=
+document.getElementById(
+"coverFile"
+);
 
+if(input){
 
-    if(input){
+input.value="";
+input.click();
 
-        input.value = "";
-        input.click();
-
-    }
+}
 
 }
 
 
-document.getElementById(
-    "coverFile"
-).addEventListener(
-    "change",
-    function(){
+document.getElementById("coverFile")
+.addEventListener("change",function(){
 
-        const file = this.files[0];
+const file=this.files[0];
 
-        if(!file)
-            return;
+if(!file)
+return;
 
+if(file.size>4*1024*1024){
 
-        if(file.size > 4 * 1024 * 1024){
-
-            alert(
-                "Cover maksimum 4MB."
-            );
-
-            this.value = "";
-
-            return;
-        }
-
-
-        const reader = new FileReader();
-
-
-        reader.onload = function(e){
-
-            localStorage.setItem(
-                "yam_cover_" + currentUser,
-                e.target.result
-            );
-
-
-            renderProfile();
-
-        };
-
-
-        reader.readAsDataURL(file);
-
-    }
+alert(
+"Cover maksimum 4MB."
 );
+
+this.value="";
+
+return;
+}
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+localStorage.setItem(
+"yam_cover_"+currentUser,
+e.target.result
+);
+
+renderProfile();
+
+};
+
+reader.readAsDataURL(file);
+
+});
 
 
 /* =========================
@@ -3735,38 +3349,35 @@ document.getElementById(
 
 function openProfileMenu(){
 
-    const menu =
-        document.getElementById(
-            "profileMenu"
-        );
+const menu=
+document.getElementById(
+"profileMenu"
+);
 
+if(!menu)
+return;
 
-    if(!menu)
-        return;
-
-
-    menu.classList.toggle(
-        "hidden"
-    );
+menu.classList.toggle(
+"hidden"
+);
 
 }
 
 
 function closeProfileMenu(){
 
-    const menu =
-        document.getElementById(
-            "profileMenu"
-        );
+const menu=
+document.getElementById(
+"profileMenu"
+);
 
+if(menu){
 
-    if(menu){
+menu.classList.add(
+"hidden"
+);
 
-        menu.classList.add(
-            "hidden"
-        );
-
-    }
+}
 
 }
 
@@ -3777,133 +3388,114 @@ function closeProfileMenu(){
 
 function editProfile(){
 
-    closeProfileMenu();
+closeProfileMenu();
 
+const profile=
+getProfileData(currentUser);
 
-    const profile =
-        getProfileData(
-            currentUser
-        );
+const content=`
 
+<input
+id="editName"
+class="input"
+value="${escapeHtml(
+profile.name||""
+)}"
+placeholder="Nama">
 
-    const content = `
+<input
+id="editBirthday"
+class="input"
+value="${escapeHtml(
+profile.birthday||""
+)}"
+placeholder="Birthday">
 
-        <input
-            id="editName"
-            class="input"
-            value="${escapeHtml(
-                profile.name || ""
-            )}"
-            placeholder="Nama">
+<input
+id="editLocation"
+class="input"
+value="${escapeHtml(
+profile.location||""
+)}"
+placeholder="Location">
 
+<input
+id="editJob"
+class="input"
+value="${escapeHtml(
+profile.job||""
+)}"
+placeholder="Job">
 
-        <input
-            id="editBirthday"
-            class="input"
-            value="${escapeHtml(
-                profile.birthday || ""
-            )}"
-            placeholder="Birthday">
+<input
+id="editGender"
+class="input"
+value="${escapeHtml(
+profile.gender||""
+)}"
+placeholder="Gender">
 
+<textarea
+id="editBio"
+class="input"
+style="min-height:100px;"
+placeholder="Bio">${escapeHtml(
+profile.bio||""
+)}</textarea>
 
-        <input
-            id="editLocation"
-            class="input"
-            value="${escapeHtml(
-                profile.location || ""
-            )}"
-            placeholder="Location">
+`;
 
-
-        <input
-            id="editJob"
-            class="input"
-            value="${escapeHtml(
-                profile.job || ""
-            )}"
-            placeholder="Job">
-
-
-        <input
-            id="editGender"
-            class="input"
-            value="${escapeHtml(
-                profile.gender || ""
-            )}"
-            placeholder="Gender">
-
-
-        <textarea
-            id="editBio"
-            class="input"
-            style="min-height:100px;"
-            placeholder="Bio">${escapeHtml(
-                profile.bio || ""
-            )}</textarea>
-
-    `;
-
-
-    openModal(
-        "✏️ Edit Profile",
-        content,
-        saveProfile
-    );
+openModal(
+"✏️ Edit Profile",
+content,
+saveProfile
+);
 
 }
 
 
 function saveProfile(){
 
-    const profile =
-        getProfileData(
-            currentUser
-        );
+const profile=
+getProfileData(currentUser);
 
+profile.name=
+document.getElementById(
+"editName"
+).value.trim();
 
-    profile.name =
-        document.getElementById(
-            "editName"
-        ).value.trim();
+profile.birthday=
+document.getElementById(
+"editBirthday"
+).value.trim();
 
+profile.location=
+document.getElementById(
+"editLocation"
+).value.trim();
 
-    profile.birthday =
-        document.getElementById(
-            "editBirthday"
-        ).value.trim();
+profile.job=
+document.getElementById(
+"editJob"
+).value.trim();
 
+profile.gender=
+document.getElementById(
+"editGender"
+).value.trim();
 
-    profile.location =
-        document.getElementById(
-            "editLocation"
-        ).value.trim();
+profile.bio=
+document.getElementById(
+"editBio"
+).value.trim();
 
+saveCurrentProfile(profile);
 
-    profile.job =
-        document.getElementById(
-            "editJob"
-        ).value.trim();
+closeModal();
 
-
-    profile.gender =
-        document.getElementById(
-            "editGender"
-        ).value.trim();
-
-
-    profile.bio =
-        document.getElementById(
-            "editBio"
-        ).value.trim();
-
-
-    saveCurrentProfile(profile);
-
-    closeModal();
-
-    renderProfile();
-    renderFeed();
-    renderFriends();
+renderProfile();
+renderFeed();
+renderFriends();
 
 }
 
@@ -3914,83 +3506,68 @@ function saveProfile(){
 
 function changeName(){
 
-    closeProfileMenu();
+closeProfileMenu();
 
+const profile=
+getProfileData(currentUser);
 
-    const profile =
-        getProfileData(
-            currentUser
-        );
+const content=`
 
+<input
+id="newName"
+class="input"
+value="${escapeHtml(
+profile.name||""
+)}"
+placeholder="Nama baru">
 
-    const content = `
+`;
 
-        <input
-            id="newName"
-            class="input"
-            value="${escapeHtml(
-                profile.name || ""
-            )}"
-            placeholder="Nama baru">
-
-    `;
-
-
-    openModal(
-        "✍️ Tukar Nama",
-        content,
-        saveName
-    );
+openModal(
+"✍️ Tukar Nama",
+content,
+saveName
+);
 
 }
 
 
 function saveName(){
 
-    const input =
-        document.getElementById(
-            "newName"
-        );
+const input=
+document.getElementById(
+"newName"
+);
 
+if(!input)
+return;
 
-    if(!input)
-        return;
+const newName=
+input.value.trim();
 
+if(!newName){
 
-    const newName =
-        input.value.trim();
+alert("Sila masukkan nama.");
 
+return;
+}
 
-    if(!newName){
+const profile=
+getProfileData(currentUser);
 
-        alert(
-            "Sila masukkan nama."
-        );
+profile.name=newName;
 
-        return;
-    }
+saveCurrentProfile(profile);
 
+closeModal();
 
-    const profile =
-        getProfileData(
-            currentUser
-        );
+renderProfile();
+renderFeed();
+renderFriends();
 
-
-    profile.name = newName;
-
-    saveCurrentProfile(profile);
-
-    closeModal();
-
-    renderProfile();
-    renderFeed();
-    renderFriends();
-
-
-    alert(
-        "Nama berjaya ditukar."
-    );
+alert(
+"Nama berjaya ditukar."
+);
 
 }
 
@@ -4001,58 +3578,49 @@ function saveName(){
 
 function editStatus(){
 
-    const profile =
-        getProfileData(
-            currentUser
-        );
+const profile=
+getProfileData(currentUser);
 
+const content=`
 
-    const content = `
+<input
+id="statusInput"
+class="input"
+value="${escapeHtml(
+profile.status||""
+)}"
+placeholder="Status anda">
 
-        <input
-            id="statusInput"
-            class="input"
-            value="${escapeHtml(
-                profile.status || ""
-            )}"
-            placeholder="Status anda">
+`;
 
-    `;
-
-
-    openModal(
-        "🟢 Status",
-        content,
-        saveStatus
-    );
+openModal(
+"🟢 Status",
+content,
+saveStatus
+);
 
 }
 
 
 function saveStatus(){
 
-    const profile =
-        getProfileData(
-            currentUser
-        );
+const profile=
+getProfileData(currentUser);
 
+profile.status=
+document.getElementById(
+"statusInput"
+).value.trim();
 
-    profile.status =
-        document.getElementById(
-            "statusInput"
-        ).value.trim();
+if(!profile.status)
+profile.status="Available";
 
+saveCurrentProfile(profile);
 
-    if(!profile.status)
-        profile.status = "Available";
+closeModal();
 
-
-    saveCurrentProfile(profile);
-
-    closeModal();
-
-    renderProfile();
-    renderFriends();
+renderProfile();
+renderFriends();
 
 }
 
@@ -4063,129 +3631,106 @@ function saveStatus(){
 
 function changePassword(){
 
-    closeProfileMenu();
+closeProfileMenu();
 
+const content=`
 
-    const content = `
+<input
+id="oldPassword"
+class="input"
+type="password"
+placeholder="Password lama">
 
-        <input
-            id="oldPassword"
-            class="input"
-            type="password"
-            placeholder="Password lama">
+<input
+id="newPassword"
+class="input"
+type="password"
+placeholder="Password baru">
 
+<input
+id="newPassword2"
+class="input"
+type="password"
+placeholder="Ulang password baru">
 
-        <input
-            id="newPassword"
-            class="input"
-            type="password"
-            placeholder="Password baru">
+`;
 
-
-        <input
-            id="newPassword2"
-            class="input"
-            type="password"
-            placeholder="Ulang password baru">
-
-    `;
-
-
-    openModal(
-        "🔑 Tukar Password",
-        content,
-        savePassword
-    );
+openModal(
+"🔑 Tukar Password",
+content,
+savePassword
+);
 
 }
 
 
 function savePassword(){
 
-    const oldInput =
-        document.getElementById(
-            "oldPassword"
-        );
+const oldInput=
+document.getElementById(
+"oldPassword"
+);
 
+const newInput=
+document.getElementById(
+"newPassword"
+);
 
-    const newInput =
-        document.getElementById(
-            "newPassword"
-        );
+const newInput2=
+document.getElementById(
+"newPassword2"
+);
 
+if(
+!oldInput||
+!newInput||
+!newInput2
+)
+return;
 
-    const newInput2 =
-        document.getElementById(
-            "newPassword2"
-        );
+const oldPass=oldInput.value;
+const newPass=newInput.value;
+const newPass2=newInput2.value;
 
+const profile=
+getProfileData(currentUser);
 
-    if(
-        !oldInput ||
-        !newInput ||
-        !newInput2
-    )
-        return;
+if(profile.password!==oldPass){
 
+alert(
+"Password lama tidak betul."
+);
 
-    const oldPass =
-        oldInput.value;
+return;
+}
 
+if(!newPass){
 
-    const newPass =
-        newInput.value;
+alert(
+"Masukkan password baru."
+);
 
+return;
+}
 
-    const newPass2 =
-        newInput2.value;
+if(newPass!==newPass2){
 
+alert(
+"Password baru tidak sama."
+);
 
-    const profile =
-        getProfileData(
-            currentUser
-        );
+return;
+}
 
+profile.password=newPass;
 
-    if(profile.password !== oldPass){
+saveCurrentProfile(profile);
 
-        alert(
-            "Password lama tidak betul."
-        );
+closeModal();
 
-        return;
-    }
-
-
-    if(!newPass){
-
-        alert(
-            "Masukkan password baru."
-        );
-
-        return;
-    }
-
-
-    if(newPass !== newPass2){
-
-        alert(
-            "Password baru tidak sama."
-        );
-
-        return;
-    }
-
-
-    profile.password = newPass;
-
-    saveCurrentProfile(profile);
-
-    closeModal();
-
-
-    alert(
-        "Password berjaya ditukar."
-    );
+alert(
+"Password berjaya ditukar."
+);
 
 }
 
@@ -4196,31 +3741,30 @@ function savePassword(){
 
 function openPrivacy(){
 
-    const content = `
+const content=`
 
-        <div
-            style="
-                padding:12px;
-                background:#f8fafc;
-                border-radius:12px;
-                line-height:1.5;
-            ">
+<div
+style="
+padding:12px;
+background:#f8fafc;
+border-radius:12px;
+line-height:1.5;
+">
 
-            🔒 <b>Privacy YAM</b><br><br>
+🔒 <b>Privacy YAM</b><br><br>
 
-            Tetapan privacy demo akan digunakan
-            untuk profile ini.
+Tetapan privacy demo akan digunakan
+untuk profile ini.
 
-        </div>
+</div>
 
-    `;
+`;
 
-
-    openModal(
-        "🔒 Privacy",
-        content,
-        closeModal
-    );
+openModal(
+"🔒 Privacy",
+content,
+closeModal
+);
 
 }
 
@@ -4231,280 +3775,241 @@ function openPrivacy(){
 
 function openMusic(){
 
-    const savedMusic =
-        localStorage.getItem(
-            "yam_music_" + currentUser
-        );
+const savedMusic=
+localStorage.getItem(
+"yam_music_"+currentUser
+);
 
+if(!savedMusic){
 
-    if(!savedMusic){
+const input=
+document.getElementById(
+"musicFile"
+);
 
-        const input =
-            document.getElementById(
-                "musicFile"
-            );
+if(input){
 
+input.value="";
+input.click();
 
-        if(input){
+}
 
-            input.value = "";
-            input.click();
+return;
+}
 
-        }
-
-        return;
-    }
-
-
-    renderMusic(true);
+renderMusic(true);
 
 }
 
 
-document.getElementById(
-    "musicFile"
-).addEventListener(
-    "change",
-    function(){
+document.getElementById("musicFile")
+.addEventListener("change",function(){
 
-        const file = this.files[0];
+const file=this.files[0];
 
-        if(!file)
-            return;
+if(!file)
+return;
 
+if(
+file.type&&
+!file.type.startsWith("audio/")
+){
 
-        if(
-            file.type &&
-            !file.type.startsWith("audio/")
-        ){
-
-            alert(
-                "Sila pilih fail music/audio."
-            );
-
-            this.value = "";
-
-            return;
-        }
-
-
-        if(file.size > 8 * 1024 * 1024){
-
-            alert(
-                "Music maksimum 8MB."
-            );
-
-            this.value = "";
-
-            return;
-        }
-
-
-        const reader = new FileReader();
-
-
-        reader.onerror = function(){
-
-            alert(
-                "Music gagal dibaca. Cuba fail lain."
-            );
-
-        };
-
-
-        reader.onload = function(e){
-
-            try{
-
-                localStorage.setItem(
-                    "yam_music_" + currentUser,
-                    JSON.stringify({
-
-                        name:file.name,
-                        data:e.target.result
-
-                    })
-                );
-
-
-                renderMusic(true);
-
-
-            }catch(error){
-
-                console.error(error);
-
-                alert(
-                    "Music terlalu besar untuk disimpan dalam browser. Cuba music yang lebih kecil."
-                );
-
-            }
-
-        };
-
-
-        reader.readAsDataURL(file);
-
-    }
+alert(
+"Sila pilih fail music/audio."
 );
+
+this.value="";
+
+return;
+}
+
+if(file.size>8*1024*1024){
+
+alert(
+"Music maksimum 8MB."
+);
+
+this.value="";
+
+return;
+}
+
+const reader=new FileReader();
+
+reader.onerror=function(){
+
+alert(
+"Music gagal dibaca. Cuba fail lain."
+);
+
+};
+
+reader.onload=function(e){
+
+try{
+
+localStorage.setItem(
+"yam_music_"+currentUser,
+JSON.stringify({
+name:file.name,
+data:e.target.result
+})
+);
+
+renderMusic(true);
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Music terlalu besar untuk disimpan dalam browser. Cuba music yang lebih kecil."
+);
+
+}
+
+};
+
+reader.readAsDataURL(file);
+
+});
 
 
 function renderMusic(autoPlay=false){
 
-    const area =
-        document.getElementById(
-            "musicArea"
-        );
+const area=
+document.getElementById(
+"musicArea"
+);
 
+if(!area)
+return;
 
-    if(!area)
-        return;
+const saved=
+localStorage.getItem(
+"yam_music_"+currentUser
+);
 
+const music=
+JSON.parse(
+saved||"null"
+);
 
-    const saved =
-        localStorage.getItem(
-            "yam_music_" + currentUser
-        );
+if(!music){
 
+area.classList.add("hidden");
+area.innerHTML="";
 
-    const music =
-        JSON.parse(
-            saved || "null"
-        );
+return;
+}
 
+area.classList.remove("hidden");
 
-    if(!music){
+area.innerHTML=`
 
-        area.classList.add(
-            "hidden"
-        );
+<div class="music-title">
 
-        area.innerHTML = "";
+🎵 ${escapeHtml(
+music.name
+)}
 
-        return;
-    }
+</div>
 
+<audio
+id="yamAudioPlayer"
+controls
+preload="auto"
+src="${music.data}">
+</audio>
 
-    area.classList.remove(
-        "hidden"
-    );
+<div class="music-buttons">
 
+<button onclick="changeMusic()">
+🔄 Tukar Music
+</button>
 
-    area.innerHTML = `
+<button
+onclick="removeMusic()"
+style="
+background:#fee2e2;
+color:#dc2626;
+">
 
-        <div class="music-title">
+🗑️ Buang
 
-            🎵 ${escapeHtml(
-                music.name
-            )}
+</button>
 
-        </div>
+</div>
 
+`;
 
-        <audio
-            id="yamAudioPlayer"
-            controls
-            preload="auto"
-            src="${music.data}">
-        </audio>
+if(autoPlay){
 
+setTimeout(function(){
 
-        <div class="music-buttons">
+const audio=
+document.getElementById(
+"yamAudioPlayer"
+);
 
-            <button onclick="changeMusic()">
-                🔄 Tukar Music
-            </button>
+if(!audio)
+return;
 
+audio.load();
 
-            <button
-                onclick="removeMusic()"
-                style="
-                    background:#fee2e2;
-                    color:#dc2626;
-                ">
+const playPromise=
+audio.play();
 
-                🗑️ Buang
+if(
+playPromise&&
+typeof playPromise.catch==="function"
+){
 
-            </button>
+playPromise.catch(
+function(){}
+);
 
-        </div>
+}
 
-    `;
+},50);
 
-
-    if(autoPlay){
-
-        setTimeout(function(){
-
-            const audio =
-                document.getElementById(
-                    "yamAudioPlayer"
-                );
-
-
-            if(!audio)
-                return;
-
-
-            audio.load();
-
-
-            const playPromise =
-                audio.play();
-
-
-            if(
-                playPromise &&
-                typeof playPromise.catch === "function"
-            ){
-
-                playPromise.catch(
-                    function(){}
-                );
-
-            }
-
-        },50);
-
-    }
+}
 
 }
 
 
 function changeMusic(){
 
-    const input =
-        document.getElementById(
-            "musicFile"
-        );
+const input=
+document.getElementById(
+"musicFile"
+);
 
+if(input){
 
-    if(input){
+input.value="";
+input.click();
 
-        input.value = "";
-        input.click();
-
-    }
+}
 
 }
 
 
 function removeMusic(){
 
-    if(
-        !confirm(
-            "Buang music ini dari profile?"
-        )
-    )
-        return;
+if(
+!confirm(
+"Buang music ini dari profile?"
+)
+)
+return;
 
+localStorage.removeItem(
+"yam_music_"+currentUser
+);
 
-    localStorage.removeItem(
-        "yam_music_" + currentUser
-    );
-
-
-    renderMusic();
+renderMusic();
 
 }
 
@@ -4515,236 +4020,201 @@ function removeMusic(){
 
 function chatKey(){
 
-    return (
-        "yamchat_" +
-        currentUser +
-        "_" +
-        currentChatUser
-    );
+return(
+"yamchat_"+
+currentUser+
+"_"+currentChatUser
+);
 
 }
 
 
 function openChat(username){
 
-    currentChatUser = username;
+currentChatUser=username;
 
+const profile=
+getProfileData(username);
 
-    const profile =
-        getProfileData(
-            username
-        );
+document.getElementById(
+"chatTitle"
+).textContent=
+profile.name||username;
 
+const avatar=
+getAvatar(username);
 
-    document.getElementById(
-        "chatTitle"
-    ).textContent =
-        profile.name || username;
+const img=
+document.getElementById(
+"chatAvatar"
+);
 
+if(avatar){
 
-    const avatar =
-        getAvatar(username);
+img.src=avatar;
 
+}else{
 
-    const img =
-        document.getElementById(
-            "chatAvatar"
-        );
+img.src=
+"data:image/svg+xml;charset=UTF-8,"+
+encodeURIComponent(`
 
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="100"
+height="100">
 
-    if(avatar){
+<rect
+width="100"
+height="100"
+fill="#2563eb"/>
 
-        img.src = avatar;
+<text
+x="50%"
+y="62%"
+text-anchor="middle"
+font-size="45"
+fill="white"
+font-family="Arial">
 
-    }else{
+${
+(profile.name||username)
+.charAt(0)
+.toUpperCase()
+}
 
-        img.src =
-            "data:image/svg+xml;charset=UTF-8," +
-            encodeURIComponent(`
+</text>
 
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="100"
-                    height="100">
+</svg>
 
-                    <rect
-                        width="100"
-                        height="100"
-                        fill="#2563eb"/>
+`);
 
-                    <text
-                        x="50%"
-                        y="62%"
-                        text-anchor="middle"
-                        font-size="45"
-                        fill="white"
-                        font-family="Arial">
+}
 
-                        ${
-                            (profile.name || username)
-                            .charAt(0)
-                            .toUpperCase()
-                        }
+document.getElementById(
+"chatOverlay"
+).classList.add("show");
 
-                    </text>
-
-                </svg>
-
-            `);
-
-    }
-
-
-    document.getElementById(
-        "chatOverlay"
-    ).classList.add("show");
-
-
-    renderChat();
+renderChat();
 
 }
 
 
 function closeChat(){
 
-    document.getElementById(
-        "chatOverlay"
-    ).classList.remove("show");
+document.getElementById(
+"chatOverlay"
+).classList.remove("show");
 
-
-    currentChatUser = null;
+currentChatUser=null;
 
 }
 
 
 function renderChat(){
 
-    if(!currentChatUser)
-        return;
+if(!currentChatUser)
+return;
 
+const body=
+document.getElementById(
+"chatBody"
+);
 
-    const body =
-        document.getElementById(
-            "chatBody"
-        );
+const messages=JSON.parse(
+localStorage.getItem(
+chatKey()
+)||"[]"
+);
 
+if(!messages.length){
 
-    const messages = JSON.parse(
-        localStorage.getItem(
-            chatKey()
-        ) || "[]"
-    );
+body.innerHTML=`
 
+<div class="empty">
+Belum ada mesej.
+</div>
 
-    if(!messages.length){
+`;
 
-        body.innerHTML = `
+return;
+}
 
-            <div class="empty">
-                Belum ada mesej.
-            </div>
+body.innerHTML=
+messages.map(msg=>{
 
-        `;
+const mine=
+msg.user===currentUser;
 
-        return;
-    }
+return`
 
+<div
+class="
+chat-message
+${mine?"mine":""}
+">
 
-    body.innerHTML =
-        messages.map(
-            msg=>{
+${escapeHtml(msg.text)}
 
-                const mine =
-                    msg.user === currentUser;
+</div>
 
+`;
 
-                return `
+}).join("");
 
-                    <div
-                        class="
-                            chat-message
-                            ${mine ? "mine" : ""}
-                        ">
-
-                        ${escapeHtml(
-                            msg.text
-                        )}
-
-                    </div>
-
-                `;
-
-            }
-        ).join("");
-
-
-    body.scrollTop =
-        body.scrollHeight;
+body.scrollTop=
+body.scrollHeight;
 
 }
 
 
 function sendChat(){
 
-    if(!currentChatUser)
-        return;
+if(!currentChatUser)
+return;
 
+const input=
+document.getElementById(
+"chatInput"
+);
 
-    const input =
-        document.getElementById(
-            "chatInput"
-        );
+const text=
+input.value.trim();
 
+if(!text)
+return;
 
-    const text =
-        input.value.trim();
+const messages=JSON.parse(
+localStorage.getItem(
+chatKey()
+)||"[]"
+);
 
+messages.push({
+user:currentUser,
+text:text,
+time:Date.now()
+});
 
-    if(!text)
-        return;
+localStorage.setItem(
+chatKey(),
+JSON.stringify(messages)
+);
 
+input.value="";
 
-    const messages = JSON.parse(
-        localStorage.getItem(
-            chatKey()
-        ) || "[]"
-    );
-
-
-    messages.push({
-
-        user:currentUser,
-        text:text,
-        time:Date.now()
-
-    });
-
-
-    localStorage.setItem(
-        chatKey(),
-        JSON.stringify(messages)
-    );
-
-
-    input.value = "";
-
-
-    renderChat();
+renderChat();
 
 }
 
 
-document.getElementById(
-    "chatInput"
-).addEventListener(
-    "keydown",
-    function(e){
+document.getElementById("chatInput")
+.addEventListener("keydown",function(e){
 
-        if(e.key === "Enter")
-            sendChat();
+if(e.key==="Enter")
+sendChat();
 
-    }
-);
+});
 
 
 /* =========================
@@ -4753,134 +4223,118 @@ document.getElementById(
 
 function openRoom(roomName){
 
-    const key =
-        "yamroom_" + roomName;
+const key=
+"yamroom_"+roomName;
 
+const messages=JSON.parse(
+localStorage.getItem(key)||"[]"
+);
 
-    const messages = JSON.parse(
-        localStorage.getItem(
-            key
-        ) || "[]"
-    );
+let html=`
 
+<div
+id="roomMessages"
+style="
+max-height:280px;
+overflow:auto;
+margin-bottom:10px;
+">
 
-    let html = `
+`;
 
-        <div
-            id="roomMessages"
-            style="
-                max-height:280px;
-                overflow:auto;
-                margin-bottom:10px;
-            ">
+if(!messages.length){
 
-    `;
+html+=`
 
+<div class="empty">
+Belum ada mesej dalam room.
+</div>
 
-    if(!messages.length){
+`;
 
-        html += `
+}else{
 
-            <div class="empty">
-                Belum ada mesej dalam room.
-            </div>
+messages.forEach(msg=>{
 
-        `;
+const p=
+getProfileData(
+msg.user
+);
 
-    }else{
+html+=`
 
-        messages.forEach(msg=>{
+<div
+style="
+padding:9px;
+background:#f1f5f9;
+border-radius:10px;
+margin-bottom:7px;
+">
 
-            const p =
-                getProfileData(
-                    msg.user
-                );
+<b>
+${escapeHtml(
+p.name||msg.user
+)}
+</b>
 
+<div>
+${escapeHtml(
+msg.text
+)}
+</div>
 
-            html += `
+</div>
 
-                <div
-                    style="
-                        padding:9px;
-                        background:#f1f5f9;
-                        border-radius:10px;
-                        margin-bottom:7px;
-                    ">
+`;
 
-                    <b>
-                        ${escapeHtml(
-                            p.name || msg.user
-                        )}
-                    </b>
+});
 
-                    <div>
-                        ${escapeHtml(
-                            msg.text
-                        )}
-                    </div>
+}
 
-                </div>
+html+=`
 
-            `;
+</div>
 
-        });
+<input
+id="roomInput"
+class="input"
+placeholder="Tulis mesej room...">
 
-    }
+`;
 
+openModal(
+"🌎 "+roomName,
+html,
+function(){
 
-    html += `
+const input=
+document.getElementById(
+"roomInput"
+);
 
-        </div>
+const text=
+input.value.trim();
 
+if(!text)
+return;
 
-        <input
-            id="roomInput"
-            class="input"
-            placeholder="Tulis mesej room...">
+messages.push({
+user:currentUser,
+text:text,
+time:Date.now()
+});
 
-    `;
+localStorage.setItem(
+key,
+JSON.stringify(messages)
+);
 
+closeModal();
 
-    openModal(
-        "🌎 " + roomName,
-        html,
-        function(){
+openRoom(roomName);
 
-            const input =
-                document.getElementById(
-                    "roomInput"
-                );
-
-
-            const text =
-                input.value.trim();
-
-
-            if(!text)
-                return;
-
-
-            messages.push({
-
-                user:currentUser,
-                text:text,
-                time:Date.now()
-
-            });
-
-
-            localStorage.setItem(
-                key,
-                JSON.stringify(messages)
-            );
-
-
-            closeModal();
-
-            openRoom(roomName);
-
-        }
-    );
+}
+);
 
 }
 
@@ -4890,43 +4344,39 @@ function openRoom(roomName){
 ========================= */
 
 function openModal(
-    title,
-    content,
-    okFunction
+title,
+content,
+okFunction
 ){
 
-    document.getElementById(
-        "modalTitle"
-    ).textContent = title;
+document.getElementById(
+"modalTitle"
+).textContent=title;
 
+document.getElementById(
+"modalContent"
+).innerHTML=content;
 
-    document.getElementById(
-        "modalContent"
-    ).innerHTML = content;
+const ok=
+document.getElementById(
+"modalOk"
+);
 
+ok.onclick=
+okFunction||closeModal;
 
-    const ok =
-        document.getElementById(
-            "modalOk"
-        );
-
-
-    ok.onclick =
-        okFunction || closeModal;
-
-
-    document.getElementById(
-        "modalBg"
-    ).classList.add("show");
+document.getElementById(
+"modalBg"
+).classList.add("show");
 
 }
 
 
 function closeModal(){
 
-    document.getElementById(
-        "modalBg"
-    ).classList.remove("show");
+document.getElementById(
+"modalBg"
+).classList.remove("show");
 
 }
 
@@ -4937,7 +4387,7 @@ function closeModal(){
 
 if(currentUser){
 
-    startApp();
+startApp();
 
 }
 
