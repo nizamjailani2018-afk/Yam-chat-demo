@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.4.5</title>
+<title>YAM Chat V4.4.6</title>
 
 <style>
 *{
@@ -428,11 +428,52 @@ button{
     margin-top:-15px;
 }
 
+/*
+    V4.4.6
+    Background profile sekarang memenuhi
+    keseluruhan profile sampai ke bawah.
+*/
+
 .profile-main{
-    background:white;
+    position:relative;
+    min-height:calc(100vh - 58px);
     border-radius:0;
     overflow:hidden;
     box-shadow:0 3px 12px rgba(0,0,0,.08);
+
+    background-image:linear-gradient(
+        135deg,
+        #2563eb,
+        #111827
+    );
+
+    background-size:cover;
+    background-position:center top;
+    background-repeat:no-repeat;
+}
+
+/*
+    Lapisan gelap seluruh profile.
+    Ini membantu tulisan profile masih jelas.
+*/
+
+.profile-main::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.22);
+    z-index:0;
+    pointer-events:none;
+}
+
+/*
+    Semua kandungan profile berada
+    di atas background.
+*/
+
+.profile-main > *{
+    position:relative;
+    z-index:1;
 }
 
 /* ================= FULL SCREEN COVER ================= */
@@ -440,46 +481,63 @@ button{
 .profile-cover{
     width:100vw;
     height:360px;
+
     margin-left:calc(50% - 50vw);
     margin-right:calc(50% - 50vw);
-    background:linear-gradient(135deg,#2563eb,#111827);
+
+    background:transparent;
+
     background-size:cover;
     background-position:center;
+
     position:relative;
     overflow:visible;
+
+    z-index:2;
 }
 
 .cover-dark{
     position:absolute;
     inset:0;
+
     background:linear-gradient(
         to bottom,
         rgba(0,0,0,.05),
-        rgba(0,0,0,.42)
+        rgba(0,0,0,.32)
     );
+
     pointer-events:none;
 }
 
-/* ================= MUSIC BUTTON - KIRI ATAS COVER ================= */
+/* ================= MUSIC BUTTON ================= */
 
 .profile-music-button{
     position:absolute;
     top:15px;
     left:15px;
+
     width:44px;
     height:44px;
     min-width:44px;
     min-height:44px;
+
     padding:0;
+
     border-radius:50%;
+
     background:rgba(255,255,255,.96);
     color:#222;
+
     font-size:21px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     box-shadow:0 3px 12px rgba(0,0,0,.22);
+
     z-index:50;
+
     transition:.15s;
 }
 
@@ -496,29 +554,41 @@ button{
 
 .profile-top-actions{
     position:absolute;
+
     top:15px;
     right:15px;
+
     display:flex;
     align-items:center;
     justify-content:flex-end;
+
     gap:8px;
+
     z-index:50;
 }
 
 .profile-top-actions button{
     width:44px;
     height:44px;
+
     min-width:44px;
     min-height:44px;
+
     padding:0;
+
     border-radius:50%;
+
     background:rgba(255,255,255,.96);
     color:#222;
+
     font-size:21px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     box-shadow:0 3px 12px rgba(0,0,0,.22);
+
     transition:.15s;
 }
 
@@ -531,43 +601,64 @@ button{
 
 .profile-menu-wrap{
     position:relative;
+
     display:flex;
     justify-content:flex-end;
 }
 
 .profile-menu{
     position:absolute;
+
     top:52px;
     right:0;
+
     width:220px;
+
     background:white;
+
     border-radius:14px;
+
     padding:6px;
+
     box-shadow:0 8px 25px rgba(0,0,0,.25);
+
     border:1px solid rgba(0,0,0,.08);
+
     z-index:1000;
 }
 
 .profile-menu::before{
     content:"";
+
     position:absolute;
+
     top:-7px;
     right:14px;
+
     width:14px;
     height:14px;
+
     background:white;
+
     transform:rotate(45deg);
+
     border-left:1px solid rgba(0,0,0,.08);
     border-top:1px solid rgba(0,0,0,.08);
 }
 
 .profile-menu-item{
     position:relative;
+
     z-index:2;
+
     padding:13px 12px;
+
     border-radius:9px;
+
     cursor:pointer;
+
     font-weight:600;
+
     background:white;
 }
 
@@ -579,56 +670,80 @@ button{
     color:#dc2626;
 }
 
-/* ================= PROFILE INFO ================= */
+/* ================= PROFILE PICTURE ================= */
 
 .profile-picture-wrap{
     padding:0 18px;
+
     margin-top:-60px;
+
     position:relative;
+
     z-index:20;
 }
 
-/* ================= PROFILE PICTURE CAMERA ================= */
-
 .profile-picture-box{
     position:relative;
+
     width:115px;
     height:115px;
+
     display:block;
 }
 
 .profile-picture{
     width:115px;
     height:115px;
+
     border-radius:50%;
+
     border:5px solid white;
+
     object-fit:cover;
+
     background:#2563eb;
+
     box-shadow:0 4px 14px rgba(0,0,0,.25);
+
     display:block;
 }
 
 .profile-picture-camera{
     position:absolute;
+
     right:-3px;
     bottom:-3px;
+
     width:40px;
     height:40px;
+
     min-width:40px;
     min-height:40px;
+
     padding:0;
+
     border-radius:50%;
+
     background:#2563eb;
+
     color:white;
+
     font-size:19px;
+
     line-height:1;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     box-shadow:0 3px 10px rgba(0,0,0,.35);
+
     border:3px solid white;
+
     z-index:9999;
+
     cursor:pointer;
+
     transition:.15s;
 }
 
@@ -644,51 +759,84 @@ button{
 .profile-name{
     font-size:25px;
     font-weight:bold;
+
     margin-top:10px;
+
+    color:white;
+
+    text-shadow:0 2px 6px rgba(0,0,0,.45);
 }
 
 .profile-username{
-    color:#888;
+    color:rgba(255,255,255,.85);
+
     font-size:13px;
+
     margin-top:3px;
+
+    text-shadow:0 1px 4px rgba(0,0,0,.4);
 }
 
 .profile-status{
-    color:#555;
+    color:white;
+
     margin-top:8px;
+
     cursor:pointer;
+
+    text-shadow:0 1px 5px rgba(0,0,0,.45);
 }
 
 .profile-bio{
-    color:#444;
+    color:white;
+
     margin-top:10px;
+
     line-height:1.5;
+
     white-space:pre-wrap;
+
+    text-shadow:0 1px 5px rgba(0,0,0,.45);
 }
 
-/* ================= PROFILE EXTRA BUTTONS ================= */
+/* ================= PROFILE BUTTONS ================= */
 
 .profile-buttons{
     display:grid;
+
     grid-template-columns:repeat(2,1fr);
+
     gap:8px;
+
     padding:16px;
 }
 
 .profile-buttons button{
     padding:12px 8px;
+
     border-radius:11px;
-    background:#eef2ff;
+
+    background:rgba(255,255,255,.88);
+
     color:#2563eb;
+
     font-weight:bold;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
 }
 
 /* ================= INFO ================= */
 
 .info-title{
     padding:15px 15px 5px;
+
     font-size:18px;
+
     font-weight:bold;
+
+    color:white;
+
+    text-shadow:0 1px 5px rgba(0,0,0,.45);
 }
 
 .info-list{
@@ -696,31 +844,47 @@ button{
 }
 
 .info-row{
-    padding:12px 0;
-    border-bottom:1px solid #eee;
+    padding:12px 14px;
+
+    margin-top:7px;
+
+    border-bottom:1px solid rgba(255,255,255,.3);
+
+    background:rgba(255,255,255,.78);
+
+    border-radius:10px;
 }
 
 .info-label{
-    color:#888;
+    color:#555;
+
     font-size:12px;
+
     margin-bottom:3px;
 }
 
 .info-value{
     font-weight:500;
+    color:#222;
 }
 
 /* ================= MUSIC ================= */
 
 .music-box{
     margin:0 15px 15px;
-    background:#f5f7fb;
+
+    background:rgba(255,255,255,.90);
+
     padding:14px;
+
     border-radius:14px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
 }
 
 .music-title{
     font-weight:bold;
+
     margin-bottom:9px;
 }
 
@@ -730,13 +894,17 @@ button{
 
 .music-buttons{
     display:flex;
+
     gap:8px;
+
     margin-top:9px;
 }
 
 .music-buttons button{
     flex:1;
+
     padding:9px;
+
     border-radius:9px;
 }
 
@@ -744,25 +912,37 @@ button{
 
 .bottom-nav{
     position:fixed;
+
     left:0;
     right:0;
     bottom:0;
+
     z-index:200;
+
     height:65px;
+
     background:white;
+
     display:grid;
+
     grid-template-columns:repeat(4,1fr);
+
     box-shadow:0 -2px 12px rgba(0,0,0,.1);
 }
 
 .nav-btn{
     background:white;
+
     color:#777;
+
     font-size:12px;
+
     display:flex;
     flex-direction:column;
+
     align-items:center;
     justify-content:center;
+
     gap:3px;
 }
 
@@ -772,6 +952,7 @@ button{
 
 .nav-btn.active{
     color:#2563eb;
+
     font-weight:bold;
 }
 
@@ -779,12 +960,18 @@ button{
 
 .modal-bg{
     position:fixed;
+
     inset:0;
+
     z-index:500;
+
     background:rgba(0,0,0,.55);
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:18px;
 }
 
@@ -794,30 +981,43 @@ button{
 
 .modal{
     width:100%;
+
     max-width:500px;
+
     max-height:90vh;
+
     overflow:auto;
+
     background:white;
+
     border-radius:18px;
+
     padding:20px;
 }
 
 .modal-title{
     font-size:20px;
+
     font-weight:bold;
+
     margin-bottom:15px;
 }
 
 .modal-actions{
     display:flex;
+
     gap:8px;
+
     margin-top:15px;
 }
 
 .modal-actions button{
     flex:1;
+
     padding:12px;
+
     border-radius:10px;
+
     font-weight:bold;
 }
 
@@ -834,10 +1034,15 @@ button{
 
 .chat-overlay{
     position:fixed;
+
     inset:0;
+
     z-index:400;
+
     background:#eef2f7;
+
     display:none;
+
     flex-direction:column;
 }
 
@@ -847,16 +1052,23 @@ button{
 
 .chat-head{
     height:60px;
+
     background:white;
+
     display:flex;
+
     align-items:center;
+
     gap:10px;
+
     padding:0 12px;
+
     box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .chat-back{
     font-size:25px;
+
     background:transparent;
 }
 
@@ -866,43 +1078,61 @@ button{
 
 .chat-body{
     flex:1;
+
     overflow:auto;
+
     padding:15px;
 }
 
 .chat-message{
     max-width:75%;
+
     padding:10px 12px;
+
     border-radius:15px;
+
     margin-bottom:9px;
+
     background:white;
+
     box-shadow:0 2px 5px rgba(0,0,0,.05);
 }
 
 .chat-message.mine{
     margin-left:auto;
+
     background:#2563eb;
+
     color:white;
 }
 
 .chat-foot{
     background:white;
+
     padding:10px;
+
     display:flex;
+
     gap:8px;
 }
 
 .chat-foot input{
     flex:1;
+
     padding:12px;
+
     border:1px solid #ddd;
+
     border-radius:12px;
 }
 
 .chat-foot button{
     padding:0 17px;
+
     border-radius:12px;
+
     background:#2563eb;
+
     color:white;
 }
 
@@ -910,9 +1140,13 @@ button{
 
 .empty{
     text-align:center;
+
     padding:35px 15px;
+
     color:#888;
+
     background:white;
+
     border-radius:16px;
 }
 
@@ -937,9 +1171,12 @@ button{
     .profile-picture-camera{
         width:37px;
         height:37px;
+
         min-width:37px;
         min-height:37px;
+
         font-size:17px;
+
         right:-3px;
         bottom:-3px;
     }
@@ -1145,18 +1382,14 @@ button{
 
                     <div class="cover-dark"></div>
 
-                    <!-- MUSIC BUTTON - KIRI ATAS -->
-
                     <button
                         type="button"
                         class="profile-music-button"
                         onclick="openMusic()"
-                        title="Tambah / Tukar Music">
+                        title="Music">
                         🎵
                     </button>
 
-
-                    <!-- CAMERA + THREE DOT - KANAN ATAS -->
 
                     <div class="profile-top-actions">
 
@@ -1261,8 +1494,6 @@ button{
                 </div>
 
 
-                <!-- MUSIC BUTTON SUDAH DIBUANG DARI SINI -->
-
                 <div class="profile-buttons">
 
                     <button onclick="editStatus()">
@@ -1275,8 +1506,6 @@ button{
 
                 </div>
 
-
-                <!-- MUSIC PLAYER KEKAL DI SINI SELEPAS UPLOAD -->
 
                 <div
                     id="musicArea"
@@ -1470,9 +1699,9 @@ button{
 <script>
 
 /* =========================================================
-   YAM CHAT V4.4.5
-   MUSIC BUTTON DI KIRI ATAS COVER
-   CAMERA COVER + THREE DOT DI KANAN ATAS
+   YAM CHAT V4.4.6
+   FULL PROFILE BACKGROUND
+   MUSIC SYSTEM DIKEMASKINI
 ========================================================= */
 
 let currentUser =
@@ -3087,9 +3316,22 @@ function renderProfile(){
         "Belum ada bio.";
 
 
+    /*
+        V4.4.6
+        Background cover sekarang diletakkan
+        pada .profile-main supaya memenuhi
+        seluruh profile.
+    */
+
     const cover =
         localStorage.getItem(
             "yam_cover_" + currentUser
+        );
+
+
+    const profileMain =
+        document.querySelector(
+            ".profile-main"
         );
 
 
@@ -3099,15 +3341,27 @@ function renderProfile(){
         );
 
 
-    if(cover){
+    if(profileMain){
+
+        if(cover){
+
+            profileMain.style.backgroundImage =
+                `url("${cover}")`;
+
+        }else{
+
+            profileMain.style.backgroundImage =
+                "linear-gradient(135deg,#2563eb,#111827)";
+
+        }
+
+    }
+
+
+    if(coverElement){
 
         coverElement.style.backgroundImage =
-            `url("${cover}")`;
-
-    }else{
-
-        coverElement.style.backgroundImage =
-            "linear-gradient(135deg,#2563eb,#111827)";
+            "none";
 
     }
 
@@ -3223,6 +3477,7 @@ function changeProfilePicture(){
 
     if(input){
 
+        input.value = "";
         input.click();
 
     }
@@ -3292,6 +3547,7 @@ function changeCover(){
 
     if(input){
 
+        input.value = "";
         input.click();
 
     }
@@ -3805,24 +4061,59 @@ function openPrivacy(){
 }
 
 
-/* ================= MUSIC ================= */
+/* ================= MUSIC V4.4.6 ================= */
+
+/*
+    Jika belum ada music:
+    tekan 🎵 → pilih music.
+
+    Jika sudah ada music:
+    tekan 🎵 → player terus muncul
+    dan YAM cuba memainkan music.
+
+    Butang Tukar Music masih tersedia.
+*/
 
 function openMusic(){
 
-    const input =
-        document.getElementById(
-            "musicFile"
+    const savedMusic =
+        localStorage.getItem(
+            "yam_music_" + currentUser
         );
 
-    if(input){
 
-        input.value = "";
-        input.click();
+    /*
+        BELUM ADA MUSIC
+    */
 
+    if(!savedMusic){
+
+        const input =
+            document.getElementById(
+                "musicFile"
+            );
+
+        if(input){
+
+            input.value = "";
+            input.click();
+
+        }
+
+        return;
     }
+
+
+    /*
+        SUDAH ADA MUSIC
+    */
+
+    renderMusic(true);
 
 }
 
+
+/* ================= MUSIC FILE ================= */
 
 document.getElementById(
     "musicFile"
@@ -3837,6 +4128,29 @@ document.getElementById(
 
         if(!file) return;
 
+
+        /*
+            Pastikan file memang audio.
+        */
+
+        if(
+            file.type &&
+            !file.type.startsWith("audio/")
+        ){
+
+            alert(
+                "Sila pilih fail music/audio."
+            );
+
+            this.value = "";
+
+            return;
+        }
+
+
+        /*
+            Had 8MB seperti versi lama.
+        */
 
         if(file.size > 8 * 1024 * 1024){
 
@@ -3854,22 +4168,44 @@ document.getElementById(
             new FileReader();
 
 
+        reader.onerror =
+            function(){
+
+                alert(
+                    "Music gagal dibaca. Cuba fail lain."
+                );
+
+            };
+
+
         reader.onload =
             function(e){
 
-                localStorage.setItem(
-                    "yam_music_" +
-                    currentUser,
-                    JSON.stringify({
+                try{
 
-                        name:file.name,
-                        data:e.target.result
+                    localStorage.setItem(
+                        "yam_music_" +
+                        currentUser,
+                        JSON.stringify({
 
-                    })
-                );
+                            name:file.name,
+                            data:e.target.result
+
+                        })
+                    );
 
 
-                renderMusic();
+                    renderMusic(true);
+
+                }catch(error){
+
+                    console.error(error);
+
+                    alert(
+                        "Music terlalu besar untuk disimpan dalam browser. Cuba music yang lebih kecil."
+                    );
+
+                }
 
             };
 
@@ -3880,7 +4216,11 @@ document.getElementById(
 );
 
 
-function renderMusic(){
+/* ================= RENDER MUSIC ================= */
+
+function renderMusic(
+    autoPlay = false
+){
 
     const area =
         document.getElementById(
@@ -3891,12 +4231,16 @@ function renderMusic(){
     if(!area) return;
 
 
+    const saved =
+        localStorage.getItem(
+            "yam_music_" +
+            currentUser
+        );
+
+
     const music =
         JSON.parse(
-            localStorage.getItem(
-                "yam_music_" +
-                currentUser
-            ) || "null"
+            saved || "null"
         );
 
 
@@ -3929,7 +4273,9 @@ function renderMusic(){
 
 
         <audio
+            id="yamAudioPlayer"
             controls
+            preload="auto"
             src="${music.data}">
         </audio>
 
@@ -3937,7 +4283,7 @@ function renderMusic(){
         <div class="music-buttons">
 
             <button
-                onclick="openMusic()">
+                onclick="changeMusic()">
 
                 🔄 Tukar Music
 
@@ -3959,15 +4305,100 @@ function renderMusic(){
 
     `;
 
+
+    /*
+        Cuba play selepas player
+        dimasukkan ke dalam page.
+    */
+
+    if(autoPlay){
+
+        setTimeout(
+            function(){
+
+                const audio =
+                    document.getElementById(
+                        "yamAudioPlayer"
+                    );
+
+
+                if(!audio) return;
+
+
+                audio.load();
+
+
+                const playPromise =
+                    audio.play();
+
+
+                if(
+                    playPromise &&
+                    typeof playPromise.catch === "function"
+                ){
+
+                    playPromise.catch(
+                        function(){
+
+                            /*
+                                Sesetengah browser phone
+                                menyekat autoplay.
+                                Player tetap dipaparkan.
+                            */
+
+                        }
+                    );
+
+                }
+
+            },
+            50
+        );
+
+    }
+
 }
 
 
+/* ================= CHANGE MUSIC ================= */
+
+function changeMusic(){
+
+    const input =
+        document.getElementById(
+            "musicFile"
+        );
+
+
+    if(input){
+
+        input.value = "";
+        input.click();
+
+    }
+
+}
+
+
+/* ================= REMOVE MUSIC ================= */
+
 function removeMusic(){
+
+    if(
+        !confirm(
+            "Buang music ini dari profile?"
+        )
+    ){
+
+        return;
+    }
+
 
     localStorage.removeItem(
         "yam_music_" +
         currentUser
     );
+
 
     renderMusic();
 
