@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.3.7</title>
+<title>YAM Chat V4.3.8</title>
 
 <style>
 *{
@@ -206,7 +206,7 @@ body{
 }
 
 /* =====================================================
-   PROFILE V4.3.7
+   PROFILE V4.3.8
 ===================================================== */
 
 .profile{
@@ -281,7 +281,7 @@ body{
     position:absolute;
     right:0;
     top:48px;
-    width:190px;
+    width:210px;
     background:white;
     border:1px solid #ddd;
     border-radius:10px;
@@ -297,7 +297,7 @@ body{
 
 .profile-dropdown button{
     width:100%;
-    padding:13px;
+    padding:14px;
     border:0;
     border-bottom:1px solid #eee;
     background:white;
@@ -314,6 +314,10 @@ body{
 
 .profile-dropdown button:active{
     background:#eeeeee;
+}
+
+.profile-dropdown .logout-option{
+    color:#d32f2f;
 }
 
 /* =========================
@@ -347,7 +351,6 @@ body{
 ========================= */
 
 .profile-top,
-.profile-actions,
 .profile-info,
 .profile-music{
     position:relative;
@@ -418,6 +421,10 @@ body{
     transform:scale(.94);
 }
 
+/* =========================
+   PROFILE NAME
+========================= */
+
 .profile-name{
     color:white;
     font-size:23px;
@@ -426,10 +433,39 @@ body{
     text-shadow:0 2px 5px rgba(0,0,0,.55);
 }
 
-.profile-status{
-    color:rgba(255,255,255,.95);
-    margin-top:5px;
+/* =========================
+   PROFILE STATUS BUTTON
+========================= */
+
+.profile-status-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    margin-top:6px;
+    padding:6px 12px;
+    border:1px solid rgba(255,255,255,.65);
+    border-radius:20px;
+    background:rgba(0,0,0,.25);
+    color:white;
+    font-size:13px;
+    cursor:pointer;
     text-shadow:0 1px 4px rgba(0,0,0,.5);
+    box-shadow:0 2px 6px rgba(0,0,0,.18);
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.profile-status-button:active{
+    transform:scale(.96);
+}
+
+.status-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#4caf50;
+    box-shadow:0 0 5px rgba(76,175,80,.8);
 }
 
 .profile-bio{
@@ -547,28 +583,6 @@ body{
 .private-text{
     color:rgba(255,255,255,.75);
     font-style:italic;
-}
-
-/* =========================
-   PROFILE ACTIONS
-========================= */
-
-.profile-actions{
-    display:flex;
-    gap:8px;
-    padding:0 20px 15px;
-}
-
-.profile-actions button{
-    flex:1;
-    padding:10px 5px;
-    border:1px solid rgba(255,255,255,.7);
-    border-radius:8px;
-    background:rgba(255,255,255,.95);
-    color:#222;
-    cursor:pointer;
-    font-size:12px;
-    touch-action:manipulation;
 }
 
 /* =========================
@@ -1314,10 +1328,34 @@ body{
 
                         <button
                             type="button"
-                            id="editProfileButton"
                             onclick="openEditProfile();">
 
                             ✏️ Edit Profile
+
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="changeName();">
+
+                            👤 Tukar Nama
+
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="changePassword();">
+
+                            🔐 Tukar Password
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="logout-option"
+                            onclick="logout();">
+
+                            🚪 Logout
 
                         </button>
 
@@ -1367,12 +1405,16 @@ body{
 
                 </div>
 
-                <div id="profileStatus"
-                     class="profile-status">
+                <button
+                    type="button"
+                    id="profileStatus"
+                    class="profile-status-button"
+                    onclick="editStatus();">
 
-                    Online
+                    <span class="status-dot"></span>
+                    <span id="profileStatusText">Online</span>
 
-                </div>
+                </button>
 
                 <div id="profileBio"
                      class="profile-bio">
@@ -1393,34 +1435,6 @@ body{
 
                 <div id="musicContent">
                 </div>
-
-            </div>
-
-            <div class="profile-actions">
-
-                <button
-                    type="button"
-                    onclick="changeName();">
-
-                    ✏️ Tukar Nama
-
-                </button>
-
-                <button
-                    type="button"
-                    onclick="changePassword();">
-
-                    🔐 Tukar Password
-
-                </button>
-
-                <button
-                    type="button"
-                    onclick="logout();">
-
-                    🚪 Logout
-
-                </button>
 
             </div>
 
@@ -2055,9 +2069,14 @@ function loadProfile(){
             "yam_status_" + username
         ) || "Online";
 
-    document.getElementById(
-        "profileStatus"
-    ).innerText = status;
+    const statusText =
+        document.getElementById(
+            "profileStatusText"
+        );
+
+    if(statusText){
+        statusText.innerText = status;
+    }
 
     document.getElementById(
         "profileBio"
@@ -2265,7 +2284,7 @@ function saveCoverPhoto(event){
 }
 
 /* =====================================================
-   PROFILE MUSIC V4.3.7
+   PROFILE MUSIC
 ===================================================== */
 
 function changeProfileMusic(){
@@ -2309,11 +2328,6 @@ function saveProfileMusic(event){
         return;
 
     }
-
-    /*
-       localStorage mempunyai ruang terhad.
-       Kita hadkan music kepada kira-kira 8MB.
-    */
 
     const maxSize =
         8 * 1024 * 1024;
@@ -2839,6 +2853,8 @@ function cancelEditProfile(){
 
 function changeName(){
 
+    closeProfileMenu();
+
     const username =
         getCurrentUser();
 
@@ -2893,6 +2909,10 @@ function editStatus(){
     const username =
         getCurrentUser();
 
+    if(!username){
+        return;
+    }
+
     const oldStatus =
         localStorage.getItem(
             "yam_status_" + username
@@ -2900,7 +2920,7 @@ function editStatus(){
 
     const newStatus =
         prompt(
-            "Masukkan status baru:",
+            "Tulis status anda:",
             oldStatus
         );
 
@@ -2912,7 +2932,23 @@ function editStatus(){
         newStatus.trim();
 
     if(!cleanStatus){
+
+        alert(
+            "Status tidak boleh kosong."
+        );
+
         return;
+
+    }
+
+    if(cleanStatus.length > 60){
+
+        alert(
+            "Status maksimum 60 aksara."
+        );
+
+        return;
+
     }
 
     localStorage.setItem(
@@ -2929,6 +2965,8 @@ function editStatus(){
 ===================================================== */
 
 function changePassword(){
+
+    closeProfileMenu();
 
     const username =
         getCurrentUser();
@@ -3019,13 +3057,13 @@ function changePassword(){
 
 function logout(){
 
+    closeProfileMenu();
+
     if(!confirm(
         "Betul mahu logout?"
     )){
         return;
     }
-
-    closeProfileMenu();
 
     localStorage.removeItem(
         "yam_current_user"
@@ -4043,9 +4081,7 @@ function loadRoomUsers(){
 
             `;
 
-            list.appendChild(
-                item
-            );
+            list.appendChild(item);
 
         }
     );
