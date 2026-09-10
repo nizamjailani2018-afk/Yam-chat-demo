@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.5</title>
+<title>YAM Chat V4.5.1</title>
 
 <style>
 *{
@@ -15,21 +15,13 @@
 
 html,body{
     width:100%;
+    min-height:100%;
     overflow-x:hidden;
 }
 
 body{
-    background:#eef2f7;
-    color:#222;
-}
-
-button{
-    border:0;
-    cursor:pointer;
-}
-
-.hidden{
-    display:none!important;
+    background:#eef3ff;
+    color:#111827;
 }
 
 /* =========================
@@ -42,84 +34,82 @@ button{
     align-items:center;
     justify-content:center;
     padding:20px;
-    background:linear-gradient(135deg,#2563eb,#0f172a);
+    background:linear-gradient(135deg,#0d47a1,#1976d2,#42a5f5);
 }
 
 .login-box{
     width:100%;
-    max-width:420px;
+    max-width:390px;
     background:white;
-    padding:28px;
-    border-radius:20px;
+    padding:30px 22px;
+    border-radius:22px;
     box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
-.logo{
-    display:flex;
-    align-items:baseline;
-    justify-content:center;
-    gap:6px;
-    width:max-content;
-    margin:0 auto 10px;
-    padding:8px 16px;
-    background:#2563eb;
-    border-radius:14px;
-    box-shadow:0 5px 15px rgba(0,0,0,.20);
-    line-height:1;
-}
-
-.logo-yam{
-    font-size:40px;
-    font-weight:900;
-    letter-spacing:1px;
-    color:#ff4fa3;
-}
-
-.logo-chat{
-    font-size:17px;
-    font-weight:800;
-    font-style:italic;
-    letter-spacing:.7px;
-    color:#ff4fa3;
-    transform:skewX(-10deg);
-}
-
-.login-sub{
+.logo-box{
     text-align:center;
-    color:#777;
     margin-bottom:25px;
+}
+
+.logo-main{
+    font-size:44px;
+    font-weight:900;
+    color:#ff1493;
+    letter-spacing:2px;
+}
+
+.logo-sub{
+    font-size:14px;
+    font-weight:bold;
+    color:#1976d2;
+    margin-top:-4px;
 }
 
 .input{
     width:100%;
-    padding:13px;
-    border:1px solid #ddd;
-    border-radius:10px;
+    padding:14px;
     margin-bottom:12px;
+    border:1px solid #d1d5db;
+    border-radius:12px;
     outline:none;
+    font-size:15px;
 }
 
 .input:focus{
-    border-color:#2563eb;
+    border-color:#1976d2;
 }
 
-.primary-btn{
+.btn{
     width:100%;
+    border:none;
     padding:13px;
-    border-radius:10px;
-    background:#2563eb;
+    border-radius:12px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn-primary{
+    background:#1976d2;
     color:white;
-    font-weight:bold;
 }
 
-.secondary-btn{
-    width:100%;
-    padding:13px;
-    border-radius:10px;
-    background:#eef2ff;
-    color:#2563eb;
+.btn-pink{
+    background:#ff1493;
+    color:white;
+}
+
+.btn-gray{
+    background:#e5e7eb;
+    color:#111827;
+}
+
+.small-btn{
+    padding:9px 13px;
+    border:none;
+    border-radius:9px;
+    cursor:pointer;
     font-weight:bold;
-    margin-top:10px;
 }
 
 /* =========================
@@ -129,67 +119,55 @@ button{
 #app{
     display:none;
     min-height:100vh;
+    padding-bottom:70px;
 }
 
 .topbar{
     position:sticky;
     top:0;
-    z-index:100;
-    height:52px;
+    z-index:50;
+    height:62px;
     background:white;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 12px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    padding:0 14px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 
 .top-logo{
     display:flex;
-    align-items:baseline;
-    gap:5px;
-    padding:6px 12px;
-    background:#2563eb;
-    border-radius:12px;
-    box-shadow:0 3px 10px rgba(0,0,0,.18);
-    line-height:1;
+    align-items:center;
+    gap:6px;
 }
 
-.top-logo .yam-text{
-    font-size:30px;
+.top-logo-yam{
+    font-size:24px;
     font-weight:900;
-    letter-spacing:1px;
-    color:#ff4fa3;
+    color:#ff1493;
 }
 
-.top-logo .chat-text{
-    font-size:15px;
-    font-weight:800;
-    font-style:italic;
-    letter-spacing:.6px;
-    color:#ff4fa3;
-    transform:skewX(-8deg);
-}
-
-.top-user{
+.top-logo-chat{
+    font-size:12px;
     font-weight:bold;
-    color:#444;
-    font-size:14px;
-    max-width:45%;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    color:#1976d2;
 }
 
-.main{
-    max-width:700px;
-    margin:auto;
-    padding:15px;
-    padding-bottom:90px;
+.current-user{
+    font-size:13px;
+    font-weight:bold;
+    color:#374151;
 }
+
+/* =========================
+   PAGES
+========================= */
 
 .page{
     display:none;
+    max-width:720px;
+    margin:auto;
+    padding:14px;
 }
 
 .page.active{
@@ -197,142 +175,79 @@ button{
 }
 
 /* =========================
-   PROFILE MODE
+   COMPOSER
 ========================= */
 
-body.profile-active .topbar{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    height:52px;
-    background:#2563eb;
-    box-shadow:0 2px 10px rgba(0,0,0,.15);
-}
-
-body.profile-active .top-logo{
-    background:#2563eb;
-    box-shadow:none;
-}
-
-body.profile-active .top-user{
-    color:white;
-}
-
-body.profile-active .main{
-    padding-top:0;
-}
-
-body.profile-active #profilePage{
-    margin-top:0;
-}
-
-/* =========================
-   HOME
-========================= */
-
-.create-box{
+.composer{
     background:white;
-    border-radius:18px;
-    padding:15px;
-    box-shadow:0 3px 12px rgba(0,0,0,.06);
-    margin-bottom:15px;
+    border-radius:16px;
+    padding:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    margin-bottom:14px;
 }
 
-.create-title{
-    font-size:18px;
-    font-weight:bold;
-    margin-bottom:12px;
-}
-
-.post-options{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-}
-
-.post-option{
-    padding:13px 5px;
-    border-radius:12px;
-    background:#f1f5f9;
-    font-weight:bold;
-    color:#334155;
-}
-
-.post-option.active{
-    background:#2563eb;
-    color:white;
-}
-
-.post-editor{
-    margin-top:12px;
-}
-
-.post-editor textarea{
+.composer textarea{
     width:100%;
-    min-height:100px;
-    resize:none;
-    border:1px solid #ddd;
+    min-height:85px;
+    resize:vertical;
+    border:1px solid #e5e7eb;
     border-radius:12px;
     padding:12px;
     outline:none;
 }
 
-/* MEDIA PREVIEW - DIBESARKAN */
+.post-type-row{
+    display:flex;
+    gap:7px;
+    margin-top:10px;
+    flex-wrap:wrap;
+}
+
+.post-type-btn{
+    border:none;
+    background:#f1f5f9;
+    padding:9px 12px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.post-type-btn.active{
+    background:#1976d2;
+    color:white;
+}
 
 .media-preview{
     margin-top:10px;
-    width:100%;
 }
 
 .media-preview img,
 .media-preview video{
     display:block;
     width:100%;
-    max-width:100%;
-    max-height:600px;
+    max-height:520px;
     height:auto;
     object-fit:contain;
     border-radius:12px;
     background:#000;
 }
 
-.media-preview video{
-    min-height:180px;
-}
-
-.editor-actions{
-    display:flex;
-    gap:8px;
-    margin-top:10px;
-}
-
-.editor-actions button{
-    flex:1;
-    padding:12px;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-.cancel-btn{
-    background:#eee;
-}
-
-.post-btn{
-    background:#2563eb;
-    color:white;
+.file-info{
+    margin-top:7px;
+    font-size:12px;
+    color:#6b7280;
 }
 
 /* =========================
-   POSTS
+   POST
 ========================= */
 
-.post-card{
+.post{
     background:white;
-    border-radius:18px;
-    padding:15px;
-    margin-bottom:15px;
-    box-shadow:0 3px 12px rgba(0,0,0,.06);
+    border-radius:16px;
+    padding:14px;
+    margin-bottom:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .post-head{
@@ -342,78 +257,84 @@ body.profile-active #profilePage{
 }
 
 .avatar{
-    width:45px;
-    height:45px;
+    width:44px;
+    height:44px;
     border-radius:50%;
     object-fit:cover;
-    background:#2563eb;
+    background:#dbeafe;
 }
 
-.avatar-small{
-    width:35px;
-    height:35px;
+.avatar-placeholder{
+    width:44px;
+    height:44px;
     border-radius:50%;
-    object-fit:cover;
-    background:#2563eb;
+    background:#1976d2;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
 }
 
 .post-user{
+    flex:1;
+}
+
+.post-user-name{
     font-weight:bold;
 }
 
 .post-time{
-    font-size:12px;
-    color:#888;
+    color:#6b7280;
+    font-size:11px;
     margin-top:3px;
 }
 
 .post-menu{
-    margin-left:auto;
-    font-size:22px;
-    background:transparent;
+    border:none;
+    background:none;
+    font-size:20px;
+    cursor:pointer;
 }
 
 .post-text{
-    margin:14px 0;
-    white-space:pre-wrap;
+    margin:12px 0;
     line-height:1.5;
+    white-space:pre-wrap;
+    word-break:break-word;
 }
-
-/* POST MEDIA - LEBIH BESAR */
 
 .post-media{
     display:block;
     width:100%;
-    max-width:100%;
     max-height:650px;
     height:auto;
     object-fit:contain;
     border-radius:12px;
     background:#000;
-}
-
-.post-media video{
-    width:100%;
+    margin-top:10px;
 }
 
 .post-actions{
     display:flex;
-    gap:5px;
-    margin-top:10px;
+    gap:8px;
+    margin-top:12px;
     border-top:1px solid #eee;
     padding-top:10px;
 }
 
-.post-actions button{
+.action-btn{
     flex:1;
-    padding:9px 5px;
+    border:none;
+    background:#f8fafc;
+    padding:9px;
     border-radius:9px;
-    background:#f1f5f9;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.post-actions button.liked{
-    color:#2563eb;
-    font-weight:bold;
+.action-btn.liked{
+    color:#ff1493;
 }
 
 .comments{
@@ -421,351 +342,143 @@ body.profile-active #profilePage{
 }
 
 .comment{
-    display:flex;
-    gap:8px;
-    margin-top:9px;
-}
-
-.comment-body{
-    flex:1;
     background:#f1f5f9;
-    border-radius:12px;
     padding:8px 10px;
+    border-radius:10px;
+    margin-top:7px;
+    font-size:13px;
 }
 
 .comment-name{
     font-weight:bold;
-    font-size:13px;
 }
 
-.comment-text{
-    margin-top:3px;
-    white-space:pre-wrap;
+.comment-row{
+    display:flex;
+    gap:6px;
+    margin-top:9px;
 }
 
 .comment-input{
-    display:flex;
-    gap:7px;
-    margin-top:10px;
-}
-
-.comment-input input{
     flex:1;
     border:1px solid #ddd;
-    border-radius:10px;
-    padding:10px;
-}
-
-.comment-input button{
-    background:#2563eb;
-    color:white;
-    padding:0 15px;
-    border-radius:10px;
-}
-
-/* =========================
-   FRIENDS
-========================= */
-
-.section-title{
-    font-size:22px;
-    font-weight:bold;
-    margin-bottom:15px;
-}
-
-.friend-card{
-    background:white;
-    border-radius:15px;
-    padding:12px;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    box-shadow:0 3px 10px rgba(0,0,0,.05);
-}
-
-.friend-info{
-    flex:1;
-}
-
-.friend-name{
-    font-weight:bold;
-}
-
-.friend-status{
-    color:#777;
-    font-size:13px;
-    margin-top:4px;
-}
-
-.chat-btn{
-    background:#2563eb;
-    color:white;
-    padding:9px 13px;
     border-radius:9px;
+    padding:9px;
+}
+
+.comment-send{
+    border:none;
+    background:#1976d2;
+    color:white;
+    border-radius:9px;
+    padding:0 12px;
     font-weight:bold;
-}
-
-/* =========================
-   ROOMS
-========================= */
-
-.room-card{
-    background:white;
-    padding:16px;
-    border-radius:16px;
-    margin-bottom:10px;
-    box-shadow:0 3px 10px rgba(0,0,0,.05);
-    cursor:pointer;
-}
-
-.room-name{
-    font-weight:bold;
-    font-size:17px;
-}
-
-.room-region{
-    color:#777;
-    margin-top:5px;
-    font-size:13px;
 }
 
 /* =========================
    PROFILE
 ========================= */
 
-#profilePage{
-    margin-left:-15px;
-    margin-right:-15px;
-    margin-top:-15px;
-}
-
-.profile-main{
-    position:relative;
-    min-height:100vh;
-    overflow:hidden;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-    background-image:linear-gradient(135deg,#2563eb,#111827);
-    background-size:cover;
-    background-position:center top;
-    background-repeat:no-repeat;
-}
-
-.profile-main > *{
-    position:relative;
-    z-index:1;
-}
-
 .profile-cover{
-    width:100vw;
-    height:285px;
-    margin-left:calc(50% - 50vw);
-    margin-right:calc(50% - 50vw);
-    background:transparent;
-    position:relative;
-    overflow:visible;
-    z-index:30;
-}
-
-.cover-dark{
-    position:absolute;
-    inset:0;
-    background:transparent;
-    pointer-events:none;
-}
-
-.profile-music-button{
-    position:absolute;
-    top:58px;
-    left:12px;
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:rgba(255,255,255,.96);
-    color:#222;
-    font-size:20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 3px 12px rgba(0,0,0,.22);
-    z-index:99998;
-}
-
-.profile-top-actions{
-    position:absolute;
-    top:58px;
-    right:12px;
-    display:flex;
-    align-items:center;
-    gap:7px;
-    z-index:99998;
-}
-
-.profile-top-actions button{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:rgba(255,255,255,.96);
-    color:#222;
-    font-size:20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 3px 12px rgba(0,0,0,.22);
-}
-
-.profile-menu-wrap{
+    height:210px;
+    border-radius:16px;
+    overflow:hidden;
+    background:linear-gradient(135deg,#1976d2,#90caf9);
     position:relative;
 }
 
-.profile-menu{
-    position:absolute;
-    top:50px;
-    right:0;
-    width:220px;
-    background:white;
-    border-radius:14px;
-    padding:6px;
-    box-shadow:0 8px 25px rgba(0,0,0,.25);
-    z-index:100000;
-}
-
-.profile-menu-item{
-    padding:13px 12px;
-    border-radius:9px;
-    font-weight:600;
-}
-
-.profile-menu-item:hover{
-    background:#f1f5f9;
-}
-
-.logout-item{
-    color:#dc2626;
-}
-
-.profile-picture-wrap{
-    padding:0 18px;
-    margin-top:-75px;
-    position:relative;
-    z-index:20;
-}
-
-.profile-picture-box{
-    position:relative;
-    width:115px;
-    height:115px;
-}
-
-.profile-picture{
-    width:115px;
-    height:115px;
-    border-radius:50%;
-    border:5px solid white;
+.profile-cover img{
+    width:100%;
+    height:100%;
     object-fit:cover;
-    background:#2563eb;
-    box-shadow:0 4px 14px rgba(0,0,0,.25);
 }
 
-.profile-picture-camera{
-    position:absolute;
-    right:-3px;
-    bottom:-3px;
-    width:40px;
-    height:40px;
+.profile-card{
+    background:white;
+    border-radius:16px;
+    margin-top:-35px;
+    position:relative;
+    padding:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.profile-avatar-wrap{
+    margin-top:-55px;
+}
+
+.profile-avatar{
+    width:100px;
+    height:100px;
     border-radius:50%;
-    background:#2563eb;
-    color:white;
-    font-size:19px;
-    border:3px solid white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    object-fit:cover;
+    border:4px solid white;
+    background:#1976d2;
 }
 
 .profile-name{
-    font-size:25px;
+    font-size:21px;
     font-weight:bold;
-    margin-top:10px;
-    color:white;
-    text-shadow:0 2px 6px rgba(0,0,0,.45);
-}
-
-.profile-username{
-    color:rgba(255,255,255,.85);
-    font-size:13px;
-    margin-top:3px;
-}
-
-.profile-status{
-    color:white;
     margin-top:8px;
 }
 
-.profile-bio{
-    color:white;
-    margin-top:10px;
-    line-height:1.5;
-    white-space:pre-wrap;
+.profile-username{
+    color:#6b7280;
+    font-size:13px;
 }
 
-/* =========================
-   PROFILE BUTTONS
-========================= */
+.profile-bio{
+    margin-top:9px;
+    line-height:1.45;
+}
+
+.profile-status{
+    display:inline-block;
+    margin-top:9px;
+    background:#e0f2fe;
+    color:#0369a1;
+    padding:6px 9px;
+    border-radius:8px;
+    font-size:12px;
+}
 
 .profile-buttons{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:8px;
-    padding:14px 16px;
+    display:flex;
+    gap:7px;
+    margin-top:12px;
 }
 
 .profile-buttons button{
-    padding:12px 8px;
-    border-radius:11px;
-    background:rgba(255,255,255,.88);
-    color:#2563eb;
-    font-weight:bold;
-}
-
-/* =========================
-   PROFILE CONTENT TABS
-========================= */
-
-.profile-content{
-    margin:0 15px 15px;
-    background:rgba(255,255,255,.94);
-    border-radius:16px;
-    overflow:hidden;
-    box-shadow:0 3px 12px rgba(0,0,0,.12);
+    flex:1;
 }
 
 .profile-tabs{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    border-bottom:1px solid #ddd;
+    gap:4px;
+    margin-top:14px;
+    background:white;
+    padding:5px;
+    border-radius:12px;
 }
 
 .profile-tab{
-    padding:13px 4px;
-    background:white;
-    color:#777;
+    border:none;
+    background:#f1f5f9;
+    padding:10px 3px;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:12px;
     font-weight:bold;
-    font-size:13px;
 }
 
 .profile-tab.active{
-    color:#2563eb;
-    border-bottom:3px solid #2563eb;
+    background:#1976d2;
+    color:white;
 }
 
 .profile-tab-content{
-    padding:12px;
+    margin-top:12px;
 }
-
-/* =========================
-   PROFILE IMAGE GRID
-========================= */
 
 .profile-media-grid{
     display:grid;
@@ -788,10 +501,6 @@ body.profile-active #profilePage{
     display:block;
 }
 
-/* =========================
-   PROFILE VIDEO - BESAR
-========================= */
-
 .profile-video-list{
     display:flex;
     flex-direction:column;
@@ -799,72 +508,117 @@ body.profile-active #profilePage{
 }
 
 .profile-video-card{
-    background:#f8fafc;
+    background:white;
     border-radius:12px;
     padding:8px;
     overflow:hidden;
+    box-shadow:0 2px 7px rgba(0,0,0,.07);
 }
 
 .profile-video-card video{
-    display:block;
     width:100%;
     height:auto;
-    max-height:600px;
-    object-fit:contain;
+    max-height:520px;
+    display:block;
     border-radius:10px;
     background:#000;
 }
 
-.profile-video-date{
+.profile-video-text{
     padding:8px 3px 2px;
-    color:#777;
-    font-size:12px;
+    line-height:1.45;
 }
 
-.video-mark{
-    position:absolute;
-    right:6px;
-    bottom:6px;
-    background:rgba(0,0,0,.65);
-    color:white;
-    border-radius:50%;
-    width:30px;
-    height:30px;
+/* =========================
+   FRIENDS
+========================= */
+
+.friend-card{
+    background:white;
+    padding:12px;
+    border-radius:14px;
+    margin-bottom:9px;
     display:flex;
     align-items:center;
-    justify-content:center;
+    gap:10px;
+    box-shadow:0 2px 7px rgba(0,0,0,.06);
+}
+
+.friend-info{
+    flex:1;
+}
+
+.friend-name{
+    font-weight:bold;
+}
+
+.friend-btn{
+    border:none;
+    background:#1976d2;
+    color:white;
+    padding:8px 11px;
+    border-radius:9px;
+    font-weight:bold;
+}
+
+/* =========================
+   ROOMS
+========================= */
+
+.room-card{
+    background:white;
+    padding:15px;
+    border-radius:14px;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    box-shadow:0 2px 7px rgba(0,0,0,.06);
+}
+
+.room-info{
+    flex:1;
+}
+
+.room-name{
+    font-weight:bold;
+}
+
+.room-region{
+    color:#6b7280;
+    font-size:12px;
+    margin-top:3px;
+}
+
+.room-btn{
+    border:none;
+    background:#ff1493;
+    color:white;
+    padding:8px 12px;
+    border-radius:9px;
+    font-weight:bold;
 }
 
 /* =========================
    MARKET
 ========================= */
 
-.market-add{
-    width:100%;
-    padding:12px;
-    border-radius:10px;
-    background:#2563eb;
-    color:white;
-    font-weight:bold;
-    margin-bottom:12px;
-}
-
 .market-card{
-    border:1px solid #e5e7eb;
-    border-radius:14px;
-    overflow:hidden;
-    margin-bottom:12px;
     background:white;
+    border-radius:15px;
+    overflow:hidden;
+    margin-bottom:13px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
-.market-image{
+.market-card img{
     width:100%;
-    height:210px;
+    max-height:360px;
     object-fit:cover;
-    background:#f1f5f9;
+    display:block;
 }
 
-.market-info{
+.market-body{
     padding:12px;
 }
 
@@ -874,23 +628,15 @@ body.profile-active #profilePage{
 }
 
 .market-price{
-    color:#dc2626;
-    font-size:19px;
+    color:#e11d48;
     font-weight:bold;
+    font-size:17px;
     margin-top:5px;
 }
 
-.market-description{
-    color:#555;
-    line-height:1.45;
-    margin-top:7px;
-    white-space:pre-wrap;
-}
-
-.market-owner{
-    color:#888;
-    font-size:12px;
-    margin-top:8px;
+.market-desc{
+    margin-top:6px;
+    line-height:1.4;
 }
 
 .market-actions{
@@ -901,48 +647,6 @@ body.profile-active #profilePage{
 
 .market-actions button{
     flex:1;
-    padding:9px;
-    border-radius:9px;
-    font-weight:bold;
-}
-
-.market-delete{
-    background:#fee2e2;
-    color:#dc2626;
-}
-
-/* =========================
-   INFO
-========================= */
-
-.info-title{
-    padding:15px 15px 5px;
-    font-size:18px;
-    font-weight:bold;
-    color:white;
-}
-
-.info-list{
-    padding:0 15px 15px;
-}
-
-.info-row{
-    padding:12px 14px;
-    margin-top:7px;
-    border-bottom:1px solid rgba(255,255,255,.3);
-    background:rgba(255,255,255,.78);
-    border-radius:10px;
-}
-
-.info-label{
-    color:#555;
-    font-size:12px;
-    margin-bottom:3px;
-}
-
-.info-value{
-    font-weight:500;
-    color:#222;
 }
 
 /* =========================
@@ -950,31 +654,15 @@ body.profile-active #profilePage{
 ========================= */
 
 .music-box{
-    margin:0 15px 15px;
-    background:rgba(255,255,255,.90);
-    padding:14px;
+    background:white;
     border-radius:14px;
-}
-
-.music-title{
-    font-weight:bold;
-    margin-bottom:9px;
+    padding:14px;
+    margin-top:12px;
 }
 
 .music-box audio{
     width:100%;
-}
-
-.music-buttons{
-    display:flex;
-    gap:8px;
-    margin-top:9px;
-}
-
-.music-buttons button{
-    flex:1;
-    padding:9px;
-    border-radius:9px;
+    margin-top:8px;
 }
 
 /* =========================
@@ -986,32 +674,30 @@ body.profile-active #profilePage{
     left:0;
     right:0;
     bottom:0;
-    z-index:200;
+    z-index:100;
     height:65px;
     background:white;
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    box-shadow:0 -2px 12px rgba(0,0,0,.1);
+    box-shadow:0 -2px 10px rgba(0,0,0,.1);
 }
 
 .nav-btn{
+    border:none;
     background:white;
-    color:#777;
-    font-size:12px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:3px;
+    font-size:11px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
 .nav-btn span{
-    font-size:21px;
+    display:block;
+    font-size:22px;
+    margin-bottom:2px;
 }
 
 .nav-btn.active{
-    color:#2563eb;
-    font-weight:bold;
+    color:#1976d2;
 }
 
 /* =========================
@@ -1019,14 +705,14 @@ body.profile-active #profilePage{
 ========================= */
 
 .modal-bg{
+    display:none;
     position:fixed;
     inset:0;
-    z-index:500;
     background:rgba(0,0,0,.55);
-    display:none;
+    z-index:300;
     align-items:center;
     justify-content:center;
-    padding:18px;
+    padding:15px;
 }
 
 .modal-bg.show{
@@ -1035,18 +721,18 @@ body.profile-active #profilePage{
 
 .modal{
     width:100%;
-    max-width:500px;
-    max-height:90vh;
-    overflow:auto;
+    max-width:430px;
     background:white;
-    border-radius:18px;
-    padding:20px;
+    border-radius:17px;
+    padding:18px;
+    max-height:90vh;
+    overflow-y:auto;
 }
 
 .modal-title{
-    font-size:20px;
+    font-size:19px;
     font-weight:bold;
-    margin-bottom:15px;
+    margin-bottom:12px;
 }
 
 .modal-actions{
@@ -1057,35 +743,23 @@ body.profile-active #profilePage{
 
 .modal-actions button{
     flex:1;
-    padding:12px;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-.modal-ok{
-    background:#2563eb;
-    color:white;
-}
-
-.modal-cancel{
-    background:#eee;
 }
 
 /* =========================
    CHAT
 ========================= */
 
-.chat-overlay{
+.chat-bg{
+    display:none;
     position:fixed;
     inset:0;
-    z-index:400;
-    background:#eef2f7;
-    display:none;
-    flex-direction:column;
+    background:#f1f5f9;
+    z-index:200;
 }
 
-.chat-overlay.show{
+.chat-bg.show{
     display:flex;
+    flex-direction:column;
 }
 
 .chat-head{
@@ -1095,123 +769,108 @@ body.profile-active #profilePage{
     align-items:center;
     gap:10px;
     padding:0 12px;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
 .chat-back{
-    font-size:25px;
-    background:transparent;
+    border:none;
+    background:none;
+    font-size:24px;
 }
 
-.chat-title{
+.chat-name{
     font-weight:bold;
 }
 
-.chat-body{
+.chat-messages{
     flex:1;
-    overflow:auto;
-    padding:15px;
-}
-
-.chat-message{
-    max-width:75%;
-    padding:10px 12px;
-    border-radius:15px;
-    margin-bottom:9px;
-    background:white;
-}
-
-.chat-message.mine{
-    margin-left:auto;
-    background:#2563eb;
-    color:white;
-}
-
-.chat-foot{
-    background:white;
-    padding:10px;
-    display:flex;
-    gap:8px;
-}
-
-.chat-foot input{
-    flex:1;
+    overflow-y:auto;
     padding:12px;
-    border:1px solid #ddd;
-    border-radius:12px;
 }
 
-.chat-foot button{
-    padding:0 17px;
-    border-radius:12px;
-    background:#2563eb;
+.chat-msg{
+    max-width:80%;
+    padding:9px 11px;
+    border-radius:13px;
+    margin-bottom:8px;
+    line-height:1.4;
+    word-break:break-word;
+}
+
+.chat-msg.mine{
+    background:#1976d2;
     color:white;
+    margin-left:auto;
+    border-bottom-right-radius:4px;
 }
 
-.empty{
-    text-align:center;
-    padding:35px 15px;
-    color:#888;
+.chat-msg.other{
     background:white;
-    border-radius:16px;
+    border-bottom-left-radius:4px;
+}
+
+.chat-input-row{
+    background:white;
+    padding:8px;
+    display:flex;
+    gap:7px;
+}
+
+.chat-input{
+    flex:1;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:10px;
+}
+
+.chat-send{
+    border:none;
+    background:#1976d2;
+    color:white;
+    padding:0 15px;
+    border-radius:10px;
+    font-weight:bold;
 }
 
 /* =========================
-   MOBILE MEDIA
+   EMPTY
 ========================= */
 
-@media(max-width:430px){
-
-    .profile-cover{
-        height:270px;
-    }
-
-    .profile-picture-box,
-    .profile-picture{
-        width:105px;
-        height:105px;
-    }
-
-    .profile-picture-wrap{
-        margin-top:-72px;
-    }
-
-    .profile-name{
-        font-size:23px;
-    }
-
-    .profile-tab{
-        font-size:11px;
-    }
-
-    .market-image{
-        height:190px;
-    }
-
-    .post-media{
-        max-height:520px;
-    }
-
-    .media-preview img,
-    .media-preview video{
-        max-height:520px;
-    }
-
-    .profile-video-card video{
-        max-height:520px;
-    }
+.empty{
+    background:white;
+    border-radius:14px;
+    padding:30px 15px;
+    text-align:center;
+    color:#6b7280;
 }
 
-@media(max-width:360px){
+.section-title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
 
-    .profile-cover{
-        height:255px;
+.storage-note{
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    color:#9a3412;
+    padding:10px;
+    border-radius:10px;
+    font-size:12px;
+    margin-top:10px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:500px){
+    .page{
+        padding:10px;
     }
 
-    .profile-picture-wrap{
-        margin-top:-68px;
-        padding-left:15px;
-        padding-right:15px;
+    .profile-cover{
+        height:175px;
     }
 
     .profile-tabs{
@@ -1221,462 +880,359 @@ body.profile-active #profilePage{
     .profile-tab{
         font-size:10px;
     }
+
+    .post{
+        border-radius:13px;
+    }
+
+    .post-media{
+        max-height:560px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     LOGIN
-========================= -->
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
 
 <div id="loginPage">
 
-<div class="login-box">
+    <div class="login-box">
 
-<div class="logo">
-<span class="logo-yam">YAM</span>
-<span class="logo-chat">CHAT</span>
+        <div class="logo-box">
+            <div class="logo-main">YAM</div>
+            <div class="logo-sub">YAM CHAT</div>
+        </div>
+
+        <input
+            id="loginUsername"
+            class="input"
+            type="text"
+            placeholder="Username"
+            autocomplete="username">
+
+        <input
+            id="loginPassword"
+            class="input"
+            type="password"
+            placeholder="Password"
+            autocomplete="current-password">
+
+        <button
+            class="btn btn-primary"
+            onclick="login()">
+            LOGIN
+        </button>
+
+        <div style="height:8px"></div>
+
+        <button
+            class="btn btn-pink"
+            onclick="register()">
+            DAFTAR AKAUN
+        </button>
+
+    </div>
+
 </div>
 
-<div class="login-sub">
-Chat • Friends • Rooms • Social
-</div>
 
-<input id="loginUsername"
-class="input"
-placeholder="Username">
-
-<input id="loginPassword"
-class="input"
-type="password"
-placeholder="Password">
-
-<button class="primary-btn"
-onclick="login()">
-🔐 LOGIN
-</button>
-
-<button class="secondary-btn"
-onclick="register()">
-📝 DAFTAR AKAUN
-</button>
-
-</div>
-</div>
-
-
-<!-- =========================
+<!-- =====================================================
      APP
-========================= -->
+===================================================== -->
 
 <div id="app">
 
-<div class="topbar">
+    <div class="topbar">
 
-<div class="top-logo">
-<span class="yam-text">YAM</span>
-<span class="chat-text">CHAT</span>
-</div>
+        <div class="top-logo">
+            <div class="top-logo-yam">YAM</div>
+            <div class="top-logo-chat">CHAT</div>
+        </div>
 
-<div id="topUser"
-class="top-user"></div>
+        <div
+            id="currentUserDisplay"
+            class="current-user">
+        </div>
 
-</div>
-
-<main class="main">
-
-<!-- HOME -->
-
-<section id="homePage"
-class="page active">
-
-<div class="create-box">
-
-<div class="create-title">
-📝 Apa yang anda mahu post?
-</div>
-
-<div class="post-options">
-
-<button id="textPostBtn"
-class="post-option active"
-onclick="selectPostType('text')">
-📝 TULISAN
-</button>
-
-<button id="imagePostBtn"
-class="post-option"
-onclick="selectPostType('image')">
-🖼️ GAMBAR
-</button>
-
-<button id="videoPostBtn"
-class="post-option"
-onclick="selectPostType('video')">
-🎥 VIDEO
-</button>
-
-</div>
-
-<div id="postEditor"
-class="post-editor">
-
-<textarea id="postText"
-placeholder="Apa yang anda fikirkan?"></textarea>
-
-<div id="mediaPreview"
-class="media-preview"></div>
-
-<div class="editor-actions">
-
-<button class="cancel-btn"
-onclick="cancelPost()">
-Batal
-</button>
-
-<button class="post-btn"
-onclick="createPost()">
-🚀 POST
-</button>
-
-</div>
-</div>
-</div>
-
-<div id="feed"></div>
-
-</section>
+    </div>
 
 
-<!-- FRIENDS -->
+    <!-- HOME -->
+    <div
+        id="homePage"
+        class="page">
 
-<section id="friendsPage"
-class="page">
+        <div class="composer">
 
-<div class="section-title">
-👥 Friends
-</div>
+            <textarea
+                id="postText"
+                placeholder="Apa yang anda fikirkan?"></textarea>
 
-<div id="friendsList"></div>
+            <div
+                id="mediaPreview"
+                class="media-preview">
+            </div>
 
-</section>
+            <div
+                id="fileInfo"
+                class="file-info">
+            </div>
 
+            <div class="post-type-row">
 
-<!-- ROOMS -->
+                <button
+                    id="textPostBtn"
+                    class="post-type-btn active"
+                    onclick="selectPostType('text')">
+                    📝 Teks
+                </button>
 
-<section id="roomsPage"
-class="page">
+                <button
+                    id="imagePostBtn"
+                    class="post-type-btn"
+                    onclick="selectPostType('image')">
+                    📷 Gambar
+                </button>
 
-<div class="section-title">
-🌎 YAM Rooms
-</div>
+                <button
+                    id="videoPostBtn"
+                    class="post-type-btn"
+                    onclick="selectPostType('video')">
+                    🎥 Video
+                </button>
 
-<div id="roomsList"></div>
+                <button
+                    class="small-btn"
+                    style="background:#1976d2;color:white"
+                    onclick="createPost()">
+                    POST
+                </button>
 
-</section>
+                <button
+                    class="small-btn"
+                    onclick="cancelPost()">
+                    BATAL
+                </button>
 
+            </div>
 
-<!-- PROFILE -->
+            <div class="storage-note">
+                📌 YAM Chat V4.5.1 menggunakan IndexedDB untuk media.
+                Gambar maksimum 3MB dan video maksimum 6MB untuk demo ini.
+            </div>
 
-<section id="profilePage"
-class="page">
+        </div>
 
-<div class="profile-main">
+        <div id="feed"></div>
 
-<div id="profileCover"
-class="profile-cover">
-
-<div class="cover-dark"></div>
-
-<button type="button"
-class="profile-music-button"
-onclick="openMusic()">
-🎵
-</button>
-
-<div class="profile-top-actions">
-
-<button type="button"
-onclick="changeCover()">
-📷
-</button>
-
-<div class="profile-menu-wrap">
-
-<button type="button"
-onclick="openProfileMenu()">
-⋮
-</button>
-
-<div id="profileMenu"
-class="profile-menu hidden">
-
-<div class="profile-menu-item"
-onclick="editProfile()">
-✏️ Edit Profile
-</div>
-
-<div class="profile-menu-item"
-onclick="changeName()">
-✍️ Tukar Nama
-</div>
-
-<div class="profile-menu-item"
-onclick="changePassword()">
-🔑 Tukar Password
-</div>
-
-<div class="profile-menu-item logout-item"
-onclick="logout()">
-🚪 Log Out
-</div>
-
-</div>
-</div>
-</div>
-</div>
+    </div>
 
 
-<div class="profile-picture-wrap">
+    <!-- FRIENDS -->
+    <div
+        id="friendsPage"
+        class="page">
 
-<div class="profile-picture-box">
+        <div class="section-title">
+            👥 Friends
+        </div>
 
-<img id="profilePicture"
-class="profile-picture"
-src=""
-alt="Profile">
+        <div id="friendsList"></div>
 
-<button type="button"
-class="profile-picture-camera"
-onclick="changeProfilePicture()">
-📷
-</button>
+    </div>
 
-</div>
 
-<div id="profileName"
-class="profile-name"></div>
+    <!-- ROOMS -->
+    <div
+        id="roomsPage"
+        class="page">
 
-<div id="profileUsername"
-class="profile-username"></div>
+        <div class="section-title">
+            🌎 Rooms
+        </div>
 
-<div id="profileStatus"
-class="profile-status"
-onclick="editStatus()">
-</div>
+        <div id="roomsList"></div>
 
-<div id="profileBio"
-class="profile-bio"></div>
+    </div>
+
+
+    <!-- PROFILE -->
+    <div
+        id="profilePage"
+        class="page">
+
+        <div id="profileArea"></div>
+
+    </div>
+
+
+    <!-- BOTTOM NAV -->
+
+    <div class="bottom-nav">
+
+        <button
+            id="navHome"
+            class="nav-btn active"
+            onclick="showPage('home')">
+            <span>🏠</span>
+            Home
+        </button>
+
+        <button
+            id="navFriends"
+            class="nav-btn"
+            onclick="showPage('friends')">
+            <span>👥</span>
+            Friends
+        </button>
+
+        <button
+            id="navRooms"
+            class="nav-btn"
+            onclick="showPage('rooms')">
+            <span>🌎</span>
+            Rooms
+        </button>
+
+        <button
+            id="navProfile"
+            class="nav-btn"
+            onclick="showPage('profile')">
+            <span>👤</span>
+            Profile
+        </button>
+
+    </div>
 
 </div>
 
 
-<div class="profile-buttons">
+<!-- =====================================================
+     HIDDEN FILE INPUTS
+===================================================== -->
 
-<button onclick="editStatus()">
-🟢 Status
-</button>
+<input
+    id="profileFile"
+    type="file"
+    accept="image/*"
+    style="display:none"
+    onchange="changeProfilePicture(event)">
 
-<button onclick="openPrivacy()">
-🔒 Privacy
-</button>
+<input
+    id="coverFile"
+    type="file"
+    accept="image/*"
+    style="display:none"
+    onchange="changeCover(event)">
 
-</div>
+<input
+    id="postImageFile"
+    type="file"
+    accept="image/*"
+    style="display:none"
+    onchange="handlePostImage(event)">
 
+<input
+    id="postVideoFile"
+    type="file"
+    accept="video/*"
+    style="display:none"
+    onchange="handlePostVideo(event)">
 
-<div id="musicArea"
-class="music-box hidden"></div>
+<input
+    id="musicFile"
+    type="file"
+    accept="audio/*"
+    style="display:none"
+    onchange="handleMusic(event)">
 
-
-<!-- PROFILE CONTENT -->
-
-<div class="profile-content">
-
-<div class="profile-tabs">
-
-<button id="profileTabPosts"
-class="profile-tab active"
-onclick="showProfileTab('posts')">
-📝 Post
-</button>
-
-<button id="profileTabImages"
-class="profile-tab"
-onclick="showProfileTab('images')">
-📷 Gambar
-</button>
-
-<button id="profileTabVideos"
-class="profile-tab"
-onclick="showProfileTab('videos')">
-🎥 Video
-</button>
-
-<button id="profileTabMarket"
-class="profile-tab"
-onclick="showProfileTab('market')">
-🛒 Market
-</button>
-
-</div>
-
-<div id="profileTabContent"
-class="profile-tab-content"></div>
-
-</div>
+<input
+    id="marketImageFile"
+    type="file"
+    accept="image/*"
+    style="display:none"
+    onchange="handleMarketImage(event)">
 
 
-<div class="info-title">
-ℹ️ Maklumat Profile
-</div>
+<!-- =====================================================
+     MODAL
+===================================================== -->
 
-<div id="profileInfo"
-class="info-list"></div>
+<div
+    id="modalBg"
+    class="modal-bg">
 
-</div>
+    <div class="modal">
 
-</section>
+        <div
+            id="modalTitle"
+            class="modal-title">
+        </div>
 
-</main>
+        <div id="modalContent"></div>
 
+        <div class="modal-actions">
 
-<!-- BOTTOM NAV -->
+            <button
+                class="btn btn-gray"
+                onclick="closeModal()">
+                Tutup
+            </button>
 
-<nav class="bottom-nav">
+        </div>
 
-<button id="navHome"
-class="nav-btn active"
-onclick="showPage('home')">
-<span>🏠</span>
-Home
-</button>
-
-<button id="navFriends"
-class="nav-btn"
-onclick="showPage('friends')">
-<span>👥</span>
-Friends
-</button>
-
-<button id="navRooms"
-class="nav-btn"
-onclick="showPage('rooms')">
-<span>🌎</span>
-Rooms
-</button>
-
-<button id="navProfile"
-class="nav-btn"
-onclick="showPage('profile')">
-<span>👤</span>
-Profile
-</button>
-
-</nav>
+    </div>
 
 </div>
 
 
-<!-- FILE INPUTS -->
+<!-- =====================================================
+     CHAT
+===================================================== -->
 
-<input id="profileFile"
-type="file"
-accept="image/*"
-class="hidden">
+<div
+    id="chatBg"
+    class="chat-bg">
 
-<input id="coverFile"
-type="file"
-accept="image/*"
-class="hidden">
+    <div class="chat-head">
 
-<input id="postImageFile"
-type="file"
-accept="image/*"
-class="hidden">
+        <button
+            class="chat-back"
+            onclick="closeChat()">
+            ←
+        </button>
 
-<input id="postVideoFile"
-type="file"
-accept="video/*"
-class="hidden">
+        <div
+            id="chatName"
+            class="chat-name">
+        </div>
 
-<input id="musicFile"
-type="file"
-accept="audio/*"
-class="hidden">
+    </div>
 
-<input id="marketImageFile"
-type="file"
-accept="image/*"
-class="hidden">
+    <div
+        id="chatMessages"
+        class="chat-messages">
+    </div>
 
+    <div class="chat-input-row">
 
-<!-- MODAL -->
+        <input
+            id="chatInput"
+            class="chat-input"
+            placeholder="Tulis mesej..."
+            onkeydown="if(event.key==='Enter')sendChat()">
 
-<div id="modalBg"
-class="modal-bg">
+        <button
+            class="chat-send"
+            onclick="sendChat()">
+            Hantar
+        </button>
 
-<div class="modal">
-
-<div id="modalTitle"
-class="modal-title"></div>
-
-<div id="modalContent"></div>
-
-<div class="modal-actions">
-
-<button class="modal-cancel"
-onclick="closeModal()">
-Batal
-</button>
-
-<button id="modalOk"
-class="modal-ok">
-OK
-</button>
-
-</div>
-
-</div>
-</div>
-
-
-<!-- CHAT -->
-
-<div id="chatOverlay"
-class="chat-overlay">
-
-<div class="chat-head">
-
-<button class="chat-back"
-onclick="closeChat()">
-←
-</button>
-
-<img id="chatAvatar"
-class="avatar-small"
-src=""
-alt="">
-
-<div id="chatTitle"
-class="chat-title"></div>
-
-</div>
-
-<div id="chatBody"
-class="chat-body"></div>
-
-<div class="chat-foot">
-
-<input id="chatInput"
-placeholder="Tulis mesej...">
-
-<button onclick="sendChat()">
-➤
-</button>
-
-</div>
+    </div>
 
 </div>
 
@@ -1684,2074 +1240,1563 @@ placeholder="Tulis mesej...">
 <script>
 
 /* =====================================================
-   YAM CHAT V4.5 MEDIA FIX
+   BASIC STATE
 ===================================================== */
 
 let currentUser =
-localStorage.getItem("yam_current_user") || null;
+    localStorage.getItem("yam_current_user") || null;
 
-let selectedPostType="text";
-let selectedPostFile=null;
-let currentChatUser=null;
-
-let currentProfileTab="posts";
-
-let selectedMarketImage=null;
+let selectedPostType = "text";
+let selectedPostFile = null;
+let selectedMarketImage = null;
+let currentChatUser = null;
+let currentProfileTab = "posts";
 
 
-const friends=[
-"Ahmad",
-"Siti",
-"John"
-];
+/* =====================================================
+   INDEXED DB
+===================================================== */
 
-const rooms=[
-{name:"Malaysia",region:"🇲🇾 Malaysia"},
-{name:"Philippines",region:"🇵🇭 Philippines"},
-{name:"Indonesia",region:"🇮🇩 Indonesia"},
-{name:"Singapore",region:"🇸🇬 Singapore"},
-{name:"Brunei",region:"🇧🇳 Brunei"},
-{name:"World",region:"🌎 World"}
-];
+const DB_NAME = "YAM_CHAT_MEDIA_DB";
+const DB_VERSION = 1;
+const MEDIA_STORE = "media";
+
+let mediaDB = null;
 
 
-/* =========================
+function openMediaDB(){
+
+    return new Promise((resolve,reject)=>{
+
+        if(mediaDB){
+            resolve(mediaDB);
+            return;
+        }
+
+        const request =
+            indexedDB.open(DB_NAME,DB_VERSION);
+
+        request.onupgradeneeded=function(e){
+
+            const db=e.target.result;
+
+            if(!db.objectStoreNames.contains(MEDIA_STORE)){
+
+                db.createObjectStore(
+                    MEDIA_STORE,
+                    {keyPath:"id"}
+                );
+
+            }
+
+        };
+
+        request.onsuccess=function(e){
+
+            mediaDB=e.target.result;
+
+            resolve(mediaDB);
+
+        };
+
+        request.onerror=function(){
+
+            reject(request.error);
+
+        };
+
+    });
+
+}
+
+
+async function saveMedia(file){
+
+    const db=await openMediaDB();
+
+    const id=
+        "media_" +
+        Date.now() +
+        "_" +
+        Math.random()
+            .toString(36)
+            .substring(2,9);
+
+    return new Promise((resolve,reject)=>{
+
+        const tx=
+            db.transaction(
+                MEDIA_STORE,
+                "readwrite"
+            );
+
+        tx.objectStore(MEDIA_STORE).put({
+
+            id:id,
+
+            name:file.name,
+
+            type:file.type,
+
+            size:file.size,
+
+            blob:file,
+
+            created:Date.now()
+
+        });
+
+        tx.oncomplete=function(){
+
+            resolve(id);
+
+        };
+
+        tx.onerror=function(){
+
+            reject(tx.error);
+
+        };
+
+    });
+
+}
+
+
+async function getMedia(id){
+
+    if(!id){
+        return null;
+    }
+
+    const db=await openMediaDB();
+
+    return new Promise((resolve,reject)=>{
+
+        const tx=
+            db.transaction(
+                MEDIA_STORE,
+                "readonly"
+            );
+
+        const request=
+            tx.objectStore(MEDIA_STORE).get(id);
+
+        request.onsuccess=function(){
+
+            resolve(request.result || null);
+
+        };
+
+        request.onerror=function(){
+
+            reject(request.error);
+
+        };
+
+    });
+
+}
+
+
+async function deleteMedia(id){
+
+    if(!id){
+        return;
+    }
+
+    const db=await openMediaDB();
+
+    return new Promise((resolve,reject)=>{
+
+        const tx=
+            db.transaction(
+                MEDIA_STORE,
+                "readwrite"
+            );
+
+        tx.objectStore(MEDIA_STORE).delete(id);
+
+        tx.oncomplete=function(){
+
+            resolve();
+
+        };
+
+        tx.onerror=function(){
+
+            reject(tx.error);
+
+        };
+
+    });
+
+}
+
+
+async function clearAllMedia(){
+
+    const db=await openMediaDB();
+
+    return new Promise((resolve,reject)=>{
+
+        const tx=
+            db.transaction(
+                MEDIA_STORE,
+                "readwrite"
+            );
+
+        tx.objectStore(MEDIA_STORE).clear();
+
+        tx.oncomplete=function(){
+
+            resolve();
+
+        };
+
+        tx.onerror=function(){
+
+            reject(tx.error);
+
+        };
+
+    });
+
+}
+
+
+/* =====================================================
    ACCOUNTS
-========================= */
+===================================================== */
 
 function getAccounts(){
 
-return JSON.parse(
-localStorage.getItem("yam_accounts")||"{}"
-);
+    try{
+
+        return JSON.parse(
+            localStorage.getItem("yam_accounts") || "[]"
+        );
+
+    }catch(e){
+
+        return [];
+
+    }
 
 }
+
 
 function saveAccounts(accounts){
 
-try{
+    try{
 
-localStorage.setItem(
-"yam_accounts",
-JSON.stringify(accounts)
-);
+        localStorage.setItem(
+            "yam_accounts",
+            JSON.stringify(accounts)
+        );
 
-return true;
+        return true;
 
-}catch(error){
+    }catch(e){
 
-alert(
-"Data akaun gagal disimpan kerana ruang browser penuh."
-);
+        alert(
+            "Akaun tidak dapat disimpan. Storage browser penuh."
+        );
 
-return false;
+        return false;
+
+    }
 
 }
 
-}
 
 function getProfileData(username){
 
-const accounts=getAccounts();
+    try{
 
-if(accounts[username])
-return accounts[username];
+        return JSON.parse(
+            localStorage.getItem(
+                "yam_profile_" + username
+            ) || "{}"
+        );
 
-return{
-username:username,
-name:username,
-password:"",
-status:"Available",
-bio:"",
-birthday:"",
-location:"",
-job:"",
-gender:""
-};
+    }catch(e){
+
+        return {};
+
+    }
 
 }
+
 
 function saveCurrentProfile(data){
 
-const accounts=getAccounts();
+    try{
 
-accounts[currentUser]=data;
+        localStorage.setItem(
+            "yam_profile_" + currentUser,
+            JSON.stringify(data)
+        );
 
-saveAccounts(accounts);
+        return true;
 
-}
+    }catch(e){
 
+        alert(
+            "Profil tidak dapat disimpan. Storage browser penuh."
+        );
 
-/* =========================
-   SAFE STORAGE
-========================= */
+        return false;
 
-function safeSetItem(key,value,errorMessage){
-
-try{
-
-localStorage.setItem(key,value);
-
-return true;
-
-}catch(error){
-
-alert(
-errorMessage||
-"Data gagal disimpan. Ruang browser mungkin sudah penuh."
-);
-
-return false;
-
-}
+    }
 
 }
 
 
-/* =========================
-   SECURITY
-========================= */
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
 function escapeHtml(text){
 
-return String(text??"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+    return String(text || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
 
-/* =========================
-   AVATAR
-========================= */
-
-function getAvatar(username){
-
-return localStorage.getItem(
-"yam_picture_"+username
-)||"";
-
-}
-
-function avatarHtml(username){
-
-const avatar=getAvatar(username);
-
-if(avatar){
-
-return`
-<img class="avatar"
-src="${avatar}"
-alt="Profile">
-`;
-
-}
-
-const profile=getProfileData(username);
-
-const letter=
-(profile.name||username||"?")
-.charAt(0)
-.toUpperCase();
-
-return`
-<div class="avatar"
-style="
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-font-weight:bold;
-font-size:18px;">
-${escapeHtml(letter)}
-</div>
-`;
-
-}
-
-
-/* =========================
+/* =====================================================
    TIME
-========================= */
+===================================================== */
 
-function timeAgo(timestamp){
+function timeAgo(time){
 
-const diff=Date.now()-timestamp;
+    const diff=
+        Math.floor(
+            (Date.now()-time)/1000
+        );
 
-const minute=Math.floor(diff/60000);
+    if(diff<60){
+        return "baru sahaja";
+    }
 
-if(minute<1)
-return"baru sahaja";
+    if(diff<3600){
+        return Math.floor(diff/60)+" minit lalu";
+    }
 
-if(minute<60)
-return minute+" minit lalu";
+    if(diff<86400){
+        return Math.floor(diff/3600)+" jam lalu";
+    }
 
-const hour=Math.floor(minute/60);
-
-if(hour<24)
-return hour+" jam lalu";
-
-const day=Math.floor(hour/24);
-
-return day+" hari lalu";
+    return Math.floor(diff/86400)+" hari lalu";
 
 }
 
 
-/* =========================
+/* =====================================================
    LOGIN
-========================= */
+===================================================== */
 
 function login(){
 
-const username=
-document.getElementById("loginUsername")
-.value.trim();
+    const username=
+        document
+        .getElementById("loginUsername")
+        .value
+        .trim();
 
-const password=
-document.getElementById("loginPassword")
-.value;
+    const password=
+        document
+        .getElementById("loginPassword")
+        .value;
 
-if(!username||!password){
+    if(!username || !password){
 
-alert("Sila isi username dan password.");
+        alert("Sila isi username dan password.");
 
-return;
-}
+        return;
 
-const accounts=getAccounts();
+    }
 
-if(!accounts[username]){
+    const accounts=getAccounts();
 
-accounts[username]={
-username:username,
-name:username,
-password:password,
-status:"🟢 Available",
-bio:"",
-birthday:"",
-location:"",
-job:"",
-gender:""
-};
+    const existing=
+        accounts.find(
+            a=>a.username.toLowerCase()
+            ===username.toLowerCase()
+        );
 
-if(!saveAccounts(accounts))
-return;
+    if(!existing){
 
-}
+        accounts.push({
+            username:username,
+            password:password
+        });
 
-if(accounts[username].password!==password){
+        if(!saveAccounts(accounts)){
+            return;
+        }
 
-alert("Password tidak betul.");
+    }else{
 
-return;
-}
+        if(existing.password!==password){
 
-currentUser=username;
+            alert("Password salah.");
 
-if(!safeSetItem(
-"yam_current_user",
-currentUser,
-"Login gagal disimpan."
-))return;
+            return;
 
-startApp();
+        }
+
+    }
+
+    currentUser=username;
+
+    localStorage.setItem(
+        "yam_current_user",
+        currentUser
+    );
+
+    startApp();
 
 }
 
 
 function register(){
 
-const username=
-document.getElementById("loginUsername")
-.value.trim();
+    const username=
+        document
+        .getElementById("loginUsername")
+        .value
+        .trim();
 
-const password=
-document.getElementById("loginPassword")
-.value;
+    const password=
+        document
+        .getElementById("loginPassword")
+        .value;
 
-if(!username||!password){
+    if(!username || !password){
 
-alert("Isi username dan password dahulu.");
+        alert("Isi username dan password dahulu.");
 
-return;
-}
+        return;
 
-const accounts=getAccounts();
+    }
 
-if(accounts[username]){
+    const accounts=getAccounts();
 
-alert("Username sudah digunakan.");
+    if(
+        accounts.some(
+            a=>a.username.toLowerCase()
+            ===username.toLowerCase()
+        )
+    ){
 
-return;
-}
+        alert("Username sudah digunakan.");
 
-accounts[username]={
-username:username,
-name:username,
-password:password,
-status:"🟢 Available",
-bio:"",
-birthday:"",
-location:"",
-job:"",
-gender:""
-};
+        return;
 
-if(!saveAccounts(accounts))
-return;
+    }
 
-currentUser=username;
+    accounts.push({
+        username:username,
+        password:password
+    });
 
-if(!safeSetItem(
-"yam_current_user",
-currentUser,
-"Daftar gagal disimpan."
-))return;
+    if(!saveAccounts(accounts)){
+        return;
+    }
 
-startApp();
+    currentUser=username;
 
-}
+    localStorage.setItem(
+        "yam_current_user",
+        currentUser
+    );
 
-
-/* =========================
-   LOGOUT
-========================= */
-
-function logout(){
-
-closeProfileMenu();
-
-if(!confirm("Log Out dari YAM?"))
-return;
-
-document.body.classList.remove(
-"profile-active"
-);
-
-localStorage.removeItem(
-"yam_current_user"
-);
-
-currentUser=null;
-
-document.getElementById("app")
-.style.display="none";
-
-document.getElementById("loginPage")
-.style.display="flex";
+    startApp();
 
 }
 
 
-/* =========================
-   START
-========================= */
+/* =====================================================
+   START APP
+===================================================== */
 
 function startApp(){
 
-document.getElementById("loginPage")
-.style.display="none";
+    document
+        .getElementById("loginPage")
+        .style.display="none";
 
-document.getElementById("app")
-.style.display="block";
+    document
+        .getElementById("app")
+        .style.display="block";
 
-renderProfile();
-renderFeed();
-renderFriends();
-renderRooms();
-renderMusic();
+    document
+        .getElementById("currentUserDisplay")
+        .textContent=
+        "@"+currentUser;
 
-showPage("home");
+    showPage("home");
 
 }
 
 
-/* =========================
+function logout(){
+
+    localStorage.removeItem(
+        "yam_current_user"
+    );
+
+    currentUser=null;
+
+    location.reload();
+
+}
+
+
+/* =====================================================
    NAVIGATION
-========================= */
+===================================================== */
 
 function showPage(page){
 
-closeProfileMenu();
+    document
+        .querySelectorAll(".page")
+        .forEach(p=>p.classList.remove("active"));
 
-document.body.classList.toggle(
-"profile-active",
-page==="profile"
-);
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(b=>b.classList.remove("active"));
 
-document.querySelectorAll(".page")
-.forEach(el=>{
-el.classList.remove("active");
-});
+    if(page==="home"){
 
-document.querySelectorAll(".nav-btn")
-.forEach(el=>{
-el.classList.remove("active");
-});
+        document
+            .getElementById("homePage")
+            .classList.add("active");
 
-if(page==="home"){
+        document
+            .getElementById("navHome")
+            .classList.add("active");
 
-document.getElementById("homePage")
-.classList.add("active");
+        renderFeed();
 
-document.getElementById("navHome")
-.classList.add("active");
+    }
 
-renderFeed();
+    if(page==="friends"){
 
-}
+        document
+            .getElementById("friendsPage")
+            .classList.add("active");
 
-if(page==="friends"){
+        document
+            .getElementById("navFriends")
+            .classList.add("active");
 
-document.getElementById("friendsPage")
-.classList.add("active");
+        renderFriends();
 
-document.getElementById("navFriends")
-.classList.add("active");
+    }
 
-renderFriends();
+    if(page==="rooms"){
 
-}
+        document
+            .getElementById("roomsPage")
+            .classList.add("active");
 
-if(page==="rooms"){
+        document
+            .getElementById("navRooms")
+            .classList.add("active");
 
-document.getElementById("roomsPage")
-.classList.add("active");
+        renderRooms();
 
-document.getElementById("navRooms")
-.classList.add("active");
+    }
 
-renderRooms();
+    if(page==="profile"){
 
-}
+        document
+            .getElementById("profilePage")
+            .classList.add("active");
 
-if(page==="profile"){
+        document
+            .getElementById("navProfile")
+            .classList.add("active");
 
-document.getElementById("profilePage")
-.classList.add("active");
+        renderProfile();
 
-document.getElementById("navProfile")
-.classList.add("active");
-
-renderProfile();
-renderMusic();
-
-}
+    }
 
 }
 
 
-/* =========================
+/* =====================================================
    POST TYPE
-========================= */
+===================================================== */
 
 function selectPostType(type){
 
-selectedPostType=type;
-selectedPostFile=null;
+    selectedPostType=type;
 
-document.querySelectorAll(".post-option")
-.forEach(btn=>{
-btn.classList.remove("active");
-});
+    selectedPostFile=null;
 
-if(type==="text"){
+    document
+        .querySelectorAll(".post-type-btn")
+        .forEach(btn=>{
+            btn.classList.remove("active");
+        });
 
-document.getElementById("textPostBtn")
-.classList.add("active");
+    if(type==="text"){
 
-document.getElementById("mediaPreview")
-.innerHTML="";
+        document
+            .getElementById("textPostBtn")
+            .classList.add("active");
+
+    }
+
+    if(type==="image"){
+
+        document
+            .getElementById("imagePostBtn")
+            .classList.add("active");
+
+        document
+            .getElementById("postImageFile")
+            .click();
+
+    }
+
+    if(type==="video"){
+
+        document
+            .getElementById("videoPostBtn")
+            .classList.add("active");
+
+        document
+            .getElementById("postVideoFile")
+            .click();
+
+    }
 
 }
 
-if(type==="image"){
 
-document.getElementById("imagePostBtn")
-.classList.add("active");
+/* =====================================================
+   FILE SIZE
+===================================================== */
 
-document.getElementById("postImageFile")
-.click();
+function formatSize(bytes){
+
+    if(bytes<1024){
+        return bytes+" B";
+    }
+
+    if(bytes<1024*1024){
+
+        return (
+            bytes/1024
+        ).toFixed(1)+" KB";
+
+    }
+
+    return (
+        bytes/(1024*1024)
+    ).toFixed(2)+" MB";
 
 }
 
-if(type==="video"){
 
-document.getElementById("videoPostBtn")
-.classList.add("active");
+/* =====================================================
+   POST IMAGE
+===================================================== */
 
-document.getElementById("postVideoFile")
-.click();
+function handlePostImage(event){
+
+    const file=
+        event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    if(file.size>3*1024*1024){
+
+        alert(
+            "Gambar terlalu besar. Maksimum 3MB."
+        );
+
+        event.target.value="";
+
+        return;
+
+    }
+
+    selectedPostFile=file;
+
+    selectedPostType="image";
+
+    const url=
+        URL.createObjectURL(file);
+
+    document
+        .getElementById("mediaPreview")
+        .innerHTML=`
+            <img src="${url}" alt="Preview">
+        `;
+
+    document
+        .getElementById("fileInfo")
+        .textContent=
+        file.name+
+        " • "+
+        formatSize(file.size);
 
 }
 
+
+function handlePostVideo(event){
+
+    const file=
+        event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    if(file.size>6*1024*1024){
+
+        alert(
+            "Video terlalu besar. Maksimum 6MB untuk demo."
+        );
+
+        event.target.value="";
+
+        return;
+
+    }
+
+    selectedPostFile=file;
+
+    selectedPostType="video";
+
+    const url=
+        URL.createObjectURL(file);
+
+    document
+        .getElementById("mediaPreview")
+        .innerHTML=`
+            <video
+                src="${url}"
+                controls
+                playsinline
+                preload="metadata">
+            </video>
+        `;
+
+    document
+        .getElementById("fileInfo")
+        .textContent=
+        file.name+
+        " • "+
+        formatSize(file.size);
+
 }
 
 
-document.getElementById("postImageFile")
-.addEventListener("change",function(){
+/* =====================================================
+   POSTS STORAGE
+===================================================== */
 
-const file=this.files[0];
+function getPosts(){
 
-if(!file)return;
+    try{
 
-if(file.size>3*1024*1024){
+        return JSON.parse(
+            localStorage.getItem("yam_posts") || "[]"
+        );
 
-alert("Gambar maksimum 3MB.");
+    }catch(e){
 
-this.value="";
+        return [];
 
-return;
+    }
+
 }
 
-selectedPostFile=file;
 
-const reader=new FileReader();
+function savePosts(posts){
 
-reader.onload=function(e){
+    try{
 
-document.getElementById("mediaPreview")
-.innerHTML=
-`
-<img
-src="${e.target.result}"
-alt="Preview gambar">
-`;
+        localStorage.setItem(
+            "yam_posts",
+            JSON.stringify(posts)
+        );
 
-};
+        return true;
 
-reader.readAsDataURL(file);
+    }catch(e){
 
-});
+        alert(
+            "Post gagal disimpan. Storage data browser penuh."
+        );
 
+        return false;
 
-document.getElementById("postVideoFile")
-.addEventListener("change",function(){
+    }
 
-const file=this.files[0];
-
-if(!file)return;
-
-if(file.size>6*1024*1024){
-
-alert("Video maksimum 6MB.");
-
-this.value="";
-
-return;
 }
 
-selectedPostFile=file;
 
-const reader=new FileReader();
-
-reader.onload=function(e){
-
-document.getElementById("mediaPreview")
-.innerHTML=
-`
-<video
-src="${e.target.result}"
-controls
-playsinline
-preload="metadata">
-</video>
-`;
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-
-/* =========================
+/* =====================================================
    CREATE POST
-========================= */
+===================================================== */
 
-function createPost(){
+async function createPost(){
 
-const text=
-document.getElementById("postText")
-.value.trim();
+    const text=
+        document
+        .getElementById("postText")
+        .value
+        .trim();
 
-if(selectedPostType==="text"&&!text){
+    if(
+        selectedPostType==="text"
+        &&
+        !text
+    ){
 
-alert("Tulis sesuatu dahulu.");
+        alert("Tulis sesuatu dahulu.");
 
-return;
+        return;
+
+    }
+
+    if(
+        (
+            selectedPostType==="image"
+            ||
+            selectedPostType==="video"
+        )
+        &&
+        !selectedPostFile
+    ){
+
+        alert("Sila pilih media dahulu.");
+
+        return;
+
+    }
+
+    let mediaId="";
+
+    if(selectedPostFile){
+
+        try{
+
+            mediaId=
+                await saveMedia(
+                    selectedPostFile
+                );
+
+        }catch(error){
+
+            console.error(error);
+
+            alert(
+                "Media gagal disimpan. Cuba fail yang lebih kecil."
+            );
+
+            return;
+
+        }
+
+    }
+
+    const posts=getPosts();
+
+    posts.unshift({
+
+        id:Date.now(),
+
+        owner:currentUser,
+
+        text:text,
+
+        type:selectedPostType,
+
+        mediaId:mediaId,
+
+        time:Date.now(),
+
+        likes:[],
+
+        comments:[],
+
+        hiddenComments:false,
+
+        blockedUsers:[]
+
+    });
+
+    if(!savePosts(posts)){
+
+        if(mediaId){
+
+            await deleteMedia(mediaId);
+
+        }
+
+        return;
+
+    }
+
+    cancelPost();
+
+    renderFeed();
+
 }
 
-if(
-(
-selectedPostType==="image"||
-selectedPostType==="video"
-)&&!selectedPostFile
-){
 
-alert("Sila pilih media dahulu.");
-
-return;
-}
-
-function finish(media){
-
-const posts=JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-);
-
-posts.unshift({
-
-id:Date.now(),
-owner:currentUser,
-text:text,
-type:selectedPostType,
-media:media,
-time:Date.now(),
-likes:[],
-comments:[],
-hiddenComments:false,
-blockedUsers:[]
-
-});
-
-const saved=safeSetItem(
-"yam_posts",
-JSON.stringify(posts),
-"❌ Post gagal disimpan.\n\nRuang simpan browser mungkin sudah penuh. Untuk video, cuba gunakan video yang lebih pendek/kecil."
-);
-
-if(!saved)
-return;
-
-cancelPost();
-renderFeed();
-
-}
-
-if(selectedPostFile){
-
-const reader=new FileReader();
-
-reader.onerror=function(){
-
-alert("Fail media tidak dapat dibaca.");
-
-};
-
-reader.onload=function(e){
-
-finish(e.target.result);
-
-};
-
-reader.readAsDataURL(
-selectedPostFile
-);
-
-}else{
-
-finish("");
-
-}
-
-}
-
+/* =====================================================
+   CANCEL POST
+===================================================== */
 
 function cancelPost(){
 
-document.getElementById("postText")
-.value="";
+    document
+        .getElementById("postText")
+        .value="";
 
-document.getElementById("mediaPreview")
-.innerHTML="";
+    document
+        .getElementById("mediaPreview")
+        .innerHTML="";
 
-document.getElementById("postImageFile")
-.value="";
+    document
+        .getElementById("fileInfo")
+        .textContent="";
 
-document.getElementById("postVideoFile")
-.value="";
+    document
+        .getElementById("postImageFile")
+        .value="";
 
-selectedPostFile=null;
-selectedPostType="text";
+    document
+        .getElementById("postVideoFile")
+        .value="";
 
-document.querySelectorAll(".post-option")
-.forEach(btn=>{
-btn.classList.remove("active");
-});
+    selectedPostFile=null;
 
-document.getElementById("textPostBtn")
-.classList.add("active");
+    selectedPostType="text";
+
+    document
+        .querySelectorAll(".post-type-btn")
+        .forEach(btn=>{
+            btn.classList.remove("active");
+        });
+
+    document
+        .getElementById("textPostBtn")
+        .classList.add("active");
 
 }
 
 
-/* =========================
+/* =====================================================
+   AVATAR HTML
+===================================================== */
+
+function avatarHtml(username){
+
+    const pic=
+        localStorage.getItem(
+            "yam_picture_"+username
+        );
+
+    if(pic){
+
+        return `
+            <img
+                class="avatar"
+                src="${pic}"
+                alt="">
+        `;
+
+    }
+
+    return `
+        <div class="avatar-placeholder">
+            ${escapeHtml(
+                username
+                .charAt(0)
+                .toUpperCase()
+            )}
+        </div>
+    `;
+
+}
+
+
+/* =====================================================
    FEED
-========================= */
+===================================================== */
 
-function renderFeed(){
+async function renderFeed(){
 
-const feed=
-document.getElementById("feed");
+    const area=
+        document.getElementById("feed");
 
-const posts=JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-);
+    const posts=getPosts();
 
-if(!posts.length){
+    if(!posts.length){
 
-feed.innerHTML=`
-<div class="empty">
-Belum ada post.<br>
-Jadilah orang pertama post di YAM.
-</div>
-`;
+        area.innerHTML=`
+            <div class="empty">
+                Belum ada post.
+                <br><br>
+                Jadilah orang pertama membuat post.
+            </div>
+        `;
 
-return;
+        return;
+
+    }
+
+    let html="";
+
+    for(const post of posts){
+
+        let mediaHtml="";
+
+        if(post.mediaId){
+
+            const media=
+                await getMedia(post.mediaId);
+
+            if(media){
+
+                const url=
+                    URL.createObjectURL(
+                        media.blob
+                    );
+
+                if(post.type==="image"){
+
+                    mediaHtml=`
+                        <img
+                            class="post-media"
+                            src="${url}"
+                            alt="Post gambar">
+                    `;
+
+                }
+
+                if(post.type==="video"){
+
+                    mediaHtml=`
+                        <video
+                            class="post-media"
+                            src="${url}"
+                            controls
+                            playsinline
+                            preload="metadata">
+                        </video>
+                    `;
+
+                }
+
+            }
+
+        }
+
+        const liked=
+            (post.likes||[])
+            .includes(currentUser);
+
+        let commentsHtml="";
+
+        if(
+            !post.hiddenComments
+            &&
+            post.comments
+            &&
+            post.comments.length
+        ){
+
+            commentsHtml=
+                post.comments
+                .filter(
+                    c=>
+                    !(post.blockedUsers||[])
+                    .includes(c.user)
+                )
+                .map(c=>`
+
+                    <div class="comment">
+
+                        <span class="comment-name">
+                            ${escapeHtml(c.user)}
+                        </span>
+
+                        <div>
+                            ${escapeHtml(c.text)}
+                        </div>
+
+                    </div>
+
+                `)
+                .join("");
+
+        }
+
+        html+=`
+
+            <div class="post">
+
+                <div class="post-head">
+
+                    ${avatarHtml(post.owner)}
+
+                    <div class="post-user">
+
+                        <div class="post-user-name">
+                            ${escapeHtml(post.owner)}
+                        </div>
+
+                        <div class="post-time">
+                            ${timeAgo(post.time)}
+                        </div>
+
+                    </div>
+
+                    ${
+                        post.owner===currentUser
+                        ?
+                        `
+                        <button
+                            class="post-menu"
+                            onclick="postOwnerMenu(${post.id})">
+                            ⋮
+                        </button>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+                ${
+                    post.text
+                    ?
+                    `
+                    <div class="post-text">
+                        ${escapeHtml(post.text)}
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+                ${mediaHtml}
+
+                <div class="post-actions">
+
+                    <button
+                        class="action-btn ${liked?"liked":""}"
+                        onclick="toggleLike(${post.id})">
+                        ${liked?"❤️":"♡"}
+                        ${(post.likes||[]).length}
+                    </button>
+
+                    <button
+                        class="action-btn"
+                        onclick="focusComment(${post.id})">
+                        💬
+                        ${(post.comments||[]).length}
+                    </button>
+
+                </div>
+
+                <div
+                    class="comments"
+                    id="comments-${post.id}">
+
+                    ${commentsHtml}
+
+                    ${
+                        !post.hiddenComments
+                        ?
+                        `
+                        <div class="comment-row">
+
+                            <input
+                                id="comment-${post.id}"
+                                class="comment-input"
+                                placeholder="Tulis komen...">
+
+                            <button
+                                class="comment-send"
+                                onclick="addComment(${post.id})">
+                                ↗
+                            </button>
+
+                        </div>
+                        `
+                        :
+                        `
+                        <button
+                            class="small-btn"
+                            onclick="toggleComments(${post.id})">
+                            Tunjukkan komen
+                        </button>
+                        `
+                    }
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+    area.innerHTML=html;
+
 }
 
-feed.innerHTML=posts.map(post=>{
 
-const profile=
-getProfileData(post.owner);
-
-const liked=
-(post.likes||[])
-.includes(currentUser);
-
-let media="";
-
-if(post.type==="image"&&post.media){
-
-media=`
-<img
-class="post-media"
-src="${post.media}"
-alt="Post gambar">
-`;
-
-}
-
-if(post.type==="video"&&post.media){
-
-media=`
-<video
-class="post-media"
-src="${post.media}"
-controls
-playsinline
-preload="metadata">
-</video>
-`;
-
-}
-
-const ownerMenu=
-post.owner===currentUser
-?
-`
-<button class="post-menu"
-onclick="postOwnerMenu('${post.id}')">
-⋮
-</button>
-`
-:"";
-
-return`
-
-<article class="post-card">
-
-<div class="post-head">
-
-${avatarHtml(post.owner)}
-
-<div>
-
-<div class="post-user">
-${escapeHtml(
-profile.name||post.owner
-)}
-</div>
-
-<div class="post-time">
-${timeAgo(post.time)}
-</div>
-
-</div>
-
-${ownerMenu}
-
-</div>
-
-${
-post.text
-?
-`
-<div class="post-text">
-${escapeHtml(post.text)}
-</div>
-`
-:""
-}
-
-${media}
-
-<div class="post-actions">
-
-<button
-class="${liked?"liked":""}"
-onclick="toggleLike('${post.id}')">
-
-${liked?"💙":"🤍"}
-${(post.likes||[]).length}
-
-</button>
-
-<button onclick="focusComment('${post.id}')">
-
-💬
-${(post.comments||[]).length}
-
-</button>
-
-</div>
-
-<div
-id="comments-${post.id}"
-class="comments">
-
-${renderComments(post)}
-
-</div>
-
-</article>
-
-`;
-
-}).join("");
-
-}
-
-
-/* =========================
+/* =====================================================
    LIKE
-========================= */
+===================================================== */
 
 function toggleLike(id){
 
-const posts=JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-);
+    const posts=getPosts();
 
-const post=posts.find(
-p=>String(p.id)===String(id)
-);
+    const post=
+        posts.find(p=>p.id===id);
 
-if(!post)return;
+    if(!post){
+        return;
+    }
 
-post.likes=post.likes||[];
+    if(!post.likes){
+        post.likes=[];
+    }
 
-const index=
-post.likes.indexOf(currentUser);
+    const index=
+        post.likes.indexOf(currentUser);
 
-if(index>=0)
-post.likes.splice(index,1);
-else
-post.likes.push(currentUser);
+    if(index>=0){
 
-safeSetItem(
-"yam_posts",
-JSON.stringify(posts),
-"Like gagal disimpan kerana ruang browser penuh."
-);
+        post.likes.splice(index,1);
 
-renderFeed();
+    }else{
 
-}
+        post.likes.push(currentUser);
 
+    }
 
-/* =========================
-   COMMENTS
-========================= */
+    savePosts(posts);
 
-function renderComments(post){
-
-let html="";
-
-if(post.hiddenComments){
-
-if(post.owner===currentUser){
-
-html+=`
-<div style="
-padding:10px;
-color:#777;
-text-align:center;">
-🔒 Komen disembunyikan
-</div>
-`;
+    renderFeed();
 
 }
 
-}else{
 
-(post.comments||[])
-.forEach(comment=>{
-
-const p=
-getProfileData(comment.user);
-
-const own=
-comment.user===currentUser;
-
-html+=`
-
-<div class="comment">
-
-${avatarHtml(comment.user)}
-
-<div class="comment-body">
-
-<div class="comment-name">
-${escapeHtml(
-p.name||comment.user
-)}
-</div>
-
-<div class="comment-text">
-${escapeHtml(comment.text)}
-</div>
-
-</div>
-
-${
-own||post.owner===currentUser
-?
-`
-<button
-onclick="commentMenu(
-'${post.id}',
-'${comment.id}'
-)"
-style="
-background:transparent;
-font-size:18px;">
-⋮
-</button>
-`
-:""
-}
-
-</div>
-
-`;
-
-});
-
-}
-
-html+=`
-
-<div class="comment-input">
-
-<input
-id="comment-${post.id}"
-placeholder="Tulis komen...">
-
-<button
-onclick="addComment('${post.id}')">
-➤
-</button>
-
-</div>
-
-`;
-
-return html;
-
-}
-
+/* =====================================================
+   COMMENT
+===================================================== */
 
 function addComment(id){
 
-const input=
-document.getElementById(
-"comment-"+id
-);
+    const input=
+        document
+        .getElementById("comment-"+id);
 
-if(!input)return;
+    if(!input){
+        return;
+    }
 
-const text=input.value.trim();
+    const text=
+        input.value.trim();
 
-if(!text)return;
+    if(!text){
+        return;
+    }
 
-const posts=JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-);
+    const posts=getPosts();
 
-const post=posts.find(
-p=>String(p.id)===String(id)
-);
+    const post=
+        posts.find(p=>p.id===id);
 
-if(!post)return;
+    if(!post){
+        return;
+    }
 
-post.comments=post.comments||[];
-post.blockedUsers=post.blockedUsers||[];
+    if(!post.comments){
+        post.comments=[];
+    }
 
-if(post.blockedUsers.includes(currentUser)){
+    post.comments.push({
 
-alert(
-"Anda telah diblock untuk komen pada post ini."
-);
+        id:Date.now(),
 
-return;
-}
+        user:currentUser,
 
-post.comments.push({
+        text:text,
 
-id:Date.now(),
-user:currentUser,
-text:text,
-time:Date.now()
+        time:Date.now()
 
-});
+    });
 
-if(!safeSetItem(
-"yam_posts",
-JSON.stringify(posts),
-"Komen gagal disimpan kerana ruang browser penuh."
-))return;
+    savePosts(posts);
 
-renderFeed();
-
-}
-
-
-/* =========================
-   COMMENT MENU
-========================= */
-
-function commentMenu(postId,commentId){
-
-const posts=JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-);
-
-const post=posts.find(
-p=>String(p.id)===String(postId)
-);
-
-if(!post)return;
-
-const comment=
-(post.comments||[]).find(
-c=>String(c.id)===String(commentId)
-);
-
-if(!comment)return;
-
-const canManage=
-comment.user===currentUser||
-post.owner===currentUser;
-
-if(!canManage)return;
-
-let html="";
-
-if(post.owner===currentUser){
-
-html+=`
-
-<button class="secondary-btn"
-onclick="
-toggleCommentVisibility('${postId}');
-closeModal();
-">
-
-${
-post.hiddenComments
-?"👁️ Tunjukkan Komen"
-:"🔒 Sembunyikan Komen"
-}
-
-</button>
-
-`;
-
-}
-
-html+=`
-
-<button class="secondary-btn"
-onclick="
-deleteComment('${postId}','${commentId}');
-closeModal();
-">
-
-🗑️ Padam Komen
-
-</button>
-
-`;
-
-if(
-post.owner===currentUser&&
-comment.user!==currentUser
-){
-
-html+=`
-
-<button class="secondary-btn"
-onclick="
-blockCommenter('${postId}','${comment.user}');
-closeModal();
-">
-
-🚫 Block Pengguna
-
-</button>
-
-`;
-
-}
-
-openModal("⚙️ Komen",html,function(){});
-
-}
-
-
-function deleteComment(postId,commentId){
-
-const posts=JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-);
-
-const post=posts.find(
-p=>String(p.id)===String(postId)
-);
-
-if(!post)return;
-
-const comment=
-(post.comments||[]).find(
-c=>String(c.id)===String(commentId)
-);
-
-if(!comment)return;
-
-if(
-comment.user!==currentUser&&
-post.owner!==currentUser
-)
-return;
-
-post.comments=
-(post.comments||[]).filter(
-c=>String(c.id)!==String(commentId)
-);
-
-if(!safeSetItem(
-"yam_posts",
-JSON.stringify(posts),
-"Komen gagal dipadam kerana ruang browser penuh."
-))return;
-
-renderFeed();
-
-}
-
-
-function toggleCommentVisibility(id){
-
-const posts=JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-);
-
-const post=posts.find(
-p=>String(p.id)===String(id)
-);
-
-if(!post||post.owner!==currentUser)
-return;
-
-post.hiddenComments=!post.hiddenComments;
-
-if(!safeSetItem(
-"yam_posts",
-JSON.stringify(posts),
-"Perubahan gagal disimpan."
-))return;
-
-renderFeed();
-
-}
-
-
-function blockCommenter(postId,username){
-
-const posts=JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-);
-
-const post=posts.find(
-p=>String(p.id)===String(postId)
-);
-
-if(!post||post.owner!==currentUser)
-return;
-
-post.blockedUsers=
-post.blockedUsers||[];
-
-if(!post.blockedUsers.includes(username))
-post.blockedUsers.push(username);
-
-post.comments=
-(post.comments||[]).filter(
-c=>c.user!==username
-);
-
-if(!safeSetItem(
-"yam_posts",
-JSON.stringify(posts),
-"Block gagal disimpan."
-))return;
-
-renderFeed();
-
-}
-
-
-/* =========================
-   POST MENU
-========================= */
-
-function postOwnerMenu(id){
-
-const html=`
-
-<button class="secondary-btn"
-onclick="
-deletePost('${id}');
-closeModal();
-">
-
-🗑️ Padam Post
-
-</button>
-
-`;
-
-openModal("⚙️ Menu Post",html);
-
-}
-
-
-function deletePost(id){
-
-const posts=JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-);
-
-const post=posts.find(
-p=>String(p.id)===String(id)
-);
-
-if(!post||post.owner!==currentUser)
-return;
-
-const updated=
-posts.filter(
-p=>String(p.id)!==String(id)
-);
-
-if(!safeSetItem(
-"yam_posts",
-JSON.stringify(updated),
-"Post gagal dipadam."
-))return;
-
-renderFeed();
-renderProfileContent();
+    renderFeed();
 
 }
 
 
 function focusComment(id){
 
-const input=
-document.getElementById(
-"comment-"+id
-);
+    const input=
+        document
+        .getElementById("comment-"+id);
 
-if(input)
-input.focus();
+    if(input){
+
+        input.focus();
+
+        return;
+
+    }
+
+    const comments=
+        document.getElementById(
+            "comments-"+id
+        );
+
+    if(comments){
+
+        comments.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+    }
+
+}
+
+
+function toggleComments(id){
+
+    const posts=getPosts();
+
+    const post=
+        posts.find(p=>p.id===id);
+
+    if(!post){
+        return;
+    }
+
+    post.hiddenComments=
+        !post.hiddenComments;
+
+    savePosts(posts);
+
+    renderFeed();
 
 }
 
 
 /* =====================================================
-   PROFILE TABS
+   POST OWNER MENU
 ===================================================== */
 
-function showProfileTab(tab){
+function postOwnerMenu(id){
 
-currentProfileTab=tab;
-
-document.querySelectorAll(".profile-tab")
-.forEach(btn=>{
-btn.classList.remove("active");
-});
-
-if(tab==="posts")
-document.getElementById("profileTabPosts")
-.classList.add("active");
-
-if(tab==="images")
-document.getElementById("profileTabImages")
-.classList.add("active");
-
-if(tab==="videos")
-document.getElementById("profileTabVideos")
-.classList.add("active");
-
-if(tab==="market")
-document.getElementById("profileTabMarket")
-.classList.add("active");
-
-renderProfileContent();
+    openModal(
+        "Post",
+        `
+            <button
+                class="btn btn-gray"
+                onclick="deletePost(${id})">
+                🗑️ Padam Post
+            </button>
+        `
+    );
 
 }
 
 
-/* =========================
-   PROFILE CONTENT
-========================= */
+async function deletePost(id){
 
-function renderProfileContent(){
+    closeModal();
 
-const area=
-document.getElementById("profileTabContent");
+    const posts=getPosts();
 
-if(!area||!currentUser)
-return;
+    const post=
+        posts.find(p=>p.id===id);
 
-if(currentProfileTab==="posts"){
+    if(!post){
+        return;
+    }
 
-renderProfilePosts(area);
-return;
+    if(
+        !confirm(
+            "Padam post ini?"
+        )
+    ){
+        return;
+    }
 
-}
+    if(post.mediaId){
 
-if(currentProfileTab==="images"){
+        await deleteMedia(
+            post.mediaId
+        );
 
-renderProfileImages(area);
-return;
+    }
 
-}
+    const remaining=
+        posts.filter(
+            p=>p.id!==id
+        );
 
-if(currentProfileTab==="videos"){
+    savePosts(remaining);
 
-renderProfileVideos(area);
-return;
-
-}
-
-if(currentProfileTab==="market"){
-
-renderMarket(area);
-return;
-
-}
-
-}
-
-
-/* =========================
-   PROFILE POSTS
-========================= */
-
-function renderProfilePosts(area){
-
-const posts=JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-)
-.filter(post=>
-post.owner===currentUser
-);
-
-if(!posts.length){
-
-area.innerHTML=`
-<div class="empty">
-Belum ada post anda.
-</div>
-`;
-
-return;
-}
-
-area.innerHTML=posts.map(post=>{
-
-let media="";
-
-if(post.type==="image"&&post.media){
-
-media=`
-<img
-class="post-media"
-src="${post.media}"
-alt="Gambar post">
-`;
-
-}
-
-if(post.type==="video"&&post.media){
-
-media=`
-<video
-class="post-media"
-src="${post.media}"
-controls
-playsinline
-preload="metadata">
-</video>
-`;
-
-}
-
-return`
-
-<div class="post-card">
-
-<div class="post-time">
-${timeAgo(post.time)}
-</div>
-
-${
-post.text
-?
-`
-<div class="post-text">
-${escapeHtml(post.text)}
-</div>
-`
-:""
-}
-
-${media}
-
-<button
-class="secondary-btn"
-onclick="deletePost('${post.id}')">
-🗑️ Padam
-</button>
-
-</div>
-
-`;
-
-}).join("");
-
-}
-
-
-/* =========================
-   PROFILE IMAGES
-========================= */
-
-function renderProfileImages(area){
-
-const posts=JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-)
-.filter(post=>
-post.owner===currentUser&&
-post.type==="image"&&
-post.media
-);
-
-if(!posts.length){
-
-area.innerHTML=`
-<div class="empty">
-📷 Belum ada gambar.
-</div>
-`;
-
-return;
-}
-
-area.innerHTML=`
-
-<div class="profile-media-grid">
-
-${posts.map(post=>`
-
-<div class="profile-media-item">
-
-<img
-src="${post.media}"
-alt="Gambar">
-
-</div>
-
-`).join("")}
-
-</div>
-
-`;
-
-}
-
-
-/* =========================
-   PROFILE VIDEOS - FIX
-========================= */
-
-function renderProfileVideos(area){
-
-const posts=JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-)
-.filter(post=>
-post.owner===currentUser&&
-post.type==="video"&&
-post.media
-);
-
-if(!posts.length){
-
-area.innerHTML=`
-<div class="empty">
-🎥 Belum ada video.
-</div>
-`;
-
-return;
-}
-
-area.innerHTML=`
-
-<div class="profile-video-list">
-
-${posts.map(post=>`
-
-<div class="profile-video-card">
-
-<video
-src="${post.media}"
-controls
-playsinline
-preload="metadata">
-</video>
-
-<div class="profile-video-date">
-🎥 ${timeAgo(post.time)}
-</div>
-
-</div>
-
-`).join("")}
-
-</div>
-
-`;
+    renderFeed();
 
 }
 
 
 /* =====================================================
-   MARKET
-===================================================== */
-
-function getMarket(){
-
-return JSON.parse(
-localStorage.getItem("yam_market")||"[]"
-);
-
-}
-
-function saveMarket(items){
-
-return safeSetItem(
-"yam_market",
-JSON.stringify(items),
-"Market gagal disimpan. Ruang browser mungkin penuh."
-);
-
-}
-
-
-/* =========================
-   RENDER MARKET
-========================= */
-
-function renderMarket(area){
-
-const items=getMarket()
-.filter(item=>
-item.owner===currentUser
-);
-
-let html="";
-
-if(currentUser){
-
-html+=`
-
-<button
-class="market-add"
-onclick="addMarketItem()">
-
-➕ Tambah Barang ke Market
-
-</button>
-
-`;
-
-}
-
-if(!items.length){
-
-html+=`
-
-<div class="empty">
-
-🛒 Belum ada barang dalam Market.<br><br>
-
-Tambah barang pertama anda di sini.
-
-</div>
-
-`;
-
-area.innerHTML=html;
-
-return;
-}
-
-html+=items.map(item=>{
-
-return`
-
-<div class="market-card">
-
-${
-item.image
-?
-`
-<img
-class="market-image"
-src="${item.image}"
-alt="${escapeHtml(item.title)}">
-`
-:
-`
-<div class="market-image"
-style="
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:50px;">
-🛒
-</div>
-`
-}
-
-<div class="market-info">
-
-<div class="market-title">
-${escapeHtml(item.title)}
-</div>
-
-<div class="market-price">
-RM ${escapeHtml(item.price)}
-</div>
-
-<div class="market-description">
-${escapeHtml(item.description)}
-</div>
-
-<div class="market-owner">
-👤 ${escapeHtml(
-getProfileData(item.owner).name||item.owner
-)}
-</div>
-
-<div class="market-actions">
-
-<button
-style="
-background:#2563eb;
-color:white;"
-onclick="contactMarketSeller('${item.owner}')">
-
-💬 Tanya
-
-</button>
-
-<button
-class="market-delete"
-onclick="deleteMarketItem('${item.id}')">
-
-🗑️ Padam
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-}).join("");
-
-area.innerHTML=html;
-
-}
-
-
-/* =========================
-   ADD MARKET
-========================= */
-
-function addMarketItem(){
-
-selectedMarketImage=null;
-
-const content=`
-
-<input
-id="marketTitle"
-class="input"
-placeholder="Nama barang">
-
-<input
-id="marketPrice"
-class="input"
-placeholder="Harga contoh: 12000">
-
-<textarea
-id="marketDescription"
-class="input"
-style="min-height:110px;"
-placeholder="Penerangan barang"></textarea>
-
-<button
-class="secondary-btn"
-onclick="chooseMarketImage()">
-
-📷 Pilih Gambar Barang
-
-</button>
-
-<div id="marketPreview"
-style="margin-top:10px;">
-</div>
-
-`;
-
-openModal(
-"🛒 Tambah ke Market",
-content,
-saveMarketItem
-);
-
-}
-
-
-function chooseMarketImage(){
-
-const input=
-document.getElementById(
-"marketImageFile"
-);
-
-if(input){
-
-input.value="";
-input.click();
-
-}
-
-}
-
-
-document.getElementById("marketImageFile")
-.addEventListener("change",function(){
-
-const file=this.files[0];
-
-if(!file)
-return;
-
-if(file.size>3*1024*1024){
-
-alert(
-"Gambar Market maksimum 3MB."
-);
-
-this.value="";
-
-return;
-}
-
-selectedMarketImage=file;
-
-const reader=new FileReader();
-
-reader.onload=function(e){
-
-selectedMarketImage=e.target.result;
-
-const preview=
-document.getElementById(
-"marketPreview"
-);
-
-if(preview){
-
-preview.innerHTML=`
-
-<img
-src="${e.target.result}"
-style="
-display:block;
-width:100%;
-max-height:300px;
-object-fit:contain;
-border-radius:12px;
-background:#111;">
-
-`;
-
-}
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-
-function saveMarketItem(){
-
-const title=
-document.getElementById("marketTitle")
-.value.trim();
-
-const price=
-document.getElementById("marketPrice")
-.value.trim();
-
-const description=
-document.getElementById("marketDescription")
-.value.trim();
-
-if(!title){
-
-alert("Masukkan nama barang.");
-
-return;
-}
-
-if(!price){
-
-alert("Masukkan harga.");
-
-return;
-}
-
-const items=getMarket();
-
-items.unshift({
-
-id:Date.now(),
-owner:currentUser,
-title:title,
-price:price,
-description:description,
-image:
-typeof selectedMarketImage==="string"
-?
-selectedMarketImage
-:"",
-time:Date.now()
-
-});
-
-if(!saveMarket(items))
-return;
-
-selectedMarketImage=null;
-
-closeModal();
-
-renderProfileContent();
-
-alert(
-"Barang berjaya dimasukkan ke Market."
-);
-
-}
-
-
-/* =========================
-   DELETE MARKET
-========================= */
-
-function deleteMarketItem(id){
-
-const items=getMarket();
-
-const item=items.find(
-x=>String(x.id)===String(id)
-);
-
-if(!item)
-return;
-
-if(item.owner!==currentUser){
-
-alert(
-"Hanya pemilik barang boleh padam."
-);
-
-return;
-}
-
-if(!confirm(
-"Padam barang ini dari Market?"
-))
-return;
-
-const updated=
-items.filter(
-x=>String(x.id)!==String(id)
-);
-
-if(!saveMarket(updated))
-return;
-
-renderProfileContent();
-
-}
-
-
-/* =========================
-   MARKET CONTACT
-========================= */
-
-function contactMarketSeller(username){
-
-if(username===currentUser){
-
-alert(
-"Ini ialah barang anda sendiri."
-);
-
-return;
-}
-
-openChat(username);
-
-}
-
-
-/* =========================
    FRIENDS
-========================= */
+===================================================== */
+
+const friends=[
+    "Ahmad",
+    "Siti",
+    "John"
+];
+
 
 function renderFriends(){
 
-const list=
-document.getElementById(
-"friendsList"
-);
+    const area=
+        document.getElementById(
+            "friendsList"
+        );
 
-list.innerHTML=
-friends.map(username=>{
+    area.innerHTML=
+        friends.map(name=>`
 
-const profile=
-getProfileData(username);
+            <div class="friend-card">
 
-return`
+                ${avatarHtml(name)}
 
-<div class="friend-card">
+                <div class="friend-info">
 
-${avatarHtml(username)}
+                    <div class="friend-name">
+                        ${escapeHtml(name)}
+                    </div>
 
-<div class="friend-info">
+                    <div class="post-time">
+                        Rakan YAM Chat
+                    </div>
 
-<div class="friend-name">
-${escapeHtml(
-profile.name||username
-)}
-</div>
+                </div>
 
-<div class="friend-status">
-${escapeHtml(
-profile.status||"Available"
-)}
-</div>
+                <button
+                    class="friend-btn"
+                    onclick="openChat('${escapeHtml(name)}')">
+                    Chat
+                </button>
 
-</div>
+            </div>
 
-<button
-class="chat-btn"
-onclick="openChat('${username}')">
-
-💬 Chat
-
-</button>
-
-</div>
-
-`;
-
-}).join("");
+        `).join("");
 
 }
 
 
-/* =========================
+/* =====================================================
    ROOMS
-========================= */
+===================================================== */
+
+const rooms=[
+
+    {
+        name:"Malaysia",
+        region:"🇲🇾 Malaysia"
+    },
+
+    {
+        name:"Philippines",
+        region:"🇵🇭 Philippines"
+    },
+
+    {
+        name:"Indonesia",
+        region:"🇮🇩 Indonesia"
+    },
+
+    {
+        name:"Singapore",
+        region:"🇸🇬 Singapore"
+    },
+
+    {
+        name:"Brunei",
+        region:"🇧🇳 Brunei"
+    },
+
+    {
+        name:"World",
+        region:"🌎 World"
+    }
+
+];
+
 
 function renderRooms(){
 
-const list=
-document.getElementById(
-"roomsList"
-);
+    const area=
+        document.getElementById(
+            "roomsList"
+        );
 
-list.innerHTML=
-rooms.map(room=>`
+    area.innerHTML=
+        rooms.map(room=>`
 
-<div
-class="room-card"
-onclick="openRoom('${room.name}')">
+            <div class="room-card">
 
-<div class="room-name">
-${room.region}
-</div>
+                <div style="font-size:30px">
+                    ${room.region.split(" ")[0]}
+                </div>
 
-<div class="room-region">
-🌎 YAM Room • Tekan untuk masuk
-</div>
+                <div class="room-info">
 
-</div>
+                    <div class="room-name">
+                        ${escapeHtml(room.name)}
+                    </div>
 
-`).join("");
+                    <div class="room-region">
+                        ${escapeHtml(room.region)}
+                    </div>
+
+                </div>
+
+                <button
+                    class="room-btn"
+                    onclick="openRoom('${escapeHtml(room.name)}')">
+                    Masuk
+                </button>
+
+            </div>
+
+        `).join("");
 
 }
 
@@ -3762,1211 +2807,1766 @@ ${room.region}
 
 function renderProfile(){
 
-if(!currentUser)
-return;
+    const area=
+        document.getElementById(
+            "profileArea"
+        );
 
-const profile=
-getProfileData(currentUser);
+    const data=
+        getProfileData(currentUser);
 
-const picture=
-document.getElementById(
-"profilePicture"
-);
+    const pic=
+        localStorage.getItem(
+            "yam_picture_"+currentUser
+        );
 
-const avatar=
-getAvatar(currentUser);
+    const cover=
+        localStorage.getItem(
+            "yam_cover_"+currentUser
+        );
 
-if(avatar){
+    let avatar=
 
-picture.src=avatar;
+        pic
+        ?
+        `
+        <img
+            class="profile-avatar"
+            src="${pic}">
+        `
+        :
+        `
+        <div
+            class="profile-avatar"
+            style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                background:#1976d2;
+                color:white;
+                font-size:35px;
+                font-weight:bold;
+            ">
+            ${escapeHtml(
+                currentUser
+                .charAt(0)
+                .toUpperCase()
+            )}
+        </div>
+        `;
 
-}else{
+    area.innerHTML=`
 
-const letter=
-(profile.name||currentUser)
-.charAt(0)
-.toUpperCase();
+        <div class="profile-cover">
 
-picture.src=
-"data:image/svg+xml;charset=UTF-8,"+
-encodeURIComponent(`
-<svg
-xmlns="http://www.w3.org/2000/svg"
-width="200"
-height="200">
+            ${
+                cover
+                ?
+                `<img src="${cover}" alt="">`
+                :
+                ""
+            }
 
-<rect
-width="200"
-height="200"
-fill="#2563eb"/>
+        </div>
 
-<text
-x="50%"
-y="58%"
-text-anchor="middle"
-font-size="90"
-fill="white"
-font-family="Arial">
+        <div class="profile-card">
 
-${letter}
+            <div class="profile-avatar-wrap">
 
-</text>
+                ${avatar}
 
-</svg>
-`);
+            </div>
 
-}
+            <div class="profile-name">
+                ${escapeHtml(
+                    data.name || currentUser
+                )}
+            </div>
 
-document.getElementById(
-"profileName"
-).textContent=
-profile.name||currentUser;
+            <div class="profile-username">
+                @${escapeHtml(currentUser)}
+            </div>
 
-document.getElementById(
-"profileUsername"
-).textContent=
-"@"+currentUser;
+            ${
+                data.status
+                ?
+                `
+                <div class="profile-status">
+                    ${escapeHtml(data.status)}
+                </div>
+                `
+                :
+                ""
+            }
 
-document.getElementById(
-"profileStatus"
-).textContent=
-"🟢 "+
-(profile.status||"Available");
+            ${
+                data.bio
+                ?
+                `
+                <div class="profile-bio">
+                    ${escapeHtml(data.bio)}
+                </div>
+                `
+                :
+                ""
+            }
 
-document.getElementById(
-"profileBio"
-).textContent=
-profile.bio||"Belum ada bio.";
+            <div class="profile-buttons">
 
-const cover=
-localStorage.getItem(
-"yam_cover_"+currentUser
-);
+                <button
+                    class="small-btn"
+                    onclick="changeProfilePicture()">
+                    📷 Gambar
+                </button>
 
-const profileMain=
-document.querySelector(
-".profile-main"
-);
+                <button
+                    class="small-btn"
+                    onclick="changeCover()">
+                    🖼️ Cover
+                </button>
 
-if(profileMain){
+                <button
+                    class="small-btn"
+                    onclick="profileMenu()">
+                    ⚙️ Menu
+                </button>
 
-if(cover){
+            </div>
 
-profileMain.style.backgroundImage=
-`url("${cover}")`;
+        </div>
 
-}else{
+        <div class="profile-tabs">
 
-profileMain.style.backgroundImage=
-"linear-gradient(135deg,#2563eb,#111827)";
+            <button
+                id="profileTabPosts"
+                class="profile-tab active"
+                onclick="showProfileTab('posts')">
+                📝 Post
+            </button>
 
-}
+            <button
+                id="profileTabImages"
+                class="profile-tab"
+                onclick="showProfileTab('images')">
+                📷 Gambar
+            </button>
 
-}
+            <button
+                id="profileTabVideos"
+                class="profile-tab"
+                onclick="showProfileTab('videos')">
+                🎥 Video
+            </button>
 
-document.getElementById(
-"topUser"
-).textContent=
-profile.name||currentUser;
+            <button
+                id="profileTabMarket"
+                class="profile-tab"
+                onclick="showProfileTab('market')">
+                🛒 Market
+            </button>
 
-document.getElementById(
-"profileInfo"
-).innerHTML=`
+        </div>
 
-<div class="info-row">
+        <div
+            id="profileTabArea"
+            class="profile-tab-content">
+        </div>
 
-<div class="info-label">
-Username
-</div>
+    `;
 
-<div class="info-value">
-@${escapeHtml(currentUser)}
-</div>
-
-</div>
-
-<div class="info-row">
-
-<div class="info-label">
-🎂 Birthday
-</div>
-
-<div class="info-value">
-${escapeHtml(
-profile.birthday||"Belum diisi"
-)}
-</div>
-
-</div>
-
-<div class="info-row">
-
-<div class="info-label">
-📍 Location
-</div>
-
-<div class="info-value">
-${escapeHtml(
-profile.location||"Belum diisi"
-)}
-</div>
-
-</div>
-
-<div class="info-row">
-
-<div class="info-label">
-💼 Job
-</div>
-
-<div class="info-value">
-${escapeHtml(
-profile.job||"Belum diisi"
-)}
-</div>
-
-</div>
-
-<div class="info-row">
-
-<div class="info-label">
-⚧ Gender
-</div>
-
-<div class="info-value">
-${escapeHtml(
-profile.gender||"Belum diisi"
-)}
-</div>
-
-</div>
-
-`;
-
-showProfileTab(currentProfileTab);
+    showProfileTab(
+        currentProfileTab
+    );
 
 }
 
 
-/* =========================
-   PROFILE PICTURE
-========================= */
+function showProfileTab(tab){
 
-function changeProfilePicture(){
+    currentProfileTab=tab;
 
-const input=
-document.getElementById(
-"profileFile"
-);
+    document
+        .querySelectorAll(".profile-tab")
+        .forEach(btn=>{
+            btn.classList.remove("active");
+        });
 
-input.value="";
-input.click();
+    const button=
+        document.getElementById(
+            "profileTab"+
+            tab.charAt(0).toUpperCase()+
+            tab.slice(1)
+        );
 
-}
+    if(button){
+        button.classList.add("active");
+    }
 
+    if(tab==="posts"){
 
-document.getElementById("profileFile")
-.addEventListener("change",function(){
+        renderProfilePosts();
 
-const file=this.files[0];
+    }
 
-if(!file)return;
+    if(tab==="images"){
 
-if(file.size>3*1024*1024){
+        renderProfileImages();
 
-alert(
-"Gambar profile maksimum 3MB."
-);
+    }
 
-this.value="";
+    if(tab==="videos"){
 
-return;
-}
+        renderProfileVideos();
 
-const reader=new FileReader();
+    }
 
-reader.onload=function(e){
+    if(tab==="market"){
 
-if(!safeSetItem(
-"yam_picture_"+currentUser,
-e.target.result,
-"❌ Gambar profile gagal disimpan. Ruang browser mungkin penuh."
-))return;
+        renderMarket();
 
-renderProfile();
-renderFeed();
-renderFriends();
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-
-/* =========================
-   COVER
-========================= */
-
-function changeCover(){
-
-const input=
-document.getElementById(
-"coverFile"
-);
-
-input.value="";
-input.click();
+    }
 
 }
 
 
-document.getElementById("coverFile")
-.addEventListener("change",function(){
+/* =====================================================
+   PROFILE POSTS
+===================================================== */
 
-const file=this.files[0];
+async function renderProfilePosts(){
 
-if(!file)return;
+    const area=
+        document.getElementById(
+            "profileTabArea"
+        );
 
-if(file.size>4*1024*1024){
+    const posts=
+        getPosts()
+        .filter(
+            p=>p.owner===currentUser
+        );
 
-alert(
-"Cover maksimum 4MB."
-);
+    if(!posts.length){
 
-this.value="";
+        area.innerHTML=`
+            <div class="empty">
+                Belum ada post anda.
+            </div>
+        `;
 
-return;
+        return;
+
+    }
+
+    let html="";
+
+    for(const post of posts){
+
+        let mediaHtml="";
+
+        if(post.mediaId){
+
+            const media=
+                await getMedia(
+                    post.mediaId
+                );
+
+            if(media){
+
+                const url=
+                    URL.createObjectURL(
+                        media.blob
+                    );
+
+                if(post.type==="image"){
+
+                    mediaHtml=`
+                        <img
+                            class="post-media"
+                            src="${url}">
+                    `;
+
+                }
+
+                if(post.type==="video"){
+
+                    mediaHtml=`
+                        <video
+                            class="post-media"
+                            src="${url}"
+                            controls
+                            playsinline
+                            preload="metadata">
+                        </video>
+                    `;
+
+                }
+
+            }
+
+        }
+
+        html+=`
+
+            <div class="post">
+
+                <div class="post-time">
+                    ${timeAgo(post.time)}
+                </div>
+
+                ${
+                    post.text
+                    ?
+                    `
+                    <div class="post-text">
+                        ${escapeHtml(post.text)}
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+                ${mediaHtml}
+
+                <div class="post-actions">
+
+                    <button
+                        class="action-btn"
+                        onclick="deletePost(${post.id})">
+                        🗑️ Padam
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+    area.innerHTML=html;
+
 }
 
-const reader=new FileReader();
 
-reader.onload=function(e){
+/* =====================================================
+   PROFILE IMAGES
+===================================================== */
 
-if(!safeSetItem(
-"yam_cover_"+currentUser,
-e.target.result,
-"❌ Cover gagal disimpan. Ruang browser mungkin penuh."
-))return;
+async function renderProfileImages(){
 
-renderProfile();
+    const area=
+        document.getElementById(
+            "profileTabArea"
+        );
 
-};
+    const posts=
+        getPosts()
+        .filter(
+            p=>
+            p.owner===currentUser
+            &&
+            p.type==="image"
+        );
 
-reader.readAsDataURL(file);
+    if(!posts.length){
 
-});
+        area.innerHTML=`
+            <div class="empty">
+                Belum ada gambar.
+            </div>
+        `;
 
+        return;
 
-/* =========================
-   PROFILE MENU
-========================= */
+    }
 
-function openProfileMenu(){
+    let html=`
+        <div class="profile-media-grid">
+    `;
 
-const menu=
-document.getElementById(
-"profileMenu"
-);
+    for(const post of posts){
 
-menu.classList.toggle("hidden");
+        const media=
+            await getMedia(
+                post.mediaId
+            );
+
+        if(!media){
+            continue;
+        }
+
+        const url=
+            URL.createObjectURL(
+                media.blob
+            );
+
+        html+=`
+
+            <div class="profile-media-item">
+
+                <img
+                    src="${url}"
+                    alt="">
+
+            </div>
+
+        `;
+
+    }
+
+    html+=`</div>`;
+
+    area.innerHTML=html;
 
 }
 
-function closeProfileMenu(){
 
-const menu=
-document.getElementById(
-"profileMenu"
-);
+/* =====================================================
+   PROFILE VIDEOS
+===================================================== */
 
-if(menu)
-menu.classList.add("hidden");
+async function renderProfileVideos(){
+
+    const area=
+        document.getElementById(
+            "profileTabArea"
+        );
+
+    const posts=
+        getPosts()
+        .filter(
+            p=>
+            p.owner===currentUser
+            &&
+            p.type==="video"
+        );
+
+    if(!posts.length){
+
+        area.innerHTML=`
+            <div class="empty">
+                Belum ada video.
+            </div>
+        `;
+
+        return;
+
+    }
+
+    let html=`
+        <div class="profile-video-list">
+    `;
+
+    for(const post of posts){
+
+        const media=
+            await getMedia(
+                post.mediaId
+            );
+
+        if(!media){
+            continue;
+        }
+
+        const url=
+            URL.createObjectURL(
+                media.blob
+            );
+
+        html+=`
+
+            <div class="profile-video-card">
+
+                <video
+                    src="${url}"
+                    controls
+                    playsinline
+                    preload="metadata">
+                </video>
+
+                ${
+                    post.text
+                    ?
+                    `
+                    <div class="profile-video-text">
+                        ${escapeHtml(post.text)}
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+                <div class="post-time">
+                    ${timeAgo(post.time)}
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+    html+=`</div>`;
+
+    area.innerHTML=html;
 
 }
 
 
-/* =========================
-   EDIT PROFILE
-========================= */
+/* =====================================================
+   PROFILE EDIT
+===================================================== */
+
+function profileMenu(){
+
+    openModal(
+        "Profile Menu",
+        `
+
+        <button
+            class="btn btn-primary"
+            onclick="editProfile()">
+            ✏️ Edit Profile
+        </button>
+
+        <div style="height:8px"></div>
+
+        <button
+            class="btn btn-gray"
+            onclick="changeProfileName()">
+            👤 Tukar Nama
+        </button>
+
+        <div style="height:8px"></div>
+
+        <button
+            class="btn btn-gray"
+            onclick="changePassword()">
+            🔐 Tukar Password
+        </button>
+
+        <div style="height:8px"></div>
+
+        <button
+            class="btn btn-gray"
+            onclick="showPrivacy()">
+            🔒 Privacy
+        </button>
+
+        <div style="height:8px"></div>
+
+        <button
+            class="btn"
+            style="background:#fee2e2;color:#b91c1c"
+            onclick="logout()">
+            🚪 Logout
+        </button>
+
+        <div style="height:12px"></div>
+
+        <button
+            class="btn"
+            style="background:#fef3c7;color:#92400e"
+            onclick="cleanOldMedia()">
+            🧹 Bersihkan Media Lama
+        </button>
+
+        `
+    );
+
+}
+
 
 function editProfile(){
 
-closeProfileMenu();
+    const data=
+        getProfileData(currentUser);
 
-const profile=
-getProfileData(currentUser);
+    openModal(
+        "Edit Profile",
+        `
 
-const content=`
+        <input
+            id="editName"
+            class="input"
+            placeholder="Nama"
+            value="${escapeHtml(data.name||"")}">
 
-<input id="editName"
-class="input"
-value="${escapeHtml(profile.name||"")}"
-placeholder="Nama">
+        <textarea
+            id="editBio"
+            class="input"
+            style="min-height:100px"
+            placeholder="Bio">${escapeHtml(data.bio||"")}</textarea>
 
-<input id="editBirthday"
-class="input"
-value="${escapeHtml(profile.birthday||"")}"
-placeholder="Birthday">
+        <input
+            id="editStatus"
+            class="input"
+            placeholder="Status"
+            value="${escapeHtml(data.status||"")}">
 
-<input id="editLocation"
-class="input"
-value="${escapeHtml(profile.location||"")}"
-placeholder="Location">
+        <button
+            class="btn btn-primary"
+            onclick="saveProfileEdit()">
+            Simpan
+        </button>
 
-<input id="editJob"
-class="input"
-value="${escapeHtml(profile.job||"")}"
-placeholder="Job">
-
-<input id="editGender"
-class="input"
-value="${escapeHtml(profile.gender||"")}"
-placeholder="Gender">
-
-<textarea
-id="editBio"
-class="input"
-style="min-height:100px;"
-placeholder="Bio">${escapeHtml(
-profile.bio||""
-)}</textarea>
-
-`;
-
-openModal(
-"✏️ Edit Profile",
-content,
-saveProfile
-);
+        `
+    );
 
 }
 
 
-function saveProfile(){
+function saveProfileEdit(){
 
-const profile=
-getProfileData(currentUser);
+    const data={
 
-profile.name=
-document.getElementById("editName")
-.value.trim();
+        name:
+            document
+            .getElementById("editName")
+            .value
+            .trim(),
 
-profile.birthday=
-document.getElementById("editBirthday")
-.value.trim();
+        bio:
+            document
+            .getElementById("editBio")
+            .value
+            .trim(),
 
-profile.location=
-document.getElementById("editLocation")
-.value.trim();
+        status:
+            document
+            .getElementById("editStatus")
+            .value
+            .trim()
 
-profile.job=
-document.getElementById("editJob")
-.value.trim();
+    };
 
-profile.gender=
-document.getElementById("editGender")
-.value.trim();
+    if(saveCurrentProfile(data)){
 
-profile.bio=
-document.getElementById("editBio")
-.value.trim();
+        closeModal();
 
-saveCurrentProfile(profile);
+        renderProfile();
 
-closeModal();
-
-renderProfile();
-renderFeed();
-renderFriends();
+    }
 
 }
 
 
-/* =========================
-   NAME
-========================= */
+function changeProfileName(){
 
-function changeName(){
+    const data=
+        getProfileData(currentUser);
 
-closeProfileMenu();
+    openModal(
+        "Tukar Nama",
+        `
 
-const profile=
-getProfileData(currentUser);
+        <input
+            id="newProfileName"
+            class="input"
+            placeholder="Nama baru"
+            value="${escapeHtml(data.name||currentUser)}">
 
-const content=`
+        <button
+            class="btn btn-primary"
+            onclick="saveNewProfileName()">
+            Simpan
+        </button>
 
-<input id="newName"
-class="input"
-value="${escapeHtml(profile.name||"")}"
-placeholder="Nama baru">
-
-`;
-
-openModal(
-"✍️ Tukar Nama",
-content,
-saveName
-);
+        `
+    );
 
 }
 
 
-function saveName(){
+function saveNewProfileName(){
 
-const input=
-document.getElementById("newName");
+    const data=
+        getProfileData(currentUser);
 
-if(!input)return;
+    data.name=
+        document
+        .getElementById("newProfileName")
+        .value
+        .trim();
 
-const newName=
-input.value.trim();
+    if(!data.name){
 
-if(!newName){
+        alert("Nama tidak boleh kosong.");
 
-alert("Sila masukkan nama.");
+        return;
 
-return;
-}
+    }
 
-const profile=
-getProfileData(currentUser);
+    saveCurrentProfile(data);
 
-profile.name=newName;
+    closeModal();
 
-saveCurrentProfile(profile);
-
-closeModal();
-
-renderProfile();
-renderFeed();
-renderFriends();
-
-alert("Nama berjaya ditukar.");
+    renderProfile();
 
 }
 
-
-/* =========================
-   STATUS
-========================= */
-
-function editStatus(){
-
-const profile=
-getProfileData(currentUser);
-
-const content=`
-
-<input id="statusInput"
-class="input"
-value="${escapeHtml(profile.status||"")}"
-placeholder="Status anda">
-
-`;
-
-openModal(
-"🟢 Status",
-content,
-saveStatus
-);
-
-}
-
-
-function saveStatus(){
-
-const profile=
-getProfileData(currentUser);
-
-profile.status=
-document.getElementById(
-"statusInput"
-).value.trim();
-
-if(!profile.status)
-profile.status="Available";
-
-saveCurrentProfile(profile);
-
-closeModal();
-
-renderProfile();
-renderFriends();
-
-}
-
-
-/* =========================
-   PASSWORD
-========================= */
 
 function changePassword(){
 
-closeProfileMenu();
+    openModal(
+        "Tukar Password",
+        `
 
-const content=`
+        <input
+            id="newPassword"
+            class="input"
+            type="password"
+            placeholder="Password baru">
 
-<input id="oldPassword"
-class="input"
-type="password"
-placeholder="Password lama">
+        <button
+            class="btn btn-primary"
+            onclick="saveNewPassword()">
+            Simpan
+        </button>
 
-<input id="newPassword"
-class="input"
-type="password"
-placeholder="Password baru">
-
-<input id="newPassword2"
-class="input"
-type="password"
-placeholder="Ulang password baru">
-
-`;
-
-openModal(
-"🔑 Tukar Password",
-content,
-savePassword
-);
+        `
+    );
 
 }
 
 
-function savePassword(){
+function saveNewPassword(){
 
-const oldPass=
-document.getElementById("oldPassword").value;
+    const password=
+        document
+        .getElementById("newPassword")
+        .value;
 
-const newPass=
-document.getElementById("newPassword").value;
+    if(!password){
 
-const newPass2=
-document.getElementById("newPassword2").value;
+        alert("Password tidak boleh kosong.");
 
-const profile=
-getProfileData(currentUser);
+        return;
 
-if(profile.password!==oldPass){
+    }
 
-alert("Password lama tidak betul.");
+    const accounts=getAccounts();
 
-return;
-}
+    const account=
+        accounts.find(
+            a=>a.username===currentUser
+        );
 
-if(!newPass){
+    if(account){
 
-alert("Masukkan password baru.");
+        account.password=password;
 
-return;
-}
+        saveAccounts(accounts);
 
-if(newPass!==newPass2){
+    }
 
-alert("Password baru tidak sama.");
+    closeModal();
 
-return;
-}
-
-profile.password=newPass;
-
-saveCurrentProfile(profile);
-
-closeModal();
-
-alert("Password berjaya ditukar.");
+    alert("Password berjaya ditukar.");
 
 }
 
 
-/* =========================
-   PRIVACY
-========================= */
+function showPrivacy(){
 
-function openPrivacy(){
-
-const content=`
-
-<div style="
-padding:12px;
-background:#f8fafc;
-border-radius:12px;
-line-height:1.5;">
-
-🔒 <b>Privacy YAM</b><br><br>
-
-Tetapan privacy demo akan digunakan
-untuk profile ini.
-
-</div>
-
-`;
-
-openModal(
-"🔒 Privacy",
-content,
-closeModal
-);
+    openModal(
+        "Privacy",
+        `
+        <p style="line-height:1.5">
+            Ini ialah versi demo YAM Chat.
+            Data semasa masih disimpan pada browser
+            peranti ini. Sistem server/database sebenar
+            akan kita bina pada peringkat seterusnya.
+        </p>
+        `
+    );
 
 }
 
 
-/* =========================
+/* =====================================================
+   PROFILE IMAGE
+===================================================== */
+
+function changeProfilePicture(){
+
+    document
+        .getElementById("profileFile")
+        .click();
+
+}
+
+
+function changeProfilePicture(event){
+
+    if(!event || !event.target){
+
+        document
+            .getElementById("profileFile")
+            .click();
+
+        return;
+
+    }
+
+    const file=
+        event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    if(file.size>3*1024*1024){
+
+        alert("Gambar maksimum 3MB.");
+
+        event.target.value="";
+
+        return;
+
+    }
+
+    const reader=
+        new FileReader();
+
+    reader.onload=function(e){
+
+        try{
+
+            localStorage.setItem(
+                "yam_picture_"+currentUser,
+                e.target.result
+            );
+
+            renderProfile();
+
+        }catch(error){
+
+            alert(
+                "Gambar profil tidak dapat disimpan kerana storage browser penuh."
+            );
+
+        }
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* =====================================================
+   COVER
+===================================================== */
+
+function changeCover(){
+
+    document
+        .getElementById("coverFile")
+        .click();
+
+}
+
+
+function handleCover(event){
+
+    const file=
+        event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    if(file.size>4*1024*1024){
+
+        alert("Cover maksimum 4MB.");
+
+        event.target.value="";
+
+        return;
+
+    }
+
+    const reader=
+        new FileReader();
+
+    reader.onload=function(e){
+
+        try{
+
+            localStorage.setItem(
+                "yam_cover_"+currentUser,
+                e.target.result
+            );
+
+            renderProfile();
+
+        }catch(error){
+
+            alert(
+                "Cover tidak dapat disimpan kerana storage browser penuh."
+            );
+
+        }
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
+
+document
+    .getElementById("coverFile")
+    .addEventListener(
+        "change",
+        handleCover
+    );
+
+
+/* =====================================================
+   CLEAN MEDIA
+===================================================== */
+
+async function cleanOldMedia(){
+
+    const ok=
+        confirm(
+            "Bersihkan semua media dalam IndexedDB? Post teks tidak akan dipadam, tetapi gambar/video yang berkaitan mungkin tidak lagi dipaparkan."
+        );
+
+    if(!ok){
+        return;
+    }
+
+    try{
+
+        await clearAllMedia();
+
+        closeModal();
+
+        alert(
+            "Media lama dalam IndexedDB sudah dibersihkan."
+        );
+
+        renderFeed();
+
+    }catch(e){
+
+        alert(
+            "Gagal membersihkan media."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
    MUSIC
-========================= */
+===================================================== */
 
-function openMusic(){
+function handleMusic(event){
 
-const savedMusic=
-localStorage.getItem(
-"yam_music_"+currentUser
-);
+    const file=
+        event.target.files[0];
 
-if(!savedMusic){
+    if(!file){
+        return;
+    }
 
-const input=
-document.getElementById("musicFile");
+    if(file.size>8*1024*1024){
 
-input.value="";
-input.click();
+        alert("Music maksimum 8MB.");
 
-return;
-}
+        event.target.value="";
 
-renderMusic(true);
+        return;
 
-}
+    }
 
+    const reader=
+        new FileReader();
 
-document.getElementById("musicFile")
-.addEventListener("change",function(){
+    reader.onload=function(e){
 
-const file=this.files[0];
+        try{
 
-if(!file)return;
+            localStorage.setItem(
+                "yam_music_"+currentUser,
+                JSON.stringify({
 
-if(
-file.type&&
-!file.type.startsWith("audio/")
-){
+                    name:file.name,
 
-alert("Sila pilih fail music/audio.");
+                    data:e.target.result
 
-this.value="";
+                })
+            );
 
-return;
-}
+            alert(
+                "Music berjaya disimpan."
+            );
 
-if(file.size>8*1024*1024){
+            renderProfile();
 
-alert("Music maksimum 8MB.");
+        }catch(error){
 
-this.value="";
+            alert(
+                "Music gagal disimpan kerana storage browser penuh."
+            );
 
-return;
-}
+        }
 
-const reader=new FileReader();
+    };
 
-reader.onload=function(e){
-
-try{
-
-localStorage.setItem(
-"yam_music_"+currentUser,
-JSON.stringify({
-name:file.name,
-data:e.target.result
-})
-);
-
-renderMusic(true);
-
-}catch(error){
-
-alert(
-"Music terlalu besar untuk browser."
-);
-
-}
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-
-function renderMusic(autoPlay=false){
-
-const area=
-document.getElementById("musicArea");
-
-if(!area)return;
-
-const saved=
-localStorage.getItem(
-"yam_music_"+currentUser
-);
-
-const music=
-JSON.parse(saved||"null");
-
-if(!music){
-
-area.classList.add("hidden");
-area.innerHTML="";
-
-return;
-}
-
-area.classList.remove("hidden");
-
-area.innerHTML=`
-
-<div class="music-title">
-🎵 ${escapeHtml(music.name)}
-</div>
-
-<audio
-id="yamAudioPlayer"
-controls
-preload="auto"
-src="${music.data}">
-</audio>
-
-<div class="music-buttons">
-
-<button onclick="changeMusic()">
-🔄 Tukar Music
-</button>
-
-<button
-onclick="removeMusic()"
-style="
-background:#fee2e2;
-color:#dc2626;">
-
-🗑️ Buang
-
-</button>
-
-</div>
-
-`;
-
-if(autoPlay){
-
-setTimeout(function(){
-
-const audio=
-document.getElementById(
-"yamAudioPlayer"
-);
-
-if(!audio)return;
-
-const playPromise=audio.play();
-
-if(
-playPromise&&
-typeof playPromise.catch==="function"
-){
-
-playPromise.catch(function(){});
-
-}
-
-},50);
-
-}
+    reader.readAsDataURL(file);
 
 }
 
 
-function changeMusic(){
+/* =====================================================
+   MARKET
+===================================================== */
 
-const input=
-document.getElementById("musicFile");
+function getMarket(){
 
-input.value="";
-input.click();
+    try{
 
-}
+        return JSON.parse(
+            localStorage.getItem(
+                "yam_market"
+            ) || "[]"
+        );
 
+    }catch(e){
 
-function removeMusic(){
+        return [];
 
-if(!confirm(
-"Buang music ini dari profile?"
-))
-return;
-
-localStorage.removeItem(
-"yam_music_"+currentUser
-);
-
-renderMusic();
+    }
 
 }
 
 
-/* =========================
+function saveMarket(items){
+
+    try{
+
+        localStorage.setItem(
+            "yam_market",
+            JSON.stringify(items)
+        );
+
+        return true;
+
+    }catch(e){
+
+        alert(
+            "Market gagal disimpan. Storage browser penuh."
+        );
+
+        return false;
+
+    }
+
+}
+
+
+function renderMarket(){
+
+    const area=
+        document.getElementById(
+            "profileTabArea"
+        );
+
+    const items=
+        getMarket()
+        .filter(
+            item=>item.owner===currentUser
+        );
+
+    let html=`
+
+        <button
+            class="btn btn-primary"
+            onclick="addMarketItem()">
+            ➕ Tambah Barang
+        </button>
+
+        <div style="height:12px"></div>
+
+    `;
+
+    if(!items.length){
+
+        html+=`
+
+            <div class="empty">
+
+                Belum ada barang dalam Market.
+
+                <br><br>
+
+                Tambah barang pertama anda di sini.
+
+            </div>
+
+        `;
+
+        area.innerHTML=html;
+
+        return;
+
+    }
+
+    items.forEach(item=>{
+
+        html+=`
+
+            <div class="market-card">
+
+                ${
+                    item.image
+                    ?
+                    `<img src="${item.image}" alt="">`
+                    :
+                    ""
+                }
+
+                <div class="market-body">
+
+                    <div class="market-title">
+                        ${escapeHtml(item.title)}
+                    </div>
+
+                    <div class="market-price">
+                        RM ${escapeHtml(item.price)}
+                    </div>
+
+                    ${
+                        item.description
+                        ?
+                        `
+                        <div class="market-desc">
+                            ${escapeHtml(item.description)}
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+                    <div class="post-time">
+                        ${timeAgo(item.time)}
+                    </div>
+
+                    <div class="market-actions">
+
+                        <button
+                            class="small-btn btn-gray"
+                            onclick="deleteMarketItem(${item.id})">
+                            🗑️ Padam
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+    area.innerHTML=html;
+
+}
+
+
+function addMarketItem(){
+
+    selectedMarketImage=null;
+
+    openModal(
+        "Tambah Barang",
+        `
+
+        <input
+            id="marketTitle"
+            class="input"
+            placeholder="Nama barang">
+
+        <input
+            id="marketPrice"
+            class="input"
+            placeholder="Harga">
+
+        <textarea
+            id="marketDescription"
+            class="input"
+            placeholder="Keterangan"
+            style="min-height:100px"></textarea>
+
+        <button
+            class="btn btn-gray"
+            onclick="chooseMarketImage()">
+            📷 Pilih Gambar
+        </button>
+
+        <div
+            id="marketImagePreview"
+            style="margin-top:10px">
+        </div>
+
+        <div style="height:10px"></div>
+
+        <button
+            class="btn btn-primary"
+            onclick="saveMarketItem()">
+            Simpan Barang
+        </button>
+
+        `
+    );
+
+}
+
+
+function chooseMarketImage(){
+
+    document
+        .getElementById("marketImageFile")
+        .click();
+
+}
+
+
+function handleMarketImage(event){
+
+    const file=
+        event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    if(file.size>3*1024*1024){
+
+        alert(
+            "Gambar maksimum 3MB."
+        );
+
+        event.target.value="";
+
+        return;
+
+    }
+
+    const reader=
+        new FileReader();
+
+    reader.onload=function(e){
+
+        selectedMarketImage=
+            e.target.result;
+
+        document
+            .getElementById(
+                "marketImagePreview"
+            )
+            .innerHTML=`
+                <img
+                    src="${selectedMarketImage}"
+                    style="
+                        width:100%;
+                        max-height:250px;
+                        object-fit:cover;
+                        border-radius:10px;
+                    ">
+            `;
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
+
+
+function saveMarketItem(){
+
+    const title=
+        document
+        .getElementById("marketTitle")
+        .value
+        .trim();
+
+    const price=
+        document
+        .getElementById("marketPrice")
+        .value
+        .trim();
+
+    const description=
+        document
+        .getElementById("marketDescription")
+        .value
+        .trim();
+
+    if(!title || !price){
+
+        alert(
+            "Nama barang dan harga diperlukan."
+        );
+
+        return;
+
+    }
+
+    const items=getMarket();
+
+    items.unshift({
+
+        id:Date.now(),
+
+        owner:currentUser,
+
+        title:title,
+
+        price:price,
+
+        description:description,
+
+        image:selectedMarketImage,
+
+        time:Date.now()
+
+    });
+
+    if(saveMarket(items)){
+
+        selectedMarketImage=null;
+
+        closeModal();
+
+        renderMarket();
+
+    }
+
+}
+
+
+function deleteMarketItem(id){
+
+    if(
+        !confirm(
+            "Padam barang ini?"
+        )
+    ){
+        return;
+    }
+
+    const items=
+        getMarket()
+        .filter(
+            item=>item.id!==id
+        );
+
+    saveMarket(items);
+
+    renderMarket();
+
+}
+
+
+/* =====================================================
    CHAT
-========================= */
+===================================================== */
 
-function chatKey(){
+function chatKey(a,b){
 
-return(
-"yamchat_"+
-currentUser+
-"_"+
-currentChatUser
-);
+    return (
+        "yamchat_"+
+        [a,b]
+        .sort()
+        .join("_")
+    );
+
+}
+
+
+function getChatMessages(a,b){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                chatKey(a,b)
+            ) || "[]"
+        );
+
+    }catch(e){
+
+        return [];
+
+    }
 
 }
 
 
 function openChat(username){
 
-currentChatUser=username;
+    currentChatUser=username;
 
-const profile=
-getProfileData(username);
+    document
+        .getElementById("chatName")
+        .textContent=username;
 
-document.getElementById(
-"chatTitle"
-).textContent=
-profile.name||username;
+    document
+        .getElementById("chatBg")
+        .classList.add("show");
 
-const avatar=
-getAvatar(username);
-
-const img=
-document.getElementById(
-"chatAvatar"
-);
-
-if(avatar){
-
-img.src=avatar;
-
-}else{
-
-img.src=
-"data:image/svg+xml;charset=UTF-8,"+
-encodeURIComponent(`
-<svg
-xmlns="http://www.w3.org/2000/svg"
-width="100"
-height="100">
-
-<rect
-width="100"
-height="100"
-fill="#2563eb"/>
-
-<text
-x="50%"
-y="62%"
-text-anchor="middle"
-font-size="45"
-fill="white"
-font-family="Arial">
-
-${(profile.name||username)
-.charAt(0)
-.toUpperCase()}
-
-</text>
-
-</svg>
-`);
-
-}
-
-document.getElementById(
-"chatOverlay"
-).classList.add("show");
-
-renderChat();
+    renderChat();
 
 }
 
 
 function closeChat(){
 
-document.getElementById(
-"chatOverlay"
-).classList.remove("show");
+    currentChatUser=null;
 
-currentChatUser=null;
+    document
+        .getElementById("chatBg")
+        .classList.remove("show");
 
 }
 
 
 function renderChat(){
 
-if(!currentChatUser)return;
+    if(!currentChatUser){
+        return;
+    }
 
-const body=
-document.getElementById("chatBody");
+    const messages=
+        getChatMessages(
+            currentUser,
+            currentChatUser
+        );
 
-const messages=JSON.parse(
-localStorage.getItem(
-chatKey()
-)||"[]"
-);
+    const area=
+        document.getElementById(
+            "chatMessages"
+        );
 
-if(!messages.length){
+    if(!messages.length){
 
-body.innerHTML=`
+        area.innerHTML=`
+            <div
+                style="
+                    text-align:center;
+                    color:#6b7280;
+                    padding:30px">
+                Belum ada mesej.
+            </div>
+        `;
 
-<div class="empty">
-Belum ada mesej.
-</div>
+        return;
 
-`;
+    }
 
-return;
-}
+    area.innerHTML=
+        messages.map(m=>`
 
-body.innerHTML=
-messages.map(msg=>{
+            <div
+                class="chat-msg
+                ${m.user===currentUser?"mine":"other"}">
 
-const mine=
-msg.user===currentUser;
+                ${escapeHtml(m.text)}
 
-return`
+                <div
+                    style="
+                        font-size:9px;
+                        opacity:.7;
+                        margin-top:3px">
+                    ${timeAgo(m.time)}
+                </div>
 
-<div class="
-chat-message
-${mine?"mine":""}">
+            </div>
 
-${escapeHtml(msg.text)}
+        `).join("");
 
-</div>
-
-`;
-
-}).join("");
-
-body.scrollTop=
-body.scrollHeight;
+    area.scrollTop=
+        area.scrollHeight;
 
 }
 
 
 function sendChat(){
 
-if(!currentChatUser)return;
+    const input=
+        document.getElementById(
+            "chatInput"
+        );
 
-const input=
-document.getElementById("chatInput");
+    const text=
+        input.value.trim();
 
-const text=
-input.value.trim();
+    if(!text || !currentChatUser){
+        return;
+    }
 
-if(!text)return;
+    const key=
+        chatKey(
+            currentUser,
+            currentChatUser
+        );
 
-const messages=JSON.parse(
-localStorage.getItem(
-chatKey()
-)||"[]"
-);
+    const messages=
+        getChatMessages(
+            currentUser,
+            currentChatUser
+        );
 
-messages.push({
-user:currentUser,
-text:text,
-time:Date.now()
-});
+    messages.push({
 
-if(!safeSetItem(
-chatKey(),
-JSON.stringify(messages),
-"Mesej gagal disimpan kerana ruang browser penuh."
-))return;
+        user:currentUser,
 
-input.value="";
+        text:text,
 
-renderChat();
+        time:Date.now()
+
+    });
+
+    try{
+
+        localStorage.setItem(
+            key,
+            JSON.stringify(messages)
+        );
+
+    }catch(e){
+
+        alert(
+            "Mesej gagal disimpan. Storage browser penuh."
+        );
+
+        return;
+
+    }
+
+    input.value="";
+
+    renderChat();
 
 }
 
 
-document.getElementById("chatInput")
-.addEventListener("keydown",function(e){
-
-if(e.key==="Enter")
-sendChat();
-
-});
-
-
-/* =========================
-   ROOMS
-========================= */
+/* =====================================================
+   ROOM
+===================================================== */
 
 function openRoom(roomName){
 
-const key=
-"yamroom_"+roomName;
+    openModal(
+        roomName+" Room",
+        `
 
-const messages=JSON.parse(
-localStorage.getItem(key)||"[]"
-);
+        <div class="empty">
 
-let html=`
+            🌎 Selamat datang di
+            <strong>${escapeHtml(roomName)}</strong> Room.
 
-<div
-id="roomMessages"
-style="
-max-height:280px;
-overflow:auto;
-margin-bottom:10px;">
+            <br><br>
 
-`;
+            Chat room demo YAM Chat.
 
-if(!messages.length){
+        </div>
 
-html+=`
+        <div style="height:12px"></div>
 
-<div class="empty">
-Belum ada mesej dalam room.
-</div>
+        <input
+            id="roomMessage"
+            class="input"
+            placeholder="Tulis mesej room...">
 
-`;
+        <button
+            class="btn btn-primary"
+            onclick="sendRoomMessage('${escapeHtml(roomName)}')">
+            Hantar
+        </button>
 
-}else{
+        <div
+            id="roomMessages"
+            style="margin-top:12px">
+        </div>
 
-messages.forEach(msg=>{
+        `
+    );
 
-const p=
-getProfileData(msg.user);
-
-html+=`
-
-<div style="
-padding:9px;
-background:#f1f5f9;
-border-radius:10px;
-margin-bottom:7px;">
-
-<b>
-${escapeHtml(
-p.name||msg.user
-)}
-</b>
-
-<div>
-${escapeHtml(msg.text)}
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-html+=`
-
-</div>
-
-<input
-id="roomInput"
-class="input"
-placeholder="Tulis mesej room...">
-
-`;
-
-openModal(
-"🌎 "+roomName,
-html,
-function(){
-
-const input=
-document.getElementById(
-"roomInput"
-);
-
-const text=
-input.value.trim();
-
-if(!text)return;
-
-messages.push({
-
-user:currentUser,
-text:text,
-time:Date.now()
-
-});
-
-if(!safeSetItem(
-key,
-JSON.stringify(messages),
-"Mesej room gagal disimpan."
-))return;
-
-closeModal();
-
-openRoom(roomName);
-
-}
-);
+    renderRoomMessages(roomName);
 
 }
 
 
-/* =========================
+function roomKey(room){
+
+    return "yamroom_"+room;
+
+}
+
+
+function renderRoomMessages(room){
+
+    const area=
+        document.getElementById(
+            "roomMessages"
+        );
+
+    if(!area){
+        return;
+    }
+
+    let messages=[];
+
+    try{
+
+        messages=
+            JSON.parse(
+                localStorage.getItem(
+                    roomKey(room)
+                ) || "[]"
+            );
+
+    }catch(e){
+
+        messages=[];
+
+    }
+
+    area.innerHTML=
+        messages.map(m=>`
+
+            <div class="comment">
+
+                <span class="comment-name">
+                    ${escapeHtml(m.user)}
+                </span>
+
+                <div>
+                    ${escapeHtml(m.text)}
+                </div>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+function sendRoomMessage(room){
+
+    const input=
+        document.getElementById(
+            "roomMessage"
+        );
+
+    if(!input){
+        return;
+    }
+
+    const text=
+        input.value.trim();
+
+    if(!text){
+        return;
+    }
+
+    let messages=[];
+
+    try{
+
+        messages=
+            JSON.parse(
+                localStorage.getItem(
+                    roomKey(room)
+                ) || "[]"
+            );
+
+    }catch(e){
+
+        messages=[];
+
+    }
+
+    messages.push({
+
+        user:currentUser,
+
+        text:text,
+
+        time:Date.now()
+
+    });
+
+    try{
+
+        localStorage.setItem(
+            roomKey(room),
+            JSON.stringify(messages)
+        );
+
+    }catch(e){
+
+        alert(
+            "Room gagal disimpan. Storage browser penuh."
+        );
+
+        return;
+
+    }
+
+    input.value="";
+
+    renderRoomMessages(room);
+
+}
+
+
+/* =====================================================
    MODAL
-========================= */
+===================================================== */
 
-function openModal(
-title,
-content,
-okFunction
-){
+function openModal(title,content){
 
-document.getElementById(
-"modalTitle"
-).textContent=title;
+    document
+        .getElementById("modalTitle")
+        .textContent=title;
 
-document.getElementById(
-"modalContent"
-).innerHTML=content;
+    document
+        .getElementById("modalContent")
+        .innerHTML=content;
 
-const ok=
-document.getElementById("modalOk");
-
-ok.onclick=
-okFunction||closeModal;
-
-document.getElementById(
-"modalBg"
-).classList.add("show");
+    document
+        .getElementById("modalBg")
+        .classList.add("show");
 
 }
 
 
 function closeModal(){
 
-document.getElementById(
-"modalBg"
-).classList.remove("show");
+    document
+        .getElementById("modalBg")
+        .classList.remove("show");
 
 }
 
 
-/* =========================
-   AUTO START
-========================= */
+/* =====================================================
+   START
+===================================================== */
 
 if(currentUser){
 
-startApp();
+    startApp();
 
 }
 
