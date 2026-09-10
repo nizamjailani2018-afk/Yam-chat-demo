@@ -32,8 +32,7 @@ button{
     display:none!important;
 }
 
-/* ================= LOGIN ================= */
-
+/* LOGIN */
 #loginPage{
     min-height:100vh;
     display:flex;
@@ -98,8 +97,7 @@ button{
     margin-top:10px;
 }
 
-/* ================= APP ================= */
-
+/* APP */
 #app{
     display:none;
     min-height:100vh;
@@ -144,11 +142,7 @@ button{
     display:block;
 }
 
-/* =========================================================
-   PROFILE MODE
-   FIX RUANG ATAS BESAR
-========================================================= */
-
+/* PROFILE MODE */
 body.profile-active .topbar{
     position:fixed;
     top:0;
@@ -167,8 +161,7 @@ body.profile-active #profilePage{
     margin-top:0;
 }
 
-/* ================= HOME ================= */
-
+/* HOME */
 .create-box{
     background:white;
     border-radius:18px;
@@ -251,8 +244,7 @@ body.profile-active #profilePage{
     color:white;
 }
 
-/* ================= POSTS ================= */
-
+/* POSTS */
 .post-card{
     background:white;
     border-radius:18px;
@@ -380,8 +372,7 @@ body.profile-active #profilePage{
     border-radius:10px;
 }
 
-/* ================= FRIENDS ================= */
-
+/* FRIENDS */
 .section-title{
     font-size:22px;
     font-weight:bold;
@@ -421,8 +412,7 @@ body.profile-active #profilePage{
     font-weight:bold;
 }
 
-/* ================= ROOMS ================= */
-
+/* ROOMS */
 .room-card{
     background:white;
     padding:16px;
@@ -443,8 +433,7 @@ body.profile-active #profilePage{
     font-size:13px;
 }
 
-/* ================= PROFILE ================= */
-
+/* PROFILE */
 #profilePage{
     margin-left:-15px;
     margin-right:-15px;
@@ -457,23 +446,11 @@ body.profile-active #profilePage{
     border-radius:0;
     overflow:hidden;
     box-shadow:0 3px 12px rgba(0,0,0,.08);
-
-    background-image:linear-gradient(
-        135deg,
-        #2563eb,
-        #111827
-    );
-
+    background-image:linear-gradient(135deg,#2563eb,#111827);
     background-size:cover;
     background-position:center top;
     background-repeat:no-repeat;
 }
-
-/* =========================================================
-   COVER OVERLAY
-   DIUBAH SUPAYA TIADA LAGI KESAN GELAP
-   ATAU PERBEZAAN WARNA ATAS/BAWAH
-========================================================= */
 
 .profile-main::before{
     content:"";
@@ -489,72 +466,47 @@ body.profile-active #profilePage{
     z-index:1;
 }
 
-/* ================= FULL SCREEN COVER ================= */
-
+/* FULL SCREEN COVER */
 .profile-cover{
     width:100vw;
-
     height:300px;
-
     margin-left:calc(50% - 50vw);
     margin-right:calc(50% - 50vw);
-
     background:transparent;
-
     background-size:cover;
     background-position:center;
-
+    background-repeat:no-repeat;
     position:relative;
     overflow:visible;
-
     z-index:2;
 }
-
-/* =========================================================
-   COVER DARK
-   DIUBAH TRANSPARENT
-   SUPAYA COVER PHOTO TERANG SEKATA
-========================================================= */
 
 .cover-dark{
     position:absolute;
     inset:0;
-
     background:transparent;
-
     pointer-events:none;
 }
 
-/* ================= MUSIC BUTTON ================= */
-
+/* MUSIC BUTTON */
 .profile-music-button{
     position:absolute;
     top:70px;
     left:15px;
-
     width:44px;
     height:44px;
-
     min-width:44px;
     min-height:44px;
-
     padding:0;
-
     border-radius:50%;
-
     background:rgba(255,255,255,.96);
     color:#222;
-
     font-size:21px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     box-shadow:0 3px 12px rgba(0,0,0,.22);
-
-    z-index:50;
-
+    z-index:99998;
     transition:.15s;
 }
 
@@ -563,46 +515,35 @@ body.profile-active #profilePage{
     transform:scale(1.05);
 }
 
-/* ================= CAMERA + THREE DOT ================= */
-
+/* CAMERA + THREE DOT */
 .profile-top-actions{
     position:absolute;
-
     top:70px;
     right:15px;
-
     display:flex;
     align-items:center;
     justify-content:flex-end;
-
     gap:8px;
-
-    z-index:50;
+    z-index:99998;
+    pointer-events:auto;
 }
 
 .profile-top-actions button{
     width:44px;
     height:44px;
-
     min-width:44px;
     min-height:44px;
-
     padding:0;
-
     border-radius:50%;
-
     background:rgba(255,255,255,.96);
     color:#222;
-
     font-size:21px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     box-shadow:0 3px 12px rgba(0,0,0,.22);
-
     transition:.15s;
+    pointer-events:auto;
 }
 
 .profile-top-actions button:hover{
@@ -610,12 +551,12 @@ body.profile-active #profilePage{
     transform:scale(1.05);
 }
 
-/* ================= PROFILE MENU ================= */
-
+/* PROFILE MENU */
 .profile-menu-wrap{
     position:relative;
     display:flex;
     justify-content:flex-end;
+    z-index:100000;
 }
 
 .profile-menu{
@@ -628,7 +569,8 @@ body.profile-active #profilePage{
     padding:6px;
     box-shadow:0 8px 25px rgba(0,0,0,.25);
     border:1px solid rgba(0,0,0,.08);
-    z-index:1000;
+    z-index:99999;
+    pointer-events:auto;
 }
 
 .profile-menu::before{
@@ -646,12 +588,13 @@ body.profile-active #profilePage{
 
 .profile-menu-item{
     position:relative;
-    z-index:2;
+    z-index:100000;
     padding:13px 12px;
     border-radius:9px;
     cursor:pointer;
     font-weight:600;
     background:white;
+    pointer-events:auto;
 }
 
 .profile-menu-item:hover{
@@ -662,13 +605,10 @@ body.profile-active #profilePage{
     color:#dc2626;
 }
 
-/* ================= PROFILE PICTURE ================= */
-
+/* PROFILE PICTURE */
 .profile-picture-wrap{
     padding:0 18px;
-
     margin-top:-80px;
-
     position:relative;
     z-index:20;
 }
@@ -683,51 +623,35 @@ body.profile-active #profilePage{
 .profile-picture{
     width:115px;
     height:115px;
-
     border-radius:50%;
     border:5px solid white;
     object-fit:cover;
     background:#2563eb;
-
     box-shadow:0 4px 14px rgba(0,0,0,.25);
-
     display:block;
 }
 
 .profile-picture-camera{
     position:absolute;
-
     right:-3px;
     bottom:-3px;
-
     width:40px;
     height:40px;
-
     min-width:40px;
     min-height:40px;
-
     padding:0;
-
     border-radius:50%;
-
     background:#2563eb;
     color:white;
-
     font-size:19px;
     line-height:1;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     box-shadow:0 3px 10px rgba(0,0,0,.35);
-
     border:3px solid white;
-
     z-index:9999;
-
     cursor:pointer;
-
     transition:.15s;
 }
 
@@ -766,8 +690,7 @@ body.profile-active #profilePage{
     text-shadow:0 1px 5px rgba(0,0,0,.45);
 }
 
-/* ================= PROFILE BUTTONS ================= */
-
+/* PROFILE BUTTONS */
 .profile-buttons{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -784,8 +707,7 @@ body.profile-active #profilePage{
     box-shadow:0 3px 10px rgba(0,0,0,.12);
 }
 
-/* ================= INFO ================= */
-
+/* INFO */
 .info-title{
     padding:15px 15px 5px;
     font-size:18px;
@@ -817,8 +739,7 @@ body.profile-active #profilePage{
     color:#222;
 }
 
-/* ================= MUSIC ================= */
-
+/* MUSIC */
 .music-box{
     margin:0 15px 15px;
     background:rgba(255,255,255,.90);
@@ -848,8 +769,7 @@ body.profile-active #profilePage{
     border-radius:9px;
 }
 
-/* ================= BOTTOM NAV ================= */
-
+/* BOTTOM NAV */
 .bottom-nav{
     position:fixed;
     left:0;
@@ -883,8 +803,7 @@ body.profile-active #profilePage{
     font-weight:bold;
 }
 
-/* ================= MODAL ================= */
-
+/* MODAL */
 .modal-bg{
     position:fixed;
     inset:0;
@@ -938,8 +857,7 @@ body.profile-active #profilePage{
     background:#eee;
 }
 
-/* ================= CHAT ================= */
-
+/* CHAT */
 .chat-overlay{
     position:fixed;
     inset:0;
@@ -1014,8 +932,7 @@ body.profile-active #profilePage{
     color:white;
 }
 
-/* ================= EMPTY ================= */
-
+/* EMPTY */
 .empty{
     text-align:center;
     padding:35px 15px;
@@ -1024,8 +941,7 @@ body.profile-active #profilePage{
     border-radius:16px;
 }
 
-/* ================= MOBILE ================= */
-
+/* MOBILE */
 @media(max-width:430px){
 
     .profile-cover{
@@ -1070,11 +986,9 @@ body.profile-active #profilePage{
     .profile-buttons{
         grid-template-columns:1fr 1fr;
     }
-
 }
 
-/* ================= SMALL PHONE ================= */
-
+/* SMALL PHONE */
 @media(max-width:360px){
 
     .topbar{
@@ -1094,15 +1008,13 @@ body.profile-active #profilePage{
         padding-left:15px;
         padding-right:15px;
     }
-
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= LOGIN ================= -->
-
+<!-- LOGIN -->
 <div id="loginPage">
 
     <div class="login-box">
@@ -1141,8 +1053,7 @@ body.profile-active #profilePage{
 </div>
 
 
-<!-- ================= APP ================= -->
-
+<!-- APP -->
 <div id="app">
 
     <div class="topbar">
@@ -1161,8 +1072,7 @@ body.profile-active #profilePage{
 
     <main class="main">
 
-        <!-- ================= HOME ================= -->
-
+        <!-- HOME -->
         <section
             id="homePage"
             class="page active">
@@ -1204,7 +1114,8 @@ body.profile-active #profilePage{
 
                     <textarea
                         id="postText"
-                        placeholder="Apa yang anda fikirkan?"></textarea>
+                        placeholder="Apa yang anda fikirkan?">
+                    </textarea>
 
                     <div
                         id="mediaPreview"
@@ -1236,8 +1147,7 @@ body.profile-active #profilePage{
         </section>
 
 
-        <!-- ================= FRIENDS ================= -->
-
+        <!-- FRIENDS -->
         <section
             id="friendsPage"
             class="page">
@@ -1251,8 +1161,7 @@ body.profile-active #profilePage{
         </section>
 
 
-        <!-- ================= ROOMS ================= -->
-
+        <!-- ROOMS -->
         <section
             id="roomsPage"
             class="page">
@@ -1266,8 +1175,7 @@ body.profile-active #profilePage{
         </section>
 
 
-        <!-- ================= PROFILE ================= -->
-
+        <!-- PROFILE -->
         <section
             id="profilePage"
             class="page">
@@ -1422,48 +1330,39 @@ body.profile-active #profilePage{
     </main>
 
 
-    <!-- ================= BOTTOM NAV ================= -->
-
+    <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
 
         <button
             id="navHome"
             class="nav-btn active"
             onclick="showPage('home')">
-
             <span>🏠</span>
             Home
-
         </button>
 
         <button
             id="navFriends"
             class="nav-btn"
             onclick="showPage('friends')">
-
             <span>👥</span>
             Friends
-
         </button>
 
         <button
             id="navRooms"
             class="nav-btn"
             onclick="showPage('rooms')">
-
             <span>🌎</span>
             Rooms
-
         </button>
 
         <button
             id="navProfile"
             class="nav-btn"
             onclick="showPage('profile')">
-
             <span>👤</span>
             Profile
-
         </button>
 
     </nav>
@@ -1471,8 +1370,7 @@ body.profile-active #profilePage{
 </div>
 
 
-<!-- ================= FILE INPUTS ================= -->
-
+<!-- FILE INPUTS -->
 <input
     id="profileFile"
     type="file"
@@ -1504,8 +1402,7 @@ body.profile-active #profilePage{
     class="hidden">
 
 
-<!-- ================= MODAL ================= -->
-
+<!-- MODAL -->
 <div
     id="modalBg"
     class="modal-bg">
@@ -1542,8 +1439,7 @@ body.profile-active #profilePage{
 </div>
 
 
-<!-- ================= CHAT ================= -->
-
+<!-- CHAT -->
 <div
     id="chatOverlay"
     class="chat-overlay">
@@ -1591,46 +1487,61 @@ body.profile-active #profilePage{
 
 <script>
 
-/* =========================================================
-   YAM CHAT V4.4.7
-   COVER PHOTO LIGHT / EVEN FIX
-   PROFILE SPACING FIX
-   FULL PROFILE BACKGROUND
-   MUSIC SYSTEM
-========================================================= */
+/* YAM CHAT V4.4.7
+   PROFILE MENU FIX
+*/
 
-let currentUser =
-    localStorage.getItem("yam_current_user") || null;
+let currentUser=
+    localStorage.getItem("yam_current_user")||null;
 
-let selectedPostType = "text";
-let selectedPostFile = null;
-let currentChatUser = null;
+let selectedPostType="text";
+let selectedPostFile=null;
+let currentChatUser=null;
 
-const friends = [
+
+const friends=[
     "Ahmad",
     "Siti",
     "John"
 ];
 
-const rooms = [
-    {name:"Malaysia",region:"🇲🇾 Malaysia"},
-    {name:"Philippines",region:"🇵🇭 Philippines"},
-    {name:"Indonesia",region:"🇮🇩 Indonesia"},
-    {name:"Singapore",region:"🇸🇬 Singapore"},
-    {name:"Brunei",region:"🇧🇳 Brunei"},
-    {name:"World",region:"🌎 World"}
+
+const rooms=[
+    {
+        name:"Malaysia",
+        region:"🇲🇾 Malaysia"
+    },
+    {
+        name:"Philippines",
+        region:"🇵🇭 Philippines"
+    },
+    {
+        name:"Indonesia",
+        region:"🇮🇩 Indonesia"
+    },
+    {
+        name:"Singapore",
+        region:"🇸🇬 Singapore"
+    },
+    {
+        name:"Brunei",
+        region:"🇧🇳 Brunei"
+    },
+    {
+        name:"World",
+        region:"🌎 World"
+    }
 ];
 
-
-/* ================= HELPERS ================= */
 
 function getAccounts(){
 
     return JSON.parse(
-        localStorage.getItem("yam_accounts") || "{}"
+        localStorage.getItem("yam_accounts")||"{}"
     );
 
 }
+
 
 function saveAccounts(accounts){
 
@@ -1641,13 +1552,13 @@ function saveAccounts(accounts){
 
 }
 
+
 function getProfileData(username){
 
-    const accounts = getAccounts();
+    const accounts=getAccounts();
 
-    if(accounts[username]){
+    if(accounts[username])
         return accounts[username];
-    }
 
     return {
         username:username,
@@ -1663,19 +1574,21 @@ function getProfileData(username){
 
 }
 
+
 function saveCurrentProfile(data){
 
-    const accounts = getAccounts();
+    const accounts=getAccounts();
 
-    accounts[currentUser] = data;
+    accounts[currentUser]=data;
 
     saveAccounts(accounts);
 
 }
 
+
 function escapeHtml(text){
 
-    return String(text ?? "")
+    return String(text??"")
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -1684,17 +1597,19 @@ function escapeHtml(text){
 
 }
 
+
 function getAvatar(username){
 
     return localStorage.getItem(
-        "yam_picture_" + username
-    ) || "";
+        "yam_picture_"+username
+    )||"";
 
 }
 
+
 function avatarHtml(username){
 
-    const avatar = getAvatar(username);
+    const avatar=getAvatar(username);
 
     if(avatar){
 
@@ -1707,10 +1622,10 @@ function avatarHtml(username){
 
     }
 
-    const profile = getProfileData(username);
+    const profile=getProfileData(username);
 
-    const letter =
-        (profile.name || username || "?")
+    const letter=
+        (profile.name||username||"?")
         .charAt(0)
         .toUpperCase();
 
@@ -1731,61 +1646,65 @@ function avatarHtml(username){
 
 }
 
+
 function timeAgo(timestamp){
 
-    const diff =
-        Date.now() - timestamp;
+    const diff=Date.now()-timestamp;
 
-    const minute =
-        Math.floor(diff / 60000);
+    const minute=Math.floor(
+        diff/60000
+    );
 
-    if(minute < 1){
+    if(minute<1)
         return "baru sahaja";
-    }
 
-    if(minute < 60){
-        return minute + " minit lalu";
-    }
+    if(minute<60)
+        return minute+" minit lalu";
 
-    const hour =
-        Math.floor(minute / 60);
+    const hour=Math.floor(
+        minute/60
+    );
 
-    if(hour < 24){
-        return hour + " jam lalu";
-    }
+    if(hour<24)
+        return hour+" jam lalu";
 
-    const day =
-        Math.floor(hour / 24);
+    const day=Math.floor(
+        hour/24
+    );
 
-    return day + " hari lalu";
+    return day+" hari lalu";
 
 }
 
 
-/* ================= AUTH ================= */
+/* LOGIN */
 
 function login(){
 
-    const username =
-        document.getElementById("loginUsername")
-        .value.trim();
+    const username=
+        document.getElementById(
+            "loginUsername"
+        ).value.trim();
 
-    const password =
-        document.getElementById("loginPassword")
-        .value;
+    const password=
+        document.getElementById(
+            "loginPassword"
+        ).value;
 
-    if(!username || !password){
+    if(!username||!password){
 
-        alert("Sila isi username dan password.");
+        alert(
+            "Sila isi username dan password."
+        );
+
         return;
-
     }
 
-    const accounts = getAccounts();
+    const accounts=getAccounts();
 
     if(!accounts[username]){
 
-        accounts[username] = {
+        accounts[username]={
             username:username,
             name:username,
             password:password,
@@ -1801,14 +1720,18 @@ function login(){
 
     }
 
-    if(accounts[username].password !== password){
 
-        alert("Password tidak betul.");
+    if(accounts[username].password!==password){
+
+        alert(
+            "Password tidak betul."
+        );
+
         return;
-
     }
 
-    currentUser = username;
+
+    currentUser=username;
 
     localStorage.setItem(
         "yam_current_user",
@@ -1819,34 +1742,41 @@ function login(){
 
 }
 
+
 function register(){
 
-    const username =
-        document.getElementById("loginUsername")
-        .value.trim();
+    const username=
+        document.getElementById(
+            "loginUsername"
+        ).value.trim();
 
-    const password =
-        document.getElementById("loginPassword")
-        .value;
+    const password=
+        document.getElementById(
+            "loginPassword"
+        ).value;
 
-    if(!username || !password){
+    if(!username||!password){
 
-        alert("Isi username dan password dahulu.");
+        alert(
+            "Isi username dan password dahulu."
+        );
+
         return;
-
     }
 
-    const accounts = getAccounts();
+    const accounts=getAccounts();
 
     if(accounts[username]){
 
-        alert("Username sudah digunakan.");
-        return;
+        alert(
+            "Username sudah digunakan."
+        );
 
+        return;
     }
 
-    accounts[username] = {
 
+    accounts[username]={
         username:username,
         name:username,
         password:password,
@@ -1856,12 +1786,11 @@ function register(){
         location:"",
         job:"",
         gender:""
-
     };
 
     saveAccounts(accounts);
 
-    currentUser = username;
+    currentUser=username;
 
     localStorage.setItem(
         "yam_current_user",
@@ -1872,11 +1801,15 @@ function register(){
 
 }
 
+
+/* LOGOUT FIX */
+
 function logout(){
 
-    if(!confirm("Log Out dari YAM?")) return;
-
     closeProfileMenu();
+
+    if(!confirm("Log Out dari YAM?"))
+        return;
 
     document.body.classList.remove(
         "profile-active"
@@ -1886,26 +1819,38 @@ function logout(){
         "yam_current_user"
     );
 
-    currentUser = null;
+    currentUser=null;
 
-    document.getElementById("app")
-        .style.display = "none";
+    document.getElementById(
+        "app"
+    ).style.display="none";
 
-    document.getElementById("loginPage")
-        .style.display = "flex";
+    document.getElementById(
+        "loginPage"
+    ).style.display="flex";
+
+    document.getElementById(
+        "loginUsername"
+    ).value="";
+
+    document.getElementById(
+        "loginPassword"
+    ).value="";
 
 }
 
 
-/* ================= START APP ================= */
+/* START APP */
 
 function startApp(){
 
-    document.getElementById("loginPage")
-        .style.display = "none";
+    document.getElementById(
+        "loginPage"
+    ).style.display="none";
 
-    document.getElementById("app")
-        .style.display = "block";
+    document.getElementById(
+        "app"
+    ).style.display="block";
 
     renderProfile();
     renderFeed();
@@ -1918,7 +1863,7 @@ function startApp(){
 }
 
 
-/* ================= NAV ================= */
+/* NAVIGATION */
 
 function showPage(page){
 
@@ -1926,70 +1871,74 @@ function showPage(page){
 
     document.body.classList.toggle(
         "profile-active",
-        page === "profile"
+        page==="profile"
     );
 
     document.querySelectorAll(".page")
-        .forEach(el => {
-
+        .forEach(el=>{
             el.classList.remove("active");
-
         });
 
     document.querySelectorAll(".nav-btn")
-        .forEach(el => {
-
+        .forEach(el=>{
             el.classList.remove("active");
-
         });
 
 
-    if(page === "home"){
+    if(page==="home"){
 
-        document.getElementById("homePage")
-            .classList.add("active");
+        document.getElementById(
+            "homePage"
+        ).classList.add("active");
 
-        document.getElementById("navHome")
-            .classList.add("active");
+        document.getElementById(
+            "navHome"
+        ).classList.add("active");
 
         renderFeed();
 
     }
 
 
-    if(page === "friends"){
+    if(page==="friends"){
 
-        document.getElementById("friendsPage")
-            .classList.add("active");
+        document.getElementById(
+            "friendsPage"
+        ).classList.add("active");
 
-        document.getElementById("navFriends")
-            .classList.add("active");
+        document.getElementById(
+            "navFriends"
+        ).classList.add("active");
 
         renderFriends();
 
     }
 
 
-    if(page === "rooms"){
+    if(page==="rooms"){
 
-        document.getElementById("roomsPage")
-            .classList.add("active");
+        document.getElementById(
+            "roomsPage"
+        ).classList.add("active");
 
-        document.getElementById("navRooms")
-            .classList.add("active");
+        document.getElementById(
+            "navRooms"
+        ).classList.add("active");
 
         renderRooms();
 
     }
 
 
-    if(page === "profile"){
+    if(page==="profile"){
 
-        document.getElementById("profilePage")
-            .classList.add("active");
+        document.getElementById(
+            "profilePage"
+        ).classList.add("active");
 
-        document.getElementById("navProfile")
-            .classList.add("active");
+        document.getElementById(
+            "navProfile"
+        ).classList.add("active");
 
         renderProfile();
         renderMusic();
@@ -1999,158 +1948,185 @@ function showPage(page){
 }
 
 
-/* ================= POST TYPE ================= */
+/* POST */
 
 function selectPostType(type){
 
-    selectedPostType = type;
-    selectedPostFile = null;
+    selectedPostType=type;
+    selectedPostFile=null;
 
-    document
-        .querySelectorAll(".post-option")
-        .forEach(btn => {
-
+    document.querySelectorAll(".post-option")
+        .forEach(btn=>{
             btn.classList.remove("active");
-
         });
 
 
-    if(type === "text"){
+    if(type==="text"){
 
-        document.getElementById("textPostBtn")
-            .classList.add("active");
-
-    }
-
-
-    if(type === "image"){
-
-        document.getElementById("imagePostBtn")
-            .classList.add("active");
-
-        document.getElementById("postImageFile")
-            .click();
+        document.getElementById(
+            "textPostBtn"
+        ).classList.add("active");
 
     }
 
 
-    if(type === "video"){
+    if(type==="image"){
 
-        document.getElementById("videoPostBtn")
-            .classList.add("active");
+        document.getElementById(
+            "imagePostBtn"
+        ).classList.add("active");
 
-        document.getElementById("postVideoFile")
-            .click();
+        document.getElementById(
+            "postImageFile"
+        ).click();
+
+    }
+
+
+    if(type==="video"){
+
+        document.getElementById(
+            "videoPostBtn"
+        ).classList.add("active");
+
+        document.getElementById(
+            "postVideoFile"
+        ).click();
 
     }
 
 }
 
 
-/* ================= POST MEDIA ================= */
+document.getElementById(
+    "postImageFile"
+).addEventListener(
+    "change",
+    function(){
 
-document.getElementById("postImageFile")
-.addEventListener("change",function(){
+        const file=this.files[0];
 
-    const file = this.files[0];
+        if(!file)
+            return;
 
-    if(!file) return;
+        if(file.size>3*1024*1024){
 
-    if(file.size > 3 * 1024 * 1024){
+            alert(
+                "Gambar maksimum 3MB."
+            );
 
-        alert("Gambar maksimum 3MB.");
-        this.value = "";
-        return;
+            this.value="";
 
-    }
-
-    selectedPostFile = file;
-
-    const reader = new FileReader();
-
-    reader.onload = function(e){
-
-        document.getElementById("mediaPreview")
-            .innerHTML = `
-                <img src="${e.target.result}">
-            `;
-
-    };
-
-    reader.readAsDataURL(file);
-
-});
+            return;
+        }
 
 
-document.getElementById("postVideoFile")
-.addEventListener("change",function(){
+        selectedPostFile=file;
 
-    const file = this.files[0];
+        const reader=new FileReader();
 
-    if(!file) return;
+        reader.onload=function(e){
 
-    if(file.size > 6 * 1024 * 1024){
+            document.getElementById(
+                "mediaPreview"
+            ).innerHTML=
+                `<img src="${e.target.result}">`;
 
-        alert("Video maksimum 6MB.");
-        this.value = "";
-        return;
+        };
+
+        reader.readAsDataURL(file);
 
     }
-
-    selectedPostFile = file;
-
-    const reader = new FileReader();
-
-    reader.onload = function(e){
-
-        document.getElementById("mediaPreview")
-            .innerHTML = `
-                <video
-                    src="${e.target.result}"
-                    controls>
-                </video>
-            `;
-
-    };
-
-    reader.readAsDataURL(file);
-
-});
+);
 
 
-/* ================= CREATE POST ================= */
+document.getElementById(
+    "postVideoFile"
+).addEventListener(
+    "change",
+    function(){
+
+        const file=this.files[0];
+
+        if(!file)
+            return;
+
+        if(file.size>6*1024*1024){
+
+            alert(
+                "Video maksimum 6MB."
+            );
+
+            this.value="";
+
+            return;
+        }
+
+
+        selectedPostFile=file;
+
+        const reader=new FileReader();
+
+        reader.onload=function(e){
+
+            document.getElementById(
+                "mediaPreview"
+            ).innerHTML=
+                `<video src="${e.target.result}" controls></video>`;
+
+        };
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
 
 function createPost(){
 
-    const text =
-        document.getElementById("postText")
-        .value.trim();
+    const text=
+        document.getElementById(
+            "postText"
+        ).value.trim();
 
-    if(selectedPostType === "text" && !text){
-
-        alert("Tulis sesuatu dahulu.");
-        return;
-
-    }
 
     if(
-        (selectedPostType === "image" ||
-         selectedPostType === "video") &&
+        selectedPostType==="text" &&
+        !text
+    ){
+
+        alert(
+            "Tulis sesuatu dahulu."
+        );
+
+        return;
+    }
+
+
+    if(
+        (
+            selectedPostType==="image" ||
+            selectedPostType==="video"
+        ) &&
         !selectedPostFile
     ){
 
-        alert("Sila pilih media dahulu.");
-        return;
+        alert(
+            "Sila pilih media dahulu."
+        );
 
+        return;
     }
 
 
-    const finish = function(media){
+    const finish=function(media){
 
-        const posts =
-            JSON.parse(
-                localStorage.getItem("yam_posts") || "[]"
-            );
+        const posts=JSON.parse(
+            localStorage.getItem(
+                "yam_posts"
+            )||"[]"
+        );
+
 
         posts.unshift({
 
@@ -2167,10 +2143,12 @@ function createPost(){
 
         });
 
+
         localStorage.setItem(
             "yam_posts",
             JSON.stringify(posts)
         );
+
 
         cancelPost();
         renderFeed();
@@ -2180,9 +2158,9 @@ function createPost(){
 
     if(selectedPostFile){
 
-        const reader = new FileReader();
+        const reader=new FileReader();
 
-        reader.onload = function(e){
+        reader.onload=function(e){
 
             finish(e.target.result);
 
@@ -2201,53 +2179,61 @@ function createPost(){
 }
 
 
-/* ================= CANCEL POST ================= */
-
 function cancelPost(){
 
-    document.getElementById("postText")
-        .value = "";
+    document.getElementById(
+        "postText"
+    ).value="";
 
-    document.getElementById("mediaPreview")
-        .innerHTML = "";
+    document.getElementById(
+        "mediaPreview"
+    ).innerHTML="";
 
-    document.getElementById("postImageFile")
-        .value = "";
+    document.getElementById(
+        "postImageFile"
+    ).value="";
 
-    document.getElementById("postVideoFile")
-        .value = "";
+    document.getElementById(
+        "postVideoFile"
+    ).value="";
 
-    selectedPostFile = null;
-    selectedPostType = "text";
 
-    document
-        .querySelectorAll(".post-option")
-        .forEach(btn =>
-            btn.classList.remove("active")
-        );
+    selectedPostFile=null;
+    selectedPostType="text";
 
-    document.getElementById("textPostBtn")
-        .classList.add("active");
+
+    document.querySelectorAll(".post-option")
+        .forEach(btn=>{
+            btn.classList.remove("active");
+        });
+
+
+    document.getElementById(
+        "textPostBtn"
+    ).classList.add("active");
 
 }
 
 
-/* ================= FEED ================= */
+/* FEED */
 
 function renderFeed(){
 
-    const feed =
-        document.getElementById("feed");
-
-    const posts =
-        JSON.parse(
-            localStorage.getItem("yam_posts") || "[]"
+    const feed=
+        document.getElementById(
+            "feed"
         );
+
+    const posts=JSON.parse(
+        localStorage.getItem(
+            "yam_posts"
+        )||"[]"
+    );
 
 
     if(!posts.length){
 
-        feed.innerHTML = `
+        feed.innerHTML=`
             <div class="empty">
                 Belum ada post.<br>
                 Jadilah orang pertama post di YAM.
@@ -2255,26 +2241,31 @@ function renderFeed(){
         `;
 
         return;
-
     }
 
 
-    feed.innerHTML =
-        posts.map(post => {
+    feed.innerHTML=posts.map(
+        post=>{
 
-            const profile =
-                getProfileData(post.owner);
+            const profile=
+                getProfileData(
+                    post.owner
+                );
 
-            const liked =
-                (post.likes || [])
+            const liked=
+                (post.likes||[])
                 .includes(currentUser);
 
-            let media = "";
+
+            let media="";
 
 
-            if(post.type === "image" && post.media){
+            if(
+                post.type==="image" &&
+                post.media
+            ){
 
-                media = `
+                media=`
                     <img
                         class="post-media"
                         src="${post.media}">
@@ -2283,9 +2274,12 @@ function renderFeed(){
             }
 
 
-            if(post.type === "video" && post.media){
+            if(
+                post.type==="video" &&
+                post.media
+            ){
 
-                media = `
+                media=`
                     <video
                         class="post-media"
                         src="${post.media}"
@@ -2296,15 +2290,15 @@ function renderFeed(){
             }
 
 
-            const ownerMenu =
-                post.owner === currentUser
+            const ownerMenu=
+                post.owner===currentUser
                 ?
                 `
-                    <button
-                        class="post-menu"
-                        onclick="postOwnerMenu('${post.id}')">
-                        ⋮
-                    </button>
+                <button
+                    class="post-menu"
+                    onclick="postOwnerMenu('${post.id}')">
+                    ⋮
+                </button>
                 `
                 :
                 "";
@@ -2322,8 +2316,7 @@ function renderFeed(){
 
                             <div class="post-user">
                                 ${escapeHtml(
-                                    profile.name ||
-                                    post.owner
+                                    profile.name||post.owner
                                 )}
                             </div>
 
@@ -2341,11 +2334,9 @@ function renderFeed(){
                     ${
                         post.text
                         ?
-                        `
-                        <div class="post-text">
+                        `<div class="post-text">
                             ${escapeHtml(post.text)}
-                        </div>
-                        `
+                        </div>`
                         :
                         ""
                     }
@@ -2357,11 +2348,11 @@ function renderFeed(){
                     <div class="post-actions">
 
                         <button
-                            class="${liked ? "liked" : ""}"
+                            class="${liked?"liked":""}"
                             onclick="toggleLike('${post.id}')">
 
-                            ${liked ? "💙" : "🤍"}
-                            ${(post.likes || []).length}
+                            ${liked?"💙":"🤍"}
+                            ${(post.likes||[]).length}
 
                         </button>
 
@@ -2370,7 +2361,7 @@ function renderFeed(){
                             onclick="focusComment('${post.id}')">
 
                             💬
-                            ${(post.comments || []).length}
+                            ${(post.comments||[]).length}
 
                         </button>
 
@@ -2389,67 +2380,79 @@ function renderFeed(){
 
             `;
 
-        }).join("");
+        }
+    ).join("");
 
 }
 
 
-/* ================= LIKE ================= */
+/* LIKE */
 
 function toggleLike(id){
 
-    const posts =
-        JSON.parse(
-            localStorage.getItem("yam_posts") || "[]"
+    const posts=JSON.parse(
+        localStorage.getItem(
+            "yam_posts"
+        )||"[]"
+    );
+
+
+    const post=posts.find(
+        p=>String(p.id)===String(id)
+    );
+
+
+    if(!post)
+        return;
+
+
+    post.likes=post.likes||[];
+
+
+    const index=
+        post.likes.indexOf(
+            currentUser
         );
 
-    const post =
-        posts.find(
-            p => String(p.id) === String(id)
-        );
 
-    if(!post) return;
-
-    post.likes = post.likes || [];
-
-    const index =
-        post.likes.indexOf(currentUser);
-
-    if(index >= 0){
+    if(index>=0)
         post.likes.splice(index,1);
-    }else{
+    else
         post.likes.push(currentUser);
-    }
+
 
     localStorage.setItem(
         "yam_posts",
         JSON.stringify(posts)
     );
 
+
     renderFeed();
 
 }
 
 
-/* ================= COMMENTS ================= */
+/* COMMENTS */
 
 function renderComments(post){
 
-    let html = "";
+    let html="";
 
 
     if(post.hiddenComments){
 
-        if(post.owner === currentUser){
+        if(post.owner===currentUser){
 
-            html += `
+            html+=`
                 <div
                     style="
                         padding:10px;
                         color:#777;
                         text-align:center;
                     ">
+
                     🔒 Komen disembunyikan
+
                 </div>
             `;
 
@@ -2457,68 +2460,72 @@ function renderComments(post){
 
     }else{
 
-        (post.comments || [])
-        .forEach(comment => {
+        (post.comments||[])
+            .forEach(comment=>{
 
-            const p =
-                getProfileData(comment.user);
+                const p=
+                    getProfileData(
+                        comment.user
+                    );
 
-            const own =
-                comment.user === currentUser;
+                const own=
+                    comment.user===currentUser;
 
-            html += `
 
-                <div class="comment">
+                html+=`
 
-                    ${avatarHtml(comment.user)}
+                    <div class="comment">
 
-                    <div class="comment-body">
+                        ${avatarHtml(comment.user)}
 
-                        <div class="comment-name">
-                            ${escapeHtml(
-                                p.name ||
-                                comment.user
-                            )}
+                        <div class="comment-body">
+
+                            <div class="comment-name">
+                                ${escapeHtml(
+                                    p.name||comment.user
+                                )}
+                            </div>
+
+                            <div class="comment-text">
+                                ${escapeHtml(
+                                    comment.text
+                                )}
+                            </div>
+
                         </div>
 
-                        <div class="comment-text">
-                            ${escapeHtml(
-                                comment.text
-                            )}
-                        </div>
+
+                        ${
+                            own ||
+                            post.owner===currentUser
+                            ?
+                            `
+                            <button
+                                onclick="commentMenu(
+                                    '${post.id}',
+                                    '${comment.id}'
+                                )"
+                                style="
+                                    background:transparent;
+                                    font-size:18px;
+                                ">
+                                ⋮
+                            </button>
+                            `
+                            :
+                            ""
+                        }
 
                     </div>
 
-                    ${
-                        own || post.owner === currentUser
-                        ?
-                        `
-                        <button
-                            onclick="commentMenu(
-                                '${post.id}',
-                                '${comment.id}'
-                            )"
-                            style="
-                                background:transparent;
-                                font-size:18px;
-                            ">
-                            ⋮
-                        </button>
-                        `
-                        :
-                        ""
-                    }
+                `;
 
-                </div>
-
-            `;
-
-        });
+            });
 
     }
 
 
-    html += `
+    html+=`
 
         <div class="comment-input">
 
@@ -2541,47 +2548,59 @@ function renderComments(post){
 }
 
 
-/* ================= ADD COMMENT ================= */
-
 function addComment(id){
 
-    const input =
+    const input=
         document.getElementById(
-            "comment-" + id
+            "comment-"+id
         );
 
-    if(!input) return;
 
-    const text =
-        input.value.trim();
-
-    if(!text) return;
-
-
-    const posts =
-        JSON.parse(
-            localStorage.getItem("yam_posts") || "[]"
-        );
-
-    const post =
-        posts.find(
-            p => String(p.id) === String(id)
-        );
-
-    if(!post) return;
-
-    post.comments =
-        post.comments || [];
-
-    post.blockedUsers =
-        post.blockedUsers || [];
-
-
-    if(post.blockedUsers.includes(currentUser)){
-
-        alert("Anda telah diblock untuk komen pada post ini.");
+    if(!input)
         return;
 
+
+    const text=
+        input.value.trim();
+
+
+    if(!text)
+        return;
+
+
+    const posts=JSON.parse(
+        localStorage.getItem(
+            "yam_posts"
+        )||"[]"
+    );
+
+
+    const post=posts.find(
+        p=>String(p.id)===String(id)
+    );
+
+
+    if(!post)
+        return;
+
+
+    post.comments=
+        post.comments||[];
+
+    post.blockedUsers=
+        post.blockedUsers||[];
+
+
+    if(
+        post.blockedUsers
+        .includes(currentUser)
+    ){
+
+        alert(
+            "Anda telah diblock untuk komen pada post ini."
+        );
+
+        return;
     }
 
 
@@ -2600,62 +2619,77 @@ function addComment(id){
         JSON.stringify(posts)
     );
 
+
     renderFeed();
 
 }
 
 
-/* ================= COMMENT MENU ================= */
+/* COMMENT MENU */
 
-function commentMenu(postId,commentId){
+function commentMenu(
+    postId,
+    commentId
+){
 
-    const posts =
-        JSON.parse(
-            localStorage.getItem("yam_posts") || "[]"
-        );
-
-    const post =
-        posts.find(
-            p => String(p.id) === String(postId)
-        );
-
-    if(!post) return;
+    const posts=JSON.parse(
+        localStorage.getItem(
+            "yam_posts"
+        )||"[]"
+    );
 
 
-    const comment =
-        (post.comments || [])
+    const post=posts.find(
+        p=>String(p.id)===String(postId)
+    );
+
+
+    if(!post)
+        return;
+
+
+    const comment=
+        (post.comments||[])
         .find(
-            c => String(c.id) === String(commentId)
+            c=>String(c.id)===String(commentId)
         );
 
-    if(!comment) return;
+
+    if(!comment)
+        return;
 
 
-    const canManage =
-        comment.user === currentUser ||
-        post.owner === currentUser;
-
-    if(!canManage) return;
+    const canManage=
+        comment.user===currentUser ||
+        post.owner===currentUser;
 
 
-    let html = "";
+    if(!canManage)
+        return;
 
 
-    if(post.owner === currentUser){
+    let html="";
 
-        html += `
+
+    if(post.owner===currentUser){
+
+        html+=`
 
             <button
                 class="secondary-btn"
                 onclick="
-                    toggleCommentVisibility('${postId}');
+                    toggleCommentVisibility(
+                        '${postId}'
+                    );
                     closeModal();
                 ">
 
                 ${
                     post.hiddenComments
-                    ? "👁️ Tunjukkan Komen"
-                    : "🔒 Sembunyikan Komen"
+                    ?
+                    "👁️ Tunjukkan Komen"
+                    :
+                    "🔒 Sembunyikan Komen"
                 }
 
             </button>
@@ -2665,12 +2699,15 @@ function commentMenu(postId,commentId){
     }
 
 
-    html += `
+    html+=`
 
         <button
             class="secondary-btn"
             onclick="
-                deleteComment('${postId}','${commentId}');
+                deleteComment(
+                    '${postId}',
+                    '${commentId}'
+                );
                 closeModal();
             ">
 
@@ -2682,11 +2719,11 @@ function commentMenu(postId,commentId){
 
 
     if(
-        post.owner === currentUser &&
-        comment.user !== currentUser
+        post.owner===currentUser &&
+        comment.user!==currentUser
     ){
 
-        html += `
+        html+=`
 
             <button
                 class="secondary-btn"
@@ -2716,46 +2753,49 @@ function commentMenu(postId,commentId){
 }
 
 
-/* ================= DELETE COMMENT ================= */
+function deleteComment(
+    postId,
+    commentId
+){
 
-function deleteComment(postId,commentId){
-
-    const posts =
-        JSON.parse(
-            localStorage.getItem("yam_posts") || "[]"
-        );
-
-    const post =
-        posts.find(
-            p => String(p.id) === String(postId)
-        );
-
-    if(!post) return;
+    const posts=JSON.parse(
+        localStorage.getItem(
+            "yam_posts"
+        )||"[]"
+    );
 
 
-    const comment =
-        (post.comments || [])
+    const post=posts.find(
+        p=>String(p.id)===String(postId)
+    );
+
+
+    if(!post)
+        return;
+
+
+    const comment=
+        (post.comments||[])
         .find(
-            c => String(c.id) === String(commentId)
+            c=>String(c.id)===String(commentId)
         );
 
-    if(!comment) return;
+
+    if(!comment)
+        return;
 
 
     if(
-        comment.user !== currentUser &&
-        post.owner !== currentUser
-    ){
-
+        comment.user!==currentUser &&
+        post.owner!==currentUser
+    )
         return;
 
-    }
 
-
-    post.comments =
-        (post.comments || [])
+    post.comments=
+        (post.comments||[])
         .filter(
-            c => String(c.id) !== String(commentId)
+            c=>String(c.id)!==String(commentId)
         );
 
 
@@ -2764,119 +2804,149 @@ function deleteComment(postId,commentId){
         JSON.stringify(posts)
     );
 
+
     renderFeed();
 
 }
 
-
-/* ================= HIDE COMMENTS ================= */
 
 function toggleCommentVisibility(id){
 
-    const posts =
-        JSON.parse(
-            localStorage.getItem("yam_posts") || "[]"
-        );
+    const posts=JSON.parse(
+        localStorage.getItem(
+            "yam_posts"
+        )||"[]"
+    );
 
-    const post =
-        posts.find(
-            p => String(p.id) === String(id)
-        );
 
-    if(!post) return;
+    const post=posts.find(
+        p=>String(p.id)===String(id)
+    );
 
-    if(post.owner !== currentUser) return;
 
-    post.hiddenComments =
+    if(!post)
+        return;
+
+
+    if(post.owner!==currentUser)
+        return;
+
+
+    post.hiddenComments=
         !post.hiddenComments;
+
 
     localStorage.setItem(
         "yam_posts",
         JSON.stringify(posts)
     );
 
+
     renderFeed();
 
 }
 
 
-/* ================= BLOCK COMMENTER ================= */
+function blockCommenter(
+    postId,
+    username
+){
 
-function blockCommenter(postId,username){
+    const posts=JSON.parse(
+        localStorage.getItem(
+            "yam_posts"
+        )||"[]"
+    );
 
-    const posts =
-        JSON.parse(
-            localStorage.getItem("yam_posts") || "[]"
-        );
 
-    const post =
-        posts.find(
-            p => String(p.id) === String(postId)
-        );
+    const post=posts.find(
+        p=>String(p.id)===String(postId)
+    );
 
-    if(!post) return;
 
-    if(post.owner !== currentUser) return;
+    if(!post)
+        return;
 
-    post.blockedUsers =
-        post.blockedUsers || [];
 
-    if(!post.blockedUsers.includes(username)){
+    if(post.owner!==currentUser)
+        return;
+
+
+    post.blockedUsers=
+        post.blockedUsers||[];
+
+
+    if(
+        !post.blockedUsers.includes(username)
+    ){
 
         post.blockedUsers.push(username);
 
     }
 
-    post.comments =
-        (post.comments || [])
+
+    post.comments=
+        (post.comments||[])
         .filter(
-            c => c.user !== username
+            c=>c.user!==username
         );
+
 
     localStorage.setItem(
         "yam_posts",
         JSON.stringify(posts)
     );
 
+
     renderFeed();
 
 }
 
-function unblockCommenter(postId,username){
 
-    const posts =
-        JSON.parse(
-            localStorage.getItem("yam_posts") || "[]"
-        );
+function unblockCommenter(
+    postId,
+    username
+){
 
-    const post =
-        posts.find(
-            p => String(p.id) === String(postId)
-        );
+    const posts=JSON.parse(
+        localStorage.getItem(
+            "yam_posts"
+        )||"[]"
+    );
 
-    if(!post) return;
 
-    post.blockedUsers =
-        (post.blockedUsers || [])
+    const post=posts.find(
+        p=>String(p.id)===String(postId)
+    );
+
+
+    if(!post)
+        return;
+
+
+    post.blockedUsers=
+        (post.blockedUsers||[])
         .filter(
-            u => u !== username
+            u=>u!==username
         );
+
 
     localStorage.setItem(
         "yam_posts",
         JSON.stringify(posts)
     );
 
+
     renderFeed();
 
 }
 
 
-/* ================= POST OWNER MENU ================= */
+/* POST MENU */
 
 function postOwnerMenu(id){
 
-    const html = `
+    const html=`
 
         <button
             class="secondary-btn"
@@ -2891,6 +2961,7 @@ function postOwnerMenu(id){
 
     `;
 
+
     openModal(
         "⚙️ Menu Post",
         html
@@ -2898,133 +2969,144 @@ function postOwnerMenu(id){
 
 }
 
+
 function deletePost(id){
 
-    const posts =
-        JSON.parse(
-            localStorage.getItem("yam_posts") || "[]"
-        );
+    const posts=JSON.parse(
+        localStorage.getItem(
+            "yam_posts"
+        )||"[]"
+    );
 
-    const post =
-        posts.find(
-            p => String(p.id) === String(id)
-        );
 
-    if(!post) return;
+    const post=posts.find(
+        p=>String(p.id)===String(id)
+    );
 
-    if(post.owner !== currentUser){
 
-        alert("Hanya pemilik post boleh padam.");
+    if(!post)
         return;
 
+
+    if(post.owner!==currentUser){
+
+        alert(
+            "Hanya pemilik post boleh padam."
+        );
+
+        return;
     }
 
-    const updated =
+
+    const updated=
         posts.filter(
-            p => String(p.id) !== String(id)
+            p=>String(p.id)!==String(id)
         );
+
 
     localStorage.setItem(
         "yam_posts",
         JSON.stringify(updated)
     );
 
+
     renderFeed();
 
 }
 
 
-/* ================= COMMENT FOCUS ================= */
-
 function focusComment(id){
 
-    const input =
+    const input=
         document.getElementById(
-            "comment-" + id
+            "comment-"+id
         );
 
-    if(input){
+
+    if(input)
         input.focus();
-    }
 
 }
 
 
-/* ================= FRIENDS ================= */
+/* FRIENDS */
 
 function renderFriends(){
 
-    const list =
+    const list=
         document.getElementById(
             "friendsList"
         );
 
-    list.innerHTML =
-        friends.map(username => {
 
-            const profile =
-                getProfileData(username);
+    list.innerHTML=
+        friends.map(
+            username=>{
 
-            return `
+                const profile=
+                    getProfileData(
+                        username
+                    );
 
-                <div class="friend-card">
 
-                    ${avatarHtml(username)}
+                return `
 
-                    <div class="friend-info">
+                    <div class="friend-card">
 
-                        <div class="friend-name">
-                            ${escapeHtml(
-                                profile.name ||
-                                username
-                            )}
+                        ${avatarHtml(username)}
+
+                        <div class="friend-info">
+
+                            <div class="friend-name">
+                                ${escapeHtml(
+                                    profile.name||username
+                                )}
+                            </div>
+
+                            <div class="friend-status">
+                                ${escapeHtml(
+                                    profile.status||"Available"
+                                )}
+                            </div>
+
                         </div>
 
-                        <div class="friend-status">
-                            ${escapeHtml(
-                                profile.status ||
-                                "Available"
-                            )}
-                        </div>
+
+                        <button
+                            class="chat-btn"
+                            onclick="openChat('${username}')">
+
+                            💬 Chat
+
+                        </button>
 
                     </div>
 
-                    <button
-                        class="chat-btn"
-                        onclick="
-                            openChat('${username}')
-                        ">
-                        💬 Chat
-                    </button>
+                `;
 
-                </div>
-
-            `;
-
-        }).join("");
+            }
+        ).join("");
 
 }
 
 
-/* ================= ROOMS ================= */
+/* ROOMS */
 
 function renderRooms(){
 
-    const list =
+    const list=
         document.getElementById(
             "roomsList"
         );
 
-    list.innerHTML =
-        rooms.map(room => {
 
-            return `
+    list.innerHTML=
+        rooms.map(
+            room=>`
 
                 <div
                     class="room-card"
-                    onclick="
-                        openRoom('${room.name}')
-                    ">
+                    onclick="openRoom('${room.name}')">
 
                     <div class="room-name">
                         ${room.region}
@@ -3036,51 +3118,52 @@ function renderRooms(){
 
                 </div>
 
-            `;
-
-        }).join("");
+            `
+        ).join("");
 
 }
 
 
-/* ================= PROFILE ================= */
+/* PROFILE */
 
 function renderProfile(){
 
-    if(!currentUser) return;
+    if(!currentUser)
+        return;
 
 
-    const profile =
-        getProfileData(currentUser);
+    const profile=
+        getProfileData(
+            currentUser
+        );
 
 
-    const picture =
+    const picture=
         document.getElementById(
             "profilePicture"
         );
 
 
-    const avatar =
-        getAvatar(currentUser);
+    const avatar=
+        getAvatar(
+            currentUser
+        );
 
 
     if(avatar){
 
-        picture.src = avatar;
+        picture.src=avatar;
 
     }else{
 
-        const letter =
-            (
-                profile.name ||
-                currentUser
-            )
+        const letter=
+            (profile.name||currentUser)
             .charAt(0)
             .toUpperCase();
 
 
-        picture.src =
-            "data:image/svg+xml;charset=UTF-8," +
+        picture.src=
+            "data:image/svg+xml;charset=UTF-8,"+
             encodeURIComponent(`
 
                 <svg
@@ -3114,41 +3197,38 @@ function renderProfile(){
 
     document.getElementById(
         "profileName"
-    ).textContent =
-        profile.name ||
-        currentUser;
+    ).textContent=
+        profile.name||currentUser;
 
 
     document.getElementById(
         "profileUsername"
-    ).textContent =
-        "@" + currentUser;
+    ).textContent=
+        "@"+currentUser;
 
 
     document.getElementById(
         "profileStatus"
-    ).textContent =
-        "🟢 " +
-        (
-            profile.status ||
-            "Available"
+    ).textContent=
+        "🟢 "+(
+            profile.status||"Available"
         );
 
 
     document.getElementById(
         "profileBio"
-    ).textContent =
-        profile.bio ||
+    ).textContent=
+        profile.bio||
         "Belum ada bio.";
 
 
-    const cover =
+    const cover=
         localStorage.getItem(
-            "yam_cover_" + currentUser
+            "yam_cover_"+currentUser
         );
 
 
-    const profileMain =
+    const profileMain=
         document.querySelector(
             ".profile-main"
         );
@@ -3158,12 +3238,12 @@ function renderProfile(){
 
         if(cover){
 
-            profileMain.style.backgroundImage =
+            profileMain.style.backgroundImage=
                 `url("${cover}")`;
 
         }else{
 
-            profileMain.style.backgroundImage =
+            profileMain.style.backgroundImage=
                 "linear-gradient(135deg,#2563eb,#111827)";
 
         }
@@ -3173,14 +3253,13 @@ function renderProfile(){
 
     document.getElementById(
         "topUser"
-    ).textContent =
-        profile.name ||
-        currentUser;
+    ).textContent=
+        profile.name||currentUser;
 
 
     document.getElementById(
         "profileInfo"
-    ).innerHTML = `
+    ).innerHTML=`
 
         <div class="info-row">
 
@@ -3203,7 +3282,7 @@ function renderProfile(){
 
             <div class="info-value">
                 ${escapeHtml(
-                    profile.birthday ||
+                    profile.birthday||
                     "Belum diisi"
                 )}
             </div>
@@ -3219,7 +3298,7 @@ function renderProfile(){
 
             <div class="info-value">
                 ${escapeHtml(
-                    profile.location ||
+                    profile.location||
                     "Belum diisi"
                 )}
             </div>
@@ -3235,7 +3314,7 @@ function renderProfile(){
 
             <div class="info-value">
                 ${escapeHtml(
-                    profile.job ||
+                    profile.job||
                     "Belum diisi"
                 )}
             </div>
@@ -3251,7 +3330,7 @@ function renderProfile(){
 
             <div class="info-value">
                 ${escapeHtml(
-                    profile.gender ||
+                    profile.gender||
                     "Belum diisi"
                 )}
             </div>
@@ -3263,18 +3342,19 @@ function renderProfile(){
 }
 
 
-/* ================= PROFILE PICTURE ================= */
+/* PROFILE PICTURE */
 
 function changeProfilePicture(){
 
-    const input =
+    const input=
         document.getElementById(
             "profileFile"
         );
 
+
     if(input){
 
-        input.value = "";
+        input.value="";
         input.click();
 
     }
@@ -3282,32 +3362,40 @@ function changeProfilePicture(){
 }
 
 
-document.getElementById("profileFile")
-.addEventListener("change",function(){
+document.getElementById(
+    "profileFile"
+).addEventListener(
+    "change",
+    function(){
 
-    const file = this.files[0];
+        const file=this.files[0];
 
-    if(!file) return;
+        if(!file)
+            return;
 
-    if(file.size > 3 * 1024 * 1024){
 
-        alert("Gambar profile maksimum 3MB.");
-        this.value = "";
-        return;
+        if(file.size>3*1024*1024){
 
-    }
+            alert(
+                "Gambar profile maksimum 3MB."
+            );
 
-    const reader =
-        new FileReader();
+            this.value="";
 
-    reader.onload =
-        function(e){
+            return;
+        }
+
+
+        const reader=new FileReader();
+
+
+        reader.onload=function(e){
 
             localStorage.setItem(
-                "yam_picture_" +
-                currentUser,
+                "yam_picture_"+currentUser,
                 e.target.result
             );
+
 
             renderProfile();
             renderFeed();
@@ -3315,23 +3403,26 @@ document.getElementById("profileFile")
 
         };
 
-    reader.readAsDataURL(file);
 
-});
+        reader.readAsDataURL(file);
+
+    }
+);
 
 
-/* ================= COVER ================= */
+/* COVER */
 
 function changeCover(){
 
-    const input =
+    const input=
         document.getElementById(
             "coverFile"
         );
 
+
     if(input){
 
-        input.value = "";
+        input.value="";
         input.click();
 
     }
@@ -3339,123 +3430,162 @@ function changeCover(){
 }
 
 
-document.getElementById("coverFile")
-.addEventListener("change",function(){
+document.getElementById(
+    "coverFile"
+).addEventListener(
+    "change",
+    function(){
 
-    const file = this.files[0];
+        const file=this.files[0];
 
-    if(!file) return;
+        if(!file)
+            return;
 
-    if(file.size > 4 * 1024 * 1024){
 
-        alert("Cover maksimum 4MB.");
-        this.value = "";
-        return;
+        if(file.size>4*1024*1024){
 
-    }
+            alert(
+                "Cover maksimum 4MB."
+            );
 
-    const reader =
-        new FileReader();
+            this.value="";
 
-    reader.onload =
-        function(e){
+            return;
+        }
+
+
+        const reader=new FileReader();
+
+
+        reader.onload=function(e){
 
             localStorage.setItem(
-                "yam_cover_" +
-                currentUser,
+                "yam_cover_"+currentUser,
                 e.target.result
             );
+
 
             renderProfile();
 
         };
 
-    reader.readAsDataURL(file);
 
-});
+        reader.readAsDataURL(file);
+
+    }
+);
 
 
-/* ================= PROFILE MENU ================= */
+/* PROFILE MENU FIX */
 
 function openProfileMenu(){
 
-    const menu =
+    const menu=
         document.getElementById(
             "profileMenu"
         );
 
-    if(!menu) return;
 
-    menu.classList.toggle("hidden");
+    if(!menu)
+        return;
+
+
+    menu.classList.toggle(
+        "hidden"
+    );
 
 }
 
+
 function closeProfileMenu(){
 
-    const menu =
+    const menu=
         document.getElementById(
             "profileMenu"
         );
 
+
     if(menu){
 
-        menu.classList.add("hidden");
+        menu.classList.add(
+            "hidden"
+        );
 
     }
 
 }
 
 
-/* ================= EDIT PROFILE ================= */
+/* EDIT PROFILE */
 
 function editProfile(){
 
     closeProfileMenu();
 
-    const profile =
-        getProfileData(currentUser);
 
-    const content = `
+    const profile=
+        getProfileData(
+            currentUser
+        );
+
+
+    const content=`
 
         <input
             id="editName"
             class="input"
-            value="${escapeHtml(profile.name || "")}"
+            value="${escapeHtml(
+                profile.name||""
+            )}"
             placeholder="Nama">
+
 
         <input
             id="editBirthday"
             class="input"
-            value="${escapeHtml(profile.birthday || "")}"
+            value="${escapeHtml(
+                profile.birthday||""
+            )}"
             placeholder="Birthday">
+
 
         <input
             id="editLocation"
             class="input"
-            value="${escapeHtml(profile.location || "")}"
+            value="${escapeHtml(
+                profile.location||""
+            )}"
             placeholder="Location">
+
 
         <input
             id="editJob"
             class="input"
-            value="${escapeHtml(profile.job || "")}"
+            value="${escapeHtml(
+                profile.job||""
+            )}"
             placeholder="Job">
+
 
         <input
             id="editGender"
             class="input"
-            value="${escapeHtml(profile.gender || "")}"
+            value="${escapeHtml(
+                profile.gender||""
+            )}"
             placeholder="Gender">
+
 
         <textarea
             id="editBio"
             class="input"
             style="min-height:100px;"
             placeholder="Bio">${escapeHtml(
-                profile.bio || ""
+                profile.bio||""
             )}</textarea>
 
     `;
+
 
     openModal(
         "✏️ Edit Profile",
@@ -3465,34 +3595,50 @@ function editProfile(){
 
 }
 
+
 function saveProfile(){
 
-    const profile =
-        getProfileData(currentUser);
+    const profile=
+        getProfileData(
+            currentUser
+        );
 
-    profile.name =
-        document.getElementById("editName")
-        .value.trim();
 
-    profile.birthday =
-        document.getElementById("editBirthday")
-        .value.trim();
+    profile.name=
+        document.getElementById(
+            "editName"
+        ).value.trim();
 
-    profile.location =
-        document.getElementById("editLocation")
-        .value.trim();
 
-    profile.job =
-        document.getElementById("editJob")
-        .value.trim();
+    profile.birthday=
+        document.getElementById(
+            "editBirthday"
+        ).value.trim();
 
-    profile.gender =
-        document.getElementById("editGender")
-        .value.trim();
 
-    profile.bio =
-        document.getElementById("editBio")
-        .value.trim();
+    profile.location=
+        document.getElementById(
+            "editLocation"
+        ).value.trim();
+
+
+    profile.job=
+        document.getElementById(
+            "editJob"
+        ).value.trim();
+
+
+    profile.gender=
+        document.getElementById(
+            "editGender"
+        ).value.trim();
+
+
+    profile.bio=
+        document.getElementById(
+            "editBio"
+        ).value.trim();
+
 
     saveCurrentProfile(profile);
 
@@ -3505,24 +3651,31 @@ function saveProfile(){
 }
 
 
-/* ================= CHANGE NAME ================= */
+/* CHANGE NAME */
 
 function changeName(){
 
     closeProfileMenu();
 
-    const profile =
-        getProfileData(currentUser);
 
-    const content = `
+    const profile=
+        getProfileData(
+            currentUser
+        );
+
+
+    const content=`
 
         <input
             id="newName"
             class="input"
-            value="${escapeHtml(profile.name || "")}"
+            value="${escapeHtml(
+                profile.name||""
+            )}"
             placeholder="Nama baru">
 
     `;
+
 
     openModal(
         "✍️ Tukar Nama",
@@ -3532,30 +3685,41 @@ function changeName(){
 
 }
 
+
 function saveName(){
 
-    const input =
+    const input=
         document.getElementById(
             "newName"
         );
 
-    if(!input) return;
 
-    const newName =
+    if(!input)
+        return;
+
+
+    const newName=
         input.value.trim();
+
 
     if(!newName){
 
-        alert("Sila masukkan nama.");
-        return;
+        alert(
+            "Sila masukkan nama."
+        );
 
+        return;
     }
 
-    const profile =
-        getProfileData(currentUser);
 
-    profile.name =
-        newName;
+    const profile=
+        getProfileData(
+            currentUser
+        );
+
+
+    profile.name=newName;
+
 
     saveCurrentProfile(profile);
 
@@ -3565,27 +3729,36 @@ function saveName(){
     renderFeed();
     renderFriends();
 
-    alert("Nama berjaya ditukar.");
+
+    alert(
+        "Nama berjaya ditukar."
+    );
 
 }
 
 
-/* ================= STATUS ================= */
+/* STATUS */
 
 function editStatus(){
 
-    const profile =
-        getProfileData(currentUser);
+    const profile=
+        getProfileData(
+            currentUser
+        );
 
-    const content = `
+
+    const content=`
 
         <input
             id="statusInput"
             class="input"
-            value="${escapeHtml(profile.status || "")}"
+            value="${escapeHtml(
+                profile.status||""
+            )}"
             placeholder="Status anda">
 
     `;
+
 
     openModal(
         "🟢 Status",
@@ -3595,19 +3768,24 @@ function editStatus(){
 
 }
 
+
 function saveStatus(){
 
-    const profile =
-        getProfileData(currentUser);
+    const profile=
+        getProfileData(
+            currentUser
+        );
 
-    profile.status =
+
+    profile.status=
         document.getElementById(
             "statusInput"
         ).value.trim();
 
-    if(!profile.status){
-        profile.status = "Available";
-    }
+
+    if(!profile.status)
+        profile.status="Available";
+
 
     saveCurrentProfile(profile);
 
@@ -3619,13 +3797,14 @@ function saveStatus(){
 }
 
 
-/* ================= PASSWORD ================= */
+/* CHANGE PASSWORD FIX */
 
 function changePassword(){
 
     closeProfileMenu();
 
-    const content = `
+
+    const content=`
 
         <input
             id="oldPassword"
@@ -3633,11 +3812,13 @@ function changePassword(){
             type="password"
             placeholder="Password lama">
 
+
         <input
             id="newPassword"
             class="input"
             type="password"
             placeholder="Password baru">
+
 
         <input
             id="newPassword2"
@@ -3647,6 +3828,7 @@ function changePassword(){
 
     `;
 
+
     openModal(
         "🔑 Tukar Password",
         content,
@@ -3655,82 +3837,118 @@ function changePassword(){
 
 }
 
+
 function savePassword(){
 
-    const oldPass =
+    const oldInput=
         document.getElementById(
             "oldPassword"
-        ).value;
+        );
 
-    const newPass =
+    const newInput=
         document.getElementById(
             "newPassword"
-        ).value;
+        );
 
-    const newPass2 =
+    const newInput2=
         document.getElementById(
             "newPassword2"
-        ).value;
+        );
 
-    const profile =
-        getProfileData(currentUser);
 
-    if(profile.password !== oldPass){
-
-        alert("Password lama tidak betul.");
+    if(
+        !oldInput ||
+        !newInput ||
+        !newInput2
+    )
         return;
 
+
+    const oldPass=
+        oldInput.value;
+
+    const newPass=
+        newInput.value;
+
+    const newPass2=
+        newInput2.value;
+
+
+    const profile=
+        getProfileData(
+            currentUser
+        );
+
+
+    if(profile.password!==oldPass){
+
+        alert(
+            "Password lama tidak betul."
+        );
+
+        return;
     }
+
 
     if(!newPass){
 
-        alert("Masukkan password baru.");
-        return;
+        alert(
+            "Masukkan password baru."
+        );
 
+        return;
     }
 
-    if(newPass !== newPass2){
 
-        alert("Password baru tidak sama.");
+    if(newPass!==newPass2){
+
+        alert(
+            "Password baru tidak sama."
+        );
+
         return;
-
     }
 
-    profile.password =
-        newPass;
+
+    profile.password=newPass;
+
 
     saveCurrentProfile(profile);
 
+
     closeModal();
 
-    alert("Password berjaya ditukar.");
+
+    alert(
+        "Password berjaya ditukar."
+    );
 
 }
 
 
-/* ================= PRIVACY ================= */
+/* PRIVACY */
 
 function openPrivacy(){
 
-    const content = `
+    const content=`
 
-        <div style="
-            padding:12px;
-            background:#f8fafc;
-            border-radius:12px;
-            line-height:1.5;
-        ">
+        <div
+            style="
+                padding:12px;
+                background:#f8fafc;
+                border-radius:12px;
+                line-height:1.5;
+            ">
 
-            🔒 <b>Privacy YAM</b>
+            🔒 <b>Privacy YAM</b><br><br>
 
-            <br><br>
-
-            Tetapan privacy demo akan
-            digunakan untuk profile ini.
+            Tetapan privacy demo akan digunakan
+            untuk profile ini.
 
         </div>
 
     `;
+
 
     openModal(
         "🔒 Privacy",
@@ -3741,70 +3959,83 @@ function openPrivacy(){
 }
 
 
-/* ================= MUSIC ================= */
+/* MUSIC */
 
 function openMusic(){
 
-    const savedMusic =
+    const savedMusic=
         localStorage.getItem(
-            "yam_music_" + currentUser
+            "yam_music_"+currentUser
         );
+
 
     if(!savedMusic){
 
-        const input =
+        const input=
             document.getElementById(
                 "musicFile"
             );
 
+
         if(input){
 
-            input.value = "";
+            input.value="";
             input.click();
 
         }
 
         return;
-
     }
+
 
     renderMusic(true);
 
 }
 
 
-document.getElementById("musicFile")
-.addEventListener("change",function(){
+document.getElementById(
+    "musicFile"
+).addEventListener(
+    "change",
+    function(){
 
-    const file =
-        this.files[0];
+        const file=this.files[0];
 
-    if(!file) return;
+        if(!file)
+            return;
 
-    if(
-        file.type &&
-        !file.type.startsWith("audio/")
-    ){
 
-        alert("Sila pilih fail music/audio.");
-        this.value = "";
-        return;
+        if(
+            file.type &&
+            !file.type.startsWith("audio/")
+        ){
 
-    }
+            alert(
+                "Sila pilih fail music/audio."
+            );
 
-    if(file.size > 8 * 1024 * 1024){
+            this.value="";
 
-        alert("Music maksimum 8MB.");
-        this.value = "";
-        return;
+            return;
+        }
 
-    }
 
-    const reader =
-        new FileReader();
+        if(file.size>8*1024*1024){
 
-    reader.onerror =
-        function(){
+            alert(
+                "Music maksimum 8MB."
+            );
+
+            this.value="";
+
+            return;
+        }
+
+
+        const reader=new FileReader();
+
+
+        reader.onerror=function(){
 
             alert(
                 "Music gagal dibaca. Cuba fail lain."
@@ -3812,14 +4043,13 @@ document.getElementById("musicFile")
 
         };
 
-    reader.onload =
-        function(e){
+
+        reader.onload=function(e){
 
             try{
 
                 localStorage.setItem(
-                    "yam_music_" +
-                    currentUser,
+                    "yam_music_"+currentUser,
                     JSON.stringify({
 
                         name:file.name,
@@ -3828,7 +4058,9 @@ document.getElementById("musicFile")
                     })
                 );
 
+
                 renderMusic(true);
+
 
             }catch(error){
 
@@ -3842,43 +4074,55 @@ document.getElementById("musicFile")
 
         };
 
-    reader.readAsDataURL(file);
 
-});
+        reader.readAsDataURL(file);
 
+    }
+);
 
-/* ================= RENDER MUSIC ================= */
 
 function renderMusic(autoPlay=false){
 
-    const area =
+    const area=
         document.getElementById(
             "musicArea"
         );
 
-    if(!area) return;
 
-    const saved =
+    if(!area)
+        return;
+
+
+    const saved=
         localStorage.getItem(
-            "yam_music_" + currentUser
+            "yam_music_"+currentUser
         );
 
-    const music =
+
+    const music=
         JSON.parse(
-            saved || "null"
+            saved||"null"
         );
+
 
     if(!music){
 
-        area.classList.add("hidden");
-        area.innerHTML = "";
-        return;
+        area.classList.add(
+            "hidden"
+        );
 
+        area.innerHTML="";
+
+        return;
     }
 
-    area.classList.remove("hidden");
 
-    area.innerHTML = `
+    area.classList.remove(
+        "hidden"
+    );
+
+
+    area.innerHTML=`
 
         <div class="music-title">
 
@@ -3888,6 +4132,7 @@ function renderMusic(autoPlay=false){
 
         </div>
 
+
         <audio
             id="yamAudioPlayer"
             controls
@@ -3895,11 +4140,13 @@ function renderMusic(autoPlay=false){
             src="${music.data}">
         </audio>
 
+
         <div class="music-buttons">
 
             <button onclick="changeMusic()">
                 🔄 Tukar Music
             </button>
+
 
             <button
                 onclick="removeMusic()"
@@ -3907,7 +4154,9 @@ function renderMusic(autoPlay=false){
                     background:#fee2e2;
                     color:#dc2626;
                 ">
+
                 🗑️ Buang
+
             </button>
 
         </div>
@@ -3919,21 +4168,26 @@ function renderMusic(autoPlay=false){
 
         setTimeout(function(){
 
-            const audio =
+            const audio=
                 document.getElementById(
                     "yamAudioPlayer"
                 );
 
-            if(!audio) return;
+
+            if(!audio)
+                return;
+
 
             audio.load();
 
-            const playPromise =
+
+            const playPromise=
                 audio.play();
+
 
             if(
                 playPromise &&
-                typeof playPromise.catch === "function"
+                typeof playPromise.catch==="function"
             ){
 
                 playPromise.catch(
@@ -3951,14 +4205,15 @@ function renderMusic(autoPlay=false){
 
 function changeMusic(){
 
-    const input =
+    const input=
         document.getElementById(
             "musicFile"
         );
 
+
     if(input){
 
-        input.value = "";
+        input.value="";
         input.click();
 
     }
@@ -3972,30 +4227,28 @@ function removeMusic(){
         !confirm(
             "Buang music ini dari profile?"
         )
-    ){
-
+    )
         return;
 
-    }
 
     localStorage.removeItem(
-        "yam_music_" +
-        currentUser
+        "yam_music_"+currentUser
     );
+
 
     renderMusic();
 
 }
 
 
-/* ================= CHAT ================= */
+/* CHAT */
 
 function chatKey(){
 
     return (
-        "yamchat_" +
-        currentUser +
-        "_" +
+        "yamchat_"+
+        currentUser+
+        "_"+
         currentChatUser
     );
 
@@ -4004,34 +4257,39 @@ function chatKey(){
 
 function openChat(username){
 
-    currentChatUser =
-        username;
+    currentChatUser=username;
 
-    const profile =
-        getProfileData(username);
+
+    const profile=
+        getProfileData(
+            username
+        );
+
 
     document.getElementById(
         "chatTitle"
-    ).textContent =
-        profile.name ||
-        username;
+    ).textContent=
+        profile.name||username;
 
-    const avatar =
+
+    const avatar=
         getAvatar(username);
 
-    const img =
+
+    const img=
         document.getElementById(
             "chatAvatar"
         );
 
+
     if(avatar){
 
-        img.src = avatar;
+        img.src=avatar;
 
     }else{
 
-        img.src =
-            "data:image/svg+xml;charset=UTF-8," +
+        img.src=
+            "data:image/svg+xml;charset=UTF-8,"+
             encodeURIComponent(`
 
                 <svg
@@ -4053,10 +4311,7 @@ function openChat(username){
                         font-family="Arial">
 
                         ${
-                            (
-                                profile.name ||
-                                username
-                            )
+                            (profile.name||username)
                             .charAt(0)
                             .toUpperCase()
                         }
@@ -4069,9 +4324,11 @@ function openChat(username){
 
     }
 
+
     document.getElementById(
         "chatOverlay"
     ).classList.add("show");
+
 
     renderChat();
 
@@ -4084,30 +4341,34 @@ function closeChat(){
         "chatOverlay"
     ).classList.remove("show");
 
-    currentChatUser = null;
+
+    currentChatUser=null;
 
 }
 
 
 function renderChat(){
 
-    if(!currentChatUser) return;
+    if(!currentChatUser)
+        return;
 
-    const body =
+
+    const body=
         document.getElementById(
             "chatBody"
         );
 
-    const messages =
-        JSON.parse(
-            localStorage.getItem(
-                chatKey()
-            ) || "[]"
-        );
+
+    const messages=JSON.parse(
+        localStorage.getItem(
+            chatKey()
+        )||"[]"
+    );
+
 
     if(!messages.length){
 
-        body.innerHTML = `
+        body.innerHTML=`
 
             <div class="empty">
                 Belum ada mesej.
@@ -4116,32 +4377,38 @@ function renderChat(){
         `;
 
         return;
-
     }
 
-    body.innerHTML =
-        messages.map(msg => {
 
-            const mine =
-                msg.user === currentUser;
+    body.innerHTML=
+        messages.map(
+            msg=>{
 
-            return `
+                const mine=
+                    msg.user===currentUser;
 
-                <div
-                    class="
-                        chat-message
-                        ${mine ? "mine" : ""}
-                    ">
 
-                    ${escapeHtml(msg.text)}
+                return `
 
-                </div>
+                    <div
+                        class="
+                            chat-message
+                            ${mine?"mine":""}
+                        ">
 
-            `;
+                        ${escapeHtml(
+                            msg.text
+                        )}
 
-        }).join("");
+                    </div>
 
-    body.scrollTop =
+                `;
+
+            }
+        ).join("");
+
+
+    body.scrollTop=
         body.scrollHeight;
 
 }
@@ -4149,24 +4416,30 @@ function renderChat(){
 
 function sendChat(){
 
-    if(!currentChatUser) return;
+    if(!currentChatUser)
+        return;
 
-    const input =
+
+    const input=
         document.getElementById(
             "chatInput"
         );
 
-    const text =
+
+    const text=
         input.value.trim();
 
-    if(!text) return;
 
-    const messages =
-        JSON.parse(
-            localStorage.getItem(
-                chatKey()
-            ) || "[]"
-        );
+    if(!text)
+        return;
+
+
+    const messages=JSON.parse(
+        localStorage.getItem(
+            chatKey()
+        )||"[]"
+    );
+
 
     messages.push({
 
@@ -4176,44 +4449,50 @@ function sendChat(){
 
     });
 
+
     localStorage.setItem(
         chatKey(),
         JSON.stringify(messages)
     );
 
-    input.value = "";
+
+    input.value="";
+
 
     renderChat();
 
 }
 
 
-/* ================= ENTER CHAT ================= */
+document.getElementById(
+    "chatInput"
+).addEventListener(
+    "keydown",
+    function(e){
 
-document.getElementById("chatInput")
-.addEventListener("keydown",function(e){
+        if(e.key==="Enter")
+            sendChat();
 
-    if(e.key === "Enter"){
-        sendChat();
     }
+);
 
-});
 
-
-/* ================= ROOM ================= */
+/* ROOM */
 
 function openRoom(roomName){
 
-    const key =
-        "yamroom_" +
-        roomName;
+    const key=
+        "yamroom_"+roomName;
 
-    const messages =
-        JSON.parse(
-            localStorage.getItem(key) || "[]"
-        );
 
-    let html = `
+    const messages=JSON.parse(
+        localStorage.getItem(
+            key
+        )||"[]"
+    );
+
+
+    let html=`
 
         <div
             id="roomMessages"
@@ -4228,7 +4507,7 @@ function openRoom(roomName){
 
     if(!messages.length){
 
-        html += `
+        html+=`
 
             <div class="empty">
                 Belum ada mesej dalam room.
@@ -4238,24 +4517,27 @@ function openRoom(roomName){
 
     }else{
 
-        messages.forEach(msg => {
+        messages.forEach(msg=>{
 
-            const p =
-                getProfileData(msg.user);
+            const p=
+                getProfileData(
+                    msg.user
+                );
 
-            html += `
 
-                <div style="
-                    padding:9px;
-                    background:#f1f5f9;
-                    border-radius:10px;
-                    margin-bottom:7px;
-                ">
+            html+=`
+
+                <div
+                    style="
+                        padding:9px;
+                        background:#f1f5f9;
+                        border-radius:10px;
+                        margin-bottom:7px;
+                    ">
 
                     <b>
                         ${escapeHtml(
-                            p.name ||
-                            msg.user
+                            p.name||msg.user
                         )}
                     </b>
 
@@ -4274,9 +4556,10 @@ function openRoom(roomName){
     }
 
 
-    html += `
+    html+=`
 
         </div>
+
 
         <input
             id="roomInput"
@@ -4287,19 +4570,23 @@ function openRoom(roomName){
 
 
     openModal(
-        "🌎 " + roomName,
+        "🌎 "+roomName,
         html,
         function(){
 
-            const input =
+            const input=
                 document.getElementById(
                     "roomInput"
                 );
 
-            const text =
+
+            const text=
                 input.value.trim();
 
-            if(!text) return;
+
+            if(!text)
+                return;
+
 
             messages.push({
 
@@ -4309,10 +4596,12 @@ function openRoom(roomName){
 
             });
 
+
             localStorage.setItem(
                 key,
                 JSON.stringify(messages)
             );
+
 
             closeModal();
 
@@ -4324,7 +4613,7 @@ function openRoom(roomName){
 }
 
 
-/* ================= MODAL ================= */
+/* MODAL */
 
 function openModal(
     title,
@@ -4334,22 +4623,24 @@ function openModal(
 
     document.getElementById(
         "modalTitle"
-    ).textContent =
-        title;
+    ).textContent=title;
+
 
     document.getElementById(
         "modalContent"
-    ).innerHTML =
-        content;
+    ).innerHTML=content;
 
-    const ok =
+
+    const ok=
         document.getElementById(
             "modalOk"
         );
 
-    ok.onclick =
-        okFunction ||
+
+    ok.onclick=
+        okFunction||
         closeModal;
+
 
     document.getElementById(
         "modalBg"
@@ -4367,7 +4658,7 @@ function closeModal(){
 }
 
 
-/* ================= INIT ================= */
+/* AUTO START */
 
 if(currentUser){
 
