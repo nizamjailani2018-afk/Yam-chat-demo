@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.5.3</title>
+<title>YAM Chat V4.5.4</title>
 
 <style>
 *{
@@ -51,8 +51,14 @@ body{
     margin-bottom:5px;
 }
 
-.logo span{
+/* YAM BIRU */
+.logo .yam-blue{
     color:#1877f2;
+}
+
+/* CHAT PINK */
+.logo .chat-pink{
+    color:#ff4f9a;
 }
 
 .login-sub{
@@ -131,8 +137,14 @@ body{
     font-weight:900;
 }
 
-.top-logo span{
+/* TOP LOGO YAM BIRU */
+.top-logo .yam-blue{
     color:#1877f2;
+}
+
+/* TOP LOGO CHAT PINK */
+.top-logo .chat-pink{
+    color:#ff4f9a;
 }
 
 .current-user{
@@ -393,12 +405,6 @@ body{
     padding:0 0 20px;
 }
 
-/*
-   COVER DITINGKATKAN:
-   Background cover sekarang merangkumi seluruh kawasan
-   termasuk bawah 3 butang Gambar / Cover / Menu.
-*/
-
 .profile-hero{
     position:relative;
     min-height:540px;
@@ -425,7 +431,15 @@ body{
     position:relative;
     z-index:2;
     min-height:540px;
-    padding-top:160px;
+
+    /*
+       PROFILE DIANGKAT KE ATAS
+       Dengan padding-bottom lebih besar,
+       keseluruhan profile info + butang naik.
+    */
+    padding-top:130px;
+    padding-bottom:48px;
+
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
@@ -771,7 +785,8 @@ body{
     }
 
     .profile-content{
-        padding-top:135px;
+        padding-top:110px;
+        padding-bottom:42px;
     }
 
     .profile-avatar{
@@ -796,7 +811,8 @@ body{
     }
 
     .profile-content{
-        padding-top:120px;
+        padding-top:100px;
+        padding-bottom:38px;
     }
 
     .profile-buttons{
@@ -820,7 +836,7 @@ body{
     <div class="login-box">
 
         <div class="logo">
-            YAM<span>CHAT</span>
+            <span class="yam-blue">YAM</span><span class="chat-pink">chat</span>
         </div>
 
         <div class="login-sub">
@@ -869,7 +885,7 @@ body{
     <div class="topbar">
 
         <div class="top-logo">
-            YAM<span>CHAT</span>
+            <span class="yam-blue">YAM</span><span class="chat-pink">chat</span>
         </div>
 
         <div
@@ -1224,7 +1240,7 @@ body{
 <script>
 
 /* =========================================================
-   YAM CHAT V4.5.3
+   YAM CHAT V4.5.4
    ========================================================= */
 
 const DEFAULT_AVATAR =
@@ -2685,7 +2701,6 @@ function addComment(postId){
 
 /* =========================================================
    DELETE COMMENT
-   PEMILIK KOMEN ATAU PEMILIK POSTING
    ========================================================= */
 
 function deleteComment(
@@ -2749,7 +2764,6 @@ function deleteComment(
 
 /* =========================================================
    BLOCK / UNBLOCK
-   BLOCK JUGA BUANG KOMEN PENGGUNA TERSEBUT
    ========================================================= */
 
 function toggleBlockUser(
@@ -2802,12 +2816,6 @@ function toggleBlockUser(
         post.blockedUsers.push(
             username
         );
-
-        /*
-           Bila Block:
-           Semua komen lama daripada
-           user tersebut turut dibuang.
-        */
 
         if(
             Array.isArray(
@@ -3704,6 +3712,7 @@ $("coverFile").addEventListener(
 
 /* =========================================================
    PROFILE MENU
+   SEKARANG HANYA 4 PILIHAN
    ========================================================= */
 
 function openProfileMenu(){
@@ -3713,26 +3722,6 @@ function openProfileMenu(){
         <h3>Menu Profil</h3>
 
         <button
-            class="primary"
-            onclick="
-                changeProfilePicture();
-                closeModal()
-            "
-        >
-            📷 Tukar Gambar
-        </button>
-
-        <button
-            class="primary"
-            onclick="
-                changeCover();
-                closeModal()
-            "
-        >
-            🖼️ Tukar Cover
-        </button>
-
-        <button
             class="normal"
             onclick="editBio()"
         >
@@ -3740,27 +3729,33 @@ function openProfileMenu(){
         </button>
 
         <button
-            class="danger"
-            onclick="
-                logout();
-                closeModal()
-            "
+            class="normal"
+            onclick="changePassword()"
         >
-            🚪 Logout
+            🔑 Tukar Password
         </button>
-
-        <br>
 
         <button
             class="normal"
-            onclick="closeModal()"
+            onclick="changeName()"
         >
-            Tutup
+            ✏️ Tukar Nama
+        </button>
+
+        <button
+            class="danger"
+            onclick="confirmLogout()"
+        >
+            🚪 Log Out
         </button>
 
     `);
 }
 
+
+/* =========================================================
+   EDIT BIO
+   ========================================================= */
 
 function editBio(){
 
@@ -3805,6 +3800,354 @@ function editBio(){
         "Selamat datang ke profil saya di YAM Chat.";
 
     closeModal();
+}
+
+
+/* =========================================================
+   TUKAR PASSWORD
+   ========================================================= */
+
+function changePassword(){
+
+    const accounts =
+        getAccounts();
+
+    if(!accounts[currentUser])
+        return;
+
+    const oldPassword =
+        prompt(
+            "Masukkan password lama:"
+        );
+
+    if(oldPassword === null)
+        return;
+
+    if(
+        String(
+            accounts[currentUser].password
+        )
+        !==
+        String(oldPassword)
+    ){
+
+        alert(
+            "Password lama tidak betul."
+        );
+
+        return;
+    }
+
+    const newPassword =
+        prompt(
+            "Masukkan password baru:"
+        );
+
+    if(newPassword === null)
+        return;
+
+    if(newPassword.length < 4){
+
+        alert(
+            "Password baru mesti sekurang-kurangnya 4 aksara."
+        );
+
+        return;
+    }
+
+    const confirmPassword =
+        prompt(
+            "Masukkan semula password baru:"
+        );
+
+    if(confirmPassword === null)
+        return;
+
+    if(newPassword !== confirmPassword){
+
+        alert(
+            "Password baru tidak sama."
+        );
+
+        return;
+    }
+
+    accounts[currentUser].password =
+        newPassword;
+
+    saveAccounts(accounts);
+
+    closeModal();
+
+    alert(
+        "Password berjaya ditukar."
+    );
+}
+
+
+/* =========================================================
+   TUKAR NAMA
+   ========================================================= */
+
+function changeName(){
+
+    const accounts =
+        getAccounts();
+
+    if(!accounts[currentUser])
+        return;
+
+    const newName =
+        prompt(
+            "Masukkan nama/username baru:",
+            currentUser
+        );
+
+    if(newName === null)
+        return;
+
+    const cleanName =
+        newName.trim();
+
+    if(cleanName.length < 3){
+
+        alert(
+            "Nama mesti sekurang-kurangnya 3 aksara."
+        );
+
+        return;
+    }
+
+    if(cleanName.length > 30){
+
+        alert(
+            "Nama terlalu panjang."
+        );
+
+        return;
+    }
+
+    if(/\s/.test(cleanName)){
+
+        alert(
+            "Nama tidak boleh mempunyai ruang."
+        );
+
+        return;
+    }
+
+    const existingKey =
+        Object.keys(accounts)
+        .find(
+            key =>
+                key.toLowerCase()
+                ===
+                cleanName.toLowerCase()
+        );
+
+    if(
+        existingKey
+        &&
+        existingKey !== currentUser
+    ){
+
+        alert(
+            "Nama tersebut sudah digunakan."
+        );
+
+        return;
+    }
+
+    if(cleanName === currentUser){
+
+        closeModal();
+        return;
+    }
+
+    const oldName =
+        currentUser;
+
+    accounts[cleanName] =
+        accounts[oldName];
+
+    delete accounts[oldName];
+
+    saveAccounts(accounts);
+
+    /*
+       Tukar nama pada posting milik sendiri.
+    */
+
+    const posts =
+        getPosts();
+
+    posts.forEach(
+        post => {
+
+            if(post.owner === oldName){
+
+                post.owner =
+                    cleanName;
+            }
+
+            if(
+                Array.isArray(
+                    post.likes
+                )
+            ){
+
+                post.likes =
+                    post.likes.map(
+                        user =>
+                            user === oldName
+                            ?
+                            cleanName
+                            :
+                            user
+                    );
+            }
+
+            if(
+                Array.isArray(
+                    post.comments
+                )
+            ){
+
+                post.comments.forEach(
+                    comment => {
+
+                        if(
+                            comment.user
+                            ===
+                            oldName
+                        ){
+
+                            comment.user =
+                                cleanName;
+                        }
+                    }
+                );
+            }
+
+            if(
+                Array.isArray(
+                    post.blockedUsers
+                )
+            ){
+
+                post.blockedUsers =
+                    post.blockedUsers.map(
+                        user =>
+                            user === oldName
+                            ?
+                            cleanName
+                            :
+                            user
+                    );
+            }
+        }
+    );
+
+    savePosts(posts);
+
+    /*
+       Pindahkan gambar dan cover
+       kepada username baru.
+    */
+
+    const picture =
+        localStorage.getItem(
+            "yam_picture_"+oldName
+        );
+
+    const cover =
+        localStorage.getItem(
+            "yam_cover_"+oldName
+        );
+
+    const profile =
+        localStorage.getItem(
+            "yam_profile_"+oldName
+        );
+
+    if(picture){
+
+        localStorage.setItem(
+            "yam_picture_"+cleanName,
+            picture
+        );
+
+        localStorage.removeItem(
+            "yam_picture_"+oldName
+        );
+    }
+
+    if(cover){
+
+        localStorage.setItem(
+            "yam_cover_"+cleanName,
+            cover
+        );
+
+        localStorage.removeItem(
+            "yam_cover_"+oldName
+        );
+    }
+
+    if(profile){
+
+        localStorage.setItem(
+            "yam_profile_"+cleanName,
+            profile
+        );
+
+        localStorage.removeItem(
+            "yam_profile_"+oldName
+        );
+    }
+
+    currentUser =
+        cleanName;
+
+    localStorage.setItem(
+        "yam_current_user",
+        currentUser
+    );
+
+    $("currentUserDisplay").textContent =
+        "@"+currentUser;
+
+    closeModal();
+
+    renderProfile();
+
+    renderFeed();
+
+    renderFriends();
+
+    alert(
+        "Nama berjaya ditukar kepada @"+cleanName
+    );
+}
+
+
+/* =========================================================
+   CONFIRM LOGOUT
+   ========================================================= */
+
+function confirmLogout(){
+
+    const yes =
+        confirm(
+            "Anda pasti mahu Log Out?"
+        );
+
+    if(!yes)
+        return;
+
+    closeModal();
+
+    logout();
 }
 
 
