@@ -3,5068 +3,921 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM Chat V4.5.7</title>
+
+<title>Y-M Chat V1</title>
 
 <style>
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Arial,sans-serif;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
 }
+
 html,body{
-width:100%;
-min-height:100%;
-overflow-x:hidden;
+    width:100%;
+    min-height:100%;
 }
-body{background:#f1f3f6;color:#111}
 
-/* LOGIN */
-#loginPage{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-background:linear-gradient(135deg,#111,#333,#111);
+body{
+    background:linear-gradient(135deg,#0b1f3a,#1976d2,#42a5f5);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
 }
-.login-box{
-width:100%;
-max-width:390px;
-background:#fff;
-border-radius:20px;
-padding:30px 24px;
-box-shadow:0 15px 50px rgba(0,0,0,.35);
-}
-.logo{text-align:center;font-size:38px;font-weight:900;margin-bottom:5px}
-.logo .yam-blue,.top-logo .yam-blue{color:#1877f2}
-.logo .chat-pink,.top-logo .chat-pink{color:#ff4f9a}
-.login-sub{text-align:center;color:#777;margin-bottom:25px}
-.login-box input{
-width:100%;padding:14px;margin-bottom:12px;
-border:1px solid #ddd;border-radius:10px;outline:none;font-size:15px;
-}
-.login-box input:focus{border-color:#1877f2}
-.login-btn,.register-btn{
-width:100%;padding:13px;border:0;border-radius:10px;
-font-size:16px;font-weight:bold;cursor:pointer;
-}
-.login-btn{background:#1877f2;color:#fff}
-.register-btn{margin-top:10px;background:#e9f3ff;color:#1877f2}
-.login-msg{text-align:center;min-height:20px;margin-top:12px;font-size:14px;color:#d00}
-
-/* APP */
-#app{display:none;min-height:100vh;padding-bottom:70px}
-.topbar{
-position:sticky;top:0;z-index:50;height:58px;background:#fff;
-border-bottom:1px solid #ddd;display:flex;align-items:center;
-justify-content:space-between;padding:0 15px;
-}
-.top-logo{font-size:25px;font-weight:900}
-.current-user{font-size:14px;font-weight:bold;color:#555}
-
-/* PAGES */
-.page{display:none}
-.page.active{display:block}
-.container{width:100%;max-width:700px;margin:auto;padding:12px}
-
-/* COMPOSER */
-.composer{
-background:#fff;border-radius:14px;padding:14px;
-box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:12px;
-}
-.composer-top{display:flex;gap:10px;align-items:center}
-.small-avatar{
-width:42px;height:42px;border-radius:50%;object-fit:cover;background:#ddd;
-}
-.composer textarea{
-flex:1;min-height:45px;resize:none;border:1px solid #ddd;
-border-radius:12px;padding:12px;outline:none;
-}
-.post-type-row{display:flex;gap:8px;margin-top:10px}
-.post-type-row button{
-flex:1;border:0;padding:10px 5px;border-radius:9px;
-background:#f0f2f5;cursor:pointer;
-}
-.post-type-row button.active{background:#1877f2;color:#fff}
-.media-preview{display:none;margin-top:10px}
-.media-preview img,.media-preview video{
-width:100%;max-height:350px;object-fit:contain;
-border-radius:10px;background:#111;
-}
-.post-btn{
-width:100%;margin-top:10px;border:0;padding:12px;
-border-radius:10px;background:#1877f2;color:#fff;
-font-weight:bold;cursor:pointer;
-}
-
-/* POSTS */
-.post{
-background:#fff;border-radius:14px;margin-bottom:12px;
-overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08);
-}
-.post-head{
-display:flex;align-items:center;padding:12px;gap:10px;
-}
-.post-avatar{
-width:42px;height:42px;border-radius:50%;object-fit:cover;background:#ddd;
-}
-.post-owner{font-weight:bold}
-.post-time{font-size:12px;color:#777;margin-top:2px}
-.post-menu{
-margin-left:auto;border:0;background:none;font-size:22px;cursor:pointer;
-}
-.post-text{
-padding:0 12px 12px;white-space:pre-wrap;word-break:break-word;
-}
-.post-media{
-width:100%;max-height:550px;object-fit:contain;background:#111;
-}
-.post-actions{
-display:flex;border-top:1px solid #eee;border-bottom:1px solid #eee;
-}
-.post-actions button{
-flex:1;border:0;background:#fff;padding:11px 4px;
-cursor:pointer;font-weight:bold;color:#555;
-}
-.post-actions button.liked{color:#1877f2}
-.comment-area{padding:10px}
-.comment{
-background:#f0f2f5;border-radius:10px;padding:8px 10px;
-margin-bottom:7px;position:relative;
-}
-.comment-user{font-weight:bold;font-size:13px}
-.comment-text{font-size:14px;margin-top:3px;word-break:break-word}
-.comment-tools{
-margin-top:5px;display:flex;gap:5px;flex-wrap:wrap;
-}
-.comment-tools button{
-border:0;background:none;color:#1877f2;font-size:12px;cursor:pointer;
-}
-.comment-tools button.danger{color:#c00}
-.comment-tools button.block-btn{color:#c00}
-.comment-tools button.comment-loved{color:#e91e63;font-weight:bold}
-.comment-input-row{display:flex;gap:7px}
-.comment-input-row input{
-flex:1;border:1px solid #ddd;border-radius:20px;padding:9px 12px;outline:none;
-}
-.comment-input-row button{
-border:0;background:#1877f2;color:#fff;border-radius:20px;padding:0 15px;
-}
-.no-comments{font-size:13px;color:#888;margin-bottom:8px}
-
-/* PROFILE */
-.profile-page{
-padding:0 0 20px;
-}
-
-/*
-PROFILE V4.5.7
-- Seluruh Profile dinaikkan
-- Ruang kosong atas dikurangkan
-- Cover dipendekkan
-- Avatar, nama, bio dan 3 butang ikut naik
-- Tab Profile ikut naik
-- Cover tetap berada di belakang 3 butang
-*/
-.profile-hero{
-position:relative;
-min-height:350px;
-background:#222;
-background-position:center;
-background-size:cover;
-background-repeat:no-repeat;
-overflow:hidden;
-}
-
-.profile-hero::before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(
-to bottom,
-rgba(0,0,0,.02),
-rgba(0,0,0,.10) 35%,
-rgba(0,0,0,.72) 100%
-);
-}
-
-.profile-content{
-position:relative;
-z-index:2;
-min-height:350px;
-padding-top:25px;
-padding-bottom:16px;
-display:flex;
-flex-direction:column;
-justify-content:flex-end;
-}
-
-.profile-info{
-padding:6px 15px 4px;
-color:#fff;
-}
-
-.profile-avatar-wrap{
-margin-bottom:3px;
-}
-
-.profile-avatar{
-width:90px;
-height:90px;
-border-radius:50%;
-object-fit:cover;
-border:4px solid #fff;
-background:#ddd;
-box-shadow:0 4px 15px rgba(0,0,0,.35);
-}
-
-.profile-name{
-font-size:22px;
-font-weight:900;
-text-shadow:0 2px 5px rgba(0,0,0,.5);
-}
-
-.profile-bio{
-margin-top:2px;
-font-size:14px;
-opacity:.95;
-}
-
-.profile-buttons{
-display:flex;
-gap:6px;
-padding:5px 9px 1px;
-}
-
-.profile-buttons button{
-flex:1;
-border:1px solid rgba(255,255,255,.55);
-background:rgba(255,255,255,.92);
-color:#111;
-padding:9px 5px;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;
-backdrop-filter:blur(5px);
-}
-
-.profile-tabs{
-display:flex;
-background:#fff;
-border-bottom:1px solid #ddd;
-overflow-x:auto;
-}
-
-.profile-tabs button{
-min-width:100px;
-flex:1;
-padding:13px 8px;
-border:0;
-background:#fff;
-cursor:pointer;
-font-weight:bold;
-color:#666;
-}
-
-.profile-tabs button.active{
-color:#1877f2;
-border-bottom:3px solid #1877f2;
-}
-
-/* FRIENDS / ROOMS */
-.friend-card,.room-card{
-background:#fff;
-border-radius:14px;
-padding:13px;
-margin-bottom:10px;
-display:flex;
-align-items:center;
-gap:12px;
-box-shadow:0 1px 4px rgba(0,0,0,.08);
-}
-
-.friend-card img{
-width:50px;
-height:50px;
-border-radius:50%;
-object-fit:cover;
-}
-
-.friend-info{
-flex:1;
-}
-
-.friend-name{
-font-weight:bold;
-}
-
-.friend-card button,.room-card button{
-border:0;
-background:#1877f2;
-color:#fff;
-border-radius:9px;
-padding:9px 12px;
-}
-
-/* MARKET */
-.market-add{
-background:#fff;
-padding:14px;
-border-radius:14px;
-margin-bottom:12px;
-}
-
-.market-add input,.market-add textarea{
-width:100%;
-margin-bottom:9px;
-padding:11px;
-border:1px solid #ddd;
-border-radius:9px;
-}
-
-.market-add textarea{
-min-height:80px;
-}
-
-.market-add button{
-width:100%;
-padding:11px;
-border:0;
-border-radius:9px;
-background:#1877f2;
-color:#fff;
-font-weight:bold;
-}
-
-.market-item{
-background:#fff;
-border-radius:14px;
-overflow:hidden;
-margin-bottom:12px;
-}
-
-.market-item img{
-width:100%;
-max-height:350px;
-object-fit:contain;
-background:#111;
-}
-
-.market-info{
-padding:12px;
-}
-
-.market-title{
-font-weight:bold;
-font-size:18px;
-}
-
-.market-price{
-color:#e53935;
-font-size:18px;
-font-weight:bold;
-margin:5px 0;
-}
-
-/* NAV */
-.bottom-nav{
-position:fixed;
-z-index:100;
-bottom:0;
-left:0;
-right:0;
-height:65px;
-background:#fff;
-border-top:1px solid #ddd;
-display:flex;
-}
-
-.bottom-nav button{
-flex:1;
-border:0;
-background:#fff;
-color:#777;
-font-weight:bold;
-cursor:pointer;
-}
-
-.bottom-nav button.active{
-color:#1877f2;
-}
-
-/* MODAL */
-.modal-bg{
-display:none;
-position:fixed;
-z-index:200;
-inset:0;
-background:rgba(0,0,0,.55);
-align-items:center;
-justify-content:center;
-padding:15px;
-}
 
-.modal{
-width:100%;
-max-width:500px;
-max-height:85vh;
-overflow-y:auto;
-background:#fff;
-border-radius:15px;
-padding:18px;
+/* MAIN */
+.ym-container{
+    width:100%;
+    max-width:420px;
 }
 
-.modal h3{
-margin-bottom:12px;
+/* LOGO */
+.logo-area{
+    text-align:center;
+    color:#fff;
+    margin-bottom:20px;
 }
 
-.modal button{
-border:0;
-padding:10px 12px;
-border-radius:9px;
-margin:4px 2px;
-cursor:pointer;
+.logo{
+    font-size:42px;
+    font-weight:900;
+    letter-spacing:-2px;
+    text-shadow:0 3px 8px rgba(0,0,0,.25);
 }
 
-.modal .danger{
-background:#ffe7e7;
-color:#c00;
+.logo-y{
+    color:#fff;
 }
 
-.modal .primary{
-background:#1877f2;
-color:#fff;
+.logo-m{
+    color:#ff4f9a;
 }
 
-.modal .normal{
-background:#eee;
+.logo-chat{
+    color:#fff;
 }
 
-/* CHAT */
-.chat-overlay{
-display:none;
-position:fixed;
-z-index:150;
-inset:0;
-background:#f1f3f6;
+.tagline{
+    margin-top:6px;
+    font-size:15px;
+    opacity:.9;
 }
 
-.chat-head{
-height:58px;
-background:#fff;
-border-bottom:1px solid #ddd;
-display:flex;
-align-items:center;
-gap:10px;
-padding:0 12px;
+/* CARD */
+.front-card{
+    background:#fff;
+    border-radius:22px;
+    padding:22px;
+    box-shadow:0 15px 45px rgba(0,0,0,.30);
 }
 
-.chat-head button{
-border:0;
-background:none;
-font-size:23px;
+/* BUTTONS */
+.main-button{
+    width:100%;
+    border:0;
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:10px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.15s;
 }
 
-.chat-messages{
-height:calc(100vh - 116px);
-overflow-y:auto;
-padding:12px;
+.main-button:active{
+    transform:scale(.98);
 }
 
-.chat-bubble{
-max-width:78%;
-padding:9px 12px;
-border-radius:15px;
-margin-bottom:7px;
-word-break:break-word;
+.login-button{
+    background:#1877f2;
+    color:#fff;
 }
 
-.chat-me{
-margin-left:auto;
-background:#1877f2;
-color:#fff;
+.register-button{
+    background:#e8f2ff;
+    color:#1877f2;
 }
 
-.chat-other{
-background:#fff;
+.password-button{
+    background:#f3f3f3;
+    color:#333;
 }
 
-.chat-input{
-height:58px;
-background:#fff;
-border-top:1px solid #ddd;
-display:flex;
-gap:7px;
-padding:8px;
+.security-button{
+    background:#f3f3f3;
+    color:#333;
 }
 
-.chat-input input{
-flex:1;
-border:1px solid #ddd;
-border-radius:20px;
-padding:10px;
+/* FORM */
+.form-section{
+    display:none;
+    margin-top:15px;
+    padding-top:15px;
+    border-top:1px solid #eee;
 }
 
-.chat-input button{
-border:0;
-background:#1877f2;
-color:#fff;
-border-radius:20px;
-padding:0 15px;
+.form-section.active{
+    display:block;
 }
 
-.empty{
-text-align:center;
-color:#888;
-padding:30px 10px;
+.form-title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:14px;
+    color:#222;
 }
 
-/* MOBILE */
-@media(max-width:500px){
-
-.profile-hero,
-.profile-content{
-min-height:335px;
-}
-
-.profile-content{
-padding-top:20px;
-padding-bottom:14px;
-}
-
-.profile-avatar{
-width:84px;
-height:84px;
-}
-
-.profile-name{
-font-size:21px;
+.input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+    font-size:15px;
+    margin-bottom:10px;
 }
 
-.profile-info{
-padding:5px 14px 3px;
+.input:focus{
+    border-color:#1877f2;
 }
 
-.profile-buttons{
-gap:5px;
-padding:4px 8px 1px;
+/* ACTION */
+.action-button{
+    width:100%;
+    border:0;
+    border-radius:10px;
+    padding:12px;
+    background:#1877f2;
+    color:#fff;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.profile-buttons button{
-padding:8px 3px;
-font-size:12px;
+.back-button{
+    width:100%;
+    border:0;
+    background:#eee;
+    color:#444;
+    border-radius:10px;
+    padding:11px;
+    margin-top:8px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.post-actions button{
-font-size:13px;
+/* MESSAGE */
+.message{
+    min-height:20px;
+    margin-top:10px;
+    text-align:center;
+    font-size:13px;
 }
-}
-
-/* SMALL MOBILE */
-@media(max-width:360px){
-
-.profile-hero,
-.profile-content{
-min-height:325px;
-}
-
-.profile-content{
-padding-top:16px;
-padding-bottom:12px;
-}
 
-.profile-avatar{
-width:80px;
-height:80px;
+.success{
+    color:#168a24;
 }
 
-.profile-info{
-padding:4px 12px 2px;
+.error{
+    color:#d00000;
 }
 
-.profile-buttons{
-padding:3px 7px 1px;
+/* SECURITY INFO */
+.security-info{
+    font-size:14px;
+    color:#555;
+    line-height:1.5;
+    margin-bottom:12px;
 }
 
-.profile-buttons button{
-font-size:11px;
-padding:7px 2px;
-}
+/* FOOTER */
+.footer{
+    text-align:center;
+    color:#fff;
+    font-size:12px;
+    margin-top:15px;
+    opacity:.8;
 }
 </style>
 </head>
 
 <body>
 
-<div id="loginPage">
+<div class="ym-container">
+
+    <!-- LOGO -->
+    <div class="logo-area">
 
-<div class="login-box">
+        <div class="logo">
+            <span class="logo-y">Y</span><span class="logo-m">-M</span>
+            <span class="logo-chat"> Chat</span>
+        </div>
+
+        <div class="tagline">
+            Sembang • Kawan • Komuniti
+        </div>
+
+    </div>
+
+
+    <!-- MAIN CARD -->
+    <div class="front-card">
+
+        <!-- MAIN MENU -->
+
+        <button
+            class="main-button login-button"
+            onclick="showSection('loginSection')">
+            LOGIN
+        </button>
 
-<div class="logo">
-<span class="yam-blue">YAM</span><span class="chat-pink">chat</span>
-</div>
+        <button
+            class="main-button register-button"
+            onclick="showSection('registerSection')">
+            DAFTAR Y-M ID
+        </button>
 
-<div class="login-sub">
-Sembang • Kawan • Komuniti
-</div>
+        <button
+            class="main-button password-button"
+            onclick="showSection('passwordSection')">
+            🔑 CHANGE PASSWORD
+        </button>
 
-<input
-id="loginUsername"
-type="text"
-placeholder="Username"
->
-
-<input
-id="loginPassword"
-type="password"
-placeholder="Password"
->
-
-<button
-class="login-btn"
-onclick="login()">
-LOGIN
-</button>
-
-<button
-class="register-btn"
-onclick="register()">
-DAFTAR AKAUN
-</button>
-
-<div
-id="loginMsg"
-class="login-msg">
-</div>
-
-</div>
-</div>
-
-
-<div id="app">
-
-<div class="topbar">
-
-<div class="top-logo">
-<span class="yam-blue">YAM</span><span class="chat-pink">chat</span>
-</div>
-
-<div
-id="currentUserDisplay"
-class="current-user">
-</div>
-
-</div>
-
-
-<!-- HOME -->
-<section id="homePage" class="page active">
-
-<div class="container">
-
-<div class="composer">
-
-<div class="composer-top">
-
-<img
-id="composerAvatar"
-class="small-avatar"
-src=""
->
-
-<textarea
-id="postText"
-placeholder="Apa yang anda fikirkan?">
-</textarea>
-
-</div>
-
-
-<div class="post-type-row">
-
-<button
-id="typeText"
-class="active"
-onclick="selectPostType('text')">
-📝 Teks
-</button>
-
-<button
-id="typeImage"
-onclick="selectPostType('image')">
-🖼️ Gambar
-</button>
-
-<button
-id="typeVideo"
-onclick="selectPostType('video')">
-🎬 Video
-</button>
-
-</div>
-
-
-<input
-id="postFile"
-type="file"
-accept="image/*,video/*"
-style="display:none"
->
-
-<div
-id="mediaPreview"
-class="media-preview">
-</div>
-
-<button
-class="post-btn"
-onclick="createPost()">
-POST
-</button>
-
-</div>
-
-<div id="feed"></div>
-
-</div>
-</section>
-
-
-<!-- FRIENDS -->
-<section id="friendsPage" class="page">
-
-<div class="container">
-
-<h2 style="margin-bottom:12px;">
-Kawan
-</h2>
-
-<div id="friendsList"></div>
-
-</div>
-</section>
-
-
-<!-- ROOMS -->
-<section id="roomsPage" class="page">
-
-<div class="container">
-
-<h2 style="margin-bottom:12px;">
-Rooms
-</h2>
-
-<div id="roomsList"></div>
-
-</div>
-</section>
-
-
-<!-- PROFILE -->
-<section
-id="profilePage"
-class="page profile-page">
-
-<div
-id="profileHero"
-class="profile-hero">
-
-<div class="profile-content">
-
-<div class="profile-info">
-
-<div class="profile-avatar-wrap">
-
-<img
-id="profileAvatar"
-class="profile-avatar"
-src=""
->
-
-</div>
-
-<div
-id="profileName"
-class="profile-name">
-</div>
-
-<div
-id="profileBio"
-class="profile-bio">
-Selamat datang ke profil saya di YAM Chat.
-</div>
-
-</div>
-
-
-<div class="profile-buttons">
-
-<button
-onclick="changeProfilePicture()">
-📷 Gambar
-</button>
-
-<button
-onclick="changeCover()">
-🖼️ Cover
-</button>
-
-<button
-onclick="openProfileMenu()">
-☰ Menu
-</button>
-
-</div>
-
-</div>
-</div>
-
-
-<input
-id="profileFile"
-type="file"
-accept="image/*"
-style="display:none"
->
-
-<input
-id="coverFile"
-type="file"
-accept="image/*"
-style="display:none"
->
-
-
-<div class="profile-tabs">
-
-<button
-id="tabPost"
-onclick="showProfileTab('post')">
-Post
-</button>
-
-<button
-id="tabImage"
-onclick="showProfileTab('image')">
-Gambar
-</button>
-
-<button
-id="tabVideo"
-onclick="showProfileTab('video')">
-Video
-</button>
-
-<button
-id="tabMarket"
-onclick="showProfileTab('market')">
-Market
-</button>
-
-</div>
-
-
-<div class="container">
-
-<div
-id="profileTabContent">
-</div>
-
-</div>
-
-</section>
-
-
-<div class="bottom-nav">
-
-<button
-id="navHome"
-class="active"
-onclick="showPage('home')">
-🏠<br>Home
-</button>
-
-<button
-id="navFriends"
-onclick="showPage('friends')">
-👥<br>Kawan
-</button>
-
-<button
-id="navRooms"
-onclick="showPage('rooms')">
-💬<br>Rooms
-</button>
-
-<button
-id="navProfile"
-onclick="showPage('profile')">
-👤<br>Profil
-</button>
-
-</div>
-
-</div>
-
-
-<div
-id="modalBg"
-class="modal-bg"
-onclick="closeModalOutside(event)">
-
-<div
-id="modal"
-class="modal">
-</div>
-
-</div>
-
-
-<div
-id="chatOverlay"
-class="chat-overlay">
-
-<div class="chat-head">
-
-<button onclick="closeChat()">
-‹
-</button>
-
-<strong id="chatTitle"></strong>
-
-</div>
-
-<div
-id="chatMessages"
-class="chat-messages">
-</div>
-
-<div class="chat-input">
-
-<input
-id="chatInput"
-placeholder="Tulis mesej..."
->
-
-<button onclick="sendChat()">
-Hantar
-</button>
-
-</div>
+        <button
+            class="main-button security-button"
+            onclick="showSection('securitySection')">
+            🛡️ SECURITY
+        </button>
+
+
+        <!-- LOGIN -->
+        <div id="loginSection" class="form-section">
+
+            <div class="form-title">
+                Login Y-M Chat
+            </div>
+
+            <input
+                id="loginId"
+                class="input"
+                type="text"
+                placeholder="Y-M ID">
+
+            <input
+                id="loginPassword"
+                class="input"
+                type="password"
+                placeholder="Password">
+
+            <button
+                class="action-button"
+                onclick="login()">
+                LOGIN
+            </button>
+
+            <button
+                class="back-button"
+                onclick="closeSections()">
+                Kembali
+            </button>
+
+            <div id="loginMessage" class="message"></div>
+
+        </div>
+
+
+        <!-- REGISTER -->
+        <div id="registerSection" class="form-section">
+
+            <div class="form-title">
+                Daftar Y-M ID
+            </div>
+
+            <input
+                id="registerId"
+                class="input"
+                type="text"
+                placeholder="Pilih Y-M ID">
+
+            <input
+                id="registerPassword"
+                class="input"
+                type="password"
+                placeholder="Password">
+
+            <input
+                id="registerConfirm"
+                class="input"
+                type="password"
+                placeholder="Ulang Password">
+
+            <button
+                class="action-button"
+                onclick="registerAccount()">
+                DAFTAR
+            </button>
+
+            <button
+                class="back-button"
+                onclick="closeSections()">
+                Kembali
+            </button>
+
+            <div id="registerMessage" class="message"></div>
+
+        </div>
+
+
+        <!-- CHANGE PASSWORD -->
+        <div id="passwordSection" class="form-section">
+
+            <div class="form-title">
+                Change Password
+            </div>
+
+            <input
+                id="changeId"
+                class="input"
+                type="text"
+                placeholder="Y-M ID">
+
+            <input
+                id="oldPassword"
+                class="input"
+                type="password"
+                placeholder="Password Lama">
+
+            <input
+                id="newPassword"
+                class="input"
+                type="password"
+                placeholder="Password Baru">
+
+            <input
+                id="confirmNewPassword"
+                class="input"
+                type="password"
+                placeholder="Ulang Password Baru">
+
+            <button
+                class="action-button"
+                onclick="changePassword()">
+                TUKAR PASSWORD
+            </button>
+
+            <button
+                class="back-button"
+                onclick="closeSections()">
+                Kembali
+            </button>
+
+            <div id="passwordMessage" class="message"></div>
+
+        </div>
+
+
+        <!-- SECURITY -->
+        <div id="securitySection" class="form-section">
+
+            <div class="form-title">
+                🛡️ Security
+            </div>
+
+            <div class="security-info">
+                Security Y-M Chat akan digunakan untuk
+                membantu melindungi akaun dan pemulihan
+                Y-M ID.
+            </div>
+
+            <input
+                id="securityId"
+                class="input"
+                type="text"
+                placeholder="Y-M ID">
+
+            <input
+                id="securityAnswer"
+                class="input"
+                type="text"
+                placeholder="Kod / Jawapan Keselamatan">
+
+            <button
+                class="action-button"
+                onclick="saveSecurity()">
+                SIMPAN SECURITY
+            </button>
+
+            <button
+                class="back-button"
+                onclick="closeSections()">
+                Kembali
+            </button>
+
+            <div id="securityMessage" class="message"></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        © 2026 Y-M Chat
+    </div>
 
 </div>
 
 
 <script>
 
-const DEFAULT_AVATAR=
-"data:image/svg+xml;charset=UTF-8,"+
-encodeURIComponent(`
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
-<rect width="200" height="200" fill="#ddd"/>
-<circle cx="100" cy="75" r="38" fill="#aaa"/>
-<path d="M35 180c10-45 40-65 65-65s55 20 65 65" fill="#aaa"/>
-</svg>`);
+/* =========================
+   SECTION CONTROL
+========================= */
 
+function showSection(sectionId){
 
-let currentUser=
-localStorage.getItem("yam_current_user")||"";
+    closeSections();
 
-let selectedPostType="text";
-let selectedPostFile=null;
-let currentChatUser="";
-let currentProfileTab="post";
+    const section=document.getElementById(sectionId);
 
+    if(section){
+        section.classList.add("active");
+    }
 
-function $(id){
-return document.getElementById(id);
 }
 
+function closeSections(){
 
-function escapeHtml(value){
+    document
+    .querySelectorAll(".form-section")
+    .forEach(function(section){
 
-return String(value??"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+        section.classList.remove("active");
+
+    });
 
 }
 
 
-function safeArg(value){
-return JSON.stringify(String(value??""));
-}
-
+/* =========================
+   ACCOUNT DATABASE
+========================= */
 
 function getAccounts(){
 
-try{
-return JSON.parse(
-localStorage.getItem("yam_accounts")||"{}"
-);
-}
-catch(e){
-return {};
-}
+    try{
+
+        return JSON.parse(
+            localStorage.getItem("ym_accounts") || "{}"
+        );
+
+    }catch(error){
+
+        return {};
+
+    }
 
 }
-
 
 function saveAccounts(accounts){
 
-localStorage.setItem(
-"yam_accounts",
-JSON.stringify(accounts)
-);
+    localStorage.setItem(
+        "ym_accounts",
+        JSON.stringify(accounts)
+    );
 
 }
 
 
-function getAvatar(username){
+/* =========================
+   REGISTER
+========================= */
 
-return localStorage.getItem(
-"yam_picture_"+username
-)||DEFAULT_AVATAR;
+function registerAccount(){
+
+    const id=
+        document.getElementById("registerId")
+        .value.trim();
+
+    const password=
+        document.getElementById("registerPassword")
+        .value;
+
+    const confirm=
+        document.getElementById("registerConfirm")
+        .value;
+
+    const message=
+        document.getElementById("registerMessage");
+
+
+    message.className="message";
+
+
+    if(id.length<3){
+
+        message.textContent=
+            "Y-M ID mesti sekurang-kurangnya 3 aksara.";
+
+        message.classList.add("error");
+
+        return;
+
+    }
+
+
+    if(/\s/.test(id)){
+
+        message.textContent=
+            "Y-M ID tidak boleh mempunyai ruang.";
+
+        message.classList.add("error");
+
+        return;
+
+    }
+
+
+    if(password.length<4){
+
+        message.textContent=
+            "Password mesti sekurang-kurangnya 4 aksara.";
+
+        message.classList.add("error");
+
+        return;
+
+    }
+
+
+    if(password!==confirm){
+
+        message.textContent=
+            "Password tidak sama.";
+
+        message.classList.add("error");
+
+        return;
+
+    }
+
+
+    const accounts=getAccounts();
+
+
+    const existing=
+        Object.keys(accounts)
+        .find(function(key){
+
+            return key.toLowerCase()===id.toLowerCase();
+
+        });
+
+
+    if(existing){
+
+        message.textContent=
+            "Y-M ID sudah digunakan.";
+
+        message.classList.add("error");
+
+        return;
+
+    }
+
+
+    accounts[id]={
+
+        password:password,
+
+        security:"",
+
+        createdAt:Date.now()
+
+    };
+
+
+    saveAccounts(accounts);
+
+
+    message.textContent=
+        "Y-M ID berjaya didaftarkan.";
+
+    message.classList.add("success");
+
+
+    document.getElementById("registerPassword").value="";
+    document.getElementById("registerConfirm").value="";
 
 }
 
 
-function getCover(username){
-
-return localStorage.getItem(
-"yam_cover_"+username
-)||"";
-
-}
-
-
-function getPosts(){
-
-try{
-return JSON.parse(
-localStorage.getItem("yam_posts")||"[]"
-);
-}
-catch(e){
-return [];
-}
-
-}
-
-
-function savePosts(posts){
-
-localStorage.setItem(
-"yam_posts",
-JSON.stringify(posts)
-);
-
-}
-
-
-function formatTime(timestamp){
-
-const d=new Date(timestamp);
-
-return d.toLocaleDateString(
-"ms-MY",
-{
-day:"2-digit",
-month:"2-digit",
-year:"numeric"
-}
-)
-+" "
-+
-d.toLocaleTimeString(
-"ms-MY",
-{
-hour:"2-digit",
-minute:"2-digit"
-}
-);
-
-}
-
-
-/* LOGIN */
+/* =========================
+   LOGIN
+========================= */
 
 function login(){
 
-const username=
-$("loginUsername").value.trim();
+    const id=
+        document.getElementById("loginId")
+        .value.trim();
 
-const password=
-$("loginPassword").value;
+    const password=
+        document.getElementById("loginPassword")
+        .value;
 
-$("loginMsg").style.color="#d00";
+    const message=
+        document.getElementById("loginMessage");
 
-if(!username||!password){
 
-$("loginMsg").textContent=
-"Sila isi username dan password.";
+    message.className="message";
 
-return;
-}
-
-const accounts=getAccounts();
-
-const accountKey=
-Object.keys(accounts).find(
-key=>key.toLowerCase()===
-username.toLowerCase()
-);
-
-if(!accountKey){
-
-$("loginMsg").textContent=
-"Akaun tidak dijumpai. Sila daftar akaun dahulu.";
-
-return;
-}
-
-if(
-String(accounts[accountKey].password)!==
-String(password)
-){
-
-$("loginMsg").textContent=
-"Password tidak betul.";
-
-return;
-}
-
-currentUser=accountKey;
-
-localStorage.setItem(
-"yam_current_user",
-currentUser
-);
-
-$("loginMsg").style.color="#168a24";
-
-$("loginMsg").textContent=
-"Login berjaya!";
-
-setTimeout(startApp,300);
-
-}
-
-
-function register(){
-
-const username=
-$("loginUsername").value.trim();
-
-const password=
-$("loginPassword").value;
-
-$("loginMsg").style.color="#d00";
-
-if(username.length<3){
-
-$("loginMsg").textContent=
-"Username mesti sekurang-kurangnya 3 aksara.";
-
-return;
-}
-
-if(username.length>30){
-
-$("loginMsg").textContent=
-"Username terlalu panjang.";
-
-return;
-}
-
-if(/\s/.test(username)){
-
-$("loginMsg").textContent=
-"Username tidak boleh mempunyai ruang.";
-
-return;
-}
-
-if(password.length<4){
-
-$("loginMsg").textContent=
-"Password mesti sekurang-kurangnya 4 aksara.";
-
-return;
-}
-
-const accounts=getAccounts();
-
-const existingKey=
-Object.keys(accounts).find(
-key=>key.toLowerCase()===
-username.toLowerCase()
-);
-
-if(existingKey){
-
-$("loginMsg").textContent=
-"Username sudah digunakan.";
-
-return;
-}
-
-accounts[username]={
-password:password,
-createdAt:Date.now()
-};
-
-saveAccounts(accounts);
-
-currentUser=username;
-
-localStorage.setItem(
-"yam_current_user",
-currentUser
-);
-
-$("loginMsg").style.color="#168a24";
-
-$("loginMsg").textContent=
-"Akaun berjaya didaftarkan!";
-
-setTimeout(startApp,300);
-
-}
-
-
-function logout(){
-
-localStorage.removeItem(
-"yam_current_user"
-);
-
-currentUser="";
-
-$("app").style.display="none";
-
-$("loginPage").style.display="flex";
-
-$("loginUsername").value="";
-
-$("loginPassword").value="";
-
-$("loginMsg").textContent="";
-
-}
-
-
-/* START */
-
-function startApp(){
-
-if(!currentUser){
-
-$("loginPage").style.display="flex";
-
-$("app").style.display="none";
-
-return;
-}
-
-$("loginPage").style.display="none";
-
-$("app").style.display="block";
-
-$("currentUserDisplay").textContent=
-"@"+currentUser;
-
-updateComposerAvatar();
-
-renderFeed();
-
-renderFriends();
-
-renderRooms();
-
-renderProfile();
-
-showPage("home");
-
-}
-
-
-/* NAVIGATION */
-
-function showPage(page){
-
-document.querySelectorAll(".page")
-.forEach(
-el=>el.classList.remove("active")
-);
-
-document.querySelectorAll(".bottom-nav button")
-.forEach(
-el=>el.classList.remove("active")
-);
-
-
-if(page==="home"){
-
-$("homePage").classList.add("active");
-
-$("navHome").classList.add("active");
-
-renderFeed();
-
-}
-
-
-if(page==="friends"){
-
-$("friendsPage").classList.add("active");
-
-$("navFriends").classList.add("active");
-
-renderFriends();
-
-}
-
-
-if(page==="rooms"){
-
-$("roomsPage").classList.add("active");
-
-$("navRooms").classList.add("active");
-
-renderRooms();
-
-}
-
-
-if(page==="profile"){
-
-$("profilePage").classList.add("active");
-
-$("navProfile").classList.add("active");
-
-renderProfile();
-
-}
-
-
-window.scrollTo(0,0);
-
-}
-
-
-/* POST TYPE */
-
-function selectPostType(type){
-
-selectedPostType=type;
-
-selectedPostFile=null;
-
-document.querySelectorAll(
-".post-type-row button"
-)
-.forEach(
-btn=>btn.classList.remove("active")
-);
-
-
-if(type==="text"){
-
-$("typeText").classList.add("active");
-
-$("postFile").value="";
-
-$("mediaPreview").style.display="none";
-
-$("mediaPreview").innerHTML="";
-
-return;
-
-}
-
-
-if(type==="image"){
-
-$("typeImage").classList.add("active");
-
-$("postFile").accept="image/*";
-
-}
-
-
-if(type==="video"){
-
-$("typeVideo").classList.add("active");
-
-$("postFile").accept="video/*";
-
-}
-
-
-$("postFile").click();
-
-}
-
-
-$("postFile").addEventListener(
-"change",
-function(){
-
-const file=this.files[0];
-
-if(!file)return;
-
-
-if(
-selectedPostType==="image"&&
-file.size>3*1024*1024
-){
-
-alert("Gambar maksimum 3MB.");
-
-this.value="";
-
-return;
-
-}
-
-
-if(
-selectedPostType==="video"&&
-file.size>6*1024*1024
-){
-
-alert("Video maksimum 6MB.");
-
-this.value="";
-
-return;
-
-}
-
-
-selectedPostFile=file;
-
-const url=
-URL.createObjectURL(file);
-
-$("mediaPreview").style.display="block";
-
-
-if(selectedPostType==="image")
-
-$("mediaPreview").innerHTML=
-`<img src="${url}">`;
-
-else
-
-$("mediaPreview").innerHTML=
-`<video src="${url}" controls></video>`;
-
-});
-
-
-/* MEDIA DB */
-
-let mediaDBPromise=null;
-
-
-function openMediaDB(){
-
-if(mediaDBPromise)
-return mediaDBPromise;
-
-
-mediaDBPromise=new Promise(
-(resolve,reject)=>{
-
-const request=
-indexedDB.open(
-"YAM_CHAT_MEDIA_DB",
-1
-);
-
-
-request.onupgradeneeded=
-function(e){
-
-const db=e.target.result;
-
-if(
-!db.objectStoreNames.contains("media")
-)
-
-db.createObjectStore(
-"media",
-{keyPath:"id"}
-);
-
-};
-
-
-request.onsuccess=
-()=>resolve(request.result);
-
-request.onerror=
-()=>reject(request.error);
-
-});
-
-
-return mediaDBPromise;
-
-}
-
-
-async function saveMedia(file){
-
-if(!file)return null;
-
-const id=
-"media_"+
-Date.now()+
-"_"+Math.random()
-.toString(36)
-.slice(2);
-
-const buffer=
-await file.arrayBuffer();
-
-const db=
-await openMediaDB();
-
-
-await new Promise(
-(resolve,reject)=>{
-
-const tx=
-db.transaction(
-"media",
-"readwrite"
-);
-
-tx.objectStore("media").put({
-id:id,
-name:file.name,
-type:file.type,
-data:buffer
-});
-
-tx.oncomplete=resolve;
-
-tx.onerror=
-()=>reject(tx.error);
-
-});
-
-
-return id;
-
-}
-
-
-async function getMedia(id){
-
-if(!id)return null;
-
-const db=
-await openMediaDB();
-
-
-return new Promise(
-(resolve,reject)=>{
-
-const tx=
-db.transaction(
-"media",
-"readonly"
-);
-
-const request=
-tx.objectStore("media").get(id);
-
-request.onsuccess=
-()=>resolve(
-request.result||null
-);
-
-request.onerror=
-()=>reject(request.error);
-
-});
-
-}
-
-
-async function deleteMedia(id){
-
-if(!id)return;
-
-const db=
-await openMediaDB();
-
-
-return new Promise(
-(resolve,reject)=>{
-
-const tx=
-db.transaction(
-"media",
-"readwrite"
-);
-
-tx.objectStore("media")
-.delete(id);
-
-tx.oncomplete=resolve;
-
-tx.onerror=
-()=>reject(tx.error);
-
-});
-
-}
-
-
-/* CREATE POST */
-
-async function createPost(){
-
-const text=
-$("postText").value.trim();
-
-if(!text&&!selectedPostFile){
-
-alert(
-"Sila tulis sesuatu atau pilih media."
-);
-
-return;
-
-}
-
-let mediaId=null;
-
-
-if(selectedPostFile){
-
-try{
-
-mediaId=
-await saveMedia(selectedPostFile);
-
-}
-catch(e){
-
-alert(
-"Gagal menyimpan media."
-);
-
-return;
-
-}
-
-}
-
-
-const posts=getPosts();
-
-
-posts.unshift({
-
-id:Date.now(),
-
-owner:currentUser,
-
-text:text,
-
-type:selectedPostType,
-
-mediaId:mediaId,
-
-time:Date.now(),
-
-likes:[],
-
-comments:[],
-
-hiddenComments:false,
-
-blockedUsers:[]
-
-});
-
-
-savePosts(posts);
-
-
-$("postText").value="";
-
-$("postFile").value="";
-
-$("mediaPreview").style.display="none";
-
-$("mediaPreview").innerHTML="";
-
-selectedPostFile=null;
-
-selectedPostType="text";
-
-
-document.querySelectorAll(
-".post-type-row button"
-)
-.forEach(
-btn=>btn.classList.remove("active")
-);
-
-$("typeText").classList.add("active");
-
-renderFeed();
-
-}
-
-
-/* COMMENTS */
-
-function buildCommentsHtml(post){
-
-const comments=
-Array.isArray(post.comments)?
-post.comments:[];
-
-const blocked=
-Array.isArray(post.blockedUsers)?
-post.blockedUsers:[];
-
-
-if(post.hiddenComments){
-
-return `
-<div class="no-comments">
-🙈 Komen telah disembunyikan oleh pemilik posting.
-</div>
-`;
-
-}
-
-
-const visibleComments=
-comments.filter(
-c=>!blocked.includes(c.user)
-);
-
-
-if(visibleComments.length===0){
-
-return `
-<div class="no-comments">
-Belum ada komen.
-</div>
-`;
-
-}
-
-
-return visibleComments.map(c=>{
-
-const loves=
-Array.isArray(c.loves)?
-c.loves:[];
-
-const loved=
-loves.includes(currentUser);
-
-const isCommentOwner=
-c.user===currentUser;
-
-const isPostOwner=
-post.owner===currentUser;
-
-const canDelete=
-isCommentOwner||isPostOwner;
-
-const canBlock=
-isPostOwner&&
-c.user!==currentUser&&
-c.user!==post.owner;
-
-
-return `
-<div class="comment">
-
-<div class="comment-user">
-${escapeHtml(c.user)}
-</div>
-
-<div class="comment-text">
-${escapeHtml(c.text)}
-</div>
-
-<div class="comment-tools">
-
-<button
-class="${loved?"comment-loved":""}"
-onclick="
-toggleCommentLove(
-${post.id},
-${safeArg(c.id)}
-)">
-❤️ Love ${loves.length?loves.length:""}
-</button>
-
-${
-canDelete
-?
-`
-<button
-class="danger"
-onclick="
-deleteComment(
-${post.id},
-${safeArg(c.id)}
-)">
-🗑️ Padam
-</button>
-`
-:""
-}
-
-${
-canBlock
-?
-`
-<button
-class="block-btn"
-onclick="
-toggleBlockUser(
-${post.id},
-${safeArg(c.user)}
-)">
-🚫 Block
-</button>
-`
-:""
-}
-
-</div>
-</div>
-`;
-
-}).join("");
-
-}
-
-
-function buildCommentInput(post){
-
-const blocked=
-Array.isArray(post.blockedUsers)?
-post.blockedUsers:[];
-
-
-if(
-post.hiddenComments||
-blocked.includes(currentUser)
-)
-
-return "";
-
-
-return `
-<div class="comment-input-row">
-
-<input
-id="commentInput_${post.id}"
-placeholder="Tulis komen..."
-onkeydown="
-if(event.key==='Enter')
-addComment(${post.id})
-">
-
-<button
-onclick="addComment(${post.id})">
-Hantar
-</button>
-
-</div>
-`;
-
-}
-
-
-/* COMMENT FOCUS */
-
-function focusComment(postId){
-
-let input=
-$("commentInput_"+postId);
-
-
-if(!input){
-
-setTimeout(()=>{
-
-input=
-$("commentInput_"+postId);
-
-if(input){
-
-input.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
-input.focus();
-
-}
-
-},120);
-
-return;
-
-}
-
-
-input.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
-setTimeout(
-()=>input.focus(),
-150
-);
-
-}
-
-
-function addComment(postId){
-
-const input=
-$("commentInput_"+postId);
-
-if(!input)return;
-
-const text=
-input.value.trim();
-
-if(!text)return;
-
-
-const posts=getPosts();
-
-const post=
-posts.find(
-p=>p.id===postId
-);
-
-if(!post)return;
-
-
-if(post.hiddenComments){
-
-alert(
-"Komen sedang disembunyikan."
-);
-
-return;
-
-}
-
-
-if(!Array.isArray(post.blockedUsers))
-post.blockedUsers=[];
-
-
-if(
-post.blockedUsers.includes(currentUser)
-){
-
-alert(
-"Anda telah di-block daripada komen pada posting ini."
-);
-
-return;
-
-}
-
-
-if(!Array.isArray(post.comments))
-post.comments=[];
-
-
-post.comments.push({
-
-id:
-Date.now()+
-"_"+Math.random()
-.toString(36)
-.slice(2),
-
-user:currentUser,
-
-text:text,
-
-time:Date.now(),
-
-loves:[]
-
-});
-
-
-savePosts(posts);
-
-renderFeed();
-
-
-if(
-$("profilePage")
-.classList.contains("active")
-)
-
-showProfileTab(
-currentProfileTab
-);
-
-}
-
-
-function toggleCommentLove(
-postId,
-commentId
-){
-
-const posts=getPosts();
-
-const post=
-posts.find(
-p=>p.id===postId
-);
-
-if(
-!post||
-!Array.isArray(post.comments)
-)
-
-return;
-
-
-const comment=
-post.comments.find(
-c=>String(c.id)===
-String(commentId)
-);
-
-if(!comment)return;
-
-
-if(!Array.isArray(comment.loves))
-comment.loves=[];
-
-
-const index=
-comment.loves.indexOf(
-currentUser
-);
-
-
-if(index>=0)
-
-comment.loves.splice(index,1);
-
-else
-
-comment.loves.push(
-currentUser
-);
-
-
-savePosts(posts);
-
-renderFeed();
-
-
-if(
-$("profilePage")
-.classList.contains("active")
-)
-
-showProfileTab(
-currentProfileTab
-);
-
-}
-
-
-function deleteComment(
-postId,
-commentId
-){
-
-const posts=getPosts();
-
-const post=
-posts.find(
-p=>p.id===postId
-);
-
-if(
-!post||
-!Array.isArray(post.comments)
-)
-
-return;
-
-
-const comment=
-post.comments.find(
-c=>String(c.id)===
-String(commentId)
-);
-
-if(!comment)return;
-
-
-if(
-post.owner!==currentUser&&
-comment.user!==currentUser
-)
-
-return;
-
-
-post.comments=
-post.comments.filter(
-c=>String(c.id)!==
-String(commentId)
-);
-
-
-savePosts(posts);
-
-renderFeed();
-
-
-if(
-$("profilePage")
-.classList.contains("active")
-)
-
-showProfileTab(
-currentProfileTab
-);
-
-}
-
-
-/* MEDIA HTML */
-
-async function getPostMediaHtml(post){
-
-if(!post.mediaId)return "";
-
-
-try{
-
-const media=
-await getMedia(post.mediaId);
-
-if(!media)return "";
-
-
-const blob=
-new Blob(
-[media.data],
-{type:media.type}
-);
-
-const url=
-URL.createObjectURL(blob);
-
-
-if(post.type==="image")
-
-return `
-<img
-class="post-media"
-src="${url}">
-`;
-
-
-if(post.type==="video")
-
-return `
-<video
-class="post-media"
-src="${url}"
-controls>
-</video>
-`;
-
-}
-catch(e){}
-
-return "";
-
-}
-
-
-/* FEED */
-
-async function renderFeed(){
-
-const posts=getPosts();
-
-
-if(posts.length===0){
-
-$("feed").innerHTML=
-`
-<div class="empty">
-Belum ada posting.
-Jadilah orang pertama membuat posting.
-</div>
-`;
-
-return;
-
-}
-
-
-let html="";
-
-
-for(const post of posts){
-
-const mediaHtml=
-await getPostMediaHtml(post);
-
-const likes=
-Array.isArray(post.likes)?
-post.likes:[];
-
-const comments=
-Array.isArray(post.comments)?
-post.comments:[];
-
-const blocked=
-Array.isArray(post.blockedUsers)?
-post.blockedUsers:[];
-
-
-const visibleComments=
-post.hiddenComments
-?
-[]
-:
-comments.filter(
-c=>!blocked.includes(c.user)
-);
-
-
-const liked=
-likes.includes(currentUser);
-
-const isOwner=
-post.owner===currentUser;
-
-
-html+=`
-
-<div class="post">
-
-<div class="post-head">
-
-<img
-class="post-avatar"
-src="${getAvatar(post.owner)}">
-
-<div>
-
-<div class="post-owner">
-${escapeHtml(post.owner)}
-</div>
-
-<div class="post-time">
-${formatTime(post.time)}
-</div>
-
-</div>
-
-
-${
-isOwner
-?
-`
-<button
-class="post-menu"
-onclick="postOwnerMenu(${post.id})">
-⋮
-</button>
-`
-:""
-}
-
-</div>
-
-
-${
-post.text
-?
-`
-<div class="post-text">
-${escapeHtml(post.text)}
-</div>
-`
-:""
-}
-
-
-${mediaHtml}
-
-
-<div class="post-actions">
-
-<button
-class="${liked?"liked":""}"
-onclick="toggleLike(${post.id})">
-
-${liked?"❤️":"👍"}
-Like
-${likes.length?likes.length:""}
-
-</button>
-
-
-<button
-onclick="focusComment(${post.id})">
-
-💬
-Komen
-${visibleComments.length?
-visibleComments.length:""}
-
-</button>
-
-
-<button
-onclick="sharePost(${post.id})">
-
-↗
-Kongsi
-
-</button>
-
-</div>
-
-
-<div class="comment-area">
-
-${buildCommentsHtml(post)}
-
-${buildCommentInput(post)}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-$("feed").innerHTML=html;
-
-}
-
-
-/* LIKE */
-
-function toggleLike(postId){
-
-const posts=getPosts();
-
-const post=
-posts.find(
-p=>p.id===postId
-);
-
-if(!post)return;
-
-
-if(!Array.isArray(post.likes))
-post.likes=[];
-
-
-const index=
-post.likes.indexOf(
-currentUser
-);
-
-
-if(index>=0)
-
-post.likes.splice(index,1);
-
-else
-
-post.likes.push(
-currentUser
-);
-
-
-savePosts(posts);
-
-renderFeed();
-
-
-if(
-$("profilePage")
-.classList.contains("active")
-)
-
-showProfileTab(
-currentProfileTab
-);
-
-}
-
-
-/* BLOCK */
-
-function toggleBlockUser(
-postId,
-username
-){
-
-const posts=getPosts();
-
-const post=
-posts.find(
-p=>p.id===postId
-);
-
-
-if(
-!post||
-post.owner!==currentUser||
-username===post.owner
-)
-
-return;
-
-
-if(!Array.isArray(post.blockedUsers))
-post.blockedUsers=[];
-
-
-const index=
-post.blockedUsers.indexOf(
-username
-);
-
-
-if(index>=0){
-
-post.blockedUsers.splice(
-index,
-1
-);
-
-}
-else{
-
-post.blockedUsers.push(
-username
-);
-
-post.comments=
-(post.comments||[])
-.filter(
-c=>c.user!==username
-);
-
-}
-
-
-savePosts(posts);
-
-renderFeed();
-
-
-if(
-$("profilePage")
-.classList.contains("active")
-)
-
-showProfileTab(
-currentProfileTab
-);
-
-}
-
-
-function unblockUser(
-postId,
-username
-){
-
-const posts=getPosts();
-
-const post=
-posts.find(
-p=>p.id===postId
-);
-
-if(
-!post||
-post.owner!==currentUser
-)
-
-return;
-
-
-if(!Array.isArray(post.blockedUsers))
-post.blockedUsers=[];
-
-
-post.blockedUsers=
-post.blockedUsers.filter(
-u=>u!==username
-);
-
-
-savePosts(posts);
-
-renderFeed();
-
-
-if(
-$("profilePage")
-.classList.contains("active")
-)
-
-showProfileTab(
-currentProfileTab
-);
-
-}
-
-
-/* OWNER MENU */
-
-function postOwnerMenu(postId){
-
-const posts=getPosts();
-
-const post=
-posts.find(
-p=>p.id===postId
-);
-
-if(
-!post||
-post.owner!==currentUser
-)
-
-return;
-
-
-const hiddenText=
-post.hiddenComments
-?
-"👁️ Tunjukkan Komen"
-:
-"🙈 Sembunyikan Komen";
-
-
-openModal(`
-
-<h3>
-Menu Posting
-</h3>
-
-<button
-class="primary"
-onclick="toggleComments(${postId})">
-${hiddenText}
-</button>
-
-<button
-class="normal"
-onclick="managePostComments(${postId})">
-💬 Urus Komen
-</button>
-
-<button
-class="normal"
-onclick="manageBlockedUsers(${postId})">
-🚫 Urus Blocked Users
-</button>
-
-<button
-class="danger"
-onclick="deletePost(${postId})">
-🗑️ Padam Posting
-</button>
-
-<br>
-
-<button
-class="normal"
-onclick="closeModal()">
-Tutup
-</button>
-
-`);
-
-}
-
-
-function toggleComments(postId){
-
-const posts=getPosts();
-
-const post=
-posts.find(
-p=>p.id===postId
-);
-
-if(
-!post||
-post.owner!==currentUser
-)
-
-return;
-
-
-post.hiddenComments=
-!post.hiddenComments;
-
-
-savePosts(posts);
-
-closeModal();
-
-renderFeed();
-
-
-if(
-$("profilePage")
-.classList.contains("active")
-)
-
-showProfileTab(
-currentProfileTab
-);
-
-}
-
-
-/* MANAGE COMMENTS */
-
-function managePostComments(postId){
-
-const posts=getPosts();
-
-const post=
-posts.find(
-p=>p.id===postId
-);
-
-if(
-!post||
-post.owner!==currentUser
-)
-
-return;
-
-
-const comments=
-Array.isArray(post.comments)?
-post.comments:[];
-
-
-let html=
-`<h3>💬 Urus Komen</h3>`;
-
-
-if(comments.length===0){
-
-html+=`
-<div class="empty">
-Tiada komen aktif.
-</div>
-`;
-
-}
-else{
-
-comments.forEach(c=>{
-
-const loves=
-Array.isArray(c.loves)?
-c.loves:[];
-
-const loved=
-loves.includes(currentUser);
-
-
-html+=`
-
-<div class="comment">
-
-<div class="comment-user">
-${escapeHtml(c.user)}
-</div>
-
-<div class="comment-text">
-${escapeHtml(c.text)}
-</div>
-
-<div class="comment-tools">
-
-<button
-class="${loved?"comment-loved":""}"
-onclick="
-toggleCommentLove(
-${postId},
-${safeArg(c.id)}
-);
-managePostComments(${postId});
-">
-
-❤️ Love
-${loves.length?loves.length:""}
-
-</button>
-
-
-<button
-class="danger"
-onclick="
-deleteCommentAndManage(
-${postId},
-${safeArg(c.id)}
-)">
-
-🗑️ Padam
-
-</button>
-
-
-${
-c.user!==currentUser
-?
-`
-<button
-class="normal"
-onclick="
-toggleBlockAndManage(
-${postId},
-${safeArg(c.user)}
-)">
-
-🚫 Block
-
-</button>
-`
-:""
-}
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-html+=`
-
-<button
-class="primary"
-onclick="manageBlockedUsers(${postId})">
-
-🚫 Urus Blocked Users
-
-</button>
-
-<br>
-
-<button
-class="normal"
-onclick="closeModal()">
-
-Selesai
-
-</button>
-
-`;
-
-
-openModal(html);
-
-}
-
-
-function deleteCommentAndManage(
-postId,
-commentId
-){
-
-const posts=getPosts();
-
-const post=
-posts.find(
-p=>p.id===postId
-);
-
-if(
-!post||
-post.owner!==currentUser
-)
-
-return;
-
-
-post.comments=
-(post.comments||[])
-.filter(
-c=>String(c.id)!==
-String(commentId)
-);
-
-
-savePosts(posts);
-
-renderFeed();
-
-
-if(
-$("profilePage")
-.classList.contains("active")
-)
-
-showProfileTab(
-currentProfileTab
-);
-
-
-managePostComments(
-postId
-);
-
-}
 
+    if(!id||!password){
 
-function toggleBlockAndManage(
-postId,
-username
-){
+        message.textContent=
+            "Sila isi Y-M ID dan password.";
 
-const posts=getPosts();
+        message.classList.add("error");
 
-const post=
-posts.find(
-p=>p.id===postId
-);
+        return;
 
-if(
-!post||
-post.owner!==currentUser
-)
+    }
 
-return;
 
+    const accounts=getAccounts();
 
-if(!Array.isArray(post.blockedUsers))
-post.blockedUsers=[];
 
+    const accountKey=
+        Object.keys(accounts)
+        .find(function(key){
 
-const index=
-post.blockedUsers.indexOf(
-username
-);
+            return key.toLowerCase()===id.toLowerCase();
 
+        });
 
-if(index>=0){
 
-post.blockedUsers.splice(
-index,
-1
-);
+    if(!accountKey){
 
-}
-else{
-
-post.blockedUsers.push(
-username
-);
-
-post.comments=
-(post.comments||[])
-.filter(
-c=>c.user!==username
-);
-
-}
-
-
-savePosts(posts);
-
-renderFeed();
-
-
-if(
-$("profilePage")
-.classList.contains("active")
-)
-
-showProfileTab(
-currentProfileTab
-);
-
-
-managePostComments(
-postId
-);
-
-}
-
-
-/* BLOCKED USERS */
-
-function manageBlockedUsers(
-postId
-){
-
-const posts=getPosts();
-
-const post=
-posts.find(
-p=>p.id===postId
-);
-
-if(
-!post||
-post.owner!==currentUser
-)
-
-return;
-
-
-const blocked=
-Array.isArray(post.blockedUsers)
-?
-post.blockedUsers
-:
-[];
-
-
-let html=`
-
-<h3>
-🚫 Blocked Users
-</h3>
-
-<div
-style="
-font-size:13px;
-color:#777;
-margin-bottom:12px;
-">
-
-Pengguna yang diblock tidak boleh
-menambah komen pada posting ini.
-
-</div>
-
-`;
-
-
-if(blocked.length===0){
-
-html+=`
-
-<div class="empty">
-Tiada pengguna yang diblock.
-</div>
-
-`;
-
-}
-else{
-
-blocked.forEach(username=>{
-
-html+=`
-
-<div class="comment">
-
-<div class="comment-user">
-🚫 ${escapeHtml(username)}
-</div>
-
-<div class="comment-tools">
-
-<button
-class="primary"
-onclick="
-unblockFromList(
-${postId},
-${safeArg(username)}
-)">
-
-Buka Block
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-html+=`
-
-<button
-class="normal"
-onclick="managePostComments(${postId})">
-
-← Kembali
-
-</button>
-
-<button
-class="normal"
-onclick="closeModal()">
-
-Tutup
-
-</button>
-
-`;
-
-
-openModal(html);
-
-}
-
-
-function unblockFromList(
-postId,
-username
-){
-
-const posts=getPosts();
-
-const post=
-posts.find(
-p=>p.id===postId
-);
-
-if(
-!post||
-post.owner!==currentUser
-)
-
-return;
-
-
-if(!Array.isArray(post.blockedUsers))
-post.blockedUsers=[];
-
-
-post.blockedUsers=
-post.blockedUsers.filter(
-u=>u!==username
-);
-
-
-savePosts(posts);
-
-renderFeed();
-
-
-if(
-$("profilePage")
-.classList.contains("active")
-)
-
-showProfileTab(
-currentProfileTab
-);
-
-
-manageBlockedUsers(
-postId
-);
-
-}
-
-
-/* DELETE POST */
-
-async function deletePost(postId){
-
-const posts=getPosts();
-
-const index=
-posts.findIndex(
-p=>p.id===postId
-);
-
-if(index<0)return;
-
-
-const post=posts[index];
-
-
-if(post.owner!==currentUser)
-return;
-
-
-if(
-!confirm(
-"Padam posting ini?"
-)
-)
-
-return;
-
-
-if(post.mediaId){
-
-try{
-
-await deleteMedia(
-post.mediaId
-);
-
-}
-catch(e){}
-
-}
-
-
-posts.splice(
-index,
-1
-);
-
-savePosts(posts);
-
-closeModal();
-
-renderFeed();
-
-
-if(
-$("profilePage")
-.classList.contains("active")
-)
-
-showProfileTab(
-currentProfileTab
-);
-
-}
-
-
-/* SHARE */
-
-async function sharePost(postId){
-
-const text=
-"Lihat posting ini di YAM Chat.";
-
-
-if(navigator.share){
-
-try{
-
-await navigator.share({
-
-title:"YAM Chat",
-
-text:text
-
-});
-
-return;
+        message.textContent=
+            "Y-M ID tidak dijumpai.";
 
-}
-catch(e){}
-
-}
-
-
-try{
-
-await navigator.clipboard
-.writeText(text);
-
-alert(
-"Pautan/info perkongsian disalin."
-);
-
-}
-catch(e){
-
-alert(
-"Kongsi: YAM Chat"
-);
-
-}
-
-}
-
-
-/* PROFILE */
-
-function renderProfile(){
-
-if(!currentUser)return;
-
-
-$("profileName").textContent=
-currentUser;
-
-$("profileAvatar").src=
-getAvatar(currentUser);
-
-$("composerAvatar").src=
-getAvatar(currentUser);
-
-
-loadBio();
-
-
-const cover=
-getCover(currentUser);
-
-
-if(cover){
-
-$("profileHero").style.backgroundImage=
-`url("${cover}")`;
-
-}
-else{
-
-$("profileHero").style.backgroundImage=
-"linear-gradient(135deg,#1877f2,#111)";
-
-}
-
-
-showProfileTab(
-currentProfileTab
-);
-
-}
-
-
-function updateComposerAvatar(){
-
-if(currentUser)
-
-$("composerAvatar").src=
-getAvatar(currentUser);
-
-}
-
-
-/* PROFILE PICTURE */
-
-function changeProfilePicture(){
-
-$("profileFile").click();
-
-}
-
-
-$("profileFile").addEventListener(
-"change",
-function(event){
-
-const file=
-event.target.files[0];
-
-if(!file)return;
-
-
-if(file.size>3*1024*1024){
-
-alert(
-"Gambar maksimum 3MB."
-);
-
-event.target.value="";
-
-return;
-
-}
-
-
-const reader=
-new FileReader();
-
+        message.classList.add("error");
 
-reader.onload=function(){
+        return;
 
-localStorage.setItem(
-"yam_picture_"+currentUser,
-reader.result
-);
+    }
 
 
-$("profileAvatar").src=
-reader.result;
+    if(
+        String(accounts[accountKey].password)!==
+        String(password)
+    ){
 
-$("composerAvatar").src=
-reader.result;
+        message.textContent=
+            "Password tidak betul.";
 
-
-renderFeed();
-
-
-if(
-$("profilePage")
-.classList.contains("active")
-)
-
-showProfileTab(
-currentProfileTab
-);
-
-};
-
-
-reader.readAsDataURL(file);
-
-});
-
-
-/* COVER */
-
-function changeCover(){
-
-$("coverFile").click();
-
-}
-
-
-$("coverFile").addEventListener(
-"change",
-function(event){
-
-const file=
-event.target.files[0];
-
-if(!file)return;
-
-
-if(file.size>5*1024*1024){
-
-alert(
-"Cover maksimum 5MB."
-);
-
-event.target.value="";
-
-return;
-
-}
-
-
-const reader=
-new FileReader();
-
-
-reader.onload=function(){
-
-localStorage.setItem(
-"yam_cover_"+currentUser,
-reader.result
-);
-
-
-$("profileHero").style.backgroundImage=
-`url("${reader.result}")`;
-
-};
-
-
-reader.readAsDataURL(file);
-
-});
-
-
-/* PROFILE MENU */
-
-function openProfileMenu(){
-
-openModal(`
-
-<h3>
-Menu Profil
-</h3>
-
-<button
-class="normal"
-onclick="editBio()">
-
-✏️ Edit Bio
-
-</button>
-
-<button
-class="normal"
-onclick="changePassword()">
-
-🔑 Tukar Password
-
-</button>
-
-<button
-class="normal"
-onclick="changeName()">
-
-✏️ Tukar Nama
-
-</button>
-
-<button
-class="danger"
-onclick="confirmLogout()">
-
-🚪 Log Out
-
-</button>
-
-`);
-
-}
-
-
-/* BIO */
-
-function editBio(){
-
-let profile={};
-
-
-try{
-
-profile=
-JSON.parse(
-localStorage.getItem(
-"yam_profile_"+currentUser
-)||"{}"
-);
-
-}
-catch(e){}
+        message.classList.add("error");
 
+        return;
 
-const bio=
-prompt(
-"Masukkan bio:",
-profile.bio||""
-);
+    }
 
 
-if(bio===null)return;
+    localStorage.setItem(
+        "ym_current_user",
+        accountKey
+    );
 
 
-profile.bio=
-bio.substring(0,150);
+    message.textContent=
+        "Login berjaya.";
 
+    message.classList.add("success");
 
-localStorage.setItem(
-"yam_profile_"+currentUser,
-JSON.stringify(profile)
-);
 
+    /*
+       BUAT MASA INI KITA BELUM
+       BINA HOME.
+       SELEPAS LOGIN, KITA TUNJUK
+       STATUS SAHAJA.
+    */
 
-$("profileBio").textContent=
-profile.bio||
-"Selamat datang ke profil saya di YAM Chat.";
+    setTimeout(function(){
 
+        alert(
+            "Selamat datang ke Y-M Chat, @"+
+            accountKey+
+            "!"
+        );
 
-closeModal();
+    },300);
 
 }
 
 
-/* PASSWORD */
+/* =========================
+   CHANGE PASSWORD
+========================= */
 
 function changePassword(){
 
-const accounts=
-getAccounts();
+    const id=
+        document.getElementById("changeId")
+        .value.trim();
 
+    const oldPassword=
+        document.getElementById("oldPassword")
+        .value;
 
-if(!accounts[currentUser])
-return;
+    const newPassword=
+        document.getElementById("newPassword")
+        .value;
 
+    const confirm=
+        document.getElementById("confirmNewPassword")
+        .value;
 
-const oldPassword=
-prompt(
-"Masukkan password lama:"
-);
+    const message=
+        document.getElementById("passwordMessage");
 
 
-if(oldPassword===null)
-return;
+    message.className="message";
 
 
-if(
-String(accounts[currentUser].password)!==
-String(oldPassword)
-){
+    if(!id||!oldPassword||!newPassword||!confirm){
 
-alert(
-"Password lama tidak betul."
-);
+        message.textContent=
+            "Sila lengkapkan semua ruangan.";
 
-return;
+        message.classList.add("error");
 
-}
-
-
-const newPassword=
-prompt(
-"Masukkan password baru:"
-);
-
-
-if(newPassword===null)
-return;
-
-
-if(newPassword.length<4){
-
-alert(
-"Password baru mesti sekurang-kurangnya 4 aksara."
-);
-
-return;
-
-}
-
-
-const confirmPassword=
-prompt(
-"Masukkan semula password baru:"
-);
-
-
-if(confirmPassword===null)
-return;
-
-
-if(
-newPassword!==confirmPassword
-){
-
-alert(
-"Password baru tidak sama."
-);
-
-return;
-
-}
-
-
-accounts[currentUser].password=
-newPassword;
-
-saveAccounts(accounts);
-
-closeModal();
-
-alert(
-"Password berjaya ditukar."
-);
-
-}
-
-
-/* CHANGE NAME */
-
-function changeName(){
-
-const accounts=
-getAccounts();
-
-
-if(!accounts[currentUser])
-return;
-
-
-const newName=
-prompt(
-"Masukkan nama/username baru:",
-currentUser
-);
-
-
-if(newName===null)
-return;
-
-
-const cleanName=
-newName.trim();
-
-
-if(cleanName.length<3){
-
-alert(
-"Nama mesti sekurang-kurangnya 3 aksara."
-);
-
-return;
-
-}
-
-
-if(cleanName.length>30){
-
-alert(
-"Nama terlalu panjang."
-);
-
-return;
-
-}
-
-
-if(/\s/.test(cleanName)){
-
-alert(
-"Nama tidak boleh mempunyai ruang."
-);
-
-return;
-
-}
-
-
-const existingKey=
-Object.keys(accounts).find(
-key=>
-key.toLowerCase()===
-cleanName.toLowerCase()
-);
-
-
-if(
-existingKey&&
-existingKey!==currentUser
-){
-
-alert(
-"Nama tersebut sudah digunakan."
-);
-
-return;
-
-}
-
-
-if(cleanName===currentUser){
-
-closeModal();
-
-return;
-
-}
-
-
-const oldName=
-currentUser;
-
-
-accounts[cleanName]=
-accounts[oldName];
-
-delete accounts[oldName];
-
-saveAccounts(accounts);
-
-
-const posts=getPosts();
-
-
-posts.forEach(post=>{
-
-if(post.owner===oldName)
-
-post.owner=cleanName;
-
-
-if(Array.isArray(post.likes)){
-
-post.likes=
-post.likes.map(
-user=>
-user===oldName
-?
-cleanName
-:
-user
-);
-
-}
-
-
-if(Array.isArray(post.comments)){
-
-post.comments.forEach(comment=>{
-
-if(comment.user===oldName)
-
-comment.user=
-cleanName;
-
-
-if(Array.isArray(comment.loves)){
-
-comment.loves=
-comment.loves.map(
-user=>
-user===oldName
-?
-cleanName
-:
-user
-);
-
-}
-
-});
-
-}
-
-
-if(Array.isArray(post.blockedUsers)){
-
-post.blockedUsers=
-post.blockedUsers.map(
-user=>
-user===oldName
-?
-cleanName
-:
-user
-);
-
-}
-
-});
-
-
-savePosts(posts);
-
-
-const picture=
-localStorage.getItem(
-"yam_picture_"+oldName
-);
-
-const cover=
-localStorage.getItem(
-"yam_cover_"+oldName
-);
-
-const profile=
-localStorage.getItem(
-"yam_profile_"+oldName
-);
-
-
-if(picture){
-
-localStorage.setItem(
-"yam_picture_"+cleanName,
-picture
-);
-
-localStorage.removeItem(
-"yam_picture_"+oldName
-);
-
-}
-
-
-if(cover){
-
-localStorage.setItem(
-"yam_cover_"+cleanName,
-cover
-);
-
-localStorage.removeItem(
-"yam_cover_"+oldName
-);
-
-}
-
-
-if(profile){
-
-localStorage.setItem(
-"yam_profile_"+cleanName,
-profile
-);
-
-localStorage.removeItem(
-"yam_profile_"+oldName
-);
-
-}
-
-
-currentUser=
-cleanName;
-
-
-localStorage.setItem(
-"yam_current_user",
-currentUser
-);
-
-
-$("currentUserDisplay").textContent=
-"@"+currentUser;
-
-
-closeModal();
-
-renderProfile();
-
-renderFeed();
-
-renderFriends();
-
-
-alert(
-"Nama berjaya ditukar kepada @"+
-cleanName
-);
-
-}
-
-
-/* LOGOUT */
-
-function confirmLogout(){
-
-if(
-!confirm(
-"Anda pasti mahu Log Out?"
-)
-)
-
-return;
-
-
-closeModal();
-
-logout();
-
-}
-
-
-/* PROFILE TABS */
-
-async function showProfileTab(tab){
-
-currentProfileTab=tab;
-
-
-document.querySelectorAll(
-".profile-tabs button"
-)
-.forEach(
-btn=>btn.classList.remove("active")
-);
-
-
-if(tab==="post")
-$("tabPost").classList.add("active");
-
-
-if(tab==="image")
-$("tabImage").classList.add("active");
-
-
-if(tab==="video")
-$("tabVideo").classList.add("active");
-
-
-if(tab==="market")
-$("tabMarket").classList.add("active");
-
-
-const content=
-$("profileTabContent");
-
-
-if(tab==="market"){
-
-renderMarket();
-
-return;
-
-}
-
-
-const posts=
-getPosts().filter(
-p=>p.owner===currentUser
-);
-
-
-let filtered=posts;
-
-
-if(tab==="image")
-
-filtered=
-posts.filter(
-p=>p.type==="image"
-);
-
-
-if(tab==="video")
-
-filtered=
-posts.filter(
-p=>p.type==="video"
-);
-
-
-if(filtered.length===0){
-
-content.innerHTML=
-`
-<div class="empty">
-Belum ada kandungan.
-</div>
-`;
-
-return;
-
-}
-
-
-let html="";
-
-
-for(const post of filtered){
-
-const mediaHtml=
-await getPostMediaHtml(post);
-
-const likes=
-Array.isArray(post.likes)?
-post.likes:[];
-
-const comments=
-Array.isArray(post.comments)?
-post.comments:[];
-
-const blocked=
-Array.isArray(post.blockedUsers)?
-post.blockedUsers:[];
-
-
-const visibleComments=
-post.hiddenComments
-?
-[]
-:
-comments.filter(
-c=>!blocked.includes(c.user)
-);
-
-
-const liked=
-likes.includes(currentUser);
-
-
-html+=`
-
-<div class="post">
-
-
-<div class="post-head">
-
-
-<img
-class="post-avatar"
-src="${getAvatar(post.owner)}"
->
-
-
-<div>
-
-
-<div class="post-owner">
-
-${escapeHtml(post.owner)}
-
-</div>
-
-
-<div class="post-time">
-
-${formatTime(post.time)}
-
-</div>
-
-
-</div>
-
-
-<button
-class="post-menu"
-onclick="postOwnerMenu(${post.id})">
-
-⋮
-
-</button>
-
-
-</div>
-
-
-${
-post.text
-?
-`
-<div class="post-text">
-${escapeHtml(post.text)}
-</div>
-`
-:""
-}
-
-
-${mediaHtml}
-
-
-<div class="post-actions">
-
-
-<button
-class="${liked?"liked":""}"
-onclick="toggleLike(${post.id})">
-
-${liked?"❤️":"👍"}
-Like
-${likes.length?likes.length:""}
-
-</button>
-
-
-<button
-onclick="focusComment(${post.id})">
-
-💬
-Komen
-${visibleComments.length?
-visibleComments.length:""}
-
-</button>
-
-
-<button
-onclick="sharePost(${post.id})">
-
-↗
-Kongsi
-
-</button>
-
-
-</div>
-
-
-<div class="comment-area">
-
-${buildCommentsHtml(post)}
-
-${buildCommentInput(post)}
-
-</div>
-
-
-</div>
-
-`;
-
-}
-
-
-content.innerHTML=html;
-
-}
-
-
-/* FRIENDS */
-
-function renderFriends(){
-
-const accounts=
-getAccounts();
-
-
-const users=
-Object.keys(accounts)
-.filter(
-u=>u!==currentUser
-);
-
-
-const demoUsers=[
-"Ahmad",
-"Siti",
-"John"
-];
-
-
-const allUsers=[
-...new Set([
-...users,
-...demoUsers
-])
-]
-.filter(
-u=>u!==currentUser
-);
-
-
-if(allUsers.length===0){
-
-$("friendsList").innerHTML=
-`
-<div class="empty">
-Belum ada kawan.
-</div>
-`;
-
-return;
-
-}
-
-
-$("friendsList").innerHTML=
-allUsers.map(
-user=>`
-
-<div class="friend-card">
-
-
-<img
-src="${getAvatar(user)}"
->
-
-
-<div class="friend-info">
-
-
-<div class="friend-name">
-
-${escapeHtml(user)}
-
-</div>
-
-
-<div
-style="
-font-size:12px;
-color:#777;
-">
-
-Pengguna YAM Chat
-
-</div>
-
-
-</div>
-
-
-<button
-onclick="openChat(${safeArg(user)})">
-
-Chat
-
-</button>
-
-
-</div>
-
-`
-).join("");
-
-}
-
-
-/* ROOMS */
-
-function renderRooms(){
-
-const rooms=[
-"Malaysia",
-"Philippines",
-"Indonesia",
-"Singapore",
-"Brunei",
-"World"
-];
-
-
-$("roomsList").innerHTML=
-rooms.map(
-room=>`
-
-<div class="room-card">
-
-
-<div
-style="font-size:30px;">
-🌍
-</div>
-
-
-<div style="flex:1;">
-
-<strong>
-${escapeHtml(room)}
-</strong>
-
-
-<div
-style="
-font-size:12px;
-color:#777;
-">
-
-Room komuniti
-
-</div>
-
-</div>
-
-
-<button
-onclick="openRoom(${safeArg(room)})">
-
-Masuk
-
-</button>
-
-
-</div>
-
-`
-).join("");
-
-}
-
-
-/* MARKET */
-
-function getMarket(){
-
-try{
-
-return JSON.parse(
-localStorage.getItem(
-"yam_market"
-)||"[]"
-);
-
-}
-catch(e){
-
-return [];
-
-}
-
-}
-
-
-function saveMarket(items){
-
-localStorage.setItem(
-"yam_market",
-JSON.stringify(items)
-);
-
-}
-
-
-function renderMarket(){
-
-const content=
-$("profileTabContent");
-
-
-const items=
-getMarket().filter(
-item=>item.owner===currentUser
-);
-
-
-let html=`
-
-<div class="market-add">
-
-
-<h3 style="margin-bottom:10px;">
-
-Tambah Barang
-
-</h3>
-
-
-<input
-id="marketTitle"
-placeholder="Nama barang"
->
-
-
-<input
-id="marketPrice"
-placeholder="Harga RM"
->
-
-
-<textarea
-id="marketDesc"
-placeholder="Keterangan barang">
-</textarea>
-
-
-<input
-id="marketFile"
-type="file"
-accept="image/*"
->
-
-
-<button
-onclick="addMarketItem()">
+        return;
 
-+ Tambah Market
+    }
 
-</button>
 
+    const accounts=getAccounts();
 
-</div>
 
-`;
+    const accountKey=
+        Object.keys(accounts)
+        .find(function(key){
 
+            return key.toLowerCase()===id.toLowerCase();
 
-if(items.length===0){
+        });
 
-html+=`
 
-<div class="empty">
+    if(!accountKey){
 
-Belum ada barang di Market.
+        message.textContent=
+            "Y-M ID tidak dijumpai.";
 
-</div>
+        message.classList.add("error");
 
-`;
+        return;
 
-}
-else{
-
-items.forEach(item=>{
-
-html+=`
-
-<div class="market-item">
-
-
-${
-item.image
-?
-`<img src="${item.image}">`
-:
-""
-}
-
-
-<div class="market-info">
-
-
-<div class="market-title">
-
-${escapeHtml(item.title)}
-
-</div>
-
-
-<div class="market-price">
-
-RM ${escapeHtml(item.price)}
-
-</div>
-
-
-<div>
-
-${escapeHtml(item.description)}
-
-</div>
-
-
-<button
-class="danger"
-onclick="deleteMarketItem(${item.id})"
-style="margin-top:10px;">
-
-🗑️ Padam
-
-</button>
-
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-content.innerHTML=html;
-
-}
-
-
-function addMarketItem(){
-
-const title=
-$("marketTitle").value.trim();
-
-const price=
-$("marketPrice").value.trim();
-
-const description=
-$("marketDesc").value.trim();
-
-const file=
-$("marketFile").files[0];
-
-
-if(!title||!price){
-
-alert(
-"Sila isi nama dan harga."
-);
-
-return;
-
-}
-
-
-if(
-file&&
-file.size>3*1024*1024
-){
-
-alert(
-"Gambar maksimum 3MB."
-);
-
-return;
-
-}
-
-
-const finish=image=>{
-
-const items=
-getMarket();
-
-
-items.unshift({
-
-id:Date.now(),
-
-owner:currentUser,
-
-title:title,
-
-price:price,
-
-description:description,
-
-image:image||"",
-
-time:Date.now()
-
-});
-
-
-saveMarket(items);
-
-renderMarket();
-
-};
-
-
-if(file){
-
-const reader=
-new FileReader();
-
-reader.onload=
-()=>finish(reader.result);
-
-reader.readAsDataURL(file);
-
-}
-else{
-
-finish("");
-
-}
-
-}
-
-
-function deleteMarketItem(id){
-
-const items=
-getMarket();
-
-
-const item=
-items.find(
-i=>i.id===id
-);
-
-
-if(
-!item||
-item.owner!==currentUser
-)
-
-return;
-
-
-if(
-!confirm(
-"Padam barang ini?"
-)
-)
-
-return;
-
-
-saveMarket(
-items.filter(
-i=>i.id!==id
-)
-);
-
-
-renderMarket();
-
-}
-
-
-/* CHAT */
-
-function chatKey(a,b){
-
-return "yamchat_"+
-[a,b]
-.sort()
-.join("_");
-
-}
-
-
-function getChatMessages(a,b){
-
-try{
-
-return JSON.parse(
-localStorage.getItem(
-chatKey(a,b)
-)||"[]"
-);
-
-}
-catch(e){
-
-return [];
-
-}
-
-}
-
-
-function saveChatMessages(
-a,
-b,
-messages
-){
-
-localStorage.setItem(
-chatKey(a,b),
-JSON.stringify(messages)
-);
-
-}
-
-
-function openChat(username){
-
-currentChatUser=
-username;
-
-
-$("chatTitle").textContent=
-username;
-
+    }
 
-$("chatOverlay").style.display=
-"block";
 
+    if(
+        String(accounts[accountKey].password)!==
+        String(oldPassword)
+    ){
 
-renderChat();
+        message.textContent=
+            "Password lama tidak betul.";
 
+        message.classList.add("error");
 
-setTimeout(
-()=>$("chatInput").focus(),
-100
-);
+        return;
 
-}
-
-
-function closeChat(){
-
-$("chatOverlay").style.display=
-"none";
-
-currentChatUser="";
-
-}
-
-
-function renderChat(){
-
-const messages=
-getChatMessages(
-currentUser,
-currentChatUser
-);
-
-
-if(messages.length===0){
-
-$("chatMessages").innerHTML=
-`
-<div class="empty">
-Belum ada mesej.
-</div>
-`;
-
-return;
-
-}
-
-
-$("chatMessages").innerHTML=
-messages.map(
-m=>`
-
-<div class="
-chat-bubble
-${m.user===currentUser?
-"chat-me":
-"chat-other"}
-">
-
-${escapeHtml(m.text)}
-
-</div>
-
-`
-).join("");
-
-
-$("chatMessages").scrollTop=
-$("chatMessages").scrollHeight;
-
-}
-
-
-function sendChat(){
-
-const input=
-$("chatInput");
-
-
-const text=
-input.value.trim();
-
-
-if(
-!text||
-!currentChatUser
-)
-
-return;
-
-
-const messages=
-getChatMessages(
-currentUser,
-currentChatUser
-);
-
-
-messages.push({
-
-user:currentUser,
-
-text:text,
-
-time:Date.now()
-
-});
-
-
-saveChatMessages(
-currentUser,
-currentChatUser,
-messages
-);
-
-
-input.value="";
-
-renderChat();
-
-}
-
-
-$("chatInput").addEventListener(
-"keydown",
-function(e){
-
-if(e.key==="Enter")
-sendChat();
-
-});
-
-
-/* ROOM CHAT */
-
-function roomKey(room){
-
-return "yamroom_"+room;
-
-}
-
-
-function getRoomMessages(room){
-
-try{
-
-return JSON.parse(
-localStorage.getItem(
-roomKey(room)
-)||"[]"
-);
-
-}
-catch(e){
-
-return [];
-
-}
-
-}
-
-
-function openRoom(room){
-
-const messages=
-getRoomMessages(room);
-
-
-let html=`
-
-<h3>
-🌍 ${escapeHtml(room)}
-</h3>
-
-
-<div
-id="roomMessages"
-style="
-max-height:350px;
-overflow-y:auto;
-background:#f1f3f6;
-padding:10px;
-border-radius:10px;
-margin-bottom:10px;
-">
-
-`;
-
-
-if(messages.length===0){
-
-html+=`
-
-<div class="empty">
-
-Belum ada mesej.
-
-</div>
-
-`;
-
-}
-else{
-
-messages.forEach(m=>{
-
-html+=`
-
-<div
-style="
-background:#fff;
-border-radius:9px;
-padding:8px;
-margin-bottom:6px;
-">
-
-
-<strong>
-
-${escapeHtml(m.user)}
-
-</strong>
-
+    }
 
-<div>
 
-${escapeHtml(m.text)}
+    if(newPassword.length<4){
 
-</div>
+        message.textContent=
+            "Password baru mesti sekurang-kurangnya 4 aksara.";
 
+        message.classList.add("error");
 
-</div>
+        return;
 
-`;
+    }
 
-});
 
-}
-
-
-html+=`
-
-</div>
-
-
-<input
-id="roomInput"
-placeholder="Tulis mesej..."
-style="
-width:100%;
-padding:11px;
-border:1px solid #ddd;
-border-radius:9px;
-margin-bottom:8px;
-"
-onkeydown="
-if(event.key==='Enter')
-sendRoom(${safeArg(room)})
-">
-
-
-<button
-class="primary"
-onclick="sendRoom(${safeArg(room)})">
-
-Hantar
-
-</button>
-
-
-<button
-class="normal"
-onclick="closeModal()">
-
-Tutup
-
-</button>
-
-`;
-
+    if(newPassword!==confirm){
 
-openModal(html);
+        message.textContent=
+            "Password baru tidak sama.";
 
-}
-
-
-function sendRoom(room){
-
-const input=
-$("roomInput");
-
-if(!input)return;
-
-
-const text=
-input.value.trim();
-
-if(!text)return;
+        message.classList.add("error");
 
+        return;
 
-const messages=
-getRoomMessages(room);
+    }
 
 
-messages.push({
+    accounts[accountKey].password=
+        newPassword;
 
-user:currentUser,
 
-text:text,
+    saveAccounts(accounts);
 
-time:Date.now()
 
-});
+    message.textContent=
+        "Password berjaya ditukar.";
 
+    message.classList.add("success");
 
-localStorage.setItem(
-roomKey(room),
-JSON.stringify(messages)
-);
 
+    document.getElementById("oldPassword").value="";
+    document.getElementById("newPassword").value="";
+    document.getElementById("confirmNewPassword").value="";
 
-openRoom(room);
-
 }
-
 
-/* MODAL */
 
-function openModal(html){
+/* =========================
+   SECURITY
+========================= */
 
-$("modal").innerHTML=
-html;
+function saveSecurity(){
 
-$("modalBg").style.display=
-"flex";
-
-}
+    const id=
+        document.getElementById("securityId")
+        .value.trim();
 
+    const answer=
+        document.getElementById("securityAnswer")
+        .value.trim();
 
-function closeModal(){
+    const message=
+        document.getElementById("securityMessage");
 
-$("modalBg").style.display=
-"none";
 
-$("modal").innerHTML="";
+    message.className="message";
 
-}
 
+    if(!id||!answer){
 
-function closeModalOutside(event){
+        message.textContent=
+            "Sila isi Y-M ID dan kod keselamatan.";
 
-if(
-event.target===
-$("modalBg")
-)
+        message.classList.add("error");
 
-closeModal();
+        return;
 
-}
+    }
 
 
-/* BIO LOAD */
+    const accounts=getAccounts();
 
-function loadBio(){
 
-if(!currentUser)return;
+    const accountKey=
+        Object.keys(accounts)
+        .find(function(key){
 
+            return key.toLowerCase()===id.toLowerCase();
 
-let profile={};
+        });
 
 
-try{
+    if(!accountKey){
 
-profile=
-JSON.parse(
-localStorage.getItem(
-"yam_profile_"+currentUser
-)||"{}"
-);
+        message.textContent=
+            "Y-M ID tidak dijumpai.";
 
-}
-catch(e){}
+        message.classList.add("error");
 
+        return;
 
-$("profileBio").textContent=
-profile.bio||
-"Selamat datang ke profil saya di YAM Chat.";
+    }
 
-}
 
+    accounts[accountKey].security=answer;
 
-/* INITIAL */
 
-loadBio();
+    saveAccounts(accounts);
 
 
-if(currentUser){
+    message.textContent=
+        "Security berjaya disimpan.";
 
-startApp();
+    message.classList.add("success");
 
 }
-else{
 
-$("loginPage").style.display=
-"flex";
 
-$("app").style.display=
-"none";
+/* =========================
+   START
+========================= */
 
-}
+closeSections();
 
 </script>
 
