@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Y-M Chat V1.2</title>
+<title>Y-M Chat V1.3</title>
 
 <style>
 *{
@@ -270,6 +270,21 @@ button{
     font-weight:bold;
 }
 
+.language-box{
+    margin-bottom:16px;
+    padding:12px;
+    background:#f5f9ff;
+    border:1px solid #dbeafe;
+    border-radius:12px;
+}
+
+.language-title{
+    font-size:13px;
+    font-weight:bold;
+    color:#1565c0;
+    margin-bottom:7px;
+}
+
 .footer{
     text-align:center;
     color:white;
@@ -286,10 +301,109 @@ button{
 
 <div class="logo-area">
     <div class="logo">Y-M Chat</div>
-    <div class="tagline">Sembang • Kawan • Komuniti</div>
+    <div class="tagline" data-i18n="tagline">
+        Chat • Friends • Community
+    </div>
 </div>
 
 <div class="card">
+
+<!-- =====================================================
+     LANGUAGE
+===================================================== -->
+
+<div class="language-box">
+
+    <div class="language-title" data-i18n="language">
+        Language
+    </div>
+
+    <select id="masterLanguage"
+            onchange="changeMasterLanguage()">
+
+        <option value="en" selected>🇬🇧 English</option>
+
+        <option value="ms">🇲🇾 Bahasa Malaysia</option>
+        <option value="id">🇮🇩 Bahasa Indonesia</option>
+        <option value="fil">🇵🇭 Filipino</option>
+        <option value="th">🇹🇭 Thai</option>
+        <option value="vi">🇻🇳 Vietnamese</option>
+
+        <option value="zh">🇨🇳 Chinese</option>
+        <option value="yue">🇭🇰 Cantonese</option>
+        <option value="ja">🇯🇵 Japanese</option>
+        <option value="ko">🇰🇷 Korean</option>
+
+        <option value="hi">🇮🇳 Hindi</option>
+        <option value="bn">🇧🇩 Bengali</option>
+        <option value="ur">🇵🇰 Urdu</option>
+        <option value="ta">🇮🇳 Tamil</option>
+        <option value="te">🇮🇳 Telugu</option>
+        <option value="mr">🇮🇳 Marathi</option>
+        <option value="gu">🇮🇳 Gujarati</option>
+        <option value="kn">🇮🇳 Kannada</option>
+        <option value="ml">🇮🇳 Malayalam</option>
+        <option value="pa">🇮🇳 Punjabi</option>
+        <option value="ne">🇳🇵 Nepali</option>
+
+        <option value="ar">🌍 Arabic</option>
+        <option value="fa">🇮🇷 Persian</option>
+        <option value="he">🇮🇱 Hebrew</option>
+        <option value="tr">🇹🇷 Turkish</option>
+
+        <option value="fr">🇫🇷 French</option>
+        <option value="es">🇪🇸 Spanish</option>
+        <option value="pt">🇵🇹 Portuguese</option>
+        <option value="de">🇩🇪 German</option>
+        <option value="it">🇮🇹 Italian</option>
+        <option value="nl">🇳🇱 Dutch</option>
+
+        <option value="sv">🇸🇪 Swedish</option>
+        <option value="no">🇳🇴 Norwegian</option>
+        <option value="da">🇩🇰 Danish</option>
+        <option value="fi">🇫🇮 Finnish</option>
+        <option value="is">🇮🇸 Icelandic</option>
+
+        <option value="pl">🇵🇱 Polish</option>
+        <option value="cs">🇨🇿 Czech</option>
+        <option value="sk">🇸🇰 Slovak</option>
+        <option value="hu">🇭🇺 Hungarian</option>
+        <option value="ro">🇷🇴 Romanian</option>
+        <option value="bg">🇧🇬 Bulgarian</option>
+        <option value="uk">🇺🇦 Ukrainian</option>
+        <option value="ru">🇷🇺 Russian</option>
+        <option value="el">🇬🇷 Greek</option>
+        <option value="sr">🇷🇸 Serbian</option>
+        <option value="hr">🇭🇷 Croatian</option>
+        <option value="sl">🇸🇮 Slovenian</option>
+        <option value="sq">🇦🇱 Albanian</option>
+
+        <option value="sw">🌍 Swahili</option>
+        <option value="am">🇪🇹 Amharic</option>
+        <option value="ha">🌍 Hausa</option>
+        <option value="yo">🌍 Yoruba</option>
+        <option value="zu">🇿🇦 Zulu</option>
+        <option value="af">🇿🇦 Afrikaans</option>
+
+        <option value="km">🇰🇭 Khmer</option>
+        <option value="lo">🇱🇦 Lao</option>
+        <option value="my">🇲🇲 Burmese</option>
+        <option value="mn">🇲🇳 Mongolian</option>
+
+        <option value="ka">🇬🇪 Georgian</option>
+        <option value="hy">🇦🇲 Armenian</option>
+        <option value="az">🇦🇿 Azerbaijani</option>
+        <option value="kk">🇰🇿 Kazakh</option>
+        <option value="uz">🇺🇿 Uzbek</option>
+
+        <option value="et">🇪🇪 Estonian</option>
+        <option value="lv">🇱🇻 Latvian</option>
+        <option value="lt">🇱🇹 Lithuanian</option>
+
+    </select>
+
+</div>
+
 
 <!-- =====================================================
      FRONT PAGE
@@ -297,30 +411,37 @@ button{
 
 <div id="frontPage">
 
-    <h2>Selamat Datang</h2>
+    <h2 data-i18n="welcome">
+        Welcome
+    </h2>
 
     <button class="btn-blue"
-            onclick="showPage('loginPage')">
+            onclick="showPage('loginPage')"
+            data-i18n="login">
         LOGIN
     </button>
 
     <button class="btn-light"
-            onclick="showPage('registerPage')">
-        DAFTAR Y-M ID
+            onclick="showPage('registerPage')"
+            data-i18n="register">
+        REGISTER Y-M ID
     </button>
 
     <button class="btn-gray"
-            onclick="showPage('changePasswordPage')">
+            onclick="showPage('changePasswordPage')"
+            data-i18n="changePassword">
         🔑 CHANGE PASSWORD
     </button>
 
     <button class="btn-light"
-            onclick="showPage('securityPage')">
+            onclick="showPage('securityPage')"
+            data-i18n="security">
         🛡️ SECURITY
     </button>
 
     <button class="btn-orange"
-            onclick="showPage('recoveryPage')">
+            onclick="showPage('recoveryPage')"
+            data-i18n="forgotRecovery">
         🔐 FORGOT PASSWORD / RECOVERY
     </button>
 
@@ -333,32 +454,43 @@ button{
 
 <div id="loginPage" class="hidden">
 
-    <h2>Login Y-M Chat</h2>
+    <h2 data-i18n="loginTitle">
+        Login Y-M Chat
+    </h2>
 
-    <label>Y-M ID</label>
+    <label data-i18n="ymId">
+        Y-M ID
+    </label>
 
     <input id="loginId"
-           placeholder="Masukkan Y-M ID">
+           placeholder="Enter Y-M ID"
+           data-i18n-placeholder="enterYmId">
 
-    <label>Password</label>
+    <label data-i18n="password">
+        Password
+    </label>
 
     <input id="loginPassword"
            type="password"
-           placeholder="Masukkan password">
+           placeholder="Enter password"
+           data-i18n-placeholder="enterPassword">
 
     <button class="btn-blue"
-            onclick="loginUser()">
+            onclick="loginUser()"
+            data-i18n="login">
         LOGIN
     </button>
 
     <button class="btn-orange"
-            onclick="showPage('recoveryPage')">
+            onclick="showPage('recoveryPage')"
+            data-i18n="forgotPassword">
         FORGOT PASSWORD?
     </button>
 
     <button class="btn-gray"
-            onclick="showPage('frontPage')">
-        KEMBALI
+            onclick="showPage('frontPage')"
+            data-i18n="back">
+        BACK
     </button>
 
 </div>
@@ -370,11 +502,14 @@ button{
 
 <div id="registerPage" class="hidden">
 
-    <h2>Daftar Y-M ID</h2>
+    <h2 data-i18n="registerTitle">
+        Register Y-M ID
+    </h2>
 
-    <label>Language / Bahasa</label>
+    <label data-i18n="language">
+        Language
+    </label>
 
-    <!-- LANGUAGE ONLY UPDATED -->
     <select id="regLanguage">
 
         <option value="en" selected>🇬🇧 English</option>
@@ -459,34 +594,47 @@ button{
     </select>
 
 
-    <label>Country / Negara</label>
+    <label data-i18n="country">
+        Country
+    </label>
 
     <select id="regCountry"
             onchange="updateCountryCode('regCountry','regCode','regPhone')">
     </select>
 
 
-    <label>Y-M ID</label>
+    <label data-i18n="ymId">
+        Y-M ID
+    </label>
 
     <input id="regId"
-           placeholder="Contoh: nizam123">
+           placeholder="Example: nizam123"
+           data-i18n-placeholder="exampleYmId">
 
 
-    <label>Password</label>
+    <label data-i18n="password">
+        Password
+    </label>
 
     <input id="regPassword"
            type="password"
-           placeholder="Buat password">
+           placeholder="Create password"
+           data-i18n-placeholder="createPassword">
 
 
-    <label>Confirm Password</label>
+    <label data-i18n="confirmPassword">
+        Confirm Password
+    </label>
 
     <input id="regConfirmPassword"
            type="password"
-           placeholder="Ulang password">
+           placeholder="Enter password again"
+           data-i18n-placeholder="repeatPassword">
 
 
-    <label>Phone Number</label>
+    <label data-i18n="phoneNumber">
+        Phone Number
+    </label>
 
     <div class="row">
 
@@ -497,115 +645,139 @@ button{
 
         <div>
             <input id="regPhone"
-                   placeholder="Nombor telefon">
+                   placeholder="Phone number"
+                   data-i18n-placeholder="phoneNumber">
         </div>
 
     </div>
 
     <div class="phone-preview">
-        Nombor penuh:
+
+        <span data-i18n="fullNumber">
+            Full number:
+        </span>
+
         <span id="regFullPhone">-</span>
+
     </div>
 
 
-    <label>Email Address</label>
+    <label data-i18n="emailAddress">
+        Email Address
+    </label>
 
     <input id="regEmail"
            type="email"
-           placeholder="nama@email.com">
+           placeholder="name@email.com">
 
 
-    <label>Confirm Email Address</label>
+    <label data-i18n="confirmEmail">
+        Confirm Email Address
+    </label>
 
     <input id="regConfirmEmail"
            type="email"
-           placeholder="Ulang email">
+           placeholder="Enter email again">
 
 
     <div class="section">
 
-        <h3>🔐 Security Questions</h3>
+        <h3 data-i18n="securityQuestions">
+            🔐 Security Questions
+        </h3>
 
-        <label>Soalan Keselamatan 1</label>
+        <label data-i18n="securityQuestion1">
+            Security Question 1
+        </label>
 
         <select id="regQuestion1">
 
             <option value="">
-                -- Pilih soalan --
+                -- Select a question --
             </option>
 
             <option value="Apakah nama bandar kelahiran anda?">
-                Apakah nama bandar kelahiran anda?
+                What is the name of your birth city?
             </option>
 
             <option value="Apakah nama sekolah pertama anda?">
-                Apakah nama sekolah pertama anda?
+                What was the name of your first school?
             </option>
 
             <option value="Apakah makanan kegemaran anda?">
-                Apakah makanan kegemaran anda?
+                What is your favourite food?
             </option>
 
             <option value="Apakah nama haiwan peliharaan pertama anda?">
-                Apakah nama haiwan peliharaan pertama anda?
+                What was the name of your first pet?
             </option>
 
             <option value="Apakah nama panggilan anda semasa kecil?">
-                Apakah nama panggilan anda semasa kecil?
+                What was your childhood nickname?
             </option>
 
         </select>
 
 
-        <label>Jawapan 1</label>
+        <label data-i18n="answer1">
+            Answer 1
+        </label>
 
         <input id="regAnswer1"
-               placeholder="Jawapan">
+               placeholder="Answer"
+               data-i18n-placeholder="answer">
 
 
-        <label>Soalan Keselamatan 2</label>
+        <label data-i18n="securityQuestion2">
+            Security Question 2
+        </label>
 
         <select id="regQuestion2">
 
             <option value="">
-                -- Pilih soalan --
+                -- Select a question --
             </option>
 
             <option value="Apakah nama bandar kelahiran anda?">
-                Apakah nama bandar kelahiran anda?
+                What is the name of your birth city?
             </option>
 
             <option value="Apakah nama sekolah pertama anda?">
-                Apakah nama sekolah pertama anda?
+                What was the name of your first school?
             </option>
 
             <option value="Apakah makanan kegemaran anda?">
-                Apakah makanan kegemaran anda?
+                What is your favourite food?
             </option>
 
             <option value="Apakah nama haiwan peliharaan pertama anda?">
-                Apakah nama haiwan peliharaan pertama anda?
+                What was the name of your first pet?
             </option>
 
             <option value="Apakah nama panggilan anda semasa kecil?">
-                Apakah nama panggilan anda semasa kecil?
+                What was your childhood nickname?
             </option>
 
         </select>
 
 
-        <label>Jawapan 2</label>
+        <label data-i18n="answer2">
+            Answer 2
+        </label>
 
         <input id="regAnswer2"
-               placeholder="Jawapan">
+               placeholder="Answer"
+               data-i18n-placeholder="answer">
 
     </div>
 
 
     <div class="notice">
 
-        Phone OTP dan Email OTP akan disediakan melalui
-        server Y-M Chat pada peringkat akan datang.
+        <span data-i18n="otpFuture">
+            Phone OTP and Email OTP will be provided through
+            the Y-M Chat server at a later stage.
+        </span>
 
     </div>
 
@@ -614,13 +786,15 @@ button{
 
 
     <button class="btn-blue"
-            onclick="registerUser()">
-        DAFTAR Y-M ID
+            onclick="registerUser()"
+            data-i18n="register">
+        REGISTER Y-M ID
     </button>
 
     <button class="btn-gray"
-            onclick="showPage('frontPage')">
-        KEMBALI
+            onclick="showPage('frontPage')"
+            data-i18n="back">
+        BACK
     </button>
 
 </div>
@@ -632,46 +806,53 @@ button{
 
 <div id="changePasswordPage" class="hidden">
 
-    <h2>Change Password</h2>
+    <h2 data-i18n="changePasswordTitle">
+        Change Password
+    </h2>
 
-    <label>Y-M ID</label>
+    <label data-i18n="ymId">
+        Y-M ID
+    </label>
 
     <input id="changeId"
            placeholder="Y-M ID">
 
-
-    <label>Password Lama</label>
+    <label data-i18n="oldPassword">
+        Old Password
+    </label>
 
     <input id="oldPassword"
            type="password"
-           placeholder="Password lama">
+           placeholder="Old password">
 
-
-    <label>Password Baru</label>
+    <label data-i18n="newPassword">
+        New Password
+    </label>
 
     <input id="newPassword"
            type="password"
-           placeholder="Password baru">
+           placeholder="New password">
 
-
-    <label>Confirm Password Baru</label>
+    <label data-i18n="confirmNewPassword">
+        Confirm New Password
+    </label>
 
     <input id="confirmNewPassword"
            type="password"
-           placeholder="Ulang password baru">
-
+           placeholder="Enter new password again">
 
     <div id="changeMessage"></div>
 
-
     <button class="btn-blue"
-            onclick="changePassword()">
-        TUKAR PASSWORD
+            onclick="changePassword()"
+            data-i18n="changePasswordButton">
+        CHANGE PASSWORD
     </button>
 
     <button class="btn-gray"
-            onclick="showPage('frontPage')">
-        KEMBALI
+            onclick="showPage('frontPage')"
+            data-i18n="back">
+        BACK
     </button>
 
 </div>
@@ -683,30 +864,40 @@ button{
 
 <div id="securityPage" class="hidden">
 
-    <h2>Security</h2>
+    <h2 data-i18n="securityTitle">
+        Security
+    </h2>
 
     <div class="notice">
 
-        Maklumat ini digunakan untuk membantu pemulihan
-        akaun Y-M Chat.
+        <span data-i18n="securityNotice">
+            This information is used to help recover your
+            Y-M Chat account.
+        </span>
 
     </div>
 
 
-    <label>Y-M ID</label>
+    <label data-i18n="ymId">
+        Y-M ID
+    </label>
 
     <input id="secId"
            placeholder="Y-M ID">
 
 
-    <label>Country / Negara</label>
+    <label data-i18n="country">
+        Country
+    </label>
 
     <select id="secCountry"
             onchange="updateCountryCode('secCountry','secCode','secPhone')">
     </select>
 
 
-    <label>Phone Number</label>
+    <label data-i18n="phoneNumber">
+        Phone Number
+    </label>
 
     <div class="row">
 
@@ -717,111 +908,125 @@ button{
 
         <div>
             <input id="secPhone"
-                   placeholder="Nombor telefon">
+                   placeholder="Phone number">
         </div>
 
     </div>
 
 
-    <label>Email Address</label>
+    <label data-i18n="emailAddress">
+        Email Address
+    </label>
 
     <input id="secEmail"
            type="email"
            placeholder="Email">
 
 
-    <label>Confirm Email Address</label>
+    <label data-i18n="confirmEmail">
+        Confirm Email Address
+    </label>
 
     <input id="secConfirmEmail"
            type="email"
-           placeholder="Ulang email">
+           placeholder="Enter email again">
 
 
-    <label>Soalan Keselamatan 1</label>
+    <label data-i18n="securityQuestion1">
+        Security Question 1
+    </label>
 
     <select id="secQuestion1">
 
         <option value="">
-            -- Pilih soalan --
+            -- Select a question --
         </option>
 
         <option value="Apakah nama bandar kelahiran anda?">
-            Apakah nama bandar kelahiran anda?
+            What is the name of your birth city?
         </option>
 
         <option value="Apakah nama sekolah pertama anda?">
-            Apakah nama sekolah pertama anda?
+            What was the name of your first school?
         </option>
 
         <option value="Apakah makanan kegemaran anda?">
-            Apakah makanan kegemaran anda?
+            What is your favourite food?
         </option>
 
         <option value="Apakah nama haiwan peliharaan pertama anda?">
-            Apakah nama haiwan peliharaan pertama anda?
+            What was the name of your first pet?
         </option>
 
         <option value="Apakah nama panggilan anda semasa kecil?">
-            Apakah nama panggilan anda semasa kecil?
+            What was your childhood nickname?
         </option>
 
     </select>
 
 
-    <label>Jawapan 1</label>
+    <label data-i18n="answer1">
+        Answer 1
+    </label>
 
     <input id="secAnswer1"
-           placeholder="Jawapan">
+           placeholder="Answer">
 
 
-    <label>Soalan Keselamatan 2</label>
+    <label data-i18n="securityQuestion2">
+        Security Question 2
+    </label>
 
     <select id="secQuestion2">
 
         <option value="">
-            -- Pilih soalan --
+            -- Select a question --
         </option>
 
         <option value="Apakah nama bandar kelahiran anda?">
-            Apakah nama bandar kelahiran anda?
+            What is the name of your birth city?
         </option>
 
         <option value="Apakah nama sekolah pertama anda?">
-            Apakah nama sekolah pertama anda?
+            What was the name of your first school?
         </option>
 
         <option value="Apakah makanan kegemaran anda?">
-            Apakah makanan kegemaran anda?
+            What is your favourite food?
         </option>
 
         <option value="Apakah nama haiwan peliharaan pertama anda?">
-            Apakah nama haiwan peliharaan pertama anda?
+            What was the name of your first pet?
         </option>
 
         <option value="Apakah nama panggilan anda semasa kecil?">
-            Apakah nama panggilan anda semasa kecil?
+            What was your childhood nickname?
         </option>
 
     </select>
 
 
-    <label>Jawapan 2</label>
+    <label data-i18n="answer2">
+        Answer 2
+    </label>
 
     <input id="secAnswer2"
-           placeholder="Jawapan">
+           placeholder="Answer">
 
 
     <div id="securityMessage"></div>
 
 
     <button class="btn-blue"
-            onclick="saveSecurity()">
-        SIMPAN SECURITY
+            onclick="saveSecurity()"
+            data-i18n="saveSecurity">
+        SAVE SECURITY
     </button>
 
     <button class="btn-gray"
-            onclick="showPage('frontPage')">
-        KEMBALI
+            onclick="showPage('frontPage')"
+            data-i18n="back">
+        BACK
     </button>
 
 </div>
@@ -833,30 +1038,49 @@ button{
 
 <div id="recoveryPage" class="hidden">
 
-    <h2>Forgot Password</h2>
+    <h2 data-i18n="forgotPasswordTitle">
+        Forgot Password
+    </h2>
 
     <div class="notice">
 
-        Anda mempunyai 3 pilihan untuk recovery akaun.
+        <span data-i18n="recoveryNotice">
+            You have 3 account recovery options.
+        </span>
 
         <br><br>
 
-        ① 2 Soalan Keselamatan<br>
-        ② Phone OTP — SMS / WhatsApp<br>
-        ③ Email OTP
+        ① <span data-i18n="twoSecurityQuestions">
+        2 Security Questions
+        </span>
+
+        <br>
+
+        ② <span data-i18n="phoneOtp">
+        Phone OTP — SMS / WhatsApp
+        </span>
+
+        <br>
+
+        ③ <span data-i18n="emailOtp">
+        Email OTP
+        </span>
 
     </div>
 
 
-    <label>Y-M ID</label>
+    <label data-i18n="ymId">
+        Y-M ID
+    </label>
 
     <input id="recoveryId"
-           placeholder="Masukkan Y-M ID">
+           placeholder="Enter Y-M ID">
 
 
     <button class="btn-blue"
-            onclick="findRecoveryAccount()">
-        CARI AKAUN
+            onclick="findRecoveryAccount()"
+            data-i18n="findAccount">
+        FIND ACCOUNT
     </button>
 
 
@@ -866,7 +1090,9 @@ button{
 
         <div class="section">
 
-            <h3>🔐 Pilih Cara Recovery</h3>
+            <h3 data-i18n="chooseRecovery">
+                🔐 Choose Recovery Method
+            </h3>
 
 
             <div class="radio-box"
@@ -876,12 +1102,14 @@ button{
                        name="recoveryMethod"
                        id="methodQuestions">
 
-                <span class="radio-title">
-                    1. 2 Soalan Keselamatan
+                <span class="radio-title"
+                      data-i18n="twoSecurityQuestions">
+                    1. 2 Security Questions
                 </span>
 
-                <div class="radio-desc">
-                    Kedua-dua jawapan mesti betul.
+                <div class="radio-desc"
+                     data-i18n="bothAnswersCorrect">
+                    Both answers must be correct.
                 </div>
 
             </div>
@@ -894,12 +1122,14 @@ button{
                        name="recoveryMethod"
                        id="methodPhone">
 
-                <span class="radio-title">
+                <span class="radio-title"
+                      data-i18n="phoneOtp">
                     2. Phone OTP
                 </span>
 
-                <div class="radio-desc">
-                    Pilih SMS atau WhatsApp.
+                <div class="radio-desc"
+                     data-i18n="chooseSmsWhatsapp">
+                    Choose SMS or WhatsApp.
                 </div>
 
             </div>
@@ -912,12 +1142,14 @@ button{
                        name="recoveryMethod"
                        id="methodEmail">
 
-                <span class="radio-title">
+                <span class="radio-title"
+                      data-i18n="emailOtp">
                     3. Email OTP
                 </span>
 
-                <div class="radio-desc">
-                    OTP akan dihantar ke email.
+                <div class="radio-desc"
+                     data-i18n="otpEmail">
+                    OTP will be sent to your email.
                 </div>
 
             </div>
@@ -928,42 +1160,47 @@ button{
         <div id="questionsRecovery"
              class="hidden section">
 
-            <h3>🔐 2 Soalan Keselamatan</h3>
+            <h3 data-i18n="twoSecurityQuestionsTitle">
+                🔐 2 Security Questions
+            </h3>
 
 
             <label id="recoveryQuestion1">
-                Soalan 1
+                Question 1
             </label>
 
             <input id="recoveryAnswer1"
-                   placeholder="Jawapan soalan 1">
+                   placeholder="Answer to question 1">
 
 
             <label id="recoveryQuestion2">
-                Soalan 2
+                Question 2
             </label>
 
             <input id="recoveryAnswer2"
-                   placeholder="Jawapan soalan 2">
+                   placeholder="Answer to question 2">
 
 
             <div class="warning">
 
-                Kedua-dua jawapan mesti betul.
+                <span data-i18n="bothAnswersWarning">
+                    Both answers must be correct.
+                </span>
 
                 <br>
 
-                Jika satu sahaja salah,
-                Reset Password tidak akan dibuka.
+                <span data-i18n="oneWrongWarning">
+                    If one answer is wrong,
+                    Reset Password will not be opened.
+                </span>
 
             </div>
 
 
             <button class="btn-green"
-                    onclick="verifyQuestions()">
-
-                SAHKAN 2 JAWAPAN
-
+                    onclick="verifyQuestions()"
+                    data-i18n="verifyAnswers">
+                VERIFY 2 ANSWERS
             </button>
 
         </div>
@@ -972,17 +1209,23 @@ button{
         <div id="phoneRecovery"
              class="hidden section">
 
-            <h3>📱 Phone OTP</h3>
+            <h3 data-i18n="phoneOtpTitle">
+                📱 Phone OTP
+            </h3>
 
 
-            <label>Country / Negara</label>
+            <label data-i18n="country">
+                Country
+            </label>
 
             <select id="recoveryCountry"
                     onchange="updateCountryCode('recoveryCountry','recoveryCode','recoveryPhone')">
             </select>
 
 
-            <label>Phone Number</label>
+            <label data-i18n="phoneNumber">
+                Phone Number
+            </label>
 
             <div class="row">
 
@@ -993,7 +1236,7 @@ button{
 
                 <div>
                     <input id="recoveryPhone"
-                           placeholder="Nombor telefon">
+                           placeholder="Phone number">
                 </div>
 
             </div>
@@ -1001,13 +1244,18 @@ button{
 
             <div class="phone-preview">
 
-                Nombor penuh:
+                <span data-i18n="fullNumber">
+                    Full number:
+                </span>
+
                 <span id="recoveryFullPhone">-</span>
 
             </div>
 
 
-            <label>Pilih cara menerima OTP</label>
+            <label data-i18n="receiveOtp">
+                Choose how to receive OTP
+            </label>
 
 
             <div class="otp-channel">
@@ -1033,12 +1281,16 @@ button{
             <div id="phoneOtpStatus"
                  class="warning">
 
-                OTP belum diminta.
+                <span data-i18n="otpNotRequested">
+                    OTP has not been requested.
+                </span>
 
             </div>
 
 
-            <label>Masukkan OTP</label>
+            <label data-i18n="enterOtp">
+                Enter OTP
+            </label>
 
             <input id="recoveryPhoneOtp"
                    placeholder="6 digit OTP"
@@ -1046,17 +1298,17 @@ button{
 
 
             <button class="btn-green"
-                    onclick="verifyPhoneOtp()">
-
-                SAHKAN OTP
-
+                    onclick="verifyPhoneOtp()"
+                    data-i18n="verifyOtp">
+                VERIFY OTP
             </button>
 
 
-            <div class="small">
+            <div class="small"
+                 data-i18n="phoneOtpFuture">
 
-                SMS/WhatsApp sebenar hanya akan aktif selepas
-                Y-M Chat mempunyai server dan sambungan provider OTP.
+                Real SMS/WhatsApp OTP will be activated after
+                Y-M Chat has a server and OTP provider connection.
 
             </div>
 
@@ -1066,20 +1318,26 @@ button{
         <div id="emailRecovery"
              class="hidden section">
 
-            <h3>📧 Email OTP</h3>
+            <h3 data-i18n="emailOtpTitle">
+                📧 Email OTP
+            </h3>
 
 
-            <label>Email Address</label>
+            <label data-i18n="emailAddress">
+                Email Address
+            </label>
 
             <input id="recoveryEmail"
                    type="email"
-                   placeholder="Email yang berdaftar">
+                   placeholder="Registered email">
 
 
             <button class="btn-blue"
                     onclick="requestEmailOtp()">
 
-                📧 MINTA EMAIL OTP
+                📧 <span data-i18n="requestEmailOtp">
+                    REQUEST EMAIL OTP
+                </span>
 
             </button>
 
@@ -1087,12 +1345,16 @@ button{
             <div id="emailOtpStatus"
                  class="warning">
 
-                Email OTP belum diminta.
+                <span data-i18n="emailOtpNotRequested">
+                    Email OTP has not been requested.
+                </span>
 
             </div>
 
 
-            <label>Masukkan OTP</label>
+            <label data-i18n="enterOtp">
+                Enter OTP
+            </label>
 
             <input id="recoveryEmailOtp"
                    placeholder="6 digit OTP"
@@ -1100,17 +1362,17 @@ button{
 
 
             <button class="btn-green"
-                    onclick="verifyEmailOtp()">
-
-                SAHKAN EMAIL OTP
-
+                    onclick="verifyEmailOtp()"
+                    data-i18n="verifyEmailOtp">
+                VERIFY EMAIL OTP
             </button>
 
 
-            <div class="small">
+            <div class="small"
+                 data-i18n="emailOtpFuture">
 
-                Email OTP sebenar akan diaktifkan selepas
-                Y-M Chat mempunyai server dan email provider.
+                Real Email OTP will be activated after
+                Y-M Chat has a server and email provider.
 
             </div>
 
@@ -1120,39 +1382,48 @@ button{
         <div id="resetPasswordArea"
              class="hidden section">
 
-            <h3>🔑 Reset Password</h3>
+            <h3 data-i18n="resetPasswordTitle">
+                🔑 Reset Password
+            </h3>
 
 
             <div class="success">
 
-                Recovery berjaya disahkan.
+                <span data-i18n="recoverySuccess">
+                    Recovery verification successful.
+                </span>
 
                 <br>
 
-                Sekarang anda boleh membuat password baru.
+                <span data-i18n="createNewPassword">
+                    You can now create a new password.
+                </span>
 
             </div>
 
 
-            <label>Password Baru</label>
+            <label data-i18n="newPassword">
+                New Password
+            </label>
 
             <input id="resetNewPassword"
                    type="password"
-                   placeholder="Password baru">
+                   placeholder="New password">
 
 
-            <label>Confirm Password Baru</label>
+            <label data-i18n="confirmNewPassword">
+                Confirm New Password
+            </label>
 
             <input id="resetConfirmPassword"
                    type="password"
-                   placeholder="Ulang password baru">
+                   placeholder="Enter new password again">
 
 
             <button class="btn-blue"
-                    onclick="resetPassword()">
-
+                    onclick="resetPassword()"
+                    data-i18n="resetPassword">
                 RESET PASSWORD
-
             </button>
 
         </div>
@@ -1162,9 +1433,10 @@ button{
 
 
     <button class="btn-gray"
-            onclick="showPage('frontPage')">
+            onclick="showPage('frontPage')"
+            data-i18n="back">
 
-        KEMBALI
+        BACK
 
     </button>
 
@@ -1188,9 +1460,10 @@ button{
         <h2>Y-M Chat</h2>
 
 
-        <div class="success">
+        <div class="success"
+             data-i18n="loginSuccess">
 
-            Login berjaya.
+            Login successful.
 
         </div>
 
@@ -1201,17 +1474,29 @@ button{
 
 
         <button class="btn-blue">
-            💬 CHAT
+
+            💬 <span data-i18n="chat">
+                CHAT
+            </span>
+
         </button>
 
 
         <button class="btn-light">
-            👥 FRIENDS
+
+            👥 <span data-i18n="friends">
+                FRIENDS
+            </span>
+
         </button>
 
 
         <button class="btn-light">
-            🌍 ROOMS
+
+            🌍 <span data-i18n="rooms">
+                ROOMS
+            </span>
+
         </button>
 
 
@@ -1230,7 +1515,7 @@ button{
 </div>
 
 <div class="footer">
-    Y-M Chat V1.2 • Prototype
+    Y-M Chat V1.3 • Prototype
 </div>
 
 </div>
@@ -1291,7 +1576,609 @@ const countries = [
     ["Egypt","EG","+20"],
     ["Nigeria","NG","+234"],
     ["Kenya","KE","+254"]
+
 ];
+
+
+/* =========================================================
+   LANGUAGE SYSTEM
+========================================================= */
+
+const translations = {
+
+    en:{
+
+        tagline:"Chat • Friends • Community",
+
+        language:"Language",
+
+        welcome:"Welcome",
+
+        login:"LOGIN",
+
+        register:"REGISTER Y-M ID",
+
+        changePassword:"🔑 CHANGE PASSWORD",
+
+        security:"🛡️ SECURITY",
+
+        forgotRecovery:"🔐 FORGOT PASSWORD / RECOVERY",
+
+        loginTitle:"Login Y-M Chat",
+
+        registerTitle:"Register Y-M ID",
+
+        ymId:"Y-M ID",
+
+        password:"Password",
+
+        enterYmId:"Enter Y-M ID",
+
+        enterPassword:"Enter password",
+
+        exampleYmId:"Example: nizam123",
+
+        createPassword:"Create password",
+
+        confirmPassword:"Confirm Password",
+
+        repeatPassword:"Enter password again",
+
+        phoneNumber:"Phone Number",
+
+        fullNumber:"Full number:",
+
+        emailAddress:"Email Address",
+
+        confirmEmail:"Confirm Email Address",
+
+        securityQuestions:"🔐 Security Questions",
+
+        securityQuestion1:"Security Question 1",
+
+        securityQuestion2:"Security Question 2",
+
+        answer1:"Answer 1",
+
+        answer2:"Answer 2",
+
+        answer:"Answer",
+
+        country:"Country",
+
+        otpFuture:
+        "Phone OTP and Email OTP will be provided through the Y-M Chat server at a later stage.",
+
+        back:"BACK",
+
+        changePasswordTitle:"Change Password",
+
+        oldPassword:"Old Password",
+
+        newPassword:"New Password",
+
+        confirmNewPassword:"Confirm New Password",
+
+        changePasswordButton:"CHANGE PASSWORD",
+
+        securityTitle:"Security",
+
+        securityNotice:
+        "This information is used to help recover your Y-M Chat account.",
+
+        saveSecurity:"SAVE SECURITY",
+
+        forgotPasswordTitle:"Forgot Password",
+
+        recoveryNotice:
+        "You have 3 account recovery options.",
+
+        twoSecurityQuestions:"2 Security Questions",
+
+        phoneOtp:"Phone OTP — SMS / WhatsApp",
+
+        emailOtp:"Email OTP",
+
+        chooseRecovery:"🔐 Choose Recovery Method",
+
+        bothAnswersCorrect:
+        "Both answers must be correct.",
+
+        chooseSmsWhatsapp:
+        "Choose SMS or WhatsApp.",
+
+        otpEmail:
+        "OTP will be sent to your email.",
+
+        twoSecurityQuestionsTitle:
+        "🔐 2 Security Questions",
+
+        bothAnswersWarning:
+        "Both answers must be correct.",
+
+        oneWrongWarning:
+        "If one answer is wrong, Reset Password will not be opened.",
+
+        verifyAnswers:"VERIFY 2 ANSWERS",
+
+        phoneOtpTitle:"📱 Phone OTP",
+
+        receiveOtp:"Choose how to receive OTP",
+
+        otpNotRequested:
+        "OTP has not been requested.",
+
+        enterOtp:"Enter OTP",
+
+        verifyOtp:"VERIFY OTP",
+
+        phoneOtpFuture:
+        "Real SMS/WhatsApp OTP will be activated after Y-M Chat has a server and OTP provider connection.",
+
+        emailOtpTitle:"📧 Email OTP",
+
+        requestEmailOtp:"REQUEST EMAIL OTP",
+
+        emailOtpNotRequested:
+        "Email OTP has not been requested.",
+
+        verifyEmailOtp:"VERIFY EMAIL OTP",
+
+        emailOtpFuture:
+        "Real Email OTP will be activated after Y-M Chat has a server and email provider.",
+
+        resetPasswordTitle:"🔑 Reset Password",
+
+        recoverySuccess:
+        "Recovery verification successful.",
+
+        createNewPassword:
+        "You can now create a new password.",
+
+        resetPassword:"RESET PASSWORD",
+
+        loginSuccess:"Login successful.",
+
+        chat:"CHAT",
+
+        friends:"FRIENDS",
+
+        rooms:"ROOMS"
+
+    },
+
+
+    ms:{
+
+        tagline:"Sembang • Kawan • Komuniti",
+
+        language:"Bahasa",
+
+        welcome:"Selamat Datang",
+
+        login:"LOG MASUK",
+
+        register:"DAFTAR Y-M ID",
+
+        changePassword:"🔑 TUKAR PASSWORD",
+
+        security:"🛡️ KESELAMATAN",
+
+        forgotRecovery:"🔐 LUPA PASSWORD / PEMULIHAN",
+
+        loginTitle:"Log Masuk Y-M Chat",
+
+        registerTitle:"Daftar Y-M ID",
+
+        ymId:"Y-M ID",
+
+        password:"Password",
+
+        enterYmId:"Masukkan Y-M ID",
+
+        enterPassword:"Masukkan password",
+
+        exampleYmId:"Contoh: nizam123",
+
+        createPassword:"Buat password",
+
+        confirmPassword:"Sahkan Password",
+
+        repeatPassword:"Ulang password",
+
+        phoneNumber:"Nombor Telefon",
+
+        fullNumber:"Nombor penuh:",
+
+        emailAddress:"Alamat Email",
+
+        confirmEmail:"Sahkan Alamat Email",
+
+        securityQuestions:"🔐 Soalan Keselamatan",
+
+        securityQuestion1:"Soalan Keselamatan 1",
+
+        securityQuestion2:"Soalan Keselamatan 2",
+
+        answer1:"Jawapan 1",
+
+        answer2:"Jawapan 2",
+
+        answer:"Jawapan",
+
+        country:"Negara",
+
+        otpFuture:
+        "Phone OTP dan Email OTP akan disediakan melalui server Y-M Chat pada peringkat akan datang.",
+
+        back:"KEMBALI",
+
+        changePasswordTitle:"Tukar Password",
+
+        oldPassword:"Password Lama",
+
+        newPassword:"Password Baru",
+
+        confirmNewPassword:"Sahkan Password Baru",
+
+        changePasswordButton:"TUKAR PASSWORD",
+
+        securityTitle:"Keselamatan",
+
+        securityNotice:
+        "Maklumat ini digunakan untuk membantu pemulihan akaun Y-M Chat.",
+
+        saveSecurity:"SIMPAN SECURITY",
+
+        forgotPasswordTitle:"Lupa Password",
+
+        recoveryNotice:
+        "Anda mempunyai 3 pilihan untuk recovery akaun.",
+
+        twoSecurityQuestions:"2 Soalan Keselamatan",
+
+        phoneOtp:"Phone OTP — SMS / WhatsApp",
+
+        emailOtp:"Email OTP",
+
+        chooseRecovery:"🔐 Pilih Cara Recovery",
+
+        bothAnswersCorrect:
+        "Kedua-dua jawapan mesti betul.",
+
+        chooseSmsWhatsapp:
+        "Pilih SMS atau WhatsApp.",
+
+        otpEmail:
+        "OTP akan dihantar ke email.",
+
+        twoSecurityQuestionsTitle:
+        "🔐 2 Soalan Keselamatan",
+
+        bothAnswersWarning:
+        "Kedua-dua jawapan mesti betul.",
+
+        oneWrongWarning:
+        "Jika satu jawapan salah, Reset Password tidak akan dibuka.",
+
+        verifyAnswers:"SAHKAN 2 JAWAPAN",
+
+        phoneOtpTitle:"📱 Phone OTP",
+
+        receiveOtp:"Pilih cara menerima OTP",
+
+        otpNotRequested:
+        "OTP belum diminta.",
+
+        enterOtp:"Masukkan OTP",
+
+        verifyOtp:"SAHKAN OTP",
+
+        phoneOtpFuture:
+        "SMS/WhatsApp OTP sebenar akan diaktifkan selepas Y-M Chat mempunyai server dan sambungan provider OTP.",
+
+        emailOtpTitle:"📧 Email OTP",
+
+        requestEmailOtp:"MINTA EMAIL OTP",
+
+        emailOtpNotRequested:
+        "Email OTP belum diminta.",
+
+        verifyEmailOtp:"SAHKAN EMAIL OTP",
+
+        emailOtpFuture:
+        "Email OTP sebenar akan diaktifkan selepas Y-M Chat mempunyai server dan email provider.",
+
+        resetPasswordTitle:"🔑 Reset Password",
+
+        recoverySuccess:
+        "Recovery berjaya disahkan.",
+
+        createNewPassword:
+        "Sekarang anda boleh membuat password baru.",
+
+        resetPassword:"RESET PASSWORD",
+
+        loginSuccess:"Login berjaya.",
+
+        chat:"CHAT",
+
+        friends:"KAWAN",
+
+        rooms:"ROOMS"
+
+    }
+
+};
+
+
+/* =========================================================
+   CURRENT LANGUAGE
+========================================================= */
+
+let currentLanguage =
+    localStorage.getItem("ym_language") || "en";
+
+
+/* =========================================================
+   APPLY LANGUAGE
+========================================================= */
+
+function applyLanguage(language){
+
+    currentLanguage = language || "en";
+
+    localStorage.setItem(
+        "ym_language",
+        currentLanguage
+    );
+
+    document.documentElement.lang =
+        currentLanguage;
+
+    const dictionary =
+        translations[currentLanguage] ||
+        translations.en;
+
+
+    document.querySelectorAll(
+        "[data-i18n]"
+    ).forEach(element=>{
+
+        const key =
+            element.getAttribute("data-i18n");
+
+        if(dictionary[key] !== undefined){
+
+            element.textContent =
+                dictionary[key];
+
+        }else if(translations.en[key] !== undefined){
+
+            element.textContent =
+                translations.en[key];
+
+        }
+
+    });
+
+
+    document.querySelectorAll(
+        "[data-i18n-placeholder]"
+    ).forEach(element=>{
+
+        const key =
+            element.getAttribute(
+                "data-i18n-placeholder"
+            );
+
+        if(dictionary[key] !== undefined){
+
+            element.placeholder =
+                dictionary[key];
+
+        }else if(translations.en[key] !== undefined){
+
+            element.placeholder =
+                translations.en[key];
+
+        }
+
+    });
+
+
+    const master =
+        document.getElementById(
+            "masterLanguage"
+        );
+
+    if(master){
+
+        master.value =
+            currentLanguage;
+
+    }
+
+
+    const register =
+        document.getElementById(
+            "regLanguage"
+        );
+
+    if(register){
+
+        register.value =
+            currentLanguage;
+
+    }
+
+
+    updateSecurityQuestionsLanguage();
+
+}
+
+
+/* =========================================================
+   CHANGE MASTER LANGUAGE
+========================================================= */
+
+function changeMasterLanguage(){
+
+    const select =
+        document.getElementById(
+            "masterLanguage"
+        );
+
+    if(!select) return;
+
+    const language =
+        select.value;
+
+    applyLanguage(language);
+
+}
+
+
+/* =========================================================
+   LANGUAGE FROM REGISTER
+========================================================= */
+
+const registerLanguageElement =
+    document.getElementById(
+        "regLanguage"
+    );
+
+if(registerLanguageElement){
+
+    registerLanguageElement.addEventListener(
+        "change",
+        function(){
+
+            applyLanguage(
+                this.value
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SECURITY QUESTIONS LANGUAGE
+========================================================= */
+
+function updateSecurityQuestionsLanguage(){
+
+    const language =
+        currentLanguage;
+
+    const questionSets = {
+
+        en:[
+            "What is the name of your birth city?",
+            "What was the name of your first school?",
+            "What is your favourite food?",
+            "What was the name of your first pet?",
+            "What was your childhood nickname?"
+        ],
+
+        ms:[
+            "Apakah nama bandar kelahiran anda?",
+            "Apakah nama sekolah pertama anda?",
+            "Apakah makanan kegemaran anda?",
+            "Apakah nama haiwan peliharaan pertama anda?",
+            "Apakah nama panggilan anda semasa kecil?"
+        ]
+
+    };
+
+
+    const questions =
+        questionSets[language] ||
+        questionSets.en;
+
+
+    [
+        "regQuestion1",
+        "regQuestion2",
+        "secQuestion1",
+        "secQuestion2"
+    ].forEach(id=>{
+
+        const select =
+            document.getElementById(id);
+
+        if(!select) return;
+
+
+        const oldValue =
+            select.value;
+
+
+        select.innerHTML = "";
+
+
+        const first =
+            document.createElement("option");
+
+        first.value = "";
+
+        first.textContent =
+            language === "ms"
+            ? "-- Pilih soalan --"
+            : "-- Select a question --";
+
+        select.appendChild(first);
+
+
+        const originalValues = [
+
+            "Apakah nama bandar kelahiran anda?",
+            "Apakah nama sekolah pertama anda?",
+            "Apakah makanan kegemaran anda?",
+            "Apakah nama haiwan peliharaan pertama anda?",
+            "Apakah nama panggilan anda semasa kecil?"
+
+        ];
+
+
+        questions.forEach(
+            (text,index)=>{
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value =
+                    originalValues[index];
+
+                option.textContent =
+                    text;
+
+                select.appendChild(
+                    option
+                );
+
+            }
+        );
+
+
+        if(
+            originalValues.includes(
+                oldValue
+            )
+        ){
+
+            select.value =
+                oldValue;
+
+        }
+
+    });
+
+}
 
 
 /* =========================================================
@@ -1305,7 +2192,9 @@ function fillCountrySelect(id){
 
     if(!select) return;
 
+
     select.innerHTML = "";
+
 
     countries.forEach(item=>{
 
@@ -1318,9 +2207,14 @@ function fillCountrySelect(id){
         option.textContent =
             item[0] + " " + item[2];
 
+
         if(item[1] === "MY"){
-            option.selected = true;
+
+            option.selected =
+                true;
+
         }
+
 
         select.appendChild(option);
 
@@ -1336,14 +2230,20 @@ function fillCountrySelect(id){
 function getCountryCode(countryId){
 
     const select =
-        document.getElementById(countryId);
+        document.getElementById(
+            countryId
+        );
 
     const result =
         countries.find(
-            item => item[1] === select.value
+            item =>
+                item[1] === select.value
         );
 
-    return result ? result[2] : "";
+
+    return result
+        ? result[2]
+        : "";
 
 }
 
@@ -1355,10 +2255,16 @@ function updateCountryCode(
 ){
 
     const code =
-        getCountryCode(countryId);
+        getCountryCode(
+            countryId
+        );
 
-    document.getElementById(codeId)
-        .value = code;
+
+    document.getElementById(
+        codeId
+    ).value =
+        code;
+
 
     updateFullPhone(
         codeId,
@@ -1374,29 +2280,43 @@ function updateFullPhone(
 ){
 
     const code =
-        document.getElementById(codeId)
-        .value;
+        document.getElementById(
+            codeId
+        ).value;
+
 
     const phone =
-        document.getElementById(phoneId)
-        .value.trim();
+        document.getElementById(
+            phoneId
+        ).value.trim();
+
 
     const full =
-        phone ? code + phone : "-";
+        phone
+        ? code + phone
+        : "-";
 
-    if(phoneId === "regPhone"){
+
+    if(
+        phoneId === "regPhone"
+    ){
 
         document.getElementById(
             "regFullPhone"
-        ).textContent = full;
+        ).textContent =
+            full;
 
     }
 
-    if(phoneId === "recoveryPhone"){
+
+    if(
+        phoneId === "recoveryPhone"
+    ){
 
         document.getElementById(
             "recoveryFullPhone"
-        ).textContent = full;
+        ).textContent =
+            full;
 
     }
 
@@ -1428,13 +2348,21 @@ function showPage(pageId){
             document.getElementById(id);
 
         if(page){
-            page.classList.add("hidden");
+
+            page.classList.add(
+                "hidden"
+            );
+
         }
 
     });
 
-    document.getElementById(pageId)
-        .classList.remove("hidden");
+
+    document.getElementById(
+        pageId
+    ).classList.remove(
+        "hidden"
+    );
 
 }
 
@@ -1479,65 +2407,105 @@ function saveAccounts(accounts){
 function registerUser(){
 
     const id =
-        document.getElementById("regId")
-        .value.trim()
+        document.getElementById(
+            "regId"
+        )
+        .value
+        .trim()
         .toLowerCase();
+
 
     const password =
-        document.getElementById("regPassword")
-        .value;
+        document.getElementById(
+            "regPassword"
+        ).value;
+
 
     const confirmPassword =
-        document.getElementById("regConfirmPassword")
-        .value;
+        document.getElementById(
+            "regConfirmPassword"
+        ).value;
+
 
     const language =
-        document.getElementById("regLanguage")
-        .value;
+        document.getElementById(
+            "regLanguage"
+        ).value;
+
 
     const country =
-        document.getElementById("regCountry")
-        .value;
+        document.getElementById(
+            "regCountry"
+        ).value;
+
 
     const countryCode =
-        getCountryCode("regCountry");
+        getCountryCode(
+            "regCountry"
+        );
+
 
     const phone =
-        document.getElementById("regPhone")
-        .value.trim();
+        document.getElementById(
+            "regPhone"
+        )
+        .value
+        .trim();
+
 
     const email =
-        document.getElementById("regEmail")
-        .value.trim()
+        document.getElementById(
+            "regEmail"
+        )
+        .value
+        .trim()
         .toLowerCase();
+
 
     const confirmEmail =
-        document.getElementById("regConfirmEmail")
-        .value.trim()
+        document.getElementById(
+            "regConfirmEmail"
+        )
+        .value
+        .trim()
         .toLowerCase();
+
 
     const q1 =
-        document.getElementById("regQuestion1")
-        .value;
+        document.getElementById(
+            "regQuestion1"
+        ).value;
+
 
     const a1 =
-        document.getElementById("regAnswer1")
-        .value.trim()
+        document.getElementById(
+            "regAnswer1"
+        )
+        .value
+        .trim()
         .toLowerCase();
+
 
     const q2 =
-        document.getElementById("regQuestion2")
-        .value;
+        document.getElementById(
+            "regQuestion2"
+        ).value;
+
 
     const a2 =
-        document.getElementById("regAnswer2")
-        .value.trim()
+        document.getElementById(
+            "regAnswer2"
+        )
+        .value
+        .trim()
         .toLowerCase();
+
 
     const message =
         document.getElementById(
             "registerMessage"
         );
+
 
     if(
         !id ||
@@ -1553,59 +2521,102 @@ function registerUser(){
     ){
 
         message.innerHTML =
-            '<div class="error">Sila lengkapkan semua maklumat.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "Sila lengkapkan semua maklumat."
+                : "Please complete all information."
+            ) +
+            '</div>';
 
         return;
 
     }
+
 
     if(password !== confirmPassword){
 
         message.innerHTML =
-            '<div class="error">Password tidak sama.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "Password tidak sama."
+                : "Passwords do not match."
+            ) +
+            '</div>';
 
         return;
 
     }
+
 
     if(password.length < 6){
 
         message.innerHTML =
-            '<div class="error">Password minimum 6 aksara.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "Password minimum 6 aksara."
+                : "Password must be at least 6 characters."
+            ) +
+            '</div>';
 
         return;
 
     }
+
 
     if(email !== confirmEmail){
 
         message.innerHTML =
-            '<div class="error">Email tidak sama.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "Email tidak sama."
+                : "Email addresses do not match."
+            ) +
+            '</div>';
 
         return;
 
     }
+
 
     if(q1 === q2){
 
         message.innerHTML =
-            '<div class="error">2 soalan keselamatan mesti berbeza.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "2 soalan keselamatan mesti berbeza."
+                : "The 2 security questions must be different."
+            ) +
+            '</div>';
 
         return;
 
     }
+
 
     const accounts =
         getAccounts();
 
+
     if(accounts[id]){
 
         message.innerHTML =
-            '<div class="error">Y-M ID sudah digunakan.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "Y-M ID sudah digunakan."
+                : "Y-M ID is already in use."
+            ) +
+            '</div>';
 
         return;
 
     }
+
 
     accounts[id] = {
 
@@ -1619,7 +2630,8 @@ function registerUser(){
 
         phone:phone,
 
-        fullPhone:countryCode + phone,
+        fullPhone:
+            countryCode + phone,
 
         phoneVerified:false,
 
@@ -1639,18 +2651,31 @@ function registerUser(){
 
     };
 
+
     saveAccounts(accounts);
 
+
     message.innerHTML =
-        '<div class="success">Y-M ID berjaya didaftarkan.</div>';
+        '<div class="success">' +
+        (
+            currentLanguage === "ms"
+            ? "Y-M ID berjaya didaftarkan."
+            : "Y-M ID registered successfully."
+        ) +
+        '</div>';
+
 
     setTimeout(()=>{
 
         document.getElementById(
             "loginId"
-        ).value = id;
+        ).value =
+            id;
 
-        showPage("loginPage");
+
+        showPage(
+            "loginPage"
+        );
 
     },1000);
 
@@ -1664,49 +2689,93 @@ function registerUser(){
 function loginUser(){
 
     const id =
-        document.getElementById("loginId")
-        .value.trim()
+        document.getElementById(
+            "loginId"
+        )
+        .value
+        .trim()
         .toLowerCase();
 
+
     const password =
-        document.getElementById("loginPassword")
-        .value;
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
 
     const accounts =
         getAccounts();
 
+
     if(!accounts[id]){
 
-        alert("Y-M ID tidak dijumpai.");
+        alert(
+            currentLanguage === "ms"
+            ? "Y-M ID tidak dijumpai."
+            : "Y-M ID not found."
+        );
 
         return;
 
     }
 
-    if(accounts[id].password !== password){
 
-        alert("Password salah.");
+    if(
+        accounts[id].password !==
+        password
+    ){
+
+        alert(
+            currentLanguage === "ms"
+            ? "Password salah."
+            : "Incorrect password."
+        );
 
         return;
 
     }
+
 
     localStorage.setItem(
         "ym_current_user",
         id
     );
 
+
+    /*
+       Simpan bahasa akaun sebagai
+       bahasa utama pengguna selepas login.
+    */
+
+    const accountLanguage =
+        accounts[id].language ||
+        "en";
+
+
+    applyLanguage(
+        accountLanguage
+    );
+
+
     document.getElementById(
         "welcomeUser"
     ).textContent =
-        "Selamat datang, @" + id + "!";
+        currentLanguage === "ms"
+        ? "Selamat datang, @" + id + "!"
+        : "Welcome, @" + id + "!";
+
 
     document.getElementById(
         "homeAvatar"
     ).textContent =
-        id.charAt(0).toUpperCase();
+        id
+        .charAt(0)
+        .toUpperCase();
 
-    showPage("homePage");
+
+    showPage(
+        "homePage"
+    );
 
 }
 
@@ -1721,11 +2790,18 @@ function logoutUser(){
         "ym_current_user"
     );
 
+
     document.getElementById(
         "loginPassword"
     ).value = "";
 
-    showPage("frontPage");
+
+    applyLanguage("en");
+
+
+    showPage(
+        "frontPage"
+    );
 
 }
 
@@ -1737,73 +2813,129 @@ function logoutUser(){
 function changePassword(){
 
     const id =
-        document.getElementById("changeId")
-        .value.trim()
+        document.getElementById(
+            "changeId"
+        )
+        .value
+        .trim()
         .toLowerCase();
 
+
     const oldPassword =
-        document.getElementById("oldPassword")
-        .value;
+        document.getElementById(
+            "oldPassword"
+        ).value;
+
 
     const newPassword =
-        document.getElementById("newPassword")
-        .value;
+        document.getElementById(
+            "newPassword"
+        ).value;
+
 
     const confirmPassword =
-        document.getElementById("confirmNewPassword")
-        .value;
+        document.getElementById(
+            "confirmNewPassword"
+        ).value;
+
 
     const message =
         document.getElementById(
             "changeMessage"
         );
 
+
     const accounts =
         getAccounts();
+
 
     if(!accounts[id]){
 
         message.innerHTML =
-            '<div class="error">Y-M ID tidak dijumpai.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "Y-M ID tidak dijumpai."
+                : "Y-M ID not found."
+            ) +
+            '</div>';
 
         return;
 
     }
 
-    if(accounts[id].password !== oldPassword){
+
+    if(
+        accounts[id].password !==
+        oldPassword
+    ){
 
         message.innerHTML =
-            '<div class="error">Password lama salah.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "Password lama salah."
+                : "Old password is incorrect."
+            ) +
+            '</div>';
 
         return;
 
     }
+
 
     if(newPassword.length < 6){
 
         message.innerHTML =
-            '<div class="error">Password minimum 6 aksara.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "Password minimum 6 aksara."
+                : "Password must be at least 6 characters."
+            ) +
+            '</div>';
 
         return;
 
     }
 
-    if(newPassword !== confirmPassword){
+
+    if(
+        newPassword !==
+        confirmPassword
+    ){
 
         message.innerHTML =
-            '<div class="error">Password baru tidak sama.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "Password baru tidak sama."
+                : "New passwords do not match."
+            ) +
+            '</div>';
 
         return;
 
     }
+
 
     accounts[id].password =
         newPassword;
 
-    saveAccounts(accounts);
+
+    saveAccounts(
+        accounts
+    );
+
 
     message.innerHTML =
-        '<div class="success">Password berjaya ditukar.</div>';
+        '<div class="success">' +
+        (
+            currentLanguage === "ms"
+            ? "Password berjaya ditukar."
+            : "Password changed successfully."
+        ) +
+        '</div>';
 
 }
 
@@ -1815,58 +2947,95 @@ function changePassword(){
 function saveSecurity(){
 
     const id =
-        document.getElementById("secId")
-        .value.trim()
+        document.getElementById(
+            "secId"
+        )
+        .value
+        .trim()
         .toLowerCase();
+
 
     const phone =
-        document.getElementById("secPhone")
-        .value.trim();
+        document.getElementById(
+            "secPhone"
+        )
+        .value
+        .trim();
+
 
     const email =
-        document.getElementById("secEmail")
-        .value.trim()
+        document.getElementById(
+            "secEmail"
+        )
+        .value
+        .trim()
         .toLowerCase();
+
 
     const confirmEmail =
-        document.getElementById("secConfirmEmail")
-        .value.trim()
+        document.getElementById(
+            "secConfirmEmail"
+        )
+        .value
+        .trim()
         .toLowerCase();
+
 
     const q1 =
-        document.getElementById("secQuestion1")
-        .value;
+        document.getElementById(
+            "secQuestion1"
+        ).value;
+
 
     const a1 =
-        document.getElementById("secAnswer1")
-        .value.trim()
+        document.getElementById(
+            "secAnswer1"
+        )
+        .value
+        .trim()
         .toLowerCase();
+
 
     const q2 =
-        document.getElementById("secQuestion2")
-        .value;
+        document.getElementById(
+            "secQuestion2"
+        ).value;
+
 
     const a2 =
-        document.getElementById("secAnswer2")
-        .value.trim()
+        document.getElementById(
+            "secAnswer2"
+        )
+        .value
+        .trim()
         .toLowerCase();
+
 
     const message =
         document.getElementById(
             "securityMessage"
         );
 
+
     const accounts =
         getAccounts();
+
 
     if(!accounts[id]){
 
         message.innerHTML =
-            '<div class="error">Y-M ID tidak dijumpai.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "Y-M ID tidak dijumpai."
+                : "Y-M ID not found."
+            ) +
+            '</div>';
 
         return;
 
     }
+
 
     if(
         !phone ||
@@ -1879,66 +3048,111 @@ function saveSecurity(){
     ){
 
         message.innerHTML =
-            '<div class="error">Sila lengkapkan semua maklumat.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "Sila lengkapkan semua maklumat."
+                : "Please complete all information."
+            ) +
+            '</div>';
 
         return;
 
     }
 
-    if(email !== confirmEmail){
+
+    if(
+        email !==
+        confirmEmail
+    ){
 
         message.innerHTML =
-            '<div class="error">Email tidak sama.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "Email tidak sama."
+                : "Email addresses do not match."
+            ) +
+            '</div>';
 
         return;
 
     }
+
 
     if(q1 === q2){
 
         message.innerHTML =
-            '<div class="error">2 soalan mesti berbeza.</div>';
+            '<div class="error">' +
+            (
+                currentLanguage === "ms"
+                ? "2 soalan mesti berbeza."
+                : "The 2 questions must be different."
+            ) +
+            '</div>';
 
         return;
 
     }
 
+
     const code =
-        getCountryCode("secCountry");
+        getCountryCode(
+            "secCountry"
+        );
+
 
     accounts[id].country =
         document.getElementById(
             "secCountry"
         ).value;
 
+
     accounts[id].countryCode =
         code;
+
 
     accounts[id].phone =
         phone;
 
+
     accounts[id].fullPhone =
         code + phone;
+
 
     accounts[id].email =
         email;
 
+
     accounts[id].securityQuestion1 =
         q1;
+
 
     accounts[id].securityAnswer1 =
         a1;
 
+
     accounts[id].securityQuestion2 =
         q2;
+
 
     accounts[id].securityAnswer2 =
         a2;
 
-    saveAccounts(accounts);
+
+    saveAccounts(
+        accounts
+    );
+
 
     message.innerHTML =
-        '<div class="success">Security berjaya disimpan.</div>';
+        '<div class="success">' +
+        (
+            currentLanguage === "ms"
+            ? "Security berjaya disimpan."
+            : "Security information saved successfully."
+        ) +
+        '</div>';
 
 }
 
@@ -1966,66 +3180,105 @@ function findRecoveryAccount(){
         document.getElementById(
             "recoveryId"
         )
-        .value.trim()
+        .value
+        .trim()
         .toLowerCase();
+
 
     const accounts =
         getAccounts();
 
+
     if(!accounts[id]){
 
-        alert("Y-M ID tidak dijumpai.");
+        alert(
+            currentLanguage === "ms"
+            ? "Y-M ID tidak dijumpai."
+            : "Y-M ID not found."
+        );
 
         return;
 
     }
 
-    recoveryUser = id;
 
-    recoveryVerified = false;
+    recoveryUser =
+        id;
 
-    phoneOtpRequested = false;
 
-    emailOtpRequested = false;
+    recoveryVerified =
+        false;
+
+
+    phoneOtpRequested =
+        false;
+
+
+    emailOtpRequested =
+        false;
+
 
     const account =
         accounts[id];
+
 
     document.getElementById(
         "recoveryQuestion1"
     ).textContent =
         "1. " +
-        account.securityQuestion1;
+        getRecoveryQuestionText(
+            account.securityQuestion1
+        );
+
 
     document.getElementById(
         "recoveryQuestion2"
     ).textContent =
         "2. " +
-        account.securityQuestion2;
+        getRecoveryQuestionText(
+            account.securityQuestion2
+        );
+
 
     document.getElementById(
         "recoveryMethods"
-    ).classList.remove("hidden");
+    ).classList.remove(
+        "hidden"
+    );
+
 
     document.getElementById(
         "questionsRecovery"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
+
 
     document.getElementById(
         "phoneRecovery"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
+
 
     document.getElementById(
         "emailRecovery"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
+
 
     document.getElementById(
         "resetPasswordArea"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
+
 
     fillCountrySelect(
         "recoveryCountry"
     );
+
 
     updateCountryCode(
         "recoveryCountry",
@@ -2033,15 +3286,65 @@ function findRecoveryAccount(){
         "recoveryPhone"
     );
 
+
     document.getElementById(
         "phoneOtpStatus"
-    ).textContent =
-        "OTP belum diminta.";
+    ).innerHTML =
+        currentLanguage === "ms"
+        ? "OTP belum diminta."
+        : "OTP has not been requested.";
+
 
     document.getElementById(
         "emailOtpStatus"
-    ).textContent =
-        "Email OTP belum diminta.";
+    ).innerHTML =
+        currentLanguage === "ms"
+        ? "Email OTP belum diminta."
+        : "Email OTP has not been requested.";
+
+}
+
+
+/* =========================================================
+   RECOVERY QUESTION TEXT
+========================================================= */
+
+function getRecoveryQuestionText(
+    original
+){
+
+    const map = {
+
+        "Apakah nama bandar kelahiran anda?":
+        currentLanguage === "ms"
+        ? "Apakah nama bandar kelahiran anda?"
+        : "What is the name of your birth city?",
+
+        "Apakah nama sekolah pertama anda?":
+        currentLanguage === "ms"
+        ? "Apakah nama sekolah pertama anda?"
+        : "What was the name of your first school?",
+
+        "Apakah makanan kegemaran anda?":
+        currentLanguage === "ms"
+        ? "Apakah makanan kegemaran anda?"
+        : "What is your favourite food?",
+
+        "Apakah nama haiwan peliharaan pertama anda?":
+        currentLanguage === "ms"
+        ? "Apakah nama haiwan peliharaan pertama anda?"
+        : "What was the name of your first pet?",
+
+        "Apakah nama panggilan anda semasa kecil?":
+        currentLanguage === "ms"
+        ? "Apakah nama panggilan anda semasa kecil?"
+        : "What was your childhood nickname?"
+
+    };
+
+
+    return map[original] ||
+        original;
 
 }
 
@@ -2050,53 +3353,84 @@ function findRecoveryAccount(){
    SELECT RECOVERY METHOD
 ========================================================= */
 
-function selectRecoveryMethod(method){
+function selectRecoveryMethod(
+    method
+){
 
     document.getElementById(
         "questionsRecovery"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
+
 
     document.getElementById(
         "phoneRecovery"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
+
 
     document.getElementById(
         "emailRecovery"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
 
-    if(method === "questions"){
+
+    if(
+        method === "questions"
+    ){
 
         document.getElementById(
             "methodQuestions"
-        ).checked = true;
+        ).checked =
+            true;
+
 
         document.getElementById(
             "questionsRecovery"
-        ).classList.remove("hidden");
+        ).classList.remove(
+            "hidden"
+        );
 
     }
 
-    if(method === "phone"){
+
+    if(
+        method === "phone"
+    ){
 
         document.getElementById(
             "methodPhone"
-        ).checked = true;
+        ).checked =
+            true;
+
 
         document.getElementById(
             "phoneRecovery"
-        ).classList.remove("hidden");
+        ).classList.remove(
+            "hidden"
+        );
 
     }
 
-    if(method === "email"){
+
+    if(
+        method === "email"
+    ){
 
         document.getElementById(
             "methodEmail"
-        ).checked = true;
+        ).checked =
+            true;
+
 
         document.getElementById(
             "emailRecovery"
-        ).classList.remove("hidden");
+        ).classList.remove(
+            "hidden"
+        );
 
     }
 
@@ -2111,57 +3445,87 @@ function verifyQuestions(){
 
     if(!recoveryUser){
 
-        alert("Sila cari akaun dahulu.");
+        alert(
+            currentLanguage === "ms"
+            ? "Sila cari akaun dahulu."
+            : "Please find the account first."
+        );
 
         return;
 
     }
 
+
     const accounts =
         getAccounts();
 
+
     const account =
-        accounts[recoveryUser];
+        accounts[
+            recoveryUser
+        ];
+
 
     const answer1 =
         document.getElementById(
             "recoveryAnswer1"
         )
-        .value.trim()
+        .value
+        .trim()
         .toLowerCase();
+
 
     const answer2 =
         document.getElementById(
             "recoveryAnswer2"
         )
-        .value.trim()
+        .value
+        .trim()
         .toLowerCase();
 
+
     if(
-        answer1 === account.securityAnswer1 &&
-        answer2 === account.securityAnswer2
+        answer1 ===
+        account.securityAnswer1
+        &&
+        answer2 ===
+        account.securityAnswer2
     ){
 
-        recoveryVerified = true;
+        recoveryVerified =
+            true;
+
 
         document.getElementById(
             "resetPasswordArea"
-        ).classList.remove("hidden");
+        ).classList.remove(
+            "hidden"
+        );
+
 
         alert(
-            "Kedua-dua jawapan betul. Reset Password dibenarkan."
+            currentLanguage === "ms"
+            ? "Kedua-dua jawapan betul. Reset Password dibenarkan."
+            : "Both answers are correct. Reset Password is allowed."
         );
 
     }else{
 
-        recoveryVerified = false;
+        recoveryVerified =
+            false;
+
 
         document.getElementById(
             "resetPasswordArea"
-        ).classList.add("hidden");
+        ).classList.add(
+            "hidden"
+        );
+
 
         alert(
-            "Jawapan tidak betul. Kedua-dua soalan mesti betul."
+            currentLanguage === "ms"
+            ? "Jawapan tidak betul. Kedua-dua soalan mesti betul."
+            : "The answers are incorrect. Both questions must be correct."
         );
 
     }
@@ -2173,60 +3537,76 @@ function verifyQuestions(){
    REQUEST PHONE OTP
 ========================================================= */
 
-function requestPhoneOtp(channel){
+function requestPhoneOtp(
+    channel
+){
 
     if(!recoveryUser){
 
-        alert("Sila cari akaun dahulu.");
+        alert(
+            currentLanguage === "ms"
+            ? "Sila cari akaun dahulu."
+            : "Please find the account first."
+        );
 
         return;
 
     }
 
-    const accounts =
-        getAccounts();
-
-    const account =
-        accounts[recoveryUser];
 
     const phone =
         document.getElementById(
             "recoveryPhone"
         )
-        .value.trim();
+        .value
+        .trim();
+
 
     const code =
         getCountryCode(
             "recoveryCountry"
         );
 
+
     if(!phone){
 
         alert(
-            "Sila masukkan nombor telefon."
+            currentLanguage === "ms"
+            ? "Sila masukkan nombor telefon."
+            : "Please enter your phone number."
         );
 
         return;
 
     }
 
+
     const fullPhone =
         code + phone;
 
-    phoneOtpRequested = true;
+
+    phoneOtpRequested =
+        true;
+
 
     document.getElementById(
         "phoneOtpStatus"
     ).className =
         "notice";
 
+
     document.getElementById(
         "phoneOtpStatus"
     ).textContent =
+        currentLanguage === "ms"
+        ?
         "Permintaan " +
         channel +
-        " OTP telah disediakan. " +
-        "Server Y-M Chat belum disambungkan, jadi OTP sebenar belum dihantar.";
+        " OTP telah disediakan. Server Y-M Chat belum disambungkan, jadi OTP sebenar belum dihantar."
+        :
+        channel +
+        " OTP request has been prepared. The Y-M Chat server is not connected yet, so the real OTP has not been sent.";
+
 
     console.log(
         "FUTURE PHONE OTP REQUEST:",
@@ -2249,22 +3629,34 @@ function verifyPhoneOtp(){
     if(!phoneOtpRequested){
 
         alert(
-            "Sila minta SMS atau WhatsApp OTP dahulu."
+            currentLanguage === "ms"
+            ? "Sila minta SMS atau WhatsApp OTP dahulu."
+            : "Please request an SMS or WhatsApp OTP first."
         );
 
         return;
 
     }
 
+
     alert(
+        currentLanguage === "ms"
+        ?
         "Phone OTP belum boleh disahkan kerana server Y-M Chat belum disambungkan. Reset Password belum dibenarkan."
+        :
+        "Phone OTP cannot be verified yet because the Y-M Chat server is not connected. Reset Password is not allowed yet."
     );
 
-    recoveryVerified = false;
+
+    recoveryVerified =
+        false;
+
 
     document.getElementById(
         "resetPasswordArea"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
 
 }
 
@@ -2277,56 +3669,84 @@ function requestEmailOtp(){
 
     if(!recoveryUser){
 
-        alert("Sila cari akaun dahulu.");
+        alert(
+            currentLanguage === "ms"
+            ? "Sila cari akaun dahulu."
+            : "Please find the account first."
+        );
 
         return;
 
     }
 
+
     const accounts =
         getAccounts();
 
+
     const account =
-        accounts[recoveryUser];
+        accounts[
+            recoveryUser
+        ];
+
 
     const email =
         document.getElementById(
             "recoveryEmail"
         )
-        .value.trim()
+        .value
+        .trim()
         .toLowerCase();
+
 
     if(!email){
 
         alert(
-            "Sila masukkan email."
+            currentLanguage === "ms"
+            ? "Sila masukkan email."
+            : "Please enter your email."
         );
 
         return;
 
     }
 
-    if(email !== account.email){
+
+    if(
+        email !==
+        account.email
+    ){
 
         alert(
-            "Email tidak sepadan dengan akaun."
+            currentLanguage === "ms"
+            ? "Email tidak sepadan dengan akaun."
+            : "Email does not match the account."
         );
 
         return;
 
     }
 
-    emailOtpRequested = true;
+
+    emailOtpRequested =
+        true;
+
 
     document.getElementById(
         "emailOtpStatus"
     ).className =
         "notice";
 
+
     document.getElementById(
         "emailOtpStatus"
     ).textContent =
-        "Permintaan Email OTP telah disediakan. Server Y-M Chat belum disambungkan, jadi OTP sebenar belum dihantar.";
+        currentLanguage === "ms"
+        ?
+        "Permintaan Email OTP telah disediakan. Server Y-M Chat belum disambungkan, jadi OTP sebenar belum dihantar."
+        :
+        "Email OTP request has been prepared. The Y-M Chat server is not connected yet, so the real OTP has not been sent.";
+
 
     console.log(
         "FUTURE EMAIL OTP REQUEST:",
@@ -2348,22 +3768,34 @@ function verifyEmailOtp(){
     if(!emailOtpRequested){
 
         alert(
-            "Sila minta Email OTP dahulu."
+            currentLanguage === "ms"
+            ? "Sila minta Email OTP dahulu."
+            : "Please request an Email OTP first."
         );
 
         return;
 
     }
 
+
     alert(
+        currentLanguage === "ms"
+        ?
         "Email OTP belum boleh disahkan kerana server Y-M Chat belum disambungkan. Reset Password belum dibenarkan."
+        :
+        "Email OTP cannot be verified yet because the Y-M Chat server is not connected. Reset Password is not allowed yet."
     );
 
-    recoveryVerified = false;
+
+    recoveryVerified =
+        false;
+
 
     document.getElementById(
         "resetPasswordArea"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
 
 }
 
@@ -2377,94 +3809,144 @@ function resetPassword(){
     if(!recoveryUser){
 
         alert(
-            "Akaun tidak dipilih."
+            currentLanguage === "ms"
+            ? "Akaun tidak dipilih."
+            : "No account has been selected."
         );
 
         return;
 
     }
+
 
     if(!recoveryVerified){
 
         alert(
+            currentLanguage === "ms"
+            ?
             "Recovery belum disahkan. Sila sahkan 2 soalan atau OTP terlebih dahulu."
+            :
+            "Recovery has not been verified. Please verify the 2 questions or OTP first."
         );
 
         return;
 
     }
+
 
     const newPassword =
         document.getElementById(
             "resetNewPassword"
         ).value;
 
+
     const confirmPassword =
         document.getElementById(
             "resetConfirmPassword"
         ).value;
 
-    if(!newPassword ||
-       !confirmPassword){
+
+    if(
+        !newPassword ||
+        !confirmPassword
+    ){
 
         alert(
-            "Sila masukkan password baru."
+            currentLanguage === "ms"
+            ? "Sila masukkan password baru."
+            : "Please enter a new password."
         );
 
         return;
 
     }
 
-    if(newPassword.length < 6){
+
+    if(
+        newPassword.length < 6
+    ){
 
         alert(
-            "Password minimum 6 aksara."
+            currentLanguage === "ms"
+            ? "Password minimum 6 aksara."
+            : "Password must be at least 6 characters."
         );
 
         return;
 
     }
 
-    if(newPassword !== confirmPassword){
+
+    if(
+        newPassword !==
+        confirmPassword
+    ){
 
         alert(
-            "Password baru tidak sama."
+            currentLanguage === "ms"
+            ? "Password baru tidak sama."
+            : "New passwords do not match."
         );
 
         return;
 
     }
+
 
     const accounts =
         getAccounts();
 
-    accounts[recoveryUser].password =
+
+    accounts[
+        recoveryUser
+    ].password =
         newPassword;
 
-    saveAccounts(accounts);
+
+    saveAccounts(
+        accounts
+    );
+
 
     alert(
+        currentLanguage === "ms"
+        ?
         "Password berjaya di-reset. Sila login dengan password baru."
+        :
+        "Password has been reset successfully. Please login with your new password."
     );
+
 
     document.getElementById(
         "loginId"
     ).value =
         recoveryUser;
 
+
     document.getElementById(
         "loginPassword"
     ).value = "";
 
-    recoveryUser = null;
 
-    recoveryVerified = false;
+    recoveryUser =
+        null;
 
-    phoneOtpRequested = false;
 
-    emailOtpRequested = false;
+    recoveryVerified =
+        false;
 
-    showPage("loginPage");
+
+    phoneOtpRequested =
+        false;
+
+
+    emailOtpRequested =
+        false;
+
+
+    showPage(
+        "loginPage"
+    );
 
 }
 
@@ -2477,7 +3959,10 @@ document.addEventListener(
     "input",
     function(event){
 
-        if(event.target.id === "regPhone"){
+        if(
+            event.target.id ===
+            "regPhone"
+        ){
 
             updateFullPhone(
                 "regCode",
@@ -2486,7 +3971,11 @@ document.addEventListener(
 
         }
 
-        if(event.target.id === "recoveryPhone"){
+
+        if(
+            event.target.id ===
+            "recoveryPhone"
+        ){
 
             updateFullPhone(
                 "recoveryCode",
@@ -2500,7 +3989,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   INITIALISE
+   INITIALISE COUNTRY
 ========================================================= */
 
 fillCountrySelect(
@@ -2515,11 +4004,13 @@ fillCountrySelect(
     "recoveryCountry"
 );
 
+
 updateCountryCode(
     "regCountry",
     "regCode",
     "regPhone"
 );
+
 
 updateCountryCode(
     "secCountry",
@@ -2527,10 +4018,20 @@ updateCountryCode(
     "secPhone"
 );
 
+
 updateCountryCode(
     "recoveryCountry",
     "recoveryCode",
     "recoveryPhone"
+);
+
+
+/* =========================================================
+   INITIALISE LANGUAGE
+========================================================= */
+
+applyLanguage(
+    currentLanguage
 );
 
 
@@ -2543,19 +4044,40 @@ const currentUser =
         "ym_current_user"
     );
 
+
 if(currentUser){
 
     const accounts =
         getAccounts();
 
-    if(accounts[currentUser]){
+
+    if(
+        accounts[currentUser]
+    ){
+
+        const account =
+            accounts[currentUser];
+
+
+        applyLanguage(
+            account.language ||
+            "en"
+        );
+
 
         document.getElementById(
             "welcomeUser"
         ).textContent =
+            currentLanguage === "ms"
+            ?
             "Selamat datang, @" +
             currentUser +
+            "!"
+            :
+            "Welcome, @" +
+            currentUser +
             "!";
+
 
         document.getElementById(
             "homeAvatar"
@@ -2563,6 +4085,7 @@ if(currentUser){
             currentUser
             .charAt(0)
             .toUpperCase();
+
 
         showPage(
             "homePage"
