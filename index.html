@@ -322,18 +322,15 @@ button{
             onchange="changeMasterLanguage()">
 
         <option value="en" selected>🇬🇧 English</option>
-
         <option value="ms">🇲🇾 Bahasa Malaysia</option>
         <option value="id">🇮🇩 Bahasa Indonesia</option>
         <option value="fil">🇵🇭 Filipino</option>
         <option value="th">🇹🇭 Thai</option>
         <option value="vi">🇻🇳 Vietnamese</option>
-
         <option value="zh">🇨🇳 Chinese</option>
         <option value="yue">🇭🇰 Cantonese</option>
         <option value="ja">🇯🇵 Japanese</option>
         <option value="ko">🇰🇷 Korean</option>
-
         <option value="hi">🇮🇳 Hindi</option>
         <option value="bn">🇧🇩 Bengali</option>
         <option value="ur">🇵🇰 Urdu</option>
@@ -345,25 +342,21 @@ button{
         <option value="ml">🇮🇳 Malayalam</option>
         <option value="pa">🇮🇳 Punjabi</option>
         <option value="ne">🇳🇵 Nepali</option>
-
         <option value="ar">🌍 Arabic</option>
         <option value="fa">🇮🇷 Persian</option>
         <option value="he">🇮🇱 Hebrew</option>
         <option value="tr">🇹🇷 Turkish</option>
-
         <option value="fr">🇫🇷 French</option>
         <option value="es">🇪🇸 Spanish</option>
         <option value="pt">🇵🇹 Portuguese</option>
         <option value="de">🇩🇪 German</option>
         <option value="it">🇮🇹 Italian</option>
         <option value="nl">🇳🇱 Dutch</option>
-
         <option value="sv">🇸🇪 Swedish</option>
         <option value="no">🇳🇴 Norwegian</option>
         <option value="da">🇩🇰 Danish</option>
         <option value="fi">🇫🇮 Finnish</option>
         <option value="is">🇮🇸 Icelandic</option>
-
         <option value="pl">🇵🇱 Polish</option>
         <option value="cs">🇨🇿 Czech</option>
         <option value="sk">🇸🇰 Slovak</option>
@@ -377,25 +370,21 @@ button{
         <option value="hr">🇭🇷 Croatian</option>
         <option value="sl">🇸🇮 Slovenian</option>
         <option value="sq">🇦🇱 Albanian</option>
-
         <option value="sw">🌍 Swahili</option>
         <option value="am">🇪🇹 Amharic</option>
         <option value="ha">🌍 Hausa</option>
         <option value="yo">🌍 Yoruba</option>
         <option value="zu">🇿🇦 Zulu</option>
         <option value="af">🇿🇦 Afrikaans</option>
-
         <option value="km">🇰🇭 Khmer</option>
         <option value="lo">🇱🇦 Lao</option>
         <option value="my">🇲🇲 Burmese</option>
         <option value="mn">🇲🇳 Mongolian</option>
-
         <option value="ka">🇬🇪 Georgian</option>
         <option value="hy">🇦🇲 Armenian</option>
         <option value="az">🇦🇿 Azerbaijani</option>
         <option value="kk">🇰🇿 Kazakh</option>
         <option value="uz">🇺🇿 Uzbek</option>
-
         <option value="et">🇪🇪 Estonian</option>
         <option value="lv">🇱🇻 Latvian</option>
         <option value="lt">🇱🇹 Lithuanian</option>
@@ -482,9 +471,10 @@ button{
     </button>
 
     <button class="btn-orange"
-            onclick="showPage('recoveryPage')"
-            data-i18n="forgotPassword">
-        FORGOT PASSWORD?
+            onclick="showPage('recoveryPage')">
+        <span data-i18n="forgotPassword">
+            FORGOT PASSWORD?
+        </span>
     </button>
 
     <button class="btn-gray"
@@ -506,101 +496,10 @@ button{
         Register Y-M ID
     </h2>
 
-    <label data-i18n="language">
-        Language
-    </label>
 
-    <select id="regLanguage">
-
-        <option value="en" selected>🇬🇧 English</option>
-
-        <option value="ms">🇲🇾 Bahasa Malaysia</option>
-        <option value="id">🇮🇩 Bahasa Indonesia</option>
-        <option value="fil">🇵🇭 Filipino</option>
-        <option value="th">🇹🇭 Thai</option>
-        <option value="vi">🇻🇳 Vietnamese</option>
-
-        <option value="zh">🇨🇳 Chinese</option>
-        <option value="yue">🇭🇰 Cantonese</option>
-        <option value="ja">🇯🇵 Japanese</option>
-        <option value="ko">🇰🇷 Korean</option>
-
-        <option value="hi">🇮🇳 Hindi</option>
-        <option value="bn">🇧🇩 Bengali</option>
-        <option value="ur">🇵🇰 Urdu</option>
-        <option value="ta">🇮🇳 Tamil</option>
-        <option value="te">🇮🇳 Telugu</option>
-        <option value="mr">🇮🇳 Marathi</option>
-        <option value="gu">🇮🇳 Gujarati</option>
-        <option value="kn">🇮🇳 Kannada</option>
-        <option value="ml">🇮🇳 Malayalam</option>
-        <option value="pa">🇮🇳 Punjabi</option>
-        <option value="ne">🇳🇵 Nepali</option>
-
-        <option value="ar">🌍 Arabic</option>
-        <option value="fa">🇮🇷 Persian</option>
-        <option value="he">🇮🇱 Hebrew</option>
-        <option value="tr">🇹🇷 Turkish</option>
-
-        <option value="fr">🇫🇷 French</option>
-        <option value="es">🇪🇸 Spanish</option>
-        <option value="pt">🇵🇹 Portuguese</option>
-        <option value="de">🇩🇪 German</option>
-        <option value="it">🇮🇹 Italian</option>
-        <option value="nl">🇳🇱 Dutch</option>
-
-        <option value="sv">🇸🇪 Swedish</option>
-        <option value="no">🇳🇴 Norwegian</option>
-        <option value="da">🇩🇰 Danish</option>
-        <option value="fi">🇫🇮 Finnish</option>
-        <option value="is">🇮🇸 Icelandic</option>
-
-        <option value="pl">🇵🇱 Polish</option>
-        <option value="cs">🇨🇿 Czech</option>
-        <option value="sk">🇸🇰 Slovak</option>
-        <option value="hu">🇭🇺 Hungarian</option>
-        <option value="ro">🇷🇴 Romanian</option>
-        <option value="bg">🇧🇬 Bulgarian</option>
-        <option value="uk">🇺🇦 Ukrainian</option>
-        <option value="ru">🇷🇺 Russian</option>
-        <option value="el">🇬🇷 Greek</option>
-        <option value="sr">🇷🇸 Serbian</option>
-        <option value="hr">🇭🇷 Croatian</option>
-        <option value="sl">🇸🇮 Slovenian</option>
-        <option value="sq">🇦🇱 Albanian</option>
-
-        <option value="sw">🌍 Swahili</option>
-        <option value="am">🇪🇹 Amharic</option>
-        <option value="ha">🌍 Hausa</option>
-        <option value="yo">🌍 Yoruba</option>
-        <option value="zu">🇿🇦 Zulu</option>
-        <option value="af">🇿🇦 Afrikaans</option>
-
-        <option value="km">🇰🇭 Khmer</option>
-        <option value="lo">🇱🇦 Lao</option>
-        <option value="my">🇲🇲 Burmese</option>
-        <option value="mn">🇲🇳 Mongolian</option>
-
-        <option value="ka">🇬🇪 Georgian</option>
-        <option value="hy">🇦🇲 Armenian</option>
-        <option value="az">🇦🇿 Azerbaijani</option>
-        <option value="kk">🇰🇿 Kazakh</option>
-        <option value="uz">🇺🇿 Uzbek</option>
-
-        <option value="et">🇪🇪 Estonian</option>
-        <option value="lv">🇱🇻 Latvian</option>
-        <option value="lt">🇱🇹 Lithuanian</option>
-
-    </select>
-
-
-    <label data-i18n="country">
-        Country
-    </label>
-
-    <select id="regCountry"
-            onchange="updateCountryCode('regCountry','regCode','regPhone')">
-    </select>
+    <!-- LANGUAGE REMOVED HERE
+         Global Language above is used.
+    -->
 
 
     <label data-i18n="ymId">
@@ -632,6 +531,19 @@ button{
            data-i18n-placeholder="repeatPassword">
 
 
+    <!-- COUNTRY MOVED HERE
+         Same regCountry function retained.
+    -->
+
+    <label data-i18n="country">
+        Country
+    </label>
+
+    <select id="regCountry"
+            onchange="updateCountryCode('regCountry','regCode','regPhone')">
+    </select>
+
+
     <label data-i18n="phoneNumber">
         Phone Number
     </label>
@@ -650,6 +562,7 @@ button{
         </div>
 
     </div>
+
 
     <div class="phone-preview">
 
@@ -685,6 +598,7 @@ button{
         <h3 data-i18n="securityQuestions">
             🔐 Security Questions
         </h3>
+
 
         <label data-i18n="securityQuestion1">
             Security Question 1
@@ -1589,160 +1503,75 @@ const translations = {
     en:{
 
         tagline:"Chat • Friends • Community",
-
         language:"Language",
-
         welcome:"Welcome",
-
         login:"LOGIN",
-
         register:"REGISTER Y-M ID",
-
         changePassword:"🔑 CHANGE PASSWORD",
-
         security:"🛡️ SECURITY",
-
         forgotRecovery:"🔐 FORGOT PASSWORD / RECOVERY",
-
         loginTitle:"Login Y-M Chat",
-
         registerTitle:"Register Y-M ID",
-
         ymId:"Y-M ID",
-
         password:"Password",
-
         enterYmId:"Enter Y-M ID",
-
         enterPassword:"Enter password",
-
         exampleYmId:"Example: nizam123",
-
         createPassword:"Create password",
-
         confirmPassword:"Confirm Password",
-
         repeatPassword:"Enter password again",
-
         phoneNumber:"Phone Number",
-
         fullNumber:"Full number:",
-
         emailAddress:"Email Address",
-
         confirmEmail:"Confirm Email Address",
-
         securityQuestions:"🔐 Security Questions",
-
         securityQuestion1:"Security Question 1",
-
         securityQuestion2:"Security Question 2",
-
         answer1:"Answer 1",
-
         answer2:"Answer 2",
-
         answer:"Answer",
-
         country:"Country",
-
-        otpFuture:
-        "Phone OTP and Email OTP will be provided through the Y-M Chat server at a later stage.",
-
+        otpFuture:"Phone OTP and Email OTP will be provided through the Y-M Chat server at a later stage.",
         back:"BACK",
-
         changePasswordTitle:"Change Password",
-
         oldPassword:"Old Password",
-
         newPassword:"New Password",
-
         confirmNewPassword:"Confirm New Password",
-
         changePasswordButton:"CHANGE PASSWORD",
-
         securityTitle:"Security",
-
-        securityNotice:
-        "This information is used to help recover your Y-M Chat account.",
-
+        securityNotice:"This information is used to help recover your Y-M Chat account.",
         saveSecurity:"SAVE SECURITY",
-
         forgotPasswordTitle:"Forgot Password",
-
-        recoveryNotice:
-        "You have 3 account recovery options.",
-
+        recoveryNotice:"You have 3 account recovery options.",
         twoSecurityQuestions:"2 Security Questions",
-
         phoneOtp:"Phone OTP — SMS / WhatsApp",
-
         emailOtp:"Email OTP",
-
         chooseRecovery:"🔐 Choose Recovery Method",
-
-        bothAnswersCorrect:
-        "Both answers must be correct.",
-
-        chooseSmsWhatsapp:
-        "Choose SMS or WhatsApp.",
-
-        otpEmail:
-        "OTP will be sent to your email.",
-
-        twoSecurityQuestionsTitle:
-        "🔐 2 Security Questions",
-
-        bothAnswersWarning:
-        "Both answers must be correct.",
-
-        oneWrongWarning:
-        "If one answer is wrong, Reset Password will not be opened.",
-
+        bothAnswersCorrect:"Both answers must be correct.",
+        chooseSmsWhatsapp:"Choose SMS or WhatsApp.",
+        otpEmail:"OTP will be sent to your email.",
+        twoSecurityQuestionsTitle:"🔐 2 Security Questions",
+        bothAnswersWarning:"Both answers must be correct.",
+        oneWrongWarning:"If one answer is wrong, Reset Password will not be opened.",
         verifyAnswers:"VERIFY 2 ANSWERS",
-
         phoneOtpTitle:"📱 Phone OTP",
-
         receiveOtp:"Choose how to receive OTP",
-
-        otpNotRequested:
-        "OTP has not been requested.",
-
+        otpNotRequested:"OTP has not been requested.",
         enterOtp:"Enter OTP",
-
         verifyOtp:"VERIFY OTP",
-
-        phoneOtpFuture:
-        "Real SMS/WhatsApp OTP will be activated after Y-M Chat has a server and OTP provider connection.",
-
+        phoneOtpFuture:"Real SMS/WhatsApp OTP will be activated after Y-M Chat has a server and OTP provider connection.",
         emailOtpTitle:"📧 Email OTP",
-
         requestEmailOtp:"REQUEST EMAIL OTP",
-
-        emailOtpNotRequested:
-        "Email OTP has not been requested.",
-
+        emailOtpNotRequested:"Email OTP has not been requested.",
         verifyEmailOtp:"VERIFY EMAIL OTP",
-
-        emailOtpFuture:
-        "Real Email OTP will be activated after Y-M Chat has a server and email provider.",
-
+        emailOtpFuture:"Real Email OTP will be activated after Y-M Chat has a server and email provider.",
         resetPasswordTitle:"🔑 Reset Password",
-
-        recoverySuccess:
-        "Recovery verification successful.",
-
-        createNewPassword:
-        "You can now create a new password.",
-
+        recoverySuccess:"Recovery verification successful.",
+        createNewPassword:"You can now create a new password.",
         resetPassword:"RESET PASSWORD",
-
         loginSuccess:"Login successful.",
-
         chat:"CHAT",
-
         friends:"FRIENDS",
-
         rooms:"ROOMS"
 
     },
@@ -1751,160 +1580,75 @@ const translations = {
     ms:{
 
         tagline:"Sembang • Kawan • Komuniti",
-
         language:"Bahasa",
-
         welcome:"Selamat Datang",
-
         login:"LOG MASUK",
-
         register:"DAFTAR Y-M ID",
-
         changePassword:"🔑 TUKAR PASSWORD",
-
         security:"🛡️ KESELAMATAN",
-
         forgotRecovery:"🔐 LUPA PASSWORD / PEMULIHAN",
-
         loginTitle:"Log Masuk Y-M Chat",
-
         registerTitle:"Daftar Y-M ID",
-
         ymId:"Y-M ID",
-
         password:"Password",
-
         enterYmId:"Masukkan Y-M ID",
-
         enterPassword:"Masukkan password",
-
         exampleYmId:"Contoh: nizam123",
-
         createPassword:"Buat password",
-
         confirmPassword:"Sahkan Password",
-
         repeatPassword:"Ulang password",
-
         phoneNumber:"Nombor Telefon",
-
         fullNumber:"Nombor penuh:",
-
         emailAddress:"Alamat Email",
-
         confirmEmail:"Sahkan Alamat Email",
-
         securityQuestions:"🔐 Soalan Keselamatan",
-
         securityQuestion1:"Soalan Keselamatan 1",
-
         securityQuestion2:"Soalan Keselamatan 2",
-
         answer1:"Jawapan 1",
-
         answer2:"Jawapan 2",
-
         answer:"Jawapan",
-
         country:"Negara",
-
-        otpFuture:
-        "Phone OTP dan Email OTP akan disediakan melalui server Y-M Chat pada peringkat akan datang.",
-
+        otpFuture:"Phone OTP dan Email OTP akan disediakan melalui server Y-M Chat pada peringkat akan datang.",
         back:"KEMBALI",
-
         changePasswordTitle:"Tukar Password",
-
         oldPassword:"Password Lama",
-
         newPassword:"Password Baru",
-
         confirmNewPassword:"Sahkan Password Baru",
-
         changePasswordButton:"TUKAR PASSWORD",
-
         securityTitle:"Keselamatan",
-
-        securityNotice:
-        "Maklumat ini digunakan untuk membantu pemulihan akaun Y-M Chat.",
-
+        securityNotice:"Maklumat ini digunakan untuk membantu pemulihan akaun Y-M Chat.",
         saveSecurity:"SIMPAN SECURITY",
-
         forgotPasswordTitle:"Lupa Password",
-
-        recoveryNotice:
-        "Anda mempunyai 3 pilihan untuk recovery akaun.",
-
+        recoveryNotice:"Anda mempunyai 3 pilihan untuk recovery akaun.",
         twoSecurityQuestions:"2 Soalan Keselamatan",
-
         phoneOtp:"Phone OTP — SMS / WhatsApp",
-
         emailOtp:"Email OTP",
-
         chooseRecovery:"🔐 Pilih Cara Recovery",
-
-        bothAnswersCorrect:
-        "Kedua-dua jawapan mesti betul.",
-
-        chooseSmsWhatsapp:
-        "Pilih SMS atau WhatsApp.",
-
-        otpEmail:
-        "OTP akan dihantar ke email.",
-
-        twoSecurityQuestionsTitle:
-        "🔐 2 Soalan Keselamatan",
-
-        bothAnswersWarning:
-        "Kedua-dua jawapan mesti betul.",
-
-        oneWrongWarning:
-        "Jika satu jawapan salah, Reset Password tidak akan dibuka.",
-
+        bothAnswersCorrect:"Kedua-dua jawapan mesti betul.",
+        chooseSmsWhatsapp:"Pilih SMS atau WhatsApp.",
+        otpEmail:"OTP akan dihantar ke email.",
+        twoSecurityQuestionsTitle:"🔐 2 Soalan Keselamatan",
+        bothAnswersWarning:"Kedua-dua jawapan mesti betul.",
+        oneWrongWarning:"Jika satu jawapan salah, Reset Password tidak akan dibuka.",
         verifyAnswers:"SAHKAN 2 JAWAPAN",
-
         phoneOtpTitle:"📱 Phone OTP",
-
         receiveOtp:"Pilih cara menerima OTP",
-
-        otpNotRequested:
-        "OTP belum diminta.",
-
+        otpNotRequested:"OTP belum diminta.",
         enterOtp:"Masukkan OTP",
-
         verifyOtp:"SAHKAN OTP",
-
-        phoneOtpFuture:
-        "SMS/WhatsApp OTP sebenar akan diaktifkan selepas Y-M Chat mempunyai server dan sambungan provider OTP.",
-
+        phoneOtpFuture:"SMS/WhatsApp OTP sebenar akan diaktifkan selepas Y-M Chat mempunyai server dan sambungan provider OTP.",
         emailOtpTitle:"📧 Email OTP",
-
         requestEmailOtp:"MINTA EMAIL OTP",
-
-        emailOtpNotRequested:
-        "Email OTP belum diminta.",
-
+        emailOtpNotRequested:"Email OTP belum diminta.",
         verifyEmailOtp:"SAHKAN EMAIL OTP",
-
-        emailOtpFuture:
-        "Email OTP sebenar akan diaktifkan selepas Y-M Chat mempunyai server dan email provider.",
-
+        emailOtpFuture:"Email OTP sebenar akan diaktifkan selepas Y-M Chat mempunyai server dan email provider.",
         resetPasswordTitle:"🔑 Reset Password",
-
-        recoverySuccess:
-        "Recovery berjaya disahkan.",
-
-        createNewPassword:
-        "Sekarang anda boleh membuat password baru.",
-
+        recoverySuccess:"Recovery berjaya disahkan.",
+        createNewPassword:"Sekarang anda boleh membuat password baru.",
         resetPassword:"RESET PASSWORD",
-
         loginSuccess:"Login berjaya.",
-
         chat:"CHAT",
-
         friends:"KAWAN",
-
         rooms:"ROOMS"
 
     }
@@ -2000,19 +1744,6 @@ function applyLanguage(language){
     }
 
 
-    const register =
-        document.getElementById(
-            "regLanguage"
-        );
-
-    if(register){
-
-        register.value =
-            currentLanguage;
-
-    }
-
-
     updateSecurityQuestionsLanguage();
 
 }
@@ -2035,31 +1766,6 @@ function changeMasterLanguage(){
         select.value;
 
     applyLanguage(language);
-
-}
-
-
-/* =========================================================
-   LANGUAGE FROM REGISTER
-========================================================= */
-
-const registerLanguageElement =
-    document.getElementById(
-        "regLanguage"
-    );
-
-if(registerLanguageElement){
-
-    registerLanguageElement.addEventListener(
-        "change",
-        function(){
-
-            applyLanguage(
-                this.value
-            );
-
-        }
-    );
 
 }
 
@@ -2427,10 +2133,13 @@ function registerUser(){
         ).value;
 
 
+    /*
+       Register now uses the MAIN
+       Language selector.
+    */
+
     const language =
-        document.getElementById(
-            "regLanguage"
-        ).value;
+        currentLanguage || "en";
 
 
     const country =
@@ -2741,11 +2450,6 @@ function loginUser(){
         id
     );
 
-
-    /*
-       Simpan bahasa akaun sebagai
-       bahasa utama pengguna selepas login.
-    */
 
     const accountLanguage =
         accounts[id].language ||
