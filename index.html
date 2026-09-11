@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Y-M Chat V1.4</title>
+<title>Y-M Chat V1.5</title>
 
 <style>
 *{
@@ -17,7 +17,7 @@
 html,body{
     width:100%;
     min-height:100%;
-    background:#eef3f8;
+    background:#e9eef5;
 }
 
 body{
@@ -25,87 +25,95 @@ body{
     justify-content:center;
 }
 
-/* APP */
+button,
+input{
+    font-family:Arial,sans-serif;
+}
+
+button{
+    cursor:pointer;
+}
+
 .app{
     width:100%;
     max-width:480px;
     min-height:100vh;
-    background:#f5f8fc;
+    background:#f4f7fb;
     position:relative;
     overflow-x:hidden;
 }
 
-/* =========================
+/* =====================================================
    AUTH
-========================= */
+===================================================== */
 
-.auth{
+.auth-page{
     min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
     padding:25px 18px;
-    background:linear-gradient(160deg,#1976d2,#0d47a1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(145deg,#1976d2,#0d47a1);
 }
 
 .auth-box{
     width:100%;
-    background:white;
-    border-radius:20px;
-    padding:30px 22px;
+    background:#fff;
+    border-radius:22px;
+    padding:28px 22px;
     box-shadow:0 15px 40px rgba(0,0,0,.22);
 }
 
-.logo{
+.auth-logo{
     text-align:center;
     margin-bottom:25px;
 }
 
-.logo-circle{
-    width:72px;
-    height:72px;
+.auth-logo-circle{
+    width:74px;
+    height:74px;
     border-radius:50%;
     background:#1976d2;
-    color:white;
+    color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:28px;
-    font-weight:bold;
     margin:auto;
-    box-shadow:0 5px 15px rgba(25,118,210,.35);
+    font-weight:bold;
+    font-size:24px;
 }
 
-.logo h1{
-    margin-top:12px;
+.auth-logo h1{
     color:#1976d2;
-    font-size:29px;
+    margin-top:12px;
+    font-size:28px;
 }
 
-.logo p{
-    margin-top:5px;
+.auth-logo p{
     color:#777;
     font-size:13px;
+    margin-top:5px;
 }
 
 .auth-title{
     font-size:21px;
+    font-weight:bold;
     color:#222;
     margin-bottom:18px;
 }
 
-.input-group{
+.field{
     margin-bottom:14px;
 }
 
-.input-group label{
+.field label{
     display:block;
-    font-size:13px;
     color:#555;
+    font-size:13px;
     margin-bottom:6px;
 }
 
-.input-group input{
+.field input{
     width:100%;
     padding:13px;
     border:1px solid #d5dce5;
@@ -114,227 +122,299 @@ body{
     font-size:15px;
 }
 
-.input-group input:focus{
+.field input:focus{
     border-color:#1976d2;
 }
 
-.main-btn{
+.primary-btn{
     width:100%;
     border:none;
+    border-radius:10px;
     background:#1976d2;
     color:white;
     padding:13px;
-    border-radius:10px;
     font-size:16px;
     font-weight:bold;
-    cursor:pointer;
-    margin-top:5px;
 }
 
-.main-btn:active{
+.primary-btn:active{
     transform:scale(.98);
 }
 
-.auth-switch{
+.auth-links{
     text-align:center;
-    margin-top:18px;
+    margin-top:17px;
     color:#777;
-    font-size:14px;
+    font-size:13px;
 }
 
-.auth-switch span{
+.auth-links span{
     color:#1976d2;
     font-weight:bold;
     cursor:pointer;
 }
 
-.forgot{
+.forgot-link{
     text-align:right;
-    margin-top:9px;
-    font-size:13px;
     color:#1976d2;
+    font-size:13px;
+    margin:7px 0 14px;
     cursor:pointer;
 }
 
-/* =========================
+/* =====================================================
    HEADER
-========================= */
+===================================================== */
 
-.header{
+.top-header{
     height:64px;
     background:#1976d2;
-    color:white;
+    color:#fff;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 16px;
+    padding:0 14px;
     position:sticky;
     top:0;
     z-index:50;
     box-shadow:0 2px 8px rgba(0,0,0,.15);
 }
 
-.header-left{
+.brand{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:9px;
 }
 
-.header-logo{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:white;
+.brand-logo{
+    width:39px;
+    height:39px;
+    background:#fff;
     color:#1976d2;
+    border-radius:50%;
     display:flex;
-    align-items:center;
     justify-content:center;
-    font-weight:bold;
-    font-size:15px;
-}
-
-.header-title{
-    font-size:20px;
+    align-items:center;
+    font-size:13px;
     font-weight:bold;
 }
 
-.header-icons{
+.brand-name{
+    font-size:19px;
+    font-weight:bold;
+}
+
+.header-actions{
     display:flex;
-    gap:8px;
+    gap:7px;
 }
 
-.icon-btn{
+.header-btn{
     width:38px;
     height:38px;
-    border:0;
+    border:none;
     border-radius:50%;
-    background:rgba(255,255,255,.15);
-    color:white;
+    background:rgba(255,255,255,.16);
+    color:#fff;
     font-size:18px;
-    cursor:pointer;
 }
 
-/* =========================
-   HOME
-========================= */
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.main-content{
+    padding-bottom:76px;
+}
 
 .page{
-    padding-bottom:78px;
+    display:none;
 }
 
-.welcome{
-    background:white;
+.page.active{
+    display:block;
+}
+
+/* =====================================================
+   HOME WELCOME
+===================================================== */
+
+.welcome-card{
     margin:12px;
-    border-radius:15px;
     padding:17px;
+    border-radius:16px;
+    background:#fff;
     box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
 
-.welcome h2{
+.welcome-top{
+    display:flex;
+    align-items:center;
+}
+
+.welcome-avatar{
+    width:53px;
+    height:53px;
+    border-radius:50%;
+    background:#1976d2;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     font-size:20px;
+    font-weight:bold;
+    margin-right:12px;
+}
+
+.welcome-info{
+    flex:1;
+}
+
+.welcome-info h2{
+    font-size:18px;
     color:#222;
 }
 
-.welcome p{
-    margin-top:5px;
-    color:#777;
-    font-size:13px;
+.welcome-info p{
+    font-size:12px;
+    color:#888;
+    margin-top:4px;
 }
 
-.online-status{
+.status-row{
+    margin-top:13px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.status{
     display:flex;
     align-items:center;
     gap:6px;
-    margin-top:10px;
     color:#43a047;
-    font-size:13px;
+    font-size:12px;
     font-weight:bold;
 }
 
-.green-dot{
+.status-dot{
     width:9px;
     height:9px;
-    background:#43a047;
     border-radius:50%;
+    background:#43a047;
 }
 
-/* SEARCH */
+.status-select{
+    border:1px solid #e0e5eb;
+    background:#f7f9fc;
+    border-radius:8px;
+    padding:6px 8px;
+    font-size:11px;
+    outline:none;
+}
 
-.search-box{
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-wrap{
     margin:12px;
     position:relative;
 }
 
-.search-box input{
+.search-wrap input{
     width:100%;
-    border:0;
+    border:none;
     outline:none;
+    background:#fff;
     padding:13px 15px 13px 42px;
-    border-radius:12px;
-    background:white;
-    box-shadow:0 2px 7px rgba(0,0,0,.06);
+    border-radius:13px;
     font-size:14px;
+    box-shadow:0 2px 7px rgba(0,0,0,.05);
 }
 
-.search-icon{
+.search-symbol{
     position:absolute;
     left:15px;
-    top:12px;
-    font-size:18px;
+    top:11px;
     color:#777;
+    font-size:18px;
 }
 
-/* QUICK ACTION */
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section{
+    margin-top:4px;
+}
+
+.section-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:7px 14px 9px;
+}
 
 .section-title{
-    padding:5px 14px 9px;
     font-size:16px;
     font-weight:bold;
     color:#333;
 }
 
-.quick-actions{
+.section-link{
+    color:#1976d2;
+    font-size:12px;
+    cursor:pointer;
+}
+
+/* =====================================================
+   QUICK ACCESS
+===================================================== */
+
+.quick-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:8px;
-    padding:0 12px 14px;
+    padding:0 12px;
 }
 
-.quick-card{
-    background:white;
+.quick-item{
+    background:#fff;
     border-radius:13px;
-    padding:12px 5px;
+    padding:12px 4px;
     text-align:center;
-    box-shadow:0 2px 7px rgba(0,0,0,.06);
-    cursor:pointer;
+    box-shadow:0 2px 7px rgba(0,0,0,.05);
 }
 
 .quick-icon{
     width:40px;
     height:40px;
-    margin:auto;
     border-radius:50%;
-    background:#e7f0fb;
+    background:#eaf2fc;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:20px;
+    margin:auto;
+    font-size:19px;
 }
 
-.quick-card p{
-    margin-top:7px;
-    font-size:11px;
+.quick-item p{
     color:#444;
+    font-size:11px;
+    margin-top:7px;
 }
 
-/* CHAT LIST */
+/* =====================================================
+   CHAT LIST
+===================================================== */
 
-.chat-list{
+.list-box{
     margin:0 12px;
-    background:white;
-    border-radius:14px;
+    background:#fff;
+    border-radius:15px;
     overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
 
 .chat-item{
@@ -342,64 +422,254 @@ body{
     align-items:center;
     padding:13px;
     border-bottom:1px solid #edf0f4;
-    cursor:pointer;
 }
 
 .chat-item:last-child{
     border-bottom:none;
 }
 
-.avatar{
+.user-avatar{
     width:48px;
     height:48px;
     border-radius:50%;
     background:#1976d2;
-    color:white;
+    color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
     font-weight:bold;
-    margin-right:12px;
     flex-shrink:0;
+    position:relative;
+    margin-right:12px;
 }
 
-.avatar.green{
+.user-avatar.green{
     background:#43a047;
 }
 
-.avatar.orange{
+.user-avatar.orange{
     background:#fb8c00;
 }
 
-.chat-info{
+.online-dot{
+    position:absolute;
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    background:#43a047;
+    border:2px solid #fff;
+    right:-1px;
+    bottom:1px;
+}
+
+.chat-details{
     flex:1;
     min-width:0;
 }
 
 .chat-name{
+    font-size:15px;
     font-weight:bold;
     color:#222;
-    font-size:15px;
 }
 
-.chat-message{
-    margin-top:4px;
+.chat-preview{
     color:#888;
     font-size:12px;
+    margin-top:4px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
 }
 
-.chat-time{
-    color:#999;
-    font-size:10px;
+.chat-meta{
+    text-align:right;
     align-self:flex-start;
 }
 
-/* =========================
-   BOTTOM NAV
-========================= */
+.chat-time{
+    color:#999;
+    font-size:10px;
+}
+
+.unread{
+    display:inline-flex;
+    min-width:18px;
+    height:18px;
+    border-radius:10px;
+    background:#1976d2;
+    color:#fff;
+    align-items:center;
+    justify-content:center;
+    font-size:9px;
+    margin-top:5px;
+}
+
+/* =====================================================
+   FRIENDS
+===================================================== */
+
+.friend-item{
+    display:flex;
+    align-items:center;
+    padding:13px;
+    border-bottom:1px solid #edf0f4;
+}
+
+.friend-item:last-child{
+    border-bottom:none;
+}
+
+.friend-details{
+    flex:1;
+}
+
+.friend-name{
+    font-size:15px;
+    font-weight:bold;
+}
+
+.friend-status{
+    color:#43a047;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.chat-small-btn{
+    border:none;
+    background:#1976d2;
+    color:#fff;
+    padding:8px 12px;
+    border-radius:8px;
+    font-size:12px;
+}
+
+/* =====================================================
+   ROOMS
+===================================================== */
+
+.room-item{
+    display:flex;
+    align-items:center;
+    padding:14px;
+    border-bottom:1px solid #edf0f4;
+}
+
+.room-item:last-child{
+    border-bottom:none;
+}
+
+.room-icon{
+    width:49px;
+    height:49px;
+    border-radius:13px;
+    background:#eaf2fc;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    margin-right:12px;
+}
+
+.room-details{
+    flex:1;
+}
+
+.room-name{
+    font-size:15px;
+    font-weight:bold;
+}
+
+.room-count{
+    color:#888;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.room-arrow{
+    color:#999;
+    font-size:22px;
+}
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profile-cover{
+    height:150px;
+    background:linear-gradient(135deg,#1976d2,#64b5f6);
+    position:relative;
+}
+
+.cover-edit{
+    position:absolute;
+    right:12px;
+    top:12px;
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:rgba(0,0,0,.25);
+    color:#fff;
+}
+
+.profile-photo{
+    position:absolute;
+    width:86px;
+    height:86px;
+    left:17px;
+    bottom:-43px;
+    border-radius:50%;
+    border:4px solid #fff;
+    background:#1976d2;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.profile-body{
+    background:#fff;
+    padding:56px 17px 25px;
+}
+
+.profile-name{
+    font-size:21px;
+    font-weight:bold;
+    color:#222;
+}
+
+.profile-id{
+    font-size:13px;
+    color:#777;
+    margin-top:4px;
+}
+
+.profile-buttons{
+    margin-top:20px;
+    display:grid;
+    gap:9px;
+}
+
+.profile-button{
+    width:100%;
+    border:1px solid #dde3eb;
+    background:#fff;
+    padding:12px;
+    border-radius:10px;
+    text-align:left;
+    font-size:13px;
+}
+
+.profile-button.logout{
+    color:#d32f2f;
+}
+
+/* =====================================================
+   BOTTOM NAVIGATION
+===================================================== */
 
 .bottom-nav{
     position:fixed;
@@ -407,227 +677,75 @@ body{
     width:100%;
     max-width:480px;
     height:68px;
-    background:white;
+    background:#fff;
     border-top:1px solid #ddd;
     display:flex;
     z-index:100;
 }
 
-.nav-item{
+.nav-button{
     flex:1;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
     color:#888;
-    font-size:11px;
-    cursor:pointer;
+    font-size:10px;
 }
 
-.nav-item .nav-icon{
+.nav-icon{
     font-size:21px;
     margin-bottom:4px;
 }
 
-.nav-item.active{
+.nav-button.active{
     color:#1976d2;
     font-weight:bold;
 }
 
-/* =========================
-   PAGES
-========================= */
-
-.sub-page{
-    display:none;
-    min-height:calc(100vh - 64px);
-    padding-bottom:80px;
-}
-
-.sub-page.active{
-    display:block;
-}
-
-/* FRIENDS */
-
-.friend-card{
-    background:white;
-    margin:10px 12px;
-    border-radius:13px;
-    padding:13px;
-    display:flex;
-    align-items:center;
-    box-shadow:0 2px 7px rgba(0,0,0,.05);
-}
-
-.friend-info{
-    flex:1;
-}
-
-.friend-name{
-    font-weight:bold;
-    font-size:15px;
-}
-
-.friend-status{
-    font-size:12px;
-    color:#43a047;
-    margin-top:4px;
-}
-
-.small-btn{
-    border:0;
-    background:#1976d2;
-    color:white;
-    border-radius:8px;
-    padding:8px 12px;
-    cursor:pointer;
-}
-
-/* ROOMS */
-
-.room-card{
-    margin:10px 12px;
-    background:white;
-    border-radius:14px;
-    padding:15px;
-    display:flex;
-    align-items:center;
-    box-shadow:0 2px 7px rgba(0,0,0,.06);
-    cursor:pointer;
-}
-
-.room-icon{
-    width:50px;
-    height:50px;
-    border-radius:12px;
-    background:#e7f0fb;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:25px;
-    margin-right:12px;
-}
-
-.room-info{
-    flex:1;
-}
-
-.room-name{
-    font-weight:bold;
-    font-size:15px;
-}
-
-.room-users{
-    color:#888;
-    font-size:12px;
-    margin-top:4px;
-}
-
-/* PROFILE */
-
-.profile-cover{
-    height:155px;
-    background:linear-gradient(135deg,#1976d2,#64b5f6);
-    position:relative;
-}
-
-.profile-avatar{
-    position:absolute;
-    bottom:-42px;
-    left:18px;
-    width:84px;
-    height:84px;
-    border-radius:50%;
-    background:white;
-    border:4px solid white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#1976d2;
-    font-size:28px;
-    font-weight:bold;
-    box-shadow:0 3px 8px rgba(0,0,0,.2);
-}
-
-.profile-body{
-    background:white;
-    padding:55px 18px 20px;
-}
-
-.profile-name{
-    font-size:21px;
-    font-weight:bold;
-}
-
-.profile-username{
-    color:#777;
-    font-size:13px;
-    margin-top:4px;
-}
-
-.profile-action{
-    margin-top:18px;
-    display:grid;
-    gap:9px;
-}
-
-.profile-btn{
-    border:1px solid #d8dee7;
-    background:white;
-    border-radius:10px;
-    padding:12px;
-    text-align:left;
-    cursor:pointer;
-}
-
-.profile-btn.logout{
-    color:#d32f2f;
-}
-
-/* =========================
-   CHAT SCREEN
-========================= */
+/* =====================================================
+   PRIVATE CHAT
+===================================================== */
 
 .chat-screen{
     display:none;
     position:fixed;
     inset:0;
-    background:#eef3f8;
-    z-index:200;
+    width:100%;
     max-width:480px;
     margin:auto;
+    background:#eef3f8;
+    z-index:200;
+    flex-direction:column;
 }
 
 .chat-screen.active{
     display:flex;
-    flex-direction:column;
 }
 
-.chat-header{
+.chat-top{
     height:62px;
     background:#1976d2;
-    color:white;
+    color:#fff;
     display:flex;
     align-items:center;
-    padding:0 10px;
+    padding:0 8px;
 }
 
-.back-btn{
-    width:40px;
-    height:40px;
-    border:0;
+.back-button{
+    width:42px;
+    height:42px;
+    border:none;
     background:transparent;
-    color:white;
-    font-size:24px;
-    cursor:pointer;
+    color:#fff;
+    font-size:27px;
 }
 
-.chat-header-avatar{
+.chat-avatar{
     width:38px;
     height:38px;
     border-radius:50%;
-    background:white;
+    background:#fff;
     color:#1976d2;
     display:flex;
     justify-content:center;
@@ -636,23 +754,25 @@ body{
     margin:0 10px;
 }
 
-.chat-header-info{
+.chat-title{
     flex:1;
 }
 
-.chat-header-name{
-    font-weight:bold;
+.chat-title strong{
+    display:block;
+    font-size:15px;
 }
 
-.chat-header-status{
-    font-size:11px;
-    margin-top:2px;
+.chat-title span{
+    display:block;
+    font-size:10px;
+    margin-top:3px;
 }
 
-.chat-messages{
+.chat-body{
     flex:1;
-    padding:15px;
     overflow-y:auto;
+    padding:14px;
 }
 
 .message{
@@ -665,13 +785,13 @@ body{
 }
 
 .message.received{
-    background:white;
+    background:#fff;
     border-bottom-left-radius:4px;
 }
 
 .message.sent{
     background:#1976d2;
-    color:white;
+    color:#fff;
     margin-left:auto;
     border-bottom-right-radius:4px;
 }
@@ -679,54 +799,55 @@ body{
 .message-time{
     display:block;
     font-size:9px;
-    opacity:.7;
-    margin-top:4px;
+    opacity:.65;
     text-align:right;
+    margin-top:4px;
 }
 
 .chat-input-area{
     display:flex;
-    padding:9px;
-    background:white;
-    border-top:1px solid #ddd;
     gap:7px;
+    padding:9px;
+    background:#fff;
+    border-top:1px solid #ddd;
 }
 
 .chat-input{
     flex:1;
-    border:1px solid #d5dce5;
+    border:1px solid #d6dde6;
     border-radius:22px;
     padding:11px 15px;
     outline:none;
 }
 
-.send-btn{
+.send-button{
     width:43px;
     height:43px;
-    border:0;
+    border:none;
     border-radius:50%;
     background:#1976d2;
-    color:white;
-    font-size:18px;
-    cursor:pointer;
+    color:#fff;
+    font-size:17px;
 }
 
-/* TOAST */
+/* =====================================================
+   TOAST
+===================================================== */
 
 .toast{
     position:fixed;
-    bottom:80px;
+    z-index:500;
+    bottom:82px;
     left:50%;
-    transform:translateX(-50%) translateY(20px);
+    transform:translateX(-50%) translateY(15px);
     background:#222;
-    color:white;
-    padding:11px 17px;
+    color:#fff;
+    padding:10px 17px;
     border-radius:20px;
-    font-size:13px;
+    font-size:12px;
     opacity:0;
     pointer-events:none;
-    transition:.3s;
-    z-index:500;
+    transition:.25s;
 }
 
 .toast.show{
@@ -734,17 +855,15 @@ body{
     transform:translateX(-50%) translateY(0);
 }
 
-/* HIDDEN */
-
 .hidden{
     display:none!important;
 }
 
-@media(min-width:481px){
-    .bottom-nav{
-        left:50%;
-        transform:translateX(-50%);
-    }
+.empty-search{
+    padding:25px;
+    text-align:center;
+    color:#888;
+    font-size:13px;
 }
 </style>
 </head>
@@ -753,99 +872,164 @@ body{
 
 <div class="app">
 
-<!-- =========================
-     LOGIN / REGISTER
-========================= -->
+<!-- =====================================================
+     AUTH PAGE
+===================================================== -->
 
-<div id="authPage" class="auth">
+<div id="authPage" class="auth-page">
 
     <div class="auth-box">
 
-        <div class="logo">
-            <div class="logo-circle">Y-M</div>
+        <div class="auth-logo">
+
+            <div class="auth-logo-circle">
+                Y-M
+            </div>
+
             <h1>Y-M Chat</h1>
-            <p>Connect. Chat. Together.</p>
+
+            <p>
+                Connect. Chat. Together.
+            </p>
+
         </div>
 
+
         <!-- LOGIN -->
+
         <div id="loginForm">
 
-            <div class="auth-title">Welcome Back</div>
+            <div class="auth-title">
+                Welcome Back
+            </div>
 
-            <div class="input-group">
-                <label>Username</label>
+            <div class="field">
+
+                <label>
+                    Username
+                </label>
+
                 <input
-                    type="text"
                     id="loginUsername"
+                    type="text"
                     placeholder="Enter username"
-                    autocomplete="username"
                 >
+
             </div>
 
-            <div class="input-group">
-                <label>Password</label>
+
+            <div class="field">
+
+                <label>
+                    Password
+                </label>
+
                 <input
-                    type="password"
                     id="loginPassword"
+                    type="password"
                     placeholder="Enter password"
-                    autocomplete="current-password"
                 >
+
             </div>
 
-            <div class="forgot" onclick="forgotPassword()">
+
+            <div
+                class="forgot-link"
+                onclick="forgotPassword()"
+            >
                 Forgot Password?
             </div>
 
-            <button class="main-btn" onclick="login()">
+
+            <button
+                class="primary-btn"
+                onclick="login()"
+            >
                 Login
             </button>
 
-            <div class="auth-switch">
+
+            <div class="auth-links">
+
                 Don't have an account?
-                <span onclick="showRegister()">Create Account</span>
+                <span onclick="showRegister()">
+                    Create Account
+                </span>
+
             </div>
 
         </div>
 
+
         <!-- REGISTER -->
+
         <div id="registerForm" class="hidden">
 
-            <div class="auth-title">Create Account</div>
+            <div class="auth-title">
+                Create Account
+            </div>
 
-            <div class="input-group">
-                <label>Name</label>
+
+            <div class="field">
+
+                <label>
+                    Name
+                </label>
+
                 <input
-                    type="text"
                     id="registerName"
+                    type="text"
                     placeholder="Your name"
                 >
+
             </div>
 
-            <div class="input-group">
-                <label>Username</label>
+
+            <div class="field">
+
+                <label>
+                    Username
+                </label>
+
                 <input
-                    type="text"
                     id="registerUsername"
+                    type="text"
                     placeholder="Choose username"
                 >
+
             </div>
 
-            <div class="input-group">
-                <label>Password</label>
+
+            <div class="field">
+
+                <label>
+                    Password
+                </label>
+
                 <input
-                    type="password"
                     id="registerPassword"
+                    type="password"
                     placeholder="Create password"
                 >
+
             </div>
 
-            <button class="main-btn" onclick="register()">
+
+            <button
+                class="primary-btn"
+                onclick="register()"
+            >
                 Create Account
             </button>
 
-            <div class="auth-switch">
+
+            <div class="auth-links">
+
                 Already have an account?
-                <span onclick="showLogin()">Login</span>
+                <span onclick="showLogin()">
+                    Login
+                </span>
+
             </div>
 
         </div>
@@ -855,477 +1039,938 @@ body{
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      MAIN APP
-========================= -->
+===================================================== -->
 
 <div id="mainApp" class="hidden">
 
     <!-- HEADER -->
-    <div class="header">
 
-        <div class="header-left">
-            <div class="header-logo">Y-M</div>
-            <div class="header-title">Y-M Chat</div>
+    <div class="top-header">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                Y-M
+            </div>
+
+            <div class="brand-name">
+                Y-M Chat
+            </div>
+
         </div>
 
-        <div class="header-icons">
-            <button class="icon-btn" onclick="showToast('Search coming soon')">
+
+        <div class="header-actions">
+
+            <button
+                class="header-btn"
+                onclick="focusSearch()"
+            >
                 🔍
             </button>
 
-            <button class="icon-btn" onclick="showToast('Notifications coming soon')">
+            <button
+                class="header-btn"
+                onclick="showToast('Notifications will be connected later')"
+            >
                 🔔
             </button>
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         HOME
-    ========================= -->
-
-    <div id="homePage" class="page">
-
-        <div class="welcome">
-            <h2 id="welcomeText">Welcome!</h2>
-
-            <p>
-                Welcome to your Y-M Chat home.
-            </p>
-
-            <div class="online-status">
-                <span class="green-dot"></span>
-                Online
-            </div>
-        </div>
-
-        <!-- SEARCH -->
-        <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input
-                type="text"
-                placeholder="Search people, chats or rooms..."
-                oninput="searchHome(this.value)"
-            >
-        </div>
-
-        <!-- QUICK ACTION -->
-        <div class="section-title">
-            Quick Access
-        </div>
-
-        <div class="quick-actions">
-
-            <div class="quick-card" onclick="openFriends()">
-                <div class="quick-icon">👥</div>
-                <p>Friends</p>
-            </div>
-
-            <div class="quick-card" onclick="openRooms()">
-                <div class="quick-icon">🌎</div>
-                <p>Rooms</p>
-            </div>
-
-            <div class="quick-card" onclick="showToast('New chat coming soon')">
-                <div class="quick-icon">💬</div>
-                <p>New Chat</p>
-            </div>
-
-            <div class="quick-card" onclick="openProfile()">
-                <div class="quick-icon">👤</div>
-                <p>Profile</p>
-            </div>
-
-        </div>
-
-
-        <!-- RECENT CHATS -->
-        <div class="section-title">
-            Recent Chats
-        </div>
-
-        <div id="chatList" class="chat-list">
-
-            <div
-                class="chat-item"
-                data-name="Ahmad"
-                onclick="openChat('Ahmad','A')"
-            >
-
-                <div class="avatar">A</div>
-
-                <div class="chat-info">
-                    <div class="chat-name">
-                        Ahmad
-                    </div>
-
-                    <div class="chat-message">
-                        Hello! Welcome to Y-M Chat.
-                    </div>
-                </div>
-
-                <div class="chat-time">
-                    Now
-                </div>
-
-            </div>
-
-
-            <div
-                class="chat-item"
-                data-name="Siti"
-                onclick="openChat('Siti','S')"
-            >
-
-                <div class="avatar green">S</div>
-
-                <div class="chat-info">
-                    <div class="chat-name">
-                        Siti
-                    </div>
-
-                    <div class="chat-message">
-                        See you later!
-                    </div>
-                </div>
-
-                <div class="chat-time">
-                    Today
-                </div>
-
-            </div>
-
-
-            <div
-                class="chat-item"
-                data-name="John"
-                onclick="openChat('John','J')"
-            >
-
-                <div class="avatar orange">J</div>
-
-                <div class="chat-info">
-                    <div class="chat-name">
-                        John
-                    </div>
-
-                    <div class="chat-message">
-                        Hi there!
-                    </div>
-                </div>
-
-                <div class="chat-time">
-                    Yesterday
-                </div>
-
-            </div>
 
         </div>
 
     </div>
 
 
-    <!-- =========================
-         FRIENDS
-    ========================= -->
+    <div class="main-content">
 
-    <div id="friendsPage" class="sub-page">
+        <!-- =================================================
+             HOME
+        ================================================= -->
 
-        <div class="section-title" style="padding-top:15px;">
-            My Friends
+        <div
+            id="homePage"
+            class="page active"
+        >
+
+            <div class="welcome-card">
+
+                <div class="welcome-top">
+
+                    <div
+                        id="welcomeAvatar"
+                        class="welcome-avatar"
+                    >
+                        N
+                    </div>
+
+                    <div class="welcome-info">
+
+                        <h2 id="welcomeName">
+                            Welcome!
+                        </h2>
+
+                        <p>
+                            Good to see you on Y-M Chat.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="status-row">
+
+                    <div class="status">
+
+                        <span class="status-dot"></span>
+
+                        <span id="statusText">
+                            Online
+                        </span>
+
+                    </div>
+
+
+                    <select
+                        id="statusSelect"
+                        class="status-select"
+                        onchange="changeStatus(this.value)"
+                    >
+
+                        <option value="Online">
+                            Online
+                        </option>
+
+                        <option value="Busy">
+                            Busy
+                        </option>
+
+                        <option value="Invisible">
+                            Invisible
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-wrap">
+
+                <span class="search-symbol">
+                    🔍
+                </span>
+
+                <input
+                    id="homeSearch"
+                    type="text"
+                    placeholder="Search people or chats..."
+                    oninput="searchChats(this.value)"
+                >
+
+            </div>
+
+
+            <!-- QUICK ACCESS -->
+
+            <div class="section">
+
+                <div class="section-head">
+
+                    <div class="section-title">
+                        Quick Access
+                    </div>
+
+                </div>
+
+
+                <div class="quick-grid">
+
+                    <div
+                        class="quick-item"
+                        onclick="showPage('friends')"
+                    >
+
+                        <div class="quick-icon">
+                            👥
+                        </div>
+
+                        <p>
+                            Friends
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="quick-item"
+                        onclick="showPage('rooms')"
+                    >
+
+                        <div class="quick-icon">
+                            🌎
+                        </div>
+
+                        <p>
+                            Rooms
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="quick-item"
+                        onclick="showToast('New Chat will be connected to real users later')"
+                    >
+
+                        <div class="quick-icon">
+                            💬
+                        </div>
+
+                        <p>
+                            New Chat
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="quick-item"
+                        onclick="showPage('profile')"
+                    >
+
+                        <div class="quick-icon">
+                            👤
+                        </div>
+
+                        <p>
+                            Profile
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT CHATS -->
+
+            <div class="section">
+
+                <div class="section-head">
+
+                    <div class="section-title">
+                        Recent Chats
+                    </div>
+
+                    <div
+                        class="section-link"
+                        onclick="clearSearch()"
+                    >
+                        Clear
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="chatList"
+                    class="list-box"
+                >
+
+                    <div
+                        class="chat-item"
+                        data-search="ahmad hello welcome"
+                        onclick="openChat('Ahmad','A')"
+                    >
+
+                        <div class="user-avatar">
+
+                            A
+
+                            <span class="online-dot"></span>
+
+                        </div>
+
+
+                        <div class="chat-details">
+
+                            <div class="chat-name">
+                                Ahmad
+                            </div>
+
+                            <div class="chat-preview">
+                                Hello! Welcome to Y-M Chat.
+                            </div>
+
+                        </div>
+
+
+                        <div class="chat-meta">
+
+                            <div class="chat-time">
+                                Now
+                            </div>
+
+                            <div class="unread">
+                                2
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="chat-item"
+                        data-search="siti see you later"
+                        onclick="openChat('Siti','S')"
+                    >
+
+                        <div class="user-avatar green">
+
+                            S
+
+                            <span class="online-dot"></span>
+
+                        </div>
+
+
+                        <div class="chat-details">
+
+                            <div class="chat-name">
+                                Siti
+                            </div>
+
+                            <div class="chat-preview">
+                                See you later!
+                            </div>
+
+                        </div>
+
+
+                        <div class="chat-meta">
+
+                            <div class="chat-time">
+                                Today
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="chat-item"
+                        data-search="john hi there"
+                        onclick="openChat('John','J')"
+                    >
+
+                        <div class="user-avatar orange">
+
+                            J
+
+                        </div>
+
+
+                        <div class="chat-details">
+
+                            <div class="chat-name">
+                                John
+                            </div>
+
+                            <div class="chat-preview">
+                                Hi there!
+                            </div>
+
+                        </div>
+
+
+                        <div class="chat-meta">
+
+                            <div class="chat-time">
+                                Yesterday
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="noSearchResult"
+                        class="empty-search hidden"
+                    >
+                        No chat found.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ONLINE FRIENDS -->
+
+            <div class="section">
+
+                <div class="section-head">
+
+                    <div class="section-title">
+                        Friends Online
+                    </div>
+
+                    <div
+                        class="section-link"
+                        onclick="showPage('friends')"
+                    >
+                        View All
+                    </div>
+
+                </div>
+
+
+                <div class="list-box">
+
+                    <div class="friend-item">
+
+                        <div class="user-avatar">
+                            A
+                            <span class="online-dot"></span>
+                        </div>
+
+                        <div class="friend-details">
+
+                            <div class="friend-name">
+                                Ahmad
+                            </div>
+
+                            <div class="friend-status">
+                                ● Online
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="chat-small-btn"
+                            onclick="openChat('Ahmad','A')"
+                        >
+                            Chat
+                        </button>
+
+                    </div>
+
+
+                    <div class="friend-item">
+
+                        <div class="user-avatar green">
+
+                            S
+
+                            <span class="online-dot"></span>
+
+                        </div>
+
+                        <div class="friend-details">
+
+                            <div class="friend-name">
+                                Siti
+                            </div>
+
+                            <div class="friend-status">
+                                ● Online
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="chat-small-btn"
+                            onclick="openChat('Siti','S')"
+                        >
+                            Chat
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- POPULAR ROOMS -->
+
+            <div class="section">
+
+                <div class="section-head">
+
+                    <div class="section-title">
+                        Popular Rooms
+                    </div>
+
+                    <div
+                        class="section-link"
+                        onclick="showPage('rooms')"
+                    >
+                        View All
+                    </div>
+
+                </div>
+
+
+                <div class="list-box">
+
+                    <div
+                        class="room-item"
+                        onclick="openRoom('Malaysia')"
+                    >
+
+                        <div class="room-icon">
+                            🇲🇾
+                        </div>
+
+                        <div class="room-details">
+
+                            <div class="room-name">
+                                Malaysia
+                            </div>
+
+                            <div class="room-count">
+                                128 users online
+                            </div>
+
+                        </div>
+
+                        <div class="room-arrow">
+                            ›
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="room-item"
+                        onclick="openRoom('Sabah')"
+                    >
+
+                        <div class="room-icon">
+                            🌴
+                        </div>
+
+                        <div class="room-details">
+
+                            <div class="room-name">
+                                Sabah
+                            </div>
+
+                            <div class="room-count">
+                                56 users online
+                            </div>
+
+                        </div>
+
+                        <div class="room-arrow">
+                            ›
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="friend-card">
 
-            <div class="avatar">
-                A
-            </div>
+        <!-- =================================================
+             FRIENDS PAGE
+        ================================================= -->
 
-            <div class="friend-info">
-                <div class="friend-name">
-                    Ahmad
-                </div>
+        <div
+            id="friendsPage"
+            class="page"
+        >
 
-                <div class="friend-status">
-                    ● Online
-                </div>
-            </div>
-
-            <button
-                class="small-btn"
-                onclick="openChat('Ahmad','A')"
-            >
-                Chat
-            </button>
-
-        </div>
-
-
-        <div class="friend-card">
-
-            <div class="avatar green">
-                S
-            </div>
-
-            <div class="friend-info">
-                <div class="friend-name">
-                    Siti
-                </div>
-
-                <div class="friend-status">
-                    ● Online
+            <div class="section-head">
+                <div class="section-title">
+                    My Friends
                 </div>
             </div>
 
-            <button
-                class="small-btn"
-                onclick="openChat('Siti','S')"
-            >
-                Chat
-            </button>
 
-        </div>
+            <div class="list-box">
 
+                <div class="friend-item">
 
-        <div class="friend-card">
+                    <div class="user-avatar">
+                        A
+                        <span class="online-dot"></span>
+                    </div>
 
-            <div class="avatar orange">
-                J
-            </div>
+                    <div class="friend-details">
 
-            <div class="friend-info">
-                <div class="friend-name">
-                    John
+                        <div class="friend-name">
+                            Ahmad
+                        </div>
+
+                        <div class="friend-status">
+                            ● Online
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="chat-small-btn"
+                        onclick="openChat('Ahmad','A')"
+                    >
+                        Chat
+                    </button>
+
                 </div>
 
-                <div class="friend-status" style="color:#999;">
-                    Offline
-                </div>
-            </div>
 
-            <button
-                class="small-btn"
-                onclick="openChat('John','J')"
-            >
-                Chat
-            </button>
+                <div class="friend-item">
 
-        </div>
+                    <div class="user-avatar green">
+                        S
+                        <span class="online-dot"></span>
+                    </div>
 
-    </div>
+                    <div class="friend-details">
 
+                        <div class="friend-name">
+                            Siti
+                        </div>
 
-    <!-- =========================
-         ROOMS
-    ========================= -->
+                        <div class="friend-status">
+                            ● Online
+                        </div>
 
-    <div id="roomsPage" class="sub-page">
+                    </div>
 
-        <div class="section-title" style="padding-top:15px;">
-            Public Chat Rooms
-        </div>
+                    <button
+                        class="chat-small-btn"
+                        onclick="openChat('Siti','S')"
+                    >
+                        Chat
+                    </button>
 
-        <div class="room-card" onclick="openRoom('Malaysia')">
-
-            <div class="room-icon">
-                🇲🇾
-            </div>
-
-            <div class="room-info">
-                <div class="room-name">
-                    Malaysia
                 </div>
 
-                <div class="room-users">
-                    128 users online
+
+                <div class="friend-item">
+
+                    <div class="user-avatar orange">
+                        J
+                    </div>
+
+                    <div class="friend-details">
+
+                        <div class="friend-name">
+                            John
+                        </div>
+
+                        <div
+                            class="friend-status"
+                            style="color:#999"
+                        >
+                            Offline
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="chat-small-btn"
+                        onclick="openChat('John','J')"
+                    >
+                        Chat
+                    </button>
+
                 </div>
-            </div>
 
-            <div>
-                ›
-            </div>
-
-        </div>
-
-
-        <div class="room-card" onclick="openRoom('Sabah')">
-
-            <div class="room-icon">
-                🌴
-            </div>
-
-            <div class="room-info">
-                <div class="room-name">
-                    Sabah
-                </div>
-
-                <div class="room-users">
-                    56 users online
-                </div>
-            </div>
-
-            <div>
-                ›
             </div>
 
         </div>
 
 
-        <div class="room-card" onclick="openRoom('Philippines')">
+        <!-- =================================================
+             ROOMS PAGE
+        ================================================= -->
 
-            <div class="room-icon">
-                🇵🇭
-            </div>
+        <div
+            id="roomsPage"
+            class="page"
+        >
 
-            <div class="room-info">
-                <div class="room-name">
-                    Philippines
+            <div class="section-head">
+
+                <div class="section-title">
+                    Public Chat Rooms
                 </div>
 
-                <div class="room-users">
-                    94 users online
-                </div>
             </div>
 
-            <div>
-                ›
+
+            <div class="list-box">
+
+                <div
+                    class="room-item"
+                    onclick="openRoom('Malaysia')"
+                >
+
+                    <div class="room-icon">
+                        🇲🇾
+                    </div>
+
+                    <div class="room-details">
+
+                        <div class="room-name">
+                            Malaysia
+                        </div>
+
+                        <div class="room-count">
+                            128 users online
+                        </div>
+
+                    </div>
+
+                    <div class="room-arrow">
+                        ›
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="room-item"
+                    onclick="openRoom('Sabah')"
+                >
+
+                    <div class="room-icon">
+                        🌴
+                    </div>
+
+                    <div class="room-details">
+
+                        <div class="room-name">
+                            Sabah
+                        </div>
+
+                        <div class="room-count">
+                            56 users online
+                        </div>
+
+                    </div>
+
+                    <div class="room-arrow">
+                        ›
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="room-item"
+                    onclick="openRoom('Philippines')"
+                >
+
+                    <div class="room-icon">
+                        🇵🇭
+                    </div>
+
+                    <div class="room-details">
+
+                        <div class="room-name">
+                            Philippines
+                        </div>
+
+                        <div class="room-count">
+                            94 users online
+                        </div>
+
+                    </div>
+
+                    <div class="room-arrow">
+                        ›
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="room-item"
+                    onclick="openRoom('Indonesia')"
+                >
+
+                    <div class="room-icon">
+                        🇮🇩
+                    </div>
+
+                    <div class="room-details">
+
+                        <div class="room-name">
+                            Indonesia
+                        </div>
+
+                        <div class="room-count">
+                            87 users online
+                        </div>
+
+                    </div>
+
+                    <div class="room-arrow">
+                        ›
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="room-item"
+                    onclick="openRoom('Singapore')"
+                >
+
+                    <div class="room-icon">
+                        🇸🇬
+                    </div>
+
+                    <div class="room-details">
+
+                        <div class="room-name">
+                            Singapore
+                        </div>
+
+                        <div class="room-count">
+                            43 users online
+                        </div>
+
+                    </div>
+
+                    <div class="room-arrow">
+                        ›
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="room-item"
+                    onclick="openRoom('World')"
+                >
+
+                    <div class="room-icon">
+                        🌎
+                    </div>
+
+                    <div class="room-details">
+
+                        <div class="room-name">
+                            World
+                        </div>
+
+                        <div class="room-count">
+                            315 users online
+                        </div>
+
+                    </div>
+
+                    <div class="room-arrow">
+                        ›
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
 
-        <div class="room-card" onclick="openRoom('Indonesia')">
+        <!-- =================================================
+             PROFILE PAGE
+        ================================================= -->
 
-            <div class="room-icon">
-                🇮🇩
-            </div>
+        <div
+            id="profilePage"
+            class="page"
+        >
 
-            <div class="room-info">
-                <div class="room-name">
-                    Indonesia
-                </div>
-
-                <div class="room-users">
-                    87 users online
-                </div>
-            </div>
-
-            <div>
-                ›
-            </div>
-
-        </div>
-
-
-        <div class="room-card" onclick="openRoom('Singapore')">
-
-            <div class="room-icon">
-                🇸🇬
-            </div>
-
-            <div class="room-info">
-                <div class="room-name">
-                    Singapore
-                </div>
-
-                <div class="room-users">
-                    43 users online
-                </div>
-            </div>
-
-            <div>
-                ›
-            </div>
-
-        </div>
-
-
-        <div class="room-card" onclick="openRoom('World')">
-
-            <div class="room-icon">
-                🌎
-            </div>
-
-            <div class="room-info">
-                <div class="room-name">
-                    World
-                </div>
-
-                <div class="room-users">
-                    315 users online
-                </div>
-            </div>
-
-            <div>
-                ›
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         PROFILE
-    ========================= -->
-
-    <div id="profilePage" class="sub-page">
-
-        <div class="profile-cover">
-
-            <div class="profile-avatar" id="profileAvatar">
-                N
-            </div>
-
-        </div>
-
-        <div class="profile-body">
-
-            <div
-                class="profile-name"
-                id="profileName"
-            >
-                User
-            </div>
-
-            <div
-                class="profile-username"
-                id="profileUsername"
-            >
-                @username
-            </div>
-
-            <div class="profile-action">
+            <div class="profile-cover">
 
                 <button
-                    class="profile-btn"
-                    onclick="changeName()"
+                    class="cover-edit"
+                    onclick="showToast('Cover editing will be added later')"
                 >
-                    ✏️ &nbsp; Change Name
+                    ⋮
                 </button>
 
-                <button
-                    class="profile-btn"
-                    onclick="changePassword()"
-                >
-                    🔐 &nbsp; Change Password
-                </button>
 
-                <button
-                    class="profile-btn"
-                    onclick="showToast('Profile settings coming soon')"
+                <div
+                    id="profilePhoto"
+                    class="profile-photo"
                 >
-                    ⚙️ &nbsp; Profile Settings
-                </button>
+                    N
+                </div>
 
-                <button
-                    class="profile-btn logout"
-                    onclick="logout()"
+            </div>
+
+
+            <div class="profile-body">
+
+                <div
+                    id="profileName"
+                    class="profile-name"
                 >
-                    🚪 &nbsp; Logout
-                </button>
+                    User
+                </div>
+
+                <div
+                    id="profileUsername"
+                    class="profile-id"
+                >
+                    @username
+                </div>
+
+
+                <div class="profile-buttons">
+
+                    <button
+                        class="profile-button"
+                        onclick="changeName()"
+                    >
+                        ✏️ &nbsp; Change Name
+                    </button>
+
+
+                    <button
+                        class="profile-button"
+                        onclick="changePassword()"
+                    >
+                        🔐 &nbsp; Change Password
+                    </button>
+
+
+                    <button
+                        class="profile-button"
+                        onclick="showToast('Profile settings will be added step-by-step')"
+                    >
+                        ⚙️ &nbsp; Profile Settings
+                    </button>
+
+
+                    <button
+                        class="profile-button logout"
+                        onclick="logout()"
+                    >
+                        🚪 &nbsp; Logout
+                    </button>
+
+                </div>
 
             </div>
 
@@ -1334,46 +1979,69 @@ body{
     </div>
 
 
-    <!-- =========================
+    <!-- =================================================
          BOTTOM NAV
-    ========================= -->
+    ================================================= -->
 
     <div class="bottom-nav">
 
         <div
             id="navHome"
-            class="nav-item active"
+            class="nav-button active"
             onclick="showPage('home')"
         >
-            <div class="nav-icon">🏠</div>
+
+            <div class="nav-icon">
+                🏠
+            </div>
+
             Home
+
         </div>
+
 
         <div
             id="navFriends"
-            class="nav-item"
+            class="nav-button"
             onclick="showPage('friends')"
         >
-            <div class="nav-icon">👥</div>
+
+            <div class="nav-icon">
+                👥
+            </div>
+
             Friends
+
         </div>
+
 
         <div
             id="navRooms"
-            class="nav-item"
+            class="nav-button"
             onclick="showPage('rooms')"
         >
-            <div class="nav-icon">🌎</div>
+
+            <div class="nav-icon">
+                🌎
+            </div>
+
             Rooms
+
         </div>
+
 
         <div
             id="navProfile"
-            class="nav-item"
+            class="nav-button"
             onclick="showPage('profile')"
         >
-            <div class="nav-icon">👤</div>
+
+            <div class="nav-icon">
+                👤
+            </div>
+
             Profile
+
         </div>
 
     </div>
@@ -1381,40 +2049,42 @@ body{
 </div>
 
 
-<!-- =========================
-     PRIVATE CHAT
-========================= -->
+<!-- =====================================================
+     PRIVATE CHAT SCREEN
+===================================================== -->
 
-<div id="chatScreen" class="chat-screen">
+<div
+    id="chatScreen"
+    class="chat-screen"
+>
 
-    <div class="chat-header">
+    <div class="chat-top">
 
         <button
-            class="back-btn"
+            class="back-button"
             onclick="closeChat()"
         >
             ‹
         </button>
 
+
         <div
             id="chatAvatar"
-            class="chat-header-avatar"
+            class="chat-avatar"
         >
             A
         </div>
 
-        <div class="chat-header-info">
 
-            <div
-                id="chatName"
-                class="chat-header-name"
-            >
+        <div class="chat-title">
+
+            <strong id="chatName">
                 Ahmad
-            </div>
+            </strong>
 
-            <div class="chat-header-status">
+            <span>
                 Online
-            </div>
+            </span>
 
         </div>
 
@@ -1422,22 +2092,29 @@ body{
 
 
     <div
-        id="chatMessages"
-        class="chat-messages"
+        id="chatBody"
+        class="chat-body"
     >
 
         <div class="message received">
+
             Hello! Welcome to Y-M Chat.
+
             <span class="message-time">
                 Now
             </span>
+
         </div>
 
+
         <div class="message sent">
+
             Hi!
+
             <span class="message-time">
                 Now
             </span>
+
         </div>
 
     </div>
@@ -1454,7 +2131,7 @@ body{
         >
 
         <button
-            class="send-btn"
+            class="send-button"
             onclick="sendMessage()"
         >
             ➤
@@ -1477,20 +2154,27 @@ body{
 
 <script>
 
-/* =========================
-   STORAGE
-========================= */
-
-let currentUser =
-    JSON.parse(localStorage.getItem("ym_currentUser")) || null;
+/* =====================================================
+   DATA
+===================================================== */
 
 let users =
-    JSON.parse(localStorage.getItem("ym_users")) || [];
+    JSON.parse(
+        localStorage.getItem("ym_users") || "[]"
+    );
+
+let currentUser =
+    JSON.parse(
+        localStorage.getItem("ym_currentUser") || "null"
+    );
+
+let currentStatus =
+    localStorage.getItem("ym_status") || "Online";
 
 
-/* =========================
-   START APP
-========================= */
+/* =====================================================
+   START
+===================================================== */
 
 window.onload = function(){
 
@@ -1507,9 +2191,9 @@ window.onload = function(){
 };
 
 
-/* =========================
-   AUTH DISPLAY
-========================= */
+/* =====================================================
+   AUTH
+===================================================== */
 
 function showAuth(){
 
@@ -1523,17 +2207,6 @@ function showAuth(){
 
 }
 
-function showRegister(){
-
-    document
-        .getElementById("loginForm")
-        .classList.add("hidden");
-
-    document
-        .getElementById("registerForm")
-        .classList.remove("hidden");
-
-}
 
 function showLogin(){
 
@@ -1548,9 +2221,22 @@ function showLogin(){
 }
 
 
-/* =========================
+function showRegister(){
+
+    document
+        .getElementById("loginForm")
+        .classList.add("hidden");
+
+    document
+        .getElementById("registerForm")
+        .classList.remove("hidden");
+
+}
+
+
+/* =====================================================
    REGISTER
-========================= */
+===================================================== */
 
 function register(){
 
@@ -1571,63 +2257,80 @@ function register(){
         .getElementById("registerPassword")
         .value;
 
+
     if(!name || !username || !password){
 
         showToast("Please complete all fields.");
 
         return;
+
     }
 
+
+    if(username.length < 3){
+
+        showToast("Username must be at least 3 characters.");
+
+        return;
+
+    }
+
+
     const exists =
-        users.some(
-            user =>
-            user.username.toLowerCase()
-            === username.toLowerCase()
-        );
+        users.some(function(user){
+
+            return user.username.toLowerCase()
+                === username.toLowerCase();
+
+        });
+
 
     if(exists){
 
         showToast("Username already exists.");
 
         return;
+
     }
+
 
     const newUser = {
 
         name:name,
+
         username:username,
+
         password:password
 
     };
 
+
     users.push(newUser);
+
 
     localStorage.setItem(
         "ym_users",
         JSON.stringify(users)
     );
 
+
     currentUser = newUser;
+
 
     localStorage.setItem(
         "ym_currentUser",
         JSON.stringify(currentUser)
     );
 
-    showToast("Account created successfully.");
 
-    setTimeout(function(){
-
-        showMainApp();
-
-    },700);
+    showMainApp();
 
 }
 
 
-/* =========================
+/* =====================================================
    LOGIN
-========================= */
+===================================================== */
 
 function login(){
 
@@ -1642,74 +2345,87 @@ function login(){
         .getElementById("loginPassword")
         .value;
 
+
     if(!username || !password){
 
         showToast("Please enter username and password.");
 
         return;
+
     }
 
-    /*
-       DEMO DEFAULT ACCOUNT
-       Username: demo
-       Password: 123456
-    */
+
+    /* DEMO ACCOUNT */
 
     if(
-        username === "demo" &&
+        username.toLowerCase() === "demo"
+        &&
         password === "123456"
     ){
 
         currentUser = {
 
             name:"Demo User",
+
             username:"demo",
+
             password:"123456"
 
         };
+
 
         localStorage.setItem(
             "ym_currentUser",
             JSON.stringify(currentUser)
         );
 
+
         showMainApp();
 
         return;
+
     }
 
 
-    const user =
-        users.find(
-            item =>
-            item.username.toLowerCase()
-            === username.toLowerCase()
-            &&
-            item.password === password
-        );
+    const found =
+        users.find(function(user){
 
-    if(!user){
+            return (
+                user.username.toLowerCase()
+                === username.toLowerCase()
+                &&
+                user.password === password
+            );
+
+        });
+
+
+    if(!found){
 
         showToast("Wrong username or password.");
 
         return;
+
     }
 
-    currentUser = user;
+
+    currentUser = found;
+
 
     localStorage.setItem(
         "ym_currentUser",
         JSON.stringify(currentUser)
     );
 
+
     showMainApp();
 
 }
 
 
-/* =========================
+/* =====================================================
    MAIN APP
-========================= */
+===================================================== */
 
 function showMainApp(){
 
@@ -1721,16 +2437,84 @@ function showMainApp(){
         .getElementById("mainApp")
         .classList.remove("hidden");
 
-    updateProfile();
+
+    updateUserUI();
 
     showPage("home");
 
 }
 
 
-/* =========================
+/* =====================================================
+   USER UI
+===================================================== */
+
+function updateUserUI(){
+
+    if(!currentUser){
+
+        return;
+
+    }
+
+
+    const name =
+        currentUser.name || "User";
+
+
+    const letter =
+        name
+        .charAt(0)
+        .toUpperCase();
+
+
+    document
+        .getElementById("welcomeName")
+        .textContent =
+        "Welcome, " + name + "!";
+
+
+    document
+        .getElementById("welcomeAvatar")
+        .textContent =
+        letter;
+
+
+    document
+        .getElementById("profilePhoto")
+        .textContent =
+        letter;
+
+
+    document
+        .getElementById("profileName")
+        .textContent =
+        name;
+
+
+    document
+        .getElementById("profileUsername")
+        .textContent =
+        "@" + currentUser.username;
+
+
+    document
+        .getElementById("statusSelect")
+        .value =
+        currentStatus;
+
+
+    document
+        .getElementById("statusText")
+        .textContent =
+        currentStatus;
+
+}
+
+
+/* =====================================================
    PAGE NAVIGATION
-========================= */
+===================================================== */
 
 function showPage(page){
 
@@ -1742,6 +2526,7 @@ function showPage(page){
         "profilePage"
 
     ];
+
 
     pages.forEach(function(id){
 
@@ -1760,6 +2545,7 @@ function showPage(page){
         "navProfile"
 
     ];
+
 
     navs.forEach(function(id){
 
@@ -1824,237 +2610,165 @@ function showPage(page){
 }
 
 
-function openFriends(){
+/* =====================================================
+   STATUS
+===================================================== */
 
-    showPage("friends");
+function changeStatus(status){
 
-}
-
-function openRooms(){
-
-    showPage("rooms");
-
-}
-
-function openProfile(){
-
-    showPage("profile");
-
-}
+    currentStatus = status;
 
 
-/* =========================
-   PROFILE
-========================= */
+    localStorage.setItem(
+        "ym_status",
+        status
+    );
 
-function updateProfile(){
-
-    if(!currentUser) return;
 
     document
-        .getElementById("welcomeText")
+        .getElementById("statusText")
         .textContent =
-        "Welcome, " + currentUser.name + "!";
+        status;
 
-    document
-        .getElementById("profileName")
-        .textContent =
-        currentUser.name;
 
-    document
-        .getElementById("profileUsername")
-        .textContent =
-        "@" + currentUser.username;
-
-    const firstLetter =
-        currentUser.name
-        .charAt(0)
-        .toUpperCase();
-
-    document
-        .getElementById("profileAvatar")
-        .textContent =
-        firstLetter;
+    showToast(
+        "Status changed to " + status
+    );
 
 }
 
 
-/* =========================
-   CHANGE NAME
-========================= */
+/* =====================================================
+   SEARCH
+===================================================== */
 
-function changeName(){
+function focusSearch(){
 
-    if(!currentUser) return;
+    showPage("home");
 
-    const newName =
-        prompt(
-            "Enter your new name:",
-            currentUser.name
+
+    setTimeout(function(){
+
+        document
+            .getElementById("homeSearch")
+            .focus();
+
+    },100);
+
+}
+
+
+function searchChats(value){
+
+    const query =
+        value
+        .toLowerCase()
+        .trim();
+
+
+    const items =
+        document.querySelectorAll(
+            ".chat-item"
         );
 
-    if(!newName) return;
 
-    currentUser.name =
-        newName.trim();
-
-    localStorage.setItem(
-        "ym_currentUser",
-        JSON.stringify(currentUser)
-    );
-
-    users =
-        users.map(function(user){
-
-            if(
-                user.username === currentUser.username
-            ){
-
-                user.name =
-                    currentUser.name;
-
-            }
-
-            return user;
-
-        });
-
-    localStorage.setItem(
-        "ym_users",
-        JSON.stringify(users)
-    );
-
-    updateProfile();
-
-    showToast("Name updated.");
-
-}
+    let found = 0;
 
 
-/* =========================
-   CHANGE PASSWORD
-========================= */
+    items.forEach(function(item){
 
-function changePassword(){
+        const searchable =
+            item
+            .getAttribute("data-search")
+            .toLowerCase();
 
-    if(!currentUser) return;
 
-    const oldPassword =
-        prompt("Enter current password:");
+        if(
+            query === ""
+            ||
+            searchable.includes(query)
+        ){
 
-    if(oldPassword !== currentUser.password){
+            item.style.display =
+                "flex";
 
-        showToast("Incorrect current password.");
+            found++;
 
-        return;
+        }else{
+
+            item.style.display =
+                "none";
+
+        }
+
+    });
+
+
+    const empty =
+        document
+        .getElementById("noSearchResult");
+
+
+    if(found === 0){
+
+        empty.classList.remove("hidden");
+
+    }else{
+
+        empty.classList.add("hidden");
+
     }
 
-    const newPassword =
-        prompt("Enter new password:");
+}
 
-    if(!newPassword){
 
-        return;
-    }
+function clearSearch(){
 
-    currentUser.password =
-        newPassword;
+    const input =
+        document.getElementById("homeSearch");
 
-    localStorage.setItem(
-        "ym_currentUser",
-        JSON.stringify(currentUser)
-    );
 
-    users =
-        users.map(function(user){
+    input.value = "";
 
-            if(
-                user.username === currentUser.username
-            ){
 
-                user.password =
-                    newPassword;
-
-            }
-
-            return user;
-
-        });
-
-    localStorage.setItem(
-        "ym_users",
-        JSON.stringify(users)
-    );
-
-    showToast("Password changed.");
+    searchChats("");
 
 }
 
 
-/* =========================
-   FORGOT PASSWORD
-========================= */
-
-function forgotPassword(){
-
-    alert(
-        "Password recovery will be upgraded with security questions in the next step."
-    );
-
-}
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-function logout(){
-
-    const confirmLogout =
-        confirm("Are you sure you want to logout?");
-
-    if(!confirmLogout) return;
-
-    localStorage.removeItem(
-        "ym_currentUser"
-    );
-
-    currentUser = null;
-
-    showAuth();
-
-    showLogin();
-
-}
-
-
-/* =========================
+/* =====================================================
    PRIVATE CHAT
-========================= */
-
-let activeChatUser = "";
+===================================================== */
 
 function openChat(name,letter){
 
-    activeChatUser = name;
-
     document
         .getElementById("chatName")
-        .textContent = name;
+        .textContent =
+        name;
+
 
     document
         .getElementById("chatAvatar")
-        .textContent = letter;
+        .textContent =
+        letter;
+
 
     document
         .getElementById("chatScreen")
         .classList.add("active");
 
-    document
-        .getElementById("chatInput")
-        .focus();
+
+    setTimeout(function(){
+
+        document
+            .getElementById("chatInput")
+            .focus();
+
+    },100);
 
 }
+
 
 function closeChat(){
 
@@ -2070,34 +2784,44 @@ function sendMessage(){
     const input =
         document.getElementById("chatInput");
 
+
     const text =
         input.value.trim();
+
 
     if(!text){
 
         return;
+
     }
 
-    const messages =
-        document.getElementById("chatMessages");
 
     const message =
         document.createElement("div");
 
+
     message.className =
         "message sent";
+
 
     message.innerHTML =
         escapeHTML(text)
         +
         '<span class="message-time">Now</span>';
 
-    messages.appendChild(message);
+
+    const body =
+        document.getElementById("chatBody");
+
+
+    body.appendChild(message);
+
 
     input.value = "";
 
-    messages.scrollTop =
-        messages.scrollHeight;
+
+    body.scrollTop =
+        body.scrollHeight;
 
 }
 
@@ -2106,6 +2830,8 @@ function handleEnter(event){
 
     if(event.key === "Enter"){
 
+        event.preventDefault();
+
         sendMessage();
 
     }
@@ -2113,79 +2839,280 @@ function handleEnter(event){
 }
 
 
-/* =========================
+/* =====================================================
    ROOMS
-========================= */
+===================================================== */
 
-function openRoom(roomName){
+function openRoom(room){
 
     showToast(
-        roomName +
-        " room will be opened in the next Rooms upgrade."
+        room +
+        " room is ready for the next development step."
     );
 
 }
 
 
-/* =========================
-   SEARCH
-========================= */
+/* =====================================================
+   PROFILE
+===================================================== */
 
-function searchHome(value){
+function changeName(){
 
-    const search =
-        value.toLowerCase().trim();
+    if(!currentUser){
 
-    const items =
-        document.querySelectorAll(
-            "#chatList .chat-item"
+        return;
+
+    }
+
+
+    const newName =
+        prompt(
+            "Enter your new name:",
+            currentUser.name
         );
 
-    items.forEach(function(item){
 
-        const name =
-            item
-            .getAttribute("data-name")
-            .toLowerCase();
+    if(!newName){
 
-        if(
-            name.includes(search)
-            ||
-            search === ""
-        ){
+        return;
 
-            item.style.display =
-                "flex";
+    }
 
-        }else{
 
-            item.style.display =
-                "none";
+    const cleaned =
+        newName.trim();
 
-        }
 
-    });
+    if(!cleaned){
+
+        return;
+
+    }
+
+
+    currentUser.name =
+        cleaned;
+
+
+    users =
+        users.map(function(user){
+
+            if(
+                user.username
+                === currentUser.username
+            ){
+
+                user.name =
+                    cleaned;
+
+            }
+
+            return user;
+
+        });
+
+
+    localStorage.setItem(
+        "ym_users",
+        JSON.stringify(users)
+    );
+
+
+    localStorage.setItem(
+        "ym_currentUser",
+        JSON.stringify(currentUser)
+    );
+
+
+    updateUserUI();
+
+
+    showToast("Name updated.");
 
 }
 
 
-/* =========================
+function changePassword(){
+
+    if(!currentUser){
+
+        return;
+
+    }
+
+
+    const oldPassword =
+        prompt(
+            "Enter current password:"
+        );
+
+
+    if(
+        oldPassword
+        !==
+        currentUser.password
+    ){
+
+        showToast(
+            "Current password is incorrect."
+        );
+
+        return;
+
+    }
+
+
+    const newPassword =
+        prompt(
+            "Enter new password:"
+        );
+
+
+    if(!newPassword){
+
+        return;
+
+    }
+
+
+    if(newPassword.length < 6){
+
+        showToast(
+            "Password must be at least 6 characters."
+        );
+
+        return;
+
+    }
+
+
+    currentUser.password =
+        newPassword;
+
+
+    users =
+        users.map(function(user){
+
+            if(
+                user.username
+                === currentUser.username
+            ){
+
+                user.password =
+                    newPassword;
+
+            }
+
+            return user;
+
+        });
+
+
+    localStorage.setItem(
+        "ym_users",
+        JSON.stringify(users)
+    );
+
+
+    localStorage.setItem(
+        "ym_currentUser",
+        JSON.stringify(currentUser)
+    );
+
+
+    showToast(
+        "Password changed successfully."
+    );
+
+}
+
+
+/* =====================================================
+   FORGOT PASSWORD
+===================================================== */
+
+function forgotPassword(){
+
+    alert(
+        "Forgot Password security questions will be connected in the next security step."
+    );
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+    const confirmLogout =
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
+
+    if(!confirmLogout){
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "ym_currentUser"
+    );
+
+
+    currentUser = null;
+
+
+    document
+        .getElementById("mainApp")
+        .classList.add("hidden");
+
+
+    showAuth();
+
+
+    showLogin();
+
+
+    document
+        .getElementById("loginUsername")
+        .value = "";
+
+
+    document
+        .getElementById("loginPassword")
+        .value = "";
+
+}
+
+
+/* =====================================================
    TOAST
-========================= */
+===================================================== */
 
 let toastTimer;
+
 
 function showToast(message){
 
     const toast =
         document.getElementById("toast");
 
+
     toast.textContent =
         message;
 
+
     toast.classList.add("show");
 
+
     clearTimeout(toastTimer);
+
 
     toastTimer =
         setTimeout(function(){
@@ -2197,17 +3124,19 @@ function showToast(message){
 }
 
 
-/* =========================
+/* =====================================================
    SECURITY
-========================= */
+===================================================== */
 
 function escapeHTML(text){
 
     const div =
         document.createElement("div");
 
+
     div.textContent =
         text;
+
 
     return div.innerHTML;
 
