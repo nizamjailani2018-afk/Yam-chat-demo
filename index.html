@@ -497,11 +497,6 @@ button{
     </h2>
 
 
-    <!-- LANGUAGE REMOVED HERE
-         Global Language above is used.
-    -->
-
-
     <label data-i18n="ymId">
         Y-M ID
     </label>
@@ -530,10 +525,6 @@ button{
            placeholder="Enter password again"
            data-i18n-placeholder="repeatPassword">
 
-
-    <!-- COUNTRY MOVED HERE
-         Same regCountry function retained.
-    -->
 
     <label data-i18n="country">
         Country
@@ -1387,10 +1378,14 @@ button{
         </p>
 
 
+        <!-- =================================================
+             MAIN MENU
+        ================================================= -->
+
         <button class="btn-blue">
 
-            💬 <span data-i18n="chat">
-                CHAT
+            🏠 <span data-i18n="home">
+                HOME
             </span>
 
         </button>
@@ -1398,8 +1393,8 @@ button{
 
         <button class="btn-light">
 
-            👥 <span data-i18n="friends">
-                FRIENDS
+            👤 <span data-i18n="profile">
+                PROFILE
             </span>
 
         </button>
@@ -1407,8 +1402,26 @@ button{
 
         <button class="btn-light">
 
-            🌍 <span data-i18n="rooms">
-                ROOMS
+            👥 <span data-i18n="friend">
+                FRIEND
+            </span>
+
+        </button>
+
+
+        <button class="btn-light">
+
+            🌍 <span data-i18n="room">
+                ROOM
+            </span>
+
+        </button>
+
+
+        <button class="btn-light">
+
+            🛒 <span data-i18n="market">
+                MARKET
             </span>
 
         </button>
@@ -1570,9 +1583,11 @@ const translations = {
         createNewPassword:"You can now create a new password.",
         resetPassword:"RESET PASSWORD",
         loginSuccess:"Login successful.",
-        chat:"CHAT",
-        friends:"FRIENDS",
-        rooms:"ROOMS"
+        home:"HOME",
+        profile:"PROFILE",
+        friend:"FRIEND",
+        room:"ROOM",
+        market:"MARKET"
 
     },
 
@@ -1647,9 +1662,11 @@ const translations = {
         createNewPassword:"Sekarang anda boleh membuat password baru.",
         resetPassword:"RESET PASSWORD",
         loginSuccess:"Login berjaya.",
-        chat:"CHAT",
-        friends:"KAWAN",
-        rooms:"ROOMS"
+        home:"HOME",
+        profile:"PROFIL",
+        friend:"KAWAN",
+        room:"ROOM",
+        market:"MARKET"
 
     }
 
@@ -2132,11 +2149,6 @@ function registerUser(){
             "regConfirmPassword"
         ).value;
 
-
-    /*
-       Register now uses the MAIN
-       Language selector.
-    */
 
     const language =
         currentLanguage || "en";
