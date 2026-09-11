@@ -28,13 +28,11 @@ body{
     padding:20px;
 }
 
-/* MAIN */
 .ym-container{
     width:100%;
     max-width:420px;
 }
 
-/* LOGO */
 .logo-area{
     text-align:center;
     color:#fff;
@@ -66,7 +64,6 @@ body{
     opacity:.9;
 }
 
-/* CARD */
 .front-card{
     background:#fff;
     border-radius:22px;
@@ -74,7 +71,6 @@ body{
     box-shadow:0 15px 45px rgba(0,0,0,.30);
 }
 
-/* BUTTONS */
 .main-button{
     width:100%;
     border:0;
@@ -111,7 +107,11 @@ body{
     color:#333;
 }
 
-/* FORM */
+.recovery-button{
+    background:#fff3e0;
+    color:#e65100;
+}
+
 .form-section{
     display:none;
     margin-top:15px;
@@ -144,7 +144,17 @@ body{
     border-color:#1877f2;
 }
 
-/* ACTION */
+.select{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+    font-size:15px;
+    margin-bottom:10px;
+    background:#fff;
+}
+
 .action-button{
     width:100%;
     border:0;
@@ -169,7 +179,6 @@ body{
     font-weight:bold;
 }
 
-/* MESSAGE */
 .message{
     min-height:20px;
     margin-top:10px;
@@ -185,7 +194,10 @@ body{
     color:#d00000;
 }
 
-/* SECURITY INFO */
+.info{
+    color:#1877f2;
+}
+
 .security-info{
     font-size:14px;
     color:#555;
@@ -193,13 +205,47 @@ body{
     margin-bottom:12px;
 }
 
-/* FOOTER */
+.section-note{
+    background:#f5f8fc;
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:12px;
+    font-size:13px;
+    color:#666;
+    line-height:1.45;
+}
+
 .footer{
     text-align:center;
     color:#fff;
     font-size:12px;
     margin-top:15px;
     opacity:.8;
+}
+
+.small-label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    color:#555;
+    margin-bottom:6px;
+}
+
+.divider{
+    height:1px;
+    background:#eee;
+    margin:15px 0;
+}
+
+.otp-box{
+    background:#fff8e1;
+    border:1px solid #ffe082;
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:12px;
+    font-size:13px;
+    color:#795548;
+    line-height:1.45;
 }
 </style>
 </head>
@@ -209,6 +255,7 @@ body{
 <div class="ym-container">
 
     <!-- LOGO -->
+
     <div class="logo-area">
 
         <div class="logo">
@@ -224,6 +271,7 @@ body{
 
 
     <!-- MAIN CARD -->
+
     <div class="front-card">
 
         <!-- MAIN MENU -->
@@ -252,8 +300,15 @@ body{
             🛡️ SECURITY
         </button>
 
+        <button
+            class="main-button recovery-button"
+            onclick="showSection('recoverySection')">
+            🔐 FORGOT PASSWORD / RECOVERY
+        </button>
+
 
         <!-- LOGIN -->
+
         <div id="loginSection" class="form-section">
 
             <div class="form-title">
@@ -290,10 +345,17 @@ body{
 
 
         <!-- REGISTER -->
+
         <div id="registerSection" class="form-section">
 
             <div class="form-title">
                 Daftar Y-M ID
+            </div>
+
+            <div class="section-note">
+                Maklumat telefon, email dan security
+                digunakan untuk pemulihan akaun pada
+                masa akan datang.
             </div>
 
             <input
@@ -312,7 +374,141 @@ body{
                 id="registerConfirm"
                 class="input"
                 type="password"
-                placeholder="Ulang Password">
+                placeholder="Confirm Password">
+
+
+            <div class="divider"></div>
+
+            <span class="small-label">
+                📱 Phone Number
+            </span>
+
+            <input
+                id="registerPhone"
+                class="input"
+                type="tel"
+                placeholder="Contoh: 01XXXXXXXX">
+
+
+            <div class="otp-box">
+                🔢 Phone OTP<br>
+                Ruang OTP ini disediakan untuk
+                sambungan SMS/WhatsApp pada server
+                sebenar YM Chat nanti.
+            </div>
+
+            <input
+                id="registerPhoneOtp"
+                class="input"
+                type="text"
+                inputmode="numeric"
+                maxlength="6"
+                placeholder="Phone OTP">
+
+
+            <div class="divider"></div>
+
+
+            <span class="small-label">
+                📧 Email Address
+            </span>
+
+            <input
+                id="registerEmail"
+                class="input"
+                type="email"
+                placeholder="Email Address">
+
+            <input
+                id="registerEmailConfirm"
+                class="input"
+                type="email"
+                placeholder="Confirm Email Address">
+
+
+            <div class="otp-box">
+                🔢 Email OTP<br>
+                Ruang OTP disediakan untuk sambungan
+                email verification pada server sebenar.
+            </div>
+
+            <input
+                id="registerEmailOtp"
+                class="input"
+                type="text"
+                inputmode="numeric"
+                maxlength="6"
+                placeholder="Email OTP">
+
+
+            <div class="divider"></div>
+
+
+            <span class="small-label">
+                🛡️ Security Question 1
+            </span>
+
+            <select
+                id="question1"
+                class="select">
+
+                <option value="">
+                    Pilih soalan keselamatan
+                </option>
+
+                <option value="Nama sekolah pertama anda?">
+                    Nama sekolah pertama anda?
+                </option>
+
+                <option value="Nama bandar kelahiran anda?">
+                    Nama bandar kelahiran anda?
+                </option>
+
+                <option value="Nama panggilan zaman kecil anda?">
+                    Nama panggilan zaman kecil anda?
+                </option>
+
+            </select>
+
+            <input
+                id="answer1"
+                class="input"
+                type="text"
+                placeholder="Jawapan Security 1">
+
+
+            <span class="small-label">
+                🛡️ Security Question 2
+            </span>
+
+            <select
+                id="question2"
+                class="select">
+
+                <option value="">
+                    Pilih soalan keselamatan
+                </option>
+
+                <option value="Nama haiwan peliharaan pertama anda?">
+                    Nama haiwan peliharaan pertama anda?
+                </option>
+
+                <option value="Makanan kegemaran anda?">
+                    Makanan kegemaran anda?
+                </option>
+
+                <option value="Nama kawan baik zaman kecil anda?">
+                    Nama kawan baik zaman kecil anda?
+                </option>
+
+            </select>
+
+            <input
+                id="answer2"
+                class="input"
+                type="text"
+                placeholder="Jawapan Security 2">
+
 
             <button
                 class="action-button"
@@ -332,6 +528,7 @@ body{
 
 
         <!-- CHANGE PASSWORD -->
+
         <div id="passwordSection" class="form-section">
 
             <div class="form-title">
@@ -360,7 +557,7 @@ body{
                 id="confirmNewPassword"
                 class="input"
                 type="password"
-                placeholder="Ulang Password Baru">
+                placeholder="Confirm Password Baru">
 
             <button
                 class="action-button"
@@ -380,6 +577,7 @@ body{
 
 
         <!-- SECURITY -->
+
         <div id="securitySection" class="form-section">
 
             <div class="form-title">
@@ -387,9 +585,9 @@ body{
             </div>
 
             <div class="security-info">
-                Security Y-M Chat akan digunakan untuk
-                membantu melindungi akaun dan pemulihan
-                Y-M ID.
+                Akaun mempunyai 2 Security Questions,
+                Phone Number dan Email Address sebagai
+                persediaan recovery.
             </div>
 
             <input
@@ -398,15 +596,106 @@ body{
                 type="text"
                 placeholder="Y-M ID">
 
+            <span class="small-label">
+                📱 Phone Number
+            </span>
+
             <input
-                id="securityAnswer"
+                id="securityPhone"
+                class="input"
+                type="tel"
+                placeholder="Nombor Telefon">
+
+
+            <span class="small-label">
+                📧 Email Address
+            </span>
+
+            <input
+                id="securityEmail"
+                class="input"
+                type="email"
+                placeholder="Email Address">
+
+            <input
+                id="securityEmailConfirm"
+                class="input"
+                type="email"
+                placeholder="Confirm Email Address">
+
+
+            <div class="divider"></div>
+
+
+            <span class="small-label">
+                Security Question 1
+            </span>
+
+            <select
+                id="securityQuestion1"
+                class="select">
+
+                <option value="">
+                    Pilih soalan
+                </option>
+
+                <option value="Nama sekolah pertama anda?">
+                    Nama sekolah pertama anda?
+                </option>
+
+                <option value="Nama bandar kelahiran anda?">
+                    Nama bandar kelahiran anda?
+                </option>
+
+                <option value="Nama panggilan zaman kecil anda?">
+                    Nama panggilan zaman kecil anda?
+                </option>
+
+            </select>
+
+            <input
+                id="securityAnswer1"
                 class="input"
                 type="text"
-                placeholder="Kod / Jawapan Keselamatan">
+                placeholder="Jawapan Security 1">
+
+
+            <span class="small-label">
+                Security Question 2
+            </span>
+
+            <select
+                id="securityQuestion2"
+                class="select">
+
+                <option value="">
+                    Pilih soalan
+                </option>
+
+                <option value="Nama haiwan peliharaan pertama anda?">
+                    Nama haiwan peliharaan pertama anda?
+                </option>
+
+                <option value="Makanan kegemaran anda?">
+                    Makanan kegemaran anda?
+                </option>
+
+                <option value="Nama kawan baik zaman kecil anda?">
+                    Nama kawan baik zaman kecil anda?
+                </option>
+
+            </select>
+
+            <input
+                id="securityAnswer2"
+                class="input"
+                type="text"
+                placeholder="Jawapan Security 2">
+
 
             <button
                 class="action-button"
-                onclick="saveSecurity()">
+                onclick="updateSecurity()">
                 SIMPAN SECURITY
             </button>
 
@@ -417,6 +706,176 @@ body{
             </button>
 
             <div id="securityMessage" class="message"></div>
+
+        </div>
+
+
+        <!-- RECOVERY -->
+
+        <div id="recoverySection" class="form-section">
+
+            <div class="form-title">
+                🔐 Password Recovery
+            </div>
+
+            <div class="section-note">
+                Recovery boleh menggunakan Security
+                Questions. Phone OTP dan Email OTP
+                telah disediakan untuk sambungan server
+                sebenar pada masa akan datang.
+            </div>
+
+            <input
+                id="recoveryId"
+                class="input"
+                type="text"
+                placeholder="Masukkan Y-M ID">
+
+            <button
+                class="action-button"
+                onclick="findRecoveryAccount()">
+                CARI AKAUN
+            </button>
+
+
+            <div id="recoveryQuestions"
+                 style="display:none;margin-top:15px;">
+
+                <div class="divider"></div>
+
+
+                <span class="small-label">
+                    🛡️ Security Question 1
+                </span>
+
+                <div
+                    id="recoveryQuestion1"
+                    class="section-note">
+                </div>
+
+                <input
+                    id="recoveryAnswer1"
+                    class="input"
+                    type="text"
+                    placeholder="Jawapan Security 1">
+
+
+                <span class="small-label">
+                    🛡️ Security Question 2
+                </span>
+
+                <div
+                    id="recoveryQuestion2"
+                    class="section-note">
+                </div>
+
+                <input
+                    id="recoveryAnswer2"
+                    class="input"
+                    type="text"
+                    placeholder="Jawapan Security 2">
+
+
+                <button
+                    class="action-button"
+                    onclick="verifyRecovery()">
+                    SAHKAN SECURITY
+                </button>
+
+            </div>
+
+
+            <div
+                id="recoveryPhone"
+                style="display:none;margin-top:15px;">
+
+                <div class="divider"></div>
+
+                <span class="small-label">
+                    📱 Phone Recovery
+                </span>
+
+                <div class="otp-box">
+                    SMS / WhatsApp OTP akan disambungkan
+                    ke nombor telefon akaun apabila
+                    server YM Chat sudah tersedia.
+                </div>
+
+                <input
+                    id="recoveryPhoneOtp"
+                    class="input"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="6"
+                    placeholder="Masukkan Phone OTP">
+
+            </div>
+
+
+            <div
+                id="recoveryEmail"
+                style="display:none;margin-top:15px;">
+
+                <div class="divider"></div>
+
+                <span class="small-label">
+                    📧 Email Recovery
+                </span>
+
+                <div class="otp-box">
+                    Email OTP akan disambungkan apabila
+                    sistem email verification YM Chat
+                    sudah menggunakan server sebenar.
+                </div>
+
+                <input
+                    id="recoveryEmailOtp"
+                    class="input"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="6"
+                    placeholder="Masukkan Email OTP">
+
+            </div>
+
+
+            <div
+                id="newRecoveryPassword"
+                style="display:none;margin-top:15px;">
+
+                <div class="divider"></div>
+
+                <input
+                    id="recoveryNewPassword"
+                    class="input"
+                    type="password"
+                    placeholder="Password Baru">
+
+                <input
+                    id="recoveryConfirmPassword"
+                    class="input"
+                    type="password"
+                    placeholder="Confirm Password Baru">
+
+                <button
+                    class="action-button"
+                    onclick="resetPassword()">
+                    RESET PASSWORD
+                </button>
+
+            </div>
+
+
+            <button
+                class="back-button"
+                onclick="closeSections()">
+                Kembali
+            </button>
+
+            <div
+                id="recoveryMessage"
+                class="message">
+            </div>
 
         </div>
 
@@ -440,7 +899,8 @@ function showSection(sectionId){
 
     closeSections();
 
-    const section=document.getElementById(sectionId);
+    const section=
+        document.getElementById(sectionId);
 
     if(section){
         section.classList.add("active");
@@ -509,6 +969,42 @@ function registerAccount(){
         document.getElementById("registerConfirm")
         .value;
 
+    const phone=
+        document.getElementById("registerPhone")
+        .value.trim();
+
+    const phoneOtp=
+        document.getElementById("registerPhoneOtp")
+        .value.trim();
+
+    const email=
+        document.getElementById("registerEmail")
+        .value.trim();
+
+    const emailConfirm=
+        document.getElementById("registerEmailConfirm")
+        .value.trim();
+
+    const emailOtp=
+        document.getElementById("registerEmailOtp")
+        .value.trim();
+
+    const question1=
+        document.getElementById("question1")
+        .value;
+
+    const answer1=
+        document.getElementById("answer1")
+        .value.trim();
+
+    const question2=
+        document.getElementById("question2")
+        .value;
+
+    const answer2=
+        document.getElementById("answer2")
+        .value.trim();
+
     const message=
         document.getElementById("registerMessage");
 
@@ -522,7 +1018,6 @@ function registerAccount(){
             "Y-M ID mesti sekurang-kurangnya 3 aksara.";
 
         message.classList.add("error");
-
         return;
 
     }
@@ -534,7 +1029,6 @@ function registerAccount(){
             "Y-M ID tidak boleh mempunyai ruang.";
 
         message.classList.add("error");
-
         return;
 
     }
@@ -546,7 +1040,6 @@ function registerAccount(){
             "Password mesti sekurang-kurangnya 4 aksara.";
 
         message.classList.add("error");
-
         return;
 
     }
@@ -558,10 +1051,92 @@ function registerAccount(){
             "Password tidak sama.";
 
         message.classList.add("error");
-
         return;
 
     }
+
+
+    if(!phone){
+
+        message.textContent=
+            "Sila masukkan nombor telefon.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(!email){
+
+        message.textContent=
+            "Sila masukkan Email Address.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(email!==emailConfirm){
+
+        message.textContent=
+            "Email Address tidak sama.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(!email.includes("@")){
+
+        message.textContent=
+            "Email Address tidak sah.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(!question1||!answer1){
+
+        message.textContent=
+            "Lengkapkan Security Question 1.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(!question2||!answer2){
+
+        message.textContent=
+            "Lengkapkan Security Question 2.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(question1===question2){
+
+        message.textContent=
+            "Pilih dua soalan Security yang berbeza.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    /*
+       OTP DI SINI BELUM DIWAJIBKAN.
+       Ia hanya ruang persediaan.
+    */
 
 
     const accounts=getAccounts();
@@ -571,7 +1146,8 @@ function registerAccount(){
         Object.keys(accounts)
         .find(function(key){
 
-            return key.toLowerCase()===id.toLowerCase();
+            return key.toLowerCase()===
+                   id.toLowerCase();
 
         });
 
@@ -582,7 +1158,6 @@ function registerAccount(){
             "Y-M ID sudah digunakan.";
 
         message.classList.add("error");
-
         return;
 
     }
@@ -592,7 +1167,25 @@ function registerAccount(){
 
         password:password,
 
-        security:"",
+        phone:phone,
+
+        phoneVerified:false,
+
+        phoneOtp:phoneOtp,
+
+        email:email,
+
+        emailVerified:false,
+
+        emailOtp:emailOtp,
+
+        securityQuestion1:question1,
+
+        securityAnswer1:answer1.toLowerCase(),
+
+        securityQuestion2:question2,
+
+        securityAnswer2:answer2.toLowerCase(),
 
         createdAt:Date.now()
 
@@ -641,7 +1234,6 @@ function login(){
             "Sila isi Y-M ID dan password.";
 
         message.classList.add("error");
-
         return;
 
     }
@@ -654,7 +1246,8 @@ function login(){
         Object.keys(accounts)
         .find(function(key){
 
-            return key.toLowerCase()===id.toLowerCase();
+            return key.toLowerCase()===
+                   id.toLowerCase();
 
         });
 
@@ -665,7 +1258,6 @@ function login(){
             "Y-M ID tidak dijumpai.";
 
         message.classList.add("error");
-
         return;
 
     }
@@ -680,7 +1272,6 @@ function login(){
             "Password tidak betul.";
 
         message.classList.add("error");
-
         return;
 
     }
@@ -697,13 +1288,6 @@ function login(){
 
     message.classList.add("success");
 
-
-    /*
-       BUAT MASA INI KITA BELUM
-       BINA HOME.
-       SELEPAS LOGIN, KITA TUNJUK
-       STATUS SAHAJA.
-    */
 
     setTimeout(function(){
 
@@ -753,7 +1337,6 @@ function changePassword(){
             "Sila lengkapkan semua ruangan.";
 
         message.classList.add("error");
-
         return;
 
     }
@@ -766,7 +1349,8 @@ function changePassword(){
         Object.keys(accounts)
         .find(function(key){
 
-            return key.toLowerCase()===id.toLowerCase();
+            return key.toLowerCase()===
+                   id.toLowerCase();
 
         });
 
@@ -777,7 +1361,6 @@ function changePassword(){
             "Y-M ID tidak dijumpai.";
 
         message.classList.add("error");
-
         return;
 
     }
@@ -792,7 +1375,6 @@ function changePassword(){
             "Password lama tidak betul.";
 
         message.classList.add("error");
-
         return;
 
     }
@@ -804,7 +1386,6 @@ function changePassword(){
             "Password baru mesti sekurang-kurangnya 4 aksara.";
 
         message.classList.add("error");
-
         return;
 
     }
@@ -816,7 +1397,6 @@ function changePassword(){
             "Password baru tidak sama.";
 
         message.classList.add("error");
-
         return;
 
     }
@@ -843,17 +1423,41 @@ function changePassword(){
 
 
 /* =========================
-   SECURITY
+   SECURITY UPDATE
 ========================= */
 
-function saveSecurity(){
+function updateSecurity(){
 
     const id=
         document.getElementById("securityId")
         .value.trim();
 
-    const answer=
-        document.getElementById("securityAnswer")
+    const phone=
+        document.getElementById("securityPhone")
+        .value.trim();
+
+    const email=
+        document.getElementById("securityEmail")
+        .value.trim();
+
+    const emailConfirm=
+        document.getElementById("securityEmailConfirm")
+        .value.trim();
+
+    const question1=
+        document.getElementById("securityQuestion1")
+        .value;
+
+    const answer1=
+        document.getElementById("securityAnswer1")
+        .value.trim();
+
+    const question2=
+        document.getElementById("securityQuestion2")
+        .value;
+
+    const answer2=
+        document.getElementById("securityAnswer2")
         .value.trim();
 
     const message=
@@ -863,13 +1467,67 @@ function saveSecurity(){
     message.className="message";
 
 
-    if(!id||!answer){
+    if(!id){
 
         message.textContent=
-            "Sila isi Y-M ID dan kod keselamatan.";
+            "Sila masukkan Y-M ID.";
 
         message.classList.add("error");
+        return;
 
+    }
+
+
+    if(!phone){
+
+        message.textContent=
+            "Sila masukkan nombor telefon.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(!email){
+
+        message.textContent=
+            "Sila masukkan Email Address.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(email!==emailConfirm){
+
+        message.textContent=
+            "Email Address tidak sama.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(!question1||!answer1||!question2||!answer2){
+
+        message.textContent=
+            "Lengkapkan kedua-dua Security.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(question1===question2){
+
+        message.textContent=
+            "Sila pilih soalan yang berbeza.";
+
+        message.classList.add("error");
         return;
 
     }
@@ -882,7 +1540,8 @@ function saveSecurity(){
         Object.keys(accounts)
         .find(function(key){
 
-            return key.toLowerCase()===id.toLowerCase();
+            return key.toLowerCase()===
+                   id.toLowerCase();
 
         });
 
@@ -893,22 +1552,348 @@ function saveSecurity(){
             "Y-M ID tidak dijumpai.";
 
         message.classList.add("error");
-
         return;
 
     }
 
 
-    accounts[accountKey].security=answer;
+    accounts[accountKey].phone=
+        phone;
+
+    accounts[accountKey].email=
+        email;
+
+    accounts[accountKey].securityQuestion1=
+        question1;
+
+    accounts[accountKey].securityAnswer1=
+        answer1.toLowerCase();
+
+    accounts[accountKey].securityQuestion2=
+        question2;
+
+    accounts[accountKey].securityAnswer2=
+        answer2.toLowerCase();
 
 
     saveAccounts(accounts);
 
 
     message.textContent=
-        "Security berjaya disimpan.";
+        "Security berjaya dikemaskini.";
 
     message.classList.add("success");
+
+}
+
+
+/* =========================
+   RECOVERY
+========================= */
+
+let recoveryAccountKey="";
+
+
+function findRecoveryAccount(){
+
+    const id=
+        document.getElementById("recoveryId")
+        .value.trim();
+
+    const message=
+        document.getElementById("recoveryMessage");
+
+
+    message.className="message";
+
+
+    if(!id){
+
+        message.textContent=
+            "Sila masukkan Y-M ID.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    const accounts=getAccounts();
+
+
+    const accountKey=
+        Object.keys(accounts)
+        .find(function(key){
+
+            return key.toLowerCase()===
+                   id.toLowerCase();
+
+        });
+
+
+    if(!accountKey){
+
+        message.textContent=
+            "Y-M ID tidak dijumpai.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    const account=accounts[accountKey];
+
+
+    if(
+        !account.securityQuestion1||
+        !account.securityQuestion2
+    ){
+
+        message.textContent=
+            "Security akaun belum lengkap.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    recoveryAccountKey=accountKey;
+
+
+    document.getElementById(
+        "recoveryQuestion1"
+    ).textContent=
+        account.securityQuestion1;
+
+
+    document.getElementById(
+        "recoveryQuestion2"
+    ).textContent=
+        account.securityQuestion2;
+
+
+    document.getElementById(
+        "recoveryQuestions"
+    ).style.display="block";
+
+
+    document.getElementById(
+        "recoveryPhone"
+    ).style.display="block";
+
+
+    document.getElementById(
+        "recoveryEmail"
+    ).style.display="block";
+
+
+    document.getElementById(
+        "newRecoveryPassword"
+    ).style.display="none";
+
+
+    message.textContent=
+        "Sila sahkan Security Questions.";
+
+    message.classList.add("info");
+
+}
+
+
+/* =========================
+   VERIFY RECOVERY
+========================= */
+
+function verifyRecovery(){
+
+    if(!recoveryAccountKey)return;
+
+
+    const answer1=
+        document.getElementById(
+            "recoveryAnswer1"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+    const answer2=
+        document.getElementById(
+            "recoveryAnswer2"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+    const message=
+        document.getElementById(
+            "recoveryMessage"
+        );
+
+
+    message.className="message";
+
+
+    const accounts=getAccounts();
+
+    const account=
+        accounts[recoveryAccountKey];
+
+
+    if(!answer1||!answer2){
+
+        message.textContent=
+            "Sila jawab kedua-dua soalan.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(
+        answer1!==
+        String(
+            account.securityAnswer1||""
+        ).toLowerCase()
+    ){
+
+        message.textContent=
+            "Jawapan Security 1 tidak betul.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(
+        answer2!==
+        String(
+            account.securityAnswer2||""
+        ).toLowerCase()
+    ){
+
+        message.textContent=
+            "Jawapan Security 2 tidak betul.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    /*
+       Phone OTP dan Email OTP belum
+       disahkan secara sebenar kerana
+       server belum disambungkan.
+
+       Buat masa sekarang Security Questions
+       menjadi kaedah recovery demo.
+    */
+
+
+    document.getElementById(
+        "newRecoveryPassword"
+    ).style.display="block";
+
+
+    message.textContent=
+        "Security disahkan. Sila buat password baru.";
+
+    message.classList.add("success");
+
+}
+
+
+/* =========================
+   RESET PASSWORD
+========================= */
+
+function resetPassword(){
+
+    if(!recoveryAccountKey)return;
+
+
+    const newPassword=
+        document.getElementById(
+            "recoveryNewPassword"
+        )
+        .value;
+
+    const confirm=
+        document.getElementById(
+            "recoveryConfirmPassword"
+        )
+        .value;
+
+    const message=
+        document.getElementById(
+            "recoveryMessage"
+        );
+
+
+    message.className="message";
+
+
+    if(newPassword.length<4){
+
+        message.textContent=
+            "Password baru mesti sekurang-kurangnya 4 aksara.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    if(newPassword!==confirm){
+
+        message.textContent=
+            "Password baru tidak sama.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    const accounts=getAccounts();
+
+
+    if(!accounts[recoveryAccountKey]){
+
+        message.textContent=
+            "Akaun tidak dijumpai.";
+
+        message.classList.add("error");
+        return;
+
+    }
+
+
+    accounts[recoveryAccountKey].password=
+        newPassword;
+
+
+    saveAccounts(accounts);
+
+
+    message.textContent=
+        "Password berjaya di-reset. Sila login.";
+
+    message.classList.add("success");
+
+
+    document.getElementById(
+        "recoveryNewPassword"
+    ).value="";
+
+    document.getElementById(
+        "recoveryConfirmPassword"
+    ).value="";
 
 }
 
