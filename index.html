@@ -2,720 +2,209 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Y-M Chat V1.9.2</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Y-M Chat V2.0</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#eef3f8;
-    color:#222;
-}
-
-button,input,textarea{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#eef3f8;color:#222}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
 
 .app{
-    width:100%;
-    max-width:480px;
-    min-height:100vh;
-    margin:auto;
-    background:#fff;
-    position:relative;
-    overflow:hidden;
+ max-width:480px;min-height:100vh;margin:auto;background:#fff;
+ position:relative;overflow:hidden
 }
 
-/* ================= LOGIN ================= */
-
+/* AUTH */
 .auth{
-    min-height:100vh;
-    padding:35px 25px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:linear-gradient(135deg,#1976d2,#42a5f5);
+ min-height:100vh;padding:25px;display:flex;align-items:center;
+ justify-content:center;background:linear-gradient(135deg,#1976d2,#42a5f5)
 }
-
-.auth-box{
-    width:100%;
-    background:white;
-    border-radius:22px;
-    padding:28px 22px;
-    box-shadow:0 10px 35px rgba(0,0,0,.2);
+.authbox{
+ width:100%;background:#fff;border-radius:22px;padding:28px 22px;
+ box-shadow:0 10px 35px #0003
 }
-
-.logo{
-    text-align:center;
-    font-size:42px;
-    font-weight:bold;
-    color:#1976d2;
-    margin-bottom:5px;
+.logo{text-align:center;font-size:42px;font-weight:bold;color:#1976d2}
+.subtitle{text-align:center;color:#777;margin:5px 0 25px}
+.authbox h2{text-align:center;margin-bottom:18px}
+.input{
+ width:100%;padding:13px;border:1px solid #ddd;border-radius:11px;
+ margin-bottom:11px;outline:0
 }
-
-.logo-sub{
-    text-align:center;
-    color:#777;
-    margin-bottom:25px;
+.input:focus{border-color:#1976d2}
+.primary{
+ width:100%;padding:13px;border:0;border-radius:11px;
+ background:#1976d2;color:#fff;font-weight:bold
 }
+.switch{text-align:center;color:#777;margin-top:17px}
+.switch span{color:#1976d2;font-weight:bold;cursor:pointer}
 
-.auth-box h2{
-    text-align:center;
-    margin-bottom:20px;
-}
-
-.auth-input{
-    width:100%;
-    padding:14px;
-    border:1px solid #ddd;
-    border-radius:12px;
-    margin-bottom:12px;
-    outline:none;
-}
-
-.auth-input:focus{
-    border-color:#1976d2;
-}
-
-.main-btn{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:12px;
-    background:#1976d2;
-    color:white;
-    font-weight:bold;
-    margin-top:5px;
-}
-
-.auth-switch{
-    text-align:center;
-    margin-top:18px;
-    color:#777;
-}
-
-.auth-switch span{
-    color:#1976d2;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* ================= APP ================= */
-
-.hidden{
-    display:none!important;
-}
-
+/* HEADER */
 .header{
-    height:62px;
-    background:#1976d2;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 17px;
-    position:sticky;
-    top:0;
-    z-index:20;
+ height:62px;background:#1976d2;color:#fff;display:flex;
+ align-items:center;justify-content:space-between;padding:0 15px;
+ position:sticky;top:0;z-index:20
 }
-
-.header-title{
-    font-size:20px;
-    font-weight:bold;
+.title{font-size:20px;font-weight:bold}
+.headerbuttons{display:flex;gap:8px}
+.icon{
+ width:38px;height:38px;border:0;border-radius:50%;
+ background:#ffffff22;color:#fff
 }
+.content{min-height:calc(100vh - 62px);padding-bottom:75px;background:#f5f7fa}
 
-.header-actions{
-    display:flex;
-    gap:10px;
+/* NAV */
+.bottom{
+ position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+ width:100%;max-width:480px;height:68px;background:#fff;
+ border-top:1px solid #ddd;display:grid;grid-template-columns:repeat(5,1fr);
+ z-index:30
 }
+.nav{border:0;background:#fff;color:#777;font-size:10px}
+.nav div{font-size:20px}
+.nav.active{color:#1976d2;font-weight:bold}
 
-.icon-btn{
-    border:0;
-    background:rgba(255,255,255,.15);
-    color:white;
-    width:38px;
-    height:38px;
-    border-radius:50%;
+/* GENERAL */
+.section{padding:15px;font-size:18px;font-weight:bold}
+.card{
+ background:#fff;margin:8px 10px;padding:13px;border-radius:14px
 }
-
-.content{
-    padding-bottom:72px;
-    min-height:calc(100vh - 62px);
-    background:#f5f7fa;
-}
-
-/* ================= HOME ================= */
-
-.home-profile{
-    background:white;
-    padding:15px;
-    display:flex;
-    gap:12px;
-    align-items:center;
-}
-
+.row{display:flex;align-items:center;gap:11px}
+.flex{flex:1}
 .avatar{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    background:#1976d2;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    overflow:hidden;
+ width:48px;height:48px;border-radius:50%;background:#1976d2;color:#fff;
+ display:flex;align-items:center;justify-content:center;font-weight:bold;
+ overflow:hidden;flex-shrink:0
+}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.small{font-size:13px;color:#888}
+.blue{color:#1976d2}
+.btn{
+ border:0;border-radius:9px;padding:9px 12px;background:#1976d2;color:#fff
+}
+.lightbtn{
+ border:0;border-radius:9px;padding:9px 12px;background:#eaf2fb;color:#1976d2
+}
+.empty{text-align:center;padding:40px 20px;color:#888}
+
+/* HOME */
+.homeuser{background:#fff;padding:14px;display:flex;gap:10px;align-items:center}
+.postbox{background:#fff;margin:9px;padding:12px;border-radius:14px}
+.postbox textarea{
+ width:100%;height:75px;border:1px solid #ddd;border-radius:10px;
+ padding:10px;resize:none
+}
+.posttools{display:flex;gap:7px;margin-top:8px}
+.posttools .flex{display:flex;justify-content:flex-end}
+.post{background:#fff;margin:9px;padding:13px;border-radius:14px}
+.posthead{display:flex;gap:10px;align-items:center}
+.posttext{margin-top:11px;line-height:1.5;white-space:pre-wrap}
+
+/* CHAT */
+.chatScreen,.roomScreen{
+ position:fixed;inset:0;max-width:480px;margin:auto;
+ background:#eef3f8;z-index:60;display:flex;flex-direction:column
+}
+.chathead{
+ height:62px;background:#1976d2;color:#fff;display:flex;
+ align-items:center;gap:9px;padding:0 10px
+}
+.back{border:0;background:transparent;color:#fff;font-size:29px}
+.chatbody{flex:1;overflow-y:auto;padding:14px}
+.msg{
+ max-width:78%;padding:10px 12px;border-radius:15px;
+ margin-bottom:8px;line-height:1.4
+}
+.msg.me{margin-left:auto;background:#1976d2;color:#fff;border-bottom-right-radius:4px}
+.msg.other{background:#fff;border-bottom-left-radius:4px}
+.msg small{display:block;font-size:9px;opacity:.65;margin-top:4px}
+.chatinput{background:#fff;padding:9px;display:flex;gap:7px}
+.chatinput input{
+ flex:1;border:1px solid #ddd;border-radius:22px;padding:11px 14px
+}
+.send{width:44px;border:0;border-radius:50%;background:#1976d2;color:#fff}
+
+/* ROOMS */
+.banner{
+ margin:10px;padding:16px;border-radius:14px;background:#1976d2;color:#fff
+}
+.country{
+ background:#fff;margin:7px 10px;border-radius:13px;padding:13px;
+ display:flex;align-items:center;gap:10px
+}
+.countryicon{
+ width:45px;height:45px;border-radius:11px;background:#eaf2fb;
+ display:flex;align-items:center;justify-content:center;font-size:22px
+}
+.country .flex{min-width:0}
+.state{
+ background:#f8fafc;margin:5px 0 5px 15px;padding:11px;border-radius:10px;
+ display:flex;align-items:center;gap:8px
+}
+.roommembers{font-size:12px;color:#888}
+
+/* PROFILE */
+.cover{
+ height:170px;background:linear-gradient(135deg,#1976d2,#90caf9);
+ position:relative;background-size:cover;background-position:center
+}
+.coverbtn{
+ position:absolute;right:10px;top:10px;border:0;border-radius:9px;
+ padding:8px;background:#0007;color:#fff
+}
+.profile{background:#fff;padding:0 15px 18px;position:relative}
+.pavatar{
+ width:88px;height:88px;margin-top:-44px;border:4px solid #fff;
+ border-radius:50%;background:#1976d2;color:#fff;overflow:hidden;
+ display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:bold
+}
+.pavatar img{width:100%;height:100%;object-fit:cover}
+.editavatar{
+ position:absolute;left:80px;top:8px;width:30px;height:30px;
+ border:0;border-radius:50%;background:#1976d2;color:#fff
+}
+.pname{font-size:21px;font-weight:bold;margin-top:8px}
+.profilebuttons{
+ display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:14px
+}
+.info{background:#fff;margin-top:9px;padding:14px}
+.inforow{padding:11px 0;border-bottom:1px solid #eee}
+.inforow:last-child{border:0}
+
+/* MARKET */
+.market{
+ background:#fff;margin:9px;padding:12px;border-radius:14px
 }
-
-.avatar img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.home-name{
-    font-weight:bold;
-}
-
-.home-user{
-    color:#777;
-    font-size:13px;
-}
-
-.post-box{
-    background:white;
-    margin:10px;
-    padding:12px;
-    border-radius:14px;
-}
-
-.post-box textarea{
-    width:100%;
-    min-height:70px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    padding:10px;
-    resize:none;
-}
-
-.post-actions{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:8px;
-}
-
-.small-btn{
-    border:0;
-    background:#eaf2fb;
-    color:#1976d2;
-    padding:8px 12px;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-.post-btn{
-    border:0;
-    background:#1976d2;
-    color:white;
-    padding:9px 18px;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-.post{
-    background:white;
-    margin:10px;
-    padding:14px;
-    border-radius:14px;
-}
-
-.post-head{
-    display:flex;
-    gap:10px;
-    align-items:center;
-}
-
-.post-time{
-    font-size:12px;
-    color:#999;
-}
-
-.post-text{
-    margin-top:12px;
-    line-height:1.5;
-}
-
-/* ================= CHAT LIST ================= */
-
-.section-title{
-    padding:15px;
-    font-size:18px;
-    font-weight:bold;
-}
-
-.chat-item,
-.friend-item,
-.room-item,
-.market-item,
-.notification-item{
-    background:white;
-    margin:7px 10px;
-    padding:12px;
-    border-radius:13px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.chat-info{
-    flex:1;
-}
-
-.chat-info strong{
-    display:block;
-}
-
-.chat-info span{
-    font-size:13px;
-    color:#888;
-}
-
-.open-btn{
-    border:0;
-    background:#1976d2;
-    color:white;
-    padding:8px 12px;
-    border-radius:9px;
-}
-
-/* ================= CHAT SCREEN ================= */
-
-.chat-screen{
-    position:fixed;
-    inset:0;
-    background:#eef3f8;
-    z-index:50;
-    max-width:480px;
-    margin:auto;
-    display:flex;
-    flex-direction:column;
-}
-
-.chat-header{
-    height:62px;
-    background:#1976d2;
-    color:white;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:0 12px;
-}
-
-.chat-back{
-    border:0;
-    background:transparent;
-    color:white;
-    font-size:24px;
-}
-
-.chat-person{
-    flex:1;
-}
-
-.chat-person small{
-    display:block;
-    opacity:.8;
-}
-
-.chat-messages{
-    flex:1;
-    padding:15px;
-    overflow-y:auto;
-}
-
-.message{
-    max-width:78%;
-    padding:10px 12px;
-    margin-bottom:9px;
-    border-radius:15px;
-    line-height:1.4;
-}
-
-.message.me{
-    margin-left:auto;
-    background:#1976d2;
-    color:white;
-    border-bottom-right-radius:4px;
-}
-
-.message.other{
-    background:white;
-    border-bottom-left-radius:4px;
-}
-
-.message small{
-    display:block;
-    font-size:10px;
-    opacity:.7;
-    margin-top:4px;
-}
-
-.chat-input{
-    background:white;
-    padding:9px;
-    display:flex;
-    gap:8px;
-}
-
-.chat-input input{
-    flex:1;
-    border:1px solid #ddd;
-    border-radius:20px;
-    padding:11px 14px;
-}
-
-.send-btn{
-    width:45px;
-    border:0;
-    border-radius:50%;
-    background:#1976d2;
-    color:white;
-}
-
-/* ================= ROOMS ================= */
-
-.room-banner{
-    background:#1976d2;
-    color:white;
-    margin:10px;
-    padding:17px;
-    border-radius:15px;
-}
-
-.room-item{
-    display:flex;
-}
-
-.room-icon{
-    width:45px;
-    height:45px;
-    border-radius:12px;
-    background:#e8f2ff;
-    color:#1976d2;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:21px;
+.marketpic{
+ height:150px;border-radius:10px;background:#ddd;
+ display:flex;align-items:center;justify-content:center;color:#777;margin-bottom:10px
 }
+.price{font-size:19px;font-weight:bold;color:#1976d2}
 
-.room-info{
-    flex:1;
+/* NOTIFICATION */
+.notice{
+ background:#fff;margin:7px 10px;padding:12px;border-radius:13px;
+ display:flex;gap:10px
 }
-
-.room-info strong{
-    display:block;
-}
-
-.room-info small{
-    color:#888;
-}
-
-/* ================= ROOM CHAT ================= */
-
-.room-chat{
-    position:fixed;
-    inset:0;
-    background:#eef3f8;
-    z-index:55;
-    max-width:480px;
-    margin:auto;
-    display:flex;
-    flex-direction:column;
-}
-
-.room-messages{
-    flex:1;
-    overflow-y:auto;
-    padding:12px;
-}
-
-.room-message{
-    background:white;
-    border-radius:12px;
-    padding:9px 11px;
-    margin-bottom:8px;
-}
-
-.room-message strong{
-    color:#1976d2;
-}
-
-.room-message small{
-    display:block;
-    color:#999;
-}
-
-/* ================= PROFILE ================= */
-
-.profile-cover{
-    height:170px;
-    background:linear-gradient(135deg,#1976d2,#90caf9);
-    position:relative;
-}
-
-.cover-edit{
-    position:absolute;
-    right:12px;
-    top:12px;
-    border:0;
-    background:rgba(0,0,0,.4);
-    color:white;
-    padding:8px 11px;
-    border-radius:10px;
-}
-
-.profile-main{
-    background:white;
-    padding:0 15px 18px;
-    position:relative;
-}
-
-.profile-avatar{
-    width:88px;
-    height:88px;
-    border-radius:50%;
-    background:#1976d2;
-    color:white;
-    border:4px solid white;
-    margin-top:-44px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    font-size:25px;
-    font-weight:bold;
-}
-
-.profile-avatar img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.profile-name{
-    margin-top:8px;
-    font-size:21px;
-    font-weight:bold;
-}
-
-.profile-username{
-    color:#777;
-    margin-top:3px;
-}
-
-.profile-buttons{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-    margin-top:15px;
-}
-
-.profile-btn{
-    border:0;
-    padding:10px;
-    border-radius:10px;
-    background:#eaf2fb;
-    color:#1976d2;
-    font-weight:bold;
-}
-
-.profile-info{
-    background:white;
-    margin-top:10px;
-    padding:15px;
+.noticeicon{
+ width:40px;height:40px;border-radius:50%;background:#eaf2fb;
+ display:flex;align-items:center;justify-content:center
 }
-
-.info-row{
-    padding:12px 0;
-    border-bottom:1px solid #eee;
-}
-
-.info-row:last-child{
-    border-bottom:0;
-}
-
-.info-row small{
-    display:block;
-    color:#999;
-    margin-bottom:3px;
-}
-
-/* ================= MARKET ================= */
-
-.market-item{
-    display:block;
-}
-
-.market-img{
-    width:100%;
-    height:160px;
-    background:#ddd;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#777;
-    margin-bottom:10px;
-}
-
-.market-price{
-    color:#1976d2;
-    font-size:19px;
-    font-weight:bold;
-    margin-top:5px;
-}
-
-.market-meta{
-    color:#777;
-    font-size:13px;
-    margin-top:5px;
-}
-
-/* ================= NOTIFICATION ================= */
-
-.notification-item{
-    align-items:flex-start;
-}
-
-.notification-icon{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:#eaf2fb;
-    color:#1976d2;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.notification-info{
-    flex:1;
-}
-
-.notification-info strong{
-    display:block;
-}
-
-.notification-info small{
-    color:#999;
-}
-
-/* ================= BOTTOM NAV ================= */
-
-.bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:100%;
-    max-width:480px;
-    height:66px;
-    background:white;
-    border-top:1px solid #ddd;
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    z-index:30;
-}
-
-.nav-btn{
-    border:0;
-    background:white;
-    color:#777;
-    font-size:11px;
-}
-
-.nav-btn div{
-    font-size:21px;
-    margin-bottom:2px;
-}
-
-.nav-btn.active{
-    color:#1976d2;
-    font-weight:bold;
-}
-
-/* ================= MODAL ================= */
 
+/* MODAL */
 .modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:100;
-    padding:20px;
+ position:fixed;inset:0;background:#0007;z-index:100;
+ display:flex;align-items:center;justify-content:center;padding:20px
 }
-
-.modal-box{
-    background:white;
-    width:100%;
-    max-width:400px;
-    border-radius:18px;
-    padding:20px;
+.modalbox{
+ width:100%;max-width:400px;background:#fff;border-radius:17px;padding:20px
 }
-
-.modal-box h3{
-    margin-bottom:15px;
-}
-
-.modal-input{
-    width:100%;
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    margin-bottom:10px;
-}
-
-.modal-actions{
-    display:flex;
-    gap:8px;
-    margin-top:8px;
-}
-
-.modal-actions button{
-    flex:1;
-    padding:11px;
-    border:0;
-    border-radius:10px;
-}
-
-.cancel-btn{
-    background:#eee;
-}
-
-.confirm-btn{
-    background:#1976d2;
-    color:white;
-}
-
-.empty{
-    text-align:center;
-    padding:40px 20px;
-    color:#888;
-}
+.modalactions{display:flex;gap:8px;margin-top:10px}
+.modalactions button{flex:1;padding:11px;border:0;border-radius:10px}
+.cancel{background:#eee}
+.save{background:#1976d2;color:#fff}
 </style>
 </head>
 
@@ -723,276 +212,106 @@ button{
 
 <div class="app">
 
-<!-- ================= AUTH ================= -->
+<!-- AUTH -->
+<div id="auth" class="auth">
+ <div class="authbox">
+  <div class="logo">Y-M</div>
+  <div class="subtitle">Chat • Friends • Rooms • Market</div>
 
-<div id="authPage" class="auth">
+  <div id="loginBox">
+   <h2>Log In</h2>
+   <input id="loginUser" class="input" placeholder="Username">
+   <input id="loginPass" class="input" type="password" placeholder="Password">
+   <button class="primary" onclick="login()">Log In</button>
+   <div class="switch">Belum ada akaun?
+    <span onclick="showRegister()">Register</span>
+   </div>
+  </div>
 
-    <div class="auth-box">
-
-        <div class="logo">Y-M</div>
-        <div class="logo-sub">Chat • Friends • Rooms • Market</div>
-
-        <div id="loginForm">
-
-            <h2>Log In</h2>
-
-            <input
-                id="loginUsername"
-                class="auth-input"
-                type="text"
-                placeholder="Username"
-            >
-
-            <input
-                id="loginPassword"
-                class="auth-input"
-                type="password"
-                placeholder="Password"
-            >
-
-            <button class="main-btn" onclick="login()">
-                Log In
-            </button>
-
-            <div class="auth-switch">
-                Belum ada akaun?
-                <span onclick="showRegister()">Register</span>
-            </div>
-
-        </div>
-
-
-        <div id="registerForm" class="hidden">
-
-            <h2>Create Account</h2>
-
-            <input
-                id="regName"
-                class="auth-input"
-                type="text"
-                placeholder="Nama"
-            >
-
-            <input
-                id="regUsername"
-                class="auth-input"
-                type="text"
-                placeholder="Username"
-            >
-
-            <input
-                id="regPassword"
-                class="auth-input"
-                type="password"
-                placeholder="Password"
-            >
-
-            <button class="main-btn" onclick="register()">
-                Register
-            </button>
-
-            <div class="auth-switch">
-                Sudah ada akaun?
-                <span onclick="showLogin()">Log In</span>
-            </div>
-
-        </div>
-
-    </div>
-
+  <div id="registerBox" class="hidden">
+   <h2>Register</h2>
+   <input id="regName" class="input" placeholder="Nama">
+   <input id="regUser" class="input" placeholder="Username">
+   <input id="regPass" class="input" type="password" placeholder="Password">
+   <button class="primary" onclick="register()">Create Account</button>
+   <div class="switch">Sudah ada akaun?
+    <span onclick="showLogin()">Log In</span>
+   </div>
+  </div>
+ </div>
 </div>
 
+<!-- APP -->
+<div id="main" class="hidden">
 
-<!-- ================= MAIN APP ================= -->
+ <div class="header">
+  <div id="headerTitle" class="title">Y-M Chat</div>
+  <div class="headerbuttons">
+   <button class="icon" onclick="page('notifications')">🔔</button>
+  </div>
+ </div>
 
-<div id="mainApp" class="hidden">
+ <div id="content" class="content"></div>
 
-    <div class="header">
-
-        <div id="headerTitle" class="header-title">
-            Y-M Chat
-        </div>
-
-        <div class="header-actions">
-
-            <button class="icon-btn" onclick="showPage('notifications')">
-                🔔
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div id="content" class="content"></div>
-
-
-    <div class="bottom-nav">
-
-        <button id="navHome"
-                class="nav-btn active"
-                onclick="showPage('home')">
-            <div>🏠</div>
-            Home
-        </button>
-
-        <button id="navChats"
-                class="nav-btn"
-                onclick="showPage('chats')">
-            <div>💬</div>
-            Chats
-        </button>
-
-        <button id="navFriends"
-                class="nav-btn"
-                onclick="showPage('friends')">
-            <div>👥</div>
-            Friends
-        </button>
-
-        <button id="navRooms"
-                class="nav-btn"
-                onclick="showPage('rooms')">
-            <div>🌎</div>
-            Rooms
-        </button>
-
-        <button id="navProfile"
-                class="nav-btn"
-                onclick="showPage('profile')">
-            <div>👤</div>
-            Profile
-        </button>
-
-    </div>
-
+ <div class="bottom">
+  <button id="nHome" class="nav active" onclick="page('home')"><div>🏠</div>Home</button>
+  <button id="nChats" class="nav" onclick="page('chats')"><div>💬</div>Chats</button>
+  <button id="nFriends" class="nav" onclick="page('friends')"><div>👥</div>Friends</button>
+  <button id="nRooms" class="nav" onclick="page('rooms')"><div>🌎</div>Rooms</button>
+  <button id="nProfile" class="nav" onclick="page('profile')"><div>👤</div>Profile</button>
+ </div>
 </div>
 
-
-<!-- ================= CHAT SCREEN ================= -->
-
-<div id="chatScreen" class="chat-screen hidden">
-
-    <div class="chat-header">
-
-        <button class="chat-back" onclick="closeChat()">
-            ‹
-        </button>
-
-        <div class="avatar" id="chatAvatar">
-            A
-        </div>
-
-        <div class="chat-person">
-            <strong id="chatName">Ahmad</strong>
-            <small>Online</small>
-        </div>
-
-        <button class="icon-btn" onclick="clearChat()">
-            🗑
-        </button>
-
-    </div>
-
-
-    <div id="chatMessages" class="chat-messages"></div>
-
-
-    <div class="chat-input">
-
-        <input
-            id="chatText"
-            type="text"
-            placeholder="Tulis mesej..."
-            onkeydown="if(event.key==='Enter')sendMessage()"
-        >
-
-        <button class="send-btn" onclick="sendMessage()">
-            ➤
-        </button>
-
-    </div>
-
+<!-- PRIVATE CHAT -->
+<div id="chatScreen" class="chatScreen hidden">
+ <div class="chathead">
+  <button class="back" onclick="closeChat()">‹</button>
+  <div id="chatAvatar" class="avatar">A</div>
+  <div class="flex">
+   <b id="chatName">Chat</b>
+   <small>🟢 Online</small>
+  </div>
+  <button class="icon" onclick="deleteChat()">🗑</button>
+ </div>
+ <div id="chatBody" class="chatbody"></div>
+ <div class="chatinput">
+  <input id="chatInput" placeholder="Tulis mesej..."
+   onkeydown="if(event.key==='Enter')sendChat()">
+  <button class="send" onclick="sendChat()">➤</button>
+ </div>
 </div>
 
-
-<!-- ================= ROOM CHAT ================= -->
-
-<div id="roomChat" class="room-chat hidden">
-
-    <div class="chat-header">
-
-        <button class="chat-back" onclick="closeRoom()">
-            ‹
-        </button>
-
-        <div class="room-icon">
-            🌎
-        </div>
-
-        <div class="chat-person">
-            <strong id="roomChatName">
-                Malaysia
-            </strong>
-
-            <small>Public Room</small>
-        </div>
-
-    </div>
-
-
-    <div id="roomMessages" class="room-messages"></div>
-
-
-    <div class="chat-input">
-
-        <input
-            id="roomText"
-            type="text"
-            placeholder="Tulis dalam room..."
-            onkeydown="if(event.key==='Enter')sendRoomMessage()"
-        >
-
-        <button class="send-btn" onclick="sendRoomMessage()">
-            ➤
-        </button>
-
-    </div>
-
+<!-- ROOM -->
+<div id="roomScreen" class="roomScreen hidden">
+ <div class="chathead">
+  <button class="back" onclick="closeRoom()">‹</button>
+  <div class="countryicon">🌎</div>
+  <div class="flex">
+   <b id="roomTitle">Room</b>
+   <small>Public Room</small>
+  </div>
+ </div>
+ <div id="roomBody" class="chatbody"></div>
+ <div class="chatinput">
+  <input id="roomInput" placeholder="Tulis dalam room..."
+   onkeydown="if(event.key==='Enter')sendRoom()">
+  <button class="send" onclick="sendRoom()">➤</button>
+ </div>
 </div>
 
-
-<!-- ================= MODAL ================= -->
-
+<!-- MODAL -->
 <div id="modal" class="modal hidden">
-
-    <div class="modal-box">
-
-        <h3 id="modalTitle">
-            Edit
-        </h3>
-
-        <div id="modalBody"></div>
-
-        <div class="modal-actions">
-
-            <button class="cancel-btn" onclick="closeModal()">
-                Cancel
-            </button>
-
-            <button class="confirm-btn" id="modalConfirm">
-                Save
-            </button>
-
-        </div>
-
-    </div>
-
+ <div class="modalbox">
+  <h3 id="modalTitle">Edit</h3>
+  <div id="modalBody"></div>
+  <div class="modalactions">
+   <button class="cancel" onclick="closeModal()">Cancel</button>
+   <button id="modalSave" class="save">Save</button>
+  </div>
+ </div>
 </div>
 
-
 </div>
-
 
 <script>
 
@@ -1000,439 +319,252 @@ button{
    DATA
 ========================================================= */
 
-let currentUser = null;
-let currentChatUser = null;
-let currentRoom = null;
-
-const defaultUsers = [
-    {
-        name:"Ahmad",
-        username:"ahmad",
-        password:"1234",
-        avatar:"",
-        cover:""
-    },
-    {
-        name:"Siti",
-        username:"siti",
-        password:"1234",
-        avatar:"",
-        cover:""
-    },
-    {
-        name:"John",
-        username:"john",
-        password:"1234",
-        avatar:"",
-        cover:""
-    }
+const demoUsers=[
+ {name:"Ahmad",username:"ahmad",password:"1234",avatar:"",cover:""},
+ {name:"Siti",username:"siti",password:"1234",avatar:"",cover:""},
+ {name:"John",username:"john",password:"1234",avatar:"",cover:""}
 ];
 
-
-const defaultChats = {
-    ahmad:[
-        {
-            sender:"other",
-            text:"Hello! Selamat datang di Y-M Chat."
-        }
-    ],
-    siti:[
-        {
-            sender:"other",
-            text:"Hi Nizam!"
-        }
-    ],
-    john:[
-        {
-            sender:"other",
-            text:"Welcome bro."
-        }
-    ]
-};
-
-
-const defaultRooms = [
-    {
-        name:"Malaysia",
-        members:"1,248"
-    },
-    {
-        name:"Sabah",
-        members:"892"
-    },
-    {
-        name:"Sarawak",
-        members:"651"
-    },
-    {
-        name:"Kuala Lumpur",
-        members:"534"
-    },
-    {
-        name:"Philippines",
-        members:"743"
-    },
-    {
-        name:"Indonesia",
-        members:"1,102"
-    },
-    {
-        name:"Singapore",
-        members:"428"
-    },
-    {
-        name:"Brunei",
-        members:"317"
-    },
-    {
-        name:"World",
-        members:"3,821"
-    }
+let users=JSON.parse(localStorage.getItem("ym_users"))||demoUsers;
+let current=JSON.parse(localStorage.getItem("ym_current"))||null;
+let posts=JSON.parse(localStorage.getItem("ym_posts"))||[];
+let notices=JSON.parse(localStorage.getItem("ym_notices"))||[
+ {title:"Selamat datang",text:"Selamat datang ke Y-M Chat.",time:"Hari ini"},
+ {title:"Rooms",text:"Country dan state rooms tersedia.",time:"Hari ini"}
 ];
 
+let activeChat=null;
+let activeRoom=null;
 
-const defaultNotifications = [
-    {
-        title:"Selamat datang",
-        text:"Selamat datang ke Y-M Chat.",
-        time:"Baru sahaja"
-    },
-    {
-        title:"Rooms",
-        text:"Room Malaysia dan Sabah sudah tersedia.",
-        time:"Hari ini"
-    }
+/* =========================================================
+   COUNTRY / STATE DATA
+========================================================= */
+
+const countries=[
+ {
+  name:"Malaysia",
+  states:[
+   "Johor","Kedah","Kelantan","Melaka","Negeri Sembilan",
+   "Pahang","Perak","Perlis","Pulau Pinang","Sabah",
+   "Sarawak","Selangor","Terengganu","Kuala Lumpur",
+   "Putrajaya","Labuan"
+  ]
+ },
+ {
+  name:"Indonesia",
+  states:[
+   "Aceh","Bali","Banten","Bengkulu","Jakarta",
+   "Jambi","Jawa Barat","Jawa Tengah","Jawa Timur",
+   "Kalimantan Barat","Kalimantan Selatan","Kalimantan Tengah",
+   "Kalimantan Timur","Kalimantan Utara","Kepulauan Riau",
+   "Lampung","Maluku","Maluku Utara","Nusa Tenggara Barat",
+   "Nusa Tenggara Timur","Papua","Papua Barat","Riau",
+   "Sulawesi Selatan","Sulawesi Tengah","Sulawesi Tenggara",
+   "Sulawesi Utara","Sumatera Barat","Sumatera Selatan",
+   "Sumatera Utara","Yogyakarta"
+  ]
+ },
+ {
+  name:"Philippines",
+  states:[
+   "Ilocos Region","Cagayan Valley","Central Luzon",
+   "CALABARZON","MIMAROPA","Bicol Region",
+   "Western Visayas","Central Visayas","Eastern Visayas",
+   "Zamboanga Peninsula","Northern Mindanao",
+   "Davao Region","SOCCSKSARGEN","Caraga",
+   "BARMM","Metro Manila"
+  ]
+ },
+ {
+  name:"Brunei",
+  states:[
+   "Brunei-Muara","Belait","Tutong","Temburong"
+  ]
+ },
+ {
+  name:"Singapore",
+  states:[
+   "Central Region","East Region","North Region",
+   "North-East Region","West Region"
+  ]
+ },
+ {
+  name:"Thailand",
+  states:[
+   "Bangkok","Chiang Mai","Chon Buri","Phuket",
+   "Krabi","Khon Kaen","Songkhla","Surat Thani"
+  ]
+ },
+ {
+  name:"United States",
+  states:[
+   "California","Texas","New York","Florida","Washington",
+   "Nevada","Hawaii","Alaska","Illinois","New Jersey"
+  ]
+ },
+ {
+  name:"United Kingdom",
+  states:[
+   "England","Scotland","Wales","Northern Ireland"
+  ]
+ },
+ {
+  name:"Australia",
+  states:[
+   "New South Wales","Queensland","South Australia",
+   "Tasmania","Victoria","Western Australia",
+   "Northern Territory","Australian Capital Territory"
+  ]
+ },
+ {
+  name:"Japan",
+  states:[
+   "Tokyo","Osaka","Kyoto","Hokkaido","Aichi",
+   "Fukuoka","Okinawa","Hiroshima"
+  ]
+ }
 ];
-
-
-let users =
-    JSON.parse(localStorage.getItem("ym_users")) ||
-    defaultUsers;
-
-let chats =
-    JSON.parse(localStorage.getItem("ym_chats")) ||
-    defaultChats;
-
-let posts =
-    JSON.parse(localStorage.getItem("ym_posts")) ||
-    [];
-
-let notifications =
-    JSON.parse(localStorage.getItem("ym_notifications")) ||
-    defaultNotifications;
-
 
 /* =========================================================
    START
 ========================================================= */
 
-window.onload = function(){
-
-    const saved =
-        JSON.parse(localStorage.getItem("ym_current_user"));
-
-    if(saved){
-
-        currentUser = saved;
-
-        openMainApp();
-
-    }else{
-
-        showLogin();
-
-    }
-
+window.onload=()=>{
+ if(current)openApp();
+ else showLogin();
 };
 
-
-/* =========================================================
-   AUTH
-========================================================= */
-
 function showLogin(){
-
-    document.getElementById("loginForm")
-        .classList.remove("hidden");
-
-    document.getElementById("registerForm")
-        .classList.add("hidden");
-
+ document.getElementById("loginBox").classList.remove("hidden");
+ document.getElementById("registerBox").classList.add("hidden");
 }
-
 
 function showRegister(){
-
-    document.getElementById("loginForm")
-        .classList.add("hidden");
-
-    document.getElementById("registerForm")
-        .classList.remove("hidden");
-
+ document.getElementById("loginBox").classList.add("hidden");
+ document.getElementById("registerBox").classList.remove("hidden");
 }
-
 
 function register(){
 
-    const name =
-        document.getElementById("regName").value.trim();
+ const name=document.getElementById("regName").value.trim();
+ const username=document.getElementById("regUser").value.trim().toLowerCase();
+ const password=document.getElementById("regPass").value;
 
-    const username =
-        document.getElementById("regUsername").value
-        .trim()
-        .toLowerCase();
+ if(!name||!username||!password){
+  alert("Sila isi semua maklumat.");
+  return;
+ }
 
-    const password =
-        document.getElementById("regPassword").value;
+ if(username.length<3){
+  alert("Username minimum 3 aksara.");
+  return;
+ }
 
-    if(!name || !username || !password){
+ if(users.some(u=>u.username===username)){
+  alert("Username sudah digunakan.");
+  return;
+ }
 
-        alert("Sila isi semua maklumat.");
+ const u={
+  name,username,password,avatar:"",cover:""
+ };
 
-        return;
+ users.push(u);
+ saveUsers();
 
-    }
+ alert("Register berjaya. Sila Log In.");
 
-    if(username.length < 3){
+ document.getElementById("regName").value="";
+ document.getElementById("regUser").value="";
+ document.getElementById("regPass").value="";
 
-        alert("Username mesti sekurang-kurangnya 3 huruf.");
-
-        return;
-
-    }
-
-    const exists =
-        users.some(u => u.username === username);
-
-    if(exists){
-
-        alert("Username sudah digunakan.");
-
-        return;
-
-    }
-
-    const newUser = {
-
-        name:name,
-        username:username,
-        password:password,
-        avatar:"",
-        cover:""
-
-    };
-
-    users.push(newUser);
-
-    localStorage.setItem(
-        "ym_users",
-        JSON.stringify(users)
-    );
-
-    chats[username] = [];
-
-    localStorage.setItem(
-        "ym_chats",
-        JSON.stringify(chats)
-    );
-
-    alert("Register berjaya. Sekarang boleh Log In.");
-
-    document.getElementById("regName").value="";
-    document.getElementById("regUsername").value="";
-    document.getElementById("regPassword").value="";
-
-    showLogin();
-
+ showLogin();
 }
-
 
 function login(){
 
-    const username =
-        document.getElementById("loginUsername")
-        .value
-        .trim()
-        .toLowerCase();
+ const username=document.getElementById("loginUser").value.trim().toLowerCase();
+ const password=document.getElementById("loginPass").value;
 
-    const password =
-        document.getElementById("loginPassword")
-        .value;
+ const u=users.find(x=>x.username===username&&x.password===password);
 
-    if(!username || !password){
+ if(!u){
+  alert("Username atau password salah.");
+  return;
+ }
 
-        alert("Sila masukkan username dan password.");
+ current=u;
+ localStorage.setItem("ym_current",JSON.stringify(current));
 
-        return;
-
-    }
-
-    const user =
-        users.find(
-            u =>
-            u.username === username &&
-            u.password === password
-        );
-
-    if(!user){
-
-        alert("Username atau password salah.");
-
-        return;
-
-    }
-
-    currentUser = user;
-
-    localStorage.setItem(
-        "ym_current_user",
-        JSON.stringify(currentUser)
-    );
-
-    openMainApp();
-
+ openApp();
 }
-
 
 function logout(){
 
-    localStorage.removeItem("ym_current_user");
+ localStorage.removeItem("ym_current");
+ current=null;
 
-    currentUser = null;
+ document.getElementById("main").classList.add("hidden");
+ document.getElementById("auth").classList.remove("hidden");
 
-    document.getElementById("mainApp")
-        .classList.add("hidden");
-
-    document.getElementById("authPage")
-        .classList.remove("hidden");
-
-    showLogin();
-
+ showLogin();
 }
-
 
 /* =========================================================
-   MAIN APP
+   APP
 ========================================================= */
 
-function openMainApp(){
+function openApp(){
 
-    document.getElementById("authPage")
-        .classList.add("hidden");
+ document.getElementById("auth").classList.add("hidden");
+ document.getElementById("main").classList.remove("hidden");
 
-    document.getElementById("mainApp")
-        .classList.remove("hidden");
-
-    showPage("home");
-
+ page("home");
 }
 
+function activeNav(name){
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+ document.querySelectorAll(".nav")
+ .forEach(x=>x.classList.remove("active"));
 
-function setActiveNav(page){
+ const map={
+  home:"nHome",
+  chats:"nChats",
+  friends:"nFriends",
+  rooms:"nRooms",
+  profile:"nProfile"
+ };
 
-    document.querySelectorAll(".nav-btn")
-        .forEach(btn => btn.classList.remove("active"));
-
-    const map = {
-
-        home:"navHome",
-        chats:"navChats",
-        friends:"navFriends",
-        rooms:"navRooms",
-        profile:"navProfile"
-
-    };
-
-    if(map[page]){
-
-        document
-            .getElementById(map[page])
-            .classList.add("active");
-
-    }
-
+ if(map[name])document.getElementById(map[name]).classList.add("active");
 }
 
+function page(name){
 
-function showPage(page){
+ closeChat();
+ closeRoom();
 
-    closeChat();
-    closeRoom();
+ activeNav(name);
 
-    setActiveNav(page);
+ const title={
+  home:"Y-M Chat",
+  chats:"Chats",
+  friends:"Friends",
+  rooms:"Rooms",
+  profile:"Profile",
+  market:"Market",
+  notifications:"Notifications"
+ };
 
-    const content =
-        document.getElementById("content");
+ document.getElementById("headerTitle").innerText=title[name]||"Y-M Chat";
 
-    if(page === "home"){
-
-        document.getElementById("headerTitle")
-            .innerText = "Y-M Chat";
-
-        renderHome();
-
-    }
-
-    else if(page === "chats"){
-
-        document.getElementById("headerTitle")
-            .innerText = "Chats";
-
-        renderChats();
-
-    }
-
-    else if(page === "friends"){
-
-        document.getElementById("headerTitle")
-            .innerText = "Friends";
-
-        renderFriends();
-
-    }
-
-    else if(page === "rooms"){
-
-        document.getElementById("headerTitle")
-            .innerText = "Rooms";
-
-        renderRooms();
-
-    }
-
-    else if(page === "market"){
-
-        document.getElementById("headerTitle")
-            .innerText = "Market";
-
-        renderMarket();
-
-    }
-
-    else if(page === "notifications"){
-
-        document.getElementById("headerTitle")
-            .innerText = "Notifications";
-
-        renderNotifications();
-
-    }
-
-    else if(page === "profile"){
-
-        document.getElementById("headerTitle")
-            .innerText = "Profile";
-
-        renderProfile();
-
-    }
-
+ if(name==="home")renderHome();
+ if(name==="chats")renderChats();
+ if(name==="friends")renderFriends();
+ if(name==="rooms")renderRooms();
+ if(name==="profile")renderProfile();
+ if(name==="market")renderMarket();
+ if(name==="notifications")renderNotifications();
 }
-
 
 /* =========================================================
    HOME
@@ -1440,180 +572,101 @@ function showPage(page){
 
 function renderHome(){
 
-    const avatar =
-        currentUser.avatar
-        ? `<img src="${currentUser.avatar}">`
-        : currentUser.name.charAt(0).toUpperCase();
+ let avatar=current.avatar
+ ?`<img src="${safe(current.avatar)}">`
+ :initial(current.name);
 
-    let html = `
+ let html=`
 
-        <div class="home-profile">
+ <div class="homeuser">
+  <div class="avatar">${avatar}</div>
+  <div>
+   <b>${safe(current.name)}</b>
+   <div class="small">@${safe(current.username)}</div>
+  </div>
+ </div>
 
-            <div class="avatar">
-                ${avatar}
-            </div>
+ <div class="postbox">
+  <textarea id="postText" placeholder="Apa yang anda fikirkan?"></textarea>
 
-            <div>
-                <div class="home-name">
-                    ${escapeHTML(currentUser.name)}
-                </div>
+  <div class="posttools">
+   <button class="lightbtn" onclick="photoInfo()">📷 Photo</button>
+   <button class="lightbtn" onclick="videoInfo()">🎥 Video</button>
+   <div class="flex">
+    <button class="btn" onclick="createPost()">Post</button>
+   </div>
+  </div>
+ </div>
+ `;
 
-                <div class="home-user">
-                    @${escapeHTML(currentUser.username)}
-                </div>
-            </div>
+ if(!posts.length){
+  html+=`<div class="empty">Belum ada post.</div>`;
+ }else{
 
-        </div>
+  posts.slice().reverse().forEach(p=>{
+   html+=`
 
+   <div class="post">
 
-        <div class="post-box">
+    <div class="posthead">
+     <div class="avatar">
+      ${p.avatar?`<img src="${safe(p.avatar)}">`:initial(p.name)}
+     </div>
 
-            <textarea
-                id="postText"
-                placeholder="Apa yang anda fikirkan?"
-            ></textarea>
+     <div>
+      <b>${safe(p.name)}</b>
+      <div class="small">${safe(p.time)}</div>
+     </div>
+    </div>
 
-            <div class="post-actions">
+    <div class="posttext">${safe(p.text)}</div>
 
-                <button
-                    class="small-btn"
-                    onclick="alert('Fungsi gambar akan kita sambung kemudian.')">
-                    📷 Photo
-                </button>
+   </div>
 
-                <button
-                    class="small-btn"
-                    onclick="alert('Fungsi video akan kita sambung kemudian.')">
-                    🎥 Video
-                </button>
+   `;
+  });
+ }
 
-                <button
-                    class="post-btn"
-                    onclick="createPost()">
-                    Post
-                </button>
+ html+=`
+ <div class="section">🛒 Market</div>
+ <div class="card" onclick="page('market')">
+  <b>Y-M Market</b>
+  <div class="small">Jual • Beli • Swap</div>
+ </div>
+ `;
 
-            </div>
-
-        </div>
-
-    `;
-
-
-    if(posts.length === 0){
-
-        html += `
-            <div class="empty">
-                Belum ada post.
-            </div>
-        `;
-
-    }else{
-
-        posts.slice().reverse().forEach(post => {
-
-            html += `
-
-                <div class="post">
-
-                    <div class="post-head">
-
-                        <div class="avatar">
-                            ${post.avatar
-                                ? `<img src="${post.avatar}">`
-                                : post.name.charAt(0).toUpperCase()
-                            }
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                ${escapeHTML(post.name)}
-                            </strong>
-
-                            <div class="post-time">
-                                ${escapeHTML(post.time)}
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="post-text">
-                        ${escapeHTML(post.text)}
-                    </div>
-
-                </div>
-
-            `;
-
-        });
-
-    }
-
-
-    html += `
-
-        <div class="section-title">
-            Marketplace
-        </div>
-
-        <div class="market-item"
-             onclick="showPage('market')">
-
-            <strong>🛒 Y-M Market</strong>
-
-            <div class="market-meta">
-                Jual beli barang dan kenderaan
-            </div>
-
-        </div>
-
-    `;
-
-
-    document.getElementById("content")
-        .innerHTML = html;
-
+ document.getElementById("content").innerHTML=html;
 }
-
 
 function createPost(){
 
-    const textarea =
-        document.getElementById("postText");
+ const input=document.getElementById("postText");
+ const text=input.value.trim();
 
-    const text =
-        textarea.value.trim();
+ if(!text){
+  alert("Tulis sesuatu dahulu.");
+  return;
+ }
 
-    if(!text){
+ posts.push({
+  name:current.name,
+  avatar:current.avatar,
+  text,
+  time:new Date().toLocaleString("ms-MY")
+ });
 
-        alert("Tulis sesuatu dahulu.");
+ localStorage.setItem("ym_posts",JSON.stringify(posts));
 
-        return;
-
-    }
-
-    posts.push({
-
-        name:currentUser.name,
-        avatar:currentUser.avatar,
-        text:text,
-        time:new Date().toLocaleString("ms-MY")
-
-    });
-
-    localStorage.setItem(
-        "ym_posts",
-        JSON.stringify(posts)
-    );
-
-    textarea.value="";
-
-    renderHome();
-
+ renderHome();
 }
 
+function photoInfo(){
+ alert("Upload gambar akan disambungkan ke server/storage sebenar nanti.");
+}
+
+function videoInfo(){
+ alert("Upload video akan disambungkan ke server/storage sebenar nanti.");
+}
 
 /* =========================================================
    CHATS
@@ -1621,262 +674,125 @@ function createPost(){
 
 function renderChats(){
 
-    let html = `
-        <div class="section-title">
-            Recent Chats
-        </div>
-    `;
+ let html=`<div class="section">Recent Chats</div>`;
 
-    const otherUsers =
-        users.filter(
-            u => u.username !== currentUser.username
-        );
+ const list=users.filter(u=>u.username!==current.username);
 
+ if(!list.length)html+=`<div class="empty">Belum ada pengguna lain.</div>`;
 
-    if(otherUsers.length === 0){
+ list.forEach(u=>{
 
-        html += `
-            <div class="empty">
-                Belum ada pengguna lain.
-            </div>
-        `;
+  const data=getChat(u.username);
+  const last=data.length?data[data.length-1].text:"Belum ada mesej";
 
-    }
+  html+=`
 
+  <div class="card row">
 
-    otherUsers.forEach(user => {
+   <div class="avatar">
+    ${u.avatar?`<img src="${safe(u.avatar)}">`:initial(u.name)}
+   </div>
 
-        const list =
-            chats[user.username] || [];
+   <div class="flex">
+    <b>${safe(u.name)}</b>
+    <div class="small">${safe(last)}</div>
+   </div>
 
-        const last =
-            list.length
-            ? list[list.length-1].text
-            : "Belum ada mesej";
+   <button class="btn" onclick="openChat('${safeAttr(u.username)}')">
+    Chat
+   </button>
 
+  </div>
 
-        html += `
+  `;
+ });
 
-            <div class="chat-item">
-
-                <div class="avatar">
-
-                    ${
-                        user.avatar
-                        ? `<img src="${user.avatar}">`
-                        : user.name.charAt(0).toUpperCase()
-                    }
-
-                </div>
-
-                <div class="chat-info">
-
-                    <strong>
-                        ${escapeHTML(user.name)}
-                    </strong>
-
-                    <span>
-                        ${escapeHTML(last)}
-                    </span>
-
-                </div>
-
-                <button
-                    class="open-btn"
-                    onclick="openChat('${user.username}')">
-
-                    Chat
-
-                </button>
-
-            </div>
-
-        `;
-
-    });
-
-
-    document.getElementById("content")
-        .innerHTML = html;
-
+ document.getElementById("content").innerHTML=html;
 }
 
+function chatKey(username){
+ return "ym_chat_"+current.username+"_"+username;
+}
 
-/* =========================================================
-   OPEN CHAT
-========================================================= */
+function getChat(username){
+ return JSON.parse(localStorage.getItem(chatKey(username)))||[];
+}
+
+function saveChat(username,data){
+ localStorage.setItem(chatKey(username),JSON.stringify(data));
+}
 
 function openChat(username){
 
-    currentChatUser =
-        users.find(u => u.username === username);
+ activeChat=users.find(u=>u.username===username);
 
-    if(!currentChatUser){
+ if(!activeChat)return;
 
-        return;
+ document.getElementById("chatName").innerText=activeChat.name;
 
-    }
+ document.getElementById("chatAvatar").innerHTML=
+ activeChat.avatar
+ ?`<img src="${safe(activeChat.avatar)}">`
+ :initial(activeChat.name);
 
-    document.getElementById("chatName")
-        .innerText = currentChatUser.name;
+ document.getElementById("chatScreen").classList.remove("hidden");
 
-    document.getElementById("chatAvatar")
-        .innerHTML =
-        currentChatUser.avatar
-        ? `<img src="${currentChatUser.avatar}">`
-        : currentChatUser.name.charAt(0).toUpperCase();
-
-
-    document.getElementById("chatScreen")
-        .classList.remove("hidden");
-
-    renderMessages();
-
+ renderChat();
 }
-
 
 function closeChat(){
-
-    document.getElementById("chatScreen")
-        .classList.add("hidden");
-
+ document.getElementById("chatScreen").classList.add("hidden");
 }
 
+function renderChat(){
 
-function renderMessages(){
+ const box=document.getElementById("chatBody");
+ const data=getChat(activeChat.username);
 
-    if(!currentChatUser){
+ if(!data.length){
+  box.innerHTML=`<div class="empty">Belum ada mesej.</div>`;
+  return;
+ }
 
-        return;
+ box.innerHTML=data.map(m=>`
 
-    }
+  <div class="msg ${m.sender==="me"?"me":"other"}">
+   ${safe(m.text)}
+   <small>${m.sender==="me"?"You":safe(activeChat.name)}</small>
+  </div>
 
-    const key =
-        currentChatUser.username;
+ `).join("");
 
-    if(!chats[key]){
-
-        chats[key] = [];
-
-    }
-
-    const box =
-        document.getElementById("chatMessages");
-
-    if(chats[key].length === 0){
-
-        box.innerHTML = `
-            <div class="empty">
-                Belum ada mesej.
-            </div>
-        `;
-
-        return;
-
-    }
-
-
-    box.innerHTML =
-        chats[key].map(message => `
-
-            <div class="message ${message.sender}">
-
-                ${escapeHTML(message.text)}
-
-                <small>
-                    ${message.sender === "me"
-                        ? "You"
-                        : currentChatUser.name
-                    }
-                </small>
-
-            </div>
-
-        `).join("");
-
-
-    box.scrollTop = box.scrollHeight;
-
+ box.scrollTop=box.scrollHeight;
 }
 
+function sendChat(){
 
-function sendMessage(){
+ const input=document.getElementById("chatInput");
+ const text=input.value.trim();
 
-    if(!currentChatUser){
+ if(!text)return;
 
-        return;
+ const data=getChat(activeChat.username);
 
-    }
+ data.push({
+  sender:"me",
+  text
+ });
 
-    const input =
-        document.getElementById("chatText");
+ saveChat(activeChat.username,data);
 
-    const text =
-        input.value.trim();
-
-    if(!text){
-
-        return;
-
-    }
-
-    const key =
-        currentChatUser.username;
-
-    if(!chats[key]){
-
-        chats[key] = [];
-
-    }
-
-    chats[key].push({
-
-        sender:"me",
-        text:text
-
-    });
-
-
-    localStorage.setItem(
-        "ym_chats",
-        JSON.stringify(chats)
-    );
-
-    input.value="";
-
-    renderMessages();
-
+ input.value="";
+ renderChat();
 }
 
+function deleteChat(){
 
-function clearChat(){
+ if(!confirm("Padam semua mesej chat ini?"))return;
 
-    if(!currentChatUser){
-
-        return;
-
-    }
-
-    const yes =
-        confirm("Padam semua mesej chat ini?");
-
-    if(!yes){
-
-        return;
-
-    }
-
-    chats[currentChatUser.username] = [];
-
-    localStorage.setItem(
-        "ym_chats",
-        JSON.stringify(chats)
-    );
-
-    renderMessages();
-
+ saveChat(activeChat.username,[]);
+ renderChat();
 }
-
 
 /* =========================================================
    FRIENDS
@@ -1884,63 +800,34 @@ function clearChat(){
 
 function renderFriends(){
 
-    let html = `
-        <div class="section-title">
-            Friends
-        </div>
-    `;
+ let html=`<div class="section">Friends</div>`;
 
+ users.filter(u=>u.username!==current.username).forEach(u=>{
 
-    users
-        .filter(u => u.username !== currentUser.username)
-        .forEach(user => {
+  html+=`
 
-            html += `
+  <div class="card row">
 
-                <div class="friend-item">
+   <div class="avatar">
+    ${u.avatar?`<img src="${safe(u.avatar)}">`:initial(u.name)}
+   </div>
 
-                    <div class="avatar">
+   <div class="flex">
+    <b>${safe(u.name)}</b>
+    <div class="small">@${safe(u.username)}</div>
+   </div>
 
-                        ${
-                            user.avatar
-                            ? `<img src="${user.avatar}">`
-                            : user.name.charAt(0).toUpperCase()
-                        }
+   <button class="btn" onclick="openChat('${safeAttr(u.username)}')">
+    Message
+   </button>
 
-                    </div>
+  </div>
 
-                    <div class="chat-info">
+  `;
+ });
 
-                        <strong>
-                            ${escapeHTML(user.name)}
-                        </strong>
-
-                        <span>
-                            @${escapeHTML(user.username)}
-                        </span>
-
-                    </div>
-
-                    <button
-                        class="open-btn"
-                        onclick="openChat('${user.username}')">
-
-                        Message
-
-                    </button>
-
-                </div>
-
-            `;
-
-        });
-
-
-    document.getElementById("content")
-        .innerHTML = html;
-
+ document.getElementById("content").innerHTML=html;
 }
-
 
 /* =========================================================
    ROOMS
@@ -1948,242 +835,161 @@ function renderFriends(){
 
 function renderRooms(){
 
-    let html = `
+ let html=`
 
-        <div class="room-banner">
+ <div class="banner">
+  <b>🌎 Y-M Public Rooms</b>
+  <div style="font-size:13px;margin-top:5px">
+   Country → State / Region → Room
+  </div>
+ </div>
 
-            <strong>
-                🌎 Public Chat Rooms
-            </strong>
+ `;
 
-            <div style="margin-top:5px;font-size:13px;">
-                Pilih negara atau negeri untuk masuk.
-            </div>
+ countries.forEach((country,index)=>{
 
-        </div>
+  html+=`
 
-        <div class="section-title">
-            Country / State Rooms
-        </div>
+  <div class="country">
 
-    `;
+   <div class="countryicon">🌎</div>
 
+   <div class="flex">
+    <b>${safe(country.name)}</b>
+    <div class="small">${country.states.length} State/Region</div>
+   </div>
 
-    defaultRooms.forEach(room => {
+   <button class="lightbtn"
+    onclick="toggleCountry(${index})">
+    Open
+   </button>
 
-        html += `
+  </div>
 
-            <div class="room-item"
-                 onclick="openRoom('${room.name}')">
+  <div id="country${index}" class="hidden">
 
-                <div class="room-icon">
-                    🌎
-                </div>
+  `;
 
-                <div class="room-info">
+  country.states.forEach(state=>{
 
-                    <strong>
-                        ${escapeHTML(room.name)}
-                    </strong>
+   html+=`
 
-                    <small>
-                        👥 ${room.members} members
-                    </small>
+   <div class="state">
 
-                </div>
+    <span>📍</span>
 
-                <button
-                    class="open-btn"
-                    onclick="event.stopPropagation();openRoom('${room.name}')">
+    <div class="flex">
+     <b>${safe(state)}</b>
+     <div class="roommembers">Public Room</div>
+    </div>
 
-                    Join
+    <button class="btn"
+     onclick="openRoom('${safeAttr(country.name)}','${safeAttr(state)}')">
+     Join
+    </button>
 
-                </button>
+   </div>
 
-            </div>
+   `;
 
-        `;
+  });
 
-    });
+  html+=`</div>`;
 
+ });
 
-    html += `
-
-        <div class="section-title">
-            Market Room
-        </div>
-
-        <div class="room-item"
-             onclick="showPage('market')">
-
-            <div class="room-icon">
-                🛒
-            </div>
-
-            <div class="room-info">
-
-                <strong>
-                    Y-M Market
-                </strong>
-
-                <small>
-                    Jual beli barang
-                </small>
-
-            </div>
-
-            <button class="open-btn">
-                Open
-            </button>
-
-        </div>
-
-    `;
-
-
-    document.getElementById("content")
-        .innerHTML = html;
-
+ document.getElementById("content").innerHTML=html;
 }
 
+function toggleCountry(index){
+
+ const el=document.getElementById("country"+index);
+
+ el.classList.toggle("hidden");
+}
 
 /* =========================================================
    ROOM CHAT
 ========================================================= */
 
-function openRoom(name){
-
-    currentRoom = name;
-
-    document.getElementById("roomChatName")
-        .innerText = name;
-
-    document.getElementById("roomChat")
-        .classList.remove("hidden");
-
-    renderRoomMessages();
-
+function roomKey(country,state){
+ return "ym_room_"+country+"_"+state;
 }
 
+function openRoom(country,state){
+
+ activeRoom={country,state};
+
+ document.getElementById("roomTitle").innerText=
+ country+" • "+state;
+
+ document.getElementById("roomScreen").classList.remove("hidden");
+
+ renderRoom();
+}
 
 function closeRoom(){
-
-    document.getElementById("roomChat")
-        .classList.add("hidden");
-
+ document.getElementById("roomScreen").classList.add("hidden");
 }
 
+function renderRoom(){
 
-function getRoomKey(){
+ const key=roomKey(activeRoom.country,activeRoom.state);
 
-    return "ym_room_" +
-        currentRoom
-        .replace(/\s+/g,"_")
-        .toLowerCase();
+ let data=JSON.parse(localStorage.getItem(key));
 
+ if(!data){
+
+  data=[
+   {
+    name:"Y-M System",
+    text:"Selamat datang ke room "+
+         activeRoom.country+" • "+activeRoom.state
+   },
+   {
+    name:"Ahmad",
+    text:"Hello semua 👋"
+   }
+  ];
+
+  localStorage.setItem(key,JSON.stringify(data));
+ }
+
+ const box=document.getElementById("roomBody");
+
+ box.innerHTML=data.map(m=>`
+
+  <div class="msg other">
+   <b class="blue">${safe(m.name)}</b>
+   <div>${safe(m.text)}</div>
+   <small>Public Room</small>
+  </div>
+
+ `).join("");
+
+ box.scrollTop=box.scrollHeight;
 }
 
+function sendRoom(){
 
-function renderRoomMessages(){
+ const input=document.getElementById("roomInput");
+ const text=input.value.trim();
 
-    const key = getRoomKey();
+ if(!text)return;
 
-    const messages =
-        JSON.parse(localStorage.getItem(key)) || [
+ const key=roomKey(activeRoom.country,activeRoom.state);
+ const data=JSON.parse(localStorage.getItem(key))||[];
 
-            {
-                name:"Y-M System",
-                text:"Selamat datang di room " +
-                     currentRoom + "."
-            },
+ data.push({
+  name:current.name,
+  text
+ });
 
-            {
-                name:"Ahmad",
-                text:"Hello semua 👋"
-            },
+ localStorage.setItem(key,JSON.stringify(data));
 
-            {
-                name:"Siti",
-                text:"Hi!"
-            }
-
-        ];
-
-
-    const box =
-        document.getElementById("roomMessages");
-
-
-    box.innerHTML =
-        messages.map(m => `
-
-            <div class="room-message">
-
-                <strong>
-                    ${escapeHTML(m.name)}
-                </strong>
-
-                <div>
-                    ${escapeHTML(m.text)}
-                </div>
-
-                <small>
-                    Public Room
-                </small>
-
-            </div>
-
-        `).join("");
-
-
-    box.scrollTop = box.scrollHeight;
-
+ input.value="";
+ renderRoom();
 }
-
-
-function sendRoomMessage(){
-
-    if(!currentRoom){
-
-        return;
-
-    }
-
-    const input =
-        document.getElementById("roomText");
-
-    const text =
-        input.value.trim();
-
-    if(!text){
-
-        return;
-
-    }
-
-    const key = getRoomKey();
-
-    const messages =
-        JSON.parse(localStorage.getItem(key)) || [];
-
-    messages.push({
-
-        name:currentUser.name,
-        text:text
-
-    });
-
-    localStorage.setItem(
-        key,
-        JSON.stringify(messages)
-    );
-
-    input.value="";
-
-    renderRoomMessages();
-
-}
-
 
 /* =========================================================
    MARKET
@@ -2191,61 +997,37 @@ function sendRoomMessage(){
 
 function renderMarket(){
 
-    let html = `
+ document.getElementById("content").innerHTML=`
 
-        <div class="section-title">
-            🛒 Y-M Market
-        </div>
+ <div class="section">🛒 Y-M Market</div>
 
-        <div class="market-item">
+ <div class="market">
+  <div class="marketpic">📷 Product Photo</div>
+  <b>Contoh Kereta</b>
+  <div class="price">RM 12,000</div>
+  <div class="small">Sabah • Jual / Swap</div>
+ </div>
 
-            <div class="market-img">
-                📷 Product Photo
-            </div>
+ <div class="market">
+  <div class="marketpic">📷 Product Photo</div>
+  <b>Contoh Barang</b>
+  <div class="price">RM 500</div>
+  <div class="small">Malaysia • For Sale</div>
+ </div>
 
-            <strong>
-                Contoh Iklan Kenderaan
-            </strong>
+ <div class="card">
+  <button class="btn" style="width:100%"
+   onclick="marketInfo()">
+   + Jual Barang
+  </button>
+ </div>
 
-            <div class="market-price">
-                RM 12,000
-            </div>
-
-            <div class="market-meta">
-                Sabah • Jual / Swap
-            </div>
-
-        </div>
-
-
-        <div class="market-item">
-
-            <div class="market-img">
-                📷 Product Photo
-            </div>
-
-            <strong>
-                Contoh Barang
-            </strong>
-
-            <div class="market-price">
-                RM 500
-            </div>
-
-            <div class="market-meta">
-                Malaysia • For Sale
-            </div>
-
-        </div>
-
-    `;
-
-
-    document.getElementById("content")
-        .innerHTML = html;
-
+ `;
 }
 
+function marketInfo(){
+ alert("Sistem iklan, upload gambar, lokasi dan pembayaran akan disambungkan ke backend sebenar.");
+}
 
 /* =========================================================
    NOTIFICATIONS
@@ -2253,51 +1035,29 @@ function renderMarket(){
 
 function renderNotifications(){
 
-    let html = `
-        <div class="section-title">
-            Notifications
-        </div>
-    `;
+ let html=`<div class="section">🔔 Notifications</div>`;
 
+ notices.forEach(n=>{
 
-    notifications.forEach(n => {
+  html+=`
 
-        html += `
+  <div class="notice">
 
-            <div class="notification-item">
+   <div class="noticeicon">🔔</div>
 
-                <div class="notification-icon">
-                    🔔
-                </div>
+   <div class="flex">
+    <b>${safe(n.title)}</b>
+    <div>${safe(n.text)}</div>
+    <div class="small">${safe(n.time)}</div>
+   </div>
 
-                <div class="notification-info">
+  </div>
 
-                    <strong>
-                        ${escapeHTML(n.title)}
-                    </strong>
+  `;
+ });
 
-                    <div>
-                        ${escapeHTML(n.text)}
-                    </div>
-
-                    <small>
-                        ${escapeHTML(n.time)}
-                    </small>
-
-                </div>
-
-            </div>
-
-        `;
-
-    });
-
-
-    document.getElementById("content")
-        .innerHTML = html;
-
+ document.getElementById("content").innerHTML=html;
 }
-
 
 /* =========================================================
    PROFILE
@@ -2305,158 +1065,70 @@ function renderNotifications(){
 
 function renderProfile(){
 
-    const avatar =
-        currentUser.avatar
-        ? `<img src="${currentUser.avatar}">`
-        : currentUser.name.charAt(0).toUpperCase();
+ const cover=current.cover
+ ?`background-image:url('${safeAttr(current.cover)}')`
+ :"";
 
+ const avatar=current.avatar
+ ?`<img src="${safe(current.avatar)}">`
+ :initial(current.name);
 
-    const coverStyle =
-        currentUser.cover
-        ? `background-image:url('${currentUser.cover}');
-           background-size:cover;
-           background-position:center;`
-        : "";
+ document.getElementById("content").innerHTML=`
 
+ <div class="cover" style="${cover}">
+  <button class="coverbtn" onclick="changeCover()">✏️ Cover</button>
+ </div>
 
-    const html = `
+ <div class="profile">
 
-        <div class="profile-cover"
-             style="${coverStyle}">
+  <div class="pavatar">${avatar}</div>
 
-            <button
-                class="cover-edit"
-                onclick="changeCover()">
+  <button class="editavatar" onclick="changeAvatar()">📷</button>
 
-                ✏️ Edit Cover
+  <div class="pname">${safe(current.name)}</div>
 
-            </button>
+  <div class="small">@${safe(current.username)}</div>
 
-        </div>
+  <div class="profilebuttons">
 
+   <button class="lightbtn" onclick="changeName()">✏️ Tukar Nama</button>
 
-        <div class="profile-main">
+   <button class="lightbtn" onclick="changePassword()">🔐 Password</button>
 
-            <div class="profile-avatar">
+   <button class="lightbtn" onclick="page('market')">🛒 Market</button>
 
-                ${avatar}
+   <button class="lightbtn" onclick="logout()">🚪 Logout</button>
 
-            </div>
+  </div>
 
-            <button
-                onclick="changeAvatar()"
-                style="
-                    position:absolute;
-                    top:8px;
-                    left:78px;
-                    border:0;
-                    background:#1976d2;
-                    color:white;
-                    border-radius:50%;
-                    width:30px;
-                    height:30px;
-                ">
+ </div>
 
-                📷
+ <div class="info">
 
-            </button>
+  <div class="inforow">
+   <div class="small">Username</div>
+   @${safe(current.username)}
+  </div>
 
+  <div class="inforow">
+   <div class="small">Profile Photo</div>
+   Public
+  </div>
 
-            <div class="profile-name">
-                ${escapeHTML(currentUser.name)}
-            </div>
+  <div class="inforow">
+   <div class="small">Cover Photo</div>
+   Public
+  </div>
 
-            <div class="profile-username">
-                @${escapeHTML(currentUser.username)}
-            </div>
+  <div class="inforow">
+   <div class="small">Status</div>
+   🟢 Online
+  </div>
 
+ </div>
 
-            <div class="profile-buttons">
-
-                <button
-                    class="profile-btn"
-                    onclick="changeName()">
-
-                    ✏️ Tukar Nama
-
-                </button>
-
-                <button
-                    class="profile-btn"
-                    onclick="changePassword()">
-
-                    🔐 Tukar Password
-
-                </button>
-
-                <button
-                    class="profile-btn"
-                    onclick="showPage('market')">
-
-                    🛒 Market
-
-                </button>
-
-                <button
-                    class="profile-btn"
-                    onclick="logout()">
-
-                    🚪 Logout
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="profile-info">
-
-            <div class="info-row">
-
-                <small>Username</small>
-
-                @${escapeHTML(currentUser.username)}
-
-            </div>
-
-
-            <div class="info-row">
-
-                <small>Profile Photo</small>
-
-                Public
-
-            </div>
-
-
-            <div class="info-row">
-
-                <small>Cover Photo</small>
-
-                Public
-
-            </div>
-
-
-            <div class="info-row">
-
-                <small>Status</small>
-
-                🟢 Online
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    document.getElementById("content")
-        .innerHTML = html;
-
+ `;
 }
-
 
 /* =========================================================
    PROFILE EDIT
@@ -2464,207 +1136,89 @@ function renderProfile(){
 
 function changeName(){
 
-    openModal(
-        "Tukar Nama",
-        `
-            <input
-                id="modalName"
-                class="modal-input"
-                value="${escapeHTML(currentUser.name)}"
-                placeholder="Nama baru"
-            >
-        `,
-        function(){
+ openModal(
+  "Tukar Nama",
+  `<input id="mName" class="input" value="${safeAttr(current.name)}">`,
+  ()=>{
+   const v=document.getElementById("mName").value.trim();
 
-            const value =
-                document.getElementById("modalName")
-                .value.trim();
+   if(!v){
+    alert("Nama tidak boleh kosong.");
+    return;
+   }
 
-            if(!value){
-
-                alert("Nama tidak boleh kosong.");
-
-                return;
-
-            }
-
-            currentUser.name = value;
-
-            saveCurrentUser();
-
-            closeModal();
-
-            renderProfile();
-
-        }
-    );
-
+   current.name=v;
+   updateUser();
+   closeModal();
+   renderProfile();
+  }
+ );
 }
-
 
 function changePassword(){
 
-    openModal(
-        "Tukar Password",
-        `
-            <input
-                id="modalPassword"
-                class="modal-input"
-                type="password"
-                placeholder="Password baru"
-            >
-        `,
-        function(){
+ openModal(
+  "Tukar Password",
+  `<input id="mPass" class="input" type="password" placeholder="Password baru">`,
+  ()=>{
+   const v=document.getElementById("mPass").value;
 
-            const value =
-                document.getElementById("modalPassword")
-                .value;
+   if(v.length<4){
+    alert("Password minimum 4 aksara.");
+    return;
+   }
 
-            if(value.length < 4){
+   current.password=v;
+   updateUser();
 
-                alert("Password minimum 4 aksara.");
+   closeModal();
 
-                return;
-
-            }
-
-            currentUser.password = value;
-
-            users =
-                users.map(u =>
-                    u.username === currentUser.username
-                    ? currentUser
-                    : u
-                );
-
-            localStorage.setItem(
-                "ym_users",
-                JSON.stringify(users)
-            );
-
-            saveCurrentUser();
-
-            closeModal();
-
-            alert("Password berjaya ditukar.");
-
-        }
-    );
-
+   alert("Password berjaya ditukar.");
+  }
+ );
 }
-
-
-/* =========================================================
-   PHOTO / COVER
-========================================================= */
 
 function changeAvatar(){
 
-    openModal(
-        "Profile Photo",
-        `
-            <input
-                id="avatarUrl"
-                class="modal-input"
-                placeholder="URL gambar"
-            >
+ openModal(
+  "Profile Photo",
+  `
+   <input id="mAvatar" class="input" placeholder="URL gambar">
+   <div class="small">Profile Photo sentiasa Public.</div>
+  `,
+  ()=>{
+   const v=document.getElementById("mAvatar").value.trim();
 
-            <small style="color:#888;">
-                Buat masa ini gunakan URL gambar.
-            </small>
-        `,
-        function(){
+   if(!v)return;
 
-            const value =
-                document.getElementById("avatarUrl")
-                .value.trim();
-
-            if(!value){
-
-                return;
-
-            }
-
-            currentUser.avatar = value;
-
-            saveCurrentUser();
-
-            closeModal();
-
-            renderProfile();
-
-        }
-    );
-
+   current.avatar=v;
+   updateUser();
+   closeModal();
+   renderProfile();
+  }
+ );
 }
-
 
 function changeCover(){
 
-    openModal(
-        "Cover Photo",
-        `
-            <input
-                id="coverUrl"
-                class="modal-input"
-                placeholder="URL gambar cover"
-            >
+ openModal(
+  "Cover Photo",
+  `
+   <input id="mCover" class="input" placeholder="URL gambar cover">
+   <div class="small">Cover Photo sentiasa Public.</div>
+  `,
+  ()=>{
+   const v=document.getElementById("mCover").value.trim();
 
-            <small style="color:#888;">
-                Cover Photo sentiasa Public.
-            </small>
-        `,
-        function(){
+   if(!v)return;
 
-            const value =
-                document.getElementById("coverUrl")
-                .value.trim();
-
-            if(!value){
-
-                return;
-
-            }
-
-            currentUser.cover = value;
-
-            saveCurrentUser();
-
-            closeModal();
-
-            renderProfile();
-
-        }
-    );
-
+   current.cover=v;
+   updateUser();
+   closeModal();
+   renderProfile();
+  }
+ );
 }
-
-
-/* =========================================================
-   SAVE USER
-========================================================= */
-
-function saveCurrentUser(){
-
-    users =
-        users.map(u =>
-            u.username === currentUser.username
-            ? currentUser
-            : u
-        );
-
-    localStorage.setItem(
-        "ym_users",
-        JSON.stringify(users)
-    );
-
-    localStorage.setItem(
-        "ym_current_user",
-        JSON.stringify(currentUser)
-    );
-
-}
-
 
 /* =========================================================
    MODAL
@@ -2672,45 +1226,64 @@ function saveCurrentUser(){
 
 function openModal(title,body,callback){
 
-    document.getElementById("modalTitle")
-        .innerText = title;
+ document.getElementById("modalTitle").innerText=title;
+ document.getElementById("modalBody").innerHTML=body;
 
-    document.getElementById("modalBody")
-        .innerHTML = body;
+ document.getElementById("modalSave").onclick=callback;
 
-    document.getElementById("modalConfirm")
-        .onclick = callback;
-
-    document.getElementById("modal")
-        .classList.remove("hidden");
-
+ document.getElementById("modal").classList.remove("hidden");
 }
-
 
 function closeModal(){
-
-    document.getElementById("modal")
-        .classList.add("hidden");
-
+ document.getElementById("modal").classList.add("hidden");
 }
 
-
 /* =========================================================
-   SECURITY / HTML ESCAPE
+   STORAGE
 ========================================================= */
 
-function escapeHTML(text){
+function saveUsers(){
+ localStorage.setItem("ym_users",JSON.stringify(users));
+}
 
-    return String(text)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+function updateUser(){
 
+ users=users.map(u=>
+  u.username===current.username?current:u
+ );
+
+ saveUsers();
+
+ localStorage.setItem(
+  "ym_current",
+  JSON.stringify(current)
+ );
+}
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function initial(name){
+ return safe(String(name||"?").charAt(0).toUpperCase());
+}
+
+function safe(text){
+ return String(text??"")
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
+}
+
+function safeAttr(text){
+ return String(text??"")
+ .replace(/\\/g,"\\\\")
+ .replace(/'/g,"\\'")
+ .replace(/"/g,"&quot;");
 }
 
 </script>
-
 </body>
 </html>
