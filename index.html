@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Y-M Chat - Profile V1.0</title>
+<title>Y-M Chat - Profile V1.1</title>
 
 <style>
 *{
@@ -25,22 +24,23 @@ body{
     min-height:100vh;
     margin:auto;
     background:#fff;
-    position:relative;
-    padding-bottom:75px;
+    padding-bottom:78px;
 }
 
-/* HEADER */
+/* =========================
+   TOP
+========================= */
+
 .topbar{
     height:58px;
     background:#1976d2;
     color:white;
     display:flex;
     align-items:center;
-    justify-content:space-between;
     padding:0 16px;
     position:sticky;
     top:0;
-    z-index:20;
+    z-index:30;
     box-shadow:0 2px 6px rgba(0,0,0,.18);
 }
 
@@ -48,17 +48,12 @@ body{
     font-size:20px;
 }
 
-.topbar button{
-    border:0;
-    background:transparent;
-    color:white;
-    font-size:27px;
-    cursor:pointer;
-}
+/* =========================
+   COVER
+========================= */
 
-/* COVER */
 .cover{
-    height:190px;
+    height:205px;
     background:linear-gradient(135deg,#1976d2,#64b5f6);
     position:relative;
     overflow:hidden;
@@ -71,46 +66,96 @@ body{
     display:none;
 }
 
+/* 3 DOTS - ATAS COVER */
+.cover-menu{
+    position:absolute;
+    top:12px;
+    right:12px;
+    z-index:10;
+}
+
+.menu-button{
+    width:43px;
+    height:43px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.94);
+    color:#222;
+    font-size:27px;
+    cursor:pointer;
+    box-shadow:0 2px 7px rgba(0,0,0,.25);
+}
+
+.menu-box{
+    display:none;
+    position:absolute;
+    top:50px;
+    right:0;
+    width:220px;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 16px rgba(0,0,0,.25);
+}
+
+.menu-box button{
+    width:100%;
+    border:0;
+    border-bottom:1px solid #eee;
+    background:white;
+    padding:14px;
+    text-align:left;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.menu-box button:hover{
+    background:#f3f7fb;
+}
+
 .cover-camera{
     position:absolute;
     right:12px;
     bottom:12px;
-    width:42px;
-    height:42px;
-    border-radius:50%;
+    width:43px;
+    height:43px;
     border:0;
+    border-radius:50%;
     background:white;
     font-size:20px;
     cursor:pointer;
     box-shadow:0 2px 7px rgba(0,0,0,.25);
 }
 
-/* PROFILE */
+/* =========================
+   PROFILE
+========================= */
+
 .profile-area{
     padding:0 15px;
 }
 
 .profile-head{
     position:relative;
-    min-height:130px;
+    min-height:135px;
 }
 
 .avatar-box{
     position:absolute;
-    top:-58px;
     left:10px;
+    top:-60px;
 }
 
 .avatar{
-    width:116px;
-    height:116px;
+    width:120px;
+    height:120px;
     border-radius:50%;
     border:5px solid white;
     background:#dcecff;
+    overflow:hidden;
     display:flex;
     align-items:center;
     justify-content:center;
-    overflow:hidden;
     box-shadow:0 2px 8px rgba(0,0,0,.25);
 }
 
@@ -122,27 +167,26 @@ body{
 }
 
 .avatar-text{
-    font-size:44px;
     color:#1976d2;
+    font-size:45px;
     font-weight:bold;
 }
 
 .avatar-camera{
     position:absolute;
-    right:2px;
-    bottom:3px;
-    width:36px;
-    height:36px;
+    right:1px;
+    bottom:2px;
+    width:37px;
+    height:37px;
     border-radius:50%;
     border:3px solid white;
     background:#1976d2;
     color:white;
-    font-size:16px;
     cursor:pointer;
 }
 
 .profile-info{
-    padding-top:67px;
+    padding-top:68px;
     padding-left:5px;
 }
 
@@ -151,75 +195,31 @@ body{
     margin-bottom:4px;
 }
 
-.profile-info .ymid{
+.ymid{
     color:#777;
     font-size:14px;
 }
 
 .bio{
-    margin-top:9px;
     color:#555;
+    margin-top:9px;
     line-height:1.4;
 }
 
-/* MENU */
-.menu{
-    position:absolute;
-    right:10px;
-    top:10px;
-    z-index:10;
-}
+/* =========================
+   INFO
+========================= */
 
-.menu-button{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    border:0;
-    background:rgba(255,255,255,.92);
-    font-size:25px;
-    cursor:pointer;
-    box-shadow:0 2px 6px rgba(0,0,0,.2);
-}
-
-.menu-box{
-    display:none;
-    position:absolute;
-    right:0;
-    top:48px;
-    width:220px;
-    background:white;
-    border-radius:10px;
-    box-shadow:0 4px 16px rgba(0,0,0,.22);
-    overflow:hidden;
-}
-
-.menu-box button{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-bottom:1px solid #eee;
-    background:white;
-    text-align:left;
-    cursor:pointer;
-    font-size:15px;
-}
-
-.menu-box button:hover{
-    background:#f2f7fc;
-}
-
-/* INFO */
 .info-card{
     margin-top:5px;
-    background:#f7f9fc;
-    border-radius:12px;
     padding:14px;
+    border-radius:12px;
+    background:#f7f9fc;
 }
 
 .info-row{
     padding:8px 0;
-    border-bottom:1px solid #e5e9ee;
-    font-size:14px;
+    border-bottom:1px solid #e2e7ec;
 }
 
 .info-row:last-child{
@@ -228,20 +228,24 @@ body{
 
 .info-label{
     color:#777;
+    font-size:13px;
     margin-bottom:3px;
 }
 
 .info-value{
+    font-size:14px;
     font-weight:bold;
 }
 
-/* POST BOX */
+/* =========================
+   POST CREATOR
+========================= */
+
 .post-box{
     margin-top:15px;
     border:1px solid #e0e5eb;
     border-radius:12px;
     padding:13px;
-    background:white;
 }
 
 .post-box h3{
@@ -251,7 +255,7 @@ body{
 
 .post-input{
     width:100%;
-    min-height:75px;
+    min-height:78px;
     resize:none;
     border:1px solid #ddd;
     border-radius:9px;
@@ -267,8 +271,8 @@ body{
 .post-tools{
     display:flex;
     gap:8px;
-    margin-top:10px;
     flex-wrap:wrap;
+    margin-top:10px;
 }
 
 .post-tools button{
@@ -279,8 +283,11 @@ body{
     cursor:pointer;
 }
 
-.post-tools button:hover{
-    background:#eaf3fc;
+.selected-file{
+    margin-top:9px;
+    color:#1976d2;
+    font-size:13px;
+    word-break:break-word;
 }
 
 .publish{
@@ -296,23 +303,19 @@ body{
     cursor:pointer;
 }
 
-.selected-file{
-    margin-top:8px;
-    font-size:13px;
-    color:#1976d2;
-}
+/* =========================
+   POSTS
+========================= */
 
-/* POSTS */
 .section-title{
-    margin-top:20px;
-    margin-bottom:10px;
+    margin:20px 0 10px;
     font-size:18px;
 }
 
 .post{
-    border:1px solid #e1e5e9;
+    border:1px solid #e0e5ea;
     border-radius:12px;
-    margin-bottom:14px;
+    margin-bottom:15px;
     overflow:hidden;
     background:white;
 }
@@ -324,16 +327,16 @@ body{
 }
 
 .post-avatar{
-    width:42px;
-    height:42px;
+    width:43px;
+    height:43px;
     border-radius:50%;
     background:#1976d2;
     color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-weight:bold;
     overflow:hidden;
+    font-weight:bold;
     margin-right:10px;
 }
 
@@ -353,6 +356,8 @@ body{
 }
 
 .post-user small{
+    display:block;
+    margin-top:3px;
     color:#777;
     font-size:11px;
 }
@@ -360,7 +365,7 @@ body{
 .post-menu{
     border:0;
     background:transparent;
-    font-size:22px;
+    font-size:23px;
     cursor:pointer;
 }
 
@@ -368,13 +373,15 @@ body{
     padding:0 12px 12px;
     line-height:1.45;
     white-space:pre-wrap;
+    word-break:break-word;
 }
 
 .post-media{
+    display:block;
     width:100%;
     max-height:430px;
     object-fit:cover;
-    display:block;
+    background:#111;
 }
 
 .post-actions{
@@ -385,27 +392,31 @@ body{
 
 .post-actions button{
     flex:1;
-    padding:10px 4px;
     border:0;
     background:white;
+    padding:10px 4px;
     cursor:pointer;
     font-size:13px;
 }
 
 .post-actions button:hover{
-    background:#f2f6fa;
+    background:#f3f6f9;
 }
 
 .like-active{
     font-weight:bold;
 }
 
+/* =========================
+   COMMENTS
+========================= */
+
 .comments{
     padding:10px 12px;
 }
 
 .comment{
-    background:#f2f4f7;
+    background:#f1f3f5;
     border-radius:9px;
     padding:8px 10px;
     margin-bottom:7px;
@@ -414,49 +425,53 @@ body{
 
 .comment-top{
     display:flex;
-    justify-content:space-between;
     gap:8px;
 }
 
-.comment-delete{
-    border:0;
-    background:transparent;
-    cursor:pointer;
-    color:#d32f2f;
+.comment-body{
+    flex:1;
 }
 
-.comment-hide{
+.comment-buttons{
+    white-space:nowrap;
+}
+
+.comment-buttons button{
     border:0;
     background:transparent;
     cursor:pointer;
-    color:#777;
+    font-size:13px;
 }
 
 .comment-input{
     width:100%;
+    padding:9px;
     border:1px solid #ddd;
     border-radius:8px;
-    padding:9px;
+    outline:none;
     margin-top:5px;
 }
 
 .comment-send{
     margin-top:6px;
+    padding:8px 13px;
     border:0;
+    border-radius:7px;
     background:#1976d2;
     color:white;
-    padding:8px 13px;
-    border-radius:7px;
     cursor:pointer;
 }
 
-/* MODAL */
+/* =========================
+   MODALS
+========================= */
+
 .modal{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.55);
     z-index:100;
+    background:rgba(0,0,0,.55);
     align-items:center;
     justify-content:center;
     padding:15px;
@@ -473,8 +488,8 @@ body{
 }
 
 .modal-content h2{
-    margin-bottom:15px;
     color:#1976d2;
+    margin-bottom:15px;
 }
 
 .form-group{
@@ -483,18 +498,17 @@ body{
 
 .form-group label{
     display:block;
+    color:#555;
     font-size:13px;
     margin-bottom:5px;
-    color:#555;
 }
 
 .form-group input,
-.form-group textarea,
-.form-group select{
+.form-group textarea{
     width:100%;
-    padding:10px;
     border:1px solid #d5dce3;
     border-radius:8px;
+    padding:10px;
     outline:none;
 }
 
@@ -512,8 +526,8 @@ body{
 .modal-buttons button{
     flex:1;
     padding:11px;
-    border-radius:8px;
     border:0;
+    border-radius:8px;
     cursor:pointer;
 }
 
@@ -523,21 +537,24 @@ body{
 }
 
 .cancel{
-    background:#e9edf1;
+    background:#e8edf2;
 }
 
-/* BOTTOM NAV */
+/* =========================
+   BOTTOM NAV
+========================= */
+
 .bottom-nav{
     position:fixed;
-    bottom:0;
     left:50%;
+    bottom:0;
     transform:translateX(-50%);
     width:100%;
     max-width:480px;
     height:65px;
+    display:flex;
     background:white;
     border-top:1px solid #ddd;
-    display:flex;
     z-index:50;
 }
 
@@ -545,9 +562,9 @@ body{
     flex:1;
     border:0;
     background:white;
-    cursor:pointer;
-    font-size:11px;
     color:#555;
+    font-size:11px;
+    cursor:pointer;
 }
 
 .bottom-nav button span{
@@ -561,19 +578,24 @@ body{
     font-weight:bold;
 }
 
-/* TOAST */
+/* =========================
+   TOAST
+========================= */
+
 .toast{
+    display:none;
     position:fixed;
     left:50%;
     bottom:82px;
     transform:translateX(-50%);
+    z-index:200;
     background:#222;
     color:white;
     padding:10px 16px;
     border-radius:8px;
-    display:none;
-    z-index:200;
     font-size:14px;
+    max-width:90%;
+    text-align:center;
 }
 </style>
 </head>
@@ -585,14 +607,55 @@ body{
     <!-- TOP BAR -->
     <div class="topbar">
         <h2>Y-M Chat</h2>
-        <button onclick="toggleMenu()">⋮</button>
     </div>
+
 
     <!-- COVER -->
     <div class="cover">
+
         <img id="coverImage" alt="Cover Photo">
 
-        <button class="cover-camera" onclick="document.getElementById('coverInput').click()">
+        <!-- THREE DOTS -->
+        <div class="cover-menu">
+
+            <button
+                class="menu-button"
+                onclick="toggleMenu()"
+            >
+                ⋮
+            </button>
+
+            <div
+                class="menu-box"
+                id="menuBox"
+            >
+
+                <button onclick="openEditProfile()">
+                    ✏️ Edit Profile
+                </button>
+
+                <button onclick="openPasswordModal()">
+                    🔐 Change Password
+                </button>
+
+                <button onclick="openEmailModal()">
+                    📧 Change Email
+                </button>
+
+                <button onclick="logout()">
+                    🚪 Log Out
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- COVER CAMERA -->
+        <button
+            class="cover-camera"
+            onclick="document.getElementById('coverInput').click()"
+        >
             📷
         </button>
 
@@ -603,42 +666,33 @@ body{
             style="display:none"
             onchange="uploadCover(this)"
         >
+
     </div>
+
 
     <!-- PROFILE -->
     <div class="profile-area">
 
         <div class="profile-head">
 
-            <!-- 3 DOT MENU -->
-            <div class="menu">
-                <button class="menu-button" onclick="toggleMenuBox()">⋮</button>
+            <!-- PROFILE PHOTO -->
 
-                <div class="menu-box" id="menuBox">
-                    <button onclick="openEditProfile()">
-                        ✏️ Edit Profile
-                    </button>
-
-                    <button onclick="openPasswordModal()">
-                        🔐 Change Password
-                    </button>
-
-                    <button onclick="openEmailModal()">
-                        📧 Change Email
-                    </button>
-
-                    <button onclick="logout()">
-                        🚪 Log Out
-                    </button>
-                </div>
-            </div>
-
-            <!-- AVATAR -->
             <div class="avatar-box">
 
                 <div class="avatar">
-                    <img id="profileImage" alt="Profile Photo">
-                    <span id="avatarText" class="avatar-text">N</span>
+
+                    <img
+                        id="profileImage"
+                        alt="Profile Photo"
+                    >
+
+                    <span
+                        id="avatarText"
+                        class="avatar-text"
+                    >
+                        N
+                    </span>
+
                 </div>
 
                 <button
@@ -655,45 +709,86 @@ body{
                     style="display:none"
                     onchange="uploadProfile(this)"
                 >
+
             </div>
 
-            <!-- PROFILE INFO -->
+
+            <!-- NAME -->
+
             <div class="profile-info">
-                <h1 id="profileName">Nizam@</h1>
-                <div class="ymid" id="profileYmid">@nizam</div>
-                <div class="bio" id="profileBio">
+
+                <h1 id="profileName">
+                    Nizam@
+                </h1>
+
+                <div
+                    id="profileYmid"
+                    class="ymid"
+                >
+                    @nizam
+                </div>
+
+                <div
+                    id="profileBio"
+                    class="bio"
+                >
                     Welcome to my Y-M Chat profile.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROFILE INFORMATION -->
+
+        <div class="info-card">
+
+            <div class="info-row">
+                <div class="info-label">🎂 Birthday</div>
+                <div
+                    class="info-value"
+                    id="infoBirthday"
+                >
+                    Not set
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">📍 Birthplace</div>
+                <div
+                    class="info-value"
+                    id="infoBirthplace"
+                >
+                    Not set
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">🎓 School</div>
+                <div
+                    class="info-value"
+                    id="infoSchool"
+                >
+                    Not set
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">🌏 Country</div>
+                <div
+                    class="info-value"
+                    id="infoCountry"
+                >
+                    Malaysia
                 </div>
             </div>
 
         </div>
 
-        <!-- INFO CARD -->
-        <div class="info-card">
 
-            <div class="info-row">
-                <div class="info-label">🎂 Birthday</div>
-                <div class="info-value" id="infoBirthday">Not set</div>
-            </div>
+        <!-- CREATE POST -->
 
-            <div class="info-row">
-                <div class="info-label">📍 Birthplace</div>
-                <div class="info-value" id="infoBirthplace">Not set</div>
-            </div>
-
-            <div class="info-row">
-                <div class="info-label">🎓 School</div>
-                <div class="info-value" id="infoSchool">Not set</div>
-            </div>
-
-            <div class="info-row">
-                <div class="info-label">🌏 Country</div>
-                <div class="info-value" id="infoCountry">Malaysia</div>
-            </div>
-
-        </div>
-
-        <!-- POST BOX -->
         <div class="post-box">
 
             <h3>What's on your mind?</h3>
@@ -706,15 +801,21 @@ body{
 
             <div class="post-tools">
 
-                <button onclick="document.getElementById('postImageInput').click()">
+                <button
+                    onclick="chooseImage()"
+                >
                     📷 Photo
                 </button>
 
-                <button onclick="document.getElementById('postVideoInput').click()">
+                <button
+                    onclick="chooseVideo()"
+                >
                     🎥 Video
                 </button>
 
-                <button onclick="clearPostMedia()">
+                <button
+                    onclick="clearMedia()"
+                >
                     ✖ Clear
                 </button>
 
@@ -725,7 +826,7 @@ body{
                 type="file"
                 accept="image/*"
                 style="display:none"
-                onchange="selectPostImage(this)"
+                onchange="selectImage(this)"
             >
 
             <input
@@ -733,44 +834,57 @@ body{
                 type="file"
                 accept="video/*"
                 style="display:none"
-                onchange="selectPostVideo(this)"
+                onchange="selectVideo(this)"
             >
 
-            <div id="selectedFile" class="selected-file"></div>
+            <div
+                id="selectedFile"
+                class="selected-file"
+            ></div>
 
-            <button class="publish" onclick="createPost()">
+            <button
+                class="publish"
+                onclick="createPost()"
+            >
                 POST
             </button>
 
         </div>
 
+
         <!-- POSTS -->
-        <h2 class="section-title">My Posts</h2>
+
+        <h2 class="section-title">
+            My Posts
+        </h2>
 
         <div id="postsContainer"></div>
 
     </div>
+
 </div>
 
+
 <!-- BOTTOM NAV -->
+
 <div class="bottom-nav">
 
-    <button onclick="goHome()">
+    <button onclick="comingSoon('Home')">
         <span>🏠</span>
         Home
     </button>
 
-    <button onclick="showComingSoon('Chats')">
+    <button onclick="comingSoon('Chats')">
         <span>💬</span>
         Chats
     </button>
 
-    <button onclick="showComingSoon('Friends')">
+    <button onclick="comingSoon('Friends')">
         <span>👥</span>
         Friends
     </button>
 
-    <button onclick="showComingSoon('Rooms')">
+    <button onclick="comingSoon('Rooms')">
         <span>🌎</span>
         Rooms
     </button>
@@ -782,8 +896,13 @@ body{
 
 </div>
 
-<!-- EDIT PROFILE MODAL -->
-<div class="modal" id="editModal">
+
+<!-- EDIT PROFILE -->
+
+<div
+    class="modal"
+    id="editModal"
+>
 
     <div class="modal-content">
 
@@ -791,49 +910,80 @@ body{
 
         <div class="form-group">
             <label>Name</label>
-            <input id="editName" type="text">
+            <input
+                id="editName"
+                type="text"
+            >
         </div>
 
         <div class="form-group">
             <label>Birthday</label>
-            <input id="editBirthday" type="date">
+            <input
+                id="editBirthday"
+                type="date"
+            >
         </div>
 
         <div class="form-group">
             <label>Birthplace</label>
-            <input id="editBirthplace" type="text">
+            <input
+                id="editBirthplace"
+                type="text"
+            >
         </div>
 
         <div class="form-group">
             <label>School</label>
-            <input id="editSchool" type="text">
+            <input
+                id="editSchool"
+                type="text"
+            >
         </div>
 
         <div class="form-group">
             <label>Country</label>
-            <input id="editCountry" type="text">
+            <input
+                id="editCountry"
+                type="text"
+            >
         </div>
 
         <div class="form-group">
             <label>Bio</label>
-            <textarea id="editBio"></textarea>
+            <textarea
+                id="editBio"
+            ></textarea>
         </div>
 
         <div class="modal-buttons">
-            <button class="cancel" onclick="closeModal('editModal')">
+
+            <button
+                class="cancel"
+                onclick="closeModal('editModal')"
+            >
                 Cancel
             </button>
 
-            <button class="save" onclick="saveProfile()">
+            <button
+                class="save"
+                onclick="saveProfile()"
+            >
                 Save
             </button>
+
         </div>
 
     </div>
+
 </div>
 
-<!-- PASSWORD MODAL -->
-<div class="modal" id="passwordModal">
+
+<!-- PASSWORD -->
+
+<div
+    class="modal"
+    id="passwordModal"
+>
 
     <div class="modal-content">
 
@@ -841,36 +991,57 @@ body{
 
         <div class="form-group">
             <label>Current Password</label>
-            <input id="currentPassword" type="password">
+            <input
+                id="currentPassword"
+                type="password"
+            >
         </div>
 
         <div class="form-group">
             <label>New Password</label>
-            <input id="newPassword" type="password">
+            <input
+                id="newPassword"
+                type="password"
+            >
         </div>
 
         <div class="form-group">
             <label>Confirm New Password</label>
-            <input id="confirmPassword" type="password">
+            <input
+                id="confirmPassword"
+                type="password"
+            >
         </div>
 
         <div class="modal-buttons">
 
-            <button class="cancel" onclick="closeModal('passwordModal')">
+            <button
+                class="cancel"
+                onclick="closeModal('passwordModal')"
+            >
                 Cancel
             </button>
 
-            <button class="save" onclick="changePassword()">
+            <button
+                class="save"
+                onclick="changePassword()"
+            >
                 Change
             </button>
 
         </div>
 
     </div>
+
 </div>
 
-<!-- EMAIL MODAL -->
-<div class="modal" id="emailModal">
+
+<!-- EMAIL -->
+
+<div
+    class="modal"
+    id="emailModal"
+>
 
     <div class="modal-content">
 
@@ -878,100 +1049,342 @@ body{
 
         <div class="form-group">
             <label>New Email</label>
-            <input id="newEmail" type="email">
+            <input
+                id="newEmail"
+                type="email"
+            >
         </div>
 
         <div class="form-group">
             <label>Confirm New Email</label>
-            <input id="confirmEmail" type="email">
+            <input
+                id="confirmEmail"
+                type="email"
+            >
         </div>
 
         <div class="modal-buttons">
 
-            <button class="cancel" onclick="closeModal('emailModal')">
+            <button
+                class="cancel"
+                onclick="closeModal('emailModal')"
+            >
                 Cancel
             </button>
 
-            <button class="save" onclick="changeEmail()">
+            <button
+                class="save"
+                onclick="changeEmail()"
+            >
                 Save Email
             </button>
 
         </div>
 
     </div>
+
 </div>
 
-<div class="toast" id="toast"></div>
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
 
 <script>
 
 /* =====================================================
-   Y-M CHAT PROFILE V1.0
+   Y-M CHAT PROFILE V1.1
    ===================================================== */
 
 const ACCOUNT_KEY = "ym_accounts";
 const CURRENT_USER_KEY = "ym_current_user";
 const PROFILE_KEY = "ym_profiles";
-const POSTS_KEY = "ym_profile_posts";
+
+const DB_NAME = "YMChatProfileDB";
+const DB_VERSION = 1;
+const MEDIA_STORE = "media";
+const POST_STORE = "posts";
 
 let currentUser = null;
-let profileData = {};
-let posts = [];
+let profileData = null;
 
-let selectedPostImage = null;
-let selectedPostVideo = null;
+let selectedImage = null;
+let selectedVideo = null;
 
 
 /* =====================================================
-   HELPERS
-   ===================================================== */
+   INDEXED DB
+===================================================== */
 
-function getAccounts(){
-    try{
-        return JSON.parse(localStorage.getItem(ACCOUNT_KEY)) || [];
-    }catch(e){
-        return [];
-    }
+let db = null;
+
+function openDatabase(){
+
+    return new Promise((resolve,reject)=>{
+
+        const request =
+            indexedDB.open(DB_NAME,DB_VERSION);
+
+        request.onupgradeneeded = function(event){
+
+            const database = event.target.result;
+
+            if(!database.objectStoreNames.contains(MEDIA_STORE)){
+
+                database.createObjectStore(
+                    MEDIA_STORE,
+                    {keyPath:"id"}
+                );
+            }
+
+            if(!database.objectStoreNames.contains(POST_STORE)){
+
+                database.createObjectStore(
+                    POST_STORE,
+                    {keyPath:"id"}
+                );
+            }
+        };
+
+        request.onsuccess = function(event){
+
+            db = event.target.result;
+
+            resolve(db);
+        };
+
+        request.onerror = function(){
+
+            reject(request.error);
+        };
+
+    });
 }
 
-function saveAccounts(accounts){
-    localStorage.setItem(
-        ACCOUNT_KEY,
-        JSON.stringify(accounts)
-    );
+
+/* =====================================================
+   MEDIA DB
+===================================================== */
+
+function saveMedia(id,blob){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction =
+            db.transaction(
+                MEDIA_STORE,
+                "readwrite"
+            );
+
+        const store =
+            transaction.objectStore(
+                MEDIA_STORE
+            );
+
+        store.put({
+            id:id,
+            blob:blob
+        });
+
+        transaction.oncomplete =
+            ()=>resolve();
+
+        transaction.onerror =
+            ()=>reject(transaction.error);
+
+    });
 }
+
+
+function getMedia(id){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction =
+            db.transaction(
+                MEDIA_STORE,
+                "readonly"
+            );
+
+        const store =
+            transaction.objectStore(
+                MEDIA_STORE
+            );
+
+        const request =
+            store.get(id);
+
+        request.onsuccess =
+            ()=>resolve(
+                request.result
+                ? request.result.blob
+                : null
+            );
+
+        request.onerror =
+            ()=>reject(request.error);
+
+    });
+}
+
+
+function deleteMedia(id){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction =
+            db.transaction(
+                MEDIA_STORE,
+                "readwrite"
+            );
+
+        transaction
+            .objectStore(MEDIA_STORE)
+            .delete(id);
+
+        transaction.oncomplete =
+            ()=>resolve();
+
+        transaction.onerror =
+            ()=>reject(transaction.error);
+
+    });
+}
+
+
+/* =====================================================
+   POSTS DB
+===================================================== */
+
+function getAllPosts(){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction =
+            db.transaction(
+                POST_STORE,
+                "readonly"
+            );
+
+        const request =
+            transaction
+            .objectStore(POST_STORE)
+            .getAll();
+
+        request.onsuccess =
+            ()=>resolve(
+                request.result || []
+            );
+
+        request.onerror =
+            ()=>reject(request.error);
+
+    });
+}
+
+
+function savePost(post){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction =
+            db.transaction(
+                POST_STORE,
+                "readwrite"
+            );
+
+        transaction
+            .objectStore(POST_STORE)
+            .put(post);
+
+        transaction.oncomplete =
+            ()=>resolve();
+
+        transaction.onerror =
+            ()=>reject(transaction.error);
+
+    });
+}
+
+
+function removePost(postId){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction =
+            db.transaction(
+                POST_STORE,
+                "readwrite"
+            );
+
+        transaction
+            .objectStore(POST_STORE)
+            .delete(postId);
+
+        transaction.oncomplete =
+            ()=>resolve();
+
+        transaction.onerror =
+            ()=>reject(transaction.error);
+
+    });
+}
+
+
+/* =====================================================
+   LOCAL STORAGE
+===================================================== */
 
 function getProfiles(){
+
     try{
-        return JSON.parse(localStorage.getItem(PROFILE_KEY)) || {};
+        return JSON.parse(
+            localStorage.getItem(PROFILE_KEY)
+        ) || {};
     }catch(e){
         return {};
     }
 }
 
+
 function saveProfiles(data){
+
     localStorage.setItem(
         PROFILE_KEY,
         JSON.stringify(data)
     );
 }
 
-function getPosts(){
+
+function getAccounts(){
+
     try{
-        return JSON.parse(localStorage.getItem(POSTS_KEY)) || [];
+        return JSON.parse(
+            localStorage.getItem(ACCOUNT_KEY)
+        ) || [];
     }catch(e){
         return [];
     }
 }
 
-function savePosts(data){
+
+function saveAccounts(accounts){
+
     localStorage.setItem(
-        POSTS_KEY,
-        JSON.stringify(data)
+        ACCOUNT_KEY,
+        JSON.stringify(accounts)
     );
 }
 
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
 function escapeHTML(text){
+
     if(text === null || text === undefined){
         return "";
     }
@@ -984,583 +1397,883 @@ function escapeHTML(text){
         .replace(/'/g,"&#039;");
 }
 
-function showToast(message){
 
-    const toast = document.getElementById("toast");
-
-    toast.textContent = message;
-    toast.style.display = "block";
-
-    clearTimeout(window.toastTimer);
-
-    window.toastTimer = setTimeout(()=>{
-        toast.style.display = "none";
-    },2200);
-}
-
-function getInitial(name){
+function initial(name){
 
     if(!name){
         return "N";
     }
 
-    return name.trim().charAt(0).toUpperCase() || "N";
+    return name
+        .trim()
+        .charAt(0)
+        .toUpperCase() || "N";
+}
+
+
+function toast(message){
+
+    const box =
+        document.getElementById("toast");
+
+    box.textContent = message;
+    box.style.display = "block";
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer =
+        setTimeout(()=>{
+            box.style.display = "none";
+        },2200);
 }
 
 
 /* =====================================================
-   SESSION
-   ===================================================== */
+   INITIALIZE
+===================================================== */
 
-function initialize(){
+async function initialize(){
 
-    const savedUser =
-        localStorage.getItem(CURRENT_USER_KEY);
+    try{
 
-    if(!savedUser){
+        await openDatabase();
 
-        profileData = {
-            name:"Nizam@",
-            ymid:"@nizam",
-            birthday:"",
-            birthplace:"",
-            school:"",
-            country:"Malaysia",
-            bio:"Welcome to my Y-M Chat profile.",
-            profilePhoto:"",
-            coverPhoto:"",
-            email:""
-        };
+    }catch(error){
 
-        posts = [];
-
-        renderProfile();
-        renderPosts();
-
+        toast("Browser storage unavailable.");
         return;
     }
 
-    currentUser = savedUser;
 
-    const profiles = getProfiles();
+    currentUser =
+        localStorage.getItem(
+            CURRENT_USER_KEY
+        );
 
-    if(profiles[currentUser]){
 
-        profileData = profiles[currentUser];
+    const profiles =
+        getProfiles();
+
+
+    if(currentUser && profiles[currentUser]){
+
+        profileData =
+            profiles[currentUser];
 
     }else{
 
-        const accounts = getAccounts();
+        const accounts =
+            getAccounts();
 
-        const account = accounts.find(
-            a =>
-            a.ymid === currentUser ||
-            a.username === currentUser ||
-            a.name === currentUser
-        );
+        const account =
+            accounts.find(a =>
+                a.ymid === currentUser ||
+                a.username === currentUser ||
+                a.name === currentUser
+            );
+
 
         profileData = {
-            name: account?.name || currentUser,
-            ymid: account?.ymid || currentUser,
+
+            name:
+                account?.name ||
+                currentUser ||
+                "Nizam@",
+
+            ymid:
+                account?.ymid ||
+                currentUser ||
+                "@nizam",
+
             birthday:"",
             birthplace:"",
             school:"",
-            country:account?.country || "Malaysia",
-            bio:"Welcome to my Y-M Chat profile.",
-            profilePhoto:"",
-            coverPhoto:"",
-            email:account?.email || ""
+
+            country:
+                account?.country ||
+                "Malaysia",
+
+            bio:
+                "Welcome to my Y-M Chat profile.",
+
+            profileMediaId:null,
+            coverMediaId:null,
+
+            email:
+                account?.email || ""
         };
 
-        profiles[currentUser] = profileData;
+
+        profiles[
+            currentUser || "demo-user"
+        ] = profileData;
+
         saveProfiles(profiles);
     }
 
-    posts = getPosts();
 
-    renderProfile();
-    renderPosts();
-}
+    await renderProfile();
 
-
-/* =====================================================
-   PROFILE RENDER
-   ===================================================== */
-
-function renderProfile(){
-
-    document.getElementById("profileName").textContent =
-        profileData.name || "Y-M User";
-
-    document.getElementById("profileYmid").textContent =
-        profileData.ymid || currentUser || "@user";
-
-    document.getElementById("profileBio").textContent =
-        profileData.bio || "Welcome to my Y-M Chat profile.";
-
-    document.getElementById("infoBirthday").textContent =
-        profileData.birthday || "Not set";
-
-    document.getElementById("infoBirthplace").textContent =
-        profileData.birthplace || "Not set";
-
-    document.getElementById("infoSchool").textContent =
-        profileData.school || "Not set";
-
-    document.getElementById("infoCountry").textContent =
-        profileData.country || "Not set";
-
-
-    /* PROFILE PHOTO */
-
-    const profileImage =
-        document.getElementById("profileImage");
-
-    const avatarText =
-        document.getElementById("avatarText");
-
-    if(profileData.profilePhoto){
-
-        profileImage.src =
-            profileData.profilePhoto;
-
-        profileImage.style.display = "block";
-        avatarText.style.display = "none";
-
-    }else{
-
-        profileImage.style.display = "none";
-        avatarText.style.display = "block";
-
-        avatarText.textContent =
-            getInitial(profileData.name);
-    }
-
-
-    /* COVER PHOTO */
-
-    const coverImage =
-        document.getElementById("coverImage");
-
-    if(profileData.coverPhoto){
-
-        coverImage.src =
-            profileData.coverPhoto;
-
-        coverImage.style.display = "block";
-
-    }else{
-
-        coverImage.style.display = "none";
-    }
-}
-
-
-/* =====================================================
-   PROFILE PHOTO
-   ===================================================== */
-
-function uploadProfile(input){
-
-    const file = input.files[0];
-
-    if(!file){
-        return;
-    }
-
-    if(!file.type.startsWith("image/")){
-
-        showToast("Please select an image.");
-
-        input.value = "";
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function(e){
-
-        profileData.profilePhoto =
-            e.target.result;
-
-        saveCurrentProfile();
-
-        renderProfile();
-
-        showToast("Profile photo updated.");
-    };
-
-    reader.readAsDataURL(file);
-
-    input.value = "";
-}
-
-
-/* =====================================================
-   COVER PHOTO
-   ===================================================== */
-
-function uploadCover(input){
-
-    const file = input.files[0];
-
-    if(!file){
-        return;
-    }
-
-    if(!file.type.startsWith("image/")){
-
-        showToast("Please select an image.");
-
-        input.value = "";
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function(e){
-
-        profileData.coverPhoto =
-            e.target.result;
-
-        saveCurrentProfile();
-
-        renderProfile();
-
-        showToast("Cover photo updated.");
-    };
-
-    reader.readAsDataURL(file);
-
-    input.value = "";
+    await renderPosts();
 }
 
 
 /* =====================================================
    SAVE PROFILE
-   ===================================================== */
+===================================================== */
 
 function saveCurrentProfile(){
 
-    const profiles = getProfiles();
+    const profiles =
+        getProfiles();
 
     const key =
         currentUser ||
-        profileData.ymid ||
         "demo-user";
 
-    profiles[key] = profileData;
+    profiles[key] =
+        profileData;
 
     saveProfiles(profiles);
 }
 
 
 /* =====================================================
+   RENDER PROFILE
+===================================================== */
+
+async function renderProfile(){
+
+    document.getElementById(
+        "profileName"
+    ).textContent =
+        profileData.name || "Y-M User";
+
+
+    document.getElementById(
+        "profileYmid"
+    ).textContent =
+        profileData.ymid || "@user";
+
+
+    document.getElementById(
+        "profileBio"
+    ).textContent =
+        profileData.bio ||
+        "Welcome to my Y-M Chat profile.";
+
+
+    document.getElementById(
+        "infoBirthday"
+    ).textContent =
+        profileData.birthday || "Not set";
+
+
+    document.getElementById(
+        "infoBirthplace"
+    ).textContent =
+        profileData.birthplace || "Not set";
+
+
+    document.getElementById(
+        "infoSchool"
+    ).textContent =
+        profileData.school || "Not set";
+
+
+    document.getElementById(
+        "infoCountry"
+    ).textContent =
+        profileData.country || "Not set";
+
+
+    /* PROFILE PHOTO */
+
+    const avatar =
+        document.getElementById(
+            "profileImage"
+        );
+
+    const avatarText =
+        document.getElementById(
+            "avatarText"
+        );
+
+
+    if(profileData.profileMediaId){
+
+        try{
+
+            const blob =
+                await getMedia(
+                    profileData.profileMediaId
+                );
+
+            if(blob){
+
+                const url =
+                    URL.createObjectURL(blob);
+
+                avatar.src = url;
+                avatar.style.display = "block";
+                avatarText.style.display = "none";
+
+                avatar.onload =
+                    ()=>URL.revokeObjectURL(url);
+
+            }
+
+        }catch(e){}
+        
+    }else{
+
+        avatar.style.display = "none";
+        avatarText.style.display = "block";
+
+        avatarText.textContent =
+            initial(profileData.name);
+    }
+
+
+    /* COVER */
+
+    const cover =
+        document.getElementById(
+            "coverImage"
+        );
+
+
+    if(profileData.coverMediaId){
+
+        try{
+
+            const blob =
+                await getMedia(
+                    profileData.coverMediaId
+                );
+
+            if(blob){
+
+                const url =
+                    URL.createObjectURL(blob);
+
+                cover.src = url;
+                cover.style.display = "block";
+
+                cover.onload =
+                    ()=>URL.revokeObjectURL(url);
+            }
+
+        }catch(e){}
+
+    }else{
+
+        cover.style.display = "none";
+    }
+}
+
+
+/* =====================================================
+   PROFILE PHOTO UPLOAD
+===================================================== */
+
+async function uploadProfile(input){
+
+    const file =
+        input.files[0];
+
+    if(!file){
+        return;
+    }
+
+
+    if(!file.type.startsWith("image/")){
+
+        toast("Please choose an image.");
+
+        input.value = "";
+        return;
+    }
+
+
+    try{
+
+        const id =
+            "profile_" +
+            Date.now();
+
+        await saveMedia(
+            id,
+            file
+        );
+
+
+        /* DELETE OLD */
+
+        if(profileData.profileMediaId){
+
+            await deleteMedia(
+                profileData.profileMediaId
+            );
+        }
+
+
+        profileData.profileMediaId =
+            id;
+
+        saveCurrentProfile();
+
+        await renderProfile();
+
+        toast("Profile photo updated.");
+
+    }catch(error){
+
+        toast("Profile photo failed.");
+    }
+
+
+    input.value = "";
+}
+
+
+/* =====================================================
+   COVER UPLOAD
+===================================================== */
+
+async function uploadCover(input){
+
+    const file =
+        input.files[0];
+
+    if(!file){
+        return;
+    }
+
+
+    if(!file.type.startsWith("image/")){
+
+        toast("Please choose an image.");
+
+        input.value = "";
+        return;
+    }
+
+
+    try{
+
+        const id =
+            "cover_" +
+            Date.now();
+
+        await saveMedia(
+            id,
+            file
+        );
+
+
+        if(profileData.coverMediaId){
+
+            await deleteMedia(
+                profileData.coverMediaId
+            );
+        }
+
+
+        profileData.coverMediaId =
+            id;
+
+        saveCurrentProfile();
+
+        await renderProfile();
+
+        toast("Cover photo updated.");
+
+    }catch(error){
+
+        toast("Cover photo failed.");
+    }
+
+
+    input.value = "";
+}
+
+
+/* =====================================================
    EDIT PROFILE
-   ===================================================== */
+===================================================== */
 
 function openEditProfile(){
 
-    closeMenuBox();
+    closeMenu();
 
-    document.getElementById("editName").value =
+    document.getElementById(
+        "editName"
+    ).value =
         profileData.name || "";
 
-    document.getElementById("editBirthday").value =
+
+    document.getElementById(
+        "editBirthday"
+    ).value =
         profileData.birthday || "";
 
-    document.getElementById("editBirthplace").value =
+
+    document.getElementById(
+        "editBirthplace"
+    ).value =
         profileData.birthplace || "";
 
-    document.getElementById("editSchool").value =
+
+    document.getElementById(
+        "editSchool"
+    ).value =
         profileData.school || "";
 
-    document.getElementById("editCountry").value =
+
+    document.getElementById(
+        "editCountry"
+    ).value =
         profileData.country || "";
 
-    document.getElementById("editBio").value =
+
+    document.getElementById(
+        "editBio"
+    ).value =
         profileData.bio || "";
 
-    document.getElementById("editModal").style.display =
-        "flex";
+
+    document.getElementById(
+        "editModal"
+    ).style.display = "flex";
 }
+
 
 function saveProfile(){
 
     const name =
-        document.getElementById("editName").value.trim();
+        document.getElementById(
+            "editName"
+        ).value.trim();
+
 
     if(!name){
 
-        showToast("Name cannot be empty.");
+        toast("Name cannot be empty.");
         return;
     }
 
-    profileData.name = name;
+
+    profileData.name =
+        name;
 
     profileData.birthday =
-        document.getElementById("editBirthday").value;
+        document.getElementById(
+            "editBirthday"
+        ).value;
 
     profileData.birthplace =
-        document.getElementById("editBirthplace").value.trim();
+        document.getElementById(
+            "editBirthplace"
+        ).value.trim();
 
     profileData.school =
-        document.getElementById("editSchool").value.trim();
+        document.getElementById(
+            "editSchool"
+        ).value.trim();
 
     profileData.country =
-        document.getElementById("editCountry").value.trim();
+        document.getElementById(
+            "editCountry"
+        ).value.trim();
 
     profileData.bio =
-        document.getElementById("editBio").value.trim();
+        document.getElementById(
+            "editBio"
+        ).value.trim();
+
 
     saveCurrentProfile();
 
     renderProfile();
-    renderPosts();
 
-    closeModal("editModal");
+    closeModal(
+        "editModal"
+    );
 
-    showToast("Profile updated.");
+    toast("Profile updated.");
 }
 
 
 /* =====================================================
    PASSWORD
-   ===================================================== */
+===================================================== */
 
 function openPasswordModal(){
 
-    closeMenuBox();
+    closeMenu();
 
-    document.getElementById("currentPassword").value = "";
-    document.getElementById("newPassword").value = "";
-    document.getElementById("confirmPassword").value = "";
+    document.getElementById(
+        "currentPassword"
+    ).value = "";
 
-    document.getElementById("passwordModal").style.display =
-        "flex";
+    document.getElementById(
+        "newPassword"
+    ).value = "";
+
+    document.getElementById(
+        "confirmPassword"
+    ).value = "";
+
+    document.getElementById(
+        "passwordModal"
+    ).style.display = "flex";
 }
+
 
 function changePassword(){
 
     const current =
-        document.getElementById("currentPassword").value;
+        document.getElementById(
+            "currentPassword"
+        ).value;
 
     const next =
-        document.getElementById("newPassword").value;
+        document.getElementById(
+            "newPassword"
+        ).value;
 
     const confirm =
-        document.getElementById("confirmPassword").value;
+        document.getElementById(
+            "confirmPassword"
+        ).value;
+
 
     if(!current || !next || !confirm){
 
-        showToast("Please complete all fields.");
+        toast("Please complete all fields.");
         return;
     }
+
 
     if(next !== confirm){
 
-        showToast("New passwords do not match.");
+        toast("New passwords do not match.");
         return;
     }
+
 
     if(next.length < 6){
 
-        showToast("Password must be at least 6 characters.");
+        toast(
+            "Password must be at least 6 characters."
+        );
+
         return;
     }
 
-    const accounts = getAccounts();
 
-    const index = accounts.findIndex(
-        a =>
-        a.ymid === currentUser ||
-        a.username === currentUser ||
-        a.name === currentUser
-    );
+    const accounts =
+        getAccounts();
+
+
+    const index =
+        accounts.findIndex(a =>
+            a.ymid === currentUser ||
+            a.username === currentUser ||
+            a.name === currentUser
+        );
+
 
     if(index === -1){
 
-        /*
-           Standalone demo:
-           If there is no account database,
-           simply accept the change locally.
-        */
+        profileData.demoPassword =
+            next;
 
-        profileData.demoPassword = next;
         saveCurrentProfile();
 
-        closeModal("passwordModal");
+        closeModal(
+            "passwordModal"
+        );
 
-        showToast("Password changed.");
+        toast("Password changed.");
         return;
     }
 
-    const account = accounts[index];
 
-    if(account.password !== current){
+    if(accounts[index].password !== current){
 
-        showToast("Current password is incorrect.");
+        toast(
+            "Current password is incorrect."
+        );
+
         return;
     }
 
-    account.password = next;
 
-    accounts[index] = account;
+    accounts[index].password =
+        next;
 
     saveAccounts(accounts);
 
-    closeModal("passwordModal");
+    closeModal(
+        "passwordModal"
+    );
 
-    showToast("Password changed successfully.");
+    toast(
+        "Password changed successfully."
+    );
 }
 
 
 /* =====================================================
    EMAIL
-   ===================================================== */
+===================================================== */
 
 function openEmailModal(){
 
-    closeMenuBox();
+    closeMenu();
 
-    document.getElementById("newEmail").value =
+    document.getElementById(
+        "newEmail"
+    ).value =
         profileData.email || "";
 
-    document.getElementById("confirmEmail").value =
+    document.getElementById(
+        "confirmEmail"
+    ).value =
         profileData.email || "";
 
-    document.getElementById("emailModal").style.display =
-        "flex";
+    document.getElementById(
+        "emailModal"
+    ).style.display = "flex";
 }
+
 
 function changeEmail(){
 
     const email =
-        document.getElementById("newEmail").value.trim();
+        document.getElementById(
+            "newEmail"
+        ).value.trim();
 
     const confirm =
-        document.getElementById("confirmEmail").value.trim();
+        document.getElementById(
+            "confirmEmail"
+        ).value.trim();
+
 
     if(!email || !confirm){
 
-        showToast("Please enter the email.");
+        toast("Please enter the email.");
         return;
     }
+
 
     if(email !== confirm){
 
-        showToast("Emails do not match.");
+        toast("Emails do not match.");
         return;
     }
+
 
     if(!email.includes("@")){
 
-        showToast("Please enter a valid email.");
+        toast("Please enter a valid email.");
         return;
     }
 
-    profileData.email = email;
+
+    profileData.email =
+        email;
 
     saveCurrentProfile();
 
-    const accounts = getAccounts();
 
-    const index = accounts.findIndex(
-        a =>
-        a.ymid === currentUser ||
-        a.username === currentUser ||
-        a.name === currentUser
-    );
+    const accounts =
+        getAccounts();
+
+
+    const index =
+        accounts.findIndex(a =>
+            a.ymid === currentUser ||
+            a.username === currentUser ||
+            a.name === currentUser
+        );
+
 
     if(index !== -1){
 
-        accounts[index].email = email;
+        accounts[index].email =
+            email;
 
         saveAccounts(accounts);
     }
 
-    closeModal("emailModal");
 
-    showToast("Email updated.");
+    closeModal(
+        "emailModal"
+    );
+
+    toast("Email updated.");
 }
 
 
 /* =====================================================
-   POST MEDIA
-   ===================================================== */
+   MEDIA SELECT
+===================================================== */
 
-function selectPostImage(input){
+function chooseImage(){
 
-    const file = input.files[0];
+    document.getElementById(
+        "postImageInput"
+    ).click();
+}
+
+
+function chooseVideo(){
+
+    document.getElementById(
+        "postVideoInput"
+    ).click();
+}
+
+
+function selectImage(input){
+
+    const file =
+        input.files[0];
 
     if(!file){
         return;
     }
 
-    selectedPostImage = file;
-    selectedPostVideo = null;
 
-    document.getElementById("selectedFile").textContent =
-        "📷 Selected: " + file.name;
+    if(!file.type.startsWith("image/")){
 
-    document.getElementById("postVideoInput").value = "";
+        toast("Please choose an image.");
+
+        input.value = "";
+        return;
+    }
+
+
+    selectedImage =
+        file;
+
+    selectedVideo =
+        null;
+
+
+    document.getElementById(
+        "postVideoInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "selectedFile"
+    ).textContent =
+        "📷 Selected: " +
+        file.name;
 }
 
-function selectPostVideo(input){
 
-    const file = input.files[0];
+function selectVideo(input){
+
+    const file =
+        input.files[0];
 
     if(!file){
         return;
     }
 
-    selectedPostVideo = file;
-    selectedPostImage = null;
 
-    document.getElementById("selectedFile").textContent =
-        "🎥 Selected: " + file.name;
+    if(!file.type.startsWith("video/")){
 
-    document.getElementById("postImageInput").value = "";
+        toast("Please choose a video.");
+
+        input.value = "";
+        return;
+    }
+
+
+    selectedVideo =
+        file;
+
+    selectedImage =
+        null;
+
+
+    document.getElementById(
+        "postImageInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "selectedFile"
+    ).textContent =
+        "🎥 Selected: " +
+        file.name;
 }
 
-function clearPostMedia(){
 
-    selectedPostImage = null;
-    selectedPostVideo = null;
+function clearMedia(){
 
-    document.getElementById("postImageInput").value = "";
-    document.getElementById("postVideoInput").value = "";
+    selectedImage = null;
+    selectedVideo = null;
 
-    document.getElementById("selectedFile").textContent = "";
+    document.getElementById(
+        "postImageInput"
+    ).value = "";
 
-    showToast("Media cleared.");
+    document.getElementById(
+        "postVideoInput"
+    ).value = "";
+
+    document.getElementById(
+        "selectedFile"
+    ).textContent = "";
 }
 
 
 /* =====================================================
    CREATE POST
-   ===================================================== */
+===================================================== */
 
-function createPost(){
+async function createPost(){
 
     const text =
-        document.getElementById("postText").value.trim();
+        document.getElementById(
+            "postText"
+        ).value.trim();
+
 
     if(
         !text &&
-        !selectedPostImage &&
-        !selectedPostVideo
+        !selectedImage &&
+        !selectedVideo
     ){
 
-        showToast("Write something or choose media.");
+        toast(
+            "Write something or choose media."
+        );
+
         return;
     }
 
+
+    const postId =
+        "post_" +
+        Date.now() +
+        "_" +
+        Math.random()
+            .toString(16)
+            .slice(2);
+
+
     const post = {
 
-        id:
-            Date.now() +
-            Math.random().toString(16).slice(2),
+        id:postId,
 
         user:
             currentUser ||
@@ -1571,15 +2284,14 @@ function createPost(){
             profileData.name ||
             "Y-M User",
 
-        avatar:
-            profileData.profilePhoto || "",
-
         text:text,
 
-        image:"",
-        video:"",
+        mediaId:null,
+
+        mediaType:null,
 
         likes:[],
+
         comments:[],
 
         hidden:false,
@@ -1589,86 +2301,111 @@ function createPost(){
     };
 
 
-    if(selectedPostImage){
+    try{
 
-        const reader =
-            new FileReader();
+        /* IMAGE */
 
-        reader.onload = function(e){
+        if(selectedImage){
 
-            post.image =
-                e.target.result;
+            const mediaId =
+                "media_" +
+                postId;
 
-            posts.unshift(post);
+            await saveMedia(
+                mediaId,
+                selectedImage
+            );
 
-            savePosts(posts);
+            post.mediaId =
+                mediaId;
 
-            finishPost();
-        };
+            post.mediaType =
+                "image";
+        }
 
-        reader.readAsDataURL(selectedPostImage);
 
-        return;
+        /* VIDEO */
+
+        if(selectedVideo){
+
+            const mediaId =
+                "media_" +
+                postId;
+
+            await saveMedia(
+                mediaId,
+                selectedVideo
+            );
+
+            post.mediaId =
+                mediaId;
+
+            post.mediaType =
+                "video";
+        }
+
+
+        await savePost(post);
+
+
+        document.getElementById(
+            "postText"
+        ).value = "";
+
+        clearMedia();
+
+        await renderPosts();
+
+        toast(
+            "Post published successfully."
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        toast(
+            "Post could not be saved."
+        );
     }
-
-
-    if(selectedPostVideo){
-
-        const reader =
-            new FileReader();
-
-        reader.onload = function(e){
-
-            post.video =
-                e.target.result;
-
-            posts.unshift(post);
-
-            savePosts(posts);
-
-            finishPost();
-        };
-
-        reader.readAsDataURL(selectedPostVideo);
-
-        return;
-    }
-
-
-    posts.unshift(post);
-
-    savePosts(posts);
-
-    finishPost();
-}
-
-function finishPost(){
-
-    document.getElementById("postText").value = "";
-
-    clearPostMedia();
-
-    renderPosts();
-
-    showToast("Post published.");
 }
 
 
 /* =====================================================
    RENDER POSTS
-   ===================================================== */
+===================================================== */
 
-function renderPosts(){
+async function renderPosts(){
 
     const container =
-        document.getElementById("postsContainer");
+        document.getElementById(
+            "postsContainer"
+        );
 
     container.innerHTML = "";
 
-    const visiblePosts =
-        posts.filter(p => !p.hidden);
 
-    if(visiblePosts.length === 0){
+    let posts =
+        await getAllPosts();
+
+
+    posts =
+        posts
+        .sort(
+            (a,b) =>
+                Number(b.id.includes("_"))
+                ? 0
+                : 0
+        );
+
+
+    const visible =
+        posts.filter(
+            post => !post.hidden
+        );
+
+
+    if(visible.length === 0){
 
         container.innerHTML = `
             <div style="
@@ -1685,250 +2422,318 @@ function renderPosts(){
     }
 
 
-    visiblePosts.forEach(post => {
+    for(const post of visible){
 
-        const liked =
-            Array.isArray(post.likes) &&
-            post.likes.includes(
-                currentUser ||
-                profileData.ymid ||
-                "demo-user"
-            );
+        const element =
+            await buildPostElement(post);
 
-        const postElement =
-            document.createElement("div");
-
-        postElement.className = "post";
-
-        let avatarHTML = "";
-
-        if(post.avatar){
-
-            avatarHTML =
-                `<img src="${post.avatar}" alt="avatar">`;
-
-        }else{
-
-            avatarHTML =
-                escapeHTML(
-                    getInitial(post.name)
-                );
-        }
-
-
-        let mediaHTML = "";
-
-        if(post.image){
-
-            mediaHTML += `
-                <img
-                    class="post-media"
-                    src="${post.image}"
-                    alt="Post image"
-                >
-            `;
-        }
-
-        if(post.video){
-
-            mediaHTML += `
-                <video
-                    class="post-media"
-                    controls
-                    preload="metadata"
-                >
-                    <source
-                        src="${post.video}"
-                        type="video/mp4"
-                    >
-                </video>
-            `;
-        }
-
-
-        let commentsHTML = "";
-
-        if(post.comments && post.comments.length){
-
-            post.comments.forEach(comment => {
-
-                if(comment.hidden){
-                    return;
-                }
-
-                const isOwn =
-                    comment.user ===
-                    (
-                        currentUser ||
-                        profileData.ymid ||
-                        "demo-user"
-                    );
-
-                commentsHTML += `
-                    <div class="comment">
-
-                        <div class="comment-top">
-
-                            <div>
-                                <strong>
-                                    ${escapeHTML(comment.name)}
-                                </strong>
-
-                                <div>
-                                    ${escapeHTML(comment.text)}
-                                </div>
-                            </div>
-
-                            <div>
-
-                                ${
-                                    isOwn
-                                    ?
-                                    `<button
-                                        class="comment-delete"
-                                        onclick="deleteComment('${post.id}','${comment.id}')"
-                                    >
-                                        🗑️
-                                    </button>`
-                                    :
-                                    ""
-                                }
-
-                                ${
-                                    !isOwn
-                                    ?
-                                    `<button
-                                        class="comment-hide"
-                                        onclick="hideComment('${post.id}','${comment.id}')"
-                                    >
-                                        🙈
-                                    </button>`
-                                    :
-                                    ""
-                                }
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                `;
-            });
-        }
-
-
-        postElement.innerHTML = `
-
-            <div class="post-header">
-
-                <div class="post-avatar">
-                    ${avatarHTML}
-                </div>
-
-                <div class="post-user">
-
-                    <strong>
-                        ${escapeHTML(post.name)}
-                    </strong>
-
-                    <small>
-                        ${escapeHTML(post.createdAt)}
-                    </small>
-
-                </div>
-
-                <button
-                    class="post-menu"
-                    onclick="openPostMenu('${post.id}')"
-                >
-                    ⋮
-                </button>
-
-            </div>
-
-            ${
-                post.text
-                ?
-                `<div class="post-content">
-                    ${escapeHTML(post.text)}
-                </div>`
-                :
-                ""
-            }
-
-            ${mediaHTML}
-
-            <div class="post-actions">
-
-                <button
-                    class="${liked ? "like-active" : ""}"
-                    onclick="toggleLike('${post.id}')"
-                >
-                    ${liked ? "❤️" : "🤍"} Like
-                    (${post.likes ? post.likes.length : 0})
-                </button>
-
-                <button onclick="focusComment('${post.id}')">
-                    💬 Comment
-                </button>
-
-                <button onclick="sharePost('${post.id}')">
-                    📤 Share
-                </button>
-
-            </div>
-
-            <div class="comments">
-
-                ${commentsHTML}
-
-                <input
-                    id="comment-${post.id}"
-                    class="comment-input"
-                    type="text"
-                    placeholder="Write a comment..."
-                    onkeydown="commentKey(event,'${post.id}')"
-                >
-
-                <button
-                    class="comment-send"
-                    onclick="addComment('${post.id}')"
-                >
-                    Send Comment
-                </button>
-
-            </div>
-        `;
-
-        container.appendChild(postElement);
-    });
+        container.appendChild(element);
+    }
 }
 
 
 /* =====================================================
-   LIKE
-   ===================================================== */
+   BUILD POST
+===================================================== */
 
-function toggleLike(postId){
+async function buildPostElement(post){
 
-    const post =
-        posts.find(p => p.id === postId);
+    const element =
+        document.createElement("div");
 
-    if(!post){
-        return;
-    }
+    element.className =
+        "post";
 
-    if(!Array.isArray(post.likes)){
-        post.likes = [];
-    }
 
     const user =
         currentUser ||
         profileData.ymid ||
         "demo-user";
 
+
+    const liked =
+        Array.isArray(post.likes) &&
+        post.likes.includes(user);
+
+
+    let mediaHTML = "";
+
+
+    if(post.mediaId){
+
+        try{
+
+            const blob =
+                await getMedia(
+                    post.mediaId
+                );
+
+
+            if(blob){
+
+                const url =
+                    URL.createObjectURL(blob);
+
+
+                if(post.mediaType === "image"){
+
+                    mediaHTML = `
+                        <img
+                            class="post-media"
+                            src="${url}"
+                            alt="Post image"
+                        >
+                    `;
+
+                }else if(
+                    post.mediaType === "video"
+                ){
+
+                    mediaHTML = `
+                        <video
+                            class="post-media"
+                            controls
+                            playsinline
+                            preload="metadata"
+                        >
+                            <source
+                                src="${url}"
+                            >
+                        </video>
+                    `;
+                }
+            }
+
+        }catch(error){}
+    }
+
+
+    let commentsHTML = "";
+
+
+    if(
+        Array.isArray(post.comments)
+    ){
+
+        for(
+            const comment
+            of post.comments
+        ){
+
+            if(comment.hidden){
+                continue;
+            }
+
+
+            const own =
+                comment.user === user;
+
+
+            commentsHTML += `
+
+                <div class="comment">
+
+                    <div class="comment-top">
+
+                        <div class="comment-body">
+
+                            <strong>
+                                ${escapeHTML(
+                                    comment.name
+                                )}
+                            </strong>
+
+                            <div>
+                                ${escapeHTML(
+                                    comment.text
+                                )}
+                            </div>
+
+                        </div>
+
+                        <div class="comment-buttons">
+
+                            ${
+                                own
+                                ?
+                                `
+                                <button
+                                    onclick="deleteComment(
+                                        '${post.id}',
+                                        '${comment.id}'
+                                    )"
+                                >
+                                    🗑️
+                                </button>
+                                `
+                                :
+                                `
+                                <button
+                                    onclick="hideComment(
+                                        '${post.id}',
+                                        '${comment.id}'
+                                    )"
+                                >
+                                    🙈
+                                </button>
+                                `
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+        }
+    }
+
+
+    element.innerHTML = `
+
+        <div class="post-header">
+
+            <div class="post-avatar">
+                ${escapeHTML(
+                    initial(post.name)
+                )}
+            </div>
+
+            <div class="post-user">
+
+                <strong>
+                    ${escapeHTML(post.name)}
+                </strong>
+
+                <small>
+                    ${escapeHTML(post.createdAt)}
+                </small>
+
+            </div>
+
+            <button
+                class="post-menu"
+                onclick="postMenu('${post.id}')"
+            >
+                ⋮
+            </button>
+
+        </div>
+
+
+        ${
+            post.text
+            ?
+            `
+            <div class="post-content">
+                ${escapeHTML(post.text)}
+            </div>
+            `
+            :
+            ""
+        }
+
+
+        ${mediaHTML}
+
+
+        <div class="post-actions">
+
+            <button
+                class="${liked ? "like-active" : ""}"
+                onclick="toggleLike('${post.id}')"
+            >
+                ${liked ? "❤️" : "🤍"}
+                Like (${post.likes.length})
+            </button>
+
+            <button
+                onclick="focusComment('${post.id}')"
+            >
+                💬 Comment
+            </button>
+
+            <button
+                onclick="sharePost('${post.id}')"
+            >
+                📤 Share
+            </button>
+
+        </div>
+
+
+        <div class="comments">
+
+            ${commentsHTML}
+
+
+            <input
+                id="comment-${post.id}"
+                class="comment-input"
+                placeholder="Write a comment..."
+                onkeydown="
+                    commentKey(
+                        event,
+                        '${post.id}'
+                    )
+                "
+            >
+
+
+            <button
+                class="comment-send"
+                onclick="
+                    addComment(
+                        '${post.id}'
+                    )
+                "
+            >
+                Send Comment
+            </button>
+
+        </div>
+    `;
+
+
+    return element;
+}
+
+
+/* =====================================================
+   LIKE
+===================================================== */
+
+async function toggleLike(postId){
+
+    const posts =
+        await getAllPosts();
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+
+    if(!post){
+        return;
+    }
+
+
+    if(!Array.isArray(post.likes)){
+
+        post.likes = [];
+    }
+
+
+    const user =
+        currentUser ||
+        profileData.ymid ||
+        "demo-user";
+
+
     const index =
         post.likes.indexOf(user);
+
 
     if(index === -1){
 
@@ -1936,18 +2741,22 @@ function toggleLike(postId){
 
     }else{
 
-        post.likes.splice(index,1);
+        post.likes.splice(
+            index,
+            1
+        );
     }
 
-    savePosts(posts);
 
-    renderPosts();
+    await savePost(post);
+
+    await renderPosts();
 }
 
 
 /* =====================================================
-   COMMENT
-   ===================================================== */
+   COMMENTS
+===================================================== */
 
 function focusComment(postId){
 
@@ -1955,6 +2764,7 @@ function focusComment(postId){
         document.getElementById(
             "comment-" + postId
         );
+
 
     if(input){
 
@@ -1967,6 +2777,7 @@ function focusComment(postId){
     }
 }
 
+
 function commentKey(event,postId){
 
     if(event.key === "Enter"){
@@ -1977,40 +2788,59 @@ function commentKey(event,postId){
     }
 }
 
-function addComment(postId){
+
+async function addComment(postId){
 
     const input =
         document.getElementById(
             "comment-" + postId
         );
 
+
     if(!input){
         return;
     }
 
+
     const text =
         input.value.trim();
+
 
     if(!text){
         return;
     }
 
+
+    const posts =
+        await getAllPosts();
+
+
     const post =
-        posts.find(p => p.id === postId);
+        posts.find(
+            p => p.id === postId
+        );
+
 
     if(!post){
         return;
     }
 
+
     if(!Array.isArray(post.comments)){
+
         post.comments = [];
     }
+
 
     post.comments.push({
 
         id:
+            "comment_" +
             Date.now() +
-            Math.random().toString(16).slice(2),
+            "_" +
+            Math.random()
+                .toString(16)
+                .slice(2),
 
         user:
             currentUser ||
@@ -2026,208 +2856,305 @@ function addComment(postId){
         hidden:false
     });
 
-    savePosts(posts);
 
-    renderPosts();
+    await savePost(post);
 
-    showToast("Comment added.");
+    await renderPosts();
+
+    toast(
+        "Comment added."
+    );
 }
 
 
 /* =====================================================
    DELETE COMMENT
-   ===================================================== */
+===================================================== */
 
-function deleteComment(postId,commentId){
+async function deleteComment(
+    postId,
+    commentId
+){
+
+    const posts =
+        await getAllPosts();
+
 
     const post =
-        posts.find(p => p.id === postId);
+        posts.find(
+            p => p.id === postId
+        );
 
-    if(!post || !post.comments){
+
+    if(!post){
         return;
     }
+
 
     const user =
         currentUser ||
         profileData.ymid ||
         "demo-user";
 
+
     const comment =
         post.comments.find(
             c => c.id === commentId
         );
 
+
     if(!comment){
         return;
     }
 
+
     if(comment.user !== user){
 
-        showToast("You can only delete your comment.");
+        toast(
+            "You can only delete your comment."
+        );
+
         return;
     }
+
 
     post.comments =
         post.comments.filter(
             c => c.id !== commentId
         );
 
-    savePosts(posts);
 
-    renderPosts();
+    await savePost(post);
 
-    showToast("Comment deleted.");
+    await renderPosts();
+
+    toast(
+        "Comment deleted."
+    );
 }
 
 
 /* =====================================================
    HIDE COMMENT
-   ===================================================== */
+===================================================== */
 
-function hideComment(postId,commentId){
+async function hideComment(
+    postId,
+    commentId
+){
+
+    const posts =
+        await getAllPosts();
+
 
     const post =
-        posts.find(p => p.id === postId);
+        posts.find(
+            p => p.id === postId
+        );
 
-    if(!post || !post.comments){
+
+    if(!post){
         return;
     }
+
 
     const comment =
         post.comments.find(
             c => c.id === commentId
         );
 
+
     if(!comment){
         return;
     }
 
-    comment.hidden = true;
 
-    savePosts(posts);
+    comment.hidden =
+        true;
 
-    renderPosts();
 
-    showToast("Comment hidden.");
+    await savePost(post);
+
+    await renderPosts();
+
+    toast(
+        "Comment hidden."
+    );
 }
 
 
 /* =====================================================
    POST MENU
-   ===================================================== */
+===================================================== */
 
-function openPostMenu(postId){
+async function postMenu(postId){
+
+    const posts =
+        await getAllPosts();
+
 
     const post =
-        posts.find(p => p.id === postId);
+        posts.find(
+            p => p.id === postId
+        );
+
 
     if(!post){
         return;
     }
+
 
     const user =
         currentUser ||
         profileData.ymid ||
         "demo-user";
 
+
     if(post.user === user){
 
-        const remove =
+        const yes =
             confirm(
                 "Delete this post?"
             );
 
-        if(remove){
 
-            posts =
-                posts.filter(
-                    p => p.id !== postId
-                );
-
-            savePosts(posts);
-
-            renderPosts();
-
-            showToast("Post deleted.");
+        if(!yes){
+            return;
         }
 
-        return;
-    }
 
-    const hide =
-        confirm(
-            "Hide this post?"
+        if(post.mediaId){
+
+            await deleteMedia(
+                post.mediaId
+            );
+        }
+
+
+        await removePost(
+            post.id
         );
 
-    if(hide){
 
-        post.hidden = true;
+        await renderPosts();
 
-        savePosts(posts);
+        toast(
+            "Post deleted."
+        );
 
-        renderPosts();
+    }else{
 
-        showToast("Post hidden.");
+        const yes =
+            confirm(
+                "Hide this post?"
+            );
+
+
+        if(!yes){
+            return;
+        }
+
+
+        post.hidden =
+            true;
+
+
+        await savePost(post);
+
+        await renderPosts();
+
+        toast(
+            "Post hidden."
+        );
     }
 }
 
 
 /* =====================================================
    SHARE
-   ===================================================== */
+===================================================== */
 
-function sharePost(postId){
+async function sharePost(postId){
+
+    const posts =
+        await getAllPosts();
+
 
     const post =
-        posts.find(p => p.id === postId);
+        posts.find(
+            p => p.id === postId
+        );
+
 
     if(!post){
         return;
     }
 
-    const shareText =
-        `${post.name}: ${post.text || "Y-M Chat post"}`;
 
-    if(
-        navigator.share
-    ){
+    const text =
+        post.name +
+        ": " +
+        (
+            post.text ||
+            "Y-M Chat post"
+        );
 
-        navigator.share({
-            title:"Y-M Chat",
-            text:shareText
-        }).catch(()=>{});
 
-        return;
-    }
+    if(navigator.share){
 
-    if(
-        navigator.clipboard
-    ){
+        try{
 
-        navigator.clipboard
-            .writeText(shareText)
-            .then(()=>{
-                showToast("Post text copied.");
-            })
-            .catch(()=>{
-                showToast("Share not available.");
+            await navigator.share({
+                title:"Y-M Chat",
+                text:text
             });
 
+        }catch(e){}
+
         return;
     }
 
-    showToast("Share not available.");
+
+    if(navigator.clipboard){
+
+        try{
+
+            await navigator.clipboard.writeText(
+                text
+            );
+
+            toast(
+                "Post copied."
+            );
+
+        }catch(e){
+
+            toast(
+                "Share unavailable."
+            );
+        }
+
+        return;
+    }
+
+
+    toast(
+        "Share unavailable."
+    );
 }
 
 
 /* =====================================================
    MENU
-   ===================================================== */
+===================================================== */
 
-function toggleMenuBox(){
+function toggleMenu(){
 
     const box =
-        document.getElementById("menuBox");
+        document.getElementById(
+            "menuBox"
+        );
+
 
     box.style.display =
         box.style.display === "block"
@@ -2235,74 +3162,79 @@ function toggleMenuBox(){
         : "block";
 }
 
-function closeMenuBox(){
 
-    document.getElementById("menuBox")
-        .style.display = "none";
-}
+function closeMenu(){
 
-function toggleMenu(){
-
-    toggleMenuBox();
+    document.getElementById(
+        "menuBox"
+    ).style.display =
+        "none";
 }
 
 
 /* =====================================================
    MODAL
-   ===================================================== */
+===================================================== */
 
 function closeModal(id){
 
-    document.getElementById(id)
-        .style.display = "none";
+    document.getElementById(
+        id
+    ).style.display =
+        "none";
 }
 
-document.querySelectorAll(".modal")
-    .forEach(modal => {
 
-        modal.addEventListener(
-            "click",
-            function(e){
+document
+.querySelectorAll(".modal")
+.forEach(modal => {
 
-                if(e.target === modal){
+    modal.addEventListener(
+        "click",
+        function(event){
 
-                    modal.style.display =
-                        "none";
-                }
+            if(event.target === modal){
+
+                modal.style.display =
+                    "none";
             }
-        );
-    });
+        }
+    );
+
+});
 
 
 /* =====================================================
    LOGOUT
-   ===================================================== */
+===================================================== */
 
 function logout(){
 
-    closeMenuBox();
+    closeMenu();
+
 
     const yes =
         confirm(
             "Are you sure you want to log out?"
         );
 
+
     if(!yes){
         return;
     }
+
 
     localStorage.removeItem(
         CURRENT_USER_KEY
     );
 
-    showToast("Logged out.");
+
+    toast(
+        "Logged out."
+    );
+
 
     setTimeout(()=>{
-
-        /*
-           When combined with Security Core,
-           this will return to the login/front page.
-        */
 
         location.reload();
 
@@ -2311,30 +3243,21 @@ function logout(){
 
 
 /* =====================================================
-   NAVIGATION
-   ===================================================== */
+   NAV
+===================================================== */
 
-function goHome(){
+function comingSoon(name){
 
-    /*
-       Temporary standalone behavior.
-       When combined, this button will open Home.
-    */
-
-    showToast("Home module will connect here.");
-}
-
-function showComingSoon(name){
-
-    showToast(
-        name + " module coming soon."
+    toast(
+        name +
+        " module will be connected later."
     );
 }
 
 
 /* =====================================================
    START
-   ===================================================== */
+===================================================== */
 
 initialize();
 
