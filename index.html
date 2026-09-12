@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Y-M Chat - Security Core V1.0</title>
+<title>Y-M Chat - Home V1.0</title>
 
 <style>
 *{
@@ -14,380 +14,471 @@
     font-family:Arial,sans-serif;
 }
 
-html,body{
-    width:100%;
-    min-height:100%;
-}
-
 body{
-    background:linear-gradient(135deg,#0d47a1,#1976d2,#42a5f5);
+    background:#eef2f7;
     color:#222;
-}
-
-button,
-input,
-select{
-    font-family:Arial,sans-serif;
-}
-
-button{
-    cursor:pointer;
 }
 
 .app{
     width:100%;
-    max-width:430px;
+    max-width:480px;
     min-height:100vh;
     margin:auto;
-    background:#f5f8fc;
-    box-shadow:0 0 25px rgba(0,0,0,.25);
+    background:#f5f7fa;
+    position:relative;
+    padding-bottom:75px;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header{
-    background:linear-gradient(135deg,#0d47a1,#1976d2);
+    height:62px;
+    background:#1976d2;
     color:white;
-    padding:22px 18px;
-    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 15px;
+    position:sticky;
+    top:0;
+    z-index:20;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);
 }
 
 .logo{
-    font-size:34px;
+    font-size:23px;
     font-weight:bold;
-    letter-spacing:2px;
 }
 
 .logo span{
-    color:#ffeb3b;
+    font-size:12px;
+    opacity:.85;
+    display:block;
 }
 
-.subtitle{
-    margin-top:5px;
-    font-size:13px;
-    opacity:.9;
+.header-actions{
+    display:flex;
+    gap:8px;
 }
 
-/* =========================
-   LANGUAGE
-========================= */
+.icon-btn{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.16);
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+}
 
-.language-box{
-    padding:12px 18px;
+.icon-btn:active{
+    transform:scale(.95);
+}
+
+/* PROFILE BAR */
+
+.profile-bar{
     background:white;
+    padding:13px 15px;
+    display:flex;
+    align-items:center;
+    gap:11px;
     border-bottom:1px solid #ddd;
 }
 
-.language-box label{
-    display:block;
-    font-size:12px;
-    color:#666;
-    margin-bottom:5px;
-}
-
-.language-box select{
-    width:100%;
-    padding:11px;
-    border:1px solid #ccc;
-    border-radius:9px;
-    background:white;
-}
-
-/* =========================
-   PAGE
-========================= */
-
-.page{
-    display:none;
-    padding:20px;
-    min-height:calc(100vh - 150px);
-}
-
-.page.active{
-    display:block;
-}
-
-.card{
-    background:white;
-    border-radius:16px;
-    padding:20px;
-    box-shadow:0 4px 15px rgba(0,0,0,.08);
-}
-
-.card h2{
-    color:#0d47a1;
-    margin-bottom:8px;
-}
-
-.card p.description{
-    color:#666;
-    font-size:13px;
-    line-height:1.5;
-    margin-bottom:18px;
-}
-
-/* =========================
-   FRONT
-========================= */
-
-.front-intro{
-    text-align:center;
-    padding:12px 0 20px;
-}
-
-.front-icon{
-    width:86px;
-    height:86px;
-    margin:auto;
+.avatar{
+    width:45px;
+    height:45px;
     border-radius:50%;
-    background:linear-gradient(135deg,#1976d2,#0d47a1);
+    background:#1976d2;
+    color:white;
     display:flex;
-    justify-content:center;
     align-items:center;
-    color:white;
-    font-size:29px;
+    justify-content:center;
     font-weight:bold;
-    box-shadow:0 8px 20px rgba(13,71,161,.25);
+    font-size:18px;
+    overflow:hidden;
+    flex-shrink:0;
 }
 
-.front-intro h1{
-    margin-top:15px;
-    color:#0d47a1;
-    font-size:25px;
+.avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-.front-intro p{
+.profile-info{
+    flex:1;
+}
+
+.profile-name{
+    font-weight:bold;
+    font-size:15px;
+}
+
+.profile-id{
     color:#777;
+    font-size:12px;
+    margin-top:3px;
+}
+
+/* NOTICE */
+
+.notice{
+    margin:12px;
+    background:#e3f2fd;
+    border:1px solid #bbdefb;
+    border-radius:10px;
+    padding:11px;
+    color:#1565c0;
     font-size:13px;
-    margin-top:5px;
 }
 
-.menu-button{
-    width:100%;
-    border:0;
-    padding:15px;
-    border-radius:11px;
-    margin-top:10px;
-    font-size:14px;
-    font-weight:bold;
-    background:#1976d2;
-    color:white;
-}
+/* CREATE POST */
 
-.menu-button:hover{
-    opacity:.92;
-}
-
-.menu-button.secondary{
-    background:#e8f1fc;
-    color:#0d47a1;
-}
-
-.menu-button.warning{
-    background:#f59e0b;
-}
-
-.menu-button.dark{
-    background:#263238;
-}
-
-/* =========================
-   FORM
-========================= */
-
-.form-group{
-    margin-bottom:13px;
-}
-
-.form-group label{
-    display:block;
-    font-size:12px;
-    color:#555;
-    margin-bottom:5px;
-    font-weight:bold;
-}
-
-.form-group input,
-.form-group select{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccd4dd;
-    border-radius:9px;
-    outline:none;
+.create-post{
     background:white;
-    font-size:14px;
-}
-
-.form-group input:focus,
-.form-group select:focus{
-    border-color:#1976d2;
-    box-shadow:0 0 0 2px rgba(25,118,210,.1);
-}
-
-.primary{
-    width:100%;
-    border:0;
-    padding:13px;
-    background:#1976d2;
-    color:white;
-    border-radius:9px;
-    font-size:14px;
-    font-weight:bold;
-    margin-top:5px;
-}
-
-.back{
-    width:100%;
-    border:0;
-    padding:12px;
-    background:#eceff1;
-    color:#37474f;
-    border-radius:9px;
-    font-size:14px;
-    font-weight:bold;
-    margin-top:9px;
-}
-
-/* =========================
-   SECURITY INFO
-========================= */
-
-.security-box{
-    background:#eef6ff;
-    border-left:4px solid #1976d2;
-    padding:12px;
-    border-radius:8px;
-    margin-bottom:16px;
-    font-size:12px;
-    color:#455a64;
-    line-height:1.5;
-}
-
-.warning-box{
-    background:#fff8e1;
-    border-left:4px solid #ffb300;
-    padding:12px;
-    border-radius:8px;
-    margin-bottom:16px;
-    font-size:12px;
-    color:#5d4037;
-    line-height:1.5;
-}
-
-/* =========================
-   RECOVERY
-========================= */
-
-.recovery-methods{
-    display:grid;
-    gap:10px;
-    margin-top:15px;
-}
-
-.method{
-    border:1px solid #d7dee7;
-    background:white;
+    margin:12px;
     border-radius:12px;
-    padding:14px;
-    text-align:left;
+    padding:13px;
+    box-shadow:0 1px 4px rgba(0,0,0,.08);
 }
 
-.method strong{
-    display:block;
-    color:#0d47a1;
-    margin-bottom:4px;
+.create-top{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
 }
 
-.method small{
-    color:#777;
-    line-height:1.4;
-}
-
-.method button{
-    width:100%;
-    margin-top:9px;
-    border:0;
-    padding:10px;
-    border-radius:8px;
-    background:#1976d2;
-    color:white;
-    font-weight:bold;
-}
-
-.hidden{
-    display:none !important;
-}
-
-/* =========================
-   OTP
-========================= */
-
-.otp-demo{
-    margin-top:10px;
-    background:#e8f5e9;
-    border-left:4px solid #43a047;
-    padding:11px;
-    border-radius:7px;
-    color:#1b5e20;
-    font-size:12px;
-    line-height:1.5;
-}
-
-/* =========================
-   HOME
-========================= */
-
-.home-welcome{
-    text-align:center;
-    padding:15px 0;
-}
-
-.home-avatar{
-    width:75px;
-    height:75px;
+.mini-avatar{
+    width:40px;
+    height:40px;
     border-radius:50%;
     background:#1976d2;
     color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-    margin:auto;
-    font-size:28px;
+    font-weight:bold;
+    flex-shrink:0;
+}
+
+.post-input{
+    flex:1;
+    min-height:42px;
+    border:1px solid #ddd;
+    border-radius:22px;
+    padding:11px 14px;
+    outline:none;
+    resize:none;
+    font-size:14px;
+}
+
+.post-input:focus{
+    border-color:#1976d2;
+}
+
+.media-preview{
+    margin-top:10px;
+    display:none;
+    border-radius:10px;
+    overflow:hidden;
+    background:#f1f1f1;
+}
+
+.media-preview img,
+.media-preview video{
+    width:100%;
+    max-height:280px;
+    object-fit:cover;
+    display:block;
+}
+
+.create-actions{
+    display:flex;
+    margin-top:12px;
+    border-top:1px solid #eee;
+    padding-top:10px;
+    gap:5px;
+}
+
+.media-btn{
+    flex:1;
+    border:none;
+    background:white;
+    padding:9px 3px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:12px;
+    color:#444;
+}
+
+.media-btn:hover{
+    background:#f2f5f8;
+}
+
+.post-btn{
+    background:#1976d2;
+    color:white;
     font-weight:bold;
 }
 
-.home-welcome h2{
-    margin-top:12px;
-    color:#0d47a1;
+input[type="file"]{
+    display:none;
 }
 
-.home-welcome p{
-    color:#777;
-    font-size:13px;
-    margin-top:5px;
+/* FEED */
+
+.feed-title{
+    padding:4px 14px 8px;
+    font-size:16px;
+    font-weight:bold;
 }
 
-.lock-note{
-    margin-top:20px;
-    padding:12px;
-    background:#f1f8ff;
-    border-radius:9px;
-    font-size:12px;
-    color:#455a64;
-    text-align:center;
+.post-card{
+    background:white;
+    margin:0 12px 12px;
+    border-radius:12px;
+    box-shadow:0 1px 5px rgba(0,0,0,.08);
+    overflow:hidden;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.post-head{
+    display:flex;
+    align-items:center;
+    padding:13px;
+    gap:10px;
+}
 
-.footer{
-    text-align:center;
-    padding:15px;
-    color:#78909c;
+.post-user{
+    flex:1;
+}
+
+.post-user-name{
+    font-size:14px;
+    font-weight:bold;
+}
+
+.post-time{
+    color:#888;
     font-size:11px;
+    margin-top:3px;
+}
+
+.more-btn{
+    border:none;
+    background:white;
+    font-size:20px;
+    color:#777;
+    cursor:pointer;
+}
+
+.post-text{
+    padding:0 13px 13px;
+    font-size:14px;
+    line-height:1.5;
+    white-space:pre-wrap;
+}
+
+.post-media{
+    width:100%;
+    background:#000;
+}
+
+.post-media img,
+.post-media video{
+    width:100%;
+    max-height:430px;
+    display:block;
+    object-fit:contain;
+}
+
+.post-stats{
+    padding:9px 13px;
+    color:#777;
+    font-size:12px;
+    border-bottom:1px solid #eee;
+}
+
+.post-actions{
+    display:flex;
+}
+
+.post-action{
+    flex:1;
+    border:none;
+    background:white;
+    padding:11px 5px;
+    cursor:pointer;
+    color:#555;
+    font-size:13px;
+}
+
+.post-action:hover{
+    background:#f4f6f8;
+}
+
+.post-action.liked{
+    color:#1976d2;
+    font-weight:bold;
+}
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+    padding:35px 20px;
+    color:#888;
+}
+
+.empty-icon{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+/* NOTIFICATION */
+
+.notification-panel{
+    position:fixed;
+    top:62px;
+    right:calc(50% - 230px);
+    width:310px;
+    max-width:calc(100% - 30px);
+    background:white;
+    border-radius:0 0 12px 12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+    display:none;
+    z-index:30;
+    overflow:hidden;
+}
+
+.notification-panel.show{
+    display:block;
+}
+
+.notification-head{
+    padding:13px;
+    font-weight:bold;
+    border-bottom:1px solid #eee;
+}
+
+.notification-item{
+    padding:12px;
+    border-bottom:1px solid #eee;
+    font-size:13px;
+}
+
+.notification-item small{
+    display:block;
+    color:#888;
+    margin-top:4px;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:480px;
+    height:68px;
+    background:white;
+    border-top:1px solid #ddd;
+    display:flex;
+    z-index:25;
+    box-shadow:0 -2px 8px rgba(0,0,0,.08);
+}
+
+.nav-btn{
+    flex:1;
+    border:none;
+    background:white;
+    color:#777;
+    cursor:pointer;
+    font-size:11px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+}
+
+.nav-icon{
+    font-size:21px;
+}
+
+.nav-btn.active{
+    color:#1976d2;
+    font-weight:bold;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:390px;
+    background:white;
+    border-radius:14px;
+    padding:18px;
+}
+
+.modal-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.modal-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    margin-top:8px;
+    cursor:pointer;
+    background:#1976d2;
+    color:white;
+    font-weight:bold;
+}
+
+.modal-btn.secondary{
+    background:#eee;
+    color:#333;
+}
+
+.comment-input{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:11px;
+    resize:none;
+    min-height:80px;
+    outline:none;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:480px){
+    .notification-panel{
+        right:15px;
+    }
 }
 </style>
 </head>
@@ -396,2415 +487,1132 @@ button{
 
 <div class="app">
 
-<!-- =========================
-     HEADER
-========================= -->
+    <!-- HEADER -->
+    <header class="header">
 
-<div class="header">
-    <div class="logo">Y-M <span>Chat</span></div>
-    <div class="subtitle">Connect • Chat • Worldwide</div>
+        <div class="logo">
+            Y-M Chat
+            <span>Home</span>
+        </div>
+
+        <div class="header-actions">
+            <button class="icon-btn" onclick="toggleNotifications()">🔔</button>
+            <button class="icon-btn" onclick="openMenu()">⋮</button>
+        </div>
+
+    </header>
+
+    <!-- NOTIFICATION PANEL -->
+    <div id="notificationPanel" class="notification-panel">
+
+        <div class="notification-head">
+            🔔 Notifications
+        </div>
+
+        <div class="notification-item">
+            Selamat datang di Y-M Chat.
+            <small>Baru sahaja</small>
+        </div>
+
+        <div class="notification-item">
+            Home V1.0 sedang aktif.
+            <small>Hari ini</small>
+        </div>
+
+    </div>
+
+    <!-- PROFILE BAR -->
+    <section class="profile-bar">
+
+        <div class="avatar" id="topAvatar">
+            Y
+        </div>
+
+        <div class="profile-info">
+            <div class="profile-name" id="topName">
+                Y-M User
+            </div>
+
+            <div class="profile-id" id="topId">
+                @ymuser
+            </div>
+        </div>
+
+    </section>
+
+    <!-- NOTICE -->
+    <div class="notice">
+        👋 Selamat datang ke <b>Y-M Chat</b>. Kongsi apa yang sedang anda lakukan.
+    </div>
+
+    <!-- CREATE POST -->
+    <section class="create-post">
+
+        <div class="create-top">
+
+            <div class="mini-avatar" id="miniAvatar">
+                Y
+            </div>
+
+            <textarea
+                id="postInput"
+                class="post-input"
+                placeholder="Apa yang anda fikirkan?"
+            ></textarea>
+
+        </div>
+
+        <div id="mediaPreview" class="media-preview"></div>
+
+        <div class="create-actions">
+
+            <button
+                class="media-btn"
+                onclick="document.getElementById('imageInput').click()">
+                🖼️ Foto
+            </button>
+
+            <button
+                class="media-btn"
+                onclick="document.getElementById('videoInput').click()">
+                🎥 Video
+            </button>
+
+            <button
+                class="media-btn post-btn"
+                onclick="createPost()">
+                ➤ Post
+            </button>
+
+        </div>
+
+        <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+            onchange="previewImage(event)"
+        >
+
+        <input
+            type="file"
+            id="videoInput"
+            accept="video/*"
+            onchange="previewVideo(event)"
+        >
+
+    </section>
+
+    <!-- FEED -->
+    <div class="feed-title">
+        📰 Y-M Feed
+    </div>
+
+    <main id="feed"></main>
+
 </div>
 
-<!-- =========================
-     LANGUAGE
-========================= -->
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
 
-<div class="language-box">
-    <label id="languageLabel">Language</label>
+    <button class="nav-btn active" onclick="goHome()">
+        <span class="nav-icon">🏠</span>
+        Home
+    </button>
 
-    <select id="languageSelect" onchange="changeLanguage()">
-        <option value="en">English</option>
-        <option value="ms">Bahasa Malaysia</option>
-        <option value="id">Bahasa Indonesia</option>
-        <option value="tl">Filipino</option>
-        <option value="th">Thai</option>
-        <option value="vi">Vietnamese</option>
-        <option value="zh">Chinese</option>
-        <option value="ja">Japanese</option>
-        <option value="ko">Korean</option>
-        <option value="hi">Hindi</option>
-        <option value="ar">Arabic</option>
-        <option value="fr">French</option>
-        <option value="es">Spanish</option>
-        <option value="pt">Portuguese</option>
-        <option value="de">German</option>
-        <option value="it">Italian</option>
-        <option value="ru">Russian</option>
-        <option value="tr">Turkish</option>
-    </select>
+    <button class="nav-btn" onclick="openFriends()">
+        <span class="nav-icon">👥</span>
+        Friends
+    </button>
+
+    <button class="nav-btn" onclick="openChat()">
+        <span class="nav-icon">💬</span>
+        Chat
+    </button>
+
+    <button class="nav-btn" onclick="openRooms()">
+        <span class="nav-icon">🌎</span>
+        Rooms
+    </button>
+
+    <button class="nav-btn" onclick="openProfile()">
+        <span class="nav-icon">👤</span>
+        Profile
+    </button>
+
+</nav>
+
+<!-- COMMENT MODAL -->
+<div id="commentModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-title">
+            💬 Comment
+        </div>
+
+        <textarea
+            id="commentInput"
+            class="comment-input"
+            placeholder="Tulis komen..."
+        ></textarea>
+
+        <button
+            class="modal-btn"
+            onclick="submitComment()">
+            Hantar Comment
+        </button>
+
+        <button
+            class="modal-btn secondary"
+            onclick="closeCommentModal()">
+            Batal
+        </button>
+
+    </div>
+
 </div>
-
-<!-- =========================
-     FRONT PAGE
-========================= -->
-
-<section id="frontPage" class="page active">
-
-    <div class="front-intro">
-        <div class="front-icon">YM</div>
-
-        <h1 id="frontTitle">Welcome to Y-M Chat</h1>
-
-        <p id="frontDescription">
-            Your worldwide chat community
-        </p>
-    </div>
-
-    <button class="menu-button"
-            onclick="showPage('loginPage')"
-            id="loginButton">
-        LOGIN
-    </button>
-
-    <button class="menu-button"
-            onclick="showPage('registerPage')"
-            id="registerButton">
-        REGISTER Y-M ID
-    </button>
-
-    <button class="menu-button secondary"
-            onclick="showPage('changePasswordPage')"
-            id="changePasswordButton">
-        CHANGE PASSWORD
-    </button>
-
-    <button class="menu-button secondary"
-            onclick="showPage('securityPage')"
-            id="securityButton">
-        SECURITY
-    </button>
-
-    <button class="menu-button warning"
-            onclick="showPage('recoveryPage')"
-            id="recoveryButton">
-        FORGOT PASSWORD / RECOVERY
-    </button>
-
-    <div class="footer">
-        Y-M Chat Security Core V1.0
-    </div>
-
-</section>
-
-
-<!-- =========================
-     LOGIN
-========================= -->
-
-<section id="loginPage" class="page">
-
-    <div class="card">
-
-        <h2 id="loginTitle">Login</h2>
-
-        <p class="description" id="loginDescription">
-            Sign in to your Y-M Chat account.
-        </p>
-
-        <div class="form-group">
-            <label>Y-M ID</label>
-            <input id="loginId"
-                   type="text"
-                   autocomplete="username"
-                   placeholder="Enter Y-M ID">
-        </div>
-
-        <div class="form-group">
-            <label id="loginPasswordLabel">Password</label>
-            <input id="loginPassword"
-                   type="password"
-                   autocomplete="current-password"
-                   placeholder="Enter password">
-        </div>
-
-        <button class="primary"
-                onclick="loginUser()"
-                id="loginSubmit">
-            LOGIN
-        </button>
-
-        <button class="back"
-                onclick="showPage('recoveryPage')"
-                id="loginForgot">
-            Forgot Password?
-        </button>
-
-        <button class="back"
-                onclick="showPage('frontPage')">
-            BACK
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     REGISTER
-========================= -->
-
-<section id="registerPage" class="page">
-
-    <div class="card">
-
-        <h2>Register Y-M ID</h2>
-
-        <p class="description">
-            Create your Y-M Chat account.
-        </p>
-
-        <div class="form-group">
-            <label>Y-M ID</label>
-            <input id="registerId"
-                   type="text"
-                   placeholder="Choose your Y-M ID">
-        </div>
-
-        <div class="form-group">
-            <label>Password</label>
-            <input id="registerPassword"
-                   type="password"
-                   placeholder="Create password">
-        </div>
-
-        <div class="form-group">
-            <label>Confirm Password</label>
-            <input id="registerConfirmPassword"
-                   type="password"
-                   placeholder="Confirm password">
-        </div>
-
-        <div class="form-group">
-            <label>Country</label>
-            <select id="registerCountry"></select>
-        </div>
-
-        <div class="form-group">
-            <label>Phone Number</label>
-            <input id="registerPhone"
-                   type="tel"
-                   placeholder="Phone number">
-        </div>
-
-        <div class="form-group">
-            <label>Email Address</label>
-            <input id="registerEmail"
-                   type="email"
-                   placeholder="Email address">
-        </div>
-
-        <div class="form-group">
-            <label>Confirm Email</label>
-            <input id="registerConfirmEmail"
-                   type="email"
-                   placeholder="Confirm email">
-        </div>
-
-        <div class="security-box">
-            <strong>Security Questions</strong><br>
-            Choose two questions and remember your answers.
-            Both answers will be required if you use Security
-            Questions to recover your password.
-        </div>
-
-        <div class="form-group">
-            <label>Security Question 1</label>
-
-            <select id="registerQuestion1">
-                <option value="">Select question</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label>Answer 1</label>
-
-            <input id="registerAnswer1"
-                   type="text"
-                   placeholder="Your answer">
-        </div>
-
-        <div class="form-group">
-            <label>Security Question 2</label>
-
-            <select id="registerQuestion2">
-                <option value="">Select question</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label>Answer 2</label>
-
-            <input id="registerAnswer2"
-                   type="text"
-                   placeholder="Your answer">
-        </div>
-
-        <div class="warning-box">
-            SMS, WhatsApp and Email OTP require a real server
-            and service provider. This version only prepares
-            the account and recovery structure.
-        </div>
-
-        <button class="primary"
-                onclick="registerUser()">
-            CREATE Y-M ID
-        </button>
-
-        <button class="back"
-                onclick="showPage('frontPage')">
-            BACK
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     CHANGE PASSWORD
-========================= -->
-
-<section id="changePasswordPage" class="page">
-
-    <div class="card">
-
-        <h2>Change Password</h2>
-
-        <p class="description">
-            Change your existing password.
-        </p>
-
-        <div class="form-group">
-            <label>Y-M ID</label>
-
-            <input id="changeId"
-                   type="text"
-                   placeholder="Enter Y-M ID">
-        </div>
-
-        <div class="form-group">
-            <label>Current Password</label>
-
-            <input id="oldPassword"
-                   type="password"
-                   placeholder="Current password">
-        </div>
-
-        <div class="form-group">
-            <label>New Password</label>
-
-            <input id="newPassword"
-                   type="password"
-                   placeholder="New password">
-        </div>
-
-        <div class="form-group">
-            <label>Confirm New Password</label>
-
-            <input id="confirmNewPassword"
-                   type="password"
-                   placeholder="Confirm new password">
-        </div>
-
-        <button class="primary"
-                onclick="changePassword()">
-            CHANGE PASSWORD
-        </button>
-
-        <button class="back"
-                onclick="showPage('frontPage')">
-            BACK
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     SECURITY
-========================= -->
-
-<section id="securityPage" class="page">
-
-    <div class="card">
-
-        <h2>Account Security</h2>
-
-        <p class="description">
-            Update the information used to recover your account.
-        </p>
-
-        <div class="form-group">
-            <label>Y-M ID</label>
-
-            <input id="securityId"
-                   type="text"
-                   placeholder="Enter Y-M ID">
-        </div>
-
-        <div class="form-group">
-            <label>Country</label>
-
-            <select id="securityCountry"></select>
-        </div>
-
-        <div class="form-group">
-            <label>Phone Number</label>
-
-            <input id="securityPhone"
-                   type="tel"
-                   placeholder="Phone number">
-        </div>
-
-        <div class="form-group">
-            <label>Email Address</label>
-
-            <input id="securityEmail"
-                   type="email"
-                   placeholder="Email address">
-        </div>
-
-        <div class="form-group">
-            <label>Confirm Email</label>
-
-            <input id="securityConfirmEmail"
-                   type="email"
-                   placeholder="Confirm email">
-        </div>
-
-        <div class="form-group">
-            <label>Security Question 1</label>
-
-            <select id="securityQuestion1"></select>
-        </div>
-
-        <div class="form-group">
-            <label>Answer 1</label>
-
-            <input id="securityAnswer1"
-                   type="text"
-                   placeholder="Answer 1">
-        </div>
-
-        <div class="form-group">
-            <label>Security Question 2</label>
-
-            <select id="securityQuestion2"></select>
-        </div>
-
-        <div class="form-group">
-            <label>Answer 2</label>
-
-            <input id="securityAnswer2"
-                   type="text"
-                   placeholder="Answer 2">
-        </div>
-
-        <button class="primary"
-                onclick="saveSecurity()">
-            SAVE SECURITY
-        </button>
-
-        <button class="back"
-                onclick="showPage('frontPage')">
-            BACK
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     RECOVERY
-========================= -->
-
-<section id="recoveryPage" class="page">
-
-    <div class="card">
-
-        <h2>Forgot Password / Recovery</h2>
-
-        <p class="description">
-            Choose one of the available recovery methods.
-        </p>
-
-        <div class="form-group">
-            <label>Y-M ID</label>
-
-            <input id="recoveryId"
-                   type="text"
-                   placeholder="Enter Y-M ID">
-        </div>
-
-        <button class="primary"
-                onclick="findRecoveryAccount()">
-            FIND ACCOUNT
-        </button>
-
-        <div id="recoveryArea" class="hidden">
-
-            <div class="security-box">
-                Account found. Choose one recovery method below.
-            </div>
-
-            <!-- METHOD 1 -->
-
-            <div class="method">
-
-                <strong>1. Security Questions</strong>
-
-                <small>
-                    Answer both registered security questions correctly.
-                </small>
-
-                <button onclick="selectRecoveryMethod('questions')">
-                    USE SECURITY QUESTIONS
-                </button>
-
-            </div>
-
-            <!-- METHOD 2 -->
-
-            <div class="method">
-
-                <strong>2. Phone Number</strong>
-
-                <small>
-                    Receive an OTP by SMS or WhatsApp.
-                </small>
-
-                <button onclick="selectRecoveryMethod('phone')">
-                    USE PHONE NUMBER
-                </button>
-
-            </div>
-
-            <!-- METHOD 3 -->
-
-            <div class="method">
-
-                <strong>3. Email Address</strong>
-
-                <small>
-                    Receive an OTP through your registered email.
-                </small>
-
-                <button onclick="selectRecoveryMethod('email')">
-                    USE EMAIL ADDRESS
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- SECURITY QUESTIONS AREA -->
-
-        <div id="questionRecoveryArea"
-             class="hidden">
-
-            <hr style="margin:20px 0;border:0;border-top:1px solid #ddd;">
-
-            <h3 style="margin-bottom:12px;color:#0d47a1;">
-                Security Verification
-            </h3>
-
-            <div class="form-group">
-                <label id="recoveryQuestionText1">
-                    Question 1
-                </label>
-
-                <input id="recoveryAnswer1"
-                       type="text"
-                       placeholder="Answer 1">
-            </div>
-
-            <div class="form-group">
-                <label id="recoveryQuestionText2">
-                    Question 2
-                </label>
-
-                <input id="recoveryAnswer2"
-                       type="text"
-                       placeholder="Answer 2">
-            </div>
-
-            <button class="primary"
-                    onclick="verifyQuestions()">
-                VERIFY ANSWERS
-            </button>
-
-        </div>
-
-
-        <!-- PHONE AREA -->
-
-        <div id="phoneRecoveryArea"
-             class="hidden">
-
-            <hr style="margin:20px 0;border:0;border-top:1px solid #ddd;">
-
-            <h3 style="margin-bottom:12px;color:#0d47a1;">
-                Phone Recovery
-            </h3>
-
-            <div class="form-group">
-                <label>Phone Number</label>
-
-                <input id="recoveryPhone"
-                       type="tel"
-                       placeholder="Registered phone number">
-            </div>
-
-            <div class="form-group">
-                <label>OTP Method</label>
-
-                <select id="phoneMethod">
-                    <option value="sms">SMS</option>
-                    <option value="whatsapp">WhatsApp</option>
-                </select>
-            </div>
-
-            <button class="primary"
-                    onclick="requestPhoneOtp()">
-                SEND OTP
-            </button>
-
-            <div id="phoneOtpStatus"></div>
-
-            <div class="form-group"
-                 style="margin-top:12px;">
-
-                <label>Enter OTP</label>
-
-                <input id="phoneOtp"
-                       type="text"
-                       inputmode="numeric"
-                       maxlength="6"
-                       placeholder="6-digit OTP">
-            </div>
-
-            <button class="primary"
-                    onclick="verifyPhoneOtp()">
-                VERIFY OTP
-            </button>
-
-        </div>
-
-
-        <!-- EMAIL AREA -->
-
-        <div id="emailRecoveryArea"
-             class="hidden">
-
-            <hr style="margin:20px 0;border:0;border-top:1px solid #ddd;">
-
-            <h3 style="margin-bottom:12px;color:#0d47a1;">
-                Email Recovery
-            </h3>
-
-            <div class="form-group">
-                <label>Email Address</label>
-
-                <input id="recoveryEmail"
-                       type="email"
-                       placeholder="Registered email">
-            </div>
-
-            <button class="primary"
-                    onclick="requestEmailOtp()">
-                SEND EMAIL OTP
-            </button>
-
-            <div id="emailOtpStatus"></div>
-
-            <div class="form-group"
-                 style="margin-top:12px;">
-
-                <label>Enter OTP</label>
-
-                <input id="emailOtp"
-                       type="text"
-                       inputmode="numeric"
-                       maxlength="6"
-                       placeholder="6-digit OTP">
-            </div>
-
-            <button class="primary"
-                    onclick="verifyEmailOtp()">
-                VERIFY OTP
-            </button>
-
-        </div>
-
-
-        <!-- RESET PASSWORD -->
-
-        <div id="resetPasswordArea"
-             class="hidden">
-
-            <hr style="margin:20px 0;border:0;border-top:1px solid #ddd;">
-
-            <h3 style="margin-bottom:12px;color:#0d47a1;">
-                Create New Password
-            </h3>
-
-            <div class="security-box">
-                Verification successful. You may now create a new password.
-            </div>
-
-            <div class="form-group">
-                <label>New Password</label>
-
-                <input id="resetPassword"
-                       type="password"
-                       placeholder="New password">
-            </div>
-
-            <div class="form-group">
-                <label>Confirm New Password</label>
-
-                <input id="resetPasswordConfirm"
-                       type="password"
-                       placeholder="Confirm new password">
-            </div>
-
-            <button class="primary"
-                    onclick="resetPassword()">
-                RESET PASSWORD
-            </button>
-
-        </div>
-
-
-        <button class="back"
-                onclick="showPage('frontPage')">
-            BACK
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     HOME PLACEHOLDER
-========================= -->
-
-<section id="homePage" class="page">
-
-    <div class="card">
-
-        <div class="home-welcome">
-
-            <div class="home-avatar"
-                 id="homeAvatar">
-                YM
-            </div>
-
-            <h2 id="homeUserName">
-                Welcome
-            </h2>
-
-            <p>
-                Y-M ID login successful.
-            </p>
-
-        </div>
-
-        <div class="lock-note">
-            🏠 Home module will be built separately.
-            <br><br>
-            Login/Security Core is kept independent.
-        </div>
-
-        <button class="primary"
-                onclick="logoutUser()">
-            LOG OUT
-        </button>
-
-    </div>
-
-</section>
-
 
 <script>
 
 /* =========================================================
-   Y-M CHAT SECURITY CORE V1.0
-   ========================================================= */
+   Y-M CHAT HOME V1.0
+   MODULE: 02-HOME
 
+   NOTE:
+   Module ini berdiri sendiri.
+   Security Core V1.0 tidak diubah.
+========================================================= */
 
-/* =========================
-   COUNTRY DATA
-========================= */
 
-const countries = [
+/* -------------------------
+   GLOBAL DATA
+------------------------- */
 
-    {name:"Malaysia",code:"MY",phone:"+60"},
-    {name:"Indonesia",code:"ID",phone:"+62"},
-    {name:"Singapore",code:"SG",phone:"+65"},
-    {name:"Brunei",code:"BN",phone:"+673"},
-    {name:"Philippines",code:"PH",phone:"+63"},
-    {name:"Thailand",code:"TH",phone:"+66"},
-    {name:"Vietnam",code:"VN",phone:"+84"},
-    {name:"China",code:"CN",phone:"+86"},
-    {name:"Japan",code:"JP",phone:"+81"},
-    {name:"South Korea",code:"KR",phone:"+82"},
-    {name:"India",code:"IN",phone:"+91"},
-    {name:"Bangladesh",code:"BD",phone:"+880"},
-    {name:"Pakistan",code:"PK",phone:"+92"},
-    {name:"Nepal",code:"NP",phone:"+977"},
-    {name:"Sri Lanka",code:"LK",phone:"+94"},
-    {name:"Myanmar",code:"MM",phone:"+95"},
-    {name:"Cambodia",code:"KH",phone:"+855"},
-    {name:"Laos",code:"LA",phone:"+856"},
-    {name:"Mongolia",code:"MN",phone:"+976"},
-    {name:"Australia",code:"AU",phone:"+61"},
-    {name:"New Zealand",code:"NZ",phone:"+64"},
-    {name:"United States",code:"US",phone:"+1"},
-    {name:"Canada",code:"CA",phone:"+1"},
-    {name:"United Kingdom",code:"GB",phone:"+44"},
-    {name:"France",code:"FR",phone:"+33"},
-    {name:"Germany",code:"DE",phone:"+49"},
-    {name:"Italy",code:"IT",phone:"+39"},
-    {name:"Spain",code:"ES",phone:"+34"},
-    {name:"Portugal",code:"PT",phone:"+351"},
-    {name:"Netherlands",code:"NL",phone:"+31"},
-    {name:"Sweden",code:"SE",phone:"+46"},
-    {name:"Norway",code:"NO",phone:"+47"},
-    {name:"Denmark",code:"DK",phone:"+45"},
-    {name:"Finland",code:"FI",phone:"+358"},
-    {name:"Russia",code:"RU",phone:"+7"},
-    {name:"Turkey",code:"TR",phone:"+90"},
-    {name:"Saudi Arabia",code:"SA",phone:"+966"},
-    {name:"United Arab Emirates",code:"AE",phone:"+971"},
-    {name:"Egypt",code:"EG",phone:"+20"},
-    {name:"South Africa",code:"ZA",phone:"+27"},
-    {name:"Nigeria",code:"NG",phone:"+234"},
-    {name:"Kenya",code:"KE",phone:"+254"},
-    {name:"Brazil",code:"BR",phone:"+55"},
-    {name:"Mexico",code:"MX",phone:"+52"},
-    {name:"Argentina",code:"AR",phone:"+54"},
-    {name:"Switzerland",code:"CH",phone:"+41"},
-    {name:"Austria",code:"AT",phone:"+43"},
-    {name:"Ireland",code:"IE",phone:"+353"}
-];
+let posts = [];
 
+let selectedMedia = null;
 
-/* =========================
-   SECURITY QUESTIONS
-========================= */
+let selectedMediaType = null;
 
-const securityQuestions = {
+let commentPostId = null;
 
-    en:[
-        "What is your mother's first name?",
-        "What is your father's first name?",
-        "What was the name of your first school?",
-        "What is the name of your hometown?",
-        "What was your childhood nickname?",
-        "What is your favorite food?"
-    ],
 
-    ms:[
-        "Apakah nama pertama ibu anda?",
-        "Apakah nama pertama bapa anda?",
-        "Apakah nama sekolah pertama anda?",
-        "Apakah nama tempat asal anda?",
-        "Apakah nama panggilan anda semasa kecil?",
-        "Apakah makanan kegemaran anda?"
-    ]
+/* -------------------------
+   USER DATA
+------------------------- */
 
-};
+function getCurrentUser(){
 
+    let current = localStorage.getItem("ym_current_user");
 
-/* =========================
-   TRANSLATIONS
-========================= */
+    if(current){
 
-const translations = {
+        try{
 
-    en:{
-        language:"Language",
-        frontTitle:"Welcome to Y-M Chat",
-        frontDescription:"Your worldwide chat community",
-        login:"LOGIN",
-        register:"REGISTER Y-M ID",
-        changePassword:"CHANGE PASSWORD",
-        security:"SECURITY",
-        recovery:"FORGOT PASSWORD / RECOVERY"
-    },
+            return JSON.parse(current);
 
-    ms:{
-        language:"Bahasa",
-        frontTitle:"Selamat Datang ke Y-M Chat",
-        frontDescription:"Komuniti chat seluruh dunia",
-        login:"LOG MASUK",
-        register:"DAFTAR Y-M ID",
-        changePassword:"TUKAR PASSWORD",
-        security:"KESELAMATAN",
-        recovery:"LUPA PASSWORD / PEMULIHAN"
-    }
-};
+        }catch(e){
 
-
-/* =========================
-   GLOBAL VARIABLES
-========================= */
-
-let currentLanguage =
-    localStorage.getItem("ym_language") || "en";
-
-let recoveryUser = null;
-
-let recoveryVerified = false;
-
-let phoneOtpRequested = false;
-
-let emailOtpRequested = false;
-
-let demoPhoneOtp = null;
-
-let demoEmailOtp = null;
-
-
-/* =========================
-   ACCOUNT DATABASE
-========================= */
-
-function getAccounts(){
-
-    try{
-
-        return JSON.parse(
-            localStorage.getItem("ym_accounts") || "{}"
-        );
-
-    }catch(error){
-
-        return {};
-
-    }
-
-}
-
-
-function saveAccounts(accounts){
-
-    localStorage.setItem(
-        "ym_accounts",
-        JSON.stringify(accounts)
-    );
-
-}
-
-
-/* =========================
-   PAGE SYSTEM
-========================= */
-
-function showPage(pageId){
-
-    document.querySelectorAll(".page")
-        .forEach(page=>{
-            page.classList.remove("active");
-        });
-
-    const page =
-        document.getElementById(pageId);
-
-    if(page){
-        page.classList.add("active");
-    }
-
-    window.scrollTo(0,0);
-
-}
-
-
-/* =========================
-   LANGUAGE
-========================= */
-
-function changeLanguage(){
-
-    currentLanguage =
-        document.getElementById("languageSelect").value;
-
-    localStorage.setItem(
-        "ym_language",
-        currentLanguage
-    );
-
-    applyLanguage();
-
-    fillSecurityQuestions();
-
-}
-
-
-function applyLanguage(){
-
-    const t =
-        translations[currentLanguage] ||
-        translations.en;
-
-    document.getElementById("languageLabel")
-        .textContent = t.language;
-
-    document.getElementById("frontTitle")
-        .textContent = t.frontTitle;
-
-    document.getElementById("frontDescription")
-        .textContent = t.frontDescription;
-
-    document.getElementById("loginButton")
-        .textContent = t.login;
-
-    document.getElementById("registerButton")
-        .textContent = t.register;
-
-    document.getElementById("changePasswordButton")
-        .textContent = t.changePassword;
-
-    document.getElementById("securityButton")
-        .textContent = t.security;
-
-    document.getElementById("recoveryButton")
-        .textContent = t.recovery;
-
-}
-
-
-/* =========================
-   COUNTRY SELECT
-========================= */
-
-function fillCountries(){
-
-    const selects = [
-
-        document.getElementById("registerCountry"),
-        document.getElementById("securityCountry")
-
-    ];
-
-    selects.forEach(select=>{
-
-        if(!select) return;
-
-        select.innerHTML =
-            '<option value="">Select country</option>';
-
-        countries.forEach(country=>{
-
-            const option =
-                document.createElement("option");
-
-            option.value =
-                country.code;
-
-            option.textContent =
-                country.name +
-                " (" +
-                country.phone +
-                ")";
-
-            select.appendChild(option);
-
-        });
-
-    });
-
-}
-
-
-/* =========================
-   SECURITY QUESTION SELECTS
-========================= */
-
-function fillSecurityQuestions(){
-
-    const language =
-        currentLanguage === "ms"
-        ? "ms"
-        : "en";
-
-    const questions =
-        securityQuestions[language];
-
-    const selectIds = [
-
-        "registerQuestion1",
-        "registerQuestion2",
-        "securityQuestion1",
-        "securityQuestion2"
-
-    ];
-
-    selectIds.forEach(id=>{
-
-        const select =
-            document.getElementById(id);
-
-        if(!select) return;
-
-        select.innerHTML =
-            '<option value="">Select question</option>';
-
-        questions.forEach((question,index)=>{
-
-            const option =
-                document.createElement("option");
-
-            option.value =
-                String(index);
-
-            option.textContent =
-                question;
-
-            select.appendChild(option);
-
-        });
-
-    });
-
-}
-
-
-/* =========================
-   VALIDATE PASSWORD
-========================= */
-
-function validPassword(password){
-
-    return password &&
-           password.length >= 6;
-
-}
-
-
-/* =========================
-   REGISTER
-========================= */
-
-function registerUser(){
-
-    const id =
-        document.getElementById("registerId")
-        .value.trim()
-        .toLowerCase();
-
-    const password =
-        document.getElementById("registerPassword")
-        .value;
-
-    const confirmPassword =
-        document.getElementById("registerConfirmPassword")
-        .value;
-
-    const country =
-        document.getElementById("registerCountry")
-        .value;
-
-    const phone =
-        document.getElementById("registerPhone")
-        .value.trim();
-
-    const email =
-        document.getElementById("registerEmail")
-        .value.trim()
-        .toLowerCase();
-
-    const confirmEmail =
-        document.getElementById("registerConfirmEmail")
-        .value.trim()
-        .toLowerCase();
-
-    const q1 =
-        document.getElementById("registerQuestion1")
-        .value;
-
-    const a1 =
-        document.getElementById("registerAnswer1")
-        .value.trim();
-
-    const q2 =
-        document.getElementById("registerQuestion2")
-        .value;
-
-    const a2 =
-        document.getElementById("registerAnswer2")
-        .value.trim();
-
-
-    if(!id){
-
-        alert("Please enter a Y-M ID.");
-        return;
-
-    }
-
-
-    if(id.length < 4){
-
-        alert("Y-M ID must contain at least 4 characters.");
-        return;
-
-    }
-
-
-    if(/\s/.test(id)){
-
-        alert("Y-M ID cannot contain spaces.");
-        return;
-
-    }
-
-
-    if(!validPassword(password)){
-
-        alert("Password must contain at least 6 characters.");
-        return;
-
-    }
-
-
-    if(password !== confirmPassword){
-
-        alert("Passwords do not match.");
-        return;
-
-    }
-
-
-    if(!country){
-
-        alert("Please select your country.");
-        return;
-
-    }
-
-
-    if(!phone){
-
-        alert("Please enter your phone number.");
-        return;
-
-    }
-
-
-    if(!email){
-
-        alert("Please enter your email address.");
-        return;
-
-    }
-
-
-    if(email !== confirmEmail){
-
-        alert("Email addresses do not match.");
-        return;
-
-    }
-
-
-    if(!q1 || !a1){
-
-        alert("Please complete Security Question 1.");
-        return;
-
-    }
-
-
-    if(!q2 || !a2){
-
-        alert("Please complete Security Question 2.");
-        return;
-
-    }
-
-
-    if(q1 === q2){
-
-        alert("Security Question 1 and 2 must be different.");
-        return;
-
-    }
-
-
-    const accounts =
-        getAccounts();
-
-
-    if(accounts[id]){
-
-        alert("This Y-M ID already exists.");
-        return;
-
-    }
-
-
-    accounts[id] = {
-
-        id:id,
-
-        password:password,
-
-        country:country,
-
-        phone:phone,
-
-        email:email,
-
-        security:{
-
-            question1:q1,
-
-            answer1:a1.toLowerCase(),
-
-            question2:q2,
-
-            answer2:a2.toLowerCase()
-
-        },
-
-        createdAt:
-            new Date().toISOString()
-
-    };
-
-
-    saveAccounts(accounts);
-
-
-    alert(
-        currentLanguage === "ms"
-        ? "Y-M ID berjaya didaftarkan."
-        : "Y-M ID registered successfully."
-    );
-
-
-    document.getElementById("loginId")
-        .value = id;
-
-    document.getElementById("loginPassword")
-        .value = "";
-
-
-    showPage("loginPage");
-
-}
-
-
-/* =========================
-   LOGIN
-========================= */
-
-function loginUser(){
-
-    const id =
-        document.getElementById("loginId")
-        .value.trim()
-        .toLowerCase();
-
-    const password =
-        document.getElementById("loginPassword")
-        .value;
-
-
-    if(!id || !password){
-
-        alert("Please enter Y-M ID and password.");
-        return;
-
-    }
-
-
-    const accounts =
-        getAccounts();
-
-
-    const account =
-        accounts[id];
-
-
-    if(!account){
-
-        alert("Y-M ID not found.");
-        return;
-
-    }
-
-
-    if(account.password !== password){
-
-        alert("Incorrect password.");
-        return;
-
-    }
-
-
-    localStorage.setItem(
-        "ym_current_user",
-        id
-    );
-
-
-    currentLanguage =
-        account.language ||
-        localStorage.getItem("ym_language") ||
-        "en";
-
-
-    localStorage.setItem(
-        "ym_language",
-        currentLanguage
-    );
-
-
-    document.getElementById("homeUserName")
-        .textContent =
-        account.id;
-
-
-    document.getElementById("homeAvatar")
-        .textContent =
-        account.id
-            .substring(0,2)
-            .toUpperCase();
-
-
-    alert(
-        currentLanguage === "ms"
-        ? "Log masuk berjaya."
-        : "Login successful."
-    );
-
-
-    showPage("homePage");
-
-}
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-function logoutUser(){
-
-    localStorage.removeItem(
-        "ym_current_user"
-    );
-
-    document.getElementById("loginPassword")
-        .value = "";
-
-    showPage("frontPage");
-
-}
-
-
-/* =========================
-   CHANGE PASSWORD
-========================= */
-
-function changePassword(){
-
-    const id =
-        document.getElementById("changeId")
-        .value.trim()
-        .toLowerCase();
-
-    const oldPassword =
-        document.getElementById("oldPassword")
-        .value;
-
-    const newPassword =
-        document.getElementById("newPassword")
-        .value;
-
-    const confirmPassword =
-        document.getElementById("confirmNewPassword")
-        .value;
-
-
-    if(!id || !oldPassword){
-
-        alert("Please enter Y-M ID and current password.");
-        return;
-
-    }
-
-
-    const accounts =
-        getAccounts();
-
-
-    if(!accounts[id]){
-
-        alert("Y-M ID not found.");
-        return;
-
-    }
-
-
-    if(accounts[id].password !== oldPassword){
-
-        alert("Current password is incorrect.");
-        return;
-
-    }
-
-
-    if(!validPassword(newPassword)){
-
-        alert("New password must contain at least 6 characters.");
-        return;
-
-    }
-
-
-    if(newPassword !== confirmPassword){
-
-        alert("New passwords do not match.");
-        return;
-
-    }
-
-
-    accounts[id].password =
-        newPassword;
-
-
-    saveAccounts(accounts);
-
-
-    alert(
-        currentLanguage === "ms"
-        ? "Password berjaya ditukar."
-        : "Password changed successfully."
-    );
-
-
-    document.getElementById("changeId")
-        .value = "";
-
-    document.getElementById("oldPassword")
-        .value = "";
-
-    document.getElementById("newPassword")
-        .value = "";
-
-    document.getElementById("confirmNewPassword")
-        .value = "";
-
-
-    showPage("frontPage");
-
-}
-
-
-/* =========================
-   SAVE SECURITY
-========================= */
-
-function saveSecurity(){
-
-    const id =
-        document.getElementById("securityId")
-        .value.trim()
-        .toLowerCase();
-
-    const country =
-        document.getElementById("securityCountry")
-        .value;
-
-    const phone =
-        document.getElementById("securityPhone")
-        .value.trim();
-
-    const email =
-        document.getElementById("securityEmail")
-        .value.trim()
-        .toLowerCase();
-
-    const confirmEmail =
-        document.getElementById("securityConfirmEmail")
-        .value.trim()
-        .toLowerCase();
-
-    const q1 =
-        document.getElementById("securityQuestion1")
-        .value;
-
-    const a1 =
-        document.getElementById("securityAnswer1")
-        .value.trim();
-
-    const q2 =
-        document.getElementById("securityQuestion2")
-        .value;
-
-    const a2 =
-        document.getElementById("securityAnswer2")
-        .value.trim();
-
-
-    if(!id){
-
-        alert("Please enter Y-M ID.");
-        return;
-
-    }
-
-
-    const accounts =
-        getAccounts();
-
-
-    if(!accounts[id]){
-
-        alert("Y-M ID not found.");
-        return;
-
-    }
-
-
-    if(!country || !phone){
-
-        alert("Please complete country and phone number.");
-        return;
-
-    }
-
-
-    if(!email){
-
-        alert("Please enter email address.");
-        return;
-
-    }
-
-
-    if(email !== confirmEmail){
-
-        alert("Email addresses do not match.");
-        return;
-
-    }
-
-
-    if(!q1 || !a1 || !q2 || !a2){
-
-        alert("Please complete both security questions.");
-        return;
-
-    }
-
-
-    if(q1 === q2){
-
-        alert("Security questions must be different.");
-        return;
-
-    }
-
-
-    accounts[id].country =
-        country;
-
-    accounts[id].phone =
-        phone;
-
-    accounts[id].email =
-        email;
-
-    accounts[id].security = {
-
-        question1:q1,
-
-        answer1:
-            a1.toLowerCase(),
-
-        question2:q2,
-
-        answer2:
-            a2.toLowerCase()
-
-    };
-
-
-    saveAccounts(accounts);
-
-
-    alert(
-        currentLanguage === "ms"
-        ? "Maklumat Security berjaya disimpan."
-        : "Security information saved successfully."
-    );
-
-
-    showPage("frontPage");
-
-}
-
-
-/* =========================
-   FIND RECOVERY ACCOUNT
-========================= */
-
-function findRecoveryAccount(){
-
-    const id =
-        document.getElementById("recoveryId")
-        .value.trim()
-        .toLowerCase();
-
-
-    if(!id){
-
-        alert("Please enter your Y-M ID.");
-        return;
-
-    }
-
-
-    const accounts =
-        getAccounts();
-
-
-    if(!accounts[id]){
-
-        alert("Y-M ID not found.");
-
-        document.getElementById("recoveryArea")
-            .classList.add("hidden");
-
-        return;
-
-    }
-
-
-    recoveryUser =
-        accounts[id];
-
-    recoveryVerified =
-        false;
-
-    phoneOtpRequested =
-        false;
-
-    emailOtpRequested =
-        false;
-
-    demoPhoneOtp =
-        null;
-
-    demoEmailOtp =
-        null;
-
-
-    document.getElementById("recoveryArea")
-        .classList.remove("hidden");
-
-
-    document.getElementById("questionRecoveryArea")
-        .classList.add("hidden");
-
-    document.getElementById("phoneRecoveryArea")
-        .classList.add("hidden");
-
-    document.getElementById("emailRecoveryArea")
-        .classList.add("hidden");
-
-    document.getElementById("resetPasswordArea")
-        .classList.add("hidden");
-
-
-    alert(
-        currentLanguage === "ms"
-        ? "Akaun dijumpai. Sila pilih kaedah recovery."
-        : "Account found. Please choose a recovery method."
-    );
-
-}
-
-
-/* =========================
-   SELECT RECOVERY METHOD
-========================= */
-
-function selectRecoveryMethod(method){
-
-    if(!recoveryUser){
-
-        alert("Please find your account first.");
-        return;
-
-    }
-
-
-    document.getElementById("questionRecoveryArea")
-        .classList.add("hidden");
-
-    document.getElementById("phoneRecoveryArea")
-        .classList.add("hidden");
-
-    document.getElementById("emailRecoveryArea")
-        .classList.add("hidden");
-
-
-    if(method === "questions"){
-
-        document.getElementById(
-            "questionRecoveryArea"
-        ).classList.remove("hidden");
-
-
-        document.getElementById(
-            "recoveryQuestionText1"
-        ).textContent =
-            getRecoveryQuestionText(
-                recoveryUser.security.question1
-            );
-
-
-        document.getElementById(
-            "recoveryQuestionText2"
-        ).textContent =
-            getRecoveryQuestionText(
-                recoveryUser.security.question2
-            );
-
-    }
-
-
-    if(method === "phone"){
-
-        document.getElementById(
-            "phoneRecoveryArea"
-        ).classList.remove("hidden");
-
-    }
-
-
-    if(method === "email"){
-
-        document.getElementById(
-            "emailRecoveryArea"
-        ).classList.remove("hidden");
-
-    }
-
-}
-
-
-/* =========================
-   GET QUESTION TEXT
-========================= */
-
-function getRecoveryQuestionText(index){
-
-    const language =
-        currentLanguage === "ms"
-        ? "ms"
-        : "en";
-
-    return (
-        securityQuestions[language][index] ||
-        securityQuestions.en[index] ||
-        "Security Question"
-    );
-
-}
-
-
-/* =========================
-   VERIFY TWO QUESTIONS
-========================= */
-
-function verifyQuestions(){
-
-    if(!recoveryUser){
-
-        alert("Please find your account first.");
-        return;
-
-    }
-
-
-    const answer1 =
-        document.getElementById("recoveryAnswer1")
-        .value.trim()
-        .toLowerCase();
-
-    const answer2 =
-        document.getElementById("recoveryAnswer2")
-        .value.trim()
-        .toLowerCase();
-
-
-    if(!answer1 || !answer2){
-
-        alert("Please answer both questions.");
-        return;
-
-    }
-
-
-    const correct1 =
-        answer1 ===
-        String(
-            recoveryUser.security.answer1
-        ).trim().toLowerCase();
-
-
-    const correct2 =
-        answer2 ===
-        String(
-            recoveryUser.security.answer2
-        ).trim().toLowerCase();
-
-
-    if(correct1 && correct2){
-
-        recoveryVerified =
-            true;
-
-
-        document.getElementById(
-            "resetPasswordArea"
-        ).classList.remove("hidden");
-
-
-        alert(
-            currentLanguage === "ms"
-            ? "Kedua-dua jawapan betul. Sila buat password baru."
-            : "Both answers are correct. You may create a new password."
-        );
-
-    }else{
-
-        recoveryVerified =
-            false;
-
-
-        document.getElementById(
-            "resetPasswordArea"
-        ).classList.add("hidden");
-
-
-        alert(
-            currentLanguage === "ms"
-            ? "Jawapan tidak betul. Kedua-dua soalan mesti betul."
-            : "The answers are incorrect. Both questions must be correct."
-        );
-
-    }
-
-}
-
-
-/* =========================
-   GENERATE OTP
-========================= */
-
-function generateOtp(){
-
-    return String(
-        Math.floor(
-            100000 +
-            Math.random() * 900000
-        )
-    );
-
-}
-
-
-/* =========================
-   PHONE OTP
-========================= */
-
-function requestPhoneOtp(){
-
-    if(!recoveryUser){
-
-        alert("Please find your account first.");
-        return;
-
-    }
-
-
-    const phone =
-        document.getElementById("recoveryPhone")
-        .value.trim();
-
-    const method =
-        document.getElementById("phoneMethod")
-        .value;
-
-
-    if(!phone){
-
-        alert("Please enter your registered phone number.");
-        return;
-
-    }
-
-
-    if(phone !== recoveryUser.phone){
-
-        alert("Phone number does not match the account.");
-        return;
-
-    }
-
-
-    demoPhoneOtp =
-        generateOtp();
-
-    phoneOtpRequested =
-        true;
-
-
-    const methodName =
-        method === "whatsapp"
-        ? "WhatsApp"
-        : "SMS";
-
-
-    /*
-       DEMO ONLY:
-       No real SMS/WhatsApp is sent.
-    */
-
-    document.getElementById(
-        "phoneOtpStatus"
-    ).innerHTML =
-
-        '<div class="otp-demo">' +
-
-        '<strong>DEMO OTP</strong><br>' +
-
-        'No real ' +
-        methodName +
-        ' message was sent.<br>' +
-
-        'Demo OTP: <strong>' +
-        demoPhoneOtp +
-        '</strong>' +
-
-        '</div>';
-
-}
-
-
-/* =========================
-   VERIFY PHONE OTP
-========================= */
-
-function verifyPhoneOtp(){
-
-    const entered =
-        document.getElementById("phoneOtp")
-        .value.trim();
-
-
-    if(!phoneOtpRequested){
-
-        alert("Please request an OTP first.");
-        return;
-
-    }
-
-
-    if(entered !== demoPhoneOtp){
-
-        recoveryVerified =
-            false;
-
-        document.getElementById(
-            "resetPasswordArea"
-        ).classList.add("hidden");
-
-        alert("Incorrect OTP.");
-        return;
-
-    }
-
-
-    recoveryVerified =
-        true;
-
-
-    document.getElementById(
-        "resetPasswordArea"
-    ).classList.remove("hidden");
-
-
-    alert(
-        currentLanguage === "ms"
-        ? "OTP betul. Sila buat password baru."
-        : "OTP verified. You may create a new password."
-    );
-
-}
-
-
-/* =========================
-   EMAIL OTP
-========================= */
-
-function requestEmailOtp(){
-
-    if(!recoveryUser){
-
-        alert("Please find your account first.");
-        return;
-
-    }
-
-
-    const email =
-        document.getElementById("recoveryEmail")
-        .value.trim()
-        .toLowerCase();
-
-
-    if(!email){
-
-        alert("Please enter your registered email.");
-        return;
-
-    }
-
-
-    if(email !==
-       String(recoveryUser.email)
-       .toLowerCase()){
-
-        alert("Email does not match the account.");
-        return;
-
-    }
-
-
-    demoEmailOtp =
-        generateOtp();
-
-    emailOtpRequested =
-        true;
-
-
-    /*
-       DEMO ONLY:
-       No real email is sent.
-    */
-
-    document.getElementById(
-        "emailOtpStatus"
-    ).innerHTML =
-
-        '<div class="otp-demo">' +
-
-        '<strong>DEMO EMAIL OTP</strong><br>' +
-
-        'No real email was sent.<br>' +
-
-        'Demo OTP: <strong>' +
-        demoEmailOtp +
-        '</strong>' +
-
-        '</div>';
-
-}
-
-
-/* =========================
-   VERIFY EMAIL OTP
-========================= */
-
-function verifyEmailOtp(){
-
-    const entered =
-        document.getElementById("emailOtp")
-        .value.trim();
-
-
-    if(!emailOtpRequested){
-
-        alert("Please request an email OTP first.");
-        return;
-
-    }
-
-
-    if(entered !== demoEmailOtp){
-
-        recoveryVerified =
-            false;
-
-        document.getElementById(
-            "resetPasswordArea"
-        ).classList.add("hidden");
-
-        alert("Incorrect OTP.");
-        return;
-
-    }
-
-
-    recoveryVerified =
-        true;
-
-
-    document.getElementById(
-        "resetPasswordArea"
-    ).classList.remove("hidden");
-
-
-    alert(
-        currentLanguage === "ms"
-        ? "OTP email betul. Sila buat password baru."
-        : "Email OTP verified. You may create a new password."
-    );
-
-}
-
-
-/* =========================
-   RESET PASSWORD
-========================= */
-
-function resetPassword(){
-
-    if(!recoveryUser){
-
-        alert("Recovery account not found.");
-        return;
-
-    }
-
-
-    if(!recoveryVerified){
-
-        alert("Please complete verification first.");
-        return;
-
-    }
-
-
-    const password =
-        document.getElementById("resetPassword")
-        .value;
-
-    const confirmPassword =
-        document.getElementById("resetPasswordConfirm")
-        .value;
-
-
-    if(!validPassword(password)){
-
-        alert("Password must contain at least 6 characters.");
-        return;
-
-    }
-
-
-    if(password !== confirmPassword){
-
-        alert("Passwords do not match.");
-        return;
-
-    }
-
-
-    const accounts =
-        getAccounts();
-
-
-    const id =
-        recoveryUser.id;
-
-
-    if(!accounts[id]){
-
-        alert("Account no longer exists.");
-        return;
-
-    }
-
-
-    accounts[id].password =
-        password;
-
-
-    saveAccounts(accounts);
-
-
-    alert(
-        currentLanguage === "ms"
-        ? "Password berjaya direset. Sila log masuk."
-        : "Password reset successfully. Please login."
-    );
-
-
-    recoveryUser =
-        null;
-
-    recoveryVerified =
-        false;
-
-    phoneOtpRequested =
-        false;
-
-    emailOtpRequested =
-        false;
-
-    demoPhoneOtp =
-        null;
-
-    demoEmailOtp =
-        null;
-
-
-    document.getElementById("recoveryId")
-        .value = "";
-
-    document.getElementById("recoveryAnswer1")
-        .value = "";
-
-    document.getElementById("recoveryAnswer2")
-        .value = "";
-
-    document.getElementById("recoveryPhone")
-        .value = "";
-
-    document.getElementById("phoneOtp")
-        .value = "";
-
-    document.getElementById("recoveryEmail")
-        .value = "";
-
-    document.getElementById("emailOtp")
-        .value = "";
-
-    document.getElementById("resetPassword")
-        .value = "";
-
-    document.getElementById("resetPasswordConfirm")
-        .value = "";
-
-    document.getElementById("recoveryArea")
-        .classList.add("hidden");
-
-    document.getElementById("questionRecoveryArea")
-        .classList.add("hidden");
-
-    document.getElementById("phoneRecoveryArea")
-        .classList.add("hidden");
-
-    document.getElementById("emailRecoveryArea")
-        .classList.add("hidden");
-
-    document.getElementById("resetPasswordArea")
-        .classList.add("hidden");
-
-
-    showPage("loginPage");
-
-}
-
-
-/* =========================
-   AUTO START
-========================= */
-
-function initializeApp(){
-
-    const savedLanguage =
-        localStorage.getItem("ym_language");
-
-
-    if(savedLanguage){
-
-        currentLanguage =
-            savedLanguage;
-
-        document.getElementById(
-            "languageSelect"
-        ).value =
-            savedLanguage;
-
-    }
-
-
-    fillCountries();
-
-    fillSecurityQuestions();
-
-    applyLanguage();
-
-
-    /*
-       If user already logged in,
-       restore the demo session.
-    */
-
-    const currentUser =
-        localStorage.getItem(
-            "ym_current_user"
-        );
-
-
-    if(currentUser){
-
-        const accounts =
-            getAccounts();
-
-        const account =
-            accounts[currentUser];
-
-
-        if(account){
-
-            document.getElementById(
-                "homeUserName"
-            ).textContent =
-                account.id;
-
-
-            document.getElementById(
-                "homeAvatar"
-            ).textContent =
-                account.id
-                    .substring(0,2)
-                    .toUpperCase();
+            return null;
 
         }
 
     }
 
+    return null;
 }
 
 
-/* =========================
+/* -------------------------
+   DISPLAY USER
+------------------------- */
+
+function loadUser(){
+
+    const user = getCurrentUser();
+
+    if(!user){
+
+        document.getElementById("topName").textContent =
+            "Y-M User";
+
+        document.getElementById("topId").textContent =
+            "@ymuser";
+
+        document.getElementById("topAvatar").textContent =
+            "Y";
+
+        document.getElementById("miniAvatar").textContent =
+            "Y";
+
+        return;
+
+    }
+
+    const name =
+        user.name ||
+        user.username ||
+        "Y-M User";
+
+    const username =
+        user.username ||
+        "ymuser";
+
+    document.getElementById("topName").textContent =
+        name;
+
+    document.getElementById("topId").textContent =
+        "@" + username;
+
+    const letter =
+        name.charAt(0).toUpperCase();
+
+    document.getElementById("topAvatar").textContent =
+        letter;
+
+    document.getElementById("miniAvatar").textContent =
+        letter;
+}
+
+
+/* -------------------------
+   LOAD POSTS
+------------------------- */
+
+function loadPosts(){
+
+    const saved =
+        localStorage.getItem("ym_home_posts");
+
+    if(saved){
+
+        try{
+
+            posts = JSON.parse(saved);
+
+        }catch(e){
+
+            posts = [];
+
+        }
+
+    }
+
+    renderPosts();
+}
+
+
+/* -------------------------
+   SAVE POSTS
+------------------------- */
+
+function savePosts(){
+
+    localStorage.setItem(
+        "ym_home_posts",
+        JSON.stringify(posts)
+    );
+
+}
+
+
+/* -------------------------
+   FORMAT TIME
+------------------------- */
+
+function formatTime(timestamp){
+
+    const date =
+        new Date(timestamp);
+
+    const now =
+        new Date();
+
+    const diff =
+        now - date;
+
+    const minutes =
+        Math.floor(diff / 60000);
+
+    if(minutes < 1){
+
+        return "Baru sahaja";
+
+    }
+
+    if(minutes < 60){
+
+        return minutes + " minit lalu";
+
+    }
+
+    const hours =
+        Math.floor(minutes / 60);
+
+    if(hours < 24){
+
+        return hours + " jam lalu";
+
+    }
+
+    const days =
+        Math.floor(hours / 24);
+
+    if(days < 7){
+
+        return days + " hari lalu";
+
+    }
+
+    return date.toLocaleDateString();
+
+}
+
+
+/* -------------------------
+   CREATE POST
+------------------------- */
+
+function createPost(){
+
+    const text =
+        document.getElementById("postInput")
+        .value.trim();
+
+    if(!text && !selectedMedia){
+
+        alert("Sila tulis sesuatu atau pilih foto/video.");
+
+        return;
+
+    }
+
+    const user =
+        getCurrentUser();
+
+    const name =
+        user && user.name
+        ? user.name
+        : "Y-M User";
+
+    const username =
+        user && user.username
+        ? user.username
+        : "ymuser";
+
+    const post = {
+
+        id:
+            Date.now(),
+
+        userName:
+            name,
+
+        username:
+            username,
+
+        text:
+            text,
+
+        media:
+            selectedMedia,
+
+        mediaType:
+            selectedMediaType,
+
+        time:
+            Date.now(),
+
+        likes:
+            0,
+
+        liked:
+            false,
+
+        comments:
+            []
+
+    };
+
+    posts.unshift(post);
+
+    savePosts();
+
+    document.getElementById("postInput").value =
+        "";
+
+    selectedMedia =
+        null;
+
+    selectedMediaType =
+        null;
+
+    document.getElementById("mediaPreview").style.display =
+        "none";
+
+    document.getElementById("mediaPreview").innerHTML =
+        "";
+
+    renderPosts();
+
+}
+
+
+/* -------------------------
+   RENDER POSTS
+------------------------- */
+
+function renderPosts(){
+
+    const feed =
+        document.getElementById("feed");
+
+    feed.innerHTML =
+        "";
+
+    if(posts.length === 0){
+
+        feed.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📰
+                </div>
+
+                <div>
+                    Belum ada post.
+                </div>
+
+                <small>
+                    Jadilah orang pertama membuat post.
+                </small>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    posts.forEach(post => {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "post-card";
+
+        const letter =
+            (post.userName || "Y")
+            .charAt(0)
+            .toUpperCase();
+
+        let mediaHTML =
+            "";
+
+        if(post.media && post.mediaType === "image"){
+
+            mediaHTML = `
+
+                <div class="post-media">
+
+                    <img
+                        src="${post.media}"
+                        alt="Post image"
+                    >
+
+                </div>
+
+            `;
+
+        }
+
+        if(post.media && post.mediaType === "video"){
+
+            mediaHTML = `
+
+                <div class="post-media">
+
+                    <video
+                        src="${post.media}"
+                        controls
+                    ></video>
+
+                </div>
+
+            `;
+
+        }
+
+        const commentCount =
+            post.comments
+            ? post.comments.length
+            : 0;
+
+        card.innerHTML = `
+
+            <div class="post-head">
+
+                <div class="avatar">
+                    ${letter}
+                </div>
+
+                <div class="post-user">
+
+                    <div class="post-user-name">
+                        ${escapeHTML(post.userName)}
+                    </div>
+
+                    <div class="post-time">
+                        @${escapeHTML(post.username)}
+                        ·
+                        ${formatTime(post.time)}
+                    </div>
+
+                </div>
+
+                <button
+                    class="more-btn"
+                    onclick="postMenu(${post.id})">
+                    ⋮
+                </button>
+
+            </div>
+
+            ${
+                post.text
+                ?
+                `<div class="post-text">
+                    ${escapeHTML(post.text)}
+                </div>`
+                :
+                ""
+            }
+
+            ${mediaHTML}
+
+            <div class="post-stats">
+
+                ❤️ ${post.likes || 0}
+                &nbsp;&nbsp;
+                💬 ${commentCount}
+
+            </div>
+
+            <div class="post-actions">
+
+                <button
+                    class="post-action ${post.liked ? "liked" : ""}"
+                    onclick="likePost(${post.id})">
+
+                    ${post.liked ? "💙 Liked" : "👍 Like"}
+
+                </button>
+
+                <button
+                    class="post-action"
+                    onclick="openComment(${post.id})">
+
+                    💬 Comment
+
+                </button>
+
+                <button
+                    class="post-action"
+                    onclick="sharePost(${post.id})">
+
+                    ↗️ Share
+
+                </button>
+
+            </div>
+
+        `;
+
+        feed.appendChild(card);
+
+    });
+
+}
+
+
+/* -------------------------
+   ESCAPE HTML
+------------------------- */
+
+function escapeHTML(text){
+
+    if(!text){
+
+        return "";
+
+    }
+
+    return text
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* -------------------------
+   LIKE POST
+------------------------- */
+
+function likePost(id){
+
+    const post =
+        posts.find(p => p.id === id);
+
+    if(!post){
+
+        return;
+
+    }
+
+    if(post.liked){
+
+        post.likes =
+            Math.max(0, post.likes - 1);
+
+        post.liked =
+            false;
+
+    }else{
+
+        post.likes =
+            (post.likes || 0) + 1;
+
+        post.liked =
+            true;
+
+    }
+
+    savePosts();
+
+    renderPosts();
+
+}
+
+
+/* -------------------------
+   COMMENT
+------------------------- */
+
+function openComment(id){
+
+    commentPostId =
+        id;
+
+    document.getElementById("commentInput").value =
+        "";
+
+    document.getElementById("commentModal")
+        .classList.add("show");
+
+}
+
+function closeCommentModal(){
+
+    document.getElementById("commentModal")
+        .classList.remove("show");
+
+    commentPostId =
+        null;
+
+}
+
+function submitComment(){
+
+    const text =
+        document.getElementById("commentInput")
+        .value.trim();
+
+    if(!text){
+
+        alert("Sila tulis komen.");
+
+        return;
+
+    }
+
+    const post =
+        posts.find(p => p.id === commentPostId);
+
+    if(!post){
+
+        return;
+
+    }
+
+    if(!post.comments){
+
+        post.comments = [];
+
+    }
+
+    const user =
+        getCurrentUser();
+
+    post.comments.push({
+
+        user:
+            user && user.name
+            ? user.name
+            : "Y-M User",
+
+        text:
+            text,
+
+        time:
+            Date.now()
+
+    });
+
+    savePosts();
+
+    closeCommentModal();
+
+    renderPosts();
+
+}
+
+
+/* -------------------------
+   SHARE
+------------------------- */
+
+function sharePost(id){
+
+    const post =
+        posts.find(p => p.id === id);
+
+    if(!post){
+
+        return;
+
+    }
+
+    const shareText =
+        post.text ||
+        "Post dari Y-M Chat";
+
+    if(navigator.share){
+
+        navigator.share({
+
+            title:
+                "Y-M Chat",
+
+            text:
+                shareText
+
+        }).catch(() => {});
+
+    }else{
+
+        alert(
+            "Share: " +
+            shareText
+        );
+
+    }
+
+}
+
+
+/* -------------------------
+   POST MENU
+------------------------- */
+
+function postMenu(id){
+
+    const post =
+        posts.find(p => p.id === id);
+
+    if(!post){
+
+        return;
+
+    }
+
+    const user =
+        getCurrentUser();
+
+    const currentUsername =
+        user && user.username
+        ? user.username
+        : "ymuser";
+
+    if(post.username === currentUsername){
+
+        const remove =
+            confirm(
+                "Padam post ini?"
+            );
+
+        if(remove){
+
+            posts =
+                posts.filter(
+                    p => p.id !== id
+                );
+
+            savePosts();
+
+            renderPosts();
+
+        }
+
+    }else{
+
+        alert(
+            "Menu post pengguna lain akan dikembangkan kemudian."
+        );
+
+    }
+
+}
+
+
+/* -------------------------
+   IMAGE PREVIEW
+------------------------- */
+
+function previewImage(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file){
+
+        return;
+
+    }
+
+    const reader =
+        new FileReader();
+
+    reader.onload =
+        function(e){
+
+            selectedMedia =
+                e.target.result;
+
+            selectedMediaType =
+                "image";
+
+            const preview =
+                document.getElementById("mediaPreview");
+
+            preview.innerHTML = `
+
+                <img
+                    src="${selectedMedia}"
+                    alt="Preview"
+                >
+
+            `;
+
+            preview.style.display =
+                "block";
+
+        };
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* -------------------------
+   VIDEO PREVIEW
+------------------------- */
+
+function previewVideo(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file){
+
+        return;
+
+    }
+
+    const reader =
+        new FileReader();
+
+    reader.onload =
+        function(e){
+
+            selectedMedia =
+                e.target.result;
+
+            selectedMediaType =
+                "video";
+
+            const preview =
+                document.getElementById("mediaPreview");
+
+            preview.innerHTML = `
+
+                <video
+                    src="${selectedMedia}"
+                    controls
+                ></video>
+
+            `;
+
+            preview.style.display =
+                "block";
+
+        };
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* -------------------------
+   NOTIFICATIONS
+------------------------- */
+
+function toggleNotifications(){
+
+    const panel =
+        document.getElementById(
+            "notificationPanel"
+        );
+
+    panel.classList.toggle("show");
+
+}
+
+
+/* -------------------------
+   MAIN MENU
+------------------------- */
+
+function openMenu(){
+
+    alert(
+        "Y-M Chat Menu\n\n" +
+        "• Settings\n" +
+        "• Security\n" +
+        "• Help\n" +
+        "• Logout\n\n" +
+        "Menu penuh akan disambungkan kemudian."
+    );
+
+}
+
+
+/* -------------------------
+   NAVIGATION PLACEHOLDERS
+------------------------- */
+
+function goHome(){
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+function openFriends(){
+
+    alert(
+        "Friends V1.0 akan menggunakan modul 04-FRIENDS."
+    );
+
+}
+
+function openChat(){
+
+    alert(
+        "Chat akan menggunakan modul 05-CHAT."
+    );
+
+}
+
+function openRooms(){
+
+    alert(
+        "Rooms akan menggunakan modul 06-ROOMS."
+    );
+
+}
+
+function openProfile(){
+
+    alert(
+        "Profile akan menggunakan modul 03-PROFILE."
+    );
+
+}
+
+
+/* -------------------------
+   CLOSE NOTIFICATION
+   WHEN CLICK OUTSIDE
+------------------------- */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const panel =
+            document.getElementById(
+                "notificationPanel"
+            );
+
+        const header =
+            document.querySelector(
+                ".header"
+            );
+
+        if(
+            !panel.contains(event.target) &&
+            !header.contains(event.target)
+        ){
+
+            panel.classList.remove("show");
+
+        }
+
+    }
+);
+
+
+/* -------------------------
+   INITIALIZE
+------------------------- */
+
+function initializeHome(){
+
+    loadUser();
+
+    loadPosts();
+
+}
+
+
+/* -------------------------
    START
-========================= */
+------------------------- */
 
 document.addEventListener(
     "DOMContentLoaded",
-    initializeApp
+    initializeHome
 );
 
 </script>
-
-</div>
 
 </body>
 </html>
