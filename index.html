@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Y-M Chat - Home V1.1</title>
+<title>Y-M Chat - Home V1.2</title>
 
 <style>
 *{
@@ -19,14 +19,26 @@ body{
     color:#222;
 }
 
+button,
+textarea,
+input{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
 .app{
     width:100%;
     max-width:480px;
     min-height:100vh;
     margin:auto;
     background:#f5f7fa;
-    padding-bottom:78px;
+    padding-bottom:80px;
 }
+
+/* HEADER */
 
 .header{
     height:62px;
@@ -47,9 +59,10 @@ body{
     font-weight:bold;
 }
 
-.logo span{
+.logo small{
     display:block;
     font-size:12px;
+    font-weight:normal;
     opacity:.85;
 }
 
@@ -61,13 +74,14 @@ body{
 .icon-btn{
     width:40px;
     height:40px;
-    border:none;
+    border:0;
     border-radius:50%;
-    background:rgba(255,255,255,.17);
+    background:rgba(255,255,255,.18);
     color:white;
     font-size:20px;
-    cursor:pointer;
 }
+
+/* PROFILE */
 
 .profile-bar{
     background:white;
@@ -78,8 +92,7 @@ body{
     border-bottom:1px solid #ddd;
 }
 
-.avatar,
-.mini-avatar{
+.avatar{
     width:45px;
     height:45px;
     border-radius:50%;
@@ -92,18 +105,6 @@ body{
     font-size:18px;
     overflow:hidden;
     flex-shrink:0;
-}
-
-.mini-avatar{
-    width:40px;
-    height:40px;
-}
-
-.avatar img,
-.mini-avatar img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
 }
 
 .profile-info{
@@ -121,38 +122,55 @@ body{
     margin-top:3px;
 }
 
+/* NOTICE */
+
 .notice{
     margin:12px;
+    padding:11px;
+    border-radius:10px;
     background:#e3f2fd;
     border:1px solid #bbdefb;
-    border-radius:10px;
-    padding:11px;
     color:#1565c0;
     font-size:13px;
 }
 
+/* CREATE POST */
+
 .create-post{
     background:white;
     margin:12px;
-    border-radius:12px;
     padding:13px;
-    box-shadow:0 1px 4px rgba(0,0,0,.08);
+    border-radius:12px;
+    box-shadow:0 1px 5px rgba(0,0,0,.08);
 }
 
-.create-top{
+.create-row{
     display:flex;
     gap:10px;
     align-items:flex-start;
 }
 
+.mini-avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#1976d2;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    flex-shrink:0;
+}
+
 .post-input{
-    flex:1;
-    min-height:42px;
+    width:100%;
+    min-height:45px;
+    resize:vertical;
     border:1px solid #ddd;
-    border-radius:22px;
-    padding:11px 14px;
+    border-radius:12px;
+    padding:12px;
     outline:none;
-    resize:none;
     font-size:14px;
 }
 
@@ -161,45 +179,40 @@ body{
 }
 
 .media-preview{
-    margin-top:10px;
     display:none;
+    margin-top:10px;
     border-radius:10px;
     overflow:hidden;
-    background:#f1f1f1;
+    background:#111;
 }
 
 .media-preview img,
 .media-preview video{
+    display:block;
     width:100%;
     max-height:280px;
-    object-fit:cover;
-    display:block;
+    object-fit:contain;
 }
 
 .create-actions{
     display:flex;
+    gap:6px;
     margin-top:12px;
-    border-top:1px solid #eee;
     padding-top:10px;
-    gap:5px;
+    border-top:1px solid #eee;
 }
 
-.media-btn{
+.action-btn{
     flex:1;
-    border:none;
-    background:white;
-    padding:9px 3px;
+    border:0;
     border-radius:8px;
-    cursor:pointer;
-    font-size:12px;
+    padding:10px 4px;
+    background:#f1f3f5;
     color:#444;
+    font-size:12px;
 }
 
-.media-btn:hover{
-    background:#f2f5f8;
-}
-
-.post-btn{
+.action-btn.post{
     background:#1976d2;
     color:white;
     font-weight:bold;
@@ -209,25 +222,27 @@ input[type="file"]{
     display:none;
 }
 
+/* FEED */
+
 .feed-title{
-    padding:4px 14px 8px;
+    padding:5px 14px 9px;
     font-size:16px;
     font-weight:bold;
 }
 
 .post-card{
-    background:white;
     margin:0 12px 12px;
+    background:white;
     border-radius:12px;
-    box-shadow:0 1px 5px rgba(0,0,0,.08);
     overflow:hidden;
+    box-shadow:0 1px 5px rgba(0,0,0,.08);
 }
 
 .post-head{
     display:flex;
     align-items:center;
-    padding:13px;
     gap:10px;
+    padding:13px;
 }
 
 .post-user{
@@ -240,17 +255,16 @@ input[type="file"]{
 }
 
 .post-time{
-    color:#888;
-    font-size:11px;
     margin-top:3px;
+    font-size:11px;
+    color:#888;
 }
 
 .more-btn{
-    border:none;
+    border:0;
     background:white;
-    font-size:22px;
     color:#777;
-    cursor:pointer;
+    font-size:22px;
     padding:4px 8px;
 }
 
@@ -262,7 +276,6 @@ input[type="file"]{
 }
 
 .post-media{
-    width:100%;
     background:#000;
 }
 
@@ -276,9 +289,9 @@ input[type="file"]{
 
 .post-stats{
     padding:9px 13px;
+    border-bottom:1px solid #eee;
     color:#777;
     font-size:12px;
-    border-bottom:1px solid #eee;
 }
 
 .post-actions{
@@ -287,16 +300,11 @@ input[type="file"]{
 
 .post-action{
     flex:1;
-    border:none;
+    border:0;
     background:white;
-    padding:11px 5px;
-    cursor:pointer;
     color:#555;
+    padding:11px 4px;
     font-size:13px;
-}
-
-.post-action:hover{
-    background:#f4f6f8;
 }
 
 .post-action.liked{
@@ -304,23 +312,29 @@ input[type="file"]{
     font-weight:bold;
 }
 
+.post-action:hover{
+    background:#f4f6f8;
+}
+
+/* COMMENTS */
+
 .comments-area{
-    border-top:1px solid #eee;
-    padding:10px 13px;
     background:#fafafa;
+    border-top:1px solid #eee;
+    padding:11px 13px;
 }
 
 .comments-title{
+    color:#666;
     font-size:12px;
     font-weight:bold;
-    color:#666;
-    margin-bottom:8px;
+    margin-bottom:9px;
 }
 
 .comment{
     display:flex;
     gap:8px;
-    margin-bottom:9px;
+    margin-bottom:10px;
 }
 
 .comment-avatar{
@@ -339,8 +353,9 @@ input[type="file"]{
 
 .comment-body{
     flex:1;
+    min-width:0;
     background:white;
-    border:1px solid #e4e4e4;
+    border:1px solid #e2e2e2;
     border-radius:9px;
     padding:8px;
 }
@@ -351,16 +366,18 @@ input[type="file"]{
 }
 
 .comment-text{
-    font-size:13px;
     margin-top:4px;
+    font-size:13px;
     line-height:1.4;
     white-space:pre-wrap;
+    overflow-wrap:anywhere;
 }
 
-.comment-bottom{
+.comment-footer{
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
+    gap:5px;
     margin-top:6px;
 }
 
@@ -369,18 +386,50 @@ input[type="file"]{
     font-size:10px;
 }
 
-.comment-menu{
-    border:none;
+.comment-options{
+    border:0;
     background:transparent;
-    color:#777;
-    cursor:pointer;
+    color:#666;
+    font-size:11px;
+    padding:3px;
+}
+
+.comment-form{
+    display:flex;
+    gap:7px;
+    margin-top:10px;
+}
+
+.comment-form input{
+    flex:1;
+    min-width:0;
+    border:1px solid #ddd;
+    border-radius:20px;
+    padding:10px 12px;
+    outline:none;
+    font-size:13px;
+}
+
+.comment-form input:focus{
+    border-color:#1976d2;
+}
+
+.comment-send{
+    border:0;
+    border-radius:20px;
+    padding:0 14px;
+    background:#1976d2;
+    color:white;
+    font-weight:bold;
     font-size:12px;
 }
 
+/* EMPTY */
+
 .empty{
     text-align:center;
-    padding:35px 20px;
     color:#888;
+    padding:35px 20px;
 }
 
 .empty-icon{
@@ -388,17 +437,19 @@ input[type="file"]{
     margin-bottom:10px;
 }
 
+/* NOTIFICATIONS */
+
 .notification-panel{
+    display:none;
     position:fixed;
     top:62px;
     right:calc(50% - 230px);
     width:310px;
     max-width:calc(100% - 30px);
     background:white;
+    z-index:40;
     border-radius:0 0 12px 12px;
     box-shadow:0 4px 15px rgba(0,0,0,.2);
-    display:none;
-    z-index:30;
     overflow:hidden;
 }
 
@@ -414,8 +465,8 @@ input[type="file"]{
 
 .notification-item{
     padding:12px;
-    border-bottom:1px solid #eee;
     font-size:13px;
+    border-bottom:1px solid #eee;
 }
 
 .notification-item small{
@@ -424,52 +475,16 @@ input[type="file"]{
     margin-top:4px;
 }
 
-.bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:100%;
-    max-width:480px;
-    height:68px;
-    background:white;
-    border-top:1px solid #ddd;
-    display:flex;
-    z-index:25;
-    box-shadow:0 -2px 8px rgba(0,0,0,.08);
-}
-
-.nav-btn{
-    flex:1;
-    border:none;
-    background:white;
-    color:#777;
-    cursor:pointer;
-    font-size:11px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:4px;
-}
-
-.nav-icon{
-    font-size:21px;
-}
-
-.nav-btn.active{
-    color:#1976d2;
-    font-weight:bold;
-}
+/* MODALS */
 
 .modal{
+    display:none;
     position:fixed;
     inset:0;
     background:rgba(0,0,0,.45);
-    display:none;
+    z-index:60;
     align-items:center;
     justify-content:center;
-    z-index:50;
     padding:20px;
 }
 
@@ -488,50 +503,88 @@ input[type="file"]{
 .modal-title{
     font-size:18px;
     font-weight:bold;
-    margin-bottom:15px;
+    margin-bottom:14px;
+}
+
+.modal-textarea{
+    width:100%;
+    min-height:90px;
+    resize:vertical;
+    border:1px solid #ddd;
+    border-radius:9px;
+    padding:11px;
+    outline:none;
 }
 
 .modal-btn{
     width:100%;
-    padding:12px;
-    border:none;
+    border:0;
     border-radius:8px;
+    padding:12px;
     margin-top:8px;
-    cursor:pointer;
     background:#1976d2;
     color:white;
     font-weight:bold;
 }
 
-.modal-btn.secondary{
-    background:#eee;
+.modal-btn.cancel{
+    background:#e9ecef;
     color:#333;
 }
 
-.comment-input{
-    width:100%;
-    border:1px solid #ddd;
-    border-radius:8px;
-    padding:11px;
-    resize:none;
-    min-height:80px;
-    outline:none;
-}
-
 .menu-option{
+    display:block;
     width:100%;
-    padding:12px;
-    margin-top:8px;
-    border:none;
+    border:0;
     border-radius:8px;
     background:#f1f3f5;
+    padding:12px;
+    margin-top:8px;
     text-align:left;
-    cursor:pointer;
     font-size:14px;
 }
 
 .menu-option.delete{
     color:#d32f2f;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+    position:fixed;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:480px;
+    height:68px;
+    display:flex;
+    background:white;
+    border-top:1px solid #ddd;
+    box-shadow:0 -2px 8px rgba(0,0,0,.08);
+    z-index:30;
+}
+
+.nav-btn{
+    flex:1;
+    border:0;
+    background:white;
+    color:#777;
+    font-size:11px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+}
+
+.nav-icon{
+    font-size:21px;
+}
+
+.nav-btn.active{
+    color:#1976d2;
+    font-weight:bold;
 }
 
 @media(max-width:480px){
@@ -550,12 +603,12 @@ input[type="file"]{
 
     <div class="logo">
         Y-M Chat
-        <span>Home</span>
+        <small>Home</small>
     </div>
 
     <div class="header-actions">
-        <button class="icon-btn" onclick="toggleNotifications()">🔔</button>
-        <button class="icon-btn" onclick="openMenu()">⋮</button>
+        <button class="icon-btn" id="notificationButton">🔔</button>
+        <button class="icon-btn" id="mainMenuButton">⋮</button>
     </div>
 
 </header>
@@ -572,7 +625,7 @@ input[type="file"]{
     </div>
 
     <div class="notification-item">
-        Home V1.1 is active.
+        Home V1.2 is active.
         <small>Today</small>
     </div>
 
@@ -595,12 +648,12 @@ input[type="file"]{
 </section>
 
 <div class="notice">
-    👋 Welcome to <b>Y-M Chat</b>. Share what is on your mind.
+    👋 Welcome to <b>Y-M Chat</b>. Share your thoughts, photos and videos.
 </div>
 
 <section class="create-post">
 
-    <div class="create-top">
+    <div class="create-row">
 
         <div class="mini-avatar" id="miniAvatar">Y</div>
 
@@ -616,21 +669,15 @@ input[type="file"]{
 
     <div class="create-actions">
 
-        <button
-            class="media-btn"
-            onclick="document.getElementById('imageInput').click()">
+        <button class="action-btn" id="photoButton">
             🖼️ Photo
         </button>
 
-        <button
-            class="media-btn"
-            onclick="document.getElementById('videoInput').click()">
+        <button class="action-btn" id="videoButton">
             🎥 Video
         </button>
 
-        <button
-            class="media-btn post-btn"
-            onclick="createPost()">
+        <button class="action-btn post" id="postButton">
             ➤ Post
         </button>
 
@@ -640,14 +687,12 @@ input[type="file"]{
         type="file"
         id="imageInput"
         accept="image/*"
-        onchange="previewImage(event)"
     >
 
     <input
         type="file"
         id="videoInput"
         accept="video/*"
-        onchange="previewVideo(event)"
     >
 
 </section>
@@ -662,32 +707,34 @@ input[type="file"]{
 
 <nav class="bottom-nav">
 
-    <button class="nav-btn active" onclick="goHome()">
+    <button class="nav-btn active" id="homeNav">
         <span class="nav-icon">🏠</span>
         Home
     </button>
 
-    <button class="nav-btn" onclick="openFriends()">
+    <button class="nav-btn" id="friendsNav">
         <span class="nav-icon">👥</span>
         Friends
     </button>
 
-    <button class="nav-btn" onclick="openChat()">
+    <button class="nav-btn" id="chatNav">
         <span class="nav-icon">💬</span>
         Chat
     </button>
 
-    <button class="nav-btn" onclick="openRooms()">
+    <button class="nav-btn" id="roomsNav">
         <span class="nav-icon">🌎</span>
         Rooms
     </button>
 
-    <button class="nav-btn" onclick="openProfile()">
+    <button class="nav-btn" id="profileNav">
         <span class="nav-icon">👤</span>
         Profile
     </button>
 
 </nav>
+
+<!-- COMMENT MODAL -->
 
 <div id="commentModal" class="modal">
 
@@ -699,23 +746,23 @@ input[type="file"]{
 
         <textarea
             id="commentInput"
-            class="comment-input"
-            placeholder="Write a comment..."
+            class="modal-textarea"
+            placeholder="Write your comment..."
         ></textarea>
 
-        <button class="modal-btn" onclick="submitComment()">
+        <button class="modal-btn" id="sendCommentButton">
             Send Comment
         </button>
 
-        <button
-            class="modal-btn secondary"
-            onclick="closeCommentModal()">
+        <button class="modal-btn cancel" id="cancelCommentButton">
             Cancel
         </button>
 
     </div>
 
 </div>
+
+<!-- POST MENU MODAL -->
 
 <div id="postMenuModal" class="modal">
 
@@ -727,15 +774,15 @@ input[type="file"]{
 
         <div id="postMenuOptions"></div>
 
-        <button
-            class="modal-btn secondary"
-            onclick="closePostMenu()">
+        <button class="modal-btn cancel" id="cancelPostMenuButton">
             Cancel
         </button>
 
     </div>
 
 </div>
+
+<!-- COMMENT MENU MODAL -->
 
 <div id="commentMenuModal" class="modal">
 
@@ -747,9 +794,7 @@ input[type="file"]{
 
         <div id="commentMenuOptions"></div>
 
-        <button
-            class="modal-btn secondary"
-            onclick="closeCommentMenu()">
+        <button class="modal-btn cancel" id="cancelCommentMenuButton">
             Cancel
         </button>
 
@@ -758,41 +803,36 @@ input[type="file"]{
 </div>
 
 <script>
+"use strict";
+
+/* DATA */
 
 let posts = [];
 let selectedMedia = null;
 let selectedMediaType = null;
-let commentPostId = null;
-let selectedMenuPostId = null;
-let selectedMenuCommentId = null;
-let selectedMenuCommentPostId = null;
+
+let activeCommentPostId = null;
+let selectedPostId = null;
+let selectedCommentPostId = null;
+let selectedCommentId = null;
 
 
 /* USER */
 
 function getCurrentUser(){
 
-    const current =
+    const saved =
         localStorage.getItem("ym_current_user");
 
-    if(!current){
+    if(!saved){
         return null;
     }
 
     try{
-        return JSON.parse(current);
+        return JSON.parse(saved);
     }catch(error){
         return null;
     }
-}
-
-function getCurrentUsername(){
-
-    const user = getCurrentUser();
-
-    return user && user.username
-        ? user.username
-        : "ymuser";
 }
 
 function getCurrentName(){
@@ -804,9 +844,18 @@ function getCurrentName(){
         : "Y-M User";
 }
 
-function getUserLetter(name){
+function getCurrentUsername(){
 
-    return (name || "Y")
+    const user = getCurrentUser();
+
+    return user && user.username
+        ? user.username
+        : "ymuser";
+}
+
+function getLetter(name){
+
+    return String(name || "Y")
         .charAt(0)
         .toUpperCase();
 }
@@ -815,7 +864,7 @@ function loadUser(){
 
     const name = getCurrentName();
     const username = getCurrentUsername();
-    const letter = getUserLetter(name);
+    const letter = getLetter(name);
 
     document.getElementById("topName").textContent =
         name;
@@ -838,13 +887,26 @@ function loadPosts(){
     const saved =
         localStorage.getItem("ym_home_posts");
 
-    if(saved){
+    if(!saved){
 
-        try{
-            posts = JSON.parse(saved);
-        }catch(error){
+        posts = [];
+
+        renderPosts();
+
+        return;
+    }
+
+    try{
+
+        posts = JSON.parse(saved);
+
+        if(!Array.isArray(posts)){
             posts = [];
         }
+
+    }catch(error){
+
+        posts = [];
 
     }
 
@@ -857,20 +919,28 @@ function savePosts(){
         "ym_home_posts",
         JSON.stringify(posts)
     );
-
 }
 
 
-/* TIME */
+/* HELPERS */
+
+function escapeHTML(value){
+
+    return String(value || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
 
 function formatTime(timestamp){
 
     const date = new Date(timestamp);
     const now = new Date();
-    const difference = now - date;
 
     const minutes =
-        Math.floor(difference / 60000);
+        Math.floor((now - date) / 60000);
 
     if(minutes < 1){
         return "Just now";
@@ -898,30 +968,15 @@ function formatTime(timestamp){
 }
 
 
-/* SECURITY */
-
-function escapeHTML(text){
-
-    if(!text){
-        return "";
-    }
-
-    return String(text)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-}
-
-
 /* CREATE POST */
 
 function createPost(){
 
+    const input =
+        document.getElementById("postInput");
+
     const text =
-        document.getElementById("postInput")
-        .value.trim();
+        input.value.trim();
 
     if(!text && !selectedMedia){
 
@@ -960,21 +1015,85 @@ function createPost(){
 
     savePosts();
 
-    document.getElementById("postInput").value = "";
+    input.value = "";
 
     selectedMedia = null;
     selectedMediaType = null;
 
-    document.getElementById("mediaPreview").style.display =
-        "none";
-
-    document.getElementById("mediaPreview").innerHTML =
-        "";
+    document.getElementById("mediaPreview").innerHTML = "";
+    document.getElementById("mediaPreview").style.display = "none";
 
     document.getElementById("imageInput").value = "";
     document.getElementById("videoInput").value = "";
 
     renderPosts();
+}
+
+
+/* MEDIA */
+
+function previewImage(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(){
+
+        selectedMedia =
+            reader.result;
+
+        selectedMediaType =
+            "image";
+
+        const preview =
+            document.getElementById("mediaPreview");
+
+        preview.innerHTML = `
+            <img src="${selectedMedia}" alt="Image preview">
+        `;
+
+        preview.style.display = "block";
+    };
+
+    reader.readAsDataURL(file);
+}
+
+function previewVideo(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(){
+
+        selectedMedia =
+            reader.result;
+
+        selectedMediaType =
+            "video";
+
+        const preview =
+            document.getElementById("mediaPreview");
+
+        preview.innerHTML = `
+            <video src="${selectedMedia}" controls></video>
+        `;
+
+        preview.style.display = "block";
+    };
+
+    reader.readAsDataURL(file);
 }
 
 
@@ -993,17 +1112,11 @@ function renderPosts(){
     if(visiblePosts.length === 0){
 
         feed.innerHTML = `
-
             <div class="empty">
-
                 <div class="empty-icon">📰</div>
-
                 <div>No posts available.</div>
-
                 <small>Be the first to create a post.</small>
-
             </div>
-
         `;
 
         return;
@@ -1011,52 +1124,37 @@ function renderPosts(){
 
     visiblePosts.forEach(post => {
 
+        if(!Array.isArray(post.comments)){
+            post.comments = [];
+        }
+
         const card =
             document.createElement("article");
 
         card.className = "post-card";
 
         const letter =
-            getUserLetter(post.userName);
+            getLetter(post.userName);
 
         let mediaHTML = "";
 
         if(post.media && post.mediaType === "image"){
 
             mediaHTML = `
-
                 <div class="post-media">
-
-                    <img
-                        src="${post.media}"
-                        alt="Post image"
-                    >
-
+                    <img src="${post.media}" alt="Post image">
                 </div>
-
             `;
         }
 
         if(post.media && post.mediaType === "video"){
 
             mediaHTML = `
-
                 <div class="post-media">
-
-                    <video
-                        src="${post.media}"
-                        controls
-                    ></video>
-
+                    <video src="${post.media}" controls></video>
                 </div>
-
             `;
         }
-
-        const comments =
-            Array.isArray(post.comments)
-            ? post.comments
-            : [];
 
         const commentsHTML =
             renderComments(post);
@@ -1085,7 +1183,7 @@ function renderPosts(){
 
                 <button
                     class="more-btn"
-                    onclick="openPostMenu(${post.id})">
+                    data-post-menu="${post.id}">
                     ⋮
                 </button>
 
@@ -1102,18 +1200,16 @@ function renderPosts(){
             ${mediaHTML}
 
             <div class="post-stats">
-
                 ❤️ ${post.likes || 0}
                 &nbsp;&nbsp;
-                💬 ${comments.length}
-
+                💬 ${post.comments.length}
             </div>
 
             <div class="post-actions">
 
                 <button
                     class="post-action ${post.liked ? "liked" : ""}"
-                    onclick="likePost(${post.id})">
+                    data-like-post="${post.id}">
 
                     ${post.liked ? "💙 Liked" : "👍 Like"}
 
@@ -1121,7 +1217,7 @@ function renderPosts(){
 
                 <button
                     class="post-action"
-                    onclick="openComment(${post.id})">
+                    data-open-comment="${post.id}">
 
                     💬 Comment
 
@@ -1129,7 +1225,7 @@ function renderPosts(){
 
                 <button
                     class="post-action"
-                    onclick="sharePost(${post.id})">
+                    data-share-post="${post.id}">
 
                     ↗️ Share
 
@@ -1147,107 +1243,114 @@ function renderPosts(){
 }
 
 
-/* COMMENTS */
+/* RENDER COMMENTS */
 
 function renderComments(post){
 
     const comments =
-        Array.isArray(post.comments)
-        ? post.comments
-        : [];
+        post.comments.filter(comment => !comment.hidden);
 
-    if(comments.length === 0){
-        return "";
+    let html = "";
+
+    if(comments.length > 0){
+
+        html += `
+            <div class="comments-area">
+                <div class="comments-title">
+                    Comments
+                </div>
+        `;
+
+        comments.forEach(comment => {
+
+            html += `
+
+                <div class="comment">
+
+                    <div class="comment-avatar">
+                        ${getLetter(comment.user)}
+                    </div>
+
+                    <div class="comment-body">
+
+                        <div class="comment-name">
+                            ${escapeHTML(comment.user)}
+                        </div>
+
+                        <div class="comment-text">
+                            ${escapeHTML(comment.text)}
+                        </div>
+
+                        <div class="comment-footer">
+
+                            <span class="comment-time">
+                                ${formatTime(comment.time)}
+                            </span>
+
+                            <button
+                                class="comment-options"
+                                data-comment-menu-post="${post.id}"
+                                data-comment-menu-id="${comment.id}">
+
+                                Options ▾
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+        html += `</div>`;
     }
 
-    let html = `
+    html += `
 
         <div class="comments-area">
 
-            <div class="comments-title">
-                Comments
-            </div>
+            <form
+                class="comment-form"
+                data-comment-form="${post.id}">
+
+                <input
+                    type="text"
+                    placeholder="Write a comment..."
+                    maxlength="500"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="comment-send">
+
+                    Send
+
+                </button>
+
+            </form>
+
+        </div>
 
     `;
-
-    comments.forEach(comment => {
-
-        const letter =
-            getUserLetter(comment.user);
-
-        html += `
-
-            <div class="comment">
-
-                <div class="comment-avatar">
-                    ${letter}
-                </div>
-
-                <div class="comment-body">
-
-                    <div class="comment-name">
-                        ${escapeHTML(comment.user)}
-                    </div>
-
-                    <div class="comment-text">
-                        ${escapeHTML(comment.text)}
-                    </div>
-
-                    <div class="comment-bottom">
-
-                        <span class="comment-time">
-                            ${formatTime(comment.time)}
-                        </span>
-
-                        <button
-                            class="comment-menu"
-                            onclick="openCommentMenu(
-                                ${post.id},
-                                ${comment.id}
-                            )">
-
-                            Options ▾
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        `;
-
-    });
-
-    html += `</div>`;
 
     return html;
 }
 
-function openComment(id){
 
-    commentPostId = id;
+/* COMMENT SUBMIT - STABLE FORM METHOD */
 
-    document.getElementById("commentInput").value = "";
+function submitInlineComment(postId, form){
 
-    document.getElementById("commentModal")
-        .classList.add("show");
-}
-
-function closeCommentModal(){
-
-    document.getElementById("commentModal")
-        .classList.remove("show");
-
-    commentPostId = null;
-}
-
-function submitComment(){
+    const input =
+        form.querySelector("input");
 
     const text =
-        document.getElementById("commentInput")
-        .value.trim();
+        input.value.trim();
 
     if(!text){
 
@@ -1257,7 +1360,7 @@ function submitComment(){
     }
 
     const post =
-        posts.find(item => item.id === commentPostId);
+        posts.find(item => item.id === postId);
 
     if(!post){
         return;
@@ -1284,8 +1387,6 @@ function submitComment(){
     });
 
     savePosts();
-
-    closeCommentModal();
 
     renderPosts();
 }
@@ -1324,11 +1425,9 @@ function likePost(id){
 }
 
 
-/* POST MENU */
+/* SHARE */
 
-function openPostMenu(id){
-
-    selectedMenuPostId = id;
+function sharePost(id){
 
     const post =
         posts.find(item => item.id === id);
@@ -1337,41 +1436,69 @@ function openPostMenu(id){
         return;
     }
 
-    const isOwner =
+    const text =
+        post.text || "Post from Y-M Chat";
+
+    if(
+        navigator.share &&
+        typeof navigator.share === "function"
+    ){
+
+        navigator.share({
+
+            title:"Y-M Chat",
+            text:text
+
+        }).catch(() => {});
+
+    }else{
+
+        alert("Share: " + text);
+
+    }
+}
+
+
+/* POST MENU */
+
+function openPostMenu(id){
+
+    selectedPostId = id;
+
+    const post =
+        posts.find(item => item.id === id);
+
+    if(!post){
+        return;
+    }
+
+    const owner =
         post.username === getCurrentUsername();
 
     const options =
         document.getElementById("postMenuOptions");
 
-    options.innerHTML = "";
-
-    if(isOwner){
+    if(owner){
 
         options.innerHTML = `
-
-            <button
-                class="menu-option delete"
-                onclick="deletePost()">
-
+            <button class="menu-option delete" id="deletePostOption">
                 🗑️ Delete Post
-
             </button>
-
         `;
+
+        document.getElementById("deletePostOption")
+            .addEventListener("click",deleteSelectedPost);
 
     }else{
 
         options.innerHTML = `
-
-            <button
-                class="menu-option"
-                onclick="hidePost()">
-
+            <button class="menu-option" id="hidePostOption">
                 🚫 Hide Post
-
             </button>
-
         `;
+
+        document.getElementById("hidePostOption")
+            .addEventListener("click",hideSelectedPost);
 
     }
 
@@ -1384,27 +1511,21 @@ function closePostMenu(){
     document.getElementById("postMenuModal")
         .classList.remove("show");
 
-    selectedMenuPostId = null;
+    selectedPostId = null;
 }
 
-function deletePost(){
+function deleteSelectedPost(){
 
-    const post =
-        posts.find(item => item.id === selectedMenuPostId);
-
-    if(!post){
+    if(selectedPostId === null){
         return;
     }
 
-    const confirmed =
-        confirm("Are you sure you want to delete this post?");
-
-    if(!confirmed){
+    if(!confirm("Are you sure you want to delete this post?")){
         return;
     }
 
     posts =
-        posts.filter(item => item.id !== selectedMenuPostId);
+        posts.filter(item => item.id !== selectedPostId);
 
     savePosts();
 
@@ -1413,10 +1534,10 @@ function deletePost(){
     renderPosts();
 }
 
-function hidePost(){
+function hideSelectedPost(){
 
     const post =
-        posts.find(item => item.id === selectedMenuPostId);
+        posts.find(item => item.id === selectedPostId);
 
     if(!post){
         return;
@@ -1434,10 +1555,10 @@ function hidePost(){
 
 /* COMMENT MENU */
 
-function openCommentMenu(postId, commentId){
+function openCommentMenu(postId,commentId){
 
-    selectedMenuPostId = postId;
-    selectedMenuCommentId = commentId;
+    selectedCommentPostId = postId;
+    selectedCommentId = commentId;
 
     const post =
         posts.find(item => item.id === postId);
@@ -1453,41 +1574,33 @@ function openCommentMenu(postId, commentId){
         return;
     }
 
-    const isOwner =
+    const owner =
         comment.username === getCurrentUsername();
 
     const options =
         document.getElementById("commentMenuOptions");
 
-    options.innerHTML = "";
-
-    if(isOwner){
+    if(owner){
 
         options.innerHTML = `
-
-            <button
-                class="menu-option delete"
-                onclick="deleteComment()">
-
+            <button class="menu-option delete" id="deleteCommentOption">
                 🗑️ Delete Comment
-
             </button>
-
         `;
+
+        document.getElementById("deleteCommentOption")
+            .addEventListener("click",deleteSelectedComment);
 
     }else{
 
         options.innerHTML = `
-
-            <button
-                class="menu-option"
-                onclick="hideComment()">
-
+            <button class="menu-option" id="hideCommentOption">
                 🚫 Hide Comment
-
             </button>
-
         `;
+
+        document.getElementById("hideCommentOption")
+            .addEventListener("click",hideSelectedComment);
 
     }
 
@@ -1500,29 +1613,26 @@ function closeCommentMenu(){
     document.getElementById("commentMenuModal")
         .classList.remove("show");
 
-    selectedMenuPostId = null;
-    selectedMenuCommentId = null;
+    selectedCommentPostId = null;
+    selectedCommentId = null;
 }
 
-function deleteComment(){
+function deleteSelectedComment(){
 
     const post =
-        posts.find(item => item.id === selectedMenuPostId);
+        posts.find(item => item.id === selectedCommentPostId);
 
     if(!post){
         return;
     }
 
-    const confirmed =
-        confirm("Are you sure you want to delete this comment?");
-
-    if(!confirmed){
+    if(!confirm("Are you sure you want to delete this comment?")){
         return;
     }
 
     post.comments =
         post.comments.filter(
-            comment => comment.id !== selectedMenuCommentId
+            item => item.id !== selectedCommentId
         );
 
     savePosts();
@@ -1532,19 +1642,17 @@ function deleteComment(){
     renderPosts();
 }
 
-function hideComment(){
+function hideSelectedComment(){
 
     const post =
-        posts.find(item => item.id === selectedMenuPostId);
+        posts.find(item => item.id === selectedCommentPostId);
 
     if(!post){
         return;
     }
 
     const comment =
-        post.comments.find(
-            item => item.id === selectedMenuCommentId
-        );
+        post.comments.find(item => item.id === selectedCommentId);
 
     if(!comment){
         return;
@@ -1552,9 +1660,6 @@ function hideComment(){
 
     comment.hidden = true;
 
-    post.comments =
-        post.comments.filter(comment => !comment.hidden);
-
     savePosts();
 
     closeCommentMenu();
@@ -1563,111 +1668,71 @@ function hideComment(){
 }
 
 
-/* MEDIA PREVIEW */
+/* MODAL COMMENT */
 
-function previewImage(event){
+function openCommentModal(postId){
 
-    const file =
-        event.target.files[0];
+    activeCommentPostId = postId;
 
-    if(!file){
-        return;
-    }
+    document.getElementById("commentInput").value = "";
 
-    const reader = new FileReader();
-
-    reader.onload = function(event){
-
-        selectedMedia =
-            event.target.result;
-
-        selectedMediaType =
-            "image";
-
-        const preview =
-            document.getElementById("mediaPreview");
-
-        preview.innerHTML = `
-
-            <img
-                src="${selectedMedia}"
-                alt="Image preview"
-            >
-
-        `;
-
-        preview.style.display = "block";
-    };
-
-    reader.readAsDataURL(file);
+    document.getElementById("commentModal")
+        .classList.add("show");
 }
 
-function previewVideo(event){
+function closeCommentModal(){
 
-    const file =
-        event.target.files[0];
+    document.getElementById("commentModal")
+        .classList.remove("show");
 
-    if(!file){
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function(event){
-
-        selectedMedia =
-            event.target.result;
-
-        selectedMediaType =
-            "video";
-
-        const preview =
-            document.getElementById("mediaPreview");
-
-        preview.innerHTML = `
-
-            <video
-                src="${selectedMedia}"
-                controls
-            ></video>
-
-        `;
-
-        preview.style.display = "block";
-    };
-
-    reader.readAsDataURL(file);
+    activeCommentPostId = null;
 }
 
+function submitModalComment(){
 
-/* SHARE */
+    const text =
+        document.getElementById("commentInput")
+        .value.trim();
 
-function sharePost(id){
+    if(!text){
+
+        alert("Please write a comment.");
+
+        return;
+    }
 
     const post =
-        posts.find(item => item.id === id);
+        posts.find(item => item.id === activeCommentPostId);
 
     if(!post){
         return;
     }
 
-    const shareText =
-        post.text || "Post from Y-M Chat";
-
-    if(navigator.share){
-
-        navigator.share({
-
-            title:"Y-M Chat",
-            text:shareText
-
-        }).catch(() => {});
-
-    }else{
-
-        alert("Share: " + shareText);
-
+    if(!Array.isArray(post.comments)){
+        post.comments = [];
     }
+
+    post.comments.push({
+
+        id:Date.now(),
+
+        user:getCurrentName(),
+
+        username:getCurrentUsername(),
+
+        text:text,
+
+        time:Date.now(),
+
+        hidden:false
+
+    });
+
+    savePosts();
+
+    closeCommentModal();
+
+    renderPosts();
 }
 
 
@@ -1680,22 +1745,7 @@ function toggleNotifications(){
 }
 
 
-/* MENU */
-
-function openMenu(){
-
-    alert(
-        "Y-M Chat Menu\n\n" +
-        "• Settings\n" +
-        "• Security\n" +
-        "• Help\n" +
-        "• Logout\n\n" +
-        "Full menu will be connected later."
-    );
-}
-
-
-/* NAVIGATION PLACEHOLDERS */
+/* NAVIGATION */
 
 function goHome(){
 
@@ -1705,51 +1755,188 @@ function goHome(){
     });
 }
 
-function openFriends(){
+function showModuleMessage(name){
 
-    alert("Friends module will be connected later.");
-
-}
-
-function openChat(){
-
-    alert("Chat module will be connected later.");
-
-}
-
-function openRooms(){
-
-    alert("Rooms module will be connected later.");
-
-}
-
-function openProfile(){
-
-    alert("Profile module will be connected later.");
-
+    alert(
+        name + " module will be connected later."
+    );
 }
 
 
-/* OUTSIDE CLICK */
+/* EVENT LISTENERS */
 
-document.addEventListener("click",function(event){
+document.getElementById("photoButton")
+    .addEventListener("click",function(){
 
-    const panel =
-        document.getElementById("notificationPanel");
+        document.getElementById("imageInput").click();
 
-    const header =
-        document.querySelector(".header");
+    });
 
-    if(
-        !panel.contains(event.target) &&
-        !header.contains(event.target)
-    ){
+document.getElementById("videoButton")
+    .addEventListener("click",function(){
 
-        panel.classList.remove("show");
+        document.getElementById("videoInput").click();
 
-    }
+    });
 
-});
+document.getElementById("postButton")
+    .addEventListener("click",createPost);
+
+document.getElementById("imageInput")
+    .addEventListener("change",previewImage);
+
+document.getElementById("videoInput")
+    .addEventListener("change",previewVideo);
+
+document.getElementById("notificationButton")
+    .addEventListener("click",toggleNotifications);
+
+document.getElementById("mainMenuButton")
+    .addEventListener("click",function(){
+
+        alert(
+            "Y-M Chat Menu\n\n" +
+            "• Settings\n" +
+            "• Security\n" +
+            "• Help\n" +
+            "• Logout"
+        );
+
+    });
+
+document.getElementById("cancelCommentButton")
+    .addEventListener("click",closeCommentModal);
+
+document.getElementById("sendCommentButton")
+    .addEventListener("click",submitModalComment);
+
+document.getElementById("cancelPostMenuButton")
+    .addEventListener("click",closePostMenu);
+
+document.getElementById("cancelCommentMenuButton")
+    .addEventListener("click",closeCommentMenu);
+
+document.getElementById("homeNav")
+    .addEventListener("click",goHome);
+
+document.getElementById("friendsNav")
+    .addEventListener("click",function(){
+        showModuleMessage("Friends");
+    });
+
+document.getElementById("chatNav")
+    .addEventListener("click",function(){
+        showModuleMessage("Chat");
+    });
+
+document.getElementById("roomsNav")
+    .addEventListener("click",function(){
+        showModuleMessage("Rooms");
+    });
+
+document.getElementById("profileNav")
+    .addEventListener("click",function(){
+        showModuleMessage("Profile");
+    });
+
+
+/* FEED EVENTS */
+
+document.getElementById("feed")
+    .addEventListener("click",function(event){
+
+        const target =
+            event.target.closest("button");
+
+        if(!target){
+            return;
+        }
+
+        if(target.dataset.postMenu){
+
+            openPostMenu(
+                Number(target.dataset.postMenu)
+            );
+
+            return;
+        }
+
+        if(target.dataset.likePost){
+
+            likePost(
+                Number(target.dataset.likePost)
+            );
+
+            return;
+        }
+
+        if(target.dataset.openComment){
+
+            openCommentModal(
+                Number(target.dataset.openComment)
+            );
+
+            return;
+        }
+
+        if(target.dataset.sharePost){
+
+            sharePost(
+                Number(target.dataset.sharePost)
+            );
+
+            return;
+        }
+
+        if(target.dataset.commentMenuPost){
+
+            openCommentMenu(
+                Number(target.dataset.commentMenuPost),
+                Number(target.dataset.commentMenuId)
+            );
+
+            return;
+        }
+
+    });
+
+
+document.getElementById("feed")
+    .addEventListener("submit",function(event){
+
+        const form =
+            event.target.closest("form[data-comment-form]");
+
+        if(!form){
+            return;
+        }
+
+        event.preventDefault();
+
+        const postId =
+            Number(form.dataset.commentForm);
+
+        submitInlineComment(postId,form);
+
+    });
+
+
+/* CLOSE MODALS WHEN CLICKING BACKGROUND */
+
+document.querySelectorAll(".modal")
+    .forEach(function(modal){
+
+        modal.addEventListener("click",function(event){
+
+            if(event.target === modal){
+
+                modal.classList.remove("show");
+
+            }
+
+        });
+
+    });
 
 
 /* INITIALIZE */
@@ -1762,10 +1949,7 @@ function initializeHome(){
 
 }
 
-document.addEventListener(
-    "DOMContentLoaded",
-    initializeHome
-);
+initializeHome();
 
 </script>
 
