@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Y-M Chat - Home V1.2</title>
+<title>Y-M Chat - Master V1.0</title>
 
 <style>
 *{
@@ -14,14 +14,20 @@
     font-family:Arial,sans-serif;
 }
 
+html,body{
+    width:100%;
+    min-height:100%;
+}
+
 body{
     background:#eef2f7;
     color:#222;
 }
 
 button,
+input,
 textarea,
-input{
+select{
     font:inherit;
 }
 
@@ -29,7 +35,193 @@ button{
     cursor:pointer;
 }
 
-.app{
+/* =====================================================
+   SECURITY / FRONT CORE
+===================================================== */
+
+.security-app{
+    width:100%;
+    max-width:430px;
+    min-height:100vh;
+    margin:auto;
+    background:#f5f7fa;
+}
+
+.security-page{
+    display:none;
+    min-height:100vh;
+}
+
+.security-page.active{
+    display:block;
+}
+
+.security-header{
+    background:linear-gradient(135deg,#1976d2,#0d47a1);
+    color:white;
+    padding:28px 20px;
+    text-align:center;
+}
+
+.security-logo{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.security-subtitle{
+    margin-top:6px;
+    font-size:13px;
+    opacity:.9;
+}
+
+.security-content{
+    padding:20px;
+}
+
+.security-card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    margin-bottom:15px;
+}
+
+.security-title{
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.security-desc{
+    color:#777;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:17px;
+}
+
+.security-label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin:12px 0 6px;
+}
+
+.security-input,
+.security-select{
+    width:100%;
+    border:1px solid #d8dce1;
+    border-radius:9px;
+    padding:12px;
+    outline:none;
+    background:white;
+}
+
+.security-input:focus,
+.security-select:focus{
+    border-color:#1976d2;
+}
+
+.security-btn{
+    width:100%;
+    border:0;
+    border-radius:9px;
+    padding:12px;
+    margin-top:12px;
+    background:#1976d2;
+    color:white;
+    font-weight:bold;
+}
+
+.security-btn.secondary{
+    background:#e9eef5;
+    color:#333;
+}
+
+.security-btn.danger{
+    background:#d32f2f;
+}
+
+.security-link{
+    display:block;
+    border:0;
+    background:none;
+    color:#1976d2;
+    text-align:center;
+    width:100%;
+    padding:10px 5px;
+    margin-top:5px;
+}
+
+.language-box{
+    margin-bottom:15px;
+}
+
+.security-message{
+    display:none;
+    padding:11px;
+    border-radius:8px;
+    margin-bottom:12px;
+    font-size:13px;
+    line-height:1.4;
+}
+
+.security-message.show{
+    display:block;
+}
+
+.security-message.error{
+    background:#ffebee;
+    color:#c62828;
+    border:1px solid #ffcdd2;
+}
+
+.security-message.success{
+    background:#e8f5e9;
+    color:#2e7d32;
+    border:1px solid #c8e6c9;
+}
+
+.security-info{
+    background:#e3f2fd;
+    border:1px solid #bbdefb;
+    color:#1565c0;
+    padding:12px;
+    border-radius:9px;
+    font-size:12px;
+    line-height:1.5;
+    margin-top:12px;
+}
+
+.security-row{
+    display:flex;
+    gap:8px;
+}
+
+.security-row > *{
+    flex:1;
+}
+
+.otp-box{
+    background:#fff8e1;
+    border:1px solid #ffe082;
+    color:#8d6e00;
+    padding:12px;
+    border-radius:9px;
+    margin-top:12px;
+    font-size:13px;
+    display:none;
+}
+
+.otp-box.show{
+    display:block;
+}
+
+/* =====================================================
+   HOME
+===================================================== */
+
+.home-app{
+    display:none;
     width:100%;
     max-width:480px;
     min-height:100vh;
@@ -38,9 +230,11 @@ button{
     padding-bottom:80px;
 }
 
-/* HEADER */
+.home-app.active{
+    display:block;
+}
 
-.header{
+.home-header{
     height:62px;
     background:#1976d2;
     color:white;
@@ -54,12 +248,12 @@ button{
     box-shadow:0 2px 8px rgba(0,0,0,.18);
 }
 
-.logo{
+.home-logo{
     font-size:23px;
     font-weight:bold;
 }
 
-.logo small{
+.home-logo small{
     display:block;
     font-size:12px;
     font-weight:normal;
@@ -80,8 +274,6 @@ button{
     color:white;
     font-size:20px;
 }
-
-/* PROFILE */
 
 .profile-bar{
     background:white;
@@ -122,8 +314,6 @@ button{
     margin-top:3px;
 }
 
-/* NOTICE */
-
 .notice{
     margin:12px;
     padding:11px;
@@ -133,8 +323,6 @@ button{
     color:#1565c0;
     font-size:13px;
 }
-
-/* CREATE POST */
 
 .create-post{
     background:white;
@@ -221,8 +409,6 @@ button{
 input[type="file"]{
     display:none;
 }
-
-/* FEED */
 
 .feed-title{
     padding:5px 14px 9px;
@@ -315,8 +501,6 @@ input[type="file"]{
 .post-action:hover{
     background:#f4f6f8;
 }
-
-/* COMMENTS */
 
 .comments-area{
     background:#fafafa;
@@ -424,8 +608,6 @@ input[type="file"]{
     font-size:12px;
 }
 
-/* EMPTY */
-
 .empty{
     text-align:center;
     color:#888;
@@ -436,8 +618,6 @@ input[type="file"]{
     font-size:42px;
     margin-bottom:10px;
 }
-
-/* NOTIFICATIONS */
 
 .notification-panel{
     display:none;
@@ -474,8 +654,6 @@ input[type="file"]{
     color:#888;
     margin-top:4px;
 }
-
-/* MODALS */
 
 .modal{
     display:none;
@@ -548,8 +726,6 @@ input[type="file"]{
     color:#d32f2f;
 }
 
-/* BOTTOM NAV */
-
 .bottom-nav{
     position:fixed;
     left:50%;
@@ -588,32 +764,887 @@ input[type="file"]{
 }
 
 @media(max-width:480px){
+
     .notification-panel{
         right:15px;
     }
+
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<!-- =====================================================
+     SECURITY CORE
+===================================================== -->
 
-<header class="header">
+<div id="securityApp" class="security-app">
 
-    <div class="logo">
+    <!-- FRONT -->
+
+    <section id="frontPage" class="security-page active">
+
+        <div class="security-header">
+
+            <div class="security-logo">
+                Y-M Chat
+            </div>
+
+            <div class="security-subtitle">
+                Connect • Chat • Share
+            </div>
+
+        </div>
+
+        <div class="security-content">
+
+            <div class="security-card">
+
+                <div class="security-title">
+                    Welcome to Y-M Chat
+                </div>
+
+                <div class="security-desc">
+                    Your Y-M ID connects you to the Y-M Chat system.
+                </div>
+
+                <div class="language-box">
+
+                    <label class="security-label">
+                        Language
+                    </label>
+
+                    <select
+                        id="languageSelect"
+                        class="security-select"
+                        onchange="changeLanguage()">
+                    </select>
+
+                </div>
+
+                <button
+                    class="security-btn"
+                    onclick="showPage('loginPage')">
+                    Login
+                </button>
+
+                <button
+                    class="security-btn secondary"
+                    onclick="showPage('registerPage')">
+                    Create Y-M ID
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('securityPage')">
+                    Security Information
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOGIN -->
+
+    <section id="loginPage" class="security-page">
+
+        <div class="security-header">
+
+            <div class="security-logo">
+                Y-M Chat
+            </div>
+
+            <div class="security-subtitle">
+                Login
+            </div>
+
+        </div>
+
+        <div class="security-content">
+
+            <div class="security-card">
+
+                <div class="security-title">
+                    Login to Y-M Chat
+                </div>
+
+                <div id="loginMessage"
+                     class="security-message">
+                </div>
+
+                <label class="security-label">
+                    Y-M ID / Username
+                </label>
+
+                <input
+                    id="loginUsername"
+                    class="security-input"
+                    type="text"
+                    autocomplete="username"
+                    placeholder="Enter your Y-M ID">
+
+                <label class="security-label">
+                    Password
+                </label>
+
+                <input
+                    id="loginPassword"
+                    class="security-input"
+                    type="password"
+                    autocomplete="current-password"
+                    placeholder="Enter password">
+
+                <button
+                    class="security-btn"
+                    onclick="loginUser()">
+                    Login
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('recoveryPage')">
+                    Forgot Password?
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('registerPage')">
+                    Create Y-M ID
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('frontPage')">
+                    Back
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- REGISTER -->
+
+    <section id="registerPage" class="security-page">
+
+        <div class="security-header">
+
+            <div class="security-logo">
+                Y-M Chat
+            </div>
+
+            <div class="security-subtitle">
+                Create Y-M ID
+            </div>
+
+        </div>
+
+        <div class="security-content">
+
+            <div class="security-card">
+
+                <div class="security-title">
+                    Register Y-M ID
+                </div>
+
+                <div id="registerMessage"
+                     class="security-message">
+                </div>
+
+                <label class="security-label">
+                    Name
+                </label>
+
+                <input
+                    id="registerName"
+                    class="security-input"
+                    type="text"
+                    placeholder="Your name">
+
+                <label class="security-label">
+                    Username / Y-M ID
+                </label>
+
+                <input
+                    id="registerUsername"
+                    class="security-input"
+                    type="text"
+                    placeholder="Choose your Y-M ID">
+
+                <label class="security-label">
+                    Password
+                </label>
+
+                <input
+                    id="registerPassword"
+                    class="security-input"
+                    type="password"
+                    placeholder="Minimum 6 characters">
+
+                <label class="security-label">
+                    Country
+                </label>
+
+                <select
+                    id="registerCountry"
+                    class="security-select">
+                </select>
+
+                <label class="security-label">
+                    Phone Number
+                </label>
+
+                <input
+                    id="registerPhone"
+                    class="security-input"
+                    type="text"
+                    placeholder="Phone number">
+
+                <label class="security-label">
+                    Email Address
+                </label>
+
+                <input
+                    id="registerEmail"
+                    class="security-input"
+                    type="email"
+                    placeholder="Email address">
+
+                <label class="security-label">
+                    Security Question 1
+                </label>
+
+                <select
+                    id="registerQuestion1"
+                    class="security-select">
+                </select>
+
+                <label class="security-label">
+                    Answer
+                </label>
+
+                <input
+                    id="registerAnswer1"
+                    class="security-input"
+                    type="text"
+                    placeholder="Your answer">
+
+                <label class="security-label">
+                    Security Question 2
+                </label>
+
+                <select
+                    id="registerQuestion2"
+                    class="security-select">
+                </select>
+
+                <label class="security-label">
+                    Answer
+                </label>
+
+                <input
+                    id="registerAnswer2"
+                    class="security-input"
+                    type="text"
+                    placeholder="Your answer">
+
+                <button
+                    class="security-btn"
+                    onclick="registerUser()">
+                    Create Y-M ID
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('loginPage')">
+                    Already have an account? Login
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('frontPage')">
+                    Back
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECURITY INFORMATION -->
+
+    <section id="securityPage" class="security-page">
+
+        <div class="security-header">
+
+            <div class="security-logo">
+                Y-M Chat
+            </div>
+
+            <div class="security-subtitle">
+                Security
+            </div>
+
+        </div>
+
+        <div class="security-content">
+
+            <div class="security-card">
+
+                <div class="security-title">
+                    Security Information
+                </div>
+
+                <div class="security-desc">
+                    Keep your Y-M ID secure and never share your password or verification code with other people.
+                </div>
+
+                <div class="security-info">
+                    Y-M Chat supports password recovery through security questions, phone verification and email verification.
+                </div>
+
+                <button
+                    class="security-btn"
+                    onclick="showPage('changePasswordPage')">
+                    Change Password
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('frontPage')">
+                    Back
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CHANGE PASSWORD -->
+
+    <section id="changePasswordPage" class="security-page">
+
+        <div class="security-header">
+
+            <div class="security-logo">
+                Y-M Chat
+            </div>
+
+            <div class="security-subtitle">
+                Change Password
+            </div>
+
+        </div>
+
+        <div class="security-content">
+
+            <div class="security-card">
+
+                <div class="security-title">
+                    Change Password
+                </div>
+
+                <div id="changePasswordMessage"
+                     class="security-message">
+                </div>
+
+                <label class="security-label">
+                    Current Password
+                </label>
+
+                <input
+                    id="oldPassword"
+                    class="security-input"
+                    type="password">
+
+                <label class="security-label">
+                    New Password
+                </label>
+
+                <input
+                    id="newPassword"
+                    class="security-input"
+                    type="password">
+
+                <label class="security-label">
+                    Confirm New Password
+                </label>
+
+                <input
+                    id="confirmNewPassword"
+                    class="security-input"
+                    type="password">
+
+                <button
+                    class="security-btn"
+                    onclick="changePassword()">
+                    Change Password
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('securityPage')">
+                    Back
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RECOVERY -->
+
+    <section id="recoveryPage" class="security-page">
+
+        <div class="security-header">
+
+            <div class="security-logo">
+                Y-M Chat
+            </div>
+
+            <div class="security-subtitle">
+                Password Recovery
+            </div>
+
+        </div>
+
+        <div class="security-content">
+
+            <div class="security-card">
+
+                <div class="security-title">
+                    Recover Y-M ID
+                </div>
+
+                <div id="recoveryMessage"
+                     class="security-message">
+                </div>
+
+                <label class="security-label">
+                    Y-M ID / Username
+                </label>
+
+                <input
+                    id="recoveryUsername"
+                    class="security-input"
+                    type="text"
+                    placeholder="Enter your Y-M ID">
+
+                <button
+                    class="security-btn"
+                    onclick="findRecoveryAccount()">
+                    Continue
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('loginPage')">
+                    Back to Login
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RECOVERY METHODS -->
+
+    <section id="recoveryMethodPage" class="security-page">
+
+        <div class="security-header">
+
+            <div class="security-logo">
+                Y-M Chat
+            </div>
+
+            <div class="security-subtitle">
+                Choose Recovery Method
+            </div>
+
+        </div>
+
+        <div class="security-content">
+
+            <div class="security-card">
+
+                <div class="security-title">
+                    Verify Your Account
+                </div>
+
+                <div class="security-desc">
+                    Choose one available recovery method.
+                </div>
+
+                <button
+                    class="security-btn"
+                    onclick="selectRecoveryMethod('questions')">
+                    🔐 Security Questions
+                </button>
+
+                <button
+                    class="security-btn"
+                    onclick="selectRecoveryMethod('phone')">
+                    📱 Phone Number
+                </button>
+
+                <button
+                    class="security-btn"
+                    onclick="selectRecoveryMethod('email')">
+                    📧 Email Address
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('loginPage')">
+                    Cancel
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUESTIONS -->
+
+    <section id="questionsPage" class="security-page">
+
+        <div class="security-header">
+
+            <div class="security-logo">
+                Y-M Chat
+            </div>
+
+            <div class="security-subtitle">
+                Security Questions
+            </div>
+
+        </div>
+
+        <div class="security-content">
+
+            <div class="security-card">
+
+                <div class="security-title">
+                    Answer Both Questions
+                </div>
+
+                <div id="questionsMessage"
+                     class="security-message">
+                </div>
+
+                <label class="security-label"
+                       id="recoveryQuestionText1">
+                    Question 1
+                </label>
+
+                <input
+                    id="recoveryAnswer1"
+                    class="security-input"
+                    type="text">
+
+                <label class="security-label"
+                       id="recoveryQuestionText2">
+                    Question 2
+                </label>
+
+                <input
+                    id="recoveryAnswer2"
+                    class="security-input"
+                    type="text">
+
+                <button
+                    class="security-btn"
+                    onclick="verifyQuestions()">
+                    Verify
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('recoveryMethodPage')">
+                    Back
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PHONE -->
+
+    <section id="phoneRecoveryPage" class="security-page">
+
+        <div class="security-header">
+
+            <div class="security-logo">
+                Y-M Chat
+            </div>
+
+            <div class="security-subtitle">
+                Phone Verification
+            </div>
+
+        </div>
+
+        <div class="security-content">
+
+            <div class="security-card">
+
+                <div class="security-title">
+                    Verify Phone
+                </div>
+
+                <div id="phoneMessage"
+                     class="security-message">
+                </div>
+
+                <label class="security-label">
+                    Verification Method
+                </label>
+
+                <select
+                    id="phoneMethod"
+                    class="security-select">
+
+                    <option value="sms">
+                        SMS
+                    </option>
+
+                    <option value="whatsapp">
+                        WhatsApp
+                    </option>
+
+                </select>
+
+                <button
+                    class="security-btn"
+                    onclick="requestPhoneOtp()">
+                    Send OTP
+                </button>
+
+                <div id="phoneOtpBox"
+                     class="otp-box">
+
+                    Demo OTP:
+                    <b id="phoneOtpDisplay"></b>
+
+                </div>
+
+                <label class="security-label">
+                    Enter OTP
+                </label>
+
+                <input
+                    id="phoneOtpInput"
+                    class="security-input"
+                    type="text"
+                    maxlength="6">
+
+                <button
+                    class="security-btn"
+                    onclick="verifyPhoneOtp()">
+                    Verify OTP
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('recoveryMethodPage')">
+                    Back
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EMAIL -->
+
+    <section id="emailRecoveryPage" class="security-page">
+
+        <div class="security-header">
+
+            <div class="security-logo">
+                Y-M Chat
+            </div>
+
+            <div class="security-subtitle">
+                Email Verification
+            </div>
+
+        </div>
+
+        <div class="security-content">
+
+            <div class="security-card">
+
+                <div class="security-title">
+                    Verify Email
+                </div>
+
+                <div id="emailMessage"
+                     class="security-message">
+                </div>
+
+                <div class="security-info">
+                    Verification will use the email saved in your Y-M account.
+                </div>
+
+                <button
+                    class="security-btn"
+                    onclick="requestEmailOtp()">
+                    Send OTP
+                </button>
+
+                <div id="emailOtpBox"
+                     class="otp-box">
+
+                    Demo OTP:
+                    <b id="emailOtpDisplay"></b>
+
+                </div>
+
+                <label class="security-label">
+                    Enter OTP
+                </label>
+
+                <input
+                    id="emailOtpInput"
+                    class="security-input"
+                    type="text"
+                    maxlength="6">
+
+                <button
+                    class="security-btn"
+                    onclick="verifyEmailOtp()">
+                    Verify OTP
+                </button>
+
+                <button
+                    class="security-link"
+                    onclick="showPage('recoveryMethodPage')">
+                    Back
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESET PASSWORD -->
+
+    <section id="resetPasswordPage" class="security-page">
+
+        <div class="security-header">
+
+            <div class="security-logo">
+                Y-M Chat
+            </div>
+
+            <div class="security-subtitle">
+                New Password
+            </div>
+
+        </div>
+
+        <div class="security-content">
+
+            <div class="security-card">
+
+                <div class="security-title">
+                    Create New Password
+                </div>
+
+                <div id="resetMessage"
+                     class="security-message">
+                </div>
+
+                <label class="security-label">
+                    New Password
+                </label>
+
+                <input
+                    id="resetPasswordInput"
+                    class="security-input"
+                    type="password">
+
+                <label class="security-label">
+                    Confirm Password
+                </label>
+
+                <input
+                    id="resetPasswordConfirm"
+                    class="security-input"
+                    type="password">
+
+                <button
+                    class="security-btn"
+                    onclick="resetPassword()">
+                    Save New Password
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+     HOME V1.2
+===================================================== -->
+
+<div id="homeApp" class="home-app">
+
+<header class="home-header">
+
+    <div class="home-logo">
         Y-M Chat
         <small>Home</small>
     </div>
 
     <div class="header-actions">
-        <button class="icon-btn" id="notificationButton">🔔</button>
-        <button class="icon-btn" id="mainMenuButton">⋮</button>
+
+        <button
+            class="icon-btn"
+            id="notificationButton">
+            🔔
+        </button>
+
+        <button
+            class="icon-btn"
+            id="mainMenuButton">
+            ⋮
+        </button>
+
     </div>
 
 </header>
 
-<div id="notificationPanel" class="notification-panel">
+<div id="notificationPanel"
+     class="notification-panel">
 
     <div class="notification-head">
         🔔 Notifications
@@ -633,51 +1664,69 @@ input[type="file"]{
 
 <section class="profile-bar">
 
-    <div class="avatar" id="topAvatar">Y</div>
+    <div class="avatar" id="topAvatar">
+        Y
+    </div>
 
     <div class="profile-info">
-        <div class="profile-name" id="topName">
+
+        <div class="profile-name"
+             id="topName">
             Y-M User
         </div>
 
-        <div class="profile-id" id="topId">
+        <div class="profile-id"
+             id="topId">
             @ymuser
         </div>
+
     </div>
 
 </section>
 
 <div class="notice">
-    👋 Welcome to <b>Y-M Chat</b>. Share your thoughts, photos and videos.
+    👋 Welcome to <b>Y-M Chat</b>.
+    Share your thoughts, photos and videos.
 </div>
 
 <section class="create-post">
 
     <div class="create-row">
 
-        <div class="mini-avatar" id="miniAvatar">Y</div>
+        <div class="mini-avatar"
+             id="miniAvatar">
+            Y
+        </div>
 
         <textarea
             id="postInput"
             class="post-input"
-            placeholder="What's on your mind?"
-        ></textarea>
+            placeholder="What's on your mind?">
+        </textarea>
 
     </div>
 
-    <div id="mediaPreview" class="media-preview"></div>
+    <div id="mediaPreview"
+         class="media-preview">
+    </div>
 
     <div class="create-actions">
 
-        <button class="action-btn" id="photoButton">
+        <button
+            class="action-btn"
+            id="photoButton">
             🖼️ Photo
         </button>
 
-        <button class="action-btn" id="videoButton">
+        <button
+            class="action-btn"
+            id="videoButton">
             🎥 Video
         </button>
 
-        <button class="action-btn post" id="postButton">
+        <button
+            class="action-btn post"
+            id="postButton">
             ➤ Post
         </button>
 
@@ -686,14 +1735,12 @@ input[type="file"]{
     <input
         type="file"
         id="imageInput"
-        accept="image/*"
-    >
+        accept="image/*">
 
     <input
         type="file"
         id="videoInput"
-        accept="video/*"
-    >
+        accept="video/*">
 
 </section>
 
@@ -705,34 +1752,53 @@ input[type="file"]{
 
 </div>
 
+
+<!-- BOTTOM NAV -->
+
 <nav class="bottom-nav">
 
-    <button class="nav-btn active" id="homeNav">
+    <button class="nav-btn active"
+            id="homeNav">
+
         <span class="nav-icon">🏠</span>
         Home
+
     </button>
 
-    <button class="nav-btn" id="friendsNav">
+    <button class="nav-btn"
+            id="friendsNav">
+
         <span class="nav-icon">👥</span>
         Friends
+
     </button>
 
-    <button class="nav-btn" id="chatNav">
+    <button class="nav-btn"
+            id="chatNav">
+
         <span class="nav-icon">💬</span>
         Chat
+
     </button>
 
-    <button class="nav-btn" id="roomsNav">
+    <button class="nav-btn"
+            id="roomsNav">
+
         <span class="nav-icon">🌎</span>
         Rooms
+
     </button>
 
-    <button class="nav-btn" id="profileNav">
+    <button class="nav-btn"
+            id="profileNav">
+
         <span class="nav-icon">👤</span>
         Profile
+
     </button>
 
 </nav>
+
 
 <!-- COMMENT MODAL -->
 
@@ -747,14 +1813,18 @@ input[type="file"]{
         <textarea
             id="commentInput"
             class="modal-textarea"
-            placeholder="Write your comment..."
-        ></textarea>
+            placeholder="Write your comment...">
+        </textarea>
 
-        <button class="modal-btn" id="sendCommentButton">
+        <button
+            class="modal-btn"
+            id="sendCommentButton">
             Send Comment
         </button>
 
-        <button class="modal-btn cancel" id="cancelCommentButton">
+        <button
+            class="modal-btn cancel"
+            id="cancelCommentButton">
             Cancel
         </button>
 
@@ -762,7 +1832,8 @@ input[type="file"]{
 
 </div>
 
-<!-- POST MENU MODAL -->
+
+<!-- POST MENU -->
 
 <div id="postMenuModal" class="modal">
 
@@ -774,7 +1845,9 @@ input[type="file"]{
 
         <div id="postMenuOptions"></div>
 
-        <button class="modal-btn cancel" id="cancelPostMenuButton">
+        <button
+            class="modal-btn cancel"
+            id="cancelPostMenuButton">
             Cancel
         </button>
 
@@ -782,7 +1855,8 @@ input[type="file"]{
 
 </div>
 
-<!-- COMMENT MENU MODAL -->
+
+<!-- COMMENT MENU -->
 
 <div id="commentMenuModal" class="modal">
 
@@ -794,7 +1868,9 @@ input[type="file"]{
 
         <div id="commentMenuOptions"></div>
 
-        <button class="modal-btn cancel" id="cancelCommentMenuButton">
+        <button
+            class="modal-btn cancel"
+            id="cancelCommentMenuButton">
             Cancel
         </button>
 
@@ -802,22 +1878,1032 @@ input[type="file"]{
 
 </div>
 
+
 <script>
 "use strict";
 
-/* DATA */
+/* =====================================================
+   SECURITY CORE
+===================================================== */
 
-let posts = [];
-let selectedMedia = null;
-let selectedMediaType = null;
+const countries = [
+    ["Malaysia","+60"],
+    ["Indonesia","+62"],
+    ["Singapore","+65"],
+    ["Brunei","+673"],
+    ["Philippines","+63"],
+    ["Thailand","+66"],
+    ["Vietnam","+84"],
+    ["China","+86"],
+    ["Japan","+81"],
+    ["South Korea","+82"],
+    ["India","+91"],
+    ["United Arab Emirates","+971"],
+    ["Saudi Arabia","+966"],
+    ["United Kingdom","+44"],
+    ["United States","+1"],
+    ["Canada","+1"],
+    ["Australia","+61"],
+    ["New Zealand","+64"],
+    ["France","+33"],
+    ["Germany","+49"],
+    ["Italy","+39"],
+    ["Spain","+34"],
+    ["Portugal","+351"],
+    ["Russia","+7"],
+    ["Turkey","+90"]
+];
 
-let activeCommentPostId = null;
-let selectedPostId = null;
-let selectedCommentPostId = null;
-let selectedCommentId = null;
+const securityQuestions = {
+    en:[
+        "What is your favourite food?",
+        "What is your favourite colour?",
+        "What city were you born in?",
+        "What is your favourite animal?",
+        "What is your childhood nickname?"
+    ],
+    ms:[
+        "Apakah makanan kegemaran anda?",
+        "Apakah warna kegemaran anda?",
+        "Di bandar manakah anda dilahirkan?",
+        "Apakah haiwan kegemaran anda?",
+        "Apakah nama panggilan anda ketika kecil?"
+    ]
+};
+
+const translations = {
+    en:{},
+    ms:{}
+};
+
+let currentLanguage =
+    localStorage.getItem("ym_language") || "en";
+
+let recoveryUser = null;
+let recoveryVerified = false;
+let phoneOtpRequested = false;
+let emailOtpRequested = false;
+let demoPhoneOtp = "";
+let demoEmailOtp = "";
 
 
-/* USER */
+/* STORAGE */
+
+function getAccounts(){
+
+    const saved =
+        localStorage.getItem("ym_accounts");
+
+    if(!saved){
+        return {};
+    }
+
+    try{
+        return JSON.parse(saved) || {};
+    }catch(error){
+        return {};
+    }
+}
+
+function saveAccounts(accounts){
+
+    localStorage.setItem(
+        "ym_accounts",
+        JSON.stringify(accounts)
+    );
+}
+
+
+/* PAGE CONTROL */
+
+function showPage(pageId){
+
+    document
+        .querySelectorAll(".security-page")
+        .forEach(function(page){
+
+            page.classList.remove("active");
+
+        });
+
+    const page =
+        document.getElementById(pageId);
+
+    if(page){
+        page.classList.add("active");
+    }
+}
+
+
+/* LANGUAGE */
+
+function changeLanguage(){
+
+    const select =
+        document.getElementById("languageSelect");
+
+    if(select){
+        currentLanguage = select.value;
+    }
+
+    localStorage.setItem(
+        "ym_language",
+        currentLanguage
+    );
+
+    applyLanguage();
+    fillSecurityQuestions();
+}
+
+function applyLanguage(){
+    /* English is the default Master language.
+       Additional language framework remains available. */
+}
+
+
+/* COUNTRIES */
+
+function fillCountries(){
+
+    const select =
+        document.getElementById("registerCountry");
+
+    if(!select){
+        return;
+    }
+
+    select.innerHTML = "";
+
+    countries.forEach(function(country){
+
+        const option =
+            document.createElement("option");
+
+        option.value = country[0];
+
+        option.textContent =
+            country[0] + " (" + country[1] + ")";
+
+        select.appendChild(option);
+
+    });
+}
+
+
+/* LANGUAGES */
+
+function fillLanguages(){
+
+    const select =
+        document.getElementById("languageSelect");
+
+    if(!select){
+        return;
+    }
+
+    const languages = [
+        ["en","English"],
+        ["ms","Bahasa Malaysia"],
+        ["id","Bahasa Indonesia"],
+        ["fil","Filipino"],
+        ["th","Thai"],
+        ["vi","Vietnamese"],
+        ["zh","Chinese"],
+        ["ja","Japanese"],
+        ["ko","Korean"],
+        ["hi","Hindi"],
+        ["ar","Arabic"],
+        ["fr","French"],
+        ["es","Spanish"],
+        ["pt","Portuguese"],
+        ["de","German"],
+        ["it","Italian"],
+        ["ru","Russian"],
+        ["tr","Turkish"]
+    ];
+
+    select.innerHTML = "";
+
+    languages.forEach(function(item){
+
+        const option =
+            document.createElement("option");
+
+        option.value = item[0];
+        option.textContent = item[1];
+
+        if(item[0] === currentLanguage){
+            option.selected = true;
+        }
+
+        select.appendChild(option);
+
+    });
+}
+
+
+/* SECURITY QUESTIONS */
+
+function fillSecurityQuestions(){
+
+    const list =
+        securityQuestions[currentLanguage] ||
+        securityQuestions.en;
+
+    const q1 =
+        document.getElementById("registerQuestion1");
+
+    const q2 =
+        document.getElementById("registerQuestion2");
+
+    if(!q1 || !q2){
+        return;
+    }
+
+    q1.innerHTML = "";
+    q2.innerHTML = "";
+
+    list.forEach(function(question,index){
+
+        const option1 =
+            document.createElement("option");
+
+        option1.value = index;
+        option1.textContent = question;
+
+        q1.appendChild(option1);
+
+        const option2 =
+            document.createElement("option");
+
+        option2.value = index;
+        option2.textContent = question;
+
+        q2.appendChild(option2);
+
+    });
+}
+
+
+/* PASSWORD */
+
+function validPassword(password){
+
+    return String(password || "").length >= 6;
+}
+
+
+/* MESSAGE */
+
+function setMessage(id,text,type){
+
+    const box =
+        document.getElementById(id);
+
+    if(!box){
+        return;
+    }
+
+    box.textContent = text;
+
+    box.className =
+        "security-message show " + type;
+}
+
+
+/* REGISTER */
+
+function registerUser(){
+
+    const name =
+        document.getElementById("registerName")
+        .value.trim();
+
+    const username =
+        document.getElementById("registerUsername")
+        .value.trim()
+        .toLowerCase();
+
+    const password =
+        document.getElementById("registerPassword")
+        .value;
+
+    const country =
+        document.getElementById("registerCountry")
+        .value;
+
+    const phone =
+        document.getElementById("registerPhone")
+        .value.trim();
+
+    const email =
+        document.getElementById("registerEmail")
+        .value.trim();
+
+    const q1 =
+        document.getElementById("registerQuestion1")
+        .value;
+
+    const a1 =
+        document.getElementById("registerAnswer1")
+        .value.trim();
+
+    const q2 =
+        document.getElementById("registerQuestion2")
+        .value;
+
+    const a2 =
+        document.getElementById("registerAnswer2")
+        .value.trim();
+
+    if(!name || !username || !password ||
+       !country || !phone || !email ||
+       !a1 || !a2){
+
+        setMessage(
+            "registerMessage",
+            "Please complete all required fields.",
+            "error"
+        );
+
+        return;
+    }
+
+    if(!validPassword(password)){
+
+        setMessage(
+            "registerMessage",
+            "Password must contain at least 6 characters.",
+            "error"
+        );
+
+        return;
+    }
+
+    const accounts =
+        getAccounts();
+
+    if(accounts[username]){
+
+        setMessage(
+            "registerMessage",
+            "This Y-M ID is already registered.",
+            "error"
+        );
+
+        return;
+    }
+
+    if(q1 === q2){
+
+        setMessage(
+            "registerMessage",
+            "Please choose two different security questions.",
+            "error"
+        );
+
+        return;
+    }
+
+    accounts[username] = {
+
+        id:username,
+        username:username,
+        name:name,
+        password:password,
+        country:country,
+        phone:phone,
+        email:email,
+
+        security:{
+            question1:q1,
+            answer1:a1.toLowerCase(),
+
+            question2:q2,
+            answer2:a2.toLowerCase()
+        },
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+    saveAccounts(accounts);
+
+    document.getElementById("loginUsername")
+        .value = username;
+
+    document.getElementById("loginPassword")
+        .value = "";
+
+    setMessage(
+        "loginMessage",
+        "Y-M ID created successfully. You can now login.",
+        "success"
+    );
+
+    showPage("loginPage");
+}
+
+
+/* LOGIN */
+
+function loginUser(){
+
+    const username =
+        document.getElementById("loginUsername")
+        .value.trim()
+        .toLowerCase();
+
+    const password =
+        document.getElementById("loginPassword")
+        .value;
+
+    const accounts =
+        getAccounts();
+
+    const account =
+        accounts[username];
+
+    if(!account){
+
+        setMessage(
+            "loginMessage",
+            "Y-M ID not found.",
+            "error"
+        );
+
+        return;
+    }
+
+    if(account.password !== password){
+
+        setMessage(
+            "loginMessage",
+            "Incorrect password.",
+            "error"
+        );
+
+        return;
+    }
+
+    localStorage.setItem(
+        "ym_current_user",
+        JSON.stringify(account)
+    );
+
+    setMessage(
+        "loginMessage",
+        "Login successful.",
+        "success"
+    );
+
+    setTimeout(function(){
+
+        openHome();
+
+    },150);
+
+}
+
+
+/* LOGOUT */
+
+function logoutUser(){
+
+    localStorage.removeItem(
+        "ym_current_user"
+    );
+
+    closeHome();
+
+    document.getElementById("loginPassword")
+        .value = "";
+
+    showPage("frontPage");
+}
+
+
+/* CHANGE PASSWORD */
+
+function changePassword(){
+
+    const currentUser =
+        getCurrentUser();
+
+    if(!currentUser){
+
+        setMessage(
+            "changePasswordMessage",
+            "Please login first.",
+            "error"
+        );
+
+        return;
+    }
+
+    const oldPassword =
+        document.getElementById("oldPassword")
+        .value;
+
+    const newPassword =
+        document.getElementById("newPassword")
+        .value;
+
+    const confirmPassword =
+        document.getElementById("confirmNewPassword")
+        .value;
+
+    if(oldPassword !== currentUser.password){
+
+        setMessage(
+            "changePasswordMessage",
+            "Current password is incorrect.",
+            "error"
+        );
+
+        return;
+    }
+
+    if(!validPassword(newPassword)){
+
+        setMessage(
+            "changePasswordMessage",
+            "New password must contain at least 6 characters.",
+            "error"
+        );
+
+        return;
+    }
+
+    if(newPassword !== confirmPassword){
+
+        setMessage(
+            "changePasswordMessage",
+            "New passwords do not match.",
+            "error"
+        );
+
+        return;
+    }
+
+    const accounts =
+        getAccounts();
+
+    if(!accounts[currentUser.username]){
+
+        setMessage(
+            "changePasswordMessage",
+            "Account could not be found.",
+            "error"
+        );
+
+        return;
+    }
+
+    accounts[currentUser.username].password =
+        newPassword;
+
+    saveAccounts(accounts);
+
+    currentUser.password =
+        newPassword;
+
+    localStorage.setItem(
+        "ym_current_user",
+        JSON.stringify(currentUser)
+    );
+
+    document.getElementById("oldPassword").value = "";
+    document.getElementById("newPassword").value = "";
+    document.getElementById("confirmNewPassword").value = "";
+
+    setMessage(
+        "changePasswordMessage",
+        "Password changed successfully.",
+        "success"
+    );
+}
+
+
+/* SAVE SECURITY */
+
+function saveSecurity(){
+
+    return;
+}
+
+
+/* RECOVERY ACCOUNT */
+
+function findRecoveryAccount(){
+
+    const username =
+        document.getElementById("recoveryUsername")
+        .value.trim()
+        .toLowerCase();
+
+    const accounts =
+        getAccounts();
+
+    if(!accounts[username]){
+
+        setMessage(
+            "recoveryMessage",
+            "Y-M ID not found.",
+            "error"
+        );
+
+        return;
+    }
+
+    recoveryUser =
+        accounts[username];
+
+    recoveryVerified = false;
+
+    phoneOtpRequested = false;
+    emailOtpRequested = false;
+
+    document.getElementById("recoveryAnswer1").value = "";
+    document.getElementById("recoveryAnswer2").value = "";
+
+    const text1 =
+        getRecoveryQuestionText(
+            recoveryUser.security.question1
+        );
+
+    const text2 =
+        getRecoveryQuestionText(
+            recoveryUser.security.question2
+        );
+
+    document.getElementById(
+        "recoveryQuestionText1"
+    ).textContent = text1;
+
+    document.getElementById(
+        "recoveryQuestionText2"
+    ).textContent = text2;
+
+    showPage("recoveryMethodPage");
+}
+
+
+/* RECOVERY METHOD */
+
+function selectRecoveryMethod(method){
+
+    if(!recoveryUser){
+        showPage("recoveryPage");
+        return;
+    }
+
+    if(method === "questions"){
+
+        showPage("questionsPage");
+
+        return;
+    }
+
+    if(method === "phone"){
+
+        document.getElementById("phoneOtpBox")
+            .classList.remove("show");
+
+        document.getElementById("phoneOtpInput")
+            .value = "";
+
+        showPage("phoneRecoveryPage");
+
+        return;
+    }
+
+    if(method === "email"){
+
+        document.getElementById("emailOtpBox")
+            .classList.remove("show");
+
+        document.getElementById("emailOtpInput")
+            .value = "";
+
+        showPage("emailRecoveryPage");
+
+    }
+}
+
+
+/* QUESTION TEXT */
+
+function getRecoveryQuestionText(index){
+
+    const list =
+        securityQuestions[currentLanguage] ||
+        securityQuestions.en;
+
+    return list[Number(index)] ||
+           securityQuestions.en[Number(index)] ||
+           "Security Question";
+}
+
+
+/* VERIFY QUESTIONS */
+
+function verifyQuestions(){
+
+    if(!recoveryUser){
+        return;
+    }
+
+    const answer1 =
+        document.getElementById("recoveryAnswer1")
+        .value.trim()
+        .toLowerCase();
+
+    const answer2 =
+        document.getElementById("recoveryAnswer2")
+        .value.trim()
+        .toLowerCase();
+
+    if(
+        answer1 === recoveryUser.security.answer1 &&
+        answer2 === recoveryUser.security.answer2
+    ){
+
+        recoveryVerified = true;
+
+        setMessage(
+            "questionsMessage",
+            "Verification successful.",
+            "success"
+        );
+
+        showPage("resetPasswordPage");
+
+    }else{
+
+        setMessage(
+            "questionsMessage",
+            "One or both answers are incorrect.",
+            "error"
+        );
+
+    }
+}
+
+
+/* OTP */
+
+function generateOtp(){
+
+    return String(
+        Math.floor(100000 + Math.random() * 900000)
+    );
+}
+
+
+/* PHONE OTP */
+
+function requestPhoneOtp(){
+
+    if(!recoveryUser){
+        return;
+    }
+
+    demoPhoneOtp =
+        generateOtp();
+
+    phoneOtpRequested = true;
+
+    document.getElementById(
+        "phoneOtpDisplay"
+    ).textContent = demoPhoneOtp;
+
+    document.getElementById(
+        "phoneOtpBox"
+    ).classList.add("show");
+
+    const method =
+        document.getElementById("phoneMethod")
+        .value;
+
+    setMessage(
+        "phoneMessage",
+        "Demo OTP generated for " +
+        method.toUpperCase() +
+        ".",
+        "success"
+    );
+}
+
+
+/* VERIFY PHONE OTP */
+
+function verifyPhoneOtp(){
+
+    if(!recoveryUser ||
+       !phoneOtpRequested){
+
+        setMessage(
+            "phoneMessage",
+            "Please request an OTP first.",
+            "error"
+        );
+
+        return;
+    }
+
+    const entered =
+        document.getElementById(
+            "phoneOtpInput"
+        ).value.trim();
+
+    if(entered === demoPhoneOtp){
+
+        recoveryVerified = true;
+
+        showPage("resetPasswordPage");
+
+    }else{
+
+        setMessage(
+            "phoneMessage",
+            "Incorrect OTP.",
+            "error"
+        );
+
+    }
+}
+
+
+/* EMAIL OTP */
+
+function requestEmailOtp(){
+
+    if(!recoveryUser){
+        return;
+    }
+
+    demoEmailOtp =
+        generateOtp();
+
+    emailOtpRequested = true;
+
+    document.getElementById(
+        "emailOtpDisplay"
+    ).textContent = demoEmailOtp;
+
+    document.getElementById(
+        "emailOtpBox"
+    ).classList.add("show");
+
+    setMessage(
+        "emailMessage",
+        "Demo OTP generated for email verification.",
+        "success"
+    );
+}
+
+
+/* VERIFY EMAIL OTP */
+
+function verifyEmailOtp(){
+
+    if(!recoveryUser ||
+       !emailOtpRequested){
+
+        setMessage(
+            "emailMessage",
+            "Please request an OTP first.",
+            "error"
+        );
+
+        return;
+    }
+
+    const entered =
+        document.getElementById(
+            "emailOtpInput"
+        ).value.trim();
+
+    if(entered === demoEmailOtp){
+
+        recoveryVerified = true;
+
+        showPage("resetPasswordPage");
+
+    }else{
+
+        setMessage(
+            "emailMessage",
+            "Incorrect OTP.",
+            "error"
+        );
+
+    }
+}
+
+
+/* RESET PASSWORD */
+
+function resetPassword(){
+
+    if(!recoveryUser ||
+       !recoveryVerified){
+
+        setMessage(
+            "resetMessage",
+            "Verification is required first.",
+            "error"
+        );
+
+        return;
+    }
+
+    const password =
+        document.getElementById(
+            "resetPasswordInput"
+        ).value;
+
+    const confirm =
+        document.getElementById(
+            "resetPasswordConfirm"
+        ).value;
+
+    if(!validPassword(password)){
+
+        setMessage(
+            "resetMessage",
+            "Password must contain at least 6 characters.",
+            "error"
+        );
+
+        return;
+    }
+
+    if(password !== confirm){
+
+        setMessage(
+            "resetMessage",
+            "Passwords do not match.",
+            "error"
+        );
+
+        return;
+    }
+
+    const accounts =
+        getAccounts();
+
+    if(!accounts[recoveryUser.username]){
+
+        setMessage(
+            "resetMessage",
+            "Account could not be found.",
+            "error"
+        );
+
+        return;
+    }
+
+    accounts[
+        recoveryUser.username
+    ].password = password;
+
+    saveAccounts(accounts);
+
+    recoveryUser = null;
+    recoveryVerified = false;
+
+    document.getElementById(
+        "resetPasswordInput"
+    ).value = "";
+
+    document.getElementById(
+        "resetPasswordConfirm"
+    ).value = "";
+
+    document.getElementById(
+        "loginUsername"
+    ).value = "";
+
+    document.getElementById(
+        "loginPassword"
+    ).value = "";
+
+    setMessage(
+        "loginMessage",
+        "Password reset successfully. Please login.",
+        "success"
+    );
+
+    showPage("loginPage");
+}
+
+
+/* =====================================================
+   MASTER CONNECTION
+===================================================== */
 
 function getCurrentUser(){
 
@@ -835,23 +2921,118 @@ function getCurrentUser(){
     }
 }
 
+
+function openHome(){
+
+    document.getElementById(
+        "securityApp"
+    ).style.display = "none";
+
+    document.getElementById(
+        "homeApp"
+    ).classList.add("active");
+
+    document.querySelector(
+        ".bottom-nav"
+    ).style.display = "flex";
+
+    loadHomeUser();
+    loadPosts();
+
+    window.scrollTo(0,0);
+}
+
+
+function closeHome(){
+
+    document.getElementById(
+        "homeApp"
+    ).classList.remove("active");
+
+    document.getElementById(
+        "securityApp"
+    ).style.display = "block";
+
+    document.querySelector(
+        ".bottom-nav"
+    ).style.display = "none";
+}
+
+
+function loadHomeUser(){
+
+    const user =
+        getCurrentUser();
+
+    const name =
+        user && user.name
+        ? user.name
+        : "Y-M User";
+
+    const username =
+        user && user.username
+        ? user.username
+        : "ymuser";
+
+    const letter =
+        String(name)
+        .charAt(0)
+        .toUpperCase();
+
+    document.getElementById(
+        "topName"
+    ).textContent = name;
+
+    document.getElementById(
+        "topId"
+    ).textContent = "@" + username;
+
+    document.getElementById(
+        "topAvatar"
+    ).textContent = letter;
+
+    document.getElementById(
+        "miniAvatar"
+    ).textContent = letter;
+}
+
+
+/* =====================================================
+   HOME V1.2
+===================================================== */
+
+let posts = [];
+
+let selectedMedia = null;
+let selectedMediaType = null;
+
+let activeCommentPostId = null;
+let selectedPostId = null;
+let selectedCommentPostId = null;
+let selectedCommentId = null;
+
+
 function getCurrentName(){
 
-    const user = getCurrentUser();
+    const user =
+        getCurrentUser();
 
     return user && user.name
         ? user.name
         : "Y-M User";
 }
 
+
 function getCurrentUsername(){
 
-    const user = getCurrentUser();
+    const user =
+        getCurrentUser();
 
     return user && user.username
         ? user.username
         : "ymuser";
 }
+
 
 function getLetter(name){
 
@@ -860,32 +3041,15 @@ function getLetter(name){
         .toUpperCase();
 }
 
-function loadUser(){
 
-    const name = getCurrentName();
-    const username = getCurrentUsername();
-    const letter = getLetter(name);
-
-    document.getElementById("topName").textContent =
-        name;
-
-    document.getElementById("topId").textContent =
-        "@" + username;
-
-    document.getElementById("topAvatar").textContent =
-        letter;
-
-    document.getElementById("miniAvatar").textContent =
-        letter;
-}
-
-
-/* STORAGE */
+/* HOME STORAGE */
 
 function loadPosts(){
 
     const saved =
-        localStorage.getItem("ym_home_posts");
+        localStorage.getItem(
+            "ym_home_posts"
+        );
 
     if(!saved){
 
@@ -913,6 +3077,7 @@ function loadPosts(){
     renderPosts();
 }
 
+
 function savePosts(){
 
     localStorage.setItem(
@@ -922,7 +3087,7 @@ function savePosts(){
 }
 
 
-/* HELPERS */
+/* ESCAPE */
 
 function escapeHTML(value){
 
@@ -934,34 +3099,45 @@ function escapeHTML(value){
         .replace(/'/g,"&#039;");
 }
 
+
+/* TIME */
+
 function formatTime(timestamp){
 
-    const date = new Date(timestamp);
-    const now = new Date();
+    const date =
+        new Date(timestamp);
+
+    const now =
+        new Date();
 
     const minutes =
-        Math.floor((now - date) / 60000);
+        Math.floor(
+            (now - date) / 60000
+        );
 
     if(minutes < 1){
         return "Just now";
     }
 
     if(minutes < 60){
-        return minutes + " minutes ago";
+        return minutes +
+               " minutes ago";
     }
 
     const hours =
         Math.floor(minutes / 60);
 
     if(hours < 24){
-        return hours + " hours ago";
+        return hours +
+               " hours ago";
     }
 
     const days =
         Math.floor(hours / 24);
 
     if(days < 7){
-        return days + " days ago";
+        return days +
+               " days ago";
     }
 
     return date.toLocaleDateString();
@@ -973,14 +3149,18 @@ function formatTime(timestamp){
 function createPost(){
 
     const input =
-        document.getElementById("postInput");
+        document.getElementById(
+            "postInput"
+        );
 
     const text =
         input.value.trim();
 
     if(!text && !selectedMedia){
 
-        alert("Please write something or select a photo/video.");
+        alert(
+            "Please write something or select a photo/video."
+        );
 
         return;
     }
@@ -1020,17 +3200,27 @@ function createPost(){
     selectedMedia = null;
     selectedMediaType = null;
 
-    document.getElementById("mediaPreview").innerHTML = "";
-    document.getElementById("mediaPreview").style.display = "none";
+    document.getElementById(
+        "mediaPreview"
+    ).innerHTML = "";
 
-    document.getElementById("imageInput").value = "";
-    document.getElementById("videoInput").value = "";
+    document.getElementById(
+        "mediaPreview"
+    ).style.display = "none";
+
+    document.getElementById(
+        "imageInput"
+    ).value = "";
+
+    document.getElementById(
+        "videoInput"
+    ).value = "";
 
     renderPosts();
 }
 
 
-/* MEDIA */
+/* IMAGE */
 
 function previewImage(event){
 
@@ -1041,7 +3231,8 @@ function previewImage(event){
         return;
     }
 
-    const reader = new FileReader();
+    const reader =
+        new FileReader();
 
     reader.onload = function(){
 
@@ -1052,17 +3243,24 @@ function previewImage(event){
             "image";
 
         const preview =
-            document.getElementById("mediaPreview");
+            document.getElementById(
+                "mediaPreview"
+            );
 
         preview.innerHTML = `
-            <img src="${selectedMedia}" alt="Image preview">
+            <img src="${selectedMedia}"
+                 alt="Image preview">
         `;
 
-        preview.style.display = "block";
+        preview.style.display =
+            "block";
     };
 
     reader.readAsDataURL(file);
 }
+
+
+/* VIDEO */
 
 function previewVideo(event){
 
@@ -1073,7 +3271,8 @@ function previewVideo(event){
         return;
     }
 
-    const reader = new FileReader();
+    const reader =
+        new FileReader();
 
     reader.onload = function(){
 
@@ -1084,30 +3283,40 @@ function previewVideo(event){
             "video";
 
         const preview =
-            document.getElementById("mediaPreview");
+            document.getElementById(
+                "mediaPreview"
+            );
 
         preview.innerHTML = `
-            <video src="${selectedMedia}" controls></video>
+            <video src="${selectedMedia}"
+                   controls></video>
         `;
 
-        preview.style.display = "block";
+        preview.style.display =
+            "block";
     };
 
     reader.readAsDataURL(file);
 }
 
 
-/* RENDER POSTS */
+/* RENDER */
 
 function renderPosts(){
 
     const feed =
         document.getElementById("feed");
 
+    if(!feed){
+        return;
+    }
+
     feed.innerHTML = "";
 
     const visiblePosts =
-        posts.filter(post => !post.hidden);
+        posts.filter(
+            post => !post.hidden
+        );
 
     if(visiblePosts.length === 0){
 
@@ -1115,14 +3324,16 @@ function renderPosts(){
             <div class="empty">
                 <div class="empty-icon">📰</div>
                 <div>No posts available.</div>
-                <small>Be the first to create a post.</small>
+                <small>
+                    Be the first to create a post.
+                </small>
             </div>
         `;
 
         return;
     }
 
-    visiblePosts.forEach(post => {
+    visiblePosts.forEach(function(post){
 
         if(!Array.isArray(post.comments)){
             post.comments = [];
@@ -1131,27 +3342,36 @@ function renderPosts(){
         const card =
             document.createElement("article");
 
-        card.className = "post-card";
+        card.className =
+            "post-card";
 
         const letter =
             getLetter(post.userName);
 
         let mediaHTML = "";
 
-        if(post.media && post.mediaType === "image"){
+        if(
+            post.media &&
+            post.mediaType === "image"
+        ){
 
             mediaHTML = `
                 <div class="post-media">
-                    <img src="${post.media}" alt="Post image">
+                    <img src="${post.media}"
+                         alt="Post image">
                 </div>
             `;
         }
 
-        if(post.media && post.mediaType === "video"){
+        if(
+            post.media &&
+            post.mediaType === "video"
+        ){
 
             mediaHTML = `
                 <div class="post-media">
-                    <video src="${post.media}" controls></video>
+                    <video src="${post.media}"
+                           controls></video>
                 </div>
             `;
         }
@@ -1208,10 +3428,16 @@ function renderPosts(){
             <div class="post-actions">
 
                 <button
-                    class="post-action ${post.liked ? "liked" : ""}"
+                    class="post-action ${
+                        post.liked ? "liked" : ""
+                    }"
                     data-like-post="${post.id}">
 
-                    ${post.liked ? "💙 Liked" : "👍 Like"}
+                    ${
+                        post.liked
+                        ? "💙 Liked"
+                        : "👍 Like"
+                    }
 
                 </button>
 
@@ -1243,12 +3469,14 @@ function renderPosts(){
 }
 
 
-/* RENDER COMMENTS */
+/* COMMENTS */
 
 function renderComments(post){
 
     const comments =
-        post.comments.filter(comment => !comment.hidden);
+        post.comments.filter(
+            comment => !comment.hidden
+        );
 
     let html = "";
 
@@ -1256,12 +3484,13 @@ function renderComments(post){
 
         html += `
             <div class="comments-area">
+
                 <div class="comments-title">
                     Comments
                 </div>
         `;
 
-        comments.forEach(comment => {
+        comments.forEach(function(comment){
 
             html += `
 
@@ -1306,7 +3535,9 @@ function renderComments(post){
 
         });
 
-        html += `</div>`;
+        html += `
+            </div>
+        `;
     }
 
     html += `
@@ -1321,8 +3552,7 @@ function renderComments(post){
                     type="text"
                     placeholder="Write a comment..."
                     maxlength="500"
-                    required
-                >
+                    required>
 
                 <button
                     type="submit"
@@ -1342,9 +3572,12 @@ function renderComments(post){
 }
 
 
-/* COMMENT SUBMIT - STABLE FORM METHOD */
+/* INLINE COMMENT */
 
-function submitInlineComment(postId, form){
+function submitInlineComment(
+    postId,
+    form
+){
 
     const input =
         form.querySelector("input");
@@ -1354,13 +3587,17 @@ function submitInlineComment(postId, form){
 
     if(!text){
 
-        alert("Please write a comment.");
+        alert(
+            "Please write a comment."
+        );
 
         return;
     }
 
     const post =
-        posts.find(item => item.id === postId);
+        posts.find(
+            item => item.id === postId
+        );
 
     if(!post){
         return;
@@ -1397,7 +3634,9 @@ function submitInlineComment(postId, form){
 function likePost(id){
 
     const post =
-        posts.find(item => item.id === id);
+        posts.find(
+            item => item.id === id
+        );
 
     if(!post){
         return;
@@ -1406,7 +3645,10 @@ function likePost(id){
     if(post.liked){
 
         post.likes =
-            Math.max(0,(post.likes || 0) - 1);
+            Math.max(
+                0,
+                (post.likes || 0) - 1
+            );
 
         post.liked = false;
 
@@ -1430,14 +3672,17 @@ function likePost(id){
 function sharePost(id){
 
     const post =
-        posts.find(item => item.id === id);
+        posts.find(
+            item => item.id === id
+        );
 
     if(!post){
         return;
     }
 
     const text =
-        post.text || "Post from Y-M Chat";
+        post.text ||
+        "Post from Y-M Chat";
 
     if(
         navigator.share &&
@@ -1449,11 +3694,13 @@ function sharePost(id){
             title:"Y-M Chat",
             text:text
 
-        }).catch(() => {});
+        }).catch(function(){});
 
     }else{
 
-        alert("Share: " + text);
+        alert(
+            "Share: " + text
+        );
 
     }
 }
@@ -1466,53 +3713,77 @@ function openPostMenu(id){
     selectedPostId = id;
 
     const post =
-        posts.find(item => item.id === id);
+        posts.find(
+            item => item.id === id
+        );
 
     if(!post){
         return;
     }
 
     const owner =
-        post.username === getCurrentUsername();
+        post.username ===
+        getCurrentUsername();
 
     const options =
-        document.getElementById("postMenuOptions");
+        document.getElementById(
+            "postMenuOptions"
+        );
 
     if(owner){
 
         options.innerHTML = `
-            <button class="menu-option delete" id="deletePostOption">
+            <button
+                class="menu-option delete"
+                id="deletePostOption">
+
                 🗑️ Delete Post
+
             </button>
         `;
 
-        document.getElementById("deletePostOption")
-            .addEventListener("click",deleteSelectedPost);
+        document.getElementById(
+            "deletePostOption"
+        ).addEventListener(
+            "click",
+            deleteSelectedPost
+        );
 
     }else{
 
         options.innerHTML = `
-            <button class="menu-option" id="hidePostOption">
+            <button
+                class="menu-option"
+                id="hidePostOption">
+
                 🚫 Hide Post
+
             </button>
         `;
 
-        document.getElementById("hidePostOption")
-            .addEventListener("click",hideSelectedPost);
-
+        document.getElementById(
+            "hidePostOption"
+        ).addEventListener(
+            "click",
+            hideSelectedPost
+        );
     }
 
-    document.getElementById("postMenuModal")
-        .classList.add("show");
+    document.getElementById(
+        "postMenuModal"
+    ).classList.add("show");
 }
+
 
 function closePostMenu(){
 
-    document.getElementById("postMenuModal")
-        .classList.remove("show");
+    document.getElementById(
+        "postMenuModal"
+    ).classList.remove("show");
 
     selectedPostId = null;
 }
+
 
 function deleteSelectedPost(){
 
@@ -1520,12 +3791,16 @@ function deleteSelectedPost(){
         return;
     }
 
-    if(!confirm("Are you sure you want to delete this post?")){
+    if(!confirm(
+        "Are you sure you want to delete this post?"
+    )){
         return;
     }
 
     posts =
-        posts.filter(item => item.id !== selectedPostId);
+        posts.filter(
+            item => item.id !== selectedPostId
+        );
 
     savePosts();
 
@@ -1534,10 +3809,13 @@ function deleteSelectedPost(){
     renderPosts();
 }
 
+
 function hideSelectedPost(){
 
     const post =
-        posts.find(item => item.id === selectedPostId);
+        posts.find(
+            item => item.id === selectedPostId
+        );
 
     if(!post){
         return;
@@ -1555,84 +3833,124 @@ function hideSelectedPost(){
 
 /* COMMENT MENU */
 
-function openCommentMenu(postId,commentId){
+function openCommentMenu(
+    postId,
+    commentId
+){
 
-    selectedCommentPostId = postId;
-    selectedCommentId = commentId;
+    selectedCommentPostId =
+        postId;
+
+    selectedCommentId =
+        commentId;
 
     const post =
-        posts.find(item => item.id === postId);
+        posts.find(
+            item => item.id === postId
+        );
 
     if(!post){
         return;
     }
 
     const comment =
-        post.comments.find(item => item.id === commentId);
+        post.comments.find(
+            item => item.id === commentId
+        );
 
     if(!comment){
         return;
     }
 
     const owner =
-        comment.username === getCurrentUsername();
+        comment.username ===
+        getCurrentUsername();
 
     const options =
-        document.getElementById("commentMenuOptions");
+        document.getElementById(
+            "commentMenuOptions"
+        );
 
     if(owner){
 
         options.innerHTML = `
-            <button class="menu-option delete" id="deleteCommentOption">
+            <button
+                class="menu-option delete"
+                id="deleteCommentOption">
+
                 🗑️ Delete Comment
+
             </button>
         `;
 
-        document.getElementById("deleteCommentOption")
-            .addEventListener("click",deleteSelectedComment);
+        document.getElementById(
+            "deleteCommentOption"
+        ).addEventListener(
+            "click",
+            deleteSelectedComment
+        );
 
     }else{
 
         options.innerHTML = `
-            <button class="menu-option" id="hideCommentOption">
+            <button
+                class="menu-option"
+                id="hideCommentOption">
+
                 🚫 Hide Comment
+
             </button>
         `;
 
-        document.getElementById("hideCommentOption")
-            .addEventListener("click",hideSelectedComment);
-
+        document.getElementById(
+            "hideCommentOption"
+        ).addEventListener(
+            "click",
+            hideSelectedComment
+        );
     }
 
-    document.getElementById("commentMenuModal")
-        .classList.add("show");
+    document.getElementById(
+        "commentMenuModal"
+    ).classList.add("show");
 }
+
 
 function closeCommentMenu(){
 
-    document.getElementById("commentMenuModal")
-        .classList.remove("show");
+    document.getElementById(
+        "commentMenuModal"
+    ).classList.remove("show");
 
     selectedCommentPostId = null;
     selectedCommentId = null;
 }
 
+
 function deleteSelectedComment(){
 
     const post =
-        posts.find(item => item.id === selectedCommentPostId);
+        posts.find(
+            item =>
+                item.id ===
+                selectedCommentPostId
+        );
 
     if(!post){
         return;
     }
 
-    if(!confirm("Are you sure you want to delete this comment?")){
+    if(!confirm(
+        "Are you sure you want to delete this comment?"
+    )){
         return;
     }
 
     post.comments =
         post.comments.filter(
-            item => item.id !== selectedCommentId
+            item =>
+                item.id !==
+                selectedCommentId
         );
 
     savePosts();
@@ -1642,17 +3960,26 @@ function deleteSelectedComment(){
     renderPosts();
 }
 
+
 function hideSelectedComment(){
 
     const post =
-        posts.find(item => item.id === selectedCommentPostId);
+        posts.find(
+            item =>
+                item.id ===
+                selectedCommentPostId
+        );
 
     if(!post){
         return;
     }
 
     const comment =
-        post.comments.find(item => item.id === selectedCommentId);
+        post.comments.find(
+            item =>
+                item.id ===
+                selectedCommentId
+        );
 
     if(!comment){
         return;
@@ -1668,41 +3995,55 @@ function hideSelectedComment(){
 }
 
 
-/* MODAL COMMENT */
+/* COMMENT MODAL */
 
 function openCommentModal(postId){
 
-    activeCommentPostId = postId;
+    activeCommentPostId =
+        postId;
 
-    document.getElementById("commentInput").value = "";
+    document.getElementById(
+        "commentInput"
+    ).value = "";
 
-    document.getElementById("commentModal")
-        .classList.add("show");
+    document.getElementById(
+        "commentModal"
+    ).classList.add("show");
 }
+
 
 function closeCommentModal(){
 
-    document.getElementById("commentModal")
-        .classList.remove("show");
+    document.getElementById(
+        "commentModal"
+    ).classList.remove("show");
 
     activeCommentPostId = null;
 }
 
+
 function submitModalComment(){
 
     const text =
-        document.getElementById("commentInput")
-        .value.trim();
+        document.getElementById(
+            "commentInput"
+        ).value.trim();
 
     if(!text){
 
-        alert("Please write a comment.");
+        alert(
+            "Please write a comment."
+        );
 
         return;
     }
 
     const post =
-        posts.find(item => item.id === activeCommentPostId);
+        posts.find(
+            item =>
+                item.id ===
+                activeCommentPostId
+        );
 
     if(!post){
         return;
@@ -1736,16 +4077,17 @@ function submitModalComment(){
 }
 
 
-/* NOTIFICATIONS */
+/* NOTIFICATION */
 
 function toggleNotifications(){
 
-    document.getElementById("notificationPanel")
-        .classList.toggle("show");
+    document.getElementById(
+        "notificationPanel"
+    ).classList.toggle("show");
 }
 
 
-/* NAVIGATION */
+/* HOME NAVIGATION */
 
 function goHome(){
 
@@ -1755,95 +4097,193 @@ function goHome(){
     });
 }
 
+
 function showModuleMessage(name){
 
     alert(
-        name + " module will be connected later."
+        name +
+        " module will be connected later."
     );
 }
 
 
-/* EVENT LISTENERS */
+/* HOME EVENTS */
 
-document.getElementById("photoButton")
-    .addEventListener("click",function(){
+document.getElementById(
+    "photoButton"
+).addEventListener(
+    "click",
+    function(){
 
-        document.getElementById("imageInput").click();
+        document.getElementById(
+            "imageInput"
+        ).click();
 
-    });
+    }
+);
 
-document.getElementById("videoButton")
-    .addEventListener("click",function(){
 
-        document.getElementById("videoInput").click();
+document.getElementById(
+    "videoButton"
+).addEventListener(
+    "click",
+    function(){
 
-    });
+        document.getElementById(
+            "videoInput"
+        ).click();
 
-document.getElementById("postButton")
-    .addEventListener("click",createPost);
+    }
+);
 
-document.getElementById("imageInput")
-    .addEventListener("change",previewImage);
 
-document.getElementById("videoInput")
-    .addEventListener("change",previewVideo);
+document.getElementById(
+    "postButton"
+).addEventListener(
+    "click",
+    createPost
+);
 
-document.getElementById("notificationButton")
-    .addEventListener("click",toggleNotifications);
 
-document.getElementById("mainMenuButton")
-    .addEventListener("click",function(){
+document.getElementById(
+    "imageInput"
+).addEventListener(
+    "change",
+    previewImage
+);
 
-        alert(
-            "Y-M Chat Menu\n\n" +
-            "• Settings\n" +
-            "• Security\n" +
-            "• Help\n" +
-            "• Logout"
-        );
 
-    });
+document.getElementById(
+    "videoInput"
+).addEventListener(
+    "change",
+    previewVideo
+);
 
-document.getElementById("cancelCommentButton")
-    .addEventListener("click",closeCommentModal);
 
-document.getElementById("sendCommentButton")
-    .addEventListener("click",submitModalComment);
+document.getElementById(
+    "notificationButton"
+).addEventListener(
+    "click",
+    toggleNotifications
+);
 
-document.getElementById("cancelPostMenuButton")
-    .addEventListener("click",closePostMenu);
 
-document.getElementById("cancelCommentMenuButton")
-    .addEventListener("click",closeCommentMenu);
+document.getElementById(
+    "mainMenuButton"
+).addEventListener(
+    "click",
+    function(){
 
-document.getElementById("homeNav")
-    .addEventListener("click",goHome);
+        const answer =
+            prompt(
+                "Y-M Chat Menu\n\n" +
+                "1. Settings\n" +
+                "2. Security\n" +
+                "3. Help\n" +
+                "4. Logout\n\n" +
+                "Enter 4 to logout:"
+            );
 
-document.getElementById("friendsNav")
-    .addEventListener("click",function(){
+        if(answer === "4"){
+            logoutUser();
+        }
+
+    }
+);
+
+
+/* COMMENT MODAL */
+
+document.getElementById(
+    "cancelCommentButton"
+).addEventListener(
+    "click",
+    closeCommentModal
+);
+
+
+document.getElementById(
+    "sendCommentButton"
+).addEventListener(
+    "click",
+    submitModalComment
+);
+
+
+document.getElementById(
+    "cancelPostMenuButton"
+).addEventListener(
+    "click",
+    closePostMenu
+);
+
+
+document.getElementById(
+    "cancelCommentMenuButton"
+).addEventListener(
+    "click",
+    closeCommentMenu
+);
+
+
+/* NAV */
+
+document.getElementById(
+    "homeNav"
+).addEventListener(
+    "click",
+    goHome
+);
+
+
+document.getElementById(
+    "friendsNav"
+).addEventListener(
+    "click",
+    function(){
         showModuleMessage("Friends");
-    });
+    }
+);
 
-document.getElementById("chatNav")
-    .addEventListener("click",function(){
+
+document.getElementById(
+    "chatNav"
+).addEventListener(
+    "click",
+    function(){
         showModuleMessage("Chat");
-    });
+    }
+);
 
-document.getElementById("roomsNav")
-    .addEventListener("click",function(){
+
+document.getElementById(
+    "roomsNav"
+).addEventListener(
+    "click",
+    function(){
         showModuleMessage("Rooms");
-    });
+    }
+);
 
-document.getElementById("profileNav")
-    .addEventListener("click",function(){
+
+document.getElementById(
+    "profileNav"
+).addEventListener(
+    "click",
+    function(){
         showModuleMessage("Profile");
-    });
+    }
+);
 
 
 /* FEED EVENTS */
 
-document.getElementById("feed")
-    .addEventListener("click",function(event){
+document.getElementById(
+    "feed"
+).addEventListener(
+    "click",
+    function(event){
 
         const target =
             event.target.closest("button");
@@ -1855,7 +4295,9 @@ document.getElementById("feed")
         if(target.dataset.postMenu){
 
             openPostMenu(
-                Number(target.dataset.postMenu)
+                Number(
+                    target.dataset.postMenu
+                )
             );
 
             return;
@@ -1864,7 +4306,9 @@ document.getElementById("feed")
         if(target.dataset.likePost){
 
             likePost(
-                Number(target.dataset.likePost)
+                Number(
+                    target.dataset.likePost
+                )
             );
 
             return;
@@ -1873,7 +4317,9 @@ document.getElementById("feed")
         if(target.dataset.openComment){
 
             openCommentModal(
-                Number(target.dataset.openComment)
+                Number(
+                    target.dataset.openComment
+                )
             );
 
             return;
@@ -1882,7 +4328,9 @@ document.getElementById("feed")
         if(target.dataset.sharePost){
 
             sharePost(
-                Number(target.dataset.sharePost)
+                Number(
+                    target.dataset.sharePost
+                )
             );
 
             return;
@@ -1891,21 +4339,33 @@ document.getElementById("feed")
         if(target.dataset.commentMenuPost){
 
             openCommentMenu(
-                Number(target.dataset.commentMenuPost),
-                Number(target.dataset.commentMenuId)
+                Number(
+                    target.dataset.commentMenuPost
+                ),
+                Number(
+                    target.dataset.commentMenuId
+                )
             );
 
             return;
         }
 
-    });
+    }
+);
 
 
-document.getElementById("feed")
-    .addEventListener("submit",function(event){
+/* INLINE COMMENT EVENT */
+
+document.getElementById(
+    "feed"
+).addEventListener(
+    "submit",
+    function(event){
 
         const form =
-            event.target.closest("form[data-comment-form]");
+            event.target.closest(
+                "form[data-comment-form]"
+            );
 
         if(!form){
             return;
@@ -1914,42 +4374,81 @@ document.getElementById("feed")
         event.preventDefault();
 
         const postId =
-            Number(form.dataset.commentForm);
+            Number(
+                form.dataset.commentForm
+            );
 
-        submitInlineComment(postId,form);
+        submitInlineComment(
+            postId,
+            form
+        );
 
-    });
+    }
+);
 
 
-/* CLOSE MODALS WHEN CLICKING BACKGROUND */
+/* MODAL BACKGROUND */
 
-document.querySelectorAll(".modal")
+document
+    .querySelectorAll(".modal")
     .forEach(function(modal){
 
-        modal.addEventListener("click",function(event){
+        modal.addEventListener(
+            "click",
+            function(event){
 
-            if(event.target === modal){
+                if(event.target === modal){
 
-                modal.classList.remove("show");
+                    modal.classList.remove(
+                        "show"
+                    );
+
+                }
 
             }
-
-        });
+        );
 
     });
 
 
-/* INITIALIZE */
+/* =====================================================
+   INITIALIZE MASTER
+===================================================== */
 
-function initializeHome(){
+function initializeMaster(){
 
-    loadUser();
+    fillLanguages();
+    fillCountries();
+    fillSecurityQuestions();
+    applyLanguage();
 
-    loadPosts();
+    const savedUser =
+        getCurrentUser();
 
+    if(savedUser){
+
+        openHome();
+
+    }else{
+
+        document.getElementById(
+            "securityApp"
+        ).style.display = "block";
+
+        document.getElementById(
+            "homeApp"
+        ).classList.remove("active");
+
+        document.querySelector(
+            ".bottom-nav"
+        ).style.display = "none";
+
+        showPage("frontPage");
+
+    }
 }
 
-initializeHome();
+initializeMaster();
 
 </script>
 
