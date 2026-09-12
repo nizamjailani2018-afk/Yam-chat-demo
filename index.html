@@ -3,356 +3,578 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Y-M Chat - Security Core + Home</title>
+
+<title>Y-M Chat - Profile V1.0</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-html,body{width:100%;min-height:100%}
-body{background:linear-gradient(135deg,#0d47a1,#1976d2,#42a5f5);color:#222}
-button,input,select,textarea{font-family:Arial,sans-serif}
-button{cursor:pointer}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#eef3f8;
+    color:#222;
+}
 
 .app{
- width:100%;
- max-width:480px;
- min-height:100vh;
- margin:auto;
- background:#f5f8fc;
- box-shadow:0 0 25px rgba(0,0,0,.25);
+    width:100%;
+    max-width:480px;
+    min-height:100vh;
+    margin:auto;
+    background:#fff;
+    position:relative;
+    padding-bottom:75px;
 }
 
-.header{
- background:linear-gradient(135deg,#0d47a1,#1976d2);
- color:white;
- padding:18px;
- text-align:center;
- position:sticky;
- top:0;
- z-index:20;
+/* HEADER */
+.topbar{
+    height:58px;
+    background:#1976d2;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 16px;
+    position:sticky;
+    top:0;
+    z-index:20;
+    box-shadow:0 2px 6px rgba(0,0,0,.18);
 }
 
-.logo{font-size:30px;font-weight:bold;letter-spacing:2px}
-.logo span{color:#ffeb3b}
-.subtitle{font-size:12px;margin-top:4px;opacity:.9}
-
-.language-box{
- padding:10px 18px;
- background:white;
- border-bottom:1px solid #ddd;
-}
-.language-box label{
- display:block;font-size:12px;color:#666;margin-bottom:5px
-}
-.language-box select{
- width:100%;padding:10px;border:1px solid #ccc;border-radius:9px
+.topbar h2{
+    font-size:20px;
 }
 
-.page{display:none;padding:18px;min-height:calc(100vh - 130px)}
-.page.active{display:block}
-
-.card{
- background:white;
- border-radius:16px;
- padding:18px;
- box-shadow:0 4px 15px rgba(0,0,0,.08);
- margin-bottom:15px;
+.topbar button{
+    border:0;
+    background:transparent;
+    color:white;
+    font-size:27px;
+    cursor:pointer;
 }
-.card h2{color:#0d47a1;margin-bottom:8px}
-.description{color:#666;font-size:13px;line-height:1.5;margin-bottom:16px}
 
-.front-intro{text-align:center;padding:15px 0 20px}
-.front-icon{
- width:86px;height:86px;margin:auto;border-radius:50%;
- background:linear-gradient(135deg,#1976d2,#0d47a1);
- display:flex;align-items:center;justify-content:center;
- color:white;font-size:29px;font-weight:bold;
+/* COVER */
+.cover{
+    height:190px;
+    background:linear-gradient(135deg,#1976d2,#64b5f6);
+    position:relative;
+    overflow:hidden;
 }
-.front-intro h1{margin-top:15px;color:#0d47a1;font-size:25px}
-.front-intro p{color:#777;font-size:13px;margin-top:5px}
+
+.cover img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+.cover-camera{
+    position:absolute;
+    right:12px;
+    bottom:12px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:0;
+    background:white;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 2px 7px rgba(0,0,0,.25);
+}
+
+/* PROFILE */
+.profile-area{
+    padding:0 15px;
+}
+
+.profile-head{
+    position:relative;
+    min-height:130px;
+}
+
+.avatar-box{
+    position:absolute;
+    top:-58px;
+    left:10px;
+}
+
+.avatar{
+    width:116px;
+    height:116px;
+    border-radius:50%;
+    border:5px solid white;
+    background:#dcecff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.25);
+}
+
+.avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+.avatar-text{
+    font-size:44px;
+    color:#1976d2;
+    font-weight:bold;
+}
+
+.avatar-camera{
+    position:absolute;
+    right:2px;
+    bottom:3px;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    border:3px solid white;
+    background:#1976d2;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.profile-info{
+    padding-top:67px;
+    padding-left:5px;
+}
+
+.profile-info h1{
+    font-size:23px;
+    margin-bottom:4px;
+}
+
+.profile-info .ymid{
+    color:#777;
+    font-size:14px;
+}
+
+.bio{
+    margin-top:9px;
+    color:#555;
+    line-height:1.4;
+}
+
+/* MENU */
+.menu{
+    position:absolute;
+    right:10px;
+    top:10px;
+    z-index:10;
+}
 
 .menu-button{
- width:100%;border:0;padding:14px;border-radius:10px;
- margin-top:10px;font-size:14px;font-weight:bold;
- background:#1976d2;color:white
-}
-.menu-button.secondary{background:#e8f1fc;color:#0d47a1}
-.menu-button.warning{background:#f59e0b}
-
-.form-group{margin-bottom:13px}
-.form-group label{
- display:block;font-size:12px;color:#555;
- margin-bottom:5px;font-weight:bold
-}
-.form-group input,
-.form-group select,
-.form-group textarea{
- width:100%;padding:12px;border:1px solid #ccd4dd;
- border-radius:9px;outline:none;background:white;font-size:14px
-}
-.form-group textarea{resize:none;min-height:90px}
-.primary{
- width:100%;border:0;padding:13px;background:#1976d2;
- color:white;border-radius:9px;font-size:14px;font-weight:bold;margin-top:5px
-}
-.back{
- width:100%;border:0;padding:12px;background:#eceff1;
- color:#37474f;border-radius:9px;font-size:14px;font-weight:bold;margin-top:9px
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:0;
+    background:rgba(255,255,255,.92);
+    font-size:25px;
+    cursor:pointer;
+    box-shadow:0 2px 6px rgba(0,0,0,.2);
 }
 
-.security-box{
- background:#eef6ff;border-left:4px solid #1976d2;
- padding:12px;border-radius:8px;margin-bottom:16px;
- font-size:12px;color:#455a64;line-height:1.5
-}
-.warning-box{
- background:#fff8e1;border-left:4px solid #ffb300;
- padding:12px;border-radius:8px;margin-bottom:16px;
- font-size:12px;color:#5d4037;line-height:1.5
-}
-
-.hidden{display:none!important}
-
-.method{
- border:1px solid #d7dee7;background:white;border-radius:12px;
- padding:14px;margin-bottom:10px
-}
-.method strong{display:block;color:#0d47a1;margin-bottom:4px}
-.method small{color:#777;line-height:1.4}
-.method button{
- width:100%;margin-top:9px;border:0;padding:10px;
- border-radius:8px;background:#1976d2;color:white;font-weight:bold
+.menu-box{
+    display:none;
+    position:absolute;
+    right:0;
+    top:48px;
+    width:220px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 4px 16px rgba(0,0,0,.22);
+    overflow:hidden;
 }
 
-.otp-demo{
- margin-top:10px;background:#e8f5e9;border-left:4px solid #43a047;
- padding:11px;border-radius:7px;color:#1b5e20;font-size:12px;line-height:1.5
+.menu-box button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-bottom:1px solid #eee;
+    background:white;
+    text-align:left;
+    cursor:pointer;
+    font-size:15px;
 }
 
-/* HOME */
-.home-top{
- background:linear-gradient(135deg,#0d47a1,#1976d2);
- color:white;
- margin:-18px -18px 15px;
- padding:22px 18px;
- border-radius:0 0 20px 20px;
+.menu-box button:hover{
+    background:#f2f7fc;
 }
 
-.home-profile{
- display:flex;
- align-items:center;
- gap:12px;
-}
-.home-avatar{
- width:58px;height:58px;border-radius:50%;
- background:white;color:#1976d2;
- display:flex;align-items:center;justify-content:center;
- font-size:22px;font-weight:bold;
- border:3px solid rgba(255,255,255,.7);
-}
-.home-profile h2{color:white;font-size:20px}
-.home-profile p{font-size:12px;opacity:.85;margin-top:3px}
-
-.home-search{
- margin-top:17px;
- background:white;
- color:#777;
- border-radius:20px;
- padding:11px 15px;
- font-size:13px;
+/* INFO */
+.info-card{
+    margin-top:5px;
+    background:#f7f9fc;
+    border-radius:12px;
+    padding:14px;
 }
 
-.quick-grid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:8px;
- margin-bottom:15px;
-}
-.quick-item{
- background:white;
- border:1px solid #e1e7ee;
- border-radius:12px;
- padding:11px 5px;
- text-align:center;
- font-size:11px;
- color:#455a64;
-}
-.quick-item b{
- display:block;
- font-size:20px;
- margin-bottom:5px;
+.info-row{
+    padding:8px 0;
+    border-bottom:1px solid #e5e9ee;
+    font-size:14px;
 }
 
-.create-post{
- background:white;
- border-radius:15px;
- padding:14px;
- margin-bottom:15px;
- box-shadow:0 3px 12px rgba(0,0,0,.07)
+.info-row:last-child{
+    border-bottom:0;
 }
-.create-head{
- display:flex;
- align-items:center;
- gap:9px;
- margin-bottom:10px;
+
+.info-label{
+    color:#777;
+    margin-bottom:3px;
 }
-.mini-avatar{
- width:40px;height:40px;border-radius:50%;
- background:#1976d2;color:white;
- display:flex;align-items:center;justify-content:center;
- font-weight:bold;
+
+.info-value{
+    font-weight:bold;
 }
+
+/* POST BOX */
+.post-box{
+    margin-top:15px;
+    border:1px solid #e0e5eb;
+    border-radius:12px;
+    padding:13px;
+    background:white;
+}
+
+.post-box h3{
+    font-size:16px;
+    margin-bottom:10px;
+}
+
 .post-input{
- width:100%;
- border:1px solid #d8e0e8;
- border-radius:10px;
- padding:12px;
- resize:none;
- min-height:75px;
- outline:none;
-}
-.post-actions{
- display:flex;
- gap:7px;
- margin-top:9px;
-}
-.post-actions button{
- flex:1;
- border:0;
- padding:10px 5px;
- border-radius:9px;
- background:#eef5fc;
- color:#0d47a1;
- font-size:12px;
- font-weight:bold;
-}
-.post-actions button.post-btn{
- background:#1976d2;color:white
+    width:100%;
+    min-height:75px;
+    resize:none;
+    border:1px solid #ddd;
+    border-radius:9px;
+    padding:10px;
+    font-size:15px;
+    outline:none;
 }
 
-.post-card{
- background:white;
- border-radius:15px;
- margin-bottom:15px;
- padding:14px;
- box-shadow:0 3px 12px rgba(0,0,0,.07)
+.post-input:focus{
+    border-color:#1976d2;
 }
-.post-head{
- display:flex;
- align-items:center;
- justify-content:space-between;
+
+.post-tools{
+    display:flex;
+    gap:8px;
+    margin-top:10px;
+    flex-wrap:wrap;
 }
+
+.post-tools button{
+    border:1px solid #d9e0e7;
+    background:#f6f8fa;
+    border-radius:8px;
+    padding:9px 12px;
+    cursor:pointer;
+}
+
+.post-tools button:hover{
+    background:#eaf3fc;
+}
+
+.publish{
+    width:100%;
+    margin-top:10px;
+    padding:11px;
+    border:0;
+    border-radius:8px;
+    background:#1976d2;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.selected-file{
+    margin-top:8px;
+    font-size:13px;
+    color:#1976d2;
+}
+
+/* POSTS */
+.section-title{
+    margin-top:20px;
+    margin-bottom:10px;
+    font-size:18px;
+}
+
+.post{
+    border:1px solid #e1e5e9;
+    border-radius:12px;
+    margin-bottom:14px;
+    overflow:hidden;
+    background:white;
+}
+
+.post-header{
+    display:flex;
+    align-items:center;
+    padding:11px;
+}
+
+.post-avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#1976d2;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    overflow:hidden;
+    margin-right:10px;
+}
+
+.post-avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
 .post-user{
- display:flex;
- align-items:center;
- gap:9px;
+    flex:1;
 }
-.post-user strong{font-size:14px}
-.post-user small{display:block;color:#888;font-size:10px;margin-top:2px}
+
+.post-user strong{
+    display:block;
+    font-size:14px;
+}
+
+.post-user small{
+    color:#777;
+    font-size:11px;
+}
+
 .post-menu{
- border:0;background:transparent;font-size:20px;color:#777
+    border:0;
+    background:transparent;
+    font-size:22px;
+    cursor:pointer;
 }
-.post-text{
- font-size:14px;
- line-height:1.5;
- margin:12px 0;
- white-space:pre-wrap;
- word-break:break-word;
+
+.post-content{
+    padding:0 12px 12px;
+    line-height:1.45;
+    white-space:pre-wrap;
 }
+
 .post-media{
- width:100%;
- max-height:380px;
- object-fit:cover;
- border-radius:11px;
- display:block;
- margin-top:8px;
+    width:100%;
+    max-height:430px;
+    object-fit:cover;
+    display:block;
 }
-.post-stats{
- display:flex;
- justify-content:space-between;
- color:#777;
- font-size:11px;
- padding:8px 2px;
- border-bottom:1px solid #eee;
-}
-.post-buttons{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:5px;
- margin-top:7px;
-}
-.post-buttons button{
- border:0;background:#f1f4f7;padding:9px;
- border-radius:8px;font-size:12px;color:#455a64
-}
-.post-buttons button.liked{color:#1976d2;font-weight:bold}
 
-.comment-box{
- display:flex;
- gap:6px;
- margin-top:10px;
+.post-actions{
+    display:flex;
+    border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
 }
-.comment-box input{
- flex:1;
- border:1px solid #d5dde5;
- border-radius:18px;
- padding:9px 12px;
- outline:none;
+
+.post-actions button{
+    flex:1;
+    padding:10px 4px;
+    border:0;
+    background:white;
+    cursor:pointer;
+    font-size:13px;
 }
-.comment-box button{
- border:0;border-radius:18px;
- background:#1976d2;color:white;padding:0 13px
+
+.post-actions button:hover{
+    background:#f2f6fa;
 }
+
+.like-active{
+    font-weight:bold;
+}
+
+.comments{
+    padding:10px 12px;
+}
+
 .comment{
- margin-top:8px;
- background:#f1f4f7;
- border-radius:10px;
- padding:8px 10px;
- font-size:12px;
- position:relative;
+    background:#f2f4f7;
+    border-radius:9px;
+    padding:8px 10px;
+    margin-bottom:7px;
+    font-size:13px;
 }
-.comment strong{color:#0d47a1}
-.comment small{color:#777}
+
+.comment-top{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+}
+
 .comment-delete{
- float:right;border:0;background:none;color:#e53935;font-size:11px
-}
-.comment-hidden{opacity:.55;font-style:italic}
-
-.notice{
- background:#fff8e1;
- border-left:4px solid #ffb300;
- border-radius:9px;
- padding:11px;
- font-size:12px;
- color:#5d4037;
- margin-bottom:15px;
+    border:0;
+    background:transparent;
+    cursor:pointer;
+    color:#d32f2f;
 }
 
+.comment-hide{
+    border:0;
+    background:transparent;
+    cursor:pointer;
+    color:#777;
+}
+
+.comment-input{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:9px;
+    margin-top:5px;
+}
+
+.comment-send{
+    margin-top:6px;
+    border:0;
+    background:#1976d2;
+    color:white;
+    padding:8px 13px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:100;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+
+.modal-content{
+    width:100%;
+    max-width:450px;
+    max-height:90vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:14px;
+    padding:18px;
+}
+
+.modal-content h2{
+    margin-bottom:15px;
+    color:#1976d2;
+}
+
+.form-group{
+    margin-bottom:11px;
+}
+
+.form-group label{
+    display:block;
+    font-size:13px;
+    margin-bottom:5px;
+    color:#555;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    padding:10px;
+    border:1px solid #d5dce3;
+    border-radius:8px;
+    outline:none;
+}
+
+.form-group textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+.modal-buttons{
+    display:flex;
+    gap:8px;
+    margin-top:15px;
+}
+
+.modal-buttons button{
+    flex:1;
+    padding:11px;
+    border-radius:8px;
+    border:0;
+    cursor:pointer;
+}
+
+.save{
+    background:#1976d2;
+    color:white;
+}
+
+.cancel{
+    background:#e9edf1;
+}
+
+/* BOTTOM NAV */
 .bottom-nav{
- position:sticky;
- bottom:0;
- z-index:30;
- background:white;
- border-top:1px solid #ddd;
- display:grid;
- grid-template-columns:repeat(5,1fr);
- box-shadow:0 -3px 12px rgba(0,0,0,.08);
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:480px;
+    height:65px;
+    background:white;
+    border-top:1px solid #ddd;
+    display:flex;
+    z-index:50;
 }
+
 .bottom-nav button{
- border:0;background:white;
- padding:10px 3px 9px;
- color:#78909c;font-size:10px;
+    flex:1;
+    border:0;
+    background:white;
+    cursor:pointer;
+    font-size:11px;
+    color:#555;
 }
-.bottom-nav button.active{color:#1976d2;font-weight:bold}
-.bottom-nav button span{display:block;font-size:18px;margin-bottom:3px}
 
-.placeholder{
- text-align:center;
- padding:35px 15px;
- color:#78909c;
+.bottom-nav button span{
+    display:block;
+    font-size:22px;
+    margin-bottom:2px;
 }
-.placeholder-icon{font-size:42px;margin-bottom:10px}
 
-.footer{text-align:center;padding:15px;color:#78909c;font-size:11px}
+.bottom-nav .active{
+    color:#1976d2;
+    font-weight:bold;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:82px;
+    transform:translateX(-50%);
+    background:#222;
+    color:white;
+    padding:10px 16px;
+    border-radius:8px;
+    display:none;
+    z-index:200;
+    font-size:14px;
+}
 </style>
 </head>
 
@@ -360,2138 +582,1763 @@ button{cursor:pointer}
 
 <div class="app">
 
-<div class="header">
- <div class="logo">Y-M <span>Chat</span></div>
- <div class="subtitle">Connect • Chat • Worldwide</div>
-</div>
-
-<div class="language-box" id="languageBox">
- <label id="languageLabel">Language</label>
- <select id="languageSelect" onchange="changeLanguage()">
-  <option value="en">English</option>
-  <option value="ms">Bahasa Malaysia</option>
-  <option value="id">Bahasa Indonesia</option>
-  <option value="tl">Filipino</option>
-  <option value="th">Thai</option>
-  <option value="vi">Vietnamese</option>
-  <option value="zh">Chinese</option>
-  <option value="ja">Japanese</option>
-  <option value="ko">Korean</option>
-  <option value="hi">Hindi</option>
-  <option value="ar">Arabic</option>
-  <option value="fr">French</option>
-  <option value="es">Spanish</option>
-  <option value="pt">Portuguese</option>
-  <option value="de">German</option>
-  <option value="it">Italian</option>
-  <option value="ru">Russian</option>
-  <option value="tr">Turkish</option>
- </select>
-</div>
-
-<!-- FRONT -->
-
-<section id="frontPage" class="page active">
-
- <div class="front-intro">
-  <div class="front-icon">YM</div>
-  <h1 id="frontTitle">Welcome to Y-M Chat</h1>
-  <p id="frontDescription">Your worldwide chat community</p>
- </div>
-
- <button class="menu-button" onclick="showPage('loginPage')">LOGIN</button>
- <button class="menu-button" onclick="showPage('registerPage')">REGISTER Y-M ID</button>
- <button class="menu-button secondary" onclick="showPage('changePasswordPage')">CHANGE PASSWORD</button>
- <button class="menu-button secondary" onclick="showPage('securityPage')">SECURITY</button>
- <button class="menu-button warning" onclick="showPage('recoveryPage')">FORGOT PASSWORD / RECOVERY</button>
-
- <div class="footer">Y-M Chat Security Core V1.0</div>
-</section>
-
-
-<!-- LOGIN -->
-
-<section id="loginPage" class="page">
-<div class="card">
-<h2>Login</h2>
-<p class="description">Sign in to your Y-M Chat account.</p>
-
-<div class="form-group">
-<label>Y-M ID</label>
-<input id="loginId" type="text" autocomplete="username" placeholder="Enter Y-M ID">
-</div>
-
-<div class="form-group">
-<label>Password</label>
-<input id="loginPassword" type="password" autocomplete="current-password" placeholder="Enter password">
-</div>
-
-<button class="primary" onclick="loginUser()">LOGIN</button>
-<button class="back" onclick="showPage('recoveryPage')">Forgot Password?</button>
-<button class="back" onclick="showPage('frontPage')">BACK</button>
-</div>
-</section>
-
-
-<!-- REGISTER -->
-
-<section id="registerPage" class="page">
-<div class="card">
-
-<h2>Register Y-M ID</h2>
-<p class="description">Create your Y-M Chat account.</p>
-
-<div class="form-group">
-<label>Y-M ID</label>
-<input id="registerId" type="text" placeholder="Choose your Y-M ID">
-</div>
-
-<div class="form-group">
-<label>Password</label>
-<input id="registerPassword" type="password" placeholder="Create password">
-</div>
-
-<div class="form-group">
-<label>Confirm Password</label>
-<input id="registerConfirmPassword" type="password" placeholder="Confirm password">
-</div>
-
-<div class="form-group">
-<label>Country</label>
-<select id="registerCountry"></select>
-</div>
-
-<div class="form-group">
-<label>Phone Number</label>
-<input id="registerPhone" type="tel" placeholder="Phone number">
-</div>
-
-<div class="form-group">
-<label>Email Address</label>
-<input id="registerEmail" type="email" placeholder="Email address">
-</div>
-
-<div class="form-group">
-<label>Confirm Email</label>
-<input id="registerConfirmEmail" type="email" placeholder="Confirm email">
-</div>
-
-<div class="security-box">
-<strong>Security Questions</strong><br>
-Choose two questions and remember your answers.
-</div>
-
-<div class="form-group">
-<label>Security Question 1</label>
-<select id="registerQuestion1">
-<option value="">Select question</option>
-</select>
-</div>
-
-<div class="form-group">
-<label>Answer 1</label>
-<input id="registerAnswer1" type="text" placeholder="Your answer">
-</div>
-
-<div class="form-group">
-<label>Security Question 2</label>
-<select id="registerQuestion2">
-<option value="">Select question</option>
-</select>
-</div>
-
-<div class="form-group">
-<label>Answer 2</label>
-<input id="registerAnswer2" type="text" placeholder="Your answer">
-</div>
-
-<div class="warning-box">
-SMS, WhatsApp and Email OTP are demo functions in this version.
-Real OTP will require a server later.
-</div>
-
-<button class="primary" onclick="registerUser()">CREATE Y-M ID</button>
-<button class="back" onclick="showPage('frontPage')">BACK</button>
-
-</div>
-</section>
-
-
-<!-- CHANGE PASSWORD -->
-
-<section id="changePasswordPage" class="page">
-<div class="card">
-
-<h2>Change Password</h2>
-<p class="description">Change your existing password.</p>
-
-<div class="form-group">
-<label>Y-M ID</label>
-<input id="changeId" type="text" placeholder="Enter Y-M ID">
-</div>
-
-<div class="form-group">
-<label>Current Password</label>
-<input id="oldPassword" type="password" placeholder="Current password">
-</div>
-
-<div class="form-group">
-<label>New Password</label>
-<input id="newPassword" type="password" placeholder="New password">
-</div>
-
-<div class="form-group">
-<label>Confirm New Password</label>
-<input id="confirmNewPassword" type="password" placeholder="Confirm new password">
-</div>
-
-<button class="primary" onclick="changePassword()">CHANGE PASSWORD</button>
-<button class="back" onclick="showPage('frontPage')">BACK</button>
-
-</div>
-</section>
-
-
-<!-- SECURITY -->
-
-<section id="securityPage" class="page">
-<div class="card">
-
-<h2>Account Security</h2>
-<p class="description">Update information used to recover your account.</p>
-
-<div class="form-group">
-<label>Y-M ID</label>
-<input id="securityId" type="text" placeholder="Enter Y-M ID">
-</div>
-
-<div class="form-group">
-<label>Country</label>
-<select id="securityCountry"></select>
-</div>
-
-<div class="form-group">
-<label>Phone Number</label>
-<input id="securityPhone" type="tel" placeholder="Phone number">
-</div>
-
-<div class="form-group">
-<label>Email Address</label>
-<input id="securityEmail" type="email" placeholder="Email address">
-</div>
-
-<div class="form-group">
-<label>Confirm Email</label>
-<input id="securityConfirmEmail" type="email" placeholder="Confirm email">
-</div>
-
-<div class="form-group">
-<label>Security Question 1</label>
-<select id="securityQuestion1"></select>
-</div>
-
-<div class="form-group">
-<label>Answer 1</label>
-<input id="securityAnswer1" type="text" placeholder="Answer 1">
-</div>
-
-<div class="form-group">
-<label>Security Question 2</label>
-<select id="securityQuestion2"></select>
-</div>
-
-<div class="form-group">
-<label>Answer 2</label>
-<input id="securityAnswer2" type="text" placeholder="Answer 2">
-</div>
-
-<button class="primary" onclick="saveSecurity()">SAVE SECURITY</button>
-<button class="back" onclick="showPage('frontPage')">BACK</button>
-
-</div>
-</section>
-
-
-<!-- RECOVERY -->
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <h2>Y-M Chat</h2>
+        <button onclick="toggleMenu()">⋮</button>
+    </div>
+
+    <!-- COVER -->
+    <div class="cover">
+        <img id="coverImage" alt="Cover Photo">
+
+        <button class="cover-camera" onclick="document.getElementById('coverInput').click()">
+            📷
+        </button>
+
+        <input
+            id="coverInput"
+            type="file"
+            accept="image/*"
+            style="display:none"
+            onchange="uploadCover(this)"
+        >
+    </div>
+
+    <!-- PROFILE -->
+    <div class="profile-area">
+
+        <div class="profile-head">
+
+            <!-- 3 DOT MENU -->
+            <div class="menu">
+                <button class="menu-button" onclick="toggleMenuBox()">⋮</button>
+
+                <div class="menu-box" id="menuBox">
+                    <button onclick="openEditProfile()">
+                        ✏️ Edit Profile
+                    </button>
+
+                    <button onclick="openPasswordModal()">
+                        🔐 Change Password
+                    </button>
+
+                    <button onclick="openEmailModal()">
+                        📧 Change Email
+                    </button>
+
+                    <button onclick="logout()">
+                        🚪 Log Out
+                    </button>
+                </div>
+            </div>
+
+            <!-- AVATAR -->
+            <div class="avatar-box">
+
+                <div class="avatar">
+                    <img id="profileImage" alt="Profile Photo">
+                    <span id="avatarText" class="avatar-text">N</span>
+                </div>
+
+                <button
+                    class="avatar-camera"
+                    onclick="document.getElementById('profileInput').click()"
+                >
+                    📷
+                </button>
+
+                <input
+                    id="profileInput"
+                    type="file"
+                    accept="image/*"
+                    style="display:none"
+                    onchange="uploadProfile(this)"
+                >
+            </div>
+
+            <!-- PROFILE INFO -->
+            <div class="profile-info">
+                <h1 id="profileName">Nizam@</h1>
+                <div class="ymid" id="profileYmid">@nizam</div>
+                <div class="bio" id="profileBio">
+                    Welcome to my Y-M Chat profile.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- INFO CARD -->
+        <div class="info-card">
+
+            <div class="info-row">
+                <div class="info-label">🎂 Birthday</div>
+                <div class="info-value" id="infoBirthday">Not set</div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">📍 Birthplace</div>
+                <div class="info-value" id="infoBirthplace">Not set</div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">🎓 School</div>
+                <div class="info-value" id="infoSchool">Not set</div>
+            </div>
 
-<section id="recoveryPage" class="page">
-<div class="card">
+            <div class="info-row">
+                <div class="info-label">🌏 Country</div>
+                <div class="info-value" id="infoCountry">Malaysia</div>
+            </div>
 
-<h2>Forgot Password / Recovery</h2>
-<p class="description">Choose one of the available recovery methods.</p>
+        </div>
 
-<div class="form-group">
-<label>Y-M ID</label>
-<input id="recoveryId" type="text" placeholder="Enter Y-M ID">
-</div>
-
-<button class="primary" onclick="findRecoveryAccount()">FIND ACCOUNT</button>
-
-<div id="recoveryArea" class="hidden">
-
-<div class="security-box">
-Account found. Choose one recovery method below.
-</div>
-
-<div class="method">
-<strong>1. Security Questions</strong>
-<small>Answer both registered security questions correctly.</small>
-<button onclick="selectRecoveryMethod('questions')">USE SECURITY QUESTIONS</button>
-</div>
-
-<div class="method">
-<strong>2. Phone Number</strong>
-<small>Receive an OTP by SMS or WhatsApp.</small>
-<button onclick="selectRecoveryMethod('phone')">USE PHONE NUMBER</button>
-</div>
-
-<div class="method">
-<strong>3. Email Address</strong>
-<small>Receive an OTP through your registered email.</small>
-<button onclick="selectRecoveryMethod('email')">USE EMAIL ADDRESS</button>
-</div>
-
-</div>
-
-<div id="questionRecoveryArea" class="hidden">
-<hr style="margin:20px 0;border:0;border-top:1px solid #ddd">
-
-<h3 style="margin-bottom:12px;color:#0d47a1">Security Verification</h3>
-
-<div class="form-group">
-<label id="recoveryQuestionText1">Question 1</label>
-<input id="recoveryAnswer1" type="text" placeholder="Answer 1">
-</div>
-
-<div class="form-group">
-<label id="recoveryQuestionText2">Question 2</label>
-<input id="recoveryAnswer2" type="text" placeholder="Answer 2">
-</div>
-
-<button class="primary" onclick="verifyQuestions()">VERIFY ANSWERS</button>
-</div>
-
-<div id="phoneRecoveryArea" class="hidden">
-<hr style="margin:20px 0;border:0;border-top:1px solid #ddd">
-
-<h3 style="margin-bottom:12px;color:#0d47a1">Phone Recovery</h3>
-
-<div class="form-group">
-<label>Phone Number</label>
-<input id="recoveryPhone" type="tel" placeholder="Registered phone number">
-</div>
-
-<div class="form-group">
-<label>OTP Method</label>
-<select id="phoneMethod">
-<option value="sms">SMS</option>
-<option value="whatsapp">WhatsApp</option>
-</select>
-</div>
-
-<button class="primary" onclick="requestPhoneOtp()">SEND OTP</button>
-<div id="phoneOtpStatus"></div>
-
-<div class="form-group" style="margin-top:12px">
-<label>Enter OTP</label>
-<input id="phoneOtp" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit OTP">
-</div>
-
-<button class="primary" onclick="verifyPhoneOtp()">VERIFY OTP</button>
-</div>
-
-<div id="emailRecoveryArea" class="hidden">
-<hr style="margin:20px 0;border:0;border-top:1px solid #ddd">
-
-<h3 style="margin-bottom:12px;color:#0d47a1">Email Recovery</h3>
-
-<div class="form-group">
-<label>Email Address</label>
-<input id="recoveryEmail" type="email" placeholder="Registered email">
-</div>
-
-<button class="primary" onclick="requestEmailOtp()">SEND EMAIL OTP</button>
-<div id="emailOtpStatus"></div>
-
-<div class="form-group" style="margin-top:12px">
-<label>Enter OTP</label>
-<input id="emailOtp" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit OTP">
-</div>
-
-<button class="primary" onclick="verifyEmailOtp()">VERIFY OTP</button>
-</div>
-
-<div id="resetPasswordArea" class="hidden">
-<hr style="margin:20px 0;border:0;border-top:1px solid #ddd">
-
-<h3 style="margin-bottom:12px;color:#0d47a1">Create New Password</h3>
-
-<div class="security-box">
-Verification successful. You may now create a new password.
-</div>
-
-<div class="form-group">
-<label>New Password</label>
-<input id="resetPassword" type="password" placeholder="New password">
-</div>
-
-<div class="form-group">
-<label>Confirm New Password</label>
-<input id="resetPasswordConfirm" type="password" placeholder="Confirm new password">
-</div>
-
-<button class="primary" onclick="resetPassword()">RESET PASSWORD</button>
-</div>
-
-<button class="back" onclick="showPage('frontPage')">BACK</button>
-
-</div>
-</section>
-
-
-<!-- HOME -->
-
-<section id="homePage" class="page">
-
-<div class="home-top">
-
-<div class="home-profile">
-<div class="home-avatar" id="homeAvatar">YM</div>
-
-<div>
-<h2 id="homeUserName">Welcome</h2>
-<p>Y-M Chat Home</p>
-</div>
-</div>
-
-<div class="home-search">🔎 Search Y-M Chat...</div>
-
-</div>
-
-<div class="quick-grid">
-
-<button class="quick-item" onclick="homeAction('Chats')">
-<b>💬</b>Chats
-</button>
-
-<button class="quick-item" onclick="homeAction('Friends')">
-<b>👥</b>Friends
-</button>
-
-<button class="quick-item" onclick="homeAction('Rooms')">
-<b>🌎</b>Rooms
-</button>
+        <!-- POST BOX -->
+        <div class="post-box">
 
-<button class="quick-item" onclick="homeAction('Market')">
-<b>🛒</b>Market
-</button>
+            <h3>What's on your mind?</h3>
 
-</div>
-
-<div class="notice">
-🔔 <strong>Notifications</strong><br>
-Your Y-M Chat Home is ready.
-</div>
-
-<div class="create-post">
-
-<div class="create-head">
-<div class="mini-avatar" id="postAvatar">YM</div>
-<strong id="postUserName">Create Post</strong>
-</div>
+            <textarea
+                id="postText"
+                class="post-input"
+                placeholder="Write something..."
+            ></textarea>
 
-<textarea id="postText"
-class="post-input"
-placeholder="What's on your mind?"></textarea>
+            <div class="post-tools">
 
-<input id="postImage"
-type="file"
-accept="image/*"
-class="hidden">
+                <button onclick="document.getElementById('postImageInput').click()">
+                    📷 Photo
+                </button>
 
-<input id="postVideo"
-type="file"
-accept="video/*"
-class="hidden">
+                <button onclick="document.getElementById('postVideoInput').click()">
+                    🎥 Video
+                </button>
 
-<div class="post-actions">
+                <button onclick="clearPostMedia()">
+                    ✖ Clear
+                </button>
 
-<button onclick="document.getElementById('postImage').click()">
-📷 Photo
-</button>
+            </div>
 
-<button onclick="document.getElementById('postVideo').click()">
-🎬 Video
-</button>
-
-<button class="post-btn" onclick="createPost()">
-POST
-</button>
-
-</div>
-
-<div id="selectedMedia"
-style="font-size:11px;color:#777;margin-top:7px"></div>
-
-</div>
+            <input
+                id="postImageInput"
+                type="file"
+                accept="image/*"
+                style="display:none"
+                onchange="selectPostImage(this)"
+            >
 
-<div id="feed"></div>
-
-<div class="card">
-<div class="placeholder">
-<div class="placeholder-icon">🌎</div>
-<strong>Popular Rooms</strong>
-<p style="margin-top:7px;font-size:12px">
-Country and state rooms will be connected here.
-</p>
-</div>
-</div>
+            <input
+                id="postVideoInput"
+                type="file"
+                accept="video/*"
+                style="display:none"
+                onchange="selectPostVideo(this)"
+            >
 
-<div class="card">
-<div class="placeholder">
-<div class="placeholder-icon">🛒</div>
-<strong>Market</strong>
-<p style="margin-top:7px;font-size:12px">
-Buy and sell listings will be connected here.
-</p>
-</div>
-</div>
+            <div id="selectedFile" class="selected-file"></div>
 
-<button class="primary" onclick="logoutUser()">LOG OUT</button>
+            <button class="publish" onclick="createPost()">
+                POST
+            </button>
 
-</section>
+        </div>
 
+        <!-- POSTS -->
+        <h2 class="section-title">My Posts</h2>
 
-<!-- CHATS -->
+        <div id="postsContainer"></div>
 
-<section id="chatsPage" class="page">
-<div class="card">
-<div class="placeholder">
-<div class="placeholder-icon">💬</div>
-<h2>Chats</h2>
-<p style="font-size:13px;margin-top:8px">
-Private chat module will be connected here.
-</p>
-</div>
-</div>
-</section>
-
-
-<!-- FRIENDS -->
-
-<section id="friendsPage" class="page">
-<div class="card">
-<div class="placeholder">
-<div class="placeholder-icon">👥</div>
-<h2>Friends</h2>
-<p style="font-size:13px;margin-top:8px">
-Friends module will be connected here.
-</p>
+    </div>
 </div>
-</div>
-</section>
-
-
-<!-- ROOMS -->
-
-<section id="roomsPage" class="page">
-<div class="card">
-<div class="placeholder">
-<div class="placeholder-icon">🌎</div>
-<h2>Rooms</h2>
-<p style="font-size:13px;margin-top:8px">
-Malaysia, Sabah and worldwide rooms will be connected here.
-</p>
-</div>
-</div>
-</section>
-
-
-<!-- PROFILE -->
-
-<section id="profilePage" class="page">
-<div class="card">
-<div class="placeholder">
-<div class="placeholder-icon">👤</div>
-<h2>Profile</h2>
-<p style="font-size:13px;margin-top:8px">
-Profile, photo and cover module will be connected here.
-</p>
-</div>
-</div>
-</section>
-
 
 <!-- BOTTOM NAV -->
+<div class="bottom-nav">
 
-<nav id="bottomNav" class="bottom-nav hidden">
+    <button onclick="goHome()">
+        <span>🏠</span>
+        Home
+    </button>
 
-<button id="navHome" onclick="goHome()">
-<span>🏠</span>Home
-</button>
+    <button onclick="showComingSoon('Chats')">
+        <span>💬</span>
+        Chats
+    </button>
 
-<button id="navChats" onclick="showAppPage('chatsPage','navChats')">
-<span>💬</span>Chats
-</button>
+    <button onclick="showComingSoon('Friends')">
+        <span>👥</span>
+        Friends
+    </button>
 
-<button id="navFriends" onclick="showAppPage('friendsPage','navFriends')">
-<span>👥</span>Friends
-</button>
+    <button onclick="showComingSoon('Rooms')">
+        <span>🌎</span>
+        Rooms
+    </button>
 
-<button id="navRooms" onclick="showAppPage('roomsPage','navRooms')">
-<span>🌎</span>Rooms
-</button>
+    <button class="active">
+        <span>👤</span>
+        Profile
+    </button>
 
-<button id="navProfile" onclick="showAppPage('profilePage','navProfile')">
-<span>👤</span>Profile
-</button>
+</div>
 
-</nav>
+<!-- EDIT PROFILE MODAL -->
+<div class="modal" id="editModal">
 
+    <div class="modal-content">
+
+        <h2>✏️ Edit Profile</h2>
+
+        <div class="form-group">
+            <label>Name</label>
+            <input id="editName" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Birthday</label>
+            <input id="editBirthday" type="date">
+        </div>
+
+        <div class="form-group">
+            <label>Birthplace</label>
+            <input id="editBirthplace" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>School</label>
+            <input id="editSchool" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Country</label>
+            <input id="editCountry" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Bio</label>
+            <textarea id="editBio"></textarea>
+        </div>
+
+        <div class="modal-buttons">
+            <button class="cancel" onclick="closeModal('editModal')">
+                Cancel
+            </button>
+
+            <button class="save" onclick="saveProfile()">
+                Save
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- PASSWORD MODAL -->
+<div class="modal" id="passwordModal">
+
+    <div class="modal-content">
+
+        <h2>🔐 Change Password</h2>
+
+        <div class="form-group">
+            <label>Current Password</label>
+            <input id="currentPassword" type="password">
+        </div>
+
+        <div class="form-group">
+            <label>New Password</label>
+            <input id="newPassword" type="password">
+        </div>
+
+        <div class="form-group">
+            <label>Confirm New Password</label>
+            <input id="confirmPassword" type="password">
+        </div>
+
+        <div class="modal-buttons">
+
+            <button class="cancel" onclick="closeModal('passwordModal')">
+                Cancel
+            </button>
+
+            <button class="save" onclick="changePassword()">
+                Change
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- EMAIL MODAL -->
+<div class="modal" id="emailModal">
+
+    <div class="modal-content">
+
+        <h2>📧 Change Email</h2>
+
+        <div class="form-group">
+            <label>New Email</label>
+            <input id="newEmail" type="email">
+        </div>
+
+        <div class="form-group">
+            <label>Confirm New Email</label>
+            <input id="confirmEmail" type="email">
+        </div>
+
+        <div class="modal-buttons">
+
+            <button class="cancel" onclick="closeModal('emailModal')">
+                Cancel
+            </button>
+
+            <button class="save" onclick="changeEmail()">
+                Save Email
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
 
-/* =========================================================
-   Y-M CHAT SECURITY CORE + HOME V1.2
-   ========================================================= */
+/* =====================================================
+   Y-M CHAT PROFILE V1.0
+   ===================================================== */
+
+const ACCOUNT_KEY = "ym_accounts";
+const CURRENT_USER_KEY = "ym_current_user";
+const PROFILE_KEY = "ym_profiles";
+const POSTS_KEY = "ym_profile_posts";
+
+let currentUser = null;
+let profileData = {};
+let posts = [];
+
+let selectedPostImage = null;
+let selectedPostVideo = null;
 
 
-/* COUNTRY DATA */
-
-const countries=[
-{name:"Malaysia",code:"MY",phone:"+60"},
-{name:"Indonesia",code:"ID",phone:"+62"},
-{name:"Singapore",code:"SG",phone:"+65"},
-{name:"Brunei",code:"BN",phone:"+673"},
-{name:"Philippines",code:"PH",phone:"+63"},
-{name:"Thailand",code:"TH",phone:"+66"},
-{name:"Vietnam",code:"VN",phone:"+84"},
-{name:"China",code:"CN",phone:"+86"},
-{name:"Japan",code:"JP",phone:"+81"},
-{name:"South Korea",code:"KR",phone:"+82"},
-{name:"India",code:"IN",phone:"+91"},
-{name:"Bangladesh",code:"BD",phone:"+880"},
-{name:"Pakistan",code:"PK",phone:"+92"},
-{name:"Nepal",code:"NP",phone:"+977"},
-{name:"Sri Lanka",code:"LK",phone:"+94"},
-{name:"Myanmar",code:"MM",phone:"+95"},
-{name:"Cambodia",code:"KH",phone:"+855"},
-{name:"Laos",code:"LA",phone:"+856"},
-{name:"Mongolia",code:"MN",phone:"+976"},
-{name:"Australia",code:"AU",phone:"+61"},
-{name:"New Zealand",code:"NZ",phone:"+64"},
-{name:"United States",code:"US",phone:"+1"},
-{name:"Canada",code:"CA",phone:"+1"},
-{name:"United Kingdom",code:"GB",phone:"+44"},
-{name:"France",code:"FR",phone:"+33"},
-{name:"Germany",code:"DE",phone:"+49"},
-{name:"Italy",code:"IT",phone:"+39"},
-{name:"Spain",code:"ES",phone:"+34"},
-{name:"Portugal",code:"PT",phone:"+351"},
-{name:"Netherlands",code:"NL",phone:"+31"},
-{name:"Sweden",code:"SE",phone:"+46"},
-{name:"Norway",code:"NO",phone:"+47"},
-{name:"Denmark",code:"DK",phone:"+45"},
-{name:"Finland",code:"FI",phone:"+358"},
-{name:"Russia",code:"RU",phone:"+7"},
-{name:"Turkey",code:"TR",phone:"+90"},
-{name:"Saudi Arabia",code:"SA",phone:"+966"},
-{name:"United Arab Emirates",code:"AE",phone:"+971"},
-{name:"Egypt",code:"EG",phone:"+20"},
-{name:"South Africa",code:"ZA",phone:"+27"},
-{name:"Nigeria",code:"NG",phone:"+234"},
-{name:"Kenya",code:"KE",phone:"+254"},
-{name:"Brazil",code:"BR",phone:"+55"},
-{name:"Mexico",code:"MX",phone:"+52"},
-{name:"Argentina",code:"AR",phone:"+54"},
-{name:"Switzerland",code:"CH",phone:"+41"},
-{name:"Austria",code:"AT",phone:"+43"},
-{name:"Ireland",code:"IE",phone:"+353"}
-];
-
-
-/* SECURITY QUESTIONS */
-
-const securityQuestions={
-en:[
-"What is your mother's first name?",
-"What is your father's first name?",
-"What was the name of your first school?",
-"What is the name of your hometown?",
-"What was your childhood nickname?",
-"What is your favorite food?"
-],
-ms:[
-"Apakah nama pertama ibu anda?",
-"Apakah nama pertama bapa anda?",
-"Apakah nama sekolah pertama anda?",
-"Apakah nama tempat asal anda?",
-"Apakah nama panggilan anda semasa kecil?",
-"Apakah makanan kegemaran anda?"
-]
-};
-
-
-/* TRANSLATION */
-
-const translations={
-en:{
-language:"Language",
-frontTitle:"Welcome to Y-M Chat",
-frontDescription:"Your worldwide chat community"
-},
-ms:{
-language:"Bahasa",
-frontTitle:"Selamat Datang ke Y-M Chat",
-frontDescription:"Komuniti chat seluruh dunia"
-}
-};
-
-
-/* GLOBAL */
-
-let currentLanguage=localStorage.getItem("ym_language")||"en";
-let recoveryUser=null;
-let recoveryVerified=false;
-let phoneOtpRequested=false;
-let emailOtpRequested=false;
-let demoPhoneOtp=null;
-let demoEmailOtp=null;
-
-
-/* ACCOUNTS */
+/* =====================================================
+   HELPERS
+   ===================================================== */
 
 function getAccounts(){
-try{
-return JSON.parse(localStorage.getItem("ym_accounts")||"{}");
-}catch(e){
-return {};
-}
+    try{
+        return JSON.parse(localStorage.getItem(ACCOUNT_KEY)) || [];
+    }catch(e){
+        return [];
+    }
 }
 
 function saveAccounts(accounts){
-localStorage.setItem("ym_accounts",JSON.stringify(accounts));
+    localStorage.setItem(
+        ACCOUNT_KEY,
+        JSON.stringify(accounts)
+    );
 }
 
+function getProfiles(){
+    try{
+        return JSON.parse(localStorage.getItem(PROFILE_KEY)) || {};
+    }catch(e){
+        return {};
+    }
+}
 
-/* POSTS */
+function saveProfiles(data){
+    localStorage.setItem(
+        PROFILE_KEY,
+        JSON.stringify(data)
+    );
+}
 
 function getPosts(){
-try{
-return JSON.parse(localStorage.getItem("ym_posts")||"[]");
-}catch(e){
-return [];
-}
-}
-
-function savePosts(posts){
-localStorage.setItem("ym_posts",JSON.stringify(posts));
+    try{
+        return JSON.parse(localStorage.getItem(POSTS_KEY)) || [];
+    }catch(e){
+        return [];
+    }
 }
 
-
-/* PAGE SYSTEM */
-
-function showPage(pageId){
-
-document.querySelectorAll(".page").forEach(page=>{
-page.classList.remove("active");
-});
-
-const page=document.getElementById(pageId);
-
-if(page){
-page.classList.add("active");
+function savePosts(data){
+    localStorage.setItem(
+        POSTS_KEY,
+        JSON.stringify(data)
+    );
 }
 
-window.scrollTo(0,0);
+function escapeHTML(text){
+    if(text === null || text === undefined){
+        return "";
+    }
 
-if(pageId==="homePage"){
-document.getElementById("languageBox").style.display="none";
-document.getElementById("bottomNav").classList.remove("hidden");
-renderFeed();
-}else if(
-pageId==="chatsPage"||
-pageId==="friendsPage"||
-pageId==="roomsPage"||
-pageId==="profilePage"
-){
-document.getElementById("languageBox").style.display="none";
-document.getElementById("bottomNav").classList.remove("hidden");
-}else{
-document.getElementById("languageBox").style.display="block";
-document.getElementById("bottomNav").classList.add("hidden");
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 }
 
+function showToast(message){
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.style.display = "block";
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer = setTimeout(()=>{
+        toast.style.display = "none";
+    },2200);
 }
 
+function getInitial(name){
 
-/* APP NAV */
+    if(!name){
+        return "N";
+    }
 
-function goHome(){
-showPage("homePage");
-setActiveNav("navHome");
-}
-
-function showAppPage(pageId,navId){
-showPage(pageId);
-setActiveNav(navId);
-}
-
-function setActiveNav(navId){
-document.querySelectorAll(".bottom-nav button")
-.forEach(btn=>btn.classList.remove("active"));
-
-const button=document.getElementById(navId);
-
-if(button){
-button.classList.add("active");
-}
-}
-
-function homeAction(name){
-
-if(name==="Chats")showAppPage("chatsPage","navChats");
-if(name==="Friends")showAppPage("friendsPage","navFriends");
-if(name==="Rooms")showAppPage("roomsPage","navRooms");
-
-if(name==="Market"){
-alert("Market module will be connected next.");
-}
-
+    return name.trim().charAt(0).toUpperCase() || "N";
 }
 
 
-/* LANGUAGE */
+/* =====================================================
+   SESSION
+   ===================================================== */
 
-function changeLanguage(){
+function initialize(){
 
-currentLanguage=document.getElementById("languageSelect").value;
+    const savedUser =
+        localStorage.getItem(CURRENT_USER_KEY);
 
-localStorage.setItem("ym_language",currentLanguage);
+    if(!savedUser){
 
-applyLanguage();
-fillSecurityQuestions();
+        profileData = {
+            name:"Nizam@",
+            ymid:"@nizam",
+            birthday:"",
+            birthplace:"",
+            school:"",
+            country:"Malaysia",
+            bio:"Welcome to my Y-M Chat profile.",
+            profilePhoto:"",
+            coverPhoto:"",
+            email:""
+        };
 
-}
+        posts = [];
 
-function applyLanguage(){
+        renderProfile();
+        renderPosts();
 
-const t=translations[currentLanguage]||translations.en;
+        return;
+    }
 
-document.getElementById("languageLabel").textContent=t.language;
-document.getElementById("frontTitle").textContent=t.frontTitle;
-document.getElementById("frontDescription").textContent=t.frontDescription;
+    currentUser = savedUser;
 
-}
+    const profiles = getProfiles();
 
+    if(profiles[currentUser]){
 
-/* COUNTRIES */
+        profileData = profiles[currentUser];
 
-function fillCountries(){
+    }else{
 
-const selects=[
-document.getElementById("registerCountry"),
-document.getElementById("securityCountry")
-];
+        const accounts = getAccounts();
 
-selects.forEach(select=>{
+        const account = accounts.find(
+            a =>
+            a.ymid === currentUser ||
+            a.username === currentUser ||
+            a.name === currentUser
+        );
 
-if(!select)return;
+        profileData = {
+            name: account?.name || currentUser,
+            ymid: account?.ymid || currentUser,
+            birthday:"",
+            birthplace:"",
+            school:"",
+            country:account?.country || "Malaysia",
+            bio:"Welcome to my Y-M Chat profile.",
+            profilePhoto:"",
+            coverPhoto:"",
+            email:account?.email || ""
+        };
 
-select.innerHTML='<option value="">Select country</option>';
+        profiles[currentUser] = profileData;
+        saveProfiles(profiles);
+    }
 
-countries.forEach(country=>{
+    posts = getPosts();
 
-const option=document.createElement("option");
-
-option.value=country.code;
-option.textContent=country.name+" ("+country.phone+")";
-
-select.appendChild(option);
-
-});
-
-});
-
-}
-
-
-/* QUESTIONS */
-
-function fillSecurityQuestions(){
-
-const language=currentLanguage==="ms"?"ms":"en";
-
-const questions=securityQuestions[language];
-
-[
-"registerQuestion1",
-"registerQuestion2",
-"securityQuestion1",
-"securityQuestion2"
-].forEach(id=>{
-
-const select=document.getElementById(id);
-
-if(!select)return;
-
-select.innerHTML='<option value="">Select question</option>';
-
-questions.forEach((question,index)=>{
-
-const option=document.createElement("option");
-
-option.value=String(index);
-option.textContent=question;
-
-select.appendChild(option);
-
-});
-
-});
-
+    renderProfile();
+    renderPosts();
 }
 
 
-/* PASSWORD */
+/* =====================================================
+   PROFILE RENDER
+   ===================================================== */
 
-function validPassword(password){
-return password&&password.length>=6;
+function renderProfile(){
+
+    document.getElementById("profileName").textContent =
+        profileData.name || "Y-M User";
+
+    document.getElementById("profileYmid").textContent =
+        profileData.ymid || currentUser || "@user";
+
+    document.getElementById("profileBio").textContent =
+        profileData.bio || "Welcome to my Y-M Chat profile.";
+
+    document.getElementById("infoBirthday").textContent =
+        profileData.birthday || "Not set";
+
+    document.getElementById("infoBirthplace").textContent =
+        profileData.birthplace || "Not set";
+
+    document.getElementById("infoSchool").textContent =
+        profileData.school || "Not set";
+
+    document.getElementById("infoCountry").textContent =
+        profileData.country || "Not set";
+
+
+    /* PROFILE PHOTO */
+
+    const profileImage =
+        document.getElementById("profileImage");
+
+    const avatarText =
+        document.getElementById("avatarText");
+
+    if(profileData.profilePhoto){
+
+        profileImage.src =
+            profileData.profilePhoto;
+
+        profileImage.style.display = "block";
+        avatarText.style.display = "none";
+
+    }else{
+
+        profileImage.style.display = "none";
+        avatarText.style.display = "block";
+
+        avatarText.textContent =
+            getInitial(profileData.name);
+    }
+
+
+    /* COVER PHOTO */
+
+    const coverImage =
+        document.getElementById("coverImage");
+
+    if(profileData.coverPhoto){
+
+        coverImage.src =
+            profileData.coverPhoto;
+
+        coverImage.style.display = "block";
+
+    }else{
+
+        coverImage.style.display = "none";
+    }
 }
 
 
-/* REGISTER */
+/* =====================================================
+   PROFILE PHOTO
+   ===================================================== */
 
-function registerUser(){
+function uploadProfile(input){
 
-const id=document.getElementById("registerId").value.trim().toLowerCase();
-const password=document.getElementById("registerPassword").value;
-const confirmPassword=document.getElementById("registerConfirmPassword").value;
-const country=document.getElementById("registerCountry").value;
-const phone=document.getElementById("registerPhone").value.trim();
-const email=document.getElementById("registerEmail").value.trim().toLowerCase();
-const confirmEmail=document.getElementById("registerConfirmEmail").value.trim().toLowerCase();
-const q1=document.getElementById("registerQuestion1").value;
-const a1=document.getElementById("registerAnswer1").value.trim();
-const q2=document.getElementById("registerQuestion2").value;
-const a2=document.getElementById("registerAnswer2").value.trim();
+    const file = input.files[0];
 
-if(!id){
-alert("Please enter a Y-M ID.");
-return;
-}
+    if(!file){
+        return;
+    }
 
-if(id.length<4){
-alert("Y-M ID must contain at least 4 characters.");
-return;
-}
+    if(!file.type.startsWith("image/")){
 
-if(/\s/.test(id)){
-alert("Y-M ID cannot contain spaces.");
-return;
-}
+        showToast("Please select an image.");
 
-if(!validPassword(password)){
-alert("Password must contain at least 6 characters.");
-return;
-}
+        input.value = "";
+        return;
+    }
 
-if(password!==confirmPassword){
-alert("Passwords do not match.");
-return;
-}
+    const reader = new FileReader();
 
-if(!country){
-alert("Please select your country.");
-return;
-}
+    reader.onload = function(e){
 
-if(!phone){
-alert("Please enter your phone number.");
-return;
-}
+        profileData.profilePhoto =
+            e.target.result;
 
-if(!email){
-alert("Please enter your email address.");
-return;
-}
+        saveCurrentProfile();
 
-if(email!==confirmEmail){
-alert("Email addresses do not match.");
-return;
-}
+        renderProfile();
 
-if(!q1||!a1){
-alert("Please complete Security Question 1.");
-return;
-}
+        showToast("Profile photo updated.");
+    };
 
-if(!q2||!a2){
-alert("Please complete Security Question 2.");
-return;
-}
+    reader.readAsDataURL(file);
 
-if(q1===q2){
-alert("Security questions must be different.");
-return;
-}
-
-const accounts=getAccounts();
-
-if(accounts[id]){
-alert("This Y-M ID already exists.");
-return;
-}
-
-accounts[id]={
-id:id,
-password:password,
-country:country,
-phone:phone,
-email:email,
-language:currentLanguage,
-security:{
-question1:q1,
-answer1:a1.toLowerCase(),
-question2:q2,
-answer2:a2.toLowerCase()
-},
-createdAt:new Date().toISOString()
-};
-
-saveAccounts(accounts);
-
-alert(
-currentLanguage==="ms"
-?"Y-M ID berjaya didaftarkan."
-:"Y-M ID registered successfully."
-);
-
-document.getElementById("loginId").value=id;
-document.getElementById("loginPassword").value="";
-
-showPage("loginPage");
-
+    input.value = "";
 }
 
 
-/* LOGIN */
+/* =====================================================
+   COVER PHOTO
+   ===================================================== */
 
-function loginUser(){
+function uploadCover(input){
 
-const id=document.getElementById("loginId").value.trim().toLowerCase();
-const password=document.getElementById("loginPassword").value;
+    const file = input.files[0];
 
-if(!id||!password){
-alert("Please enter Y-M ID and password.");
-return;
-}
+    if(!file){
+        return;
+    }
 
-const accounts=getAccounts();
-const account=accounts[id];
+    if(!file.type.startsWith("image/")){
 
-if(!account){
-alert("Y-M ID not found.");
-return;
-}
+        showToast("Please select an image.");
 
-if(account.password!==password){
-alert("Incorrect password.");
-return;
-}
+        input.value = "";
+        return;
+    }
 
-localStorage.setItem("ym_current_user",id);
+    const reader = new FileReader();
 
-currentLanguage=account.language||localStorage.getItem("ym_language")||"en";
+    reader.onload = function(e){
 
-localStorage.setItem("ym_language",currentLanguage);
+        profileData.coverPhoto =
+            e.target.result;
 
-setHomeUser(account);
+        saveCurrentProfile();
 
-alert(
-currentLanguage==="ms"
-?"Log masuk berjaya."
-:"Login successful."
-);
+        renderProfile();
 
-showPage("homePage");
-setActiveNav("navHome");
-renderFeed();
+        showToast("Cover photo updated.");
+    };
 
+    reader.readAsDataURL(file);
+
+    input.value = "";
 }
 
 
-/* SET HOME USER */
+/* =====================================================
+   SAVE PROFILE
+   ===================================================== */
 
-function setHomeUser(account){
+function saveCurrentProfile(){
 
-const initials=account.id.substring(0,2).toUpperCase();
+    const profiles = getProfiles();
 
-document.getElementById("homeUserName").textContent=account.id;
-document.getElementById("homeAvatar").textContent=initials;
-document.getElementById("postAvatar").textContent=initials;
-document.getElementById("postUserName").textContent=account.id;
+    const key =
+        currentUser ||
+        profileData.ymid ||
+        "demo-user";
 
+    profiles[key] = profileData;
+
+    saveProfiles(profiles);
 }
 
 
-/* LOGOUT */
+/* =====================================================
+   EDIT PROFILE
+   ===================================================== */
 
-function logoutUser(){
+function openEditProfile(){
 
-localStorage.removeItem("ym_current_user");
+    closeMenuBox();
 
-document.getElementById("loginPassword").value="";
+    document.getElementById("editName").value =
+        profileData.name || "";
 
-showPage("frontPage");
+    document.getElementById("editBirthday").value =
+        profileData.birthday || "";
 
+    document.getElementById("editBirthplace").value =
+        profileData.birthplace || "";
+
+    document.getElementById("editSchool").value =
+        profileData.school || "";
+
+    document.getElementById("editCountry").value =
+        profileData.country || "";
+
+    document.getElementById("editBio").value =
+        profileData.bio || "";
+
+    document.getElementById("editModal").style.display =
+        "flex";
+}
+
+function saveProfile(){
+
+    const name =
+        document.getElementById("editName").value.trim();
+
+    if(!name){
+
+        showToast("Name cannot be empty.");
+        return;
+    }
+
+    profileData.name = name;
+
+    profileData.birthday =
+        document.getElementById("editBirthday").value;
+
+    profileData.birthplace =
+        document.getElementById("editBirthplace").value.trim();
+
+    profileData.school =
+        document.getElementById("editSchool").value.trim();
+
+    profileData.country =
+        document.getElementById("editCountry").value.trim();
+
+    profileData.bio =
+        document.getElementById("editBio").value.trim();
+
+    saveCurrentProfile();
+
+    renderProfile();
+    renderPosts();
+
+    closeModal("editModal");
+
+    showToast("Profile updated.");
 }
 
 
-/* CHANGE PASSWORD */
+/* =====================================================
+   PASSWORD
+   ===================================================== */
+
+function openPasswordModal(){
+
+    closeMenuBox();
+
+    document.getElementById("currentPassword").value = "";
+    document.getElementById("newPassword").value = "";
+    document.getElementById("confirmPassword").value = "";
+
+    document.getElementById("passwordModal").style.display =
+        "flex";
+}
 
 function changePassword(){
 
-const id=document.getElementById("changeId").value.trim().toLowerCase();
-const oldPassword=document.getElementById("oldPassword").value;
-const newPassword=document.getElementById("newPassword").value;
-const confirmPassword=document.getElementById("confirmNewPassword").value;
+    const current =
+        document.getElementById("currentPassword").value;
 
-if(!id||!oldPassword){
-alert("Please enter Y-M ID and current password.");
-return;
-}
+    const next =
+        document.getElementById("newPassword").value;
 
-const accounts=getAccounts();
+    const confirm =
+        document.getElementById("confirmPassword").value;
 
-if(!accounts[id]){
-alert("Y-M ID not found.");
-return;
-}
+    if(!current || !next || !confirm){
 
-if(accounts[id].password!==oldPassword){
-alert("Current password is incorrect.");
-return;
-}
+        showToast("Please complete all fields.");
+        return;
+    }
 
-if(!validPassword(newPassword)){
-alert("New password must contain at least 6 characters.");
-return;
-}
+    if(next !== confirm){
 
-if(newPassword!==confirmPassword){
-alert("New passwords do not match.");
-return;
-}
+        showToast("New passwords do not match.");
+        return;
+    }
 
-accounts[id].password=newPassword;
+    if(next.length < 6){
 
-saveAccounts(accounts);
+        showToast("Password must be at least 6 characters.");
+        return;
+    }
 
-alert(
-currentLanguage==="ms"
-?"Password berjaya ditukar."
-:"Password changed successfully."
-);
+    const accounts = getAccounts();
 
-document.getElementById("changeId").value="";
-document.getElementById("oldPassword").value="";
-document.getElementById("newPassword").value="";
-document.getElementById("confirmNewPassword").value="";
+    const index = accounts.findIndex(
+        a =>
+        a.ymid === currentUser ||
+        a.username === currentUser ||
+        a.name === currentUser
+    );
 
-showPage("frontPage");
+    if(index === -1){
 
-}
+        /*
+           Standalone demo:
+           If there is no account database,
+           simply accept the change locally.
+        */
 
+        profileData.demoPassword = next;
+        saveCurrentProfile();
 
-/* SAVE SECURITY */
+        closeModal("passwordModal");
 
-function saveSecurity(){
+        showToast("Password changed.");
+        return;
+    }
 
-const id=document.getElementById("securityId").value.trim().toLowerCase();
-const country=document.getElementById("securityCountry").value;
-const phone=document.getElementById("securityPhone").value.trim();
-const email=document.getElementById("securityEmail").value.trim().toLowerCase();
-const confirmEmail=document.getElementById("securityConfirmEmail").value.trim().toLowerCase();
-const q1=document.getElementById("securityQuestion1").value;
-const a1=document.getElementById("securityAnswer1").value.trim();
-const q2=document.getElementById("securityQuestion2").value;
-const a2=document.getElementById("securityAnswer2").value.trim();
+    const account = accounts[index];
 
-if(!id){
-alert("Please enter Y-M ID.");
-return;
-}
+    if(account.password !== current){
 
-const accounts=getAccounts();
+        showToast("Current password is incorrect.");
+        return;
+    }
 
-if(!accounts[id]){
-alert("Y-M ID not found.");
-return;
-}
+    account.password = next;
 
-if(!country||!phone){
-alert("Please complete country and phone number.");
-return;
-}
+    accounts[index] = account;
 
-if(!email){
-alert("Please enter email address.");
-return;
-}
+    saveAccounts(accounts);
 
-if(email!==confirmEmail){
-alert("Email addresses do not match.");
-return;
-}
+    closeModal("passwordModal");
 
-if(!q1||!a1||!q2||!a2){
-alert("Please complete both security questions.");
-return;
-}
-
-if(q1===q2){
-alert("Security questions must be different.");
-return;
-}
-
-accounts[id].country=country;
-accounts[id].phone=phone;
-accounts[id].email=email;
-
-accounts[id].security={
-question1:q1,
-answer1:a1.toLowerCase(),
-question2:q2,
-answer2:a2.toLowerCase()
-};
-
-saveAccounts(accounts);
-
-alert(
-currentLanguage==="ms"
-?"Maklumat Security berjaya disimpan."
-:"Security information saved successfully."
-);
-
-showPage("frontPage");
-
+    showToast("Password changed successfully.");
 }
 
 
-/* RECOVERY */
+/* =====================================================
+   EMAIL
+   ===================================================== */
 
-function findRecoveryAccount(){
+function openEmailModal(){
 
-const id=document.getElementById("recoveryId").value.trim().toLowerCase();
+    closeMenuBox();
 
-if(!id){
-alert("Please enter your Y-M ID.");
-return;
+    document.getElementById("newEmail").value =
+        profileData.email || "";
+
+    document.getElementById("confirmEmail").value =
+        profileData.email || "";
+
+    document.getElementById("emailModal").style.display =
+        "flex";
 }
 
-const accounts=getAccounts();
+function changeEmail(){
 
-if(!accounts[id]){
+    const email =
+        document.getElementById("newEmail").value.trim();
 
-alert("Y-M ID not found.");
+    const confirm =
+        document.getElementById("confirmEmail").value.trim();
 
-document.getElementById("recoveryArea").classList.add("hidden");
+    if(!email || !confirm){
 
-return;
-}
+        showToast("Please enter the email.");
+        return;
+    }
 
-recoveryUser=accounts[id];
-recoveryVerified=false;
-phoneOtpRequested=false;
-emailOtpRequested=false;
-demoPhoneOtp=null;
-demoEmailOtp=null;
+    if(email !== confirm){
 
-document.getElementById("recoveryArea").classList.remove("hidden");
-document.getElementById("questionRecoveryArea").classList.add("hidden");
-document.getElementById("phoneRecoveryArea").classList.add("hidden");
-document.getElementById("emailRecoveryArea").classList.add("hidden");
-document.getElementById("resetPasswordArea").classList.add("hidden");
+        showToast("Emails do not match.");
+        return;
+    }
 
-alert(
-currentLanguage==="ms"
-?"Akaun dijumpai. Sila pilih kaedah recovery."
-:"Account found. Please choose a recovery method."
-);
+    if(!email.includes("@")){
 
-}
+        showToast("Please enter a valid email.");
+        return;
+    }
 
+    profileData.email = email;
 
-function selectRecoveryMethod(method){
+    saveCurrentProfile();
 
-if(!recoveryUser){
-alert("Please find your account first.");
-return;
-}
+    const accounts = getAccounts();
 
-document.getElementById("questionRecoveryArea").classList.add("hidden");
-document.getElementById("phoneRecoveryArea").classList.add("hidden");
-document.getElementById("emailRecoveryArea").classList.add("hidden");
+    const index = accounts.findIndex(
+        a =>
+        a.ymid === currentUser ||
+        a.username === currentUser ||
+        a.name === currentUser
+    );
 
-if(method==="questions"){
+    if(index !== -1){
 
-document.getElementById("questionRecoveryArea").classList.remove("hidden");
+        accounts[index].email = email;
 
-document.getElementById("recoveryQuestionText1").textContent=
-getRecoveryQuestionText(recoveryUser.security.question1);
+        saveAccounts(accounts);
+    }
 
-document.getElementById("recoveryQuestionText2").textContent=
-getRecoveryQuestionText(recoveryUser.security.question2);
+    closeModal("emailModal");
 
-}
-
-if(method==="phone"){
-document.getElementById("phoneRecoveryArea").classList.remove("hidden");
-}
-
-if(method==="email"){
-document.getElementById("emailRecoveryArea").classList.remove("hidden");
-}
-
+    showToast("Email updated.");
 }
 
 
-function getRecoveryQuestionText(index){
+/* =====================================================
+   POST MEDIA
+   ===================================================== */
 
-const language=currentLanguage==="ms"?"ms":"en";
+function selectPostImage(input){
 
-return securityQuestions[language][index]||
-securityQuestions.en[index]||
-"Security Question";
+    const file = input.files[0];
 
+    if(!file){
+        return;
+    }
+
+    selectedPostImage = file;
+    selectedPostVideo = null;
+
+    document.getElementById("selectedFile").textContent =
+        "📷 Selected: " + file.name;
+
+    document.getElementById("postVideoInput").value = "";
+}
+
+function selectPostVideo(input){
+
+    const file = input.files[0];
+
+    if(!file){
+        return;
+    }
+
+    selectedPostVideo = file;
+    selectedPostImage = null;
+
+    document.getElementById("selectedFile").textContent =
+        "🎥 Selected: " + file.name;
+
+    document.getElementById("postImageInput").value = "";
+}
+
+function clearPostMedia(){
+
+    selectedPostImage = null;
+    selectedPostVideo = null;
+
+    document.getElementById("postImageInput").value = "";
+    document.getElementById("postVideoInput").value = "";
+
+    document.getElementById("selectedFile").textContent = "";
+
+    showToast("Media cleared.");
 }
 
 
-function verifyQuestions(){
-
-if(!recoveryUser){
-alert("Please find your account first.");
-return;
-}
-
-const answer1=document.getElementById("recoveryAnswer1").value.trim().toLowerCase();
-const answer2=document.getElementById("recoveryAnswer2").value.trim().toLowerCase();
-
-if(!answer1||!answer2){
-alert("Please answer both questions.");
-return;
-}
-
-const correct1=answer1===String(recoveryUser.security.answer1).trim().toLowerCase();
-const correct2=answer2===String(recoveryUser.security.answer2).trim().toLowerCase();
-
-if(correct1&&correct2){
-
-recoveryVerified=true;
-
-document.getElementById("resetPasswordArea").classList.remove("hidden");
-
-alert(
-currentLanguage==="ms"
-?"Kedua-dua jawapan betul. Sila buat password baru."
-:"Both answers are correct. You may create a new password."
-);
-
-}else{
-
-recoveryVerified=false;
-
-document.getElementById("resetPasswordArea").classList.add("hidden");
-
-alert(
-currentLanguage==="ms"
-?"Jawapan tidak betul. Kedua-dua soalan mesti betul."
-:"The answers are incorrect. Both questions must be correct."
-);
-
-}
-
-}
-
-
-/* OTP */
-
-function generateOtp(){
-
-return String(Math.floor(100000+Math.random()*900000));
-
-}
-
-
-function requestPhoneOtp(){
-
-if(!recoveryUser){
-alert("Please find your account first.");
-return;
-}
-
-const phone=document.getElementById("recoveryPhone").value.trim();
-const method=document.getElementById("phoneMethod").value;
-
-if(!phone){
-alert("Please enter your registered phone number.");
-return;
-}
-
-if(phone!==recoveryUser.phone){
-alert("Phone number does not match the account.");
-return;
-}
-
-demoPhoneOtp=generateOtp();
-phoneOtpRequested=true;
-
-const methodName=method==="whatsapp"?"WhatsApp":"SMS";
-
-document.getElementById("phoneOtpStatus").innerHTML=
-'<div class="otp-demo">'+
-'<strong>DEMO OTP</strong><br>'+
-'No real '+methodName+' message was sent.<br>'+
-'Demo OTP: <strong>'+demoPhoneOtp+'</strong>'+
-'</div>';
-
-}
-
-
-function verifyPhoneOtp(){
-
-const entered=document.getElementById("phoneOtp").value.trim();
-
-if(!phoneOtpRequested){
-alert("Please request an OTP first.");
-return;
-}
-
-if(entered!==demoPhoneOtp){
-
-recoveryVerified=false;
-document.getElementById("resetPasswordArea").classList.add("hidden");
-
-alert("Incorrect OTP.");
-return;
-}
-
-recoveryVerified=true;
-
-document.getElementById("resetPasswordArea").classList.remove("hidden");
-
-alert(
-currentLanguage==="ms"
-?"OTP betul. Sila buat password baru."
-:"OTP verified. You may create a new password."
-);
-
-}
-
-
-function requestEmailOtp(){
-
-if(!recoveryUser){
-alert("Please find your account first.");
-return;
-}
-
-const email=document.getElementById("recoveryEmail").value.trim().toLowerCase();
-
-if(!email){
-alert("Please enter your registered email.");
-return;
-}
-
-if(email!==String(recoveryUser.email).toLowerCase()){
-alert("Email does not match the account.");
-return;
-}
-
-demoEmailOtp=generateOtp();
-emailOtpRequested=true;
-
-document.getElementById("emailOtpStatus").innerHTML=
-'<div class="otp-demo">'+
-'<strong>DEMO EMAIL OTP</strong><br>'+
-'No real email was sent.<br>'+
-'Demo OTP: <strong>'+demoEmailOtp+'</strong>'+
-'</div>';
-
-}
-
-
-function verifyEmailOtp(){
-
-const entered=document.getElementById("emailOtp").value.trim();
-
-if(!emailOtpRequested){
-alert("Please request an email OTP first.");
-return;
-}
-
-if(entered!==demoEmailOtp){
-
-recoveryVerified=false;
-document.getElementById("resetPasswordArea").classList.add("hidden");
-
-alert("Incorrect OTP.");
-return;
-}
-
-recoveryVerified=true;
-
-document.getElementById("resetPasswordArea").classList.remove("hidden");
-
-alert(
-currentLanguage==="ms"
-?"OTP email betul. Sila buat password baru."
-:"Email OTP verified. You may create a new password."
-);
-
-}
-
-
-/* RESET PASSWORD */
-
-function resetPassword(){
-
-if(!recoveryUser){
-alert("Recovery account not found.");
-return;
-}
-
-if(!recoveryVerified){
-alert("Please complete verification first.");
-return;
-}
-
-const password=document.getElementById("resetPassword").value;
-const confirmPassword=document.getElementById("resetPasswordConfirm").value;
-
-if(!validPassword(password)){
-alert("Password must contain at least 6 characters.");
-return;
-}
-
-if(password!==confirmPassword){
-alert("Passwords do not match.");
-return;
-}
-
-const accounts=getAccounts();
-const id=recoveryUser.id;
-
-if(!accounts[id]){
-alert("Account no longer exists.");
-return;
-}
-
-accounts[id].password=password;
-
-saveAccounts(accounts);
-
-alert(
-currentLanguage==="ms"
-?"Password berjaya direset. Sila log masuk."
-:"Password reset successfully. Please login."
-);
-
-recoveryUser=null;
-recoveryVerified=false;
-phoneOtpRequested=false;
-emailOtpRequested=false;
-demoPhoneOtp=null;
-demoEmailOtp=null;
-
-document.getElementById("recoveryId").value="";
-document.getElementById("recoveryAnswer1").value="";
-document.getElementById("recoveryAnswer2").value="";
-document.getElementById("recoveryPhone").value="";
-document.getElementById("phoneOtp").value="";
-document.getElementById("recoveryEmail").value="";
-document.getElementById("emailOtp").value="";
-document.getElementById("resetPassword").value="";
-document.getElementById("resetPasswordConfirm").value="";
-
-document.getElementById("recoveryArea").classList.add("hidden");
-document.getElementById("questionRecoveryArea").classList.add("hidden");
-document.getElementById("phoneRecoveryArea").classList.add("hidden");
-document.getElementById("emailRecoveryArea").classList.add("hidden");
-document.getElementById("resetPasswordArea").classList.add("hidden");
-
-showPage("loginPage");
-
-}
-
-
-/* =========================================================
-   HOME V1.2
-   ========================================================= */
-
-
-/* CREATE POST */
+/* =====================================================
+   CREATE POST
+   ===================================================== */
 
 function createPost(){
 
-const currentUser=localStorage.getItem("ym_current_user");
+    const text =
+        document.getElementById("postText").value.trim();
 
-if(!currentUser){
-alert("Please login first.");
-return;
+    if(
+        !text &&
+        !selectedPostImage &&
+        !selectedPostVideo
+    ){
+
+        showToast("Write something or choose media.");
+        return;
+    }
+
+    const post = {
+
+        id:
+            Date.now() +
+            Math.random().toString(16).slice(2),
+
+        user:
+            currentUser ||
+            profileData.ymid ||
+            "demo-user",
+
+        name:
+            profileData.name ||
+            "Y-M User",
+
+        avatar:
+            profileData.profilePhoto || "",
+
+        text:text,
+
+        image:"",
+        video:"",
+
+        likes:[],
+        comments:[],
+
+        hidden:false,
+
+        createdAt:
+            new Date().toLocaleString()
+    };
+
+
+    if(selectedPostImage){
+
+        const reader =
+            new FileReader();
+
+        reader.onload = function(e){
+
+            post.image =
+                e.target.result;
+
+            posts.unshift(post);
+
+            savePosts(posts);
+
+            finishPost();
+        };
+
+        reader.readAsDataURL(selectedPostImage);
+
+        return;
+    }
+
+
+    if(selectedPostVideo){
+
+        const reader =
+            new FileReader();
+
+        reader.onload = function(e){
+
+            post.video =
+                e.target.result;
+
+            posts.unshift(post);
+
+            savePosts(posts);
+
+            finishPost();
+        };
+
+        reader.readAsDataURL(selectedPostVideo);
+
+        return;
+    }
+
+
+    posts.unshift(post);
+
+    savePosts(posts);
+
+    finishPost();
 }
 
-const text=document.getElementById("postText").value.trim();
-const imageInput=document.getElementById("postImage");
-const videoInput=document.getElementById("postVideo");
+function finishPost(){
 
-const imageFile=imageInput.files[0];
-const videoFile=videoInput.files[0];
+    document.getElementById("postText").value = "";
 
-if(!text&&!imageFile&&!videoFile){
-alert("Please write something or select a photo/video.");
-return;
-}
+    clearPostMedia();
 
-if(imageFile&&videoFile){
-alert("Please choose either Photo or Video, not both.");
-return;
-}
+    renderPosts();
 
-const posts=getPosts();
-
-const post={
-id:Date.now(),
-user:currentUser,
-text:text,
-media:null,
-mediaType:null,
-likes:[],
-comments:[],
-hidden:false,
-createdAt:new Date().toLocaleString()
-};
-
-const reader=new FileReader();
-
-reader.onload=function(e){
-
-if(imageFile){
-
-post.media=e.target.result;
-post.mediaType="image";
-
-}else if(videoFile){
-
-post.media=e.target.result;
-post.mediaType="video";
-
-}
-
-posts.unshift(post);
-savePosts(posts);
-
-document.getElementById("postText").value="";
-imageInput.value="";
-videoInput.value="";
-document.getElementById("selectedMedia").textContent="";
-
-renderFeed();
-
-};
-
-if(imageFile){
-reader.readAsDataURL(imageFile);
-}else if(videoFile){
-reader.readAsDataURL(videoFile);
-}else{
-
-posts.unshift(post);
-savePosts(posts);
-
-document.getElementById("postText").value="";
-
-renderFeed();
-
-}
-
-}
-
-
-/* RENDER FEED */
-
-function renderFeed(){
-
-const feed=document.getElementById("feed");
-
-if(!feed)return;
-
-const posts=getPosts();
-
-if(!posts.length){
-
-feed.innerHTML=
-'<div class="card">'+
-'<div class="placeholder">'+
-'<div class="placeholder-icon">📝</div>'+
-'<strong>No posts yet</strong>'+
-'<p style="font-size:12px;margin-top:6px">'+
-'Be the first to post on Y-M Chat.'+
-'</p>'+
-'</div>'+
-'</div>';
-
-return;
-
-}
-
-feed.innerHTML="";
-
-posts.forEach(post=>{
-
-if(post.hidden&&post.user!==localStorage.getItem("ym_current_user")){
-return;
-}
-
-const card=document.createElement("div");
-
-card.className="post-card";
-
-const currentUser=localStorage.getItem("ym_current_user");
-
-const liked=post.likes.includes(currentUser);
-
-let mediaHTML="";
-
-if(post.mediaType==="image"&&post.media){
-
-mediaHTML='<img class="post-media" src="'+post.media+'" alt="Post image">';
-
-}
-
-if(post.mediaType==="video"&&post.media){
-
-mediaHTML=
-'<video class="post-media" controls>'+
-'<source src="'+post.media+'">'+
-'</video>';
-
-}
-
-let commentsHTML="";
-
-(post.comments||[]).forEach(comment=>{
-
-if(comment.hidden&&comment.user!==currentUser){
-return;
-}
-
-const deleteButton=
-comment.user===currentUser
-?'<button class="comment-delete" onclick="deleteComment('+post.id+','+comment.id+')">Delete</button>'
-:"";
-
-const hideButton=
-comment.user!==currentUser
-?'<button class="comment-delete" onclick="hideComment('+post.id+','+comment.id+')">Hide</button>'
-:"";
-
-commentsHTML+=
-'<div class="comment '+(comment.hidden?"comment-hidden":"")+'">'+
-'<button class="comment-delete">'+
-deleteButton+
-hideButton+
-'</button>'+
-'<strong>'+escapeHTML(comment.user)+'</strong> '+
-escapeHTML(comment.text)+
-'<br><small>'+escapeHTML(comment.time)+'</small>'+
-'</div>';
-
-});
-
-const ownPost=post.user===currentUser;
-
-let menuHTML="";
-
-if(ownPost){
-
-menuHTML=
-'<button class="post-menu" onclick="deletePost('+post.id+')">⋮</button>';
-
-}else{
-
-menuHTML=
-'<button class="post-menu" onclick="hidePost('+post.id+')">⋮</button>';
-
-}
-
-card.innerHTML=
-
-'<div class="post-head">'+
-'<div class="post-user">'+
-'<div class="mini-avatar">'+
-escapeHTML(post.user.substring(0,2).toUpperCase())+
-'</div>'+
-'<div>'+
-'<strong>'+escapeHTML(post.user)+'</strong>'+
-'<small>'+escapeHTML(post.createdAt)+'</small>'+
-'</div>'+
-'</div>'+
-menuHTML+
-'</div>'+
-
-'<div class="post-text">'+
-escapeHTML(post.text)+
-'</div>'+
-
-mediaHTML+
-
-'<div class="post-stats">'+
-'<span>👍 '+post.likes.length+'</span>'+
-'<span>💬 '+(post.comments||[]).length+'</span>'+
-'</div>'+
-
-'<div class="post-buttons">'+
-
-'<button class="'+(liked?"liked":"")+'" onclick="toggleLike('+post.id+')">'+
-(liked?"👍 Unlike":"👍 Like")+
-'</button>'+
-
-'<button onclick="sharePost('+post.id+')">↗ Share</button>'+
-
-'<button onclick="focusComment('+post.id+')">💬 Comment</button>'+
-
-'</div>'+
-
-'<div class="comment-box">'+
-'<input id="commentInput'+post.id+'" type="text" placeholder="Write a comment...">'+
-'<button onclick="addComment('+post.id+')">Send</button>'+
-'</div>'+
-
-commentsHTML;
-
-feed.appendChild(card);
-
-});
-
+    showToast("Post published.");
 }
 
 
-/* ESCAPE */
+/* =====================================================
+   RENDER POSTS
+   ===================================================== */
 
-function escapeHTML(value){
+function renderPosts(){
 
-return String(value??"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+    const container =
+        document.getElementById("postsContainer");
 
+    container.innerHTML = "";
+
+    const visiblePosts =
+        posts.filter(p => !p.hidden);
+
+    if(visiblePosts.length === 0){
+
+        container.innerHTML = `
+            <div style="
+                text-align:center;
+                padding:30px 10px;
+                color:#777;
+            ">
+                No posts yet.<br>
+                Write something above.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    visiblePosts.forEach(post => {
+
+        const liked =
+            Array.isArray(post.likes) &&
+            post.likes.includes(
+                currentUser ||
+                profileData.ymid ||
+                "demo-user"
+            );
+
+        const postElement =
+            document.createElement("div");
+
+        postElement.className = "post";
+
+        let avatarHTML = "";
+
+        if(post.avatar){
+
+            avatarHTML =
+                `<img src="${post.avatar}" alt="avatar">`;
+
+        }else{
+
+            avatarHTML =
+                escapeHTML(
+                    getInitial(post.name)
+                );
+        }
+
+
+        let mediaHTML = "";
+
+        if(post.image){
+
+            mediaHTML += `
+                <img
+                    class="post-media"
+                    src="${post.image}"
+                    alt="Post image"
+                >
+            `;
+        }
+
+        if(post.video){
+
+            mediaHTML += `
+                <video
+                    class="post-media"
+                    controls
+                    preload="metadata"
+                >
+                    <source
+                        src="${post.video}"
+                        type="video/mp4"
+                    >
+                </video>
+            `;
+        }
+
+
+        let commentsHTML = "";
+
+        if(post.comments && post.comments.length){
+
+            post.comments.forEach(comment => {
+
+                if(comment.hidden){
+                    return;
+                }
+
+                const isOwn =
+                    comment.user ===
+                    (
+                        currentUser ||
+                        profileData.ymid ||
+                        "demo-user"
+                    );
+
+                commentsHTML += `
+                    <div class="comment">
+
+                        <div class="comment-top">
+
+                            <div>
+                                <strong>
+                                    ${escapeHTML(comment.name)}
+                                </strong>
+
+                                <div>
+                                    ${escapeHTML(comment.text)}
+                                </div>
+                            </div>
+
+                            <div>
+
+                                ${
+                                    isOwn
+                                    ?
+                                    `<button
+                                        class="comment-delete"
+                                        onclick="deleteComment('${post.id}','${comment.id}')"
+                                    >
+                                        🗑️
+                                    </button>`
+                                    :
+                                    ""
+                                }
+
+                                ${
+                                    !isOwn
+                                    ?
+                                    `<button
+                                        class="comment-hide"
+                                        onclick="hideComment('${post.id}','${comment.id}')"
+                                    >
+                                        🙈
+                                    </button>`
+                                    :
+                                    ""
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                `;
+            });
+        }
+
+
+        postElement.innerHTML = `
+
+            <div class="post-header">
+
+                <div class="post-avatar">
+                    ${avatarHTML}
+                </div>
+
+                <div class="post-user">
+
+                    <strong>
+                        ${escapeHTML(post.name)}
+                    </strong>
+
+                    <small>
+                        ${escapeHTML(post.createdAt)}
+                    </small>
+
+                </div>
+
+                <button
+                    class="post-menu"
+                    onclick="openPostMenu('${post.id}')"
+                >
+                    ⋮
+                </button>
+
+            </div>
+
+            ${
+                post.text
+                ?
+                `<div class="post-content">
+                    ${escapeHTML(post.text)}
+                </div>`
+                :
+                ""
+            }
+
+            ${mediaHTML}
+
+            <div class="post-actions">
+
+                <button
+                    class="${liked ? "like-active" : ""}"
+                    onclick="toggleLike('${post.id}')"
+                >
+                    ${liked ? "❤️" : "🤍"} Like
+                    (${post.likes ? post.likes.length : 0})
+                </button>
+
+                <button onclick="focusComment('${post.id}')">
+                    💬 Comment
+                </button>
+
+                <button onclick="sharePost('${post.id}')">
+                    📤 Share
+                </button>
+
+            </div>
+
+            <div class="comments">
+
+                ${commentsHTML}
+
+                <input
+                    id="comment-${post.id}"
+                    class="comment-input"
+                    type="text"
+                    placeholder="Write a comment..."
+                    onkeydown="commentKey(event,'${post.id}')"
+                >
+
+                <button
+                    class="comment-send"
+                    onclick="addComment('${post.id}')"
+                >
+                    Send Comment
+                </button>
+
+            </div>
+        `;
+
+        container.appendChild(postElement);
+    });
 }
 
 
-/* LIKE */
+/* =====================================================
+   LIKE
+   ===================================================== */
 
 function toggleLike(postId){
 
-const user=localStorage.getItem("ym_current_user");
+    const post =
+        posts.find(p => p.id === postId);
 
-if(!user){
-alert("Please login first.");
-return;
-}
+    if(!post){
+        return;
+    }
 
-const posts=getPosts();
+    if(!Array.isArray(post.likes)){
+        post.likes = [];
+    }
 
-const post=posts.find(p=>p.id===postId);
+    const user =
+        currentUser ||
+        profileData.ymid ||
+        "demo-user";
 
-if(!post)return;
+    const index =
+        post.likes.indexOf(user);
 
-post.likes=post.likes||[];
+    if(index === -1){
 
-const index=post.likes.indexOf(user);
+        post.likes.push(user);
 
-if(index===-1){
-post.likes.push(user);
-}else{
-post.likes.splice(index,1);
-}
+    }else{
 
-savePosts(posts);
-renderFeed();
+        post.likes.splice(index,1);
+    }
 
-}
+    savePosts(posts);
 
-
-/* SHARE */
-
-function sharePost(postId){
-
-const posts=getPosts();
-const post=posts.find(p=>p.id===postId);
-
-if(!post)return;
-
-const shareText=
-"Y-M Chat post by "+post.user+
-(post.text?"\n\n"+post.text:"");
-
-if(navigator.share){
-
-navigator.share({
-title:"Y-M Chat",
-text:shareText
-}).catch(()=>{});
-
-}else{
-
-navigator.clipboard?.writeText(shareText);
-
-alert("Post text copied.");
-
-}
-
+    renderPosts();
 }
 
 
-/* COMMENT */
+/* =====================================================
+   COMMENT
+   ===================================================== */
 
 function focusComment(postId){
 
-const input=document.getElementById("commentInput"+postId);
+    const input =
+        document.getElementById(
+            "comment-" + postId
+        );
 
-if(input){
-input.focus();
+    if(input){
+
+        input.focus();
+
+        input.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+    }
 }
 
-}
+function commentKey(event,postId){
 
+    if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        addComment(postId);
+    }
+}
 
 function addComment(postId){
 
-const user=localStorage.getItem("ym_current_user");
+    const input =
+        document.getElementById(
+            "comment-" + postId
+        );
 
-if(!user){
-alert("Please login first.");
-return;
-}
+    if(!input){
+        return;
+    }
 
-const input=document.getElementById("commentInput"+postId);
+    const text =
+        input.value.trim();
 
-if(!input)return;
+    if(!text){
+        return;
+    }
 
-const text=input.value.trim();
+    const post =
+        posts.find(p => p.id === postId);
 
-if(!text){
-alert("Please write a comment.");
-return;
-}
+    if(!post){
+        return;
+    }
 
-const posts=getPosts();
-const post=posts.find(p=>p.id===postId);
+    if(!Array.isArray(post.comments)){
+        post.comments = [];
+    }
 
-if(!post)return;
+    post.comments.push({
 
-post.comments=post.comments||[];
+        id:
+            Date.now() +
+            Math.random().toString(16).slice(2),
 
-post.comments.push({
-id:Date.now(),
-user:user,
-text:text,
-time:new Date().toLocaleString(),
-hidden:false
-});
+        user:
+            currentUser ||
+            profileData.ymid ||
+            "demo-user",
 
-savePosts(posts);
+        name:
+            profileData.name ||
+            "Y-M User",
 
-renderFeed();
+        text:text,
 
-}
+        hidden:false
+    });
 
+    savePosts(posts);
 
-/* DELETE OWN POST */
+    renderPosts();
 
-function deletePost(postId){
-
-const user=localStorage.getItem("ym_current_user");
-
-const posts=getPosts();
-const post=posts.find(p=>p.id===postId);
-
-if(!post)return;
-
-if(post.user!==user){
-alert("You can only delete your own post.");
-return;
-}
-
-if(!confirm("Delete this post?"))return;
-
-const filtered=posts.filter(p=>p.id!==postId);
-
-savePosts(filtered);
-renderFeed();
-
+    showToast("Comment added.");
 }
 
 
-/* HIDE OTHER POST */
-
-function hidePost(postId){
-
-const user=localStorage.getItem("ym_current_user");
-
-const posts=getPosts();
-const post=posts.find(p=>p.id===postId);
-
-if(!post)return;
-
-if(post.user===user){
-deletePost(postId);
-return;
-}
-
-post.hidden=true;
-
-savePosts(posts);
-renderFeed();
-
-}
-
-
-/* DELETE OWN COMMENT */
+/* =====================================================
+   DELETE COMMENT
+   ===================================================== */
 
 function deleteComment(postId,commentId){
 
-const user=localStorage.getItem("ym_current_user");
+    const post =
+        posts.find(p => p.id === postId);
 
-const posts=getPosts();
-const post=posts.find(p=>p.id===postId);
+    if(!post || !post.comments){
+        return;
+    }
 
-if(!post)return;
+    const user =
+        currentUser ||
+        profileData.ymid ||
+        "demo-user";
 
-const comment=(post.comments||[]).find(c=>c.id===commentId);
+    const comment =
+        post.comments.find(
+            c => c.id === commentId
+        );
 
-if(!comment)return;
+    if(!comment){
+        return;
+    }
 
-if(comment.user!==user){
-alert("You can only delete your own comment.");
-return;
+    if(comment.user !== user){
+
+        showToast("You can only delete your comment.");
+        return;
+    }
+
+    post.comments =
+        post.comments.filter(
+            c => c.id !== commentId
+        );
+
+    savePosts(posts);
+
+    renderPosts();
+
+    showToast("Comment deleted.");
 }
 
-post.comments=post.comments.filter(c=>c.id!==commentId);
 
-savePosts(posts);
-renderFeed();
-
-}
-
-
-/* HIDE OTHER COMMENT */
+/* =====================================================
+   HIDE COMMENT
+   ===================================================== */
 
 function hideComment(postId,commentId){
 
-const user=localStorage.getItem("ym_current_user");
+    const post =
+        posts.find(p => p.id === postId);
 
-const posts=getPosts();
-const post=posts.find(p=>p.id===postId);
+    if(!post || !post.comments){
+        return;
+    }
 
-if(!post)return;
+    const comment =
+        post.comments.find(
+            c => c.id === commentId
+        );
 
-const comment=(post.comments||[]).find(c=>c.id===commentId);
+    if(!comment){
+        return;
+    }
 
-if(!comment)return;
+    comment.hidden = true;
 
-if(comment.user===user){
-deleteComment(postId,commentId);
-return;
-}
+    savePosts(posts);
 
-comment.hidden=true;
+    renderPosts();
 
-savePosts(posts);
-renderFeed();
-
-}
-
-
-/* FILE SELECT DISPLAY */
-
-document.getElementById("postImage").addEventListener("change",function(){
-
-if(this.files[0]){
-
-document.getElementById("postVideo").value="";
-
-document.getElementById("selectedMedia").textContent=
-"Photo selected: "+this.files[0].name;
-
-}
-
-});
-
-document.getElementById("postVideo").addEventListener("change",function(){
-
-if(this.files[0]){
-
-document.getElementById("postImage").value="";
-
-document.getElementById("selectedMedia").textContent=
-"Video selected: "+this.files[0].name;
-
-}
-
-});
-
-
-/* INITIALIZE */
-
-function initializeApp(){
-
-const savedLanguage=localStorage.getItem("ym_language");
-
-if(savedLanguage){
-
-currentLanguage=savedLanguage;
-
-document.getElementById("languageSelect").value=savedLanguage;
-
-}
-
-fillCountries();
-fillSecurityQuestions();
-applyLanguage();
-
-const currentUser=localStorage.getItem("ym_current_user");
-
-if(currentUser){
-
-const accounts=getAccounts();
-const account=accounts[currentUser];
-
-if(account){
-
-setHomeUser(account);
-
-showPage("homePage");
-setActiveNav("navHome");
-
-}
-
-}
-
+    showToast("Comment hidden.");
 }
 
 
-/* START */
+/* =====================================================
+   POST MENU
+   ===================================================== */
 
-document.addEventListener("DOMContentLoaded",initializeApp);
+function openPostMenu(postId){
+
+    const post =
+        posts.find(p => p.id === postId);
+
+    if(!post){
+        return;
+    }
+
+    const user =
+        currentUser ||
+        profileData.ymid ||
+        "demo-user";
+
+    if(post.user === user){
+
+        const remove =
+            confirm(
+                "Delete this post?"
+            );
+
+        if(remove){
+
+            posts =
+                posts.filter(
+                    p => p.id !== postId
+                );
+
+            savePosts(posts);
+
+            renderPosts();
+
+            showToast("Post deleted.");
+        }
+
+        return;
+    }
+
+    const hide =
+        confirm(
+            "Hide this post?"
+        );
+
+    if(hide){
+
+        post.hidden = true;
+
+        savePosts(posts);
+
+        renderPosts();
+
+        showToast("Post hidden.");
+    }
+}
+
+
+/* =====================================================
+   SHARE
+   ===================================================== */
+
+function sharePost(postId){
+
+    const post =
+        posts.find(p => p.id === postId);
+
+    if(!post){
+        return;
+    }
+
+    const shareText =
+        `${post.name}: ${post.text || "Y-M Chat post"}`;
+
+    if(
+        navigator.share
+    ){
+
+        navigator.share({
+            title:"Y-M Chat",
+            text:shareText
+        }).catch(()=>{});
+
+        return;
+    }
+
+    if(
+        navigator.clipboard
+    ){
+
+        navigator.clipboard
+            .writeText(shareText)
+            .then(()=>{
+                showToast("Post text copied.");
+            })
+            .catch(()=>{
+                showToast("Share not available.");
+            });
+
+        return;
+    }
+
+    showToast("Share not available.");
+}
+
+
+/* =====================================================
+   MENU
+   ===================================================== */
+
+function toggleMenuBox(){
+
+    const box =
+        document.getElementById("menuBox");
+
+    box.style.display =
+        box.style.display === "block"
+        ? "none"
+        : "block";
+}
+
+function closeMenuBox(){
+
+    document.getElementById("menuBox")
+        .style.display = "none";
+}
+
+function toggleMenu(){
+
+    toggleMenuBox();
+}
+
+
+/* =====================================================
+   MODAL
+   ===================================================== */
+
+function closeModal(id){
+
+    document.getElementById(id)
+        .style.display = "none";
+}
+
+document.querySelectorAll(".modal")
+    .forEach(modal => {
+
+        modal.addEventListener(
+            "click",
+            function(e){
+
+                if(e.target === modal){
+
+                    modal.style.display =
+                        "none";
+                }
+            }
+        );
+    });
+
+
+/* =====================================================
+   LOGOUT
+   ===================================================== */
+
+function logout(){
+
+    closeMenuBox();
+
+    const yes =
+        confirm(
+            "Are you sure you want to log out?"
+        );
+
+    if(!yes){
+        return;
+    }
+
+    localStorage.removeItem(
+        CURRENT_USER_KEY
+    );
+
+    showToast("Logged out.");
+
+    setTimeout(()=>{
+
+        /*
+           When combined with Security Core,
+           this will return to the login/front page.
+        */
+
+        location.reload();
+
+    },700);
+}
+
+
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
+
+function goHome(){
+
+    /*
+       Temporary standalone behavior.
+       When combined, this button will open Home.
+    */
+
+    showToast("Home module will connect here.");
+}
+
+function showComingSoon(name){
+
+    showToast(
+        name + " module coming soon."
+    );
+}
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
+initialize();
 
 </script>
-
-</div>
 
 </body>
 </html>
