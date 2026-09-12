@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Y-M Chat V1.9.5</title>
+<title>Y-M Chat V1.9.6</title>
 
 <style>
 *{
@@ -17,15 +17,11 @@
 html,body{
     width:100%;
     min-height:100%;
-    background:#eef4fb;
+    background:#eef3f8;
+    color:#222;
 }
 
-body{
-    display:flex;
-    justify-content:center;
-}
-
-button,input,select{
+button,input,textarea,select{
     font:inherit;
 }
 
@@ -37,52 +33,51 @@ button{
     width:100%;
     max-width:480px;
     min-height:100vh;
-    background:#fff;
+    margin:auto;
+    background:#f7f9fc;
     position:relative;
-    box-shadow:0 0 20px rgba(0,0,0,.08);
+    overflow-x:hidden;
 }
 
 /* =========================
    AUTH
 ========================= */
 
-.auth-screen{
+.auth{
     min-height:100vh;
-    padding:35px 22px;
+    padding:30px 20px;
     display:flex;
     align-items:center;
     justify-content:center;
-    background:linear-gradient(160deg,#1976d2,#42a5f5);
+    background:linear-gradient(180deg,#1976d2,#0d47a1);
 }
 
-.auth-box{
+.auth-card{
     width:100%;
-    background:#fff;
-    border-radius:22px;
+    background:white;
+    border-radius:20px;
     padding:28px 22px;
-    box-shadow:0 15px 40px rgba(0,0,0,.18);
+    box-shadow:0 15px 40px rgba(0,0,0,.22);
 }
 
 .logo{
     text-align:center;
     font-size:38px;
-    font-weight:800;
+    font-weight:bold;
     color:#1976d2;
-    margin-bottom:5px;
+    letter-spacing:2px;
 }
 
 .logo-sub{
     text-align:center;
     color:#777;
-    font-size:14px;
-    margin-bottom:25px;
+    margin:6px 0 24px;
 }
 
 .auth-title{
-    font-size:23px;
-    font-weight:700;
+    font-size:22px;
     margin-bottom:18px;
-    color:#222;
+    text-align:center;
 }
 
 .input-group{
@@ -97,782 +92,102 @@ button{
 }
 
 .input-group input,
-.input-group select{
+.input-group textarea,
+.input-group select,
+.search-box input{
     width:100%;
-    padding:13px;
-    border:1px solid #ddd;
-    border-radius:11px;
+    border:1px solid #d5dce5;
+    border-radius:10px;
+    padding:12px;
     outline:none;
-    background:#fafafa;
+    background:#fff;
 }
 
 .input-group input:focus,
+.input-group textarea:focus,
 .input-group select:focus{
     border-color:#1976d2;
-    background:#fff;
 }
 
 .primary-btn{
     width:100%;
-    border:0;
+    border:none;
+    border-radius:10px;
     padding:13px;
-    border-radius:11px;
     background:#1976d2;
     color:white;
-    font-weight:700;
+    font-weight:bold;
     margin-top:5px;
 }
 
 .secondary-btn{
     width:100%;
     border:1px solid #1976d2;
+    border-radius:10px;
     padding:12px;
-    border-radius:11px;
     background:white;
     color:#1976d2;
-    font-weight:700;
+    font-weight:bold;
     margin-top:10px;
 }
 
 .text-btn{
-    border:0;
+    border:none;
     background:none;
     color:#1976d2;
-    font-weight:600;
+    margin-top:15px;
+    display:block;
+    width:100%;
 }
 
-.auth-links{
-    text-align:center;
-    margin-top:16px;
-    font-size:14px;
-}
-
-.auth-links button{
-    margin:4px;
+.hidden{
+    display:none!important;
 }
 
 /* =========================
-   APP HEADER
+   TOP BAR
 ========================= */
 
-.app-header{
+.topbar{
     height:62px;
     background:#1976d2;
-    color:#fff;
+    color:white;
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:0 16px;
     position:sticky;
     top:0;
-    z-index:50;
+    z-index:20;
 }
 
-.header-title{
+.top-title{
     font-size:21px;
-    font-weight:700;
+    font-weight:bold;
 }
 
-.header-sub{
-    font-size:11px;
-    opacity:.85;
+.top-actions{
+    display:flex;
+    gap:8px;
 }
 
-.header-btn{
-    border:0;
-    background:rgba(255,255,255,.15);
-    color:#fff;
+.icon-btn{
     width:38px;
     height:38px;
+    border:none;
     border-radius:50%;
+    background:rgba(255,255,255,.16);
+    color:white;
+    font-size:19px;
 }
-
-/* =========================
-   CONTENT
-========================= */
 
 .page{
     display:none;
-    padding-bottom:82px;
-    min-height:calc(100vh - 62px);
+    padding-bottom:85px;
 }
 
 .page.active{
     display:block;
-}
-
-.content{
-    padding:16px;
-}
-
-.card{
-    background:#fff;
-    border:1px solid #e7edf4;
-    border-radius:16px;
-    padding:16px;
-    margin-bottom:14px;
-    box-shadow:0 3px 12px rgba(0,0,0,.04);
-}
-
-.section-title{
-    font-size:18px;
-    font-weight:700;
-    margin-bottom:12px;
-}
-
-.muted{
-    color:#777;
-    font-size:13px;
-}
-
-.search-box{
-    width:100%;
-    padding:13px 14px;
-    border:1px solid #ddd;
-    border-radius:12px;
-    outline:none;
-    margin-bottom:14px;
-}
-
-.search-box:focus{
-    border-color:#1976d2;
-}
-
-/* =========================
-   HOME
-========================= */
-
-.welcome-card{
-    background:linear-gradient(135deg,#1976d2,#42a5f5);
-    color:white;
-    border-radius:18px;
-    padding:20px;
-    margin-bottom:15px;
-}
-
-.welcome-card h2{
-    margin-bottom:7px;
-}
-
-.status-row{
-    display:flex;
-    align-items:center;
-    gap:9px;
-}
-
-.status-dot{
-    width:10px;
-    height:10px;
-    background:#25d366;
-    border-radius:50%;
-}
-
-.quick-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.quick-btn{
-    padding:16px 10px;
-    border:1px solid #e5eaf0;
-    background:white;
-    border-radius:14px;
-    text-align:left;
-}
-
-.quick-icon{
-    font-size:23px;
-    margin-bottom:8px;
-}
-
-.quick-name{
-    font-weight:700;
-    font-size:14px;
-}
-
-.quick-desc{
-    color:#777;
-    font-size:11px;
-    margin-top:3px;
-}
-
-/* =========================
-   CHAT LIST
-========================= */
-
-.chat-item,
-.friend-item{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:13px 4px;
-    border-bottom:1px solid #edf0f4;
-}
-
-.chat-item:last-child,
-.friend-item:last-child{
-    border-bottom:0;
-}
-
-.avatar{
-    width:46px;
-    height:46px;
-    border-radius:50%;
-    background:#1976d2;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:700;
-    flex-shrink:0;
-}
-
-.avatar.small{
-    width:38px;
-    height:38px;
-    font-size:13px;
-}
-
-.item-main{
-    flex:1;
-    min-width:0;
-}
-
-.item-name{
-    font-weight:700;
-    font-size:15px;
-}
-
-.item-message{
-    color:#777;
-    font-size:12px;
-    margin-top:4px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.item-right{
-    text-align:right;
-    font-size:11px;
-    color:#999;
-}
-
-.online{
-    color:#20a65a;
-    font-size:11px;
-}
-
-.offline{
-    color:#999;
-    font-size:11px;
-}
-
-/* =========================
-   PRIVATE CHAT
-========================= */
-
-.chat-page{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:#eef4fb;
-    z-index:100;
-    max-width:480px;
-    margin:auto;
-}
-
-.chat-page.active{
-    display:flex;
-    flex-direction:column;
-}
-
-.chat-header{
-    height:62px;
-    background:#1976d2;
-    color:white;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:0 10px;
-}
-
-.back-btn{
-    border:0;
-    background:none;
-    color:white;
-    font-size:24px;
-    width:35px;
-}
-
-.chat-head-info{
-    flex:1;
-}
-
-.chat-head-name{
-    font-weight:700;
-}
-
-.chat-head-status{
-    font-size:11px;
-    opacity:.85;
-}
-
-.chat-menu{
-    border:0;
-    background:none;
-    color:white;
-    font-size:23px;
-}
-
-.messages{
-    flex:1;
-    overflow-y:auto;
-    padding:15px;
-}
-
-.message-row{
-    display:flex;
-    margin-bottom:10px;
-}
-
-.message-row.me{
-    justify-content:flex-end;
-}
-
-.message-bubble{
-    max-width:78%;
-    padding:10px 13px;
-    border-radius:15px;
-    background:white;
-    box-shadow:0 2px 7px rgba(0,0,0,.05);
-}
-
-.message-row.me .message-bubble{
-    background:#1976d2;
-    color:white;
-}
-
-.message-time{
-    display:block;
-    font-size:9px;
-    opacity:.65;
-    margin-top:4px;
-}
-
-.message-actions{
-    font-size:10px;
-    color:#d32f2f;
-    margin-top:4px;
-    cursor:pointer;
-}
-
-.chat-input-area{
-    padding:10px;
-    background:white;
-    display:flex;
-    gap:8px;
-    border-top:1px solid #ddd;
-}
-
-.chat-input{
-    flex:1;
-    border:1px solid #ddd;
-    border-radius:22px;
-    padding:11px 14px;
-    outline:none;
-}
-
-.send-btn{
-    width:45px;
-    border:0;
-    border-radius:50%;
-    background:#1976d2;
-    color:white;
-}
-
-/* =========================
-   ROOMS
-========================= */
-
-.room-country{
-    margin-bottom:18px;
-}
-
-.country-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:15px;
-    border-radius:15px;
-    background:#f1f6fc;
-    border:1px solid #e2eaf4;
-    margin-bottom:8px;
-    cursor:pointer;
-}
-
-.country-left{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.country-flag{
-    font-size:27px;
-}
-
-.country-name{
-    font-weight:700;
-    font-size:16px;
-}
-
-.country-count{
-    font-size:11px;
-    color:#777;
-}
-
-.arrow{
-    font-size:18px;
-    color:#777;
-}
-
-.region-list{
-    display:none;
-    padding:0 5px;
-}
-
-.region-list.open{
-    display:block;
-}
-
-.region-box{
-    border:1px solid #e5eaf0;
-    border-radius:14px;
-    margin-bottom:9px;
-    overflow:hidden;
-    background:white;
-}
-
-.region-header{
-    padding:13px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    cursor:pointer;
-    background:#fff;
-}
-
-.region-title{
-    font-weight:700;
-    font-size:14px;
-}
-
-.region-sub{
-    font-size:11px;
-    color:#888;
-    margin-top:3px;
-}
-
-.room-list{
-    display:none;
-    background:#f8fafc;
-    padding:8px;
-}
-
-.room-list.open{
-    display:block;
-}
-
-.room-item{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:11px;
-    background:white;
-    border:1px solid #edf0f4;
-    border-radius:11px;
-    margin-bottom:6px;
-    cursor:pointer;
-}
-
-.room-item:last-child{
-    margin-bottom:0;
-}
-
-.room-icon{
-    width:39px;
-    height:39px;
-    background:#e7f0fb;
-    color:#1976d2;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.room-info{
-    flex:1;
-}
-
-.room-name{
-    font-weight:700;
-    font-size:13px;
-}
-
-.room-capacity{
-    font-size:10px;
-    color:#777;
-    margin-top:3px;
-}
-
-.room-online{
-    text-align:right;
-    font-size:10px;
-}
-
-.room-online strong{
-    color:#1976d2;
-}
-
-.capacity-full{
-    color:#d32f2f !important;
-    font-weight:700;
-}
-
-.capacity-available{
-    color:#20a65a !important;
-}
-
-/* =========================
-   ROOM CHAT
-========================= */
-
-.room-chat{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:#eef4fb;
-    z-index:110;
-    max-width:480px;
-    margin:auto;
-}
-
-.room-chat.active{
-    display:flex;
-    flex-direction:column;
-}
-
-.room-chat-header{
-    height:68px;
-    background:#1976d2;
-    color:white;
-    display:flex;
-    align-items:center;
-    gap:9px;
-    padding:0 10px;
-}
-
-.room-chat-title{
-    flex:1;
-}
-
-.room-chat-title strong{
-    display:block;
-    font-size:16px;
-}
-
-.room-chat-title span{
-    font-size:10px;
-    opacity:.85;
-}
-
-.room-members{
-    background:#fff;
-    padding:8px 14px;
-    border-bottom:1px solid #ddd;
-    font-size:11px;
-    color:#555;
-}
-
-.room-messages{
-    flex:1;
-    overflow-y:auto;
-    padding:13px;
-}
-
-.room-message{
-    display:flex;
-    gap:8px;
-    margin-bottom:13px;
-}
-
-.room-message .avatar{
-    width:34px;
-    height:34px;
-    font-size:11px;
-}
-
-.room-message-content{
-    max-width:78%;
-}
-
-.room-sender{
-    font-size:11px;
-    font-weight:700;
-    color:#1976d2;
-    margin-bottom:3px;
-}
-
-.room-bubble{
-    background:white;
-    border-radius:13px;
-    padding:9px 11px;
-    font-size:13px;
-    box-shadow:0 2px 6px rgba(0,0,0,.04);
-}
-
-.room-message.me{
-    flex-direction:row-reverse;
-}
-
-.room-message.me .room-sender{
-    text-align:right;
-}
-
-.room-message.me .room-bubble{
-    background:#1976d2;
-    color:white;
-}
-
-.room-message-time{
-    font-size:9px;
-    color:#999;
-    margin-top:3px;
-}
-
-.room-message.me .room-message-time{
-    text-align:right;
-}
-
-.room-input-area{
-    background:white;
-    border-top:1px solid #ddd;
-    padding:9px;
-    display:flex;
-    gap:7px;
-}
-
-.room-input{
-    flex:1;
-    border:1px solid #ddd;
-    border-radius:22px;
-    padding:11px 14px;
-    outline:none;
-}
-
-.room-send{
-    width:44px;
-    border:0;
-    border-radius:50%;
-    background:#1976d2;
-    color:white;
-}
-
-/* =========================
-   PROFILE
-========================= */
-
-.profile-cover{
-    height:170px;
-    background:linear-gradient(135deg,#1976d2,#90caf9);
-    position:relative;
-}
-
-.cover-edit{
-    position:absolute;
-    right:12px;
-    top:12px;
-    width:38px;
-    height:38px;
-    border:0;
-    border-radius:50%;
-    background:rgba(0,0,0,.35);
-    color:white;
-}
-
-.profile-main{
-    padding:0 16px 16px;
-    margin-top:-35px;
-    position:relative;
-}
-
-.profile-avatar{
-    width:82px;
-    height:82px;
-    border-radius:50%;
-    background:#1976d2;
-    color:white;
-    border:5px solid white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:28px;
-    font-weight:700;
-}
-
-.profile-name{
-    font-size:22px;
-    font-weight:700;
-    margin-top:8px;
-}
-
-.profile-username{
-    color:#777;
-    font-size:13px;
-    margin-top:3px;
-}
-
-.profile-action{
-    display:flex;
-    gap:8px;
-    margin-top:15px;
-    flex-wrap:wrap;
-}
-
-.small-action{
-    border:1px solid #ddd;
-    background:white;
-    border-radius:10px;
-    padding:9px 11px;
-    font-size:12px;
-}
-
-/* =========================
-   SETTINGS
-========================= */
-
-.setting-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:15px 4px;
-    border-bottom:1px solid #edf0f4;
-}
-
-.setting-row:last-child{
-    border-bottom:0;
-}
-
-.setting-title{
-    font-weight:600;
-    font-size:14px;
-}
-
-.setting-desc{
-    color:#888;
-    font-size:11px;
-    margin-top:3px;
 }
 
 /* =========================
@@ -882,85 +197,884 @@ button{
 .bottom-nav{
     position:fixed;
     bottom:0;
+    left:50%;
+    transform:translateX(-50%);
     width:100%;
     max-width:480px;
-    height:68px;
+    height:70px;
     background:white;
-    border-top:1px solid #ddd;
+    border-top:1px solid #dce3eb;
     display:flex;
-    z-index:80;
+    z-index:30;
 }
 
 .nav-btn{
     flex:1;
-    border:0;
+    border:none;
     background:white;
-    color:#777;
+    color:#7a8592;
+    font-size:11px;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:3px;
-    font-size:10px;
+    gap:4px;
+    position:relative;
 }
 
-.nav-btn span:first-child{
+.nav-btn span{
     font-size:21px;
 }
 
 .nav-btn.active{
     color:#1976d2;
-    font-weight:700;
+    font-weight:bold;
+}
+
+.badge{
+    position:absolute;
+    top:7px;
+    right:18px;
+    min-width:17px;
+    height:17px;
+    border-radius:10px;
+    background:#e53935;
+    color:white;
+    font-size:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 /* =========================
-   MODAL / TOAST
+   COMMON CARDS
 ========================= */
 
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    z-index:200;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
+.container{
+    padding:14px;
 }
 
-.modal.active{
+.card{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:12px;
+    box-shadow:0 2px 9px rgba(0,0,0,.06);
+}
+
+.section-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.small{
+    font-size:12px;
+    color:#777;
+}
+
+/* =========================
+   HOME
+========================= */
+
+.welcome-card{
+    background:linear-gradient(135deg,#1976d2,#42a5f5);
+    color:white;
+    border-radius:17px;
+    padding:20px;
+    margin-bottom:14px;
+}
+
+.welcome-card h2{
+    margin-bottom:6px;
+}
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+}
+
+.quick-btn{
+    background:white;
+    border:none;
+    border-radius:12px;
+    padding:12px 4px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.quick-btn div{
+    font-size:23px;
+    margin-bottom:4px;
+}
+
+.quick-btn small{
+    font-size:10px;
+}
+
+.create-post{
+    background:white;
+    border-radius:15px;
+    padding:14px;
+    margin-bottom:12px;
+}
+
+.create-top{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.mini-avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#dce8f5;
+}
+
+.post-input{
+    flex:1;
+    border:1px solid #dce3eb;
+    background:#f4f7fa;
+    border-radius:22px;
+    padding:11px 14px;
+    color:#777;
+}
+
+.post-tools{
+    display:flex;
+    gap:7px;
+    margin-top:12px;
+}
+
+.post-tool{
+    flex:1;
+    border:none;
+    border-radius:9px;
+    padding:9px 4px;
+    background:#f2f5f8;
+    font-size:12px;
+}
+
+.post-card{
+    background:white;
+    border-radius:15px;
+    padding:14px;
+    margin-bottom:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.post-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.post-user{
+    flex:1;
+}
+
+.post-user strong{
+    display:block;
+    font-size:14px;
+}
+
+.post-content{
+    margin-top:12px;
+    line-height:1.45;
+    white-space:pre-wrap;
+}
+
+.post-media{
+    width:100%;
+    max-height:400px;
+    object-fit:cover;
+    border-radius:12px;
+    margin-top:12px;
+}
+
+.post-actions{
+    display:flex;
+    border-top:1px solid #edf0f3;
+    margin-top:12px;
+    padding-top:8px;
+}
+
+.post-action{
+    flex:1;
+    border:none;
+    background:white;
+    padding:8px;
+    color:#65717e;
+}
+
+.post-action.liked{
+    color:#1976d2;
+    font-weight:bold;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+    margin-bottom:12px;
+}
+
+.search-box input{
+    background:white;
+}
+
+/* =========================
+   CHAT LIST
+========================= */
+
+.chat-item,
+.friend-item{
+    background:white;
+    border-radius:13px;
+    padding:12px;
+    margin-bottom:9px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#dce8f5;
+    object-fit:cover;
+}
+
+.chat-info,
+.friend-info{
+    flex:1;
+}
+
+.chat-info strong,
+.friend-info strong{
+    display:block;
+}
+
+.online-dot{
+    display:inline-block;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#25b84a;
+    margin-right:4px;
+}
+
+.status-text{
+    font-size:11px;
+    color:#777;
+}
+
+.open-btn{
+    border:none;
+    background:#e8f1fb;
+    color:#1976d2;
+    padding:8px 11px;
+    border-radius:8px;
+}
+
+/* =========================
+   PRIVATE CHAT
+========================= */
+
+.chat-screen{
+    position:fixed;
+    inset:0;
+    background:#eef3f8;
+    z-index:50;
+    max-width:480px;
+    margin:auto;
+    display:none;
+    flex-direction:column;
+}
+
+.chat-screen.show{
     display:flex;
 }
 
-.modal-box{
-    width:100%;
-    max-width:420px;
+.chat-header{
+    height:62px;
+    background:#1976d2;
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 10px;
+}
+
+.chat-back{
+    border:none;
+    background:none;
+    color:white;
+    font-size:24px;
+}
+
+.chat-header-info{
+    flex:1;
+}
+
+.chat-header-info strong{
+    display:block;
+}
+
+.chat-body{
+    flex:1;
+    overflow-y:auto;
+    padding:12px;
+}
+
+.message{
+    max-width:78%;
+    padding:9px 12px;
+    border-radius:14px;
+    margin-bottom:8px;
+    position:relative;
+    line-height:1.35;
+}
+
+.message.me{
+    margin-left:auto;
+    background:#1976d2;
+    color:white;
+    border-bottom-right-radius:4px;
+}
+
+.message.other{
     background:white;
-    border-radius:18px;
+    border-bottom-left-radius:4px;
+}
+
+.message-time{
+    display:block;
+    font-size:9px;
+    opacity:.65;
+    margin-top:4px;
+}
+
+.delete-message{
+    border:none;
+    background:none;
+    font-size:10px;
+    color:#d32f2f;
+    margin-left:5px;
+}
+
+.chat-input{
+    background:white;
+    padding:9px;
+    display:flex;
+    gap:7px;
+    border-top:1px solid #ddd;
+}
+
+.chat-input input{
+    flex:1;
+    border:1px solid #d6dde5;
+    border-radius:22px;
+    padding:11px 14px;
+    outline:none;
+}
+
+.send-btn{
+    width:44px;
+    border:none;
+    border-radius:50%;
+    background:#1976d2;
+    color:white;
+}
+
+/* =========================
+   ROOMS
+========================= */
+
+.room-country,
+.room-region,
+.room-list{
+    margin-bottom:12px;
+}
+
+.room-row{
+    background:white;
+    border-radius:12px;
+    padding:13px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    box-shadow:0 2px 7px rgba(0,0,0,.04);
+}
+
+.room-row-info{
+    flex:1;
+}
+
+.room-row-info strong{
+    display:block;
+}
+
+.room-meta{
+    font-size:11px;
+    color:#777;
+    margin-top:4px;
+}
+
+.room-arrow{
+    color:#1976d2;
+    font-size:20px;
+}
+
+.room-chat{
+    position:fixed;
+    inset:0;
+    max-width:480px;
+    margin:auto;
+    background:#eef3f8;
+    z-index:51;
+    display:none;
+    flex-direction:column;
+}
+
+.room-chat.show{
+    display:flex;
+}
+
+.room-header{
+    background:#1976d2;
+    color:white;
+    padding:9px 12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.room-header-info{
+    flex:1;
+}
+
+.room-header-info strong{
+    display:block;
+}
+
+.room-header-info small{
+    opacity:.85;
+}
+
+.room-members{
+    background:white;
+    padding:8px 12px;
+    font-size:11px;
+    color:#666;
+}
+
+.room-body{
+    flex:1;
+    overflow-y:auto;
+    padding:12px;
+}
+
+.room-msg{
+    background:white;
+    border-radius:12px;
+    padding:9px 11px;
+    margin-bottom:8px;
+}
+
+.room-msg strong{
+    font-size:12px;
+    color:#1976d2;
+}
+
+.room-msg p{
+    margin-top:4px;
+    font-size:13px;
+}
+
+.room-input{
+    background:white;
+    padding:9px;
+    display:flex;
+    gap:7px;
+}
+
+.room-input input{
+    flex:1;
+    border:1px solid #d6dde5;
+    border-radius:22px;
+    padding:11px 13px;
+}
+
+/* =========================
+   MARKET
+========================= */
+
+.market-tabs{
+    display:flex;
+    gap:7px;
+    margin-bottom:12px;
+}
+
+.market-tab{
+    flex:1;
+    border:none;
+    border-radius:9px;
+    padding:10px;
+    background:white;
+    color:#666;
+}
+
+.market-tab.active{
+    background:#1976d2;
+    color:white;
+}
+
+.market-item{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    margin-bottom:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.market-image{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+    background:#e8edf3;
+}
+
+.market-info{
+    padding:13px;
+}
+
+.market-price{
+    color:#1976d2;
+    font-size:19px;
+    font-weight:bold;
+    margin:5px 0;
+}
+
+.market-actions{
+    display:flex;
+    gap:7px;
+    margin-top:10px;
+}
+
+.market-actions button{
+    flex:1;
+    padding:9px;
+    border:none;
+    border-radius:8px;
+}
+
+.contact-seller{
+    background:#1976d2;
+    color:white;
+}
+
+.delete-listing{
+    background:#fbe9e9;
+    color:#c62828;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-cover{
+    height:185px;
+    background:linear-gradient(135deg,#1976d2,#90caf9);
+    position:relative;
+    overflow:hidden;
+}
+
+.cover-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+.profile-edit-cover{
+    position:absolute;
+    right:12px;
+    top:12px;
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:50%;
+    background:rgba(0,0,0,.45);
+    color:white;
+}
+
+.profile-main{
+    background:white;
+    padding:0 15px 18px;
+    position:relative;
+}
+
+.profile-avatar-wrap{
+    position:relative;
+    width:100px;
+    height:100px;
+    margin-top:-50px;
+}
+
+.profile-avatar{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    border:4px solid white;
+    object-fit:cover;
+    background:#dce8f5;
+}
+
+.profile-camera{
+    position:absolute;
+    right:0;
+    bottom:4px;
+    width:32px;
+    height:32px;
+    border:none;
+    border-radius:50%;
+    background:#1976d2;
+    color:white;
+}
+
+.profile-name{
+    font-size:22px;
+    font-weight:bold;
+    margin-top:9px;
+}
+
+.profile-username{
+    color:#777;
+    margin-top:3px;
+}
+
+.profile-status{
+    display:inline-block;
+    margin-top:9px;
+    background:#e8f5e9;
+    color:#2e7d32;
+    padding:6px 10px;
+    border-radius:15px;
+    font-size:11px;
+}
+
+.profile-actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+    margin-top:14px;
+}
+
+.profile-action{
+    border:none;
+    border-radius:9px;
+    padding:10px;
+    background:#eef4fa;
+    color:#1976d2;
+}
+
+.profile-info{
+    background:white;
+    border-radius:15px;
+    margin-top:12px;
+    padding:15px;
+}
+
+.info-row{
+    padding:10px 0;
+    border-bottom:1px solid #edf0f3;
+}
+
+.info-row:last-child{
+    border-bottom:none;
+}
+
+.info-label{
+    font-size:11px;
+    color:#777;
+}
+
+.info-value{
+    margin-top:3px;
+}
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+.notification{
+    background:white;
+    border-radius:13px;
+    padding:13px;
+    margin-bottom:8px;
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+}
+
+.notification.unread{
+    border-left:4px solid #1976d2;
+}
+
+.notification-icon{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#e7f0fa;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.notification-info{
+    flex:1;
+}
+
+.notification-info strong{
+    display:block;
+    font-size:13px;
+}
+
+.notification-info small{
+    display:block;
+    color:#777;
+    margin-top:4px;
+}
+
+/* =========================
+   SETTINGS
+========================= */
+
+.setting-row{
+    background:white;
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.setting-icon{
+    font-size:22px;
+}
+
+.setting-info{
+    flex:1;
+}
+
+.setting-info strong{
+    display:block;
+}
+
+.setting-info small{
+    color:#777;
+}
+
+.toggle{
+    width:45px;
+    height:25px;
+    border:none;
+    border-radius:15px;
+    background:#cbd3dc;
+    position:relative;
+}
+
+.toggle.on{
+    background:#1976d2;
+}
+
+.toggle:after{
+    content:"";
+    position:absolute;
+    width:19px;
+    height:19px;
+    border-radius:50%;
+    background:white;
+    top:3px;
+    left:3px;
+}
+
+.toggle.on:after{
+    left:23px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:100;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-card{
+    width:100%;
+    max-width:480px;
+    background:white;
+    border-radius:20px 20px 0 0;
     padding:20px;
+    max-height:90vh;
+    overflow-y:auto;
 }
 
 .modal-title{
     font-size:19px;
-    font-weight:700;
-    margin-bottom:14px;
+    font-weight:bold;
+    margin-bottom:15px;
 }
 
-.modal-actions{
-    display:flex;
-    gap:8px;
-    margin-top:15px;
+.modal-close{
+    width:100%;
+    border:none;
+    background:#edf1f5;
+    color:#555;
+    border-radius:9px;
+    padding:12px;
+    margin-top:9px;
 }
 
-.modal-actions button{
-    flex:1;
+.file-label{
+    display:block;
+    width:100%;
+    padding:12px;
+    border:1px dashed #b8c3cf;
+    border-radius:10px;
+    text-align:center;
+    color:#1976d2;
+    margin-bottom:12px;
 }
+
+/* =========================
+   TOAST
+========================= */
 
 .toast{
     position:fixed;
     left:50%;
     bottom:85px;
-    transform:translateX(-50%);
+    transform:translateX(-50%) translateY(20px);
     background:#222;
     color:white;
     padding:10px 15px;
@@ -969,33 +1083,42 @@ button{
     opacity:0;
     pointer-events:none;
     transition:.25s;
-    z-index:500;
+    z-index:200;
     max-width:90%;
     text-align:center;
 }
 
 .toast.show{
     opacity:1;
+    transform:translateX(-50%) translateY(0);
 }
 
 /* =========================
-   RESPONSIVE
+   EMPTY
 ========================= */
 
-@media(min-width:481px){
+.empty{
+    text-align:center;
+    color:#777;
+    padding:35px 15px;
+}
+
+.empty-icon{
+    font-size:40px;
+    margin-bottom:8px;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media(min-width:600px){
+    body{
+        background:#dfe7ef;
+    }
+
     .app{
-        min-height:100vh;
-    }
-
-    .bottom-nav{
-        left:50%;
-        transform:translateX(-50%);
-    }
-
-    .chat-page,
-    .room-chat{
-        left:50%;
-        transform:translateX(-50%);
+        box-shadow:0 0 25px rgba(0,0,0,.12);
     }
 }
 </style>
@@ -1005,348 +1128,417 @@ button{
 
 <div class="app">
 
-<!-- =========================
-     LOGIN
-========================= -->
+<!-- ==================================================
+     AUTH
+================================================== -->
 
-<div id="loginScreen" class="auth-screen">
+<div id="authPage" class="auth">
 
-    <div class="auth-box">
+    <div class="auth-card">
 
         <div class="logo">Y-M</div>
-        <div class="logo-sub">Connect. Chat. Belong.</div>
+        <div class="logo-sub">Chat • Friends • Rooms • Market</div>
 
-        <div class="auth-title">Login</div>
+        <!-- LOGIN -->
 
-        <div class="input-group">
-            <label>Username</label>
-            <input id="loginUsername" type="text" placeholder="Enter username">
-        </div>
+        <div id="loginBox">
 
-        <div class="input-group">
-            <label>Password</label>
-            <input id="loginPassword" type="password" placeholder="Enter password">
-        </div>
+            <div class="auth-title">Welcome Back</div>
 
-        <button class="primary-btn" onclick="login()">Login</button>
+            <div class="input-group">
+                <label>Username</label>
+                <input id="loginUsername" type="text" placeholder="Enter username">
+            </div>
 
-        <div class="auth-links">
+            <div class="input-group">
+                <label>Password</label>
+                <input id="loginPassword" type="password" placeholder="Enter password">
+            </div>
+
+            <button class="primary-btn" onclick="login()">Login</button>
+
             <button class="text-btn" onclick="showAuth('register')">
-                Create Account
+                Create New Account
             </button>
 
             <button class="text-btn" onclick="showAuth('forgot')">
                 Forgot Password?
             </button>
+
         </div>
 
-        <div class="card" style="margin-top:18px;background:#f5f9ff;">
-            <div style="font-size:12px;color:#555;">
-                <strong>Demo Account</strong><br><br>
-                Username: ahmad<br>
-                Password: 123456
-            </div>
-        </div>
+        <!-- REGISTER -->
 
-    </div>
-</div>
+        <div id="registerBox" class="hidden">
 
-
-<!-- =========================
-     REGISTER
-========================= -->
-
-<div id="registerScreen" class="auth-screen" style="display:none;">
-
-    <div class="auth-box">
-
-        <div class="logo">Y-M</div>
-        <div class="logo-sub">Create your Y-M Chat account</div>
-
-        <div class="auth-title">Register</div>
-
-        <div class="input-group">
-            <label>Name</label>
-            <input id="regName" type="text" placeholder="Your name">
-        </div>
-
-        <div class="input-group">
-            <label>Username</label>
-            <input id="regUsername" type="text" placeholder="Choose username">
-        </div>
-
-        <div class="input-group">
-            <label>Password</label>
-            <input id="regPassword" type="password" placeholder="Minimum 6 characters">
-        </div>
-
-        <div class="input-group">
-            <label>Security Question</label>
-            <select id="regQuestion">
-                <option value="">Select a question</option>
-                <option>What is your favorite color?</option>
-                <option>What is your favorite food?</option>
-                <option>What is your favorite place?</option>
-                <option>What is your favorite animal?</option>
-            </select>
-        </div>
-
-        <div class="input-group">
-            <label>Security Answer</label>
-            <input id="regAnswer" type="text" placeholder="Your answer">
-        </div>
-
-        <button class="primary-btn" onclick="registerUser()">
-            Create Account
-        </button>
-
-        <button class="secondary-btn" onclick="showAuth('login')">
-            Back to Login
-        </button>
-
-    </div>
-</div>
-
-
-<!-- =========================
-     FORGOT PASSWORD
-========================= -->
-
-<div id="forgotScreen" class="auth-screen" style="display:none;">
-
-    <div class="auth-box">
-
-        <div class="logo">Y-M</div>
-        <div class="logo-sub">Account recovery</div>
-
-        <div class="auth-title">Forgot Password</div>
-
-        <div class="input-group">
-            <label>Username</label>
-            <input id="forgotUsername" type="text" placeholder="Enter username">
-        </div>
-
-        <button class="primary-btn" onclick="findSecurityQuestion()">
-            Continue
-        </button>
-
-        <div id="securityArea" style="display:none;margin-top:15px;">
+            <div class="auth-title">Create Account</div>
 
             <div class="input-group">
-                <label id="forgotQuestionLabel">Security Question</label>
-                <input id="forgotAnswer" type="text" placeholder="Your answer">
+                <label>Name</label>
+                <input id="regName" type="text" placeholder="Your name">
             </div>
 
             <div class="input-group">
-                <label>New Password</label>
-                <input id="newPassword" type="password" placeholder="Minimum 6 characters">
+                <label>Username</label>
+                <input id="regUsername" type="text" placeholder="Choose username">
             </div>
 
-            <button class="primary-btn" onclick="changeForgotPassword()">
-                Change Password
+            <div class="input-group">
+                <label>Password</label>
+                <input id="regPassword" type="password" placeholder="Minimum 6 characters">
+            </div>
+
+            <div class="input-group">
+                <label>Security Question</label>
+                <select id="regQuestion">
+                    <option value="pet">What was your first pet's name?</option>
+                    <option value="city">What city were you born in?</option>
+                    <option value="school">What was your first school?</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Security Answer</label>
+                <input id="regAnswer" type="text" placeholder="Your answer">
+            </div>
+
+            <button class="primary-btn" onclick="registerUser()">Register</button>
+
+            <button class="text-btn" onclick="showAuth('login')">
+                Back to Login
             </button>
 
         </div>
 
-        <button class="secondary-btn" onclick="showAuth('login')">
-            Back to Login
-        </button>
+        <!-- FORGOT -->
+
+        <div id="forgotBox" class="hidden">
+
+            <div class="auth-title">Reset Password</div>
+
+            <div id="forgotStep1">
+
+                <div class="input-group">
+                    <label>Username</label>
+                    <input id="forgotUsername" type="text">
+                </div>
+
+                <button class="primary-btn" onclick="verifySecurity()">
+                    Verify Account
+                </button>
+
+            </div>
+
+            <div id="forgotStep2" class="hidden">
+
+                <div class="card">
+                    <div class="small">Security Question</div>
+                    <strong id="forgotQuestion"></strong>
+                </div>
+
+                <div class="input-group">
+                    <label>Security Answer</label>
+                    <input id="forgotAnswer" type="text">
+                </div>
+
+                <div class="input-group">
+                    <label>New Password</label>
+                    <input id="forgotNewPassword" type="password">
+                </div>
+
+                <button class="primary-btn" onclick="changeForgotPassword()">
+                    Change Password
+                </button>
+
+            </div>
+
+            <button class="text-btn" onclick="showAuth('login')">
+                Back to Login
+            </button>
+
+        </div>
 
     </div>
+
 </div>
 
 
-<!-- =========================
+<!-- ==================================================
      MAIN APP
-========================= -->
+================================================== -->
 
-<div id="mainApp" style="display:none;">
-
-    <div class="app-header">
-
-        <div>
-            <div class="header-title" id="headerTitle">Home</div>
-            <div class="header-sub">Y-M Chat</div>
-        </div>
-
-        <button class="header-btn" onclick="showPage('settings')">
-            ⚙
-        </button>
-
-    </div>
-
+<div id="mainApp" class="hidden">
 
     <!-- HOME -->
 
-    <div id="homePage" class="page active">
+    <section id="homePage" class="page active">
 
-        <div class="content">
+        <div class="topbar">
+
+            <div class="top-title">Y-M Chat</div>
+
+            <div class="top-actions">
+
+                <button class="icon-btn" onclick="openNotifications()">
+                    🔔
+                </button>
+
+                <button class="icon-btn" onclick="openSettings()">
+                    ⚙️
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="container">
 
             <div class="welcome-card">
 
                 <h2 id="welcomeName">Welcome!</h2>
 
-                <p style="font-size:13px;opacity:.9;">
-                    Welcome to Y-M Chat.
+                <p>
+                    Connect with friends, join rooms and discover Y-M Market.
                 </p>
-
-                <div class="status-row" style="margin-top:15px;">
-                    <span class="status-dot"></span>
-                    <span id="homeStatus">Online</span>
-                </div>
 
             </div>
 
+            <div class="create-post">
 
-            <div class="card">
+                <div class="create-top">
 
-                <div class="section-title">
-                    Quick Access
+                    <img id="homeAvatar"
+                         class="mini-avatar"
+                         src=""
+                         alt="">
+
+                    <button class="post-input"
+                            onclick="openPostModal()">
+                        What's on your mind?
+                    </button>
+
                 </div>
 
-                <div class="quick-grid">
+                <div class="post-tools">
 
-                    <button class="quick-btn"
-                            onclick="showPage('chats')">
-                        <div class="quick-icon">💬</div>
-                        <div class="quick-name">Chats</div>
-                        <div class="quick-desc">
-                            Private messages
-                        </div>
+                    <button class="post-tool"
+                            onclick="openPostModal('text')">
+                        ✍️ Post
                     </button>
 
-                    <button class="quick-btn"
-                            onclick="showPage('friends')">
-                        <div class="quick-icon">👥</div>
-                        <div class="quick-name">Friends</div>
-                        <div class="quick-desc">
-                            Your friends
-                        </div>
+                    <button class="post-tool"
+                            onclick="openPostModal('image')">
+                        🖼️ Photo
                     </button>
 
-                    <button class="quick-btn"
-                            onclick="showPage('rooms')">
-                        <div class="quick-icon">🌎</div>
-                        <div class="quick-name">Rooms</div>
-                        <div class="quick-desc">
-                            Public chat rooms
-                        </div>
-                    </button>
-
-                    <button class="quick-btn"
-                            onclick="showPage('profile')">
-                        <div class="quick-icon">👤</div>
-                        <div class="quick-name">Profile</div>
-                        <div class="quick-desc">
-                            Your profile
-                        </div>
+                    <button class="post-tool"
+                            onclick="openPostModal('video')">
+                        🎥 Video
                     </button>
 
                 </div>
 
             </div>
 
+            <div class="quick-grid">
 
-            <div class="card">
+                <button class="quick-btn" onclick="goPage('chats')">
+                    <div>💬</div>
+                    <small>Chats</small>
+                </button>
 
-                <div class="section-title">
-                    About Y-M Chat
-                </div>
+                <button class="quick-btn" onclick="goPage('friends')">
+                    <div>👥</div>
+                    <small>Friends</small>
+                </button>
 
-                <p class="muted" style="line-height:1.6;">
-                    Y-M Chat is designed for private conversations
-                    and public community rooms around the world.
-                </p>
+                <button class="quick-btn" onclick="goPage('rooms')">
+                    <div>🌎</div>
+                    <small>Rooms</small>
+                </button>
 
-                <p class="muted" style="margin-top:10px;">
-                    Version V1.9.5
-                </p>
+                <button class="quick-btn" onclick="goPage('market')">
+                    <div>🛒</div>
+                    <small>Market</small>
+                </button>
 
             </div>
+
+            <br>
+
+            <div class="section-title">
+                Latest Posts
+            </div>
+
+            <div id="feed"></div>
 
         </div>
 
-    </div>
+    </section>
 
 
     <!-- CHATS -->
 
-    <div id="chatsPage" class="page">
+    <section id="chatsPage" class="page">
 
-        <div class="content">
+        <div class="topbar">
 
-            <input class="search-box"
-                   id="chatSearch"
-                   oninput="filterChats()"
-                   placeholder="Search chats...">
+            <div class="top-title">Chats</div>
 
-            <div class="card" id="chatList"></div>
+            <button class="icon-btn"
+                    onclick="openNotifications()">
+                🔔
+            </button>
 
         </div>
 
-    </div>
+        <div class="container">
+
+            <div class="search-box">
+                <input id="chatSearch"
+                       placeholder="Search chats..."
+                       oninput="renderChats()">
+            </div>
+
+            <div id="chatList"></div>
+
+        </div>
+
+    </section>
 
 
     <!-- FRIENDS -->
 
-    <div id="friendsPage" class="page">
+    <section id="friendsPage" class="page">
 
-        <div class="content">
+        <div class="topbar">
 
-            <input class="search-box"
-                   id="friendSearch"
-                   oninput="filterFriends()"
-                   placeholder="Search friends...">
+            <div class="top-title">Friends</div>
 
-            <div class="card" id="friendList"></div>
+            <button class="icon-btn"
+                    onclick="showToast('Friend search coming soon')">
+                🔍
+            </button>
 
         </div>
 
-    </div>
+        <div class="container">
+
+            <div class="search-box">
+                <input id="friendSearch"
+                       placeholder="Search friends..."
+                       oninput="renderFriends()">
+            </div>
+
+            <div id="friendList"></div>
+
+        </div>
+
+    </section>
 
 
     <!-- ROOMS -->
 
-    <div id="roomsPage" class="page">
+    <section id="roomsPage" class="page">
 
-        <div class="content">
+        <div class="topbar">
 
-            <div class="card">
+            <div class="top-title">Chat Rooms</div>
 
-                <div class="section-title">
-                    🌎 Public Rooms
-                </div>
+            <button class="icon-btn"
+                    onclick="showToast('Room search ready below')">
+                🔍
+            </button>
 
-                <p class="muted" style="line-height:1.5;">
-                    Choose a country, then choose a state or region.
-                    Each state/region has 5 rooms with a maximum
-                    capacity of 100 users per room.
-                </p>
+        </div>
+
+        <div class="container">
+
+            <div class="search-box">
+
+                <input id="roomSearch"
+                       placeholder="Search country, state or room..."
+                       oninput="renderRooms()">
 
             </div>
-
-
-            <input class="search-box"
-                   id="roomSearch"
-                   oninput="filterRooms()"
-                   placeholder="Search country, state or room...">
-
 
             <div id="roomContainer"></div>
 
         </div>
 
-    </div>
+    </section>
+
+
+    <!-- MARKET -->
+
+    <section id="marketPage" class="page">
+
+        <div class="topbar">
+
+            <div class="top-title">Y-M Market</div>
+
+            <button class="icon-btn"
+                    onclick="openMarketModal()">
+                ＋
+            </button>
+
+        </div>
+
+        <div class="container">
+
+            <div class="market-tabs">
+
+                <button id="marketAll"
+                        class="market-tab active"
+                        onclick="setMarketTab('all')">
+                    All
+                </button>
+
+                <button id="marketMine"
+                        class="market-tab"
+                        onclick="setMarketTab('mine')">
+                    My Listings
+                </button>
+
+            </div>
+
+            <div class="search-box">
+                <input id="marketSearch"
+                       placeholder="Search items..."
+                       oninput="renderMarket()">
+            </div>
+
+            <div id="marketList"></div>
+
+        </div>
+
+    </section>
 
 
     <!-- PROFILE -->
 
-    <div id="profilePage" class="page">
+    <section id="profilePage" class="page">
+
+        <div class="topbar">
+
+            <div class="top-title">Profile</div>
+
+            <button class="icon-btn"
+                    onclick="openSettings()">
+                ⚙️
+            </button>
+
+        </div>
 
         <div class="profile-cover">
 
-            <button class="cover-edit"
-                    onclick="showToast('Cover Photo is always Public')">
+            <img id="coverImage"
+                 class="cover-img"
+                 src=""
+                 alt="Cover">
+
+            <button class="profile-edit-cover"
+                    onclick="changeCover()">
                 📷
             </button>
 
@@ -1354,261 +1546,316 @@ button{
 
         <div class="profile-main">
 
-            <div class="profile-avatar" id="profileAvatar">
-                N
+            <div class="profile-avatar-wrap">
+
+                <img id="profileAvatar"
+                     class="profile-avatar"
+                     src=""
+                     alt="Profile">
+
+                <button class="profile-camera"
+                        onclick="changeProfilePhoto()">
+                    📷
+                </button>
+
             </div>
 
-            <div class="profile-name" id="profileName">
-                Name
+            <div id="profileName"
+                 class="profile-name">
+                User
             </div>
 
-            <div class="profile-username" id="profileUsername">
+            <div id="profileUsername"
+                 class="profile-username">
                 @username
             </div>
 
-            <div class="profile-action">
+            <div id="profileStatus"
+                 class="profile-status">
+                🟢 Online
+            </div>
 
-                <button class="small-action"
+            <div class="profile-actions">
+
+                <button class="profile-action"
                         onclick="changeName()">
-                    ✏ Change Name
+                    ✏️ Change Name
                 </button>
 
-                <button class="small-action"
+                <button class="profile-action"
                         onclick="changePassword()">
                     🔐 Change Password
                 </button>
 
-                <button class="small-action"
-                        onclick="showToast('Profile Photo is always Public')">
-                    📷 Profile Photo
+                <button class="profile-action"
+                        onclick="changeStatus()">
+                    🟢 Change Status
+                </button>
+
+                <button class="profile-action"
+                        onclick="logout()">
+                    🚪 Logout
                 </button>
 
             </div>
 
         </div>
 
+        <div class="profile-info">
 
-        <div class="content">
-
-            <div class="card">
-
-                <div class="section-title">
-                    Status
-                </div>
-
-                <select class="search-box"
-                        onchange="changeStatus(this.value)"
-                        id="statusSelect">
-
-                    <option value="Online">🟢 Online</option>
-                    <option value="Busy">🔴 Busy</option>
-                    <option value="Invisible">⚪ Invisible</option>
-
-                </select>
-
+            <div class="section-title">
+                Profile Information
             </div>
 
-
-            <div class="card">
-
-                <div class="section-title">
-                    Profile Information
-                </div>
-
-                <div class="setting-row">
-                    <div>
-                        <div class="setting-title">
-                            Profile Photo
-                        </div>
-                        <div class="setting-desc">
-                            Always Public
-                        </div>
-                    </div>
-                    <strong>🌎</strong>
-                </div>
-
-                <div class="setting-row">
-                    <div>
-                        <div class="setting-title">
-                            Cover Photo
-                        </div>
-                        <div class="setting-desc">
-                            Always Public
-                        </div>
-                    </div>
-                    <strong>🌎</strong>
-                </div>
-
-                <div class="setting-row">
-                    <div>
-                        <div class="setting-title">
-                            Other Profile Information
-                        </div>
-                        <div class="setting-desc">
-                            Privacy settings available
-                        </div>
-                    </div>
-                    <button class="text-btn"
-                            onclick="showToast('Privacy controls available for profile information')">
-                        Manage
-                    </button>
-                </div>
-
+            <div class="info-row">
+                <div class="info-label">Name</div>
+                <div id="infoName" class="info-value"></div>
             </div>
 
+            <div class="info-row">
+                <div class="info-label">Username</div>
+                <div id="infoUsername" class="info-value"></div>
+            </div>
 
-            <button class="secondary-btn"
-                    onclick="logout()">
-                Logout
+            <div class="info-row">
+                <div class="info-label">Profile Photo</div>
+                <div class="info-value">
+                    🌎 Public
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">Cover Photo</div>
+                <div class="info-value">
+                    🌎 Public
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">Other Profile Information</div>
+                <div class="info-value">
+                    🔒 Privacy controlled in Settings
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOTIFICATIONS -->
+
+    <section id="notificationsPage" class="page">
+
+        <div class="topbar">
+
+            <button class="icon-btn"
+                    onclick="goPage('home')">
+                ←
+            </button>
+
+            <div class="top-title">Notifications</div>
+
+            <button class="icon-btn"
+                    onclick="markNotificationsRead()">
+                ✓
             </button>
 
         </div>
 
-    </div>
+        <div class="container">
+
+            <div id="notificationList"></div>
+
+        </div>
+
+    </section>
 
 
     <!-- SETTINGS -->
 
-    <div id="settingsPage" class="page">
+    <section id="settingsPage" class="page">
 
-        <div class="content">
+        <div class="topbar">
 
-            <div class="card">
+            <button class="icon-btn"
+                    onclick="goPage('home')">
+                ←
+            </button>
 
-                <div class="section-title">
-                    Settings
+            <div class="top-title">Settings</div>
+
+            <div style="width:38px"></div>
+
+        </div>
+
+        <div class="container">
+
+            <div class="section-title">
+                General
+            </div>
+
+            <div class="setting-row">
+
+                <div class="setting-icon">🌐</div>
+
+                <div class="setting-info">
+                    <strong>Language</strong>
+                    <small>Choose app language</small>
                 </div>
 
-                <div class="setting-row">
-
-                    <div>
-                        <div class="setting-title">
-                            Language
-                        </div>
-                        <div class="setting-desc">
-                            Choose your preferred language
-                        </div>
-                    </div>
-
-                    <select id="languageSelect"
-                            style="padding:7px;border:1px solid #ddd;border-radius:8px;"
-                            onchange="changeLanguage(this.value)">
-
-                        <option>English</option>
-                        <option>Malay</option>
-                        <option>Indonesian</option>
-                        <option>Filipino</option>
-                        <option>Chinese</option>
-                        <option>Arabic</option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="setting-row">
-
-                    <div>
-                        <div class="setting-title">
-                            Notifications
-                        </div>
-                        <div class="setting-desc">
-                            Chat notifications
-                        </div>
-                    </div>
-
-                    <input type="checkbox" checked>
-
-                </div>
-
-
-                <div class="setting-row">
-
-                    <div>
-                        <div class="setting-title">
-                            Privacy
-                        </div>
-                        <div class="setting-desc">
-                            Manage profile information
-                        </div>
-                    </div>
-
-                    <button class="text-btn"
-                            onclick="showToast('Privacy settings opened')">
-                        Open
-                    </button>
-
-                </div>
-
-
-                <div class="setting-row">
-
-                    <div>
-                        <div class="setting-title">
-                            Security
-                        </div>
-                        <div class="setting-desc">
-                            Change your password
-                        </div>
-                    </div>
-
-                    <button class="text-btn"
-                            onclick="changePassword()">
-                        Change
-                    </button>
-
-                </div>
+                <select onchange="changeLanguage(this.value)">
+                    <option value="English">English</option>
+                    <option value="Malay">Malay</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Arabic">Arabic</option>
+                    <option value="Indonesian">Indonesian</option>
+                </select>
 
             </div>
 
+            <div class="section-title">
+                Notifications
+            </div>
+
+            <div class="setting-row">
+
+                <div class="setting-icon">🔔</div>
+
+                <div class="setting-info">
+                    <strong>Notifications</strong>
+                    <small>Receive activity notifications</small>
+                </div>
+
+                <button id="notificationToggle"
+                        class="toggle on"
+                        onclick="toggleSetting(this)">
+                </button>
+
+            </div>
+
+            <div class="section-title">
+                Privacy
+            </div>
+
+            <div class="setting-row">
+
+                <div class="setting-icon">🔒</div>
+
+                <div class="setting-info">
+                    <strong>Profile Information</strong>
+                    <small>Control who can see profile details</small>
+                </div>
+
+                <button class="open-btn"
+                        onclick="showToast('Privacy settings ready')">
+                    Open
+                </button>
+
+            </div>
+
+            <div class="setting-row">
+
+                <div class="setting-icon">🖼️</div>
+
+                <div class="setting-info">
+                    <strong>Profile & Cover Photos</strong>
+                    <small>Always Public</small>
+                </div>
+
+                <span>🌎</span>
+
+            </div>
+
+            <div class="section-title">
+                Security
+            </div>
+
+            <div class="setting-row">
+
+                <div class="setting-icon">🔐</div>
+
+                <div class="setting-info">
+                    <strong>Change Password</strong>
+                    <small>Keep your account secure</small>
+                </div>
+
+                <button class="open-btn"
+                        onclick="changePassword()">
+                    Change
+                </button>
+
+            </div>
+
+            <div class="setting-row">
+
+                <div class="setting-icon">🛡️</div>
+
+                <div class="setting-info">
+                    <strong>Security Question</strong>
+                    <small>Used for password recovery</small>
+                </div>
+
+                <span>✓</span>
+
+            </div>
+
+            <br>
 
             <button class="secondary-btn"
                     onclick="logout()">
-                Logout
+                🚪 Logout
             </button>
 
         </div>
 
-    </div>
+    </section>
 
 
     <!-- BOTTOM NAV -->
 
-    <div class="bottom-nav">
+    <div id="bottomNav" class="bottom-nav">
 
-        <button class="nav-btn active"
-                data-page="home"
-                onclick="showPage('home')">
+        <button id="navHome"
+                class="nav-btn active"
+                onclick="goPage('home')">
             <span>🏠</span>
-            <span>Home</span>
+            Home
         </button>
 
-        <button class="nav-btn"
-                data-page="chats"
-                onclick="showPage('chats')">
+        <button id="navChats"
+                class="nav-btn"
+                onclick="goPage('chats')">
             <span>💬</span>
-            <span>Chats</span>
+            Chats
         </button>
 
-        <button class="nav-btn"
-                data-page="friends"
-                onclick="showPage('friends')">
+        <button id="navFriends"
+                class="nav-btn"
+                onclick="goPage('friends')">
             <span>👥</span>
-            <span>Friends</span>
+            Friends
         </button>
 
-        <button class="nav-btn"
-                data-page="rooms"
-                onclick="showPage('rooms')">
+        <button id="navRooms"
+                class="nav-btn"
+                onclick="goPage('rooms')">
             <span>🌎</span>
-            <span>Rooms</span>
+            Rooms
         </button>
 
-        <button class="nav-btn"
-                data-page="profile"
-                onclick="showPage('profile')">
+        <button id="navMarket"
+                class="nav-btn"
+                onclick="goPage('market')">
+            <span>🛒</span>
+            Market
+        </button>
+
+        <button id="navProfile"
+                class="nav-btn"
+                onclick="goPage('profile')">
             <span>👤</span>
-            <span>Profile</span>
+            Profile
         </button>
 
     </div>
@@ -1616,54 +1863,53 @@ button{
 </div>
 
 
-<!-- =========================
-     PRIVATE CHAT WINDOW
-========================= -->
+<!-- ==================================================
+     PRIVATE CHAT SCREEN
+================================================== -->
 
-<div id="privateChat" class="chat-page">
+<div id="privateChat"
+     class="chat-screen">
 
     <div class="chat-header">
 
-        <button class="back-btn"
+        <button class="chat-back"
                 onclick="closePrivateChat()">
-            ‹
+            ←
         </button>
 
-        <div class="avatar small" id="privateAvatar">
-            A
-        </div>
+        <img id="privateAvatar"
+             class="avatar"
+             src=""
+             alt="">
 
-        <div class="chat-head-info">
+        <div class="chat-header-info">
 
-            <div class="chat-head-name"
-                 id="privateChatName">
-                Ahmad
-            </div>
+            <strong id="privateName">
+                User
+            </strong>
 
-            <div class="chat-head-status"
-                 id="privateChatStatus">
+            <small id="privateStatus">
                 Online
-            </div>
+            </small>
 
         </div>
 
-        <button class="chat-menu"
-                onclick="privateChatOptions()">
-            ⋮
+        <button class="icon-btn"
+                onclick="deleteWholeChat()">
+            🗑️
         </button>
 
     </div>
 
+    <div id="privateMessages"
+         class="chat-body">
+    </div>
 
-    <div class="messages" id="privateMessages"></div>
-
-
-    <div class="chat-input-area">
+    <div class="chat-input">
 
         <input id="privateInput"
-               class="chat-input"
-               placeholder="Type a message..."
-               onkeydown="privateEnter(event)">
+               placeholder="Write a message..."
+               onkeydown="if(event.key==='Enter')sendPrivateMessage()">
 
         <button class="send-btn"
                 onclick="sendPrivateMessage()">
@@ -1675,67 +1921,55 @@ button{
 </div>
 
 
-<!-- =========================
-     ROOM CHAT WINDOW
-========================= -->
+<!-- ==================================================
+     ROOM CHAT SCREEN
+================================================== -->
 
-<div id="roomChat" class="room-chat">
+<div id="roomChat"
+     class="room-chat">
 
-    <div class="room-chat-header">
+    <div class="room-header">
 
-        <button class="back-btn"
+        <button class="chat-back"
                 onclick="closeRoomChat()">
-            ‹
+            ←
         </button>
 
-        <div class="room-chat-title">
+        <div class="room-header-info">
 
-            <strong id="roomChatTitle">
-                Sabah Room 1
+            <strong id="roomTitle">
+                Room
             </strong>
 
-            <span>
+            <small>
                 Public Room
-            </span>
+            </small>
 
         </div>
 
-        <button class="chat-menu"
+        <button class="icon-btn"
                 onclick="roomOptions()">
             ⋮
         </button>
 
     </div>
 
-
-    <div class="room-members">
-
-        👥 <strong id="roomMemberCount">
-            0 / 100
-        </strong>
-
-        &nbsp; • &nbsp;
-
-        🟢 <span id="roomOnlineCount">
-            0 online
-        </span>
-
+    <div id="roomMembers"
+         class="room-members">
+        0/100 members
     </div>
 
-
-    <div class="room-messages"
-         id="roomMessages">
+    <div id="roomMessages"
+         class="room-body">
     </div>
 
-
-    <div class="room-input-area">
+    <div class="room-input">
 
         <input id="roomInput"
-               class="room-input"
                placeholder="Write in room..."
-               onkeydown="roomEnter(event)">
+               onkeydown="if(event.key==='Enter')sendRoomMessage()">
 
-        <button class="room-send"
+        <button class="send-btn"
                 onclick="sendRoomMessage()">
             ➤
         </button>
@@ -1745,34 +1979,159 @@ button{
 </div>
 
 
-<!-- =========================
-     MODAL
-========================= -->
+<!-- ==================================================
+     POST MODAL
+================================================== -->
 
-<div id="modal" class="modal">
+<div id="postModal" class="modal">
 
-    <div class="modal-box">
+    <div class="modal-card">
 
-        <div class="modal-title"
-             id="modalTitle">
-            Y-M Chat
+        <div class="modal-title">
+            Create Post
         </div>
 
-        <div id="modalContent"></div>
+        <div class="input-group">
 
-        <div class="modal-actions">
+            <label>What's on your mind?</label>
 
-            <button class="secondary-btn"
-                    onclick="closeModal()">
-                Cancel
-            </button>
-
-            <button class="primary-btn"
-                    id="modalConfirm">
-                Confirm
-            </button>
+            <textarea id="postText"
+                      rows="5"
+                      placeholder="Write something..."></textarea>
 
         </div>
+
+        <label class="file-label">
+
+            🖼️ Add Photo
+
+            <input id="postImage"
+                   type="file"
+                   accept="image/*"
+                   hidden
+                   onchange="previewPostFile(this,'image')">
+
+        </label>
+
+        <label class="file-label">
+
+            🎥 Add Video
+
+            <input id="postVideo"
+                   type="file"
+                   accept="video/*"
+                   hidden
+                   onchange="previewPostFile(this,'video')">
+
+        </label>
+
+        <div id="postPreview"></div>
+
+        <button class="primary-btn"
+                onclick="createPost()">
+            Publish Post
+        </button>
+
+        <button class="modal-close"
+                onclick="closeModal('postModal')">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     MARKET MODAL
+================================================== -->
+
+<div id="marketModal" class="modal">
+
+    <div class="modal-card">
+
+        <div class="modal-title">
+            Sell Something
+        </div>
+
+        <div class="input-group">
+
+            <label>Item Name</label>
+
+            <input id="marketName"
+                   placeholder="Example: iPhone 13">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Price (RM)</label>
+
+            <input id="marketPrice"
+                   type="number"
+                   placeholder="1000">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Location</label>
+
+            <input id="marketLocation"
+                   placeholder="Kota Kinabalu">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Description</label>
+
+            <textarea id="marketDescription"
+                      rows="4"
+                      placeholder="Describe your item..."></textarea>
+
+        </div>
+
+        <label class="file-label">
+
+            🖼️ Add Item Photo
+
+            <input id="marketImage"
+                   type="file"
+                   accept="image/*"
+                   hidden>
+
+        </label>
+
+        <button class="primary-btn"
+                onclick="createListing()">
+            Publish Listing
+        </button>
+
+        <button class="modal-close"
+                onclick="closeModal('marketModal')">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     GENERAL MODAL
+================================================== -->
+
+<div id="generalModal" class="modal">
+
+    <div class="modal-card">
+
+        <div id="generalModalContent"></div>
+
+        <button class="modal-close"
+                onclick="closeModal('generalModal')">
+            Close
+        </button>
 
     </div>
 
@@ -1785,79 +2144,113 @@ button{
 <script>
 
 /* =====================================================
-   Y-M CHAT V1.9.5
-   Local Demo Storage
+   DATABASE / STORAGE
 ===================================================== */
 
-const VERSION = "V1.9.5";
-
-let currentUser = null;
-let activePrivateUser = null;
-let activeRoom = null;
-
-
-/* =====================================================
-   DEFAULT USERS
-===================================================== */
-
-const defaultUsers = [
-
+const DEMO_USERS = [
     {
         name:"Ahmad",
         username:"ahmad",
         password:"123456",
-        question:"What is your favorite color?",
-        answer:"blue",
-        status:"Online"
+        question:"pet",
+        answer:"cat",
+        status:"Online",
+        avatar:"",
+        cover:""
     },
-
     {
         name:"Siti",
         username:"siti",
         password:"123456",
-        question:"What is your favorite food?",
-        answer:"rice",
-        status:"Online"
+        question:"city",
+        answer:"kk",
+        status:"Online",
+        avatar:"",
+        cover:""
     },
-
     {
         name:"John",
         username:"john",
         password:"123456",
-        question:"What is your favorite animal?",
-        answer:"cat",
-        status:"Online"
+        question:"school",
+        answer:"school",
+        status:"Busy",
+        avatar:"",
+        cover:""
     }
-
 ];
 
+let users =
+    JSON.parse(localStorage.getItem("ym_users") || "null")
+    || DEMO_USERS;
 
-function getUsers(){
+localStorage.setItem("ym_users",JSON.stringify(users));
 
-    let users = JSON.parse(
-        localStorage.getItem("ym_users") || "null"
-    );
+let currentUser =
+    JSON.parse(localStorage.getItem("ym_currentUser") || "null");
 
-    if(!users){
+let posts =
+    JSON.parse(localStorage.getItem("ym_posts") || "null")
+    || [];
 
-        users = defaultUsers;
+let marketListings =
+    JSON.parse(localStorage.getItem("ym_market") || "null")
+    || [];
 
-        localStorage.setItem(
-            "ym_users",
-            JSON.stringify(users)
-        );
+let notifications =
+    JSON.parse(localStorage.getItem("ym_notifications") || "null")
+    || [];
 
-    }
+let chats =
+    JSON.parse(localStorage.getItem("ym_chats") || "null")
+    || {};
 
-    return users;
-}
+let roomMessages =
+    JSON.parse(localStorage.getItem("ym_room_messages") || "null")
+    || {};
+
+let currentChatUser = null;
+let currentRoom = null;
+let forgotUser = null;
+let marketTab = "all";
+let postFileData = "";
+let postFileType = "";
 
 
-function saveUsers(users){
+/* =====================================================
+   SAVE
+===================================================== */
+
+function saveAll(){
 
     localStorage.setItem(
         "ym_users",
         JSON.stringify(users)
+    );
+
+    localStorage.setItem(
+        "ym_posts",
+        JSON.stringify(posts)
+    );
+
+    localStorage.setItem(
+        "ym_market",
+        JSON.stringify(marketListings)
+    );
+
+    localStorage.setItem(
+        "ym_notifications",
+        JSON.stringify(notifications)
+    );
+
+    localStorage.setItem(
+        "ym_chats",
+        JSON.stringify(chats)
+    );
+
+    localStorage.setItem(
+        "ym_room_messages",
+        JSON.stringify(roomMessages)
     );
 
 }
@@ -1869,14 +2262,73 @@ function saveUsers(users){
 
 function showAuth(type){
 
-    document.getElementById("loginScreen").style.display =
-        type === "login" ? "flex" : "none";
+    document.getElementById("loginBox")
+        .classList.add("hidden");
 
-    document.getElementById("registerScreen").style.display =
-        type === "register" ? "flex" : "none";
+    document.getElementById("registerBox")
+        .classList.add("hidden");
 
-    document.getElementById("forgotScreen").style.display =
-        type === "forgot" ? "flex" : "none";
+    document.getElementById("forgotBox")
+        .classList.add("hidden");
+
+    if(type==="login"){
+        document.getElementById("loginBox")
+            .classList.remove("hidden");
+    }
+
+    if(type==="register"){
+        document.getElementById("registerBox")
+            .classList.remove("hidden");
+    }
+
+    if(type==="forgot"){
+        document.getElementById("forgotBox")
+            .classList.remove("hidden");
+
+        document.getElementById("forgotStep1")
+            .classList.remove("hidden");
+
+        document.getElementById("forgotStep2")
+            .classList.add("hidden");
+    }
+
+}
+
+
+function login(){
+
+    const username =
+        document.getElementById("loginUsername")
+        .value.trim()
+        .toLowerCase();
+
+    const password =
+        document.getElementById("loginPassword")
+        .value;
+
+    const user =
+        users.find(u =>
+            u.username.toLowerCase()===username &&
+            u.password===password
+        );
+
+    if(!user){
+
+        showToast("Invalid username or password.");
+
+        return;
+    }
+
+    currentUser = user;
+
+    localStorage.setItem(
+        "ym_currentUser",
+        JSON.stringify(currentUser)
+    );
+
+    openMainApp();
+
+    showToast("Welcome to Y-M Chat, " + user.name + "!");
 
 }
 
@@ -1887,7 +2339,9 @@ function registerUser(){
         document.getElementById("regName").value.trim();
 
     const username =
-        document.getElementById("regUsername").value.trim().toLowerCase();
+        document.getElementById("regUsername")
+        .value.trim()
+        .toLowerCase();
 
     const password =
         document.getElementById("regPassword").value;
@@ -1896,230 +2350,242 @@ function registerUser(){
         document.getElementById("regQuestion").value;
 
     const answer =
-        document.getElementById("regAnswer").value.trim().toLowerCase();
+        document.getElementById("regAnswer")
+        .value.trim()
+        .toLowerCase();
 
-
-    if(!name || !username || !password || !question || !answer){
+    if(!name || !username || !password || !answer){
 
         showToast("Please complete all fields.");
+
         return;
-
     }
-
 
     if(password.length < 6){
 
         showToast("Password must be at least 6 characters.");
-        return;
 
+        return;
     }
 
-
-    const users = getUsers();
-
-    if(users.some(u => u.username === username)){
+    if(users.some(u =>
+        u.username.toLowerCase()===username
+    )){
 
         showToast("Username already exists.");
-        return;
 
+        return;
     }
 
+    const newUser = {
+        name,
+        username,
+        password,
+        question,
+        answer,
+        status:"Online",
+        avatar:"",
+        cover:""
+    };
 
-    users.push({
+    users.push(newUser);
 
-        name:name,
-        username:username,
-        password:password,
-        question:question,
-        answer:answer,
-        status:"Online"
-
-    });
-
-
-    saveUsers(users);
+    saveAll();
 
     showToast("Account created successfully.");
 
-    setTimeout(() => {
+    document.getElementById("loginUsername").value=username;
+    document.getElementById("loginPassword").value="";
 
-        showAuth("login");
-
-        document.getElementById("loginUsername").value =
-            username;
-
-    },700);
+    showAuth("login");
 
 }
 
 
-function login(){
-
-    const username =
-        document.getElementById("loginUsername")
-        .value.trim().toLowerCase();
-
-    const password =
-        document.getElementById("loginPassword").value;
-
-
-    const users = getUsers();
-
-    const user = users.find(
-        u =>
-        u.username === username &&
-        u.password === password
-    );
-
-
-    if(!user){
-
-        showToast("Invalid username or password.");
-        return;
-
-    }
-
-
-    currentUser = user;
-
-    localStorage.setItem(
-        "ym_currentUser",
-        username
-    );
-
-
-    openMainApp();
-
-}
-
-
-function findSecurityQuestion(){
+function verifySecurity(){
 
     const username =
         document.getElementById("forgotUsername")
-        .value.trim().toLowerCase();
-
-    const users = getUsers();
+        .value.trim()
+        .toLowerCase();
 
     const user =
-        users.find(u => u.username === username);
-
+        users.find(u =>
+            u.username.toLowerCase()===username
+        );
 
     if(!user){
 
-        showToast("Username not found.");
-        return;
+        showToast("Account not found.");
 
+        return;
     }
 
+    forgotUser = user;
 
-    document.getElementById(
-        "forgotQuestionLabel"
-    ).textContent = user.question;
+    const questions = {
+        pet:"What was your first pet's name?",
+        city:"What city were you born in?",
+        school:"What was your first school?"
+    };
 
+    document.getElementById("forgotQuestion")
+        .textContent =
+        questions[user.question] || "Security Question";
 
-    document.getElementById(
-        "securityArea"
-    ).style.display = "block";
+    document.getElementById("forgotStep1")
+        .classList.add("hidden");
+
+    document.getElementById("forgotStep2")
+        .classList.remove("hidden");
 
 }
 
 
 function changeForgotPassword(){
 
-    const username =
-        document.getElementById("forgotUsername")
-        .value.trim().toLowerCase();
+    if(!forgotUser){
+
+        showToast("Please verify your account first.");
+
+        return;
+    }
 
     const answer =
         document.getElementById("forgotAnswer")
-        .value.trim().toLowerCase();
+        .value.trim()
+        .toLowerCase();
 
     const newPassword =
-        document.getElementById("newPassword").value;
+        document.getElementById("forgotNewPassword")
+        .value;
 
+    if(answer !== forgotUser.answer){
+
+        showToast("Security answer is incorrect.");
+
+        return;
+    }
 
     if(newPassword.length < 6){
 
         showToast("Password must be at least 6 characters.");
-        return;
 
+        return;
     }
 
+    forgotUser.password = newPassword;
 
-    const users = getUsers();
-
-    const index =
-        users.findIndex(u => u.username === username);
-
-
-    if(index === -1){
-
-        showToast("User not found.");
-        return;
-
-    }
-
-
-    if(users[index].answer !== answer){
-
-        showToast("Security answer is incorrect.");
-        return;
-
-    }
-
-
-    users[index].password = newPassword;
-
-    saveUsers(users);
+    saveAll();
 
     showToast("Password changed successfully.");
 
-    setTimeout(() => {
+    forgotUser = null;
 
-        showAuth("login");
-
-    },700);
+    showAuth("login");
 
 }
 
 
+/* =====================================================
+   APP OPEN
+===================================================== */
+
 function openMainApp(){
 
-    document.getElementById("loginScreen").style.display =
-        "none";
+    document.getElementById("authPage")
+        .classList.add("hidden");
 
-    document.getElementById("registerScreen").style.display =
-        "none";
+    document.getElementById("mainApp")
+        .classList.remove("hidden");
 
-    document.getElementById("forgotScreen").style.display =
-        "none";
+    refreshUser();
 
-    document.getElementById("mainApp").style.display =
-        "block";
-
-
-    updateProfile();
-
+    renderFeed();
     renderChats();
-
     renderFriends();
-
     renderRooms();
+    renderMarket();
+    renderNotifications();
 
-    showPage("home");
+}
+
+
+function refreshUser(){
+
+    if(!currentUser) return;
+
+    const freshUser =
+        users.find(u =>
+            u.username===currentUser.username
+        );
+
+    if(freshUser){
+        currentUser = freshUser;
+
+        localStorage.setItem(
+            "ym_currentUser",
+            JSON.stringify(currentUser)
+        );
+    }
+
+    document.getElementById("welcomeName")
+        .textContent =
+        "Welcome, " + currentUser.name + "!";
+
+    const avatar =
+        currentUser.avatar ||
+        makeAvatar(currentUser.name);
+
+    document.getElementById("homeAvatar").src=avatar;
+
+    document.getElementById("profileAvatar").src=avatar;
+
+    document.getElementById("profileName")
+        .textContent=currentUser.name;
+
+    document.getElementById("profileUsername")
+        .textContent="@"+currentUser.username;
+
+    document.getElementById("infoName")
+        .textContent=currentUser.name;
+
+    document.getElementById("infoUsername")
+        .textContent="@"+currentUser.username;
+
+    document.getElementById("profileStatus")
+        .textContent =
+        statusIcon(currentUser.status)
+        + " "
+        + currentUser.status;
+
+    if(currentUser.cover){
+
+        document.getElementById("coverImage").src =
+            currentUser.cover;
+
+        document.getElementById("coverImage")
+            .style.display="block";
+    }
+
+    updateNotificationBadge();
 
 }
 
 
 function logout(){
 
+    if(!confirm("Logout from Y-M Chat?")) return;
+
+    currentUser=null;
+
     localStorage.removeItem("ym_currentUser");
 
-    currentUser = null;
+    document.getElementById("mainApp")
+        .classList.add("hidden");
 
-    document.getElementById("mainApp").style.display =
-        "none";
+    document.getElementById("authPage")
+        .classList.remove("hidden");
 
     showAuth("login");
 
@@ -2129,208 +2595,671 @@ function logout(){
 
 
 /* =====================================================
-   AUTO LOGIN
-===================================================== */
-
-function checkSession(){
-
-    const username =
-        localStorage.getItem("ym_currentUser");
-
-    if(username){
-
-        const users = getUsers();
-
-        const user =
-            users.find(u => u.username === username);
-
-        if(user){
-
-            currentUser = user;
-
-            openMainApp();
-
-        }
-
-    }
-
-}
-
-
-/* =====================================================
    PAGE NAVIGATION
 ===================================================== */
 
-function showPage(page){
+function goPage(page){
 
-    const pages = [
+    document.querySelectorAll(".page")
+        .forEach(p => p.classList.remove("active"));
 
-        "home",
-        "chats",
-        "friends",
-        "rooms",
-        "profile",
-        "settings"
+    const target =
+        document.getElementById(page+"Page");
 
-    ];
+    if(target){
 
+        target.classList.add("active");
 
-    pages.forEach(p => {
+    }else{
 
-        const element =
-            document.getElementById(p + "Page");
+        document.getElementById("homePage")
+            .classList.add("active");
 
-        if(element){
-
-            element.classList.toggle(
-                "active",
-                p === page
-            );
-
-        }
-
-    });
-
-
-    const titleNames = {
-
-        home:"Home",
-        chats:"Chats",
-        friends:"Friends",
-        rooms:"Rooms",
-        profile:"Profile",
-        settings:"Settings"
-
-    };
-
-
-    document.getElementById("headerTitle")
-        .textContent = titleNames[page];
-
+    }
 
     document.querySelectorAll(".nav-btn")
-        .forEach(btn => {
+        .forEach(n => n.classList.remove("active"));
 
-            btn.classList.toggle(
-                "active",
-                btn.dataset.page === page
-            );
+    const nav =
+        document.getElementById("nav"+capitalize(page));
 
-        });
+    if(nav) nav.classList.add("active");
+
+    if(page==="home") renderFeed();
+    if(page==="chats") renderChats();
+    if(page==="friends") renderFriends();
+    if(page==="rooms") renderRooms();
+    if(page==="market") renderMarket();
+    if(page==="profile") refreshUser();
+
+}
+
+
+function capitalize(str){
+
+    return str.charAt(0).toUpperCase()+str.slice(1);
+
+}
+
+
+function openNotifications(){
+
+    goPage("notifications");
+
+    renderNotifications();
+
+}
+
+
+function openSettings(){
+
+    goPage("settings");
 
 }
 
 
 /* =====================================================
-   CHATS
+   HOME POSTS
 ===================================================== */
 
-const demoChats = [
+function openPostModal(type="text"){
 
-    {
-        username:"ahmad",
-        name:"Ahmad",
-        message:"Hello! Welcome to Y-M Chat.",
-        time:"10:30 AM",
-        online:true
-    },
+    document.getElementById("postText").value="";
 
-    {
-        username:"siti",
-        name:"Siti",
-        message:"See you later.",
-        time:"09:45 AM",
-        online:true
-    },
+    document.getElementById("postPreview").innerHTML="";
 
-    {
-        username:"john",
-        name:"John",
-        message:"Nice to meet you.",
-        time:"Yesterday",
-        online:false
+    postFileData="";
+    postFileType="";
+
+    document.getElementById("postModal")
+        .classList.add("show");
+
+}
+
+
+function previewPostFile(input,type){
+
+    const file=input.files[0];
+
+    if(!file) return;
+
+    if(file.size > 6 * 1024 * 1024){
+
+        showToast("Demo upload limit: 6MB.");
+
+        input.value="";
+
+        return;
     }
 
-];
+    const reader=new FileReader();
+
+    reader.onload=function(e){
+
+        postFileData=e.target.result;
+        postFileType=type;
+
+        if(type==="image"){
+
+            document.getElementById("postPreview")
+                .innerHTML =
+                `<img class="post-media" src="${postFileData}">`;
+
+        }else{
+
+            document.getElementById("postPreview")
+                .innerHTML =
+                `<video class="post-media" controls src="${postFileData}"></video>`;
+
+        }
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
 
 
-function renderChats(){
+function createPost(){
 
-    const list =
-        document.getElementById("chatList");
+    const text =
+        document.getElementById("postText")
+        .value.trim();
 
-    list.innerHTML = "";
+    if(!text && !postFileData){
+
+        showToast("Write something or add media.");
+
+        return;
+    }
+
+    const post = {
+
+        id:Date.now(),
+
+        username:currentUser.username,
+
+        name:currentUser.name,
+
+        avatar:currentUser.avatar || "",
+
+        text,
+
+        media:postFileData,
+
+        mediaType:postFileType,
+
+        likes:[],
+
+        comments:[],
+
+        time:new Date().toLocaleString()
+
+    };
+
+    posts.unshift(post);
+
+    saveAll();
+
+    addNotification(
+        "📝",
+        currentUser.name + " created a new post.",
+        false
+    );
+
+    closeModal("postModal");
+
+    renderFeed();
+
+    showToast("Post published.");
+
+}
 
 
-    demoChats.forEach(chat => {
+function renderFeed(){
 
-        const div =
-            document.createElement("div");
+    const box=document.getElementById("feed");
 
-        div.className = "chat-item";
+    if(!box) return;
 
-        div.dataset.search =
-            chat.name.toLowerCase();
+    if(posts.length===0){
 
-
-        div.innerHTML = `
-
-            <div class="avatar">
-                ${chat.name.charAt(0)}
+        box.innerHTML=`
+            <div class="empty">
+                <div class="empty-icon">📝</div>
+                <div>No posts yet.</div>
+                <small>Be the first to post something.</small>
             </div>
-
-            <div class="item-main">
-
-                <div class="item-name">
-                    ${chat.name}
-                </div>
-
-                <div class="item-message">
-                    ${chat.message}
-                </div>
-
-            </div>
-
-            <div class="item-right">
-
-                <div>${chat.time}</div>
-
-                <div class="${chat.online ? "online" : "offline"}">
-                    ${chat.online ? "● Online" : "Offline"}
-                </div>
-
-            </div>
-
         `;
 
+        return;
+    }
 
-        div.onclick = () =>
-            openPrivateChat(chat.username);
+    box.innerHTML="";
 
+    posts.forEach(post=>{
 
-        list.appendChild(div);
+        const liked =
+            post.likes.includes(currentUser.username);
+
+        let media="";
+
+        if(post.media && post.mediaType==="image"){
+
+            media=
+                `<img class="post-media"
+                      src="${post.media}"
+                      alt="Post image">`;
+
+        }
+
+        if(post.media && post.mediaType==="video"){
+
+            media=
+                `<video class="post-media"
+                        controls
+                        src="${post.media}">
+                </video>`;
+
+        }
+
+        let comments="";
+
+        if(post.comments.length){
+
+            comments =
+                `<div style="margin-top:10px">
+                    ${post.comments.map(c =>
+                        `<div class="small"
+                              style="margin-top:5px">
+                            <strong>${escapeHTML(c.name)}</strong>:
+                            ${escapeHTML(c.text)}
+                        </div>`
+                    ).join("")}
+                </div>`;
+
+        }
+
+        const deleteButton =
+            post.username===currentUser.username
+            ?
+            `<button class="post-action"
+                     onclick="deletePost(${post.id})">
+                🗑️ Delete
+            </button>`
+            : "";
+
+        box.innerHTML += `
+
+            <div class="post-card">
+
+                <div class="post-head">
+
+                    <img class="avatar"
+                         src="${post.avatar || makeAvatar(post.name)}">
+
+                    <div class="post-user">
+
+                        <strong>
+                            ${escapeHTML(post.name)}
+                        </strong>
+
+                        <span class="small">
+                            @${escapeHTML(post.username)}
+                            • ${escapeHTML(post.time)}
+                        </span>
+
+                    </div>
+
+                </div>
+
+                ${
+                    post.text
+                    ?
+                    `<div class="post-content">
+                        ${escapeHTML(post.text)}
+                    </div>`
+                    : ""
+                }
+
+                ${media}
+
+                <div class="post-actions">
+
+                    <button class="post-action ${liked?"liked":""}"
+                            onclick="toggleLike(${post.id})">
+                        ${liked?"👍":"👍"} ${post.likes.length}
+                    </button>
+
+                    <button class="post-action"
+                            onclick="commentPost(${post.id})">
+                        💬 ${post.comments.length}
+                    </button>
+
+                    ${deleteButton}
+
+                </div>
+
+                ${comments}
+
+            </div>
+        `;
 
     });
 
 }
 
 
-function filterChats(){
+function toggleLike(id){
 
-    const search =
-        document.getElementById("chatSearch")
-        .value.toLowerCase();
+    const post =
+        posts.find(p=>p.id===id);
+
+    if(!post) return;
+
+    const index =
+        post.likes.indexOf(currentUser.username);
+
+    if(index>=0){
+
+        post.likes.splice(index,1);
+
+    }else{
+
+        post.likes.push(currentUser.username);
+
+        if(post.username!==currentUser.username){
+
+            addNotification(
+                "👍",
+                currentUser.name + " liked your post.",
+                true
+            );
+
+        }
+
+    }
+
+    saveAll();
+
+    renderFeed();
+
+}
 
 
-    document.querySelectorAll("#chatList .chat-item")
-        .forEach(item => {
+function commentPost(id){
 
-            item.style.display =
-                item.dataset.search.includes(search)
-                ? "flex"
-                : "none";
+    const text =
+        prompt("Write your comment:");
 
-        });
+    if(!text || !text.trim()) return;
+
+    const post =
+        posts.find(p=>p.id===id);
+
+    if(!post) return;
+
+    post.comments.push({
+
+        username:currentUser.username,
+
+        name:currentUser.name,
+
+        text:text.trim()
+
+    });
+
+    if(post.username!==currentUser.username){
+
+        addNotification(
+            "💬",
+            currentUser.name + " commented on your post.",
+            true
+        );
+
+    }
+
+    saveAll();
+
+    renderFeed();
+
+}
+
+
+function deletePost(id){
+
+    if(!confirm("Delete this post?")) return;
+
+    posts =
+        posts.filter(p=>p.id!==id);
+
+    saveAll();
+
+    renderFeed();
+
+    showToast("Post deleted.");
+
+}
+
+
+/* =====================================================
+   PRIVATE CHATS
+===================================================== */
+
+function renderChats(){
+
+    const box=document.getElementById("chatList");
+
+    if(!box) return;
+
+    const query =
+        (document.getElementById("chatSearch")?.value || "")
+        .toLowerCase();
+
+    const available =
+        users.filter(u =>
+            u.username!==currentUser.username &&
+            (
+                u.name.toLowerCase().includes(query) ||
+                u.username.toLowerCase().includes(query)
+            )
+        );
+
+    box.innerHTML="";
+
+    available.forEach(user=>{
+
+        const key=chatKey(user.username);
+
+        const msgs=chats[key] || [];
+
+        const last =
+            msgs.length
+            ? msgs[msgs.length-1].text
+            : "Start a conversation";
+
+        box.innerHTML += `
+
+            <div class="chat-item">
+
+                <img class="avatar"
+                     src="${user.avatar || makeAvatar(user.name)}">
+
+                <div class="chat-info">
+
+                    <strong>${escapeHTML(user.name)}</strong>
+
+                    <div class="status-text">
+                        <span class="online-dot"
+                              style="background:${user.status==="Online"?"#25b84a":"#aaa"}"></span>
+                        ${escapeHTML(user.status)}
+                    </div>
+
+                    <div class="small">
+                        ${escapeHTML(last)}
+                    </div>
+
+                </div>
+
+                <button class="open-btn"
+                        onclick="openPrivateChat('${user.username}')">
+                    Chat
+                </button>
+
+            </div>
+        `;
+
+    });
+
+}
+
+
+function chatKey(username){
+
+    return [
+        currentUser.username,
+        username
+    ].sort().join("_");
+
+}
+
+
+function openPrivateChat(username){
+
+    const user =
+        users.find(u=>u.username===username);
+
+    if(!user) return;
+
+    currentChatUser=user;
+
+    document.getElementById("privateName")
+        .textContent=user.name;
+
+    document.getElementById("privateStatus")
+        .textContent=
+        statusIcon(user.status)+" "+user.status;
+
+    document.getElementById("privateAvatar").src =
+        user.avatar || makeAvatar(user.name);
+
+    document.getElementById("privateChat")
+        .classList.add("show");
+
+    renderPrivateMessages();
+
+}
+
+
+function closePrivateChat(){
+
+    document.getElementById("privateChat")
+        .classList.remove("show");
+
+    currentChatUser=null;
+
+}
+
+
+function renderPrivateMessages(){
+
+    if(!currentChatUser) return;
+
+    const key=chatKey(currentChatUser.username);
+
+    const msgs=chats[key] || [];
+
+    const box=
+        document.getElementById("privateMessages");
+
+    box.innerHTML="";
+
+    if(!msgs.length){
+
+        box.innerHTML=`
+            <div class="empty">
+                Say hello 👋
+            </div>
+        `;
+
+        return;
+    }
+
+    msgs.forEach((msg,index)=>{
+
+        const mine =
+            msg.from===currentUser.username;
+
+        box.innerHTML += `
+
+            <div class="message ${mine?"me":"other"}">
+
+                ${escapeHTML(msg.text)}
+
+                <span class="message-time">
+                    ${escapeHTML(msg.time)}
+
+                    ${
+                        mine
+                        ?
+                        `<button class="delete-message"
+                                onclick="deletePrivateMessage(${index})">
+                            Delete
+                        </button>`
+                        : ""
+                    }
+
+                </span>
+
+            </div>
+        `;
+
+    });
+
+    box.scrollTop=box.scrollHeight;
+
+}
+
+
+function sendPrivateMessage(){
+
+    if(!currentChatUser) return;
+
+    const input=
+        document.getElementById("privateInput");
+
+    const text=input.value.trim();
+
+    if(!text) return;
+
+    const key=chatKey(currentChatUser.username);
+
+    if(!chats[key]) chats[key]=[];
+
+    chats[key].push({
+
+        from:currentUser.username,
+
+        to:currentChatUser.username,
+
+        text,
+
+        time:new Date().toLocaleTimeString([],{
+            hour:"2-digit",
+            minute:"2-digit"
+        })
+
+    });
+
+    input.value="";
+
+    saveAll();
+
+    addNotification(
+        "💬",
+        "New message in your chat.",
+        true
+    );
+
+    renderPrivateMessages();
+
+}
+
+
+function deletePrivateMessage(index){
+
+    if(!currentChatUser) return;
+
+    const key=chatKey(currentChatUser.username);
+
+    if(!chats[key]) return;
+
+    chats[key].splice(index,1);
+
+    saveAll();
+
+    renderPrivateMessages();
+
+}
+
+
+function deleteWholeChat(){
+
+    if(!currentChatUser) return;
+
+    if(!confirm("Delete this entire chat?")) return;
+
+    const key=chatKey(currentChatUser.username);
+
+    delete chats[key];
+
+    saveAll();
+
+    closePrivateChat();
+
+    renderChats();
+
+    showToast("Chat deleted.");
 
 }
 
@@ -2341,1040 +3270,443 @@ function filterChats(){
 
 function renderFriends(){
 
-    const list =
-        document.getElementById("friendList");
+    const box=document.getElementById("friendList");
 
-    list.innerHTML = "";
+    if(!box) return;
 
+    const query =
+        (document.getElementById("friendSearch")?.value || "")
+        .toLowerCase();
 
-    const users = getUsers();
+    const friends =
+        users.filter(u =>
+            u.username!==currentUser.username &&
+            (
+                u.name.toLowerCase().includes(query) ||
+                u.username.toLowerCase().includes(query)
+            )
+        );
 
+    box.innerHTML="";
 
-    users.forEach(user => {
+    friends.forEach(user=>{
 
-        if(currentUser &&
-           user.username === currentUser.username){
+        box.innerHTML += `
 
-            return;
+            <div class="friend-item">
 
-        }
+                <img class="avatar"
+                     src="${user.avatar || makeAvatar(user.name)}">
 
+                <div class="friend-info">
 
-        const div =
-            document.createElement("div");
+                    <strong>
+                        ${escapeHTML(user.name)}
+                    </strong>
 
-        div.className = "friend-item";
+                    <div class="status-text">
+                        ${statusIcon(user.status)}
+                        ${escapeHTML(user.status)}
+                    </div>
 
-        div.dataset.search =
-            user.name.toLowerCase();
-
-
-        div.innerHTML = `
-
-            <div class="avatar">
-                ${user.name.charAt(0)}
-            </div>
-
-            <div class="item-main">
-
-                <div class="item-name">
-                    ${user.name}
                 </div>
 
-                <div class="item-message">
-                    @${user.username}
-                </div>
+                <button class="open-btn"
+                        onclick="openPrivateChat('${user.username}')">
+                    Message
+                </button>
 
             </div>
-
-            <div class="item-right">
-
-                <div class="${user.status === "Online" ? "online" : "offline"}">
-                    ● ${user.status}
-                </div>
-
-            </div>
-
         `;
 
-
-        div.onclick = () =>
-            openPrivateChat(user.username);
-
-
-        list.appendChild(div);
-
     });
 
 }
 
 
-function filterFriends(){
-
-    const search =
-        document.getElementById("friendSearch")
-        .value.toLowerCase();
-
-
-    document.querySelectorAll("#friendList .friend-item")
-        .forEach(item => {
-
-            item.style.display =
-                item.dataset.search.includes(search)
-                ? "flex"
-                : "none";
-
-        });
-
-}
-
-
 /* =====================================================
-   PRIVATE CHAT
+   ROOMS
 ===================================================== */
 
-function getPrivateMessages(){
-
-    return JSON.parse(
-        localStorage.getItem("ym_chats") || "{}"
-    );
-
-}
-
-
-function savePrivateMessages(data){
-
-    localStorage.setItem(
-        "ym_chats",
-        JSON.stringify(data)
-    );
-
-}
-
-
-function openPrivateChat(username){
-
-    const users = getUsers();
-
-    const user =
-        users.find(u => u.username === username);
-
-    if(!user) return;
-
-
-    activePrivateUser = username;
-
-
-    document.getElementById(
-        "privateChatName"
-    ).textContent = user.name;
-
-
-    document.getElementById(
-        "privateChatStatus"
-    ).textContent = user.status;
-
-
-    document.getElementById(
-        "privateAvatar"
-    ).textContent =
-        user.name.charAt(0);
-
-
-    document.getElementById(
-        "privateChat"
-    ).classList.add("active");
-
-
-    renderPrivateMessages();
-
-}
-
-
-function closePrivateChat(){
-
-    document.getElementById(
-        "privateChat"
-    ).classList.remove("active");
-
-    activePrivateUser = null;
-
-}
-
-
-function renderPrivateMessages(){
-
-    const container =
-        document.getElementById("privateMessages");
-
-    container.innerHTML = "";
-
-
-    const chats = getPrivateMessages();
-
-    const key = activePrivateUser;
-
-    let messages = chats[key] || [];
-
-
-    if(messages.length === 0){
-
-        messages = [
-
-            {
-                from:"other",
-                text:"Hello! Welcome to Y-M Chat.",
-                time:"10:30 AM"
-            }
-
-        ];
-
-    }
-
-
-    messages.forEach((msg,index) => {
-
-        const row =
-            document.createElement("div");
-
-        row.className =
-            "message-row " +
-            (msg.from === "me" ? "me" : "");
-
-
-        row.innerHTML = `
-
-            <div class="message-bubble">
-
-                ${escapeHTML(msg.text)}
-
-                <span class="message-time">
-                    ${msg.time}
-                </span>
-
-                <div class="message-actions"
-                     onclick="deletePrivateMessage(${index})">
-                    Delete
-                </div>
-
-            </div>
-
-        `;
-
-
-        container.appendChild(row);
-
-    });
-
-
-    container.scrollTop =
-        container.scrollHeight;
-
-}
-
-
-function sendPrivateMessage(){
-
-    const input =
-        document.getElementById("privateInput");
-
-    const text =
-        input.value.trim();
-
-
-    if(!text || !activePrivateUser)
-        return;
-
-
-    const chats = getPrivateMessages();
-
-    if(!chats[activePrivateUser])
-        chats[activePrivateUser] = [];
-
-
-    chats[activePrivateUser].push({
-
-        from:"me",
-        text:text,
-        time:getTime()
-
-    });
-
-
-    savePrivateMessages(chats);
-
-    input.value = "";
-
-    renderPrivateMessages();
-
-}
-
-
-function privateEnter(event){
-
-    if(event.key === "Enter"){
-
-        event.preventDefault();
-
-        sendPrivateMessage();
-
-    }
-
-}
-
-
-function deletePrivateMessage(index){
-
-    const chats =
-        getPrivateMessages();
-
-    const messages =
-        chats[activePrivateUser] || [];
-
-
-    if(index >= 0 && index < messages.length){
-
-        messages.splice(index,1);
-
-    }
-
-
-    chats[activePrivateUser] = messages;
-
-    savePrivateMessages(chats);
-
-    renderPrivateMessages();
-
-}
-
-
-function privateChatOptions(){
-
-    const choice =
-        confirm("Delete this entire chat?");
-
-    if(!choice) return;
-
-
-    const chats =
-        getPrivateMessages();
-
-    delete chats[activePrivateUser];
-
-    savePrivateMessages(chats);
-
-    renderPrivateMessages();
-
-    showToast("Chat deleted.");
-
-}
-
-
-/* =====================================================
-   ROOM DATA
-===================================================== */
-
-/*
-   Structure:
-
-   Country
-      State / Region
-          Room 1
-          Room 2
-          Room 3
-          Room 4
-          Room 5
-
-   Every room = maximum 100 users.
-*/
-
-const roomCountries = [
-
-    {
-        country:"Malaysia",
-        flag:"🇲🇾",
-        regions:[
-            "Johor",
-            "Kedah",
-            "Kelantan",
-            "Melaka",
-            "Negeri Sembilan",
-            "Pahang",
-            "Penang",
-            "Perak",
-            "Perlis",
-            "Sabah",
-            "Sarawak",
-            "Selangor",
-            "Terengganu",
-            "Kuala Lumpur",
-            "Putrajaya",
-            "Labuan"
-        ]
-    },
-
-    {
-        country:"Philippines",
-        flag:"🇵🇭",
-        regions:[
-            "Metro Manila",
-            "Cebu",
-            "Davao",
-            "Luzon",
-            "Visayas",
-            "Mindanao",
-            "Northern Philippines",
-            "Central Philippines",
-            "Southern Philippines"
-        ]
-    },
-
-    {
-        country:"Brunei",
-        flag:"🇧🇳",
-        regions:[
-            "Brunei-Muara",
-            "Belait",
-            "Tutong",
-            "Temburong"
-        ]
-    },
-
-    {
-        country:"Singapore",
-        flag:"🇸🇬",
-        regions:[
-            "Central Singapore",
-            "East Singapore",
-            "North Singapore",
-            "North-East Singapore",
-            "West Singapore"
-        ]
-    },
-
-    {
-        country:"Indonesia",
-        flag:"🇮🇩",
-        regions:[
-            "Aceh",
-            "North Sumatra",
-            "West Sumatra",
-            "Riau",
-            "Jambi",
-            "South Sumatra",
-            "Bengkulu",
-            "Lampung",
-            "Bangka Belitung",
-            "Riau Islands",
-            "Jakarta",
-            "West Java",
-            "Central Java",
-            "East Java",
-            "Banten",
-            "Bali",
-            "West Nusa Tenggara",
-            "East Nusa Tenggara",
-            "West Kalimantan",
-            "Central Kalimantan",
-            "South Kalimantan",
-            "East Kalimantan",
-            "North Kalimantan",
-            "North Sulawesi",
-            "Central Sulawesi",
-            "South Sulawesi",
-            "Southeast Sulawesi",
-            "Gorontalo",
-            "West Sulawesi",
-            "Maluku",
-            "North Maluku",
-            "West Papua",
-            "Papua"
-        ]
-    },
-
-    {
-        country:"China",
-        flag:"🇨🇳",
-        regions:[
-            "Beijing",
-            "Shanghai",
-            "Tianjin",
-            "Chongqing",
-            "Guangdong",
-            "Zhejiang",
-            "Jiangsu",
-            "Sichuan",
-            "Fujian",
-            "Hubei",
-            "Hunan",
-            "Shandong",
-            "Yunnan",
-            "Shaanxi",
-            "Hebei",
-            "Liaoning",
-            "Jilin",
-            "Heilongjiang",
-            "Gansu",
-            "Guizhou",
-            "Shanxi",
-            "Anhui",
-            "Jiangxi",
-            "Henan",
-            "Hainan",
-            "Qinghai",
-            "Inner Mongolia",
-            "Xinjiang",
-            "Tibet",
-            "Ningxia",
-            "Guangxi"
-        ]
-    },
-
-    {
-        country:"Saudi Arabia",
-        flag:"🇸🇦",
-        regions:[
-            "Riyadh",
-            "Makkah",
-            "Madinah",
-            "Eastern Province",
-            "Asir",
-            "Tabuk",
-            "Qassim",
-            "Jazan",
-            "Hail",
-            "Najran",
-            "Al Bahah",
-            "Al Jouf",
-            "Northern Borders"
-        ]
-    },
-
-    {
-        country:"United Arab Emirates",
-        flag:"🇦🇪",
-        regions:[
-            "Abu Dhabi",
-            "Dubai",
-            "Sharjah",
-            "Ajman",
-            "Umm Al Quwain",
-            "Ras Al Khaimah",
-            "Fujairah"
-        ]
-    },
-
-    {
-        country:"United States",
-        flag:"🇺🇸",
-        regions:[
-            "Alabama",
-            "Alaska",
-            "Arizona",
-            "Arkansas",
-            "California",
-            "Colorado",
-            "Connecticut",
-            "Delaware",
-            "Florida",
-            "Georgia",
-            "Hawaii",
-            "Idaho",
-            "Illinois",
-            "Indiana",
-            "Iowa",
-            "Kansas",
-            "Kentucky",
-            "Louisiana",
-            "Maine",
-            "Maryland",
-            "Massachusetts",
-            "Michigan",
-            "Minnesota",
-            "Mississippi",
-            "Missouri",
-            "Montana",
-            "Nebraska",
-            "Nevada",
-            "New Hampshire",
-            "New Jersey",
-            "New Mexico",
-            "New York",
-            "North Carolina",
-            "North Dakota",
-            "Ohio",
-            "Oklahoma",
-            "Oregon",
-            "Pennsylvania",
-            "Rhode Island",
-            "South Carolina",
-            "South Dakota",
-            "Tennessee",
-            "Texas",
-            "Utah",
-            "Vermont",
-            "Virginia",
-            "Washington",
-            "West Virginia",
-            "Wisconsin",
-            "Wyoming"
-        ]
-    },
-
-    {
-        country:"World",
-        flag:"🌍",
-        regions:[
-            "Europe",
-            "Asia",
-            "Africa",
-            "North America",
-            "South America",
-            "Oceania",
-            "Middle East",
-            "International"
-        ]
-    }
-
-];
-
-
-/* =====================================================
-   ROOM HELPERS
-===================================================== */
-
-function roomMemberCount(countryIndex,regionIndex,roomIndex){
-
-    /*
-       Demo member count.
-
-       In the real server version this number
-       will come from the database/server.
-
-       Current demo gives each room a different
-       realistic number while keeping max = 100.
-    */
-
-    const value =
-        ((countryIndex + 2) * 17 +
-         (regionIndex + 3) * 11 +
-         (roomIndex + 1) * 7) % 101;
-
-    return value;
-
-}
-
-
-function roomId(country,region,roomIndex){
+const roomData = {
+
+    "Malaysia":[
+        "Johor","Kedah","Kelantan","Melaka","Negeri Sembilan",
+        "Pahang","Penang","Perak","Perlis","Sabah","Sarawak",
+        "Selangor","Terengganu","Kuala Lumpur","Putrajaya",
+        "Labuan"
+    ],
+
+    "Philippines":[
+        "Metro Manila","Cebu","Davao","Luzon","Visayas",
+        "Mindanao","Northern Philippines",
+        "Central Philippines","Southern Philippines"
+    ],
+
+    "Brunei":[
+        "Brunei-Muara","Belait","Tutong","Temburong"
+    ],
+
+    "Singapore":[
+        "Central Singapore","East Singapore","North Singapore",
+        "North-East Singapore","West Singapore"
+    ],
+
+    "Indonesia":[
+        "Aceh","North Sumatra","West Sumatra","Riau","Jambi",
+        "South Sumatra","Bengkulu","Lampung","Bangka Belitung",
+        "Riau Islands","Jakarta","West Java","Central Java",
+        "East Java","Banten","Bali","West Nusa Tenggara",
+        "East Nusa Tenggara","West Kalimantan","Central Kalimantan",
+        "South Kalimantan","East Kalimantan","North Kalimantan",
+        "North Sulawesi","Central Sulawesi","South Sulawesi",
+        "Southeast Sulawesi","Gorontalo","West Sulawesi",
+        "Maluku","North Maluku","West Papua","Papua"
+    ],
+
+    "China":[
+        "Beijing","Shanghai","Tianjin","Chongqing","Guangdong",
+        "Zhejiang","Jiangsu","Sichuan","Fujian","Hubei","Hunan",
+        "Shandong","Yunnan","Shaanxi","Hebei","Liaoning","Jilin",
+        "Heilongjiang","Gansu","Guizhou","Shanxi","Anhui","Jiangxi",
+        "Henan","Hainan","Qinghai","Inner Mongolia","Xinjiang",
+        "Tibet","Ningxia","Guangxi"
+    ],
+
+    "Saudi Arabia":[
+        "Riyadh","Makkah","Madinah","Eastern Province","Asir",
+        "Tabuk","Qassim","Jazan","Hail","Najran","Al Bahah",
+        "Al Jouf","Northern Borders"
+    ],
+
+    "United Arab Emirates":[
+        "Abu Dhabi","Dubai","Sharjah","Ajman",
+        "Umm Al Quwain","Ras Al Khaimah","Fujairah"
+    ],
+
+    "United States":[
+        "Alabama","Alaska","Arizona","Arkansas","California",
+        "Colorado","Connecticut","Delaware","Florida","Georgia",
+        "Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas",
+        "Kentucky","Louisiana","Maine","Maryland","Massachusetts",
+        "Michigan","Minnesota","Mississippi","Missouri","Montana",
+        "Nebraska","Nevada","New Hampshire","New Jersey","New Mexico",
+        "New York","North Carolina","North Dakota","Ohio","Oklahoma",
+        "Oregon","Pennsylvania","Rhode Island","South Carolina",
+        "South Dakota","Tennessee","Texas","Utah","Vermont","Virginia",
+        "Washington","West Virginia","Wisconsin","Wyoming"
+    ],
+
+    "World":[
+        "Europe","Asia","Africa","North America",
+        "South America","Oceania","Middle East","International"
+    ]
+
+};
+
+
+function getRoomMembers(countryIndex,regionIndex,roomIndex){
 
     return (
-        country.toLowerCase()
-        .replace(/\s/g,"-")
-        + "-"
-        + region.toLowerCase()
-        .replace(/\s/g,"-")
-        + "-room-" +
-        (roomIndex + 1)
+        (
+            (countryIndex+2)*17 +
+            (regionIndex+3)*11 +
+            (roomIndex+1)*7
+        ) % 101
     );
 
 }
 
-
-/* =====================================================
-   RENDER ROOMS
-===================================================== */
 
 function renderRooms(){
 
-    const container =
-        document.getElementById("roomContainer");
+    const box=document.getElementById("roomContainer");
 
-    container.innerHTML = "";
+    if(!box) return;
 
+    const query =
+        (document.getElementById("roomSearch")?.value || "")
+        .toLowerCase();
 
-    roomCountries.forEach((country,countryIndex) => {
+    box.innerHTML="";
 
-        const countryDiv =
-            document.createElement("div");
+    let countryIndex=0;
 
-        countryDiv.className =
-            "room-country";
+    Object.keys(roomData).forEach(country=>{
 
+        const regions=roomData[country];
 
-        let regionHTML = "";
+        const countryMatch =
+            country.toLowerCase().includes(query);
 
+        let countryHTML="";
 
-        country.regions.forEach(
-            (region,regionIndex) => {
+        let regionIndex=0;
 
-                let roomsHTML = "";
+        regions.forEach(region=>{
 
+            const regionMatch =
+                region.toLowerCase().includes(query);
 
-                for(let i=0;i<5;i++){
+            let roomsHTML="";
 
-                    const members =
-                        roomMemberCount(
-                            countryIndex,
-                            regionIndex,
-                            i
-                        );
+            for(let r=0;r<5;r++){
 
+                const roomName =
+                    region+" Room "+(r+1);
 
-                    const full =
-                        members >= 100;
+                const roomMatch =
+                    roomName.toLowerCase()
+                    .includes(query);
 
+                if(query &&
+                   !countryMatch &&
+                   !regionMatch &&
+                   !roomMatch){
 
-                    const roomID =
-                        roomId(
-                            country.country,
-                            region,
-                            i
-                        );
-
-
-                    roomsHTML += `
-
-                        <div class="room-item"
-                             data-room-search="${escapeHTML(
-                                 (
-                                     country.country +
-                                     " " +
-                                     region +
-                                     " Room " +
-                                     (i+1)
-                                 ).toLowerCase()
-                             )}"
-                             onclick="openRoomChat(
-                                 '${escapeJS(country.country)}',
-                                 '${escapeJS(region)}',
-                                 ${i},
-                                 ${members}
-                             )">
-
-                            <div class="room-icon">
-                                💬
-                            </div>
-
-                            <div class="room-info">
-
-                                <div class="room-name">
-                                    ${escapeHTML(region)}
-                                    Room ${i+1}
-                                </div>
-
-                                <div class="room-capacity">
-                                    Maximum 100 users
-                                </div>
-
-                            </div>
-
-                            <div class="room-online">
-
-                                <div class="${
-                                    full
-                                    ? "capacity-full"
-                                    : "capacity-available"
-                                }">
-
-                                    ${members}/100
-
-                                </div>
-
-                                <div>
-                                    ${full
-                                    ? "FULL"
-                                    : "Available"}
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    `;
-
+                    continue;
                 }
 
+                const members =
+                    getRoomMembers(
+                        countryIndex,
+                        regionIndex,
+                        r
+                    );
 
-                regionHTML += `
+                const full=members>=100;
 
-                    <div class="region-box"
-                         data-region-search="${escapeHTML(
-                             (
-                                 country.country +
-                                 " " +
-                                 region
-                             ).toLowerCase()
-                         )}">
+                roomsHTML += `
 
-                        <div class="region-header"
-                             onclick="toggleRegion(
-                                 this.nextElementSibling
-                             )">
+                    <div class="room-row"
+                         onclick="openRoom(
+                            '${escapeAttr(country)}',
+                            '${escapeAttr(region)}',
+                            ${r},
+                            ${members}
+                         )">
 
-                            <div>
+                        <div style="font-size:25px">
+                            ${full?"🔴":"💬"}
+                        </div>
 
-                                <div class="region-title">
-                                    ${escapeHTML(region)}
-                                </div>
+                        <div class="room-row-info">
 
-                                <div class="region-sub">
-                                    5 rooms • 100 users each
-                                </div>
+                            <strong>
+                                ${escapeHTML(roomName)}
+                            </strong>
 
-                            </div>
-
-                            <div class="arrow">
-                                ›
+                            <div class="room-meta">
+                                ${members}/100 members
+                                • ${full?"FULL":"Available"}
                             </div>
 
                         </div>
 
-                        <div class="room-list">
-                            ${roomsHTML}
+                        <div class="room-arrow">
+                            ›
                         </div>
 
                     </div>
+                `;
+            }
 
+            if(roomsHTML){
+
+                countryHTML += `
+
+                    <div class="card">
+
+                        <div class="section-title">
+                            📍 ${escapeHTML(region)}
+                        </div>
+
+                        ${roomsHTML}
+
+                    </div>
                 `;
 
             }
-        );
 
-
-        countryDiv.innerHTML = `
-
-            <div class="country-header"
-                 onclick="toggleCountry(
-                     this.nextElementSibling
-                 )">
-
-                <div class="country-left">
-
-                    <div class="country-flag">
-                        ${country.flag}
-                    </div>
-
-                    <div>
-
-                        <div class="country-name">
-                            ${escapeHTML(country.country)}
-                        </div>
-
-                        <div class="country-count">
-                            ${country.regions.length}
-                            regions/states • 5 rooms each
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="arrow">
-                    ›
-                </div>
-
-            </div>
-
-            <div class="region-list">
-                ${regionHTML}
-            </div>
-
-        `;
-
-
-        container.appendChild(countryDiv);
-
-    });
-
-}
-
-
-function toggleCountry(element){
-
-    element.classList.toggle("open");
-
-    const arrow =
-        element.previousElementSibling
-        .querySelector(".arrow");
-
-    if(element.classList.contains("open")){
-
-        arrow.textContent = "⌄";
-
-    }else{
-
-        arrow.textContent = "›";
-
-    }
-
-}
-
-
-function toggleRegion(element){
-
-    element.classList.toggle("open");
-
-    const arrow =
-        element.previousElementSibling
-        .querySelector(".arrow");
-
-    if(element.classList.contains("open")){
-
-        arrow.textContent = "⌄";
-
-    }else{
-
-        arrow.textContent = "›";
-
-    }
-
-}
-
-
-/* =====================================================
-   ROOM SEARCH
-===================================================== */
-
-function filterRooms(){
-
-    const search =
-        document.getElementById("roomSearch")
-        .value
-        .trim()
-        .toLowerCase();
-
-
-    document.querySelectorAll(
-        "#roomContainer .region-box"
-    ).forEach(regionBox => {
-
-        const regionText =
-            regionBox.dataset.regionSearch || "";
-
-        let regionMatch =
-            regionText.includes(search);
-
-
-        let roomMatch = false;
-
-
-        regionBox.querySelectorAll(
-            ".room-item"
-        ).forEach(room => {
-
-            const text =
-                room.dataset.roomSearch || "";
-
-            const match =
-                !search || text.includes(search);
-
-            room.style.display =
-                match ? "flex" : "none";
-
-            if(match)
-                roomMatch = true;
+            regionIndex++;
 
         });
 
+        if(countryHTML){
 
-        if(!search){
+            box.innerHTML += `
 
-            regionBox.style.display = "block";
+                <div class="room-country">
 
-        }else{
+                    <div class="section-title">
+                        🌎 ${escapeHTML(country)}
+                    </div>
 
-            regionBox.style.display =
-                regionMatch || roomMatch
-                ? "block"
-                : "none";
+                    ${countryHTML}
 
-        }
-
-    });
-
-
-    document.querySelectorAll(
-        "#roomContainer .room-country"
-    ).forEach(countryBox => {
-
-        const visible =
-            [...countryBox.querySelectorAll(".region-box")]
-            .some(el => el.style.display !== "none");
-
-
-        countryBox.style.display =
-            visible ? "block" : "none";
-
-
-        if(search && visible){
-
-            const list =
-                countryBox.querySelector(".region-list");
-
-            list.classList.add("open");
+                </div>
+            `;
 
         }
 
+        countryIndex++;
+
     });
+
+    if(!box.innerHTML){
+
+        box.innerHTML=`
+            <div class="empty">
+                <div class="empty-icon">🔎</div>
+                No rooms found.
+            </div>
+        `;
+
+    }
 
 }
 
 
-/* =====================================================
-   OPEN ROOM CHAT
-===================================================== */
+function openRoom(country,region,roomIndex,members){
 
-function openRoomChat(
-    country,
-    region,
-    roomIndex,
-    members
-){
-
-    if(members >= 100){
+    if(members>=100){
 
         showToast(
             "This room is full. Please join another room."
         );
 
         return;
+    }
+
+    currentRoom={
+        country,
+        region,
+        roomIndex,
+        name:region+" Room "+(roomIndex+1),
+        members
+    };
+
+    document.getElementById("roomTitle")
+        .textContent=currentRoom.name;
+
+    document.getElementById("roomMembers")
+        .textContent =
+        members+"/100 members • "+
+        Math.max(1,Math.floor(members*.35))
+        +" online";
+
+    document.getElementById("roomChat")
+        .classList.add("show");
+
+    renderRoomMessages();
+
+}
+
+
+function roomKey(){
+
+    if(!currentRoom) return "";
+
+    return [
+        currentRoom.country,
+        currentRoom.region,
+        currentRoom.roomIndex
+    ].join("|");
+
+}
+
+
+function renderRoomMessages(){
+
+    const box=
+        document.getElementById("roomMessages");
+
+    const key=roomKey();
+
+    if(!roomMessages[key]){
+
+        roomMessages[key]=[
+
+            {
+                name:"Y-M Chat",
+                username:"system",
+                text:
+                    "Welcome to "+
+                    currentRoom.name+
+                    ". Please respect other members.",
+                time:"Now"
+            }
+
+        ];
+
+        saveAll();
 
     }
 
+    box.innerHTML="";
 
-    activeRoom = {
+    roomMessages[key].forEach(msg=>{
 
-        country:country,
-        region:region,
-        roomIndex:roomIndex,
-        members:members
+        box.innerHTML += `
 
-    };
+            <div class="room-msg">
+
+                <strong>
+                    ${escapeHTML(msg.name)}
+                </strong>
+
+                <p>
+                    ${escapeHTML(msg.text)}
+                </p>
+
+                <div class="small">
+                    ${escapeHTML(msg.time)}
+                </div>
+
+            </div>
+        `;
+
+    });
+
+    box.scrollTop=box.scrollHeight;
+
+}
 
 
-    document.getElementById(
-        "roomChatTitle"
-    ).textContent =
-        region + " Room " + (roomIndex + 1);
+function sendRoomMessage(){
 
+    if(!currentRoom) return;
 
-    document.getElementById(
-        "roomMemberCount"
-    ).textContent =
-        members + " / 100";
+    const input=
+        document.getElementById("roomInput");
 
+    const text=input.value.trim();
 
-    document.getElementById(
-        "roomOnlineCount"
-    ).textContent =
-        Math.max(1,Math.floor(members * .7))
-        + " online";
+    if(!text) return;
 
+    const key=roomKey();
 
-    document.getElementById(
-        "roomChat"
-    ).classList.add("active");
+    if(!roomMessages[key])
+        roomMessages[key]=[];
 
+    roomMessages[key].push({
+
+        name:currentUser.name,
+
+        username:currentUser.username,
+
+        text,
+
+        time:new Date().toLocaleTimeString([],{
+            hour:"2-digit",
+            minute:"2-digit"
+        })
+
+    });
+
+    input.value="";
+
+    saveAll();
 
     renderRoomMessages();
 
@@ -3383,339 +3715,439 @@ function openRoomChat(
 
 function closeRoomChat(){
 
-    document.getElementById(
-        "roomChat"
-    ).classList.remove("active");
+    document.getElementById("roomChat")
+        .classList.remove("show");
 
-    activeRoom = null;
-
-}
-
-
-/* =====================================================
-   ROOM MESSAGES
-===================================================== */
-
-function getRoomKey(){
-
-    if(!activeRoom)
-        return "";
-
-    return (
-
-        activeRoom.country +
-        "|" +
-        activeRoom.region +
-        "|" +
-        activeRoom.roomIndex
-
-    );
-
-}
-
-
-function getRoomMessages(){
-
-    return JSON.parse(
-        localStorage.getItem("ym_room_messages") || "{}"
-    );
-
-}
-
-
-function saveRoomMessages(data){
-
-    localStorage.setItem(
-        "ym_room_messages",
-        JSON.stringify(data)
-    );
-
-}
-
-
-function renderRoomMessages(){
-
-    const container =
-        document.getElementById("roomMessages");
-
-    container.innerHTML = "";
-
-
-    const key =
-        getRoomKey();
-
-
-    const all =
-        getRoomMessages();
-
-
-    let messages =
-        all[key] || [];
-
-
-    if(messages.length === 0){
-
-        messages = [
-
-            {
-                name:"Ahmad",
-                text:
-                    "Welcome to " +
-                    activeRoom.region +
-                    " Room " +
-                    (activeRoom.roomIndex + 1) +
-                    "!",
-                time:"10:30 AM",
-                me:false
-            },
-
-            {
-                name:"Siti",
-                text:"Hello everyone 👋",
-                time:"10:32 AM",
-                me:false
-            },
-
-            {
-                name:"John",
-                text:"Nice to meet you all.",
-                time:"10:35 AM",
-                me:false
-            }
-
-        ];
-
-    }
-
-
-    messages.forEach(msg => {
-
-        const row =
-            document.createElement("div");
-
-        row.className =
-            "room-message " +
-            (msg.me ? "me" : "");
-
-
-        row.innerHTML = `
-
-            <div class="avatar">
-                ${escapeHTML(
-                    (msg.name || "U").charAt(0)
-                )}
-            </div>
-
-            <div class="room-message-content">
-
-                <div class="room-sender">
-                    ${escapeHTML(msg.name)}
-                </div>
-
-                <div class="room-bubble">
-                    ${escapeHTML(msg.text)}
-                </div>
-
-                <div class="room-message-time">
-                    ${escapeHTML(msg.time)}
-                </div>
-
-            </div>
-
-        `;
-
-
-        container.appendChild(row);
-
-    });
-
-
-    container.scrollTop =
-        container.scrollHeight;
-
-}
-
-
-function sendRoomMessage(){
-
-    if(!activeRoom || !currentUser)
-        return;
-
-
-    const input =
-        document.getElementById("roomInput");
-
-    const text =
-        input.value.trim();
-
-
-    if(!text)
-        return;
-
-
-    const all =
-        getRoomMessages();
-
-    const key =
-        getRoomKey();
-
-
-    if(!all[key])
-        all[key] = [];
-
-
-    all[key].push({
-
-        name:currentUser.name,
-        text:text,
-        time:getTime(),
-        me:true
-
-    });
-
-
-    saveRoomMessages(all);
-
-    input.value = "";
-
-    renderRoomMessages();
-
-}
-
-
-function roomEnter(event){
-
-    if(event.key === "Enter"){
-
-        event.preventDefault();
-
-        sendRoomMessage();
-
-    }
+    currentRoom=null;
 
 }
 
 
 function roomOptions(){
 
-    if(!activeRoom)
-        return;
+    const content=`
 
+        <div class="modal-title">
+            Room Options
+        </div>
 
-    const action =
-        prompt(
-            "Room Options:\n\n" +
-            "1 - Mute notifications\n" +
-            "2 - Report room\n" +
-            "3 - Cancel\n\n" +
-            "Enter option:"
-        );
+        <button class="setting-row"
+                style="width:100%;border:none"
+                onclick="showToast('Room notifications muted')">
+            🔕 Mute Notifications
+        </button>
 
+        <button class="setting-row"
+                style="width:100%;border:none"
+                onclick="showToast('Room reported')">
+            🚩 Report Room
+        </button>
 
-    if(action === "1"){
+    `;
 
-        showToast(
-            "Room notifications muted for demo."
-        );
+    document.getElementById("generalModalContent")
+        .innerHTML=content;
 
-    }else if(action === "2"){
-
-        showToast(
-            "Room report submitted for demo."
-        );
-
-    }
+    document.getElementById("generalModal")
+        .classList.add("show");
 
 }
 
 
 /* =====================================================
-   PROFILE
+   MARKET
 ===================================================== */
 
-function updateProfile(){
+function openMarketModal(){
 
-    if(!currentUser)
-        return;
+    document.getElementById("marketName").value="";
+    document.getElementById("marketPrice").value="";
+    document.getElementById("marketLocation").value="";
+    document.getElementById("marketDescription").value="";
+    document.getElementById("marketImage").value="";
 
-
-    document.getElementById(
-        "welcomeName"
-    ).textContent =
-        "Welcome, " + currentUser.name + "!";
-
-
-    document.getElementById(
-        "homeStatus"
-    ).textContent =
-        currentUser.status;
-
-
-    document.getElementById(
-        "profileName"
-    ).textContent =
-        currentUser.name;
-
-
-    document.getElementById(
-        "profileUsername"
-    ).textContent =
-        "@" + currentUser.username;
-
-
-    document.getElementById(
-        "profileAvatar"
-    ).textContent =
-        currentUser.name.charAt(0).toUpperCase();
-
-
-    document.getElementById(
-        "statusSelect"
-    ).value =
-        currentUser.status;
+    document.getElementById("marketModal")
+        .classList.add("show");
 
 }
 
 
-function changeStatus(status){
+function createListing(){
 
-    if(!currentUser)
-        return;
+    const name =
+        document.getElementById("marketName")
+        .value.trim();
 
+    const price =
+        document.getElementById("marketPrice")
+        .value;
 
-    const users =
-        getUsers();
+    const location =
+        document.getElementById("marketLocation")
+        .value.trim();
 
+    const description =
+        document.getElementById("marketDescription")
+        .value.trim();
 
-    const index =
-        users.findIndex(
-            u =>
-            u.username === currentUser.username
+    const file =
+        document.getElementById("marketImage")
+        .files[0];
+
+    if(!name || !price || !location){
+
+        showToast(
+            "Please enter item, price and location."
         );
 
+        return;
+    }
 
-    if(index !== -1){
+    if(file && file.size > 6*1024*1024){
 
-        users[index].status = status;
+        showToast("Demo upload limit: 6MB.");
 
-        currentUser = users[index];
+        return;
+    }
 
-        saveUsers(users);
+    const finish=(imageData)=>{
 
-        updateProfile();
+        marketListings.unshift({
 
-        renderFriends();
+            id:Date.now(),
+
+            seller:currentUser.username,
+
+            sellerName:currentUser.name,
+
+            name,
+
+            price:Number(price),
+
+            location,
+
+            description,
+
+            image:imageData || "",
+
+            time:new Date().toLocaleString()
+
+        });
+
+        saveAll();
+
+        closeModal("marketModal");
+
+        renderMarket();
+
+        showToast("Market listing published.");
+
+    };
+
+    if(file){
+
+        const reader=new FileReader();
+
+        reader.onload=e =>
+            finish(e.target.result);
+
+        reader.readAsDataURL(file);
+
+    }else{
+
+        finish("");
 
     }
 
 }
 
 
-function changeName(){
+function setMarketTab(tab){
 
-    if(!currentUser)
+    marketTab=tab;
+
+    document.getElementById("marketAll")
+        .classList.toggle("active",tab==="all");
+
+    document.getElementById("marketMine")
+        .classList.toggle("active",tab==="mine");
+
+    renderMarket();
+
+}
+
+
+function renderMarket(){
+
+    const box=
+        document.getElementById("marketList");
+
+    if(!box) return;
+
+    const query =
+        (document.getElementById("marketSearch")?.value || "")
+        .toLowerCase();
+
+    let listings=marketListings.filter(item=>{
+
+        const matchesSearch =
+            item.name.toLowerCase().includes(query) ||
+            item.location.toLowerCase().includes(query) ||
+            item.description.toLowerCase().includes(query);
+
+        const matchesTab =
+            marketTab==="all" ||
+            item.seller===currentUser.username;
+
+        return matchesSearch && matchesTab;
+
+    });
+
+    box.innerHTML="";
+
+    if(!listings.length){
+
+        box.innerHTML=`
+
+            <div class="empty">
+
+                <div class="empty-icon">🛒</div>
+
+                <div>No listings found.</div>
+
+                <small>
+                    Be the first to sell something.
+                </small>
+
+            </div>
+        `;
+
         return;
+    }
 
+    listings.forEach(item=>{
+
+        const seller =
+            users.find(u=>u.username===item.seller);
+
+        const image =
+            item.image ||
+            "data:image/svg+xml;charset=UTF-8,"+
+            encodeURIComponent(
+                `<svg xmlns="http://www.w3.org/2000/svg"
+                      width="600"
+                      height="400">
+                    <rect width="100%" height="100%"
+                          fill="#e8edf3"/>
+                    <text x="50%" y="50%"
+                          text-anchor="middle"
+                          font-size="28"
+                          fill="#7a8592">
+                        Y-M MARKET
+                    </text>
+                </svg>`
+            );
+
+        const own =
+            item.seller===currentUser.username;
+
+        box.innerHTML += `
+
+            <div class="market-item">
+
+                <img class="market-image"
+                     src="${image}"
+                     alt="Market item">
+
+                <div class="market-info">
+
+                    <strong>
+                        ${escapeHTML(item.name)}
+                    </strong>
+
+                    <div class="market-price">
+                        RM ${Number(item.price).toLocaleString()}
+                    </div>
+
+                    <div class="small">
+                        📍 ${escapeHTML(item.location)}
+                    </div>
+
+                    <p style="margin-top:8px">
+                        ${escapeHTML(item.description)}
+                    </p>
+
+                    <div class="small"
+                         style="margin-top:8px">
+                        Seller:
+                        ${escapeHTML(item.sellerName)}
+                    </div>
+
+                    <div class="market-actions">
+
+                        ${
+                            own
+                            ?
+                            `<button class="delete-listing"
+                                    onclick="deleteListing(${item.id})">
+                                🗑️ Delete
+                            </button>`
+                            :
+                            `<button class="contact-seller"
+                                    onclick="contactSeller('${escapeAttr(item.seller)}')">
+                                💬 Contact Seller
+                            </button>`
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+
+    });
+
+}
+
+
+function deleteListing(id){
+
+    if(!confirm("Delete this listing?")) return;
+
+    marketListings =
+        marketListings.filter(item=>item.id!==id);
+
+    saveAll();
+
+    renderMarket();
+
+    showToast("Listing deleted.");
+
+}
+
+
+function contactSeller(username){
+
+    if(username===currentUser.username){
+
+        showToast("This is your own listing.");
+
+        return;
+    }
+
+    goPage("chats");
+
+    setTimeout(()=>{
+
+        openPrivateChat(username);
+
+    },100);
+
+}
+
+
+/* =====================================================
+   PROFILE PHOTO / COVER
+===================================================== */
+
+function changeProfilePhoto(){
+
+    const input=document.createElement("input");
+
+    input.type="file";
+    input.accept="image/*";
+
+    input.onchange=function(){
+
+        const file=input.files[0];
+
+        if(!file) return;
+
+        if(file.size > 6*1024*1024){
+
+            showToast("Demo upload limit: 6MB.");
+
+            return;
+        }
+
+        const reader=new FileReader();
+
+        reader.onload=function(e){
+
+            currentUser.avatar=e.target.result;
+
+            updateUser();
+
+            refreshUser();
+
+            renderFeed();
+
+            renderChats();
+
+            renderFriends();
+
+            showToast(
+                "Profile photo changed. It is Public."
+            );
+
+        };
+
+        reader.readAsDataURL(file);
+
+    };
+
+    input.click();
+
+}
+
+
+function changeCover(){
+
+    const input=document.createElement("input");
+
+    input.type="file";
+    input.accept="image/*";
+
+    input.onchange=function(){
+
+        const file=input.files[0];
+
+        if(!file) return;
+
+        if(file.size > 6*1024*1024){
+
+            showToast("Demo upload limit: 6MB.");
+
+            return;
+        }
+
+        const reader=new FileReader();
+
+        reader.onload=function(e){
+
+            currentUser.cover=e.target.result;
+
+            updateUser();
+
+            refreshUser();
+
+            showToast(
+                "Cover photo changed. It is Public."
+            );
+
+        };
+
+        reader.readAsDataURL(file);
+
+    };
+
+    input.click();
+
+}
+
+
+function changeName(){
 
     const name =
         prompt(
@@ -3723,134 +4155,355 @@ function changeName(){
             currentUser.name
         );
 
+    if(!name || !name.trim()) return;
 
-    if(!name || !name.trim())
-        return;
+    currentUser.name=name.trim();
+
+    updateUser();
+
+    refreshUser();
+
+    showToast("Name changed.");
+
+}
 
 
-    const users =
-        getUsers();
+function changeStatus(){
 
+    const options=[
+        "Online",
+        "Busy",
+        "Invisible"
+    ];
 
-    const index =
-        users.findIndex(
-            u =>
-            u.username === currentUser.username
+    const choice =
+        prompt(
+            "Choose status:\n1. Online\n2. Busy\n3. Invisible",
+            "1"
         );
 
+    const index=Number(choice)-1;
 
-    users[index].name =
-        name.trim();
+    if(index<0 || index>=options.length){
 
+        showToast("Invalid status.");
 
-    currentUser =
-        users[index];
+        return;
+    }
 
+    currentUser.status=options[index];
 
-    saveUsers(users);
+    updateUser();
 
-    updateProfile();
+    refreshUser();
 
-    renderChats();
-
-    renderFriends();
-
-    showToast("Name updated.");
+    showToast(
+        "Status changed to "+currentUser.status
+    );
 
 }
 
 
 function changePassword(){
 
-    if(!currentUser)
-        return;
-
-
     const oldPassword =
         prompt("Enter current password:");
 
-    if(oldPassword !== currentUser.password){
+    if(oldPassword!==currentUser.password){
 
         showToast("Current password is incorrect.");
+
         return;
-
     }
-
 
     const newPassword =
         prompt("Enter new password:");
 
-    if(!newPassword || newPassword.length < 6){
+    if(!newPassword || newPassword.length<6){
 
         showToast(
-            "Password must be at least 6 characters."
+            "New password must be at least 6 characters."
         );
 
         return;
-
     }
 
+    currentUser.password=newPassword;
 
-    const users =
-        getUsers();
-
-
-    const index =
-        users.findIndex(
-            u =>
-            u.username === currentUser.username
-        );
-
-
-    users[index].password =
-        newPassword;
-
-
-    currentUser =
-        users[index];
-
-
-    saveUsers(users);
+    updateUser();
 
     showToast("Password changed successfully.");
 
 }
 
 
-/* =====================================================
-   LANGUAGE
-===================================================== */
+function updateUser(){
 
-function changeLanguage(language){
+    const index =
+        users.findIndex(u =>
+            u.username===currentUser.username
+        );
 
-    showToast(
-        language +
-        " selected. Full translation system will be added later."
+    if(index>=0){
+
+        users[index]=currentUser;
+
+    }
+
+    localStorage.setItem(
+        "ym_users",
+        JSON.stringify(users)
+    );
+
+    localStorage.setItem(
+        "ym_currentUser",
+        JSON.stringify(currentUser)
     );
 
 }
 
 
 /* =====================================================
-   UTILITIES
+   NOTIFICATIONS
 ===================================================== */
 
-function getTime(){
+function addNotification(icon,text,unread=true){
 
-    return new Date().toLocaleTimeString(
-        [],
-        {
-            hour:"2-digit",
-            minute:"2-digit"
-        }
+    notifications.unshift({
+
+        id:Date.now()+Math.random(),
+
+        icon,
+
+        text,
+
+        time:new Date().toLocaleString(),
+
+        unread
+
+    });
+
+    notifications =
+        notifications.slice(0,100);
+
+    saveAll();
+
+    updateNotificationBadge();
+
+}
+
+
+function renderNotifications(){
+
+    const box=
+        document.getElementById("notificationList");
+
+    if(!box) return;
+
+    box.innerHTML="";
+
+    if(!notifications.length){
+
+        box.innerHTML=`
+
+            <div class="empty">
+
+                <div class="empty-icon">🔔</div>
+
+                <div>No notifications.</div>
+
+                <small>
+                    Your latest activity will appear here.
+                </small>
+
+            </div>
+        `;
+
+        return;
+    }
+
+    notifications.forEach(n=>{
+
+        box.innerHTML += `
+
+            <div class="notification ${n.unread?"unread":""}">
+
+                <div class="notification-icon">
+                    ${n.icon}
+                </div>
+
+                <div class="notification-info">
+
+                    <strong>
+                        ${escapeHTML(n.text)}
+                    </strong>
+
+                    <small>
+                        ${escapeHTML(n.time)}
+                    </small>
+
+                </div>
+
+            </div>
+        `;
+
+    });
+
+}
+
+
+function markNotificationsRead(){
+
+    notifications.forEach(n=>{
+        n.unread=false;
+    });
+
+    saveAll();
+
+    renderNotifications();
+
+    updateNotificationBadge();
+
+    showToast("Notifications marked as read.");
+
+}
+
+
+function updateNotificationBadge(){
+
+    const count =
+        notifications.filter(n=>n.unread).length;
+
+    const nav =
+        document.getElementById("navHome");
+
+    if(!nav) return;
+
+    const old=nav.querySelector(".badge");
+
+    if(old) old.remove();
+
+    if(count>0){
+
+        const badge=document.createElement("div");
+
+        badge.className="badge";
+
+        badge.textContent =
+            count>99 ? "99+" : count;
+
+        nav.appendChild(badge);
+
+    }
+
+}
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+function toggleSetting(button){
+
+    button.classList.toggle("on");
+
+    showToast(
+        button.classList.contains("on")
+        ? "Notifications enabled."
+        : "Notifications disabled."
     );
+
+}
+
+
+function changeLanguage(language){
+
+    showToast(
+        "Language set to "+language+
+        ". Full translation system can be added next."
+    );
+
+}
+
+
+/* =====================================================
+   MODALS
+===================================================== */
+
+function closeModal(id){
+
+    document.getElementById(id)
+        .classList.remove("show");
+
+}
+
+
+document.querySelectorAll(".modal")
+    .forEach(modal=>{
+
+        modal.addEventListener("click",function(e){
+
+            if(e.target===modal){
+
+                modal.classList.remove("show");
+
+            }
+
+        });
+
+    });
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function makeAvatar(name){
+
+    const letter =
+        (name || "U")
+        .charAt(0)
+        .toUpperCase();
+
+    return "data:image/svg+xml;charset=UTF-8,"+
+        encodeURIComponent(
+            `<svg xmlns="http://www.w3.org/2000/svg"
+                  width="100"
+                  height="100">
+                <rect width="100%"
+                      height="100%"
+                      rx="50"
+                      fill="#1976d2"/>
+                <text x="50%"
+                      y="58%"
+                      text-anchor="middle"
+                      font-family="Arial"
+                      font-size="42"
+                      fill="white">
+                    ${letter}
+                </text>
+            </svg>`
+        );
+
+}
+
+
+function statusIcon(status){
+
+    if(status==="Online") return "🟢";
+
+    if(status==="Busy") return "🔴";
+
+    if(status==="Invisible") return "⚪";
+
+    return "⚪";
 
 }
 
 
 function escapeHTML(value){
 
-    return String(value)
+    return String(value ?? "")
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -3860,9 +4513,9 @@ function escapeHTML(value){
 }
 
 
-function escapeJS(value){
+function escapeAttr(value){
 
-    return String(value)
+    return String(value ?? "")
         .replace(/\\/g,"\\\\")
         .replace(/'/g,"\\'");
 
@@ -3871,24 +4524,17 @@ function escapeJS(value){
 
 function showToast(message){
 
-    const toast =
+    const toast=
         document.getElementById("toast");
 
-
-    toast.textContent =
-        message;
-
+    toast.textContent=message;
 
     toast.classList.add("show");
 
-
-    clearTimeout(
-        window.toastTimer
-    );
-
+    clearTimeout(window.toastTimer);
 
     window.toastTimer =
-        setTimeout(() => {
+        setTimeout(()=>{
 
             toast.classList.remove("show");
 
@@ -3897,50 +4543,49 @@ function showToast(message){
 }
 
 
-function openModal(
-    title,
-    content,
-    confirmFunction
-){
+/* =====================================================
+   STARTUP
+===================================================== */
 
-    document.getElementById(
-        "modalTitle"
-    ).textContent = title;
+if(currentUser){
 
+    openMainApp();
 
-    document.getElementById(
-        "modalContent"
-    ).innerHTML = content;
+}else{
 
-
-    document.getElementById(
-        "modal"
-    ).classList.add("active");
-
-
-    document.getElementById(
-        "modalConfirm"
-    ).onclick = confirmFunction;
-
-}
-
-
-function closeModal(){
-
-    document.getElementById(
-        "modal"
-    ).classList.remove("active");
+    showAuth("login");
 
 }
 
 
 /* =====================================================
-   START
+   DEMO WELCOME NOTIFICATION
 ===================================================== */
 
-getUsers();
+if(!localStorage.getItem("ym_welcome_notification")){
 
-checkSession();
+    notifications.unshift({
+
+        id:Date.now(),
+
+        icon:"👋",
+
+        text:"Welcome to Y-M Chat V1.9.6.",
+
+        time:new Date().toLocaleString(),
+
+        unread:true
+
+    });
+
+    localStorage.setItem(
+        "ym_welcome_notification",
+        "true"
+    );
+
+    saveAll();
+
+}
 
 </script>
 
