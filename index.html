@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Y-M Chat - Home V1.0</title>
+<title>Y-M Chat - Home V1.1</title>
 
 <style>
 *{
@@ -25,11 +25,8 @@ body{
     min-height:100vh;
     margin:auto;
     background:#f5f7fa;
-    position:relative;
-    padding-bottom:75px;
+    padding-bottom:78px;
 }
-
-/* HEADER */
 
 .header{
     height:62px;
@@ -51,9 +48,9 @@ body{
 }
 
 .logo span{
+    display:block;
     font-size:12px;
     opacity:.85;
-    display:block;
 }
 
 .header-actions{
@@ -66,17 +63,11 @@ body{
     height:40px;
     border:none;
     border-radius:50%;
-    background:rgba(255,255,255,.16);
+    background:rgba(255,255,255,.17);
     color:white;
     font-size:20px;
     cursor:pointer;
 }
-
-.icon-btn:active{
-    transform:scale(.95);
-}
-
-/* PROFILE BAR */
 
 .profile-bar{
     background:white;
@@ -87,7 +78,8 @@ body{
     border-bottom:1px solid #ddd;
 }
 
-.avatar{
+.avatar,
+.mini-avatar{
     width:45px;
     height:45px;
     border-radius:50%;
@@ -102,7 +94,13 @@ body{
     flex-shrink:0;
 }
 
-.avatar img{
+.mini-avatar{
+    width:40px;
+    height:40px;
+}
+
+.avatar img,
+.mini-avatar img{
     width:100%;
     height:100%;
     object-fit:cover;
@@ -123,8 +121,6 @@ body{
     margin-top:3px;
 }
 
-/* NOTICE */
-
 .notice{
     margin:12px;
     background:#e3f2fd;
@@ -134,8 +130,6 @@ body{
     color:#1565c0;
     font-size:13px;
 }
-
-/* CREATE POST */
 
 .create-post{
     background:white;
@@ -149,19 +143,6 @@ body{
     display:flex;
     gap:10px;
     align-items:flex-start;
-}
-
-.mini-avatar{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:#1976d2;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    flex-shrink:0;
 }
 
 .post-input{
@@ -228,8 +209,6 @@ input[type="file"]{
     display:none;
 }
 
-/* FEED */
-
 .feed-title{
     padding:4px 14px 8px;
     font-size:16px;
@@ -269,9 +248,10 @@ input[type="file"]{
 .more-btn{
     border:none;
     background:white;
-    font-size:20px;
+    font-size:22px;
     color:#777;
     cursor:pointer;
+    padding:4px 8px;
 }
 
 .post-text{
@@ -324,7 +304,78 @@ input[type="file"]{
     font-weight:bold;
 }
 
-/* EMPTY */
+.comments-area{
+    border-top:1px solid #eee;
+    padding:10px 13px;
+    background:#fafafa;
+}
+
+.comments-title{
+    font-size:12px;
+    font-weight:bold;
+    color:#666;
+    margin-bottom:8px;
+}
+
+.comment{
+    display:flex;
+    gap:8px;
+    margin-bottom:9px;
+}
+
+.comment-avatar{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:#1976d2;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:bold;
+    flex-shrink:0;
+}
+
+.comment-body{
+    flex:1;
+    background:white;
+    border:1px solid #e4e4e4;
+    border-radius:9px;
+    padding:8px;
+}
+
+.comment-name{
+    font-size:12px;
+    font-weight:bold;
+}
+
+.comment-text{
+    font-size:13px;
+    margin-top:4px;
+    line-height:1.4;
+    white-space:pre-wrap;
+}
+
+.comment-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:6px;
+}
+
+.comment-time{
+    color:#999;
+    font-size:10px;
+}
+
+.comment-menu{
+    border:none;
+    background:transparent;
+    color:#777;
+    cursor:pointer;
+    font-size:12px;
+}
 
 .empty{
     text-align:center;
@@ -336,8 +387,6 @@ input[type="file"]{
     font-size:42px;
     margin-bottom:10px;
 }
-
-/* NOTIFICATION */
 
 .notification-panel{
     position:fixed;
@@ -374,8 +423,6 @@ input[type="file"]{
     color:#888;
     margin-top:4px;
 }
-
-/* BOTTOM NAV */
 
 .bottom-nav{
     position:fixed;
@@ -414,8 +461,6 @@ input[type="file"]{
     color:#1976d2;
     font-weight:bold;
 }
-
-/* MODAL */
 
 .modal{
     position:fixed;
@@ -473,7 +518,21 @@ input[type="file"]{
     outline:none;
 }
 
-/* RESPONSIVE */
+.menu-option{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    border:none;
+    border-radius:8px;
+    background:#f1f3f5;
+    text-align:left;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.menu-option.delete{
+    color:#d32f2f;
+}
 
 @media(max-width:480px){
     .notification-panel{
@@ -487,131 +546,120 @@ input[type="file"]{
 
 <div class="app">
 
-    <!-- HEADER -->
-    <header class="header">
+<header class="header">
 
-        <div class="logo">
-            Y-M Chat
-            <span>Home</span>
-        </div>
-
-        <div class="header-actions">
-            <button class="icon-btn" onclick="toggleNotifications()">🔔</button>
-            <button class="icon-btn" onclick="openMenu()">⋮</button>
-        </div>
-
-    </header>
-
-    <!-- NOTIFICATION PANEL -->
-    <div id="notificationPanel" class="notification-panel">
-
-        <div class="notification-head">
-            🔔 Notifications
-        </div>
-
-        <div class="notification-item">
-            Selamat datang di Y-M Chat.
-            <small>Baru sahaja</small>
-        </div>
-
-        <div class="notification-item">
-            Home V1.0 sedang aktif.
-            <small>Hari ini</small>
-        </div>
-
+    <div class="logo">
+        Y-M Chat
+        <span>Home</span>
     </div>
 
-    <!-- PROFILE BAR -->
-    <section class="profile-bar">
-
-        <div class="avatar" id="topAvatar">
-            Y
-        </div>
-
-        <div class="profile-info">
-            <div class="profile-name" id="topName">
-                Y-M User
-            </div>
-
-            <div class="profile-id" id="topId">
-                @ymuser
-            </div>
-        </div>
-
-    </section>
-
-    <!-- NOTICE -->
-    <div class="notice">
-        👋 Selamat datang ke <b>Y-M Chat</b>. Kongsi apa yang sedang anda lakukan.
+    <div class="header-actions">
+        <button class="icon-btn" onclick="toggleNotifications()">🔔</button>
+        <button class="icon-btn" onclick="openMenu()">⋮</button>
     </div>
 
-    <!-- CREATE POST -->
-    <section class="create-post">
+</header>
 
-        <div class="create-top">
+<div id="notificationPanel" class="notification-panel">
 
-            <div class="mini-avatar" id="miniAvatar">
-                Y
-            </div>
-
-            <textarea
-                id="postInput"
-                class="post-input"
-                placeholder="Apa yang anda fikirkan?"
-            ></textarea>
-
-        </div>
-
-        <div id="mediaPreview" class="media-preview"></div>
-
-        <div class="create-actions">
-
-            <button
-                class="media-btn"
-                onclick="document.getElementById('imageInput').click()">
-                🖼️ Foto
-            </button>
-
-            <button
-                class="media-btn"
-                onclick="document.getElementById('videoInput').click()">
-                🎥 Video
-            </button>
-
-            <button
-                class="media-btn post-btn"
-                onclick="createPost()">
-                ➤ Post
-            </button>
-
-        </div>
-
-        <input
-            type="file"
-            id="imageInput"
-            accept="image/*"
-            onchange="previewImage(event)"
-        >
-
-        <input
-            type="file"
-            id="videoInput"
-            accept="video/*"
-            onchange="previewVideo(event)"
-        >
-
-    </section>
-
-    <!-- FEED -->
-    <div class="feed-title">
-        📰 Y-M Feed
+    <div class="notification-head">
+        🔔 Notifications
     </div>
 
-    <main id="feed"></main>
+    <div class="notification-item">
+        Welcome to Y-M Chat.
+        <small>Just now</small>
+    </div>
+
+    <div class="notification-item">
+        Home V1.1 is active.
+        <small>Today</small>
+    </div>
 
 </div>
 
-<!-- BOTTOM NAV -->
+<section class="profile-bar">
+
+    <div class="avatar" id="topAvatar">Y</div>
+
+    <div class="profile-info">
+        <div class="profile-name" id="topName">
+            Y-M User
+        </div>
+
+        <div class="profile-id" id="topId">
+            @ymuser
+        </div>
+    </div>
+
+</section>
+
+<div class="notice">
+    👋 Welcome to <b>Y-M Chat</b>. Share what is on your mind.
+</div>
+
+<section class="create-post">
+
+    <div class="create-top">
+
+        <div class="mini-avatar" id="miniAvatar">Y</div>
+
+        <textarea
+            id="postInput"
+            class="post-input"
+            placeholder="What's on your mind?"
+        ></textarea>
+
+    </div>
+
+    <div id="mediaPreview" class="media-preview"></div>
+
+    <div class="create-actions">
+
+        <button
+            class="media-btn"
+            onclick="document.getElementById('imageInput').click()">
+            🖼️ Photo
+        </button>
+
+        <button
+            class="media-btn"
+            onclick="document.getElementById('videoInput').click()">
+            🎥 Video
+        </button>
+
+        <button
+            class="media-btn post-btn"
+            onclick="createPost()">
+            ➤ Post
+        </button>
+
+    </div>
+
+    <input
+        type="file"
+        id="imageInput"
+        accept="image/*"
+        onchange="previewImage(event)"
+    >
+
+    <input
+        type="file"
+        id="videoInput"
+        accept="video/*"
+        onchange="previewVideo(event)"
+    >
+
+</section>
+
+<div class="feed-title">
+    📰 Y-M Feed
+</div>
+
+<main id="feed"></main>
+
+</div>
+
 <nav class="bottom-nav">
 
     <button class="nav-btn active" onclick="goHome()">
@@ -641,31 +689,68 @@ input[type="file"]{
 
 </nav>
 
-<!-- COMMENT MODAL -->
 <div id="commentModal" class="modal">
 
     <div class="modal-box">
 
         <div class="modal-title">
-            💬 Comment
+            💬 Add Comment
         </div>
 
         <textarea
             id="commentInput"
             class="comment-input"
-            placeholder="Tulis komen..."
+            placeholder="Write a comment..."
         ></textarea>
 
-        <button
-            class="modal-btn"
-            onclick="submitComment()">
-            Hantar Comment
+        <button class="modal-btn" onclick="submitComment()">
+            Send Comment
         </button>
 
         <button
             class="modal-btn secondary"
             onclick="closeCommentModal()">
-            Batal
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+<div id="postMenuModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-title">
+            Post Options
+        </div>
+
+        <div id="postMenuOptions"></div>
+
+        <button
+            class="modal-btn secondary"
+            onclick="closePostMenu()">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+<div id="commentMenuModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-title">
+            Comment Options
+        </div>
+
+        <div id="commentMenuOptions"></div>
+
+        <button
+            class="modal-btn secondary"
+            onclick="closeCommentMenu()">
+            Cancel
         </button>
 
     </div>
@@ -674,98 +759,69 @@ input[type="file"]{
 
 <script>
 
-/* =========================================================
-   Y-M CHAT HOME V1.0
-   MODULE: 02-HOME
-
-   NOTE:
-   Module ini berdiri sendiri.
-   Security Core V1.0 tidak diubah.
-========================================================= */
-
-
-/* -------------------------
-   GLOBAL DATA
-------------------------- */
-
 let posts = [];
-
 let selectedMedia = null;
-
 let selectedMediaType = null;
-
 let commentPostId = null;
+let selectedMenuPostId = null;
+let selectedMenuCommentId = null;
+let selectedMenuCommentPostId = null;
 
 
-/* -------------------------
-   USER DATA
-------------------------- */
+/* USER */
 
 function getCurrentUser(){
 
-    let current = localStorage.getItem("ym_current_user");
+    const current =
+        localStorage.getItem("ym_current_user");
 
-    if(current){
-
-        try{
-
-            return JSON.parse(current);
-
-        }catch(e){
-
-            return null;
-
-        }
-
+    if(!current){
+        return null;
     }
 
-    return null;
+    try{
+        return JSON.parse(current);
+    }catch(error){
+        return null;
+    }
 }
 
-
-/* -------------------------
-   DISPLAY USER
-------------------------- */
-
-function loadUser(){
+function getCurrentUsername(){
 
     const user = getCurrentUser();
 
-    if(!user){
+    return user && user.username
+        ? user.username
+        : "ymuser";
+}
 
-        document.getElementById("topName").textContent =
-            "Y-M User";
+function getCurrentName(){
 
-        document.getElementById("topId").textContent =
-            "@ymuser";
+    const user = getCurrentUser();
 
-        document.getElementById("topAvatar").textContent =
-            "Y";
+    return user && user.name
+        ? user.name
+        : "Y-M User";
+}
 
-        document.getElementById("miniAvatar").textContent =
-            "Y";
+function getUserLetter(name){
 
-        return;
+    return (name || "Y")
+        .charAt(0)
+        .toUpperCase();
+}
 
-    }
+function loadUser(){
 
-    const name =
-        user.name ||
-        user.username ||
-        "Y-M User";
-
-    const username =
-        user.username ||
-        "ymuser";
+    const name = getCurrentName();
+    const username = getCurrentUsername();
+    const letter = getUserLetter(name);
 
     document.getElementById("topName").textContent =
         name;
 
     document.getElementById("topId").textContent =
         "@" + username;
-
-    const letter =
-        name.charAt(0).toUpperCase();
 
     document.getElementById("topAvatar").textContent =
         letter;
@@ -775,9 +831,7 @@ function loadUser(){
 }
 
 
-/* -------------------------
-   LOAD POSTS
-------------------------- */
+/* STORAGE */
 
 function loadPosts(){
 
@@ -787,24 +841,15 @@ function loadPosts(){
     if(saved){
 
         try{
-
             posts = JSON.parse(saved);
-
-        }catch(e){
-
+        }catch(error){
             posts = [];
-
         }
 
     }
 
     renderPosts();
 }
-
-
-/* -------------------------
-   SAVE POSTS
-------------------------- */
 
 function savePosts(){
 
@@ -816,62 +861,61 @@ function savePosts(){
 }
 
 
-/* -------------------------
-   FORMAT TIME
-------------------------- */
+/* TIME */
 
 function formatTime(timestamp){
 
-    const date =
-        new Date(timestamp);
-
-    const now =
-        new Date();
-
-    const diff =
-        now - date;
+    const date = new Date(timestamp);
+    const now = new Date();
+    const difference = now - date;
 
     const minutes =
-        Math.floor(diff / 60000);
+        Math.floor(difference / 60000);
 
     if(minutes < 1){
-
-        return "Baru sahaja";
-
+        return "Just now";
     }
 
     if(minutes < 60){
-
-        return minutes + " minit lalu";
-
+        return minutes + " minutes ago";
     }
 
     const hours =
         Math.floor(minutes / 60);
 
     if(hours < 24){
-
-        return hours + " jam lalu";
-
+        return hours + " hours ago";
     }
 
     const days =
         Math.floor(hours / 24);
 
     if(days < 7){
-
-        return days + " hari lalu";
-
+        return days + " days ago";
     }
 
     return date.toLocaleDateString();
-
 }
 
 
-/* -------------------------
-   CREATE POST
-------------------------- */
+/* SECURITY */
+
+function escapeHTML(text){
+
+    if(!text){
+        return "";
+    }
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+/* CREATE POST */
 
 function createPost(){
 
@@ -881,56 +925,34 @@ function createPost(){
 
     if(!text && !selectedMedia){
 
-        alert("Sila tulis sesuatu atau pilih foto/video.");
+        alert("Please write something or select a photo/video.");
 
         return;
-
     }
-
-    const user =
-        getCurrentUser();
-
-    const name =
-        user && user.name
-        ? user.name
-        : "Y-M User";
-
-    const username =
-        user && user.username
-        ? user.username
-        : "ymuser";
 
     const post = {
 
-        id:
-            Date.now(),
+        id:Date.now(),
 
-        userName:
-            name,
+        userName:getCurrentName(),
 
-        username:
-            username,
+        username:getCurrentUsername(),
 
-        text:
-            text,
+        text:text,
 
-        media:
-            selectedMedia,
+        media:selectedMedia,
 
-        mediaType:
-            selectedMediaType,
+        mediaType:selectedMediaType,
 
-        time:
-            Date.now(),
+        time:Date.now(),
 
-        likes:
-            0,
+        likes:0,
 
-        liked:
-            false,
+        liked:false,
 
-        comments:
-            []
+        hidden:false,
+
+        comments:[]
 
     };
 
@@ -938,14 +960,10 @@ function createPost(){
 
     savePosts();
 
-    document.getElementById("postInput").value =
-        "";
+    document.getElementById("postInput").value = "";
 
-    selectedMedia =
-        null;
-
-    selectedMediaType =
-        null;
+    selectedMedia = null;
+    selectedMediaType = null;
 
     document.getElementById("mediaPreview").style.display =
         "none";
@@ -953,64 +971,55 @@ function createPost(){
     document.getElementById("mediaPreview").innerHTML =
         "";
 
-    renderPosts();
+    document.getElementById("imageInput").value = "";
+    document.getElementById("videoInput").value = "";
 
+    renderPosts();
 }
 
 
-/* -------------------------
-   RENDER POSTS
-------------------------- */
+/* RENDER POSTS */
 
 function renderPosts(){
 
     const feed =
         document.getElementById("feed");
 
-    feed.innerHTML =
-        "";
+    feed.innerHTML = "";
 
-    if(posts.length === 0){
+    const visiblePosts =
+        posts.filter(post => !post.hidden);
+
+    if(visiblePosts.length === 0){
 
         feed.innerHTML = `
 
             <div class="empty">
 
-                <div class="empty-icon">
-                    📰
-                </div>
+                <div class="empty-icon">📰</div>
 
-                <div>
-                    Belum ada post.
-                </div>
+                <div>No posts available.</div>
 
-                <small>
-                    Jadilah orang pertama membuat post.
-                </small>
+                <small>Be the first to create a post.</small>
 
             </div>
 
         `;
 
         return;
-
     }
 
-    posts.forEach(post => {
+    visiblePosts.forEach(post => {
 
         const card =
             document.createElement("article");
 
-        card.className =
-            "post-card";
+        card.className = "post-card";
 
         const letter =
-            (post.userName || "Y")
-            .charAt(0)
-            .toUpperCase();
+            getUserLetter(post.userName);
 
-        let mediaHTML =
-            "";
+        let mediaHTML = "";
 
         if(post.media && post.mediaType === "image"){
 
@@ -1026,7 +1035,6 @@ function renderPosts(){
                 </div>
 
             `;
-
         }
 
         if(post.media && post.mediaType === "video"){
@@ -1043,13 +1051,15 @@ function renderPosts(){
                 </div>
 
             `;
-
         }
 
-        const commentCount =
-            post.comments
-            ? post.comments.length
-            : 0;
+        const comments =
+            Array.isArray(post.comments)
+            ? post.comments
+            : [];
+
+        const commentsHTML =
+            renderComments(post);
 
         card.innerHTML = `
 
@@ -1075,7 +1085,7 @@ function renderPosts(){
 
                 <button
                     class="more-btn"
-                    onclick="postMenu(${post.id})">
+                    onclick="openPostMenu(${post.id})">
                     ⋮
                 </button>
 
@@ -1083,12 +1093,10 @@ function renderPosts(){
 
             ${
                 post.text
-                ?
-                `<div class="post-text">
+                ? `<div class="post-text">
                     ${escapeHTML(post.text)}
-                </div>`
-                :
-                ""
+                   </div>`
+                : ""
             }
 
             ${mediaHTML}
@@ -1097,7 +1105,7 @@ function renderPosts(){
 
                 ❤️ ${post.likes || 0}
                 &nbsp;&nbsp;
-                💬 ${commentCount}
+                💬 ${comments.length}
 
             </div>
 
@@ -1129,92 +1137,102 @@ function renderPosts(){
 
             </div>
 
+            ${commentsHTML}
+
         `;
 
         feed.appendChild(card);
 
     });
-
 }
 
 
-/* -------------------------
-   ESCAPE HTML
-------------------------- */
+/* COMMENTS */
 
-function escapeHTML(text){
+function renderComments(post){
 
-    if(!text){
+    const comments =
+        Array.isArray(post.comments)
+        ? post.comments
+        : [];
 
+    if(comments.length === 0){
         return "";
-
     }
 
-    return text
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    let html = `
 
+        <div class="comments-area">
+
+            <div class="comments-title">
+                Comments
+            </div>
+
+    `;
+
+    comments.forEach(comment => {
+
+        const letter =
+            getUserLetter(comment.user);
+
+        html += `
+
+            <div class="comment">
+
+                <div class="comment-avatar">
+                    ${letter}
+                </div>
+
+                <div class="comment-body">
+
+                    <div class="comment-name">
+                        ${escapeHTML(comment.user)}
+                    </div>
+
+                    <div class="comment-text">
+                        ${escapeHTML(comment.text)}
+                    </div>
+
+                    <div class="comment-bottom">
+
+                        <span class="comment-time">
+                            ${formatTime(comment.time)}
+                        </span>
+
+                        <button
+                            class="comment-menu"
+                            onclick="openCommentMenu(
+                                ${post.id},
+                                ${comment.id}
+                            )">
+
+                            Options ▾
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+    html += `</div>`;
+
+    return html;
 }
-
-
-/* -------------------------
-   LIKE POST
-------------------------- */
-
-function likePost(id){
-
-    const post =
-        posts.find(p => p.id === id);
-
-    if(!post){
-
-        return;
-
-    }
-
-    if(post.liked){
-
-        post.likes =
-            Math.max(0, post.likes - 1);
-
-        post.liked =
-            false;
-
-    }else{
-
-        post.likes =
-            (post.likes || 0) + 1;
-
-        post.liked =
-            true;
-
-    }
-
-    savePosts();
-
-    renderPosts();
-
-}
-
-
-/* -------------------------
-   COMMENT
-------------------------- */
 
 function openComment(id){
 
-    commentPostId =
-        id;
+    commentPostId = id;
 
-    document.getElementById("commentInput").value =
-        "";
+    document.getElementById("commentInput").value = "";
 
     document.getElementById("commentModal")
         .classList.add("show");
-
 }
 
 function closeCommentModal(){
@@ -1222,9 +1240,7 @@ function closeCommentModal(){
     document.getElementById("commentModal")
         .classList.remove("show");
 
-    commentPostId =
-        null;
-
+    commentPostId = null;
 }
 
 function submitComment(){
@@ -1235,42 +1251,35 @@ function submitComment(){
 
     if(!text){
 
-        alert("Sila tulis komen.");
+        alert("Please write a comment.");
 
         return;
-
     }
 
     const post =
-        posts.find(p => p.id === commentPostId);
+        posts.find(item => item.id === commentPostId);
 
     if(!post){
-
         return;
-
     }
 
-    if(!post.comments){
-
+    if(!Array.isArray(post.comments)){
         post.comments = [];
-
     }
-
-    const user =
-        getCurrentUser();
 
     post.comments.push({
 
-        user:
-            user && user.name
-            ? user.name
-            : "Y-M User",
+        id:Date.now(),
 
-        text:
-            text,
+        user:getCurrentName(),
 
-        time:
-            Date.now()
+        username:getCurrentUsername(),
+
+        text:text,
+
+        time:Date.now(),
+
+        hidden:false
 
     });
 
@@ -1279,110 +1288,282 @@ function submitComment(){
     closeCommentModal();
 
     renderPosts();
-
 }
 
 
-/* -------------------------
-   SHARE
-------------------------- */
+/* LIKE */
 
-function sharePost(id){
+function likePost(id){
 
     const post =
-        posts.find(p => p.id === id);
+        posts.find(item => item.id === id);
 
     if(!post){
-
         return;
-
     }
 
-    const shareText =
-        post.text ||
-        "Post dari Y-M Chat";
+    if(post.liked){
 
-    if(navigator.share){
+        post.likes =
+            Math.max(0,(post.likes || 0) - 1);
 
-        navigator.share({
-
-            title:
-                "Y-M Chat",
-
-            text:
-                shareText
-
-        }).catch(() => {});
+        post.liked = false;
 
     }else{
 
-        alert(
-            "Share: " +
-            shareText
-        );
+        post.likes =
+            (post.likes || 0) + 1;
+
+        post.liked = true;
 
     }
 
+    savePosts();
+
+    renderPosts();
 }
 
 
-/* -------------------------
-   POST MENU
-------------------------- */
+/* POST MENU */
 
-function postMenu(id){
+function openPostMenu(id){
+
+    selectedMenuPostId = id;
 
     const post =
-        posts.find(p => p.id === id);
+        posts.find(item => item.id === id);
 
     if(!post){
-
         return;
-
     }
 
-    const user =
-        getCurrentUser();
+    const isOwner =
+        post.username === getCurrentUsername();
 
-    const currentUsername =
-        user && user.username
-        ? user.username
-        : "ymuser";
+    const options =
+        document.getElementById("postMenuOptions");
 
-    if(post.username === currentUsername){
+    options.innerHTML = "";
 
-        const remove =
-            confirm(
-                "Padam post ini?"
-            );
+    if(isOwner){
 
-        if(remove){
+        options.innerHTML = `
 
-            posts =
-                posts.filter(
-                    p => p.id !== id
-                );
+            <button
+                class="menu-option delete"
+                onclick="deletePost()">
 
-            savePosts();
+                🗑️ Delete Post
 
-            renderPosts();
+            </button>
 
-        }
+        `;
 
     }else{
 
-        alert(
-            "Menu post pengguna lain akan dikembangkan kemudian."
-        );
+        options.innerHTML = `
+
+            <button
+                class="menu-option"
+                onclick="hidePost()">
+
+                🚫 Hide Post
+
+            </button>
+
+        `;
 
     }
 
+    document.getElementById("postMenuModal")
+        .classList.add("show");
+}
+
+function closePostMenu(){
+
+    document.getElementById("postMenuModal")
+        .classList.remove("show");
+
+    selectedMenuPostId = null;
+}
+
+function deletePost(){
+
+    const post =
+        posts.find(item => item.id === selectedMenuPostId);
+
+    if(!post){
+        return;
+    }
+
+    const confirmed =
+        confirm("Are you sure you want to delete this post?");
+
+    if(!confirmed){
+        return;
+    }
+
+    posts =
+        posts.filter(item => item.id !== selectedMenuPostId);
+
+    savePosts();
+
+    closePostMenu();
+
+    renderPosts();
+}
+
+function hidePost(){
+
+    const post =
+        posts.find(item => item.id === selectedMenuPostId);
+
+    if(!post){
+        return;
+    }
+
+    post.hidden = true;
+
+    savePosts();
+
+    closePostMenu();
+
+    renderPosts();
 }
 
 
-/* -------------------------
-   IMAGE PREVIEW
-------------------------- */
+/* COMMENT MENU */
+
+function openCommentMenu(postId, commentId){
+
+    selectedMenuPostId = postId;
+    selectedMenuCommentId = commentId;
+
+    const post =
+        posts.find(item => item.id === postId);
+
+    if(!post){
+        return;
+    }
+
+    const comment =
+        post.comments.find(item => item.id === commentId);
+
+    if(!comment){
+        return;
+    }
+
+    const isOwner =
+        comment.username === getCurrentUsername();
+
+    const options =
+        document.getElementById("commentMenuOptions");
+
+    options.innerHTML = "";
+
+    if(isOwner){
+
+        options.innerHTML = `
+
+            <button
+                class="menu-option delete"
+                onclick="deleteComment()">
+
+                🗑️ Delete Comment
+
+            </button>
+
+        `;
+
+    }else{
+
+        options.innerHTML = `
+
+            <button
+                class="menu-option"
+                onclick="hideComment()">
+
+                🚫 Hide Comment
+
+            </button>
+
+        `;
+
+    }
+
+    document.getElementById("commentMenuModal")
+        .classList.add("show");
+}
+
+function closeCommentMenu(){
+
+    document.getElementById("commentMenuModal")
+        .classList.remove("show");
+
+    selectedMenuPostId = null;
+    selectedMenuCommentId = null;
+}
+
+function deleteComment(){
+
+    const post =
+        posts.find(item => item.id === selectedMenuPostId);
+
+    if(!post){
+        return;
+    }
+
+    const confirmed =
+        confirm("Are you sure you want to delete this comment?");
+
+    if(!confirmed){
+        return;
+    }
+
+    post.comments =
+        post.comments.filter(
+            comment => comment.id !== selectedMenuCommentId
+        );
+
+    savePosts();
+
+    closeCommentMenu();
+
+    renderPosts();
+}
+
+function hideComment(){
+
+    const post =
+        posts.find(item => item.id === selectedMenuPostId);
+
+    if(!post){
+        return;
+    }
+
+    const comment =
+        post.comments.find(
+            item => item.id === selectedMenuCommentId
+        );
+
+    if(!comment){
+        return;
+    }
+
+    comment.hidden = true;
+
+    post.comments =
+        post.comments.filter(comment => !comment.hidden);
+
+    savePosts();
+
+    closeCommentMenu();
+
+    renderPosts();
+}
+
+
+/* MEDIA PREVIEW */
 
 function previewImage(event){
 
@@ -1390,48 +1571,36 @@ function previewImage(event){
         event.target.files[0];
 
     if(!file){
-
         return;
-
     }
 
-    const reader =
-        new FileReader();
+    const reader = new FileReader();
 
-    reader.onload =
-        function(e){
+    reader.onload = function(event){
 
-            selectedMedia =
-                e.target.result;
+        selectedMedia =
+            event.target.result;
 
-            selectedMediaType =
-                "image";
+        selectedMediaType =
+            "image";
 
-            const preview =
-                document.getElementById("mediaPreview");
+        const preview =
+            document.getElementById("mediaPreview");
 
-            preview.innerHTML = `
+        preview.innerHTML = `
 
-                <img
-                    src="${selectedMedia}"
-                    alt="Preview"
-                >
+            <img
+                src="${selectedMedia}"
+                alt="Image preview"
+            >
 
-            `;
+        `;
 
-            preview.style.display =
-                "block";
-
-        };
+        preview.style.display = "block";
+    };
 
     reader.readAsDataURL(file);
-
 }
-
-
-/* -------------------------
-   VIDEO PREVIEW
-------------------------- */
 
 function previewVideo(event){
 
@@ -1439,64 +1608,79 @@ function previewVideo(event){
         event.target.files[0];
 
     if(!file){
-
         return;
-
     }
 
-    const reader =
-        new FileReader();
+    const reader = new FileReader();
 
-    reader.onload =
-        function(e){
+    reader.onload = function(event){
 
-            selectedMedia =
-                e.target.result;
+        selectedMedia =
+            event.target.result;
 
-            selectedMediaType =
-                "video";
+        selectedMediaType =
+            "video";
 
-            const preview =
-                document.getElementById("mediaPreview");
+        const preview =
+            document.getElementById("mediaPreview");
 
-            preview.innerHTML = `
+        preview.innerHTML = `
 
-                <video
-                    src="${selectedMedia}"
-                    controls
-                ></video>
+            <video
+                src="${selectedMedia}"
+                controls
+            ></video>
 
-            `;
+        `;
 
-            preview.style.display =
-                "block";
-
-        };
+        preview.style.display = "block";
+    };
 
     reader.readAsDataURL(file);
-
 }
 
 
-/* -------------------------
-   NOTIFICATIONS
-------------------------- */
+/* SHARE */
+
+function sharePost(id){
+
+    const post =
+        posts.find(item => item.id === id);
+
+    if(!post){
+        return;
+    }
+
+    const shareText =
+        post.text || "Post from Y-M Chat";
+
+    if(navigator.share){
+
+        navigator.share({
+
+            title:"Y-M Chat",
+            text:shareText
+
+        }).catch(() => {});
+
+    }else{
+
+        alert("Share: " + shareText);
+
+    }
+}
+
+
+/* NOTIFICATIONS */
 
 function toggleNotifications(){
 
-    const panel =
-        document.getElementById(
-            "notificationPanel"
-        );
-
-    panel.classList.toggle("show");
-
+    document.getElementById("notificationPanel")
+        .classList.toggle("show");
 }
 
 
-/* -------------------------
-   MAIN MENU
-------------------------- */
+/* MENU */
 
 function openMenu(){
 
@@ -1506,15 +1690,12 @@ function openMenu(){
         "• Security\n" +
         "• Help\n" +
         "• Logout\n\n" +
-        "Menu penuh akan disambungkan kemudian."
+        "Full menu will be connected later."
     );
-
 }
 
 
-/* -------------------------
-   NAVIGATION PLACEHOLDERS
-------------------------- */
+/* NAVIGATION PLACEHOLDERS */
 
 function goHome(){
 
@@ -1522,77 +1703,56 @@ function goHome(){
         top:0,
         behavior:"smooth"
     });
-
 }
 
 function openFriends(){
 
-    alert(
-        "Friends V1.0 akan menggunakan modul 04-FRIENDS."
-    );
+    alert("Friends module will be connected later.");
 
 }
 
 function openChat(){
 
-    alert(
-        "Chat akan menggunakan modul 05-CHAT."
-    );
+    alert("Chat module will be connected later.");
 
 }
 
 function openRooms(){
 
-    alert(
-        "Rooms akan menggunakan modul 06-ROOMS."
-    );
+    alert("Rooms module will be connected later.");
 
 }
 
 function openProfile(){
 
-    alert(
-        "Profile akan menggunakan modul 03-PROFILE."
-    );
+    alert("Profile module will be connected later.");
 
 }
 
 
-/* -------------------------
-   CLOSE NOTIFICATION
-   WHEN CLICK OUTSIDE
-------------------------- */
+/* OUTSIDE CLICK */
 
-document.addEventListener(
-    "click",
-    function(event){
+document.addEventListener("click",function(event){
 
-        const panel =
-            document.getElementById(
-                "notificationPanel"
-            );
+    const panel =
+        document.getElementById("notificationPanel");
 
-        const header =
-            document.querySelector(
-                ".header"
-            );
+    const header =
+        document.querySelector(".header");
 
-        if(
-            !panel.contains(event.target) &&
-            !header.contains(event.target)
-        ){
+    if(
+        !panel.contains(event.target) &&
+        !header.contains(event.target)
+    ){
 
-            panel.classList.remove("show");
-
-        }
+        panel.classList.remove("show");
 
     }
-);
+
+});
 
 
-/* -------------------------
-   INITIALIZE
-------------------------- */
+/* INITIALIZE */
 
 function initializeHome(){
 
@@ -1601,11 +1761,6 @@ function initializeHome(){
     loadPosts();
 
 }
-
-
-/* -------------------------
-   START
-------------------------- */
 
 document.addEventListener(
     "DOMContentLoaded",
