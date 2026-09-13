@@ -2,101 +2,846 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Y-M Chat - Security + Home + Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Y-M Chat - Security Core + Home + Profile</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#eef3f8;color:#222}
-.app{width:100%;max-width:480px;min-height:100vh;margin:auto;background:#fff;padding-bottom:75px}
-.page{display:none}
-.page.active{display:block}
-.header{background:linear-gradient(135deg,#1976d2,#42a5f5);color:white;padding:18px 16px;position:relative}
-.header h1{font-size:25px}.header p{font-size:13px;margin-top:4px}
-.language-box{position:absolute;right:12px;top:12px}
-.language-box select{padding:6px;border:0;border-radius:6px}
-.card{margin:15px;padding:18px;border-radius:12px;background:white;box-shadow:0 2px 10px #0001}
-body{background:linear-gradient(135deg,#e3f2fd,#f5f9fc)}
-.form-group{margin-bottom:12px}
-label{display:block;font-size:13px;color:#555;margin-bottom:5px}
-input,select,textarea{width:100%;padding:11px;border:1px solid #d5dce3;border-radius:8px;outline:none;font-size:14px}
-textarea{resize:vertical;min-height:80px}
-input:focus,select:focus,textarea:focus{border-color:#1976d2}
-.btn{width:100%;border:0;border-radius:8px;padding:12px;margin-top:7px;background:#1976d2;color:white;font-weight:bold;cursor:pointer}
-.btn.secondary{background:#e8edf2;color:#333}
-.btn.danger{background:#d32f2f}
-.small-btn{border:0;border-radius:7px;padding:8px 11px;cursor:pointer;background:#1976d2;color:white}
-.notice{background:#e3f2fd;padding:12px;border-radius:9px;margin-bottom:12px;font-size:13px}
-.security-box,.recovery-box{background:#f7f9fc;border:1px solid #e1e6eb;padding:13px;border-radius:10px;margin-top:12px}
-.placeholder{text-align:center;padding:45px 10px;color:#777}.placeholder-icon{font-size:50px;margin-bottom:10px}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
 
-/* HOME */
-.home-top{padding:14px}
-.home-profile{display:flex;align-items:center;gap:10px}
-.home-avatar{width:48px;height:48px;border-radius:50%;background:#1976d2;color:white;display:flex;align-items:center;justify-content:center;font-weight:bold;overflow:hidden}
-.home-avatar img{width:100%;height:100%;object-fit:cover}
-.home-search{width:100%;margin-top:12px}
-.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
-.quick-item{border:1px solid #ddd;background:#f8fafc;border-radius:10px;padding:10px 3px;text-align:center;cursor:pointer;font-size:12px}
-.quick-item span{display:block;font-size:22px;margin-bottom:3px}
-.create-post{margin-top:14px;border:1px solid #ddd;border-radius:12px;padding:12px}
-.post-card{border:1px solid #e0e5ea;border-radius:12px;margin-top:13px;overflow:hidden;background:white}
-.post-header{display:flex;align-items:center;padding:11px}
-.post-avatar{width:43px;height:43px;border-radius:50%;background:#1976d2;color:white;display:flex;align-items:center;justify-content:center;overflow:hidden;font-weight:bold;margin-right:10px}
-.post-avatar img{width:100%;height:100%;object-fit:cover}
-.post-user{flex:1}.post-user strong{display:block;font-size:14px}.post-user small{color:#777;font-size:11px}
-.post-menu{border:0;background:transparent;font-size:22px;cursor:pointer}
-.post-content{padding:0 12px 12px;line-height:1.45;white-space:pre-wrap;word-break:break-word}
-.post-media{display:block;width:100%;max-height:430px;object-fit:cover;background:#111}
-.post-actions{display:flex;border-top:1px solid #eee;border-bottom:1px solid #eee}
-.post-actions button{flex:1;border:0;background:white;padding:10px 3px;cursor:pointer;font-size:12px}
-.comments{padding:10px 12px}
-.comment{background:#f1f3f5;border-radius:9px;padding:8px;margin-bottom:7px;font-size:13px}
-.comment-top{display:flex}.comment-body{flex:1}.comment-buttons button{border:0;background:none;cursor:pointer}
-.comment-input{margin-top:5px}.comment-send{margin-top:6px;padding:8px 12px;border:0;border-radius:7px;background:#1976d2;color:white}
-.bottom-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:480px;height:65px;display:none;background:white;border-top:1px solid #ddd;z-index:50}
-.bottom-nav button{flex:1;border:0;background:white;color:#555;font-size:11px;cursor:pointer}
-.bottom-nav button span{display:block;font-size:21px;margin-bottom:2px}
-.bottom-nav .active{color:#1976d2;font-weight:bold}
+html,body{
+    width:100%;
+    min-height:100%;
+}
 
-/* PROFILE */
-.topbar{height:58px;background:#1976d2;color:white;display:flex;align-items:center;padding:0 16px}
-.topbar h2{font-size:20px}
-.cover{height:205px;background:linear-gradient(135deg,#1976d2,#64b5f6);position:relative;overflow:hidden}
-.cover img{width:100%;height:100%;object-fit:cover;display:none}
-.cover-menu{position:absolute;top:12px;right:12px;z-index:10}
-.menu-button{width:43px;height:43px;border:0;border-radius:50%;background:#fff;color:#222;font-size:27px;cursor:pointer}
-.menu-box{display:none;position:absolute;top:50px;right:0;width:220px;background:white;border-radius:10px;overflow:hidden;box-shadow:0 4px 16px #0004}
-.menu-box button{width:100%;border:0;border-bottom:1px solid #eee;background:white;padding:14px;text-align:left;font-size:15px;cursor:pointer}
-.cover-camera{position:absolute;right:12px;bottom:12px;width:43px;height:43px;border:0;border-radius:50%;background:white;font-size:20px;cursor:pointer}
-.profile-area{padding:0 15px}
-.profile-head{position:relative;min-height:135px}
-.avatar-box{position:absolute;left:10px;top:-60px}
-.avatar{width:120px;height:120px;border-radius:50%;border:5px solid white;background:#dcecff;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px #0004}
-.avatar img{width:100%;height:100%;object-fit:cover;display:none}
-.avatar-text{color:#1976d2;font-size:45px;font-weight:bold}
-.avatar-camera{position:absolute;right:1px;bottom:2px;width:37px;height:37px;border-radius:50%;border:3px solid white;background:#1976d2;color:white;cursor:pointer}
-.profile-info{padding-top:68px;padding-left:5px}.profile-info h1{font-size:23px;margin-bottom:4px}
-.ymid{color:#777;font-size:14px}.bio{color:#555;margin-top:9px;line-height:1.4}
-.info-card{margin-top:5px;padding:14px;border-radius:12px;background:#f7f9fc}
-.info-row{padding:8px 0;border-bottom:1px solid #e2e7ec}.info-row:last-child{border:0}
-.info-label{color:#777;font-size:13px;margin-bottom:3px}.info-value{font-size:14px;font-weight:bold}
-.post-box{margin-top:15px;border:1px solid #e0e5eb;border-radius:12px;padding:13px}
-.post-box h3{font-size:16px;margin-bottom:10px}
-.post-input{width:100%;min-height:78px;resize:none}
-.post-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.post-tools button{border:1px solid #d9e0e7;background:#f6f8fa;border-radius:8px;padding:9px 12px;cursor:pointer}
-.selected-file{margin-top:9px;color:#1976d2;font-size:13px}
-.publish{width:100%;margin-top:10px;padding:11px;border:0;border-radius:8px;background:#1976d2;color:white;font-weight:bold}
-.section-title{margin:20px 0 10px;font-size:18px}
+body{
+    background:#eef3f8;
+    color:#222;
+}
 
-/* MODAL */
-.modal{display:none;position:fixed;inset:0;z-index:100;background:#0009;align-items:center;justify-content:center;padding:15px}
-.modal-content{width:100%;max-width:450px;max-height:90vh;overflow-y:auto;background:white;border-radius:14px;padding:18px}
-.modal-content h2{color:#1976d2;margin-bottom:15px}
-.modal-buttons{display:flex;gap:8px;margin-top:15px}.modal-buttons button{flex:1;padding:11px;border:0;border-radius:8px;cursor:pointer}
-.save{background:#1976d2;color:white}.cancel{background:#e8edf2}
-.toast{display:none;position:fixed;left:50%;bottom:82px;transform:translateX(-50%);z-index:200;background:#222;color:white;padding:10px 16px;border-radius:8px;font-size:14px;max-width:90%;text-align:center}
+button,
+input,
+textarea,
+select{
+    font-family:Arial,sans-serif;
+}
+
+button{
+    cursor:pointer;
+}
+
+.app{
+    width:100%;
+    max-width:480px;
+    min-height:100vh;
+    margin:auto;
+    background:#fff;
+    padding-bottom:78px;
+}
+
+/* =====================================================
+   COMMON
+===================================================== */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.center-page{
+    min-height:100vh;
+    padding:25px 18px;
+}
+
+.logo{
+    text-align:center;
+    padding:25px 0 18px;
+}
+
+.logo h1{
+    color:#1976d2;
+    font-size:34px;
+    letter-spacing:1px;
+}
+
+.logo p{
+    color:#777;
+    margin-top:5px;
+    font-size:13px;
+}
+
+.card{
+    background:#fff;
+    border-radius:14px;
+    padding:18px;
+    box-shadow:0 3px 14px rgba(0,0,0,.10);
+}
+
+.form-group{
+    margin-bottom:12px;
+}
+
+.form-group label{
+    display:block;
+    color:#555;
+    font-size:13px;
+    margin-bottom:5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    border:1px solid #d5dce3;
+    border-radius:8px;
+    padding:11px;
+    outline:none;
+    background:white;
+}
+
+.form-group textarea{
+    min-height:85px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:#1976d2;
+}
+
+.primary-btn{
+    width:100%;
+    padding:12px;
+    border:0;
+    border-radius:8px;
+    background:#1976d2;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.secondary-btn{
+    width:100%;
+    padding:11px;
+    border:0;
+    border-radius:8px;
+    background:#e8edf2;
+    color:#333;
+    font-size:14px;
+    margin-top:8px;
+}
+
+.link-btn{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:#1976d2;
+    padding:9px;
+    font-size:14px;
+}
+
+.message{
+    min-height:20px;
+    margin:8px 0;
+    text-align:center;
+    color:#d32f2f;
+    font-size:13px;
+}
+
+.success-message{
+    color:#2e7d32;
+}
+
+/* =====================================================
+   FRONT PAGE
+===================================================== */
+
+.front-language{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:10px;
+}
+
+.front-language select{
+    border:1px solid #ddd;
+    border-radius:7px;
+    padding:6px 8px;
+}
+
+.front-buttons{
+    margin-top:10px;
+}
+
+.front-buttons button{
+    width:100%;
+    padding:13px;
+    margin-top:9px;
+    border:0;
+    border-radius:9px;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.btn-login{
+    background:#1976d2;
+    color:white;
+}
+
+.btn-register{
+    background:#42a5f5;
+    color:white;
+}
+
+.btn-light{
+    background:#edf2f7;
+    color:#333;
+}
+
+/* =====================================================
+   TOP BAR
+===================================================== */
+
+.topbar{
+    height:58px;
+    background:#1976d2;
+    color:white;
+    display:flex;
+    align-items:center;
+    padding:0 16px;
+    position:sticky;
+    top:0;
+    z-index:30;
+    box-shadow:0 2px 6px rgba(0,0,0,.18);
+}
+
+.topbar h2{
+    font-size:20px;
+    flex:1;
+}
+
+.topbar button{
+    border:0;
+    background:transparent;
+    color:white;
+    font-size:22px;
+}
+
+/* =====================================================
+   HOME
+===================================================== */
+
+.home-cover{
+    height:155px;
+    background:linear-gradient(135deg,#1976d2,#64b5f6);
+    position:relative;
+}
+
+.home-user{
+    padding:0 15px;
+    position:relative;
+}
+
+.home-avatar{
+    width:88px;
+    height:88px;
+    margin-top:-42px;
+    border:4px solid white;
+    border-radius:50%;
+    background:#dcecff;
+    color:#1976d2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    font-weight:bold;
+    position:relative;
+    overflow:hidden;
+}
+
+.home-avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+.home-user h2{
+    margin-top:8px;
+    font-size:21px;
+}
+
+.home-user small{
+    color:#777;
+}
+
+.home-actions{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:7px;
+    padding:15px;
+}
+
+.home-actions button{
+    border:1px solid #dce3e9;
+    background:#f7f9fb;
+    border-radius:9px;
+    padding:10px 4px;
+    font-size:11px;
+}
+
+.home-actions button span{
+    display:block;
+    font-size:21px;
+    margin-bottom:4px;
+}
+
+.home-section{
+    padding:0 15px;
+}
+
+.home-section h3{
+    margin:8px 0 10px;
+    font-size:18px;
+}
+
+.notification-card,
+.home-placeholder{
+    border:1px solid #e0e5ea;
+    border-radius:11px;
+    padding:13px;
+    margin-bottom:12px;
+    background:white;
+}
+
+.home-placeholder{
+    color:#777;
+    text-align:center;
+}
+
+/* HOME POST */
+
+.home-post-box{
+    border:1px solid #e0e5ea;
+    border-radius:12px;
+    padding:13px;
+    margin-bottom:15px;
+}
+
+.home-post-box textarea{
+    width:100%;
+    min-height:70px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:10px;
+    resize:none;
+    outline:none;
+}
+
+.home-post-box button{
+    margin-top:8px;
+    border:0;
+    background:#1976d2;
+    color:white;
+    padding:10px 15px;
+    border-radius:8px;
+}
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profile-page{
+    background:white;
+}
+
+.profile-cover{
+    height:205px;
+    background:linear-gradient(135deg,#1976d2,#64b5f6);
+    position:relative;
+    overflow:hidden;
+}
+
+.profile-cover img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+.cover-menu{
+    position:absolute;
+    top:12px;
+    right:12px;
+    z-index:10;
+}
+
+.menu-button{
+    width:43px;
+    height:43px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.94);
+    color:#222;
+    font-size:27px;
+    box-shadow:0 2px 7px rgba(0,0,0,.25);
+}
+
+.menu-box{
+    display:none;
+    position:absolute;
+    top:50px;
+    right:0;
+    width:220px;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 16px rgba(0,0,0,.25);
+}
+
+.menu-box button{
+    width:100%;
+    border:0;
+    border-bottom:1px solid #eee;
+    background:white;
+    padding:14px;
+    text-align:left;
+    font-size:15px;
+}
+
+.cover-camera{
+    position:absolute;
+    right:12px;
+    bottom:12px;
+    width:43px;
+    height:43px;
+    border:0;
+    border-radius:50%;
+    background:white;
+    font-size:20px;
+    box-shadow:0 2px 7px rgba(0,0,0,.25);
+}
+
+.profile-area{
+    padding:0 15px;
+}
+
+.profile-head{
+    position:relative;
+    min-height:135px;
+}
+
+.avatar-box{
+    position:absolute;
+    left:10px;
+    top:-60px;
+}
+
+.avatar{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    border:5px solid white;
+    background:#dcecff;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.25);
+}
+
+.avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+.avatar-text{
+    color:#1976d2;
+    font-size:45px;
+    font-weight:bold;
+}
+
+.avatar-camera{
+    position:absolute;
+    right:1px;
+    bottom:2px;
+    width:37px;
+    height:37px;
+    border-radius:50%;
+    border:3px solid white;
+    background:#1976d2;
+    color:white;
+}
+
+.profile-info{
+    padding-top:68px;
+    padding-left:5px;
+}
+
+.profile-info h1{
+    font-size:23px;
+    margin-bottom:4px;
+}
+
+.ymid{
+    color:#777;
+    font-size:14px;
+}
+
+.bio{
+    color:#555;
+    margin-top:9px;
+    line-height:1.4;
+}
+
+.info-card{
+    margin-top:5px;
+    padding:14px;
+    border-radius:12px;
+    background:#f7f9fc;
+}
+
+.info-row{
+    padding:8px 0;
+    border-bottom:1px solid #e2e7ec;
+}
+
+.info-row:last-child{
+    border-bottom:0;
+}
+
+.info-label{
+    color:#777;
+    font-size:13px;
+    margin-bottom:3px;
+}
+
+.info-value{
+    font-size:14px;
+    font-weight:bold;
+}
+
+.post-box{
+    margin-top:15px;
+    border:1px solid #e0e5eb;
+    border-radius:12px;
+    padding:13px;
+}
+
+.post-box h3{
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+.post-input{
+    width:100%;
+    min-height:78px;
+    resize:none;
+    border:1px solid #ddd;
+    border-radius:9px;
+    padding:10px;
+    font-size:15px;
+    outline:none;
+}
+
+.post-tools{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:10px;
+}
+
+.post-tools button{
+    border:1px solid #d9e0e7;
+    background:#f6f8fa;
+    border-radius:8px;
+    padding:9px 12px;
+}
+
+.selected-file{
+    margin-top:9px;
+    color:#1976d2;
+    font-size:13px;
+    word-break:break-word;
+}
+
+.publish{
+    width:100%;
+    margin-top:10px;
+    padding:11px;
+    border:0;
+    border-radius:8px;
+    background:#1976d2;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.section-title{
+    margin:20px 0 10px;
+    font-size:18px;
+}
+
+.post{
+    border:1px solid #e0e5ea;
+    border-radius:12px;
+    margin-bottom:15px;
+    overflow:hidden;
+    background:white;
+}
+
+.post-header{
+    display:flex;
+    align-items:center;
+    padding:11px;
+}
+
+.post-avatar{
+    width:43px;
+    height:43px;
+    border-radius:50%;
+    background:#1976d2;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    font-weight:bold;
+    margin-right:10px;
+}
+
+.post-avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.post-user{
+    flex:1;
+}
+
+.post-user strong{
+    display:block;
+    font-size:14px;
+}
+
+.post-user small{
+    display:block;
+    margin-top:3px;
+    color:#777;
+    font-size:11px;
+}
+
+.post-menu{
+    border:0;
+    background:transparent;
+    font-size:23px;
+}
+
+.post-content{
+    padding:0 12px 12px;
+    line-height:1.45;
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+
+.post-media{
+    display:block;
+    width:100%;
+    max-height:430px;
+    object-fit:cover;
+    background:#111;
+}
+
+.post-actions{
+    display:flex;
+    border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
+}
+
+.post-actions button{
+    flex:1;
+    border:0;
+    background:white;
+    padding:10px 4px;
+    font-size:13px;
+}
+
+.like-active{
+    font-weight:bold;
+}
+
+.comments{
+    padding:10px 12px;
+}
+
+.comment{
+    background:#f1f3f5;
+    border-radius:9px;
+    padding:8px 10px;
+    margin-bottom:7px;
+    font-size:13px;
+}
+
+.comment-top{
+    display:flex;
+    gap:8px;
+}
+
+.comment-body{
+    flex:1;
+}
+
+.comment-buttons{
+    white-space:nowrap;
+}
+
+.comment-buttons button{
+    border:0;
+    background:transparent;
+    font-size:13px;
+}
+
+.comment-input{
+    width:100%;
+    padding:9px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    outline:none;
+    margin-top:5px;
+}
+
+.comment-send{
+    margin-top:6px;
+    padding:8px 13px;
+    border:0;
+    border-radius:7px;
+    background:#1976d2;
+    color:white;
+}
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
+.bottom-nav{
+    display:none;
+    position:fixed;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:480px;
+    height:65px;
+    background:white;
+    border-top:1px solid #ddd;
+    z-index:50;
+}
+
+.bottom-nav button{
+    flex:1;
+    border:0;
+    background:white;
+    color:#555;
+    font-size:11px;
+}
+
+.bottom-nav button span{
+    display:block;
+    font-size:22px;
+    margin-bottom:2px;
+}
+
+.bottom-nav .active{
+    color:#1976d2;
+    font-weight:bold;
+}
+
+/* =====================================================
+   MODALS
+===================================================== */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:rgba(0,0,0,.55);
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+
+.modal-content{
+    width:100%;
+    max-width:450px;
+    max-height:90vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:14px;
+    padding:18px;
+}
+
+.modal-content h2{
+    color:#1976d2;
+    margin-bottom:15px;
+}
+
+.modal-buttons{
+    display:flex;
+    gap:8px;
+    margin-top:15px;
+}
+
+.modal-buttons button{
+    flex:1;
+    padding:11px;
+    border:0;
+    border-radius:8px;
+}
+
+.save{
+    background:#1976d2;
+    color:white;
+}
+
+.cancel{
+    background:#e8edf2;
+}
+
+.toast{
+    display:none;
+    position:fixed;
+    left:50%;
+    bottom:82px;
+    transform:translateX(-50%);
+    z-index:200;
+    background:#222;
+    color:white;
+    padding:10px 16px;
+    border-radius:8px;
+    font-size:14px;
+    max-width:90%;
+    text-align:center;
+}
+
+/* =====================================================
+   HIDDEN FILE INPUT
+===================================================== */
+
+.hidden-input{
+    display:none;
+}
 </style>
 </head>
 
@@ -104,1276 +849,4494 @@ input:focus,select:focus,textarea:focus{border-color:#1976d2}
 
 <div class="app">
 
-<!-- HEADER -->
-<div class="header" id="mainHeader">
-<div class="language-box">
-<select id="language" onchange="changeLanguage()">
-<option value="en">English</option>
-<option value="ms">Bahasa Malaysia</option>
-</select>
-</div>
-<h1>Y-M Chat</h1>
-<p>Connect • Chat • Worldwide</p>
-</div>
+<!-- ===================================================
+     FRONT
+=================================================== -->
 
-<!-- FRONT -->
-<section id="frontPage" class="page active">
-<div class="card">
-<h2 id="frontTitle">Welcome to Y-M Chat</h2>
-<p id="frontDescription" style="margin-top:8px;color:#666">Your worldwide chat community</p>
-<button class="btn" onclick="showPage('loginPage')">LOGIN</button>
-<button class="btn" onclick="showPage('registerPage')">REGISTER Y-M ID</button>
-<button class="btn secondary" onclick="showPage('changePasswordPage')">CHANGE PASSWORD</button>
-<button class="btn secondary" onclick="showPage('securityPage')">SECURITY</button>
-<button class="btn secondary" onclick="showPage('recoveryPage')">FORGOT PASSWORD / RECOVERY</button>
-</div>
-<div class="card">
-<p style="text-align:center;color:#777;font-size:12px">Y-M Chat Security Core V1.0</p>
-</div>
+<section id="frontPage" class="page active center-page">
+
+    <div class="front-language">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="ms">Bahasa Melayu</option>
+        </select>
+    </div>
+
+    <div class="logo">
+        <h1>Y-M Chat</h1>
+        <p>Connect. Chat. Share.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="front-buttons">
+
+            <button class="btn-login"
+                    onclick="showPage('loginPage')">
+                LOGIN
+            </button>
+
+            <button class="btn-register"
+                    onclick="showPage('registerPage')">
+                REGISTER Y-M ID
+            </button>
+
+            <button class="btn-light"
+                    onclick="showPage('changePasswordPage')">
+                CHANGE PASSWORD
+            </button>
+
+            <button class="btn-light"
+                    onclick="showPage('securityPage')">
+                SECURITY SETTINGS
+            </button>
+
+            <button class="btn-light"
+                    onclick="showPage('recoveryPage')">
+                FORGOT PASSWORD / RECOVERY
+            </button>
+
+        </div>
+
+    </div>
+
 </section>
 
-<!-- LOGIN -->
-<section id="loginPage" class="page">
-<div class="card">
-<h2>🔐 Login</h2>
-<div class="form-group"><label>Y-M ID</label><input id="loginId"></div>
-<div class="form-group"><label>Password</label><input id="loginPassword" type="password"></div>
-<button class="btn" onclick="loginUser()">LOGIN</button>
-<button class="btn secondary" onclick="showPage('frontPage')">BACK</button>
-</div>
+
+<!-- ===================================================
+     LOGIN
+=================================================== -->
+
+<section id="loginPage" class="page center-page">
+
+    <div class="logo">
+        <h1>Y-M Chat</h1>
+        <p>Login to your account</p>
+    </div>
+
+    <div class="card">
+
+        <div id="loginMessage" class="message"></div>
+
+        <div class="form-group">
+            <label>Y-M ID / Username</label>
+            <input id="loginId" type="text" autocomplete="username">
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input id="loginPassword"
+                   type="password"
+                   autocomplete="current-password">
+        </div>
+
+        <button class="primary-btn"
+                onclick="login()">
+            LOGIN
+        </button>
+
+        <button class="link-btn"
+                onclick="showPage('recoveryPage')">
+            Forgot password?
+        </button>
+
+        <button class="secondary-btn"
+                onclick="showPage('frontPage')">
+            Back
+        </button>
+
+    </div>
+
 </section>
 
-<!-- REGISTER -->
-<section id="registerPage" class="page">
-<div class="card">
-<h2>🆕 Register Y-M ID</h2>
-<div class="form-group"><label>Name</label><input id="regName"></div>
-<div class="form-group"><label>Y-M ID</label><input id="regId" placeholder="Example: nizam123"></div>
-<div class="form-group"><label>Password</label><input id="regPassword" type="password"></div>
-<div class="form-group"><label>Confirm Password</label><input id="regConfirm" type="password"></div>
-<div class="form-group"><label>Country</label><select id="regCountry"></select></div>
-<div class="form-group"><label>Phone</label><input id="regPhone"></div>
-<div class="form-group"><label>Email</label><input id="regEmail" type="email"></div>
-<div class="form-group"><label>Confirm Email</label><input id="regEmailConfirm" type="email"></div>
 
-<div class="security-box">
-<h3>Security Question 1</h3>
-<select id="regQ1"></select>
-<input id="regA1" style="margin-top:7px" placeholder="Your answer">
-<h3 style="margin-top:12px">Security Question 2</h3>
-<select id="regQ2"></select>
-<input id="regA2" style="margin-top:7px" placeholder="Your answer">
-</div>
+<!-- ===================================================
+     REGISTER
+=================================================== -->
 
-<button class="btn" onclick="registerUser()">CREATE ACCOUNT</button>
-<button class="btn secondary" onclick="showPage('frontPage')">BACK</button>
-</div>
+<section id="registerPage" class="page center-page">
+
+    <div class="logo">
+        <h1>Y-M Chat</h1>
+        <p>Create your Y-M ID</p>
+    </div>
+
+    <div class="card">
+
+        <div id="registerMessage" class="message"></div>
+
+        <div class="form-group">
+            <label>Name</label>
+            <input id="registerName" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Y-M ID / Username</label>
+            <input id="registerId" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input id="registerPassword" type="password">
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input id="registerConfirm" type="password">
+        </div>
+
+        <div class="form-group">
+            <label>Country</label>
+            <select id="registerCountry">
+                <option value="">Select country</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Phone</label>
+            <input id="registerPhone" type="tel">
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input id="registerEmail" type="email">
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Email</label>
+            <input id="registerEmailConfirm" type="email">
+        </div>
+
+        <div class="form-group">
+            <label>Security Question 1</label>
+            <select id="securityQ1"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Answer 1</label>
+            <input id="securityA1" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Security Question 2</label>
+            <select id="securityQ2"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Answer 2</label>
+            <input id="securityA2" type="text">
+        </div>
+
+        <button class="primary-btn"
+                onclick="register()">
+            CREATE Y-M ID
+        </button>
+
+        <button class="secondary-btn"
+                onclick="showPage('frontPage')">
+            Back
+        </button>
+
+    </div>
+
 </section>
 
-<!-- CHANGE PASSWORD -->
-<section id="changePasswordPage" class="page">
-<div class="card">
-<h2>🔐 Change Password</h2>
-<div class="form-group"><label>Y-M ID</label><input id="cpId"></div>
-<div class="form-group"><label>Current Password</label><input id="cpOld" type="password"></div>
-<div class="form-group"><label>New Password</label><input id="cpNew" type="password"></div>
-<div class="form-group"><label>Confirm New Password</label><input id="cpConfirm" type="password"></div>
-<button class="btn" onclick="changePassword()">CHANGE PASSWORD</button>
-<button class="btn secondary" onclick="showPage('frontPage')">BACK</button>
-</div>
+
+<!-- ===================================================
+     CHANGE PASSWORD
+=================================================== -->
+
+<section id="changePasswordPage" class="page center-page">
+
+    <div class="logo">
+        <h1>Y-M Chat</h1>
+        <p>Change password</p>
+    </div>
+
+    <div class="card">
+
+        <div id="changeMessage" class="message"></div>
+
+        <div class="form-group">
+            <label>Y-M ID / Username</label>
+            <input id="changeId" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Current Password</label>
+            <input id="changeCurrent" type="password">
+        </div>
+
+        <div class="form-group">
+            <label>New Password</label>
+            <input id="changeNew" type="password">
+        </div>
+
+        <div class="form-group">
+            <label>Confirm New Password</label>
+            <input id="changeConfirm" type="password">
+        </div>
+
+        <button class="primary-btn"
+                onclick="changePasswordFromFront()">
+            CHANGE PASSWORD
+        </button>
+
+        <button class="secondary-btn"
+                onclick="showPage('frontPage')">
+            Back
+        </button>
+
+    </div>
+
 </section>
 
-<!-- SECURITY -->
-<section id="securityPage" class="page">
-<div class="card">
-<h2>🛡️ Account Security</h2>
-<div class="form-group"><label>Y-M ID</label><input id="secId"></div>
-<div class="form-group"><label>Country</label><select id="secCountry"></select></div>
-<div class="form-group"><label>Phone</label><input id="secPhone"></div>
-<div class="form-group"><label>Email</label><input id="secEmail"></div>
-<div class="security-box">
-<label>Security Question 1</label><select id="secQ1"></select>
-<input id="secA1" style="margin-top:7px">
-<label style="margin-top:10px">Security Question 2</label><select id="secQ2"></select>
-<input id="secA2" style="margin-top:7px">
-</div>
-<button class="btn" onclick="saveSecurity()">SAVE SECURITY</button>
-<button class="btn secondary" onclick="showPage('frontPage')">BACK</button>
-</div>
+
+<!-- ===================================================
+     SECURITY
+=================================================== -->
+
+<section id="securityPage" class="page center-page">
+
+    <div class="logo">
+        <h1>Y-M Chat</h1>
+        <p>Security settings</p>
+    </div>
+
+    <div class="card">
+
+        <div id="securityMessage" class="message"></div>
+
+        <div class="form-group">
+            <label>Y-M ID / Username</label>
+            <input id="securityId" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Security Question 1</label>
+            <select id="securityEditQ1"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Answer 1</label>
+            <input id="securityEditA1" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Security Question 2</label>
+            <select id="securityEditQ2"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Answer 2</label>
+            <input id="securityEditA2" type="text">
+        </div>
+
+        <button class="primary-btn"
+                onclick="saveSecurity()">
+            SAVE SECURITY
+        </button>
+
+        <button class="secondary-btn"
+                onclick="showPage('frontPage')">
+            Back
+        </button>
+
+    </div>
+
 </section>
 
-<!-- RECOVERY -->
-<section id="recoveryPage" class="page">
-<div class="card">
-<h2>🔑 Account Recovery</h2>
-<div class="form-group"><label>Y-M ID / Username</label><input id="recoveryId"></div>
-<button class="btn" onclick="findRecoveryAccount()">FIND ACCOUNT</button>
 
-<div id="recoveryMethods" style="display:none">
-<div class="recovery-box">
-<button class="btn" onclick="selectRecoveryMethod('questions')">Security Questions</button>
-<button class="btn" onclick="selectRecoveryMethod('phone')">Phone SMS / WhatsApp</button>
-<button class="btn" onclick="selectRecoveryMethod('email')">Email</button>
-</div>
+<!-- ===================================================
+     RECOVERY
+=================================================== -->
 
-<div id="questionRecovery" style="display:none" class="recovery-box">
-<select id="recQ1"></select>
-<input id="recA1" placeholder="Answer" style="margin-top:7px">
-<select id="recQ2" style="margin-top:7px"></select>
-<input id="recA2" placeholder="Answer" style="margin-top:7px">
-<button class="btn" onclick="verifyQuestions()">VERIFY</button>
-</div>
+<section id="recoveryPage" class="page center-page">
 
-<div id="phoneRecovery" style="display:none" class="recovery-box">
-<p id="phoneText"></p>
-<button class="btn" onclick="requestPhoneOtp()">SEND DEMO OTP</button>
-<input id="phoneOtp" placeholder="Enter OTP" style="margin-top:7px">
-<button class="btn" onclick="verifyPhoneOtp()">VERIFY OTP</button>
-</div>
+    <div class="logo">
+        <h1>Y-M Chat</h1>
+        <p>Account recovery</p>
+    </div>
 
-<div id="emailRecovery" style="display:none" class="recovery-box">
-<p id="emailText"></p>
-<button class="btn" onclick="requestEmailOtp()">SEND DEMO OTP</button>
-<input id="emailOtp" placeholder="Enter OTP" style="margin-top:7px">
-<button class="btn" onclick="verifyEmailOtp()">VERIFY OTP</button>
-</div>
+    <div class="card">
 
-<div id="resetBox" style="display:none" class="recovery-box">
-<input id="resetNew" type="password" placeholder="New password">
-<input id="resetConfirm" type="password" placeholder="Confirm password" style="margin-top:7px">
-<button class="btn" onclick="resetPassword()">RESET PASSWORD</button>
-</div>
-</div>
+        <div id="recoveryMessage" class="message"></div>
 
-<button class="btn secondary" onclick="showPage('frontPage')">BACK</button>
-</div>
+        <div class="form-group">
+            <label>Y-M ID / Username / Email / Phone</label>
+            <input id="recoveryId" type="text">
+        </div>
+
+        <button class="primary-btn"
+                onclick="findRecoveryAccount()">
+            FIND ACCOUNT
+        </button>
+
+        <div id="recoveryQuestions"
+             style="display:none;margin-top:15px;">
+
+            <div class="form-group">
+                <label id="recoveryQuestion1"></label>
+                <input id="recoveryAnswer1" type="text">
+            </div>
+
+            <div class="form-group">
+                <label id="recoveryQuestion2"></label>
+                <input id="recoveryAnswer2" type="text">
+            </div>
+
+            <button class="primary-btn"
+                    onclick="verifyRecoveryQuestions()">
+                VERIFY ANSWERS
+            </button>
+
+            <button class="secondary-btn"
+                    onclick="demoPhoneRecovery()">
+                Recover by Phone SMS
+            </button>
+
+            <button class="secondary-btn"
+                    onclick="demoEmailRecovery()">
+                Recover by Email
+            </button>
+
+        </div>
+
+        <div id="resetArea"
+             style="display:none;margin-top:15px;">
+
+            <div class="form-group">
+                <label>New Password</label>
+                <input id="recoveryNewPassword"
+                       type="password">
+            </div>
+
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input id="recoveryConfirmPassword"
+                       type="password">
+            </div>
+
+            <button class="primary-btn"
+                    onclick="resetRecoveredPassword()">
+                RESET PASSWORD
+            </button>
+
+        </div>
+
+        <button class="secondary-btn"
+                onclick="showPage('frontPage')">
+            Back
+        </button>
+
+    </div>
+
 </section>
 
-<!-- HOME -->
+
+<!-- ===================================================
+     HOME
+=================================================== -->
+
 <section id="homePage" class="page">
-<div class="home-top">
-<div class="home-profile">
-<div class="home-avatar" id="homeAvatar">N</div>
-<div><strong id="homeName">Y-M User</strong><small id="homeId" style="display:block;color:#777"></small></div>
-</div>
 
-<input class="home-search" placeholder="🔎 Search Y-M Chat">
+    <div class="topbar">
+        <h2>Y-M Chat</h2>
+    </div>
 
-<div class="quick-grid">
-<div class="quick-item" onclick="showAppPage('chatsPage','navChats')"><span>💬</span>Chats</div>
-<div class="quick-item" onclick="showAppPage('friendsPage','navFriends')"><span>👥</span>Friends</div>
-<div class="quick-item" onclick="showAppPage('roomsPage','navRooms')"><span>🌎</span>Rooms</div>
-<div class="quick-item" onclick="showAppPage('profilePage','navProfile')"><span>👤</span>Profile</div>
-</div>
+    <div class="home-cover"></div>
 
-<div class="notice" style="margin-top:12px">🔔 Welcome to Y-M Chat. More worldwide features will be connected step-by-step.</div>
+    <div class="home-user">
 
-<div class="create-post">
-<h3>What's on your mind?</h3>
-<textarea id="homePostText" placeholder="Write something..."></textarea>
-<div style="display:flex;gap:7px;margin-top:8px">
-<button class="small-btn" onclick="document.getElementById('homePostImage').click()">📷 Photo</button>
-<button class="small-btn" onclick="document.getElementById('homePostVideo').click()">🎥 Video</button>
-</div>
-<input id="homePostImage" type="file" accept="image/*" style="display:none" onchange="homeSelectImage(this)">
-<input id="homePostVideo" type="file" accept="video/*" style="display:none" onchange="homeSelectVideo(this)">
-<div id="homeSelectedFile" style="font-size:12px;color:#1976d2;margin-top:6px"></div>
-<button class="btn" onclick="createHomePost()">POST</button>
-</div>
+        <div class="home-avatar">
 
-<h3 style="margin-top:20px">Latest Posts</h3>
-<div id="homeFeed"></div>
-</div>
+            <img id="homeAvatarImage">
+
+            <span id="homeAvatarText">N</span>
+
+        </div>
+
+        <h2 id="homeUserName">Y-M User</h2>
+
+        <small id="homeUserId">@user</small>
+
+    </div>
+
+    <div class="home-actions">
+
+        <button onclick="showAppPage('chatsPage','navChats')">
+            <span>💬</span>
+            Chats
+        </button>
+
+        <button onclick="showAppPage('friendsPage','navFriends')">
+            <span>👥</span>
+            Friends
+        </button>
+
+        <button onclick="showAppPage('roomsPage','navRooms')">
+            <span>🌎</span>
+            Rooms
+        </button>
+
+        <button onclick="showAppPage('marketPage','navHome')">
+            <span>🛒</span>
+            Market
+        </button>
+
+    </div>
+
+    <div class="home-section">
+
+        <div class="notification-card">
+            🔔 <strong>Notifications</strong>
+            <p style="color:#777;margin-top:5px;">
+                Welcome to Y-M Chat.
+            </p>
+        </div>
+
+        <div class="home-post-box">
+
+            <textarea id="homePostText"
+                      placeholder="What's on your mind?"></textarea>
+
+            <button onclick="createHomePost()">
+                POST
+            </button>
+
+        </div>
+
+        <h3>Popular Rooms</h3>
+
+        <div class="home-placeholder">
+            🌎 Country & State rooms will be connected here.
+        </div>
+
+        <h3>Market</h3>
+
+        <div class="home-placeholder">
+            🛒 Y-M Chat Marketplace will be connected here.
+        </div>
+
+    </div>
+
 </section>
 
-<!-- CHATS -->
+
+<!-- ===================================================
+     CHATS
+=================================================== -->
+
 <section id="chatsPage" class="page">
-<div class="card">
-<h2>💬 Chats</h2>
-<div class="placeholder"><div class="placeholder-icon">💬</div><p>Private chat module will be connected here.</p></div>
-</div>
+
+    <div class="topbar">
+        <h2>Chats</h2>
+    </div>
+
+    <div style="padding:20px;">
+        <div class="card">
+            <h3>💬 Chats</h3>
+            <p style="margin-top:10px;color:#777;">
+                Private chat module will be connected here.
+            </p>
+        </div>
+    </div>
+
 </section>
 
-<!-- FRIENDS -->
+
+<!-- ===================================================
+     FRIENDS
+=================================================== -->
+
 <section id="friendsPage" class="page">
-<div class="card">
-<h2>👥 Friends</h2>
-<div class="placeholder"><div class="placeholder-icon">👥</div><p>Friends module will be connected here.</p></div>
-</div>
+
+    <div class="topbar">
+        <h2>Friends</h2>
+    </div>
+
+    <div style="padding:20px;">
+        <div class="card">
+            <h3>👥 Friends</h3>
+            <p style="margin-top:10px;color:#777;">
+                Friends module will be connected here.
+            </p>
+        </div>
+    </div>
+
 </section>
 
-<!-- ROOMS -->
+
+<!-- ===================================================
+     ROOMS
+=================================================== -->
+
 <section id="roomsPage" class="page">
-<div class="card">
-<h2>🌎 Rooms</h2>
-<div class="placeholder"><div class="placeholder-icon">🌎</div><p>Worldwide rooms module will be connected here.</p></div>
-</div>
+
+    <div class="topbar">
+        <h2>Rooms</h2>
+    </div>
+
+    <div style="padding:20px;">
+
+        <div class="card">
+
+            <h3>🌎 Y-M Chat Rooms</h3>
+
+            <div style="margin-top:15px;">
+
+                <button class="secondary-btn">
+                    🇲🇾 Malaysia
+                </button>
+
+                <button class="secondary-btn">
+                    🇵🇭 Philippines
+                </button>
+
+                <button class="secondary-btn">
+                    🇮🇩 Indonesia
+                </button>
+
+                <button class="secondary-btn">
+                    🇸🇬 Singapore
+                </button>
+
+                <button class="secondary-btn">
+                    🌎 World
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
-<!-- PROFILE -->
-<section id="profilePage" class="page">
 
-<div class="topbar"><h2>Y-M Chat</h2></div>
+<!-- ===================================================
+     MARKET
+=================================================== -->
 
-<div class="cover">
-<img id="coverImage" alt="Cover Photo">
+<section id="marketPage" class="page">
 
-<div class="cover-menu">
-<button class="menu-button" onclick="toggleMenu()">⋮</button>
-<div class="menu-box" id="menuBox">
-<button onclick="openEditProfile()">✏️ Edit Profile</button>
-<button onclick="openPasswordModal()">🔐 Change Password</button>
-<button onclick="openEmailModal()">📧 Change Email</button>
-<button onclick="logoutUser()">🚪 Log Out</button>
-</div>
-</div>
+    <div class="topbar">
+        <h2>Market</h2>
+    </div>
 
-<button class="cover-camera" onclick="document.getElementById('coverInput').click()">📷</button>
-<input id="coverInput" type="file" accept="image/*" style="display:none" onchange="uploadCover(this)">
-</div>
+    <div style="padding:20px;">
 
-<div class="profile-area">
-<div class="profile-head">
+        <div class="card">
 
-<div class="avatar-box">
-<div class="avatar">
-<img id="profileImage" alt="Profile Photo">
-<span id="avatarText" class="avatar-text">N</span>
-</div>
-<button class="avatar-camera" onclick="document.getElementById('profileInput').click()">📷</button>
-<input id="profileInput" type="file" accept="image/*" style="display:none" onchange="uploadProfile(this)">
-</div>
+            <h3>🛒 Y-M Marketplace</h3>
 
-<div class="profile-info">
-<h1 id="profileName">Y-M User</h1>
-<div id="profileYmid" class="ymid">@user</div>
-<div id="profileBio" class="bio">Welcome to my Y-M Chat profile.</div>
-</div>
-</div>
+            <p style="color:#777;margin-top:10px;">
+                Marketplace module will be connected later.
+            </p>
 
-<div class="info-card">
-<div class="info-row"><div class="info-label">🎂 Birthday</div><div class="info-value" id="infoBirthday">Not set</div></div>
-<div class="info-row"><div class="info-label">📍 Birthplace</div><div class="info-value" id="infoBirthplace">Not set</div></div>
-<div class="info-row"><div class="info-label">🎓 School</div><div class="info-value" id="infoSchool">Not set</div></div>
-<div class="info-row"><div class="info-label">🌏 Country</div><div class="info-value" id="infoCountry">Malaysia</div></div>
-</div>
+        </div>
 
-<div class="post-box">
-<h3>What's on your mind?</h3>
-<textarea id="postText" class="post-input" placeholder="Write something..."></textarea>
-<div class="post-tools">
-<button onclick="chooseImage()">📷 Photo</button>
-<button onclick="chooseVideo()">🎥 Video</button>
-<button onclick="clearMedia()">✖ Clear</button>
-</div>
-<input id="postImageInput" type="file" accept="image/*" style="display:none" onchange="selectImage(this)">
-<input id="postVideoInput" type="file" accept="video/*" style="display:none" onchange="selectVideo(this)">
-<div id="selectedFile" class="selected-file"></div>
-<button class="publish" onclick="createProfilePost()">POST</button>
-</div>
+    </div>
 
-<h2 class="section-title">My Posts</h2>
-<div id="postsContainer"></div>
-</div>
+</section>
+
+
+<!-- ===================================================
+     PROFILE
+=================================================== -->
+
+<section id="profilePage" class="page profile-page">
+
+    <div class="topbar">
+        <h2>Profile</h2>
+    </div>
+
+    <div class="profile-cover">
+
+        <img id="coverImage" alt="Cover Photo">
+
+        <div class="cover-menu">
+
+            <button class="menu-button"
+                    onclick="toggleMenu()">
+                ⋮
+            </button>
+
+            <div class="menu-box" id="menuBox">
+
+                <button onclick="openEditProfile()">
+                    ✏️ Edit Profile
+                </button>
+
+                <button onclick="openPasswordModal()">
+                    🔐 Change Password
+                </button>
+
+                <button onclick="openEmailModal()">
+                    📧 Change Email
+                </button>
+
+                <button onclick="logout()">
+                    🚪 Log Out
+                </button>
+
+            </div>
+
+        </div>
+
+        <button class="cover-camera"
+                onclick="document.getElementById('coverInput').click()">
+            📷
+        </button>
+
+        <input id="coverInput"
+               class="hidden-input"
+               type="file"
+               accept="image/*"
+               onchange="uploadCover(this)">
+
+    </div>
+
+
+    <div class="profile-area">
+
+        <div class="profile-head">
+
+            <div class="avatar-box">
+
+                <div class="avatar">
+
+                    <img id="profileImage"
+                         alt="Profile Photo">
+
+                    <span id="avatarText"
+                          class="avatar-text">
+                        N
+                    </span>
+
+                </div>
+
+                <button class="avatar-camera"
+                        onclick="document.getElementById('profileInput').click()">
+                    📷
+                </button>
+
+                <input id="profileInput"
+                       class="hidden-input"
+                       type="file"
+                       accept="image/*"
+                       onchange="uploadProfile(this)">
+
+            </div>
+
+            <div class="profile-info">
+
+                <h1 id="profileName">Y-M User</h1>
+
+                <div id="profileYmid"
+                     class="ymid">
+                    @user
+                </div>
+
+                <div id="profileBio"
+                     class="bio">
+                    Welcome to my Y-M Chat profile.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-row">
+                <div class="info-label">🎂 Birthday</div>
+                <div class="info-value"
+                     id="infoBirthday">
+                    Not set
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">📍 Birthplace</div>
+                <div class="info-value"
+                     id="infoBirthplace">
+                    Not set
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">🎓 School</div>
+                <div class="info-value"
+                     id="infoSchool">
+                    Not set
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">🌏 Country</div>
+                <div class="info-value"
+                     id="infoCountry">
+                    Malaysia
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="post-box">
+
+            <h3>What's on your mind?</h3>
+
+            <textarea id="postText"
+                      class="post-input"
+                      placeholder="Write something..."></textarea>
+
+            <div class="post-tools">
+
+                <button onclick="chooseImage()">
+                    📷 Photo
+                </button>
+
+                <button onclick="chooseVideo()">
+                    🎥 Video
+                </button>
+
+                <button onclick="clearMedia()">
+                    ✖ Clear
+                </button>
+
+            </div>
+
+            <input id="postImageInput"
+                   class="hidden-input"
+                   type="file"
+                   accept="image/*"
+                   onchange="selectImage(this)">
+
+            <input id="postVideoInput"
+                   class="hidden-input"
+                   type="file"
+                   accept="video/*"
+                   onchange="selectVideo(this)">
+
+            <div id="selectedFile"
+                 class="selected-file"></div>
+
+            <button class="publish"
+                    onclick="createPost()">
+                POST
+            </button>
+
+        </div>
+
+
+        <h2 class="section-title">
+            My Posts
+        </h2>
+
+        <div id="postsContainer"></div>
+
+    </div>
+
 </section>
 
 </div>
 
-<!-- BOTTOM NAV -->
+
+<!-- ===================================================
+     BOTTOM NAV
+=================================================== -->
+
 <div class="bottom-nav" id="bottomNav">
-<button id="navHome" onclick="showAppPage('homePage','navHome')"><span>🏠</span>Home</button>
-<button id="navChats" onclick="showAppPage('chatsPage','navChats')"><span>💬</span>Chats</button>
-<button id="navFriends" onclick="showAppPage('friendsPage','navFriends')"><span>👥</span>Friends</button>
-<button id="navRooms" onclick="showAppPage('roomsPage','navRooms')"><span>🌎</span>Rooms</button>
-<button id="navProfile" onclick="showAppPage('profilePage','navProfile')"><span>👤</span>Profile</button>
+
+    <button id="navHome"
+            onclick="showAppPage('homePage','navHome')">
+        <span>🏠</span>
+        Home
+    </button>
+
+    <button id="navChats"
+            onclick="showAppPage('chatsPage','navChats')">
+        <span>💬</span>
+        Chats
+    </button>
+
+    <button id="navFriends"
+            onclick="showAppPage('friendsPage','navFriends')">
+        <span>👥</span>
+        Friends
+    </button>
+
+    <button id="navRooms"
+            onclick="showAppPage('roomsPage','navRooms')">
+        <span>🌎</span>
+        Rooms
+    </button>
+
+    <button id="navProfile"
+            onclick="showAppPage('profilePage','navProfile')">
+        <span>👤</span>
+        Profile
+    </button>
+
 </div>
 
-<!-- EDIT PROFILE -->
+
+<!-- ===================================================
+     EDIT PROFILE MODAL
+=================================================== -->
+
 <div class="modal" id="editModal">
-<div class="modal-content">
-<h2>✏️ Edit Profile</h2>
-<div class="form-group"><label>Name</label><input id="editName"></div>
-<div class="form-group"><label>Birthday</label><input id="editBirthday" type="date"></div>
-<div class="form-group"><label>Birthplace</label><input id="editBirthplace"></div>
-<div class="form-group"><label>School</label><input id="editSchool"></div>
-<div class="form-group"><label>Country</label><input id="editCountry"></div>
-<div class="form-group"><label>Bio</label><textarea id="editBio"></textarea></div>
-<div class="modal-buttons">
-<button class="cancel" onclick="closeModal('editModal')">Cancel</button>
-<button class="save" onclick="saveProfile()">Save</button>
-</div>
-</div>
+
+    <div class="modal-content">
+
+        <h2>✏️ Edit Profile</h2>
+
+        <div class="form-group">
+            <label>Name</label>
+            <input id="editName" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Birthday</label>
+            <input id="editBirthday" type="date">
+        </div>
+
+        <div class="form-group">
+            <label>Birthplace</label>
+            <input id="editBirthplace" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>School</label>
+            <input id="editSchool" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Country</label>
+            <input id="editCountry" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Bio</label>
+            <textarea id="editBio"></textarea>
+        </div>
+
+        <div class="modal-buttons">
+
+            <button class="cancel"
+                    onclick="closeModal('editModal')">
+                Cancel
+            </button>
+
+            <button class="save"
+                    onclick="saveProfile()">
+                Save
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
 
-<!-- PASSWORD MODAL -->
+
+<!-- ===================================================
+     PASSWORD MODAL
+=================================================== -->
+
 <div class="modal" id="passwordModal">
-<div class="modal-content">
-<h2>🔐 Change Password</h2>
-<div class="form-group"><label>Current Password</label><input id="currentPassword" type="password"></div>
-<div class="form-group"><label>New Password</label><input id="newPassword" type="password"></div>
-<div class="form-group"><label>Confirm New Password</label><input id="confirmPassword" type="password"></div>
-<div class="modal-buttons">
-<button class="cancel" onclick="closeModal('passwordModal')">Cancel</button>
-<button class="save" onclick="changeProfilePassword()">Change</button>
-</div>
-</div>
+
+    <div class="modal-content">
+
+        <h2>🔐 Change Password</h2>
+
+        <div class="form-group">
+            <label>Current Password</label>
+            <input id="currentPassword"
+                   type="password">
+        </div>
+
+        <div class="form-group">
+            <label>New Password</label>
+            <input id="newPassword"
+                   type="password">
+        </div>
+
+        <div class="form-group">
+            <label>Confirm New Password</label>
+            <input id="confirmPassword"
+                   type="password">
+        </div>
+
+        <div class="modal-buttons">
+
+            <button class="cancel"
+                    onclick="closeModal('passwordModal')">
+                Cancel
+            </button>
+
+            <button class="save"
+                    onclick="changePassword()">
+                Change
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
 
-<!-- EMAIL MODAL -->
+
+<!-- ===================================================
+     EMAIL MODAL
+=================================================== -->
+
 <div class="modal" id="emailModal">
-<div class="modal-content">
-<h2>📧 Change Email</h2>
-<div class="form-group"><label>New Email</label><input id="newEmail" type="email"></div>
-<div class="form-group"><label>Confirm New Email</label><input id="confirmEmail" type="email"></div>
-<div class="modal-buttons">
-<button class="cancel" onclick="closeModal('emailModal')">Cancel</button>
-<button class="save" onclick="changeEmail()">Save Email</button>
+
+    <div class="modal-content">
+
+        <h2>📧 Change Email</h2>
+
+        <div class="form-group">
+            <label>New Email</label>
+            <input id="newEmail"
+                   type="email">
+        </div>
+
+        <div class="form-group">
+            <label>Confirm New Email</label>
+            <input id="confirmEmail"
+                   type="email">
+        </div>
+
+        <div class="modal-buttons">
+
+            <button class="cancel"
+                    onclick="closeModal('emailModal')">
+                Cancel
+            </button>
+
+            <button class="save"
+                    onclick="changeEmail()">
+                Save Email
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
-</div>
-</div>
+
 
 <div id="toast" class="toast"></div>
 
+
 <script>
-/* =========================================================
-   Y-M CHAT MASTER
-   SECURITY CORE + HOME + PROFILE V1.1
-========================================================= */
 
-const ACCOUNT_KEY="ym_accounts";
-const CURRENT_USER_KEY="ym_current_user";
-const PROFILE_KEY="ym_profiles";
-const POSTS_KEY="ym_posts";
+/* =====================================================
+   Y-M CHAT
+   SECURITY CORE + HOME + PROFILE
+===================================================== */
 
-const countries=[
-"Malaysia","Philippines","Indonesia","Singapore","Brunei",
-"Thailand","Vietnam","China","Japan","South Korea","India",
-"Saudi Arabia","United Arab Emirates","United Kingdom",
-"United States","Australia","Canada","France","Germany",
-"Italy","Spain","Portugal","Brazil","Russia","Turkey"
+const ACCOUNT_KEY = "ym_accounts";
+const CURRENT_USER_KEY = "ym_current_user";
+const PROFILE_KEY = "ym_profiles";
+const LANGUAGE_KEY = "ym_language";
+
+const DB_NAME = "YMChatProfileDB";
+const DB_VERSION = 1;
+const MEDIA_STORE = "media";
+const POST_STORE = "posts";
+
+let currentUser = null;
+let profileData = null;
+let recoveryAccount = null;
+
+let selectedImage = null;
+let selectedVideo = null;
+
+let db = null;
+
+
+/* =====================================================
+   COUNTRIES
+===================================================== */
+
+const countries = [
+    "Malaysia",
+    "Indonesia",
+    "Singapore",
+    "Brunei",
+    "Philippines",
+    "Thailand",
+    "Vietnam",
+    "Cambodia",
+    "Myanmar",
+    "United States",
+    "United Kingdom",
+    "Australia",
+    "New Zealand",
+    "Japan",
+    "South Korea",
+    "China",
+    "India",
+    "Canada",
+    "Other"
 ];
 
-const securityQuestions={
-en:[
-"What is your favourite colour?",
-"What is your favourite food?",
-"What is your hometown?",
-"What is your favourite animal?",
-"What was your first school?"
-],
-ms:[
-"Apakah warna kegemaran anda?",
-"Apakah makanan kegemaran anda?",
-"Apakah tempat asal anda?",
-"Apakah haiwan kegemaran anda?",
-"Apakah sekolah pertama anda?"
-]
+
+/* =====================================================
+   SECURITY QUESTIONS
+===================================================== */
+
+const securityQuestions = {
+
+    en:[
+        "What is your favorite color?",
+        "What is the name of your first school?",
+        "What city were you born in?",
+        "What is your favorite food?",
+        "What is your favorite animal?"
+    ],
+
+    ms:[
+        "Apakah warna kegemaran anda?",
+        "Apakah nama sekolah pertama anda?",
+        "Di bandar manakah anda dilahirkan?",
+        "Apakah makanan kegemaran anda?",
+        "Apakah haiwan kegemaran anda?"
+    ]
+
 };
 
-let currentLanguage=localStorage.getItem("ym_language")||"en";
-let currentUser=null;
-let profileData=null;
-let recoveryUser=null;
-let recoveryVerified=false;
-let demoPhoneOtp=null;
-let demoEmailOtp=null;
-let selectedImage=null;
-let selectedVideo=null;
+
+/* =====================================================
+   BASIC STORAGE
+===================================================== */
 
 function getAccounts(){
-try{return JSON.parse(localStorage.getItem(ACCOUNT_KEY))||[]}
-catch(e){return[]}
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(ACCOUNT_KEY)
+        ) || [];
+
+    }catch(e){
+
+        return [];
+    }
 }
 
-function saveAccounts(a){
-localStorage.setItem(ACCOUNT_KEY,JSON.stringify(a))
+
+function saveAccounts(accounts){
+
+    localStorage.setItem(
+        ACCOUNT_KEY,
+        JSON.stringify(accounts)
+    );
 }
+
 
 function getProfiles(){
-try{return JSON.parse(localStorage.getItem(PROFILE_KEY))||{}}
-catch(e){return{}}
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(PROFILE_KEY)
+        ) || {};
+
+    }catch(e){
+
+        return {};
+    }
 }
 
-function saveProfiles(p){
-localStorage.setItem(PROFILE_KEY,JSON.stringify(p))
+
+function saveProfiles(data){
+
+    localStorage.setItem(
+        PROFILE_KEY,
+        JSON.stringify(data)
+    );
 }
 
-function getPosts(){
-try{return JSON.parse(localStorage.getItem(POSTS_KEY))||[]}
-catch(e){return[]}
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function escapeHTML(text){
+
+    if(text === null || text === undefined){
+        return "";
+    }
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 }
 
-function savePosts(p){
-localStorage.setItem(POSTS_KEY,JSON.stringify(p))
-}
-
-function escapeHTML(v){
-if(v===null||v===undefined)return"";
-return String(v)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;")
-}
 
 function initial(name){
-return name&&name.trim()?name.trim().charAt(0).toUpperCase():"N"
+
+    if(!name){
+        return "N";
+    }
+
+    return name
+        .trim()
+        .charAt(0)
+        .toUpperCase() || "N";
 }
+
 
 function toast(message){
-const t=document.getElementById("toast");
-t.textContent=message;
-t.style.display="block";
-clearTimeout(window.toastTimer);
-window.toastTimer=setTimeout(()=>t.style.display="none",2200)
+
+    const box =
+        document.getElementById("toast");
+
+    box.textContent = message;
+    box.style.display = "block";
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer =
+        setTimeout(()=>{
+            box.style.display = "none";
+        },2200);
 }
 
-/* PAGES */
+
+function findAccount(value){
+
+    const text =
+        String(value || "")
+        .trim()
+        .toLowerCase();
+
+    return getAccounts().find(account =>
+
+        String(account.ymid || "")
+            .toLowerCase() === text ||
+
+        String(account.username || "")
+            .toLowerCase() === text ||
+
+        String(account.name || "")
+            .toLowerCase() === text ||
+
+        String(account.email || "")
+            .toLowerCase() === text ||
+
+        String(account.phone || "")
+            .toLowerCase() === text
+
+    );
+}
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
 
 function showPage(id){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-const page=document.getElementById(id);
-if(page)page.classList.add("active");
-document.getElementById("bottomNav").style.display="none";
-window.scrollTo(0,0)
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page=>{
+            page.classList.remove("active");
+        });
+
+    const page =
+        document.getElementById(id);
+
+    if(page){
+        page.classList.add("active");
+    }
+
+    if([
+        "frontPage",
+        "loginPage",
+        "registerPage",
+        "changePasswordPage",
+        "securityPage",
+        "recoveryPage"
+    ].includes(id)){
+
+        document.getElementById(
+            "bottomNav"
+        ).style.display = "none";
+    }
+
 }
 
-function showAppPage(id,nav){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-const page=document.getElementById(id);
-if(page)page.classList.add("active");
-document.getElementById("bottomNav").style.display="flex";
-document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.remove("active"));
-if(nav)document.getElementById(nav).classList.add("active");
-if(id==="homePage")renderHomeFeed();
-if(id==="profilePage")renderProfile();
-window.scrollTo(0,0)
+
+function showAppPage(id,navId){
+
+    if(!currentUser){
+
+        showPage("loginPage");
+        return;
+    }
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page=>{
+            page.classList.remove("active");
+        });
+
+    const page =
+        document.getElementById(id);
+
+    if(page){
+        page.classList.add("active");
+    }
+
+    document.getElementById(
+        "bottomNav"
+    ).style.display = "flex";
+
+    document
+        .querySelectorAll(".bottom-nav button")
+        .forEach(button=>{
+            button.classList.remove("active");
+        });
+
+    const nav =
+        document.getElementById(navId);
+
+    if(nav){
+        nav.classList.add("active");
+    }
+
+    if(id === "homePage"){
+        renderHomeUser();
+    }
+
+    if(id === "profilePage"){
+
+        renderProfile();
+
+        renderPosts();
+    }
 }
+
 
 function goHome(){
-showAppPage("homePage","navHome")
+
+    showAppPage(
+        "homePage",
+        "navHome"
+    );
 }
 
-/* LANGUAGE */
 
-function changeLanguage(){
-currentLanguage=document.getElementById("language").value;
-localStorage.setItem("ym_language",currentLanguage);
-applyLanguage()
-}
-
-function applyLanguage(){
-const ms=currentLanguage==="ms";
-document.getElementById("frontTitle").textContent=ms?"Selamat Datang ke Y-M Chat":"Welcome to Y-M Chat";
-document.getElementById("frontDescription").textContent=ms?"Komuniti chat seluruh dunia":"Your worldwide chat community"
-}
+/* =====================================================
+   COUNTRY + QUESTIONS
+===================================================== */
 
 function fillCountries(){
-["regCountry","secCountry"].forEach(id=>{
-const el=document.getElementById(id);
-if(!el)return;
-el.innerHTML="";
-countries.forEach(c=>{
-const o=document.createElement("option");
-o.value=c;o.textContent=c;el.appendChild(o)
-})
-})
+
+    const select =
+        document.getElementById(
+            "registerCountry"
+        );
+
+    countries.forEach(country=>{
+
+        const option =
+            document.createElement("option");
+
+        option.value = country;
+        option.textContent = country;
+
+        select.appendChild(option);
+    });
 }
+
 
 function fillSecurityQuestions(){
-["regQ1","regQ2","secQ1","secQ2"].forEach(id=>{
-const el=document.getElementById(id);
-if(!el)return;
-el.innerHTML="";
-securityQuestions.en.forEach((q,i)=>{
-const o=document.createElement("option");
-o.value=i;o.textContent=q;el.appendChild(o)
-})
-})
+
+    const language =
+        localStorage.getItem(
+            LANGUAGE_KEY
+        ) || "en";
+
+    const list =
+        securityQuestions[language] ||
+        securityQuestions.en;
+
+    const ids = [
+        "securityQ1",
+        "securityQ2",
+        "securityEditQ1",
+        "securityEditQ2"
+    ];
+
+    ids.forEach(id=>{
+
+        const select =
+            document.getElementById(id);
+
+        if(!select){
+            return;
+        }
+
+        select.innerHTML = "";
+
+        list.forEach((question,index)=>{
+
+            const option =
+                document.createElement("option");
+
+            option.value =
+                String(index);
+
+            option.textContent =
+                question;
+
+            select.appendChild(option);
+        });
+
+    });
 }
 
-/* REGISTER */
 
-function validPassword(p){return p&&p.length>=6}
+function changeLanguage(){
 
-function registerUser(){
-const name=document.getElementById("regName").value.trim();
-const ymid=document.getElementById("regId").value.trim();
-const password=document.getElementById("regPassword").value;
-const confirm=document.getElementById("regConfirm").value;
-const country=document.getElementById("regCountry").value;
-const phone=document.getElementById("regPhone").value.trim();
-const email=document.getElementById("regEmail").value.trim();
-const email2=document.getElementById("regEmailConfirm").value.trim();
-const q1=document.getElementById("regQ1").value;
-const q2=document.getElementById("regQ2").value;
-const a1=document.getElementById("regA1").value.trim();
-const a2=document.getElementById("regA2").value.trim();
+    const language =
+        document.getElementById(
+            "languageSelect"
+        ).value;
 
-if(!name||!ymid||!password||!confirm||!phone||!email||!email2||!a1||!a2){
-toast("Please complete all fields.");return
-}
-if(/\s/.test(ymid)||ymid.length<4){
-toast("Y-M ID must be at least 4 characters and contain no spaces.");return
-}
-if(!validPassword(password)){
-toast("Password must be at least 6 characters.");return
-}
-if(password!==confirm){
-toast("Passwords do not match.");return
-}
-if(email!==email2){
-toast("Emails do not match.");return
-}
-if(q1===q2){
-toast("Please choose two different security questions.");return
+    localStorage.setItem(
+        LANGUAGE_KEY,
+        language
+    );
+
+    fillSecurityQuestions();
+
+    toast(
+        language === "ms"
+        ? "Bahasa Melayu dipilih."
+        : "English selected."
+    );
 }
 
-const accounts=getAccounts();
-if(accounts.some(a=>(a.ymid||"").toLowerCase()===ymid.toLowerCase())){
-toast("Y-M ID already exists.");return
+
+/* =====================================================
+   REGISTER
+===================================================== */
+
+function register(){
+
+    const name =
+        document.getElementById(
+            "registerName"
+        ).value.trim();
+
+    const ymid =
+        document.getElementById(
+            "registerId"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "registerPassword"
+        ).value;
+
+    const confirm =
+        document.getElementById(
+            "registerConfirm"
+        ).value;
+
+    const country =
+        document.getElementById(
+            "registerCountry"
+        ).value;
+
+    const phone =
+        document.getElementById(
+            "registerPhone"
+        ).value.trim();
+
+    const email =
+        document.getElementById(
+            "registerEmail"
+        ).value.trim();
+
+    const emailConfirm =
+        document.getElementById(
+            "registerEmailConfirm"
+        ).value.trim();
+
+    const q1 =
+        document.getElementById(
+            "securityQ1"
+        ).value;
+
+    const a1 =
+        document.getElementById(
+            "securityA1"
+        ).value.trim();
+
+    const q2 =
+        document.getElementById(
+            "securityQ2"
+        ).value;
+
+    const a2 =
+        document.getElementById(
+            "securityA2"
+        ).value.trim();
+
+    const message =
+        document.getElementById(
+            "registerMessage"
+        );
+
+
+    message.className = "message";
+
+
+    if(
+        !name ||
+        !ymid ||
+        !password ||
+        !confirm ||
+        !country ||
+        !phone ||
+        !email ||
+        !emailConfirm ||
+        !a1 ||
+        !a2
+    ){
+
+        message.textContent =
+            "Please complete all fields.";
+
+        return;
+    }
+
+
+    if(password.length < 6){
+
+        message.textContent =
+            "Password must be at least 6 characters.";
+
+        return;
+    }
+
+
+    if(password !== confirm){
+
+        message.textContent =
+            "Passwords do not match.";
+
+        return;
+    }
+
+
+    if(email !== emailConfirm){
+
+        message.textContent =
+            "Emails do not match.";
+
+        return;
+    }
+
+
+    if(!email.includes("@")){
+
+        message.textContent =
+            "Please enter a valid email.";
+
+        return;
+    }
+
+
+    const accounts =
+        getAccounts();
+
+
+    const exists =
+        accounts.some(account =>
+
+            String(account.ymid || "")
+                .toLowerCase() ===
+            ymid.toLowerCase()
+
+        );
+
+
+    if(exists){
+
+        message.textContent =
+            "This Y-M ID already exists.";
+
+        return;
+    }
+
+
+    const account = {
+
+        ymid:ymid,
+        username:ymid,
+        name:name,
+        password:password,
+        country:country,
+        phone:phone,
+        email:email,
+
+        securityQ1:q1,
+        securityA1:a1.toLowerCase(),
+
+        securityQ2:q2,
+        securityA2:a2.toLowerCase(),
+
+        createdAt:
+            new Date().toLocaleString()
+
+    };
+
+
+    accounts.push(account);
+
+    saveAccounts(accounts);
+
+
+    const profiles =
+        getProfiles();
+
+
+    profiles[ymid] = {
+
+        name:name,
+        ymid:ymid,
+
+        birthday:"",
+        birthplace:"",
+        school:"",
+
+        country:country,
+
+        bio:
+            "Welcome to my Y-M Chat profile.",
+
+        profileMediaId:null,
+        coverMediaId:null,
+
+        email:email
+    };
+
+
+    saveProfiles(profiles);
+
+
+    message.className =
+        "message success-message";
+
+    message.textContent =
+        "Y-M ID created successfully. You can now login.";
+
+
+    document.getElementById(
+        "registerPassword"
+    ).value = "";
+
+    document.getElementById(
+        "registerConfirm"
+    ).value = "";
+
 }
 
-accounts.push({
-name,ymid,password,country,phone,email,
-security:[
-{question:q1,answer:a1.toLowerCase()},
-{question:q2,answer:a2.toLowerCase()}
-]
-});
-saveAccounts(accounts);
 
-const profiles=getProfiles();
-profiles[ymid]={
-name,ymid,birthday:"",birthplace:"",school:"",
-country,bio:"Welcome to my Y-M Chat profile.",
-profileMediaId:null,coverMediaId:null,email
-};
-saveProfiles(profiles);
+/* =====================================================
+   LOGIN
+===================================================== */
 
-toast("Account created successfully.");
-setTimeout(()=>showPage("loginPage"),600)
+async function login(){
+
+    const id =
+        document.getElementById(
+            "loginId"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+    const message =
+        document.getElementById(
+            "loginMessage"
+        );
+
+
+    message.className = "message";
+
+
+    if(!id || !password){
+
+        message.textContent =
+            "Please enter your Y-M ID and password.";
+
+        return;
+    }
+
+
+    const account =
+        findAccount(id);
+
+
+    if(!account){
+
+        message.textContent =
+            "Y-M ID or password is incorrect.";
+
+        return;
+    }
+
+
+    if(account.password !== password){
+
+        message.textContent =
+            "Y-M ID or password is incorrect.";
+
+        return;
+    }
+
+
+    currentUser =
+        account.ymid;
+
+
+    localStorage.setItem(
+        CURRENT_USER_KEY,
+        currentUser
+    );
+
+
+    await ensureProfile();
+
+
+    document.getElementById(
+        "loginId"
+    ).value = "";
+
+    document.getElementById(
+        "loginPassword"
+    ).value = "";
+
+
+    message.textContent = "";
+
+    toast("Login successful.");
+
+    setTimeout(()=>{
+        goHome();
+    },250);
+
 }
 
-/* LOGIN */
 
-function loginUser(){
-const id=document.getElementById("loginId").value.trim();
-const password=document.getElementById("loginPassword").value;
-const accounts=getAccounts();
-const account=accounts.find(a=>
-(a.ymid||"").toLowerCase()===id.toLowerCase() ||
-(a.username||"").toLowerCase()===id.toLowerCase()
-);
+/* =====================================================
+   ENSURE PROFILE
+===================================================== */
 
-if(!account||account.password!==password){
-toast("Invalid Y-M ID or password.");return
+async function ensureProfile(){
+
+    const profiles =
+        getProfiles();
+
+    const account =
+        findAccount(currentUser);
+
+
+    if(!profiles[currentUser]){
+
+        profiles[currentUser] = {
+
+            name:
+                account?.name ||
+                currentUser ||
+                "Y-M User",
+
+            ymid:
+                account?.ymid ||
+                currentUser ||
+                "@user",
+
+            birthday:"",
+            birthplace:"",
+            school:"",
+
+            country:
+                account?.country ||
+                "Malaysia",
+
+            bio:
+                "Welcome to my Y-M Chat profile.",
+
+            profileMediaId:null,
+            coverMediaId:null,
+
+            email:
+                account?.email || ""
+        };
+
+        saveProfiles(profiles);
+    }
+
+
+    profileData =
+        profiles[currentUser];
 }
 
-currentUser=account.ymid;
-localStorage.setItem(CURRENT_USER_KEY,currentUser);
-ensureProfile(account);
-setHomeUser(account);
-showAppPage("homePage","navHome");
-toast("Login successful.")
+
+/* =====================================================
+   HOME USER
+===================================================== */
+
+async function renderHomeUser(){
+
+    if(!profileData){
+        await ensureProfile();
+    }
+
+
+    document.getElementById(
+        "homeUserName"
+    ).textContent =
+        profileData.name || "Y-M User";
+
+
+    document.getElementById(
+        "homeUserId"
+    ).textContent =
+        profileData.ymid || "@user";
+
+
+    const image =
+        document.getElementById(
+            "homeAvatarImage"
+        );
+
+    const text =
+        document.getElementById(
+            "homeAvatarText"
+        );
+
+
+    if(
+        profileData.profileMediaId &&
+        db
+    ){
+
+        try{
+
+            const blob =
+                await getMedia(
+                    profileData.profileMediaId
+                );
+
+            if(blob){
+
+                const url =
+                    URL.createObjectURL(blob);
+
+                image.src = url;
+                image.style.display = "block";
+                text.style.display = "none";
+
+                image.onload =
+                    ()=>URL.revokeObjectURL(url);
+
+                return;
+            }
+
+        }catch(e){}
+    }
+
+
+    image.style.display = "none";
+    text.style.display = "block";
+    text.textContent =
+        initial(profileData.name);
 }
 
-function ensureProfile(account){
-const profiles=getProfiles();
-if(!profiles[account.ymid]){
-profiles[account.ymid]={
-name:account.name||account.ymid,
-ymid:account.ymid,
-birthday:"",birthplace:"",school:"",
-country:account.country||"Malaysia",
-bio:"Welcome to my Y-M Chat profile.",
-profileMediaId:null,coverMediaId:null,
-email:account.email||""
-};
-saveProfiles(profiles)
-}
-profileData=profiles[account.ymid]
-}
 
-function setHomeUser(account){
-document.getElementById("homeName").textContent=account.name||account.ymid;
-document.getElementById("homeId").textContent="@"+account.ymid;
-document.getElementById("homeAvatar").textContent=initial(account.name||account.ymid)
-}
+/* =====================================================
+   PROFILE RENDER
+===================================================== */
 
-function logoutUser(){
-if(!confirm("Are you sure you want to log out?"))return;
-localStorage.removeItem(CURRENT_USER_KEY);
-currentUser=null;
-profileData=null;
-showPage("frontPage");
-toast("Logged out.")
-}
+async function renderProfile(){
 
-/* SECURITY CHANGE PASSWORD */
+    if(!profileData){
+        await ensureProfile();
+    }
 
-function changePassword(){
-const id=document.getElementById("cpId").value.trim();
-const old=document.getElementById("cpOld").value;
-const next=document.getElementById("cpNew").value;
-const confirm=document.getElementById("cpConfirm").value;
-const accounts=getAccounts();
-const i=accounts.findIndex(a=>
-(a.ymid||"").toLowerCase()===id.toLowerCase()
-);
 
-if(i<0){toast("Account not found.");return}
-if(accounts[i].password!==old){toast("Current password is incorrect.");return}
-if(!validPassword(next)){toast("New password must be at least 6 characters.");return}
-if(next!==confirm){toast("New passwords do not match.");return}
+    document.getElementById(
+        "profileName"
+    ).textContent =
+        profileData.name || "Y-M User";
 
-accounts[i].password=next;
-saveAccounts(accounts);
-toast("Password changed successfully.");
-setTimeout(()=>showPage("frontPage"),700)
-}
 
-/* SECURITY */
+    document.getElementById(
+        "profileYmid"
+    ).textContent =
+        profileData.ymid || "@user";
 
-function saveSecurity(){
-const id=document.getElementById("secId").value.trim();
-const accounts=getAccounts();
-const i=accounts.findIndex(a=>(a.ymid||"").toLowerCase()===id.toLowerCase());
-if(i<0){toast("Account not found.");return}
 
-const q1=document.getElementById("secQ1").value;
-const q2=document.getElementById("secQ2").value;
-const a1=document.getElementById("secA1").value.trim();
-const a2=document.getElementById("secA2").value.trim();
+    document.getElementById(
+        "profileBio"
+    ).textContent =
+        profileData.bio ||
+        "Welcome to my Y-M Chat profile.";
 
-if(q1===q2){toast("Choose different questions.");return}
-if(!a1||!a2){toast("Enter both answers.");return}
 
-accounts[i].country=document.getElementById("secCountry").value;
-accounts[i].phone=document.getElementById("secPhone").value.trim();
-accounts[i].email=document.getElementById("secEmail").value.trim();
-accounts[i].security=[
-{question:q1,answer:a1.toLowerCase()},
-{question:q2,answer:a2.toLowerCase()}
-];
-saveAccounts(accounts);
+    document.getElementById(
+        "infoBirthday"
+    ).textContent =
+        profileData.birthday || "Not set";
 
-const profiles=getProfiles();
-if(profiles[id]){
-profiles[id].country=accounts[i].country;
-profiles[id].email=accounts[i].email;
-saveProfiles(profiles)
-}
 
-toast("Security settings saved.")
-}
+    document.getElementById(
+        "infoBirthplace"
+    ).textContent =
+        profileData.birthplace || "Not set";
 
-/* RECOVERY */
 
-function findRecoveryAccount(){
-const id=document.getElementById("recoveryId").value.trim();
-const accounts=getAccounts();
-recoveryUser=accounts.find(a=>(a.ymid||"").toLowerCase()===id.toLowerCase());
+    document.getElementById(
+        "infoSchool"
+    ).textContent =
+        profileData.school || "Not set";
 
-if(!recoveryUser){toast("Account not found.");return}
 
-document.getElementById("recoveryMethods").style.display="block";
-toast("Account found.")
-}
+    document.getElementById(
+        "infoCountry"
+    ).textContent =
+        profileData.country || "Not set";
 
-function selectRecoveryMethod(method){
-document.getElementById("questionRecovery").style.display=method==="questions"?"block":"none";
-document.getElementById("phoneRecovery").style.display=method==="phone"?"block":"none";
-document.getElementById("emailRecovery").style.display=method==="email"?"block":"none";
 
-if(method==="questions"){
-const s=recoveryUser.security||[];
-document.getElementById("recQ1").innerHTML="";
-document.getElementById("recQ2").innerHTML="";
-s.forEach(x=>{
-const o1=document.createElement("option");o1.value=x.question;o1.textContent=securityQuestions.en[x.question]||x.question;
-document.getElementById("recQ1").appendChild(o1);
-const o2=o1.cloneNode(true);document.getElementById("recQ2").appendChild(o2)
-})
-}
+    const avatar =
+        document.getElementById(
+            "profileImage"
+        );
 
-if(method==="phone"){
-document.getElementById("phoneText").textContent="Recovery phone: "+(recoveryUser.phone||"Not set")
-}
-if(method==="email"){
-document.getElementById("emailText").textContent="Recovery email: "+(recoveryUser.email||"Not set")
-}
-}
+    const avatarText =
+        document.getElementById(
+            "avatarText"
+        );
 
-function showReset(){
-document.getElementById("resetBox").style.display="block";
-recoveryVerified=true
-}
 
-function verifyQuestions(){
-const a1=document.getElementById("recA1").value.trim().toLowerCase();
-const a2=document.getElementById("recA2").value.trim().toLowerCase();
-const s=recoveryUser.security||[];
-if(s.length<2){toast("Security questions unavailable.");return}
-if(a1===s[0].answer&&a2===s[1].answer)showReset();
-else toast("Security answers incorrect.")
+    if(profileData.profileMediaId){
+
+        try{
+
+            const blob =
+                await getMedia(
+                    profileData.profileMediaId
+                );
+
+            if(blob){
+
+                const url =
+                    URL.createObjectURL(blob);
+
+                avatar.src = url;
+                avatar.style.display = "block";
+                avatarText.style.display = "none";
+
+                avatar.onload =
+                    ()=>URL.revokeObjectURL(url);
+
+            }
+
+        }catch(e){}
+
+    }else{
+
+        avatar.style.display = "none";
+        avatarText.style.display = "block";
+
+        avatarText.textContent =
+            initial(profileData.name);
+    }
+
+
+    const cover =
+        document.getElementById(
+            "coverImage"
+        );
+
+
+    if(profileData.coverMediaId){
+
+        try{
+
+            const blob =
+                await getMedia(
+                    profileData.coverMediaId
+                );
+
+            if(blob){
+
+                const url =
+                    URL.createObjectURL(blob);
+
+                cover.src = url;
+                cover.style.display = "block";
+
+                cover.onload =
+                    ()=>URL.revokeObjectURL(url);
+            }
+
+        }catch(e){}
+
+    }else{
+
+        cover.style.display = "none";
+    }
 }
 
-function generateOtp(){
-return String(Math.floor(100000+Math.random()*900000))
+
+/* =====================================================
+   INDEXED DB
+===================================================== */
+
+function openDatabase(){
+
+    return new Promise((resolve,reject)=>{
+
+        const request =
+            indexedDB.open(
+                DB_NAME,
+                DB_VERSION
+            );
+
+
+        request.onupgradeneeded =
+            function(event){
+
+                const database =
+                    event.target.result;
+
+
+                if(
+                    !database.objectStoreNames
+                    .contains(MEDIA_STORE)
+                ){
+
+                    database.createObjectStore(
+                        MEDIA_STORE,
+                        {keyPath:"id"}
+                    );
+                }
+
+
+                if(
+                    !database.objectStoreNames
+                    .contains(POST_STORE)
+                ){
+
+                    database.createObjectStore(
+                        POST_STORE,
+                        {keyPath:"id"}
+                    );
+                }
+
+            };
+
+
+        request.onsuccess =
+            function(event){
+
+                db =
+                    event.target.result;
+
+                resolve(db);
+            };
+
+
+        request.onerror =
+            function(){
+
+                reject(request.error);
+            };
+
+    });
 }
 
-function requestPhoneOtp(){
-demoPhoneOtp=generateOtp();
-alert("DEMO OTP: "+demoPhoneOtp);
-toast("Demo OTP sent.")
+
+/* =====================================================
+   MEDIA
+===================================================== */
+
+function saveMedia(id,blob){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction =
+            db.transaction(
+                MEDIA_STORE,
+                "readwrite"
+            );
+
+        transaction
+            .objectStore(MEDIA_STORE)
+            .put({
+                id:id,
+                blob:blob
+            });
+
+        transaction.oncomplete =
+            ()=>resolve();
+
+        transaction.onerror =
+            ()=>reject(transaction.error);
+    });
 }
 
-function verifyPhoneOtp(){
-if(document.getElementById("phoneOtp").value===demoPhoneOtp)showReset();
-else toast("Incorrect OTP.")
+
+function getMedia(id){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction =
+            db.transaction(
+                MEDIA_STORE,
+                "readonly"
+            );
+
+        const request =
+            transaction
+            .objectStore(MEDIA_STORE)
+            .get(id);
+
+        request.onsuccess =
+            ()=>resolve(
+                request.result
+                ? request.result.blob
+                : null
+            );
+
+        request.onerror =
+            ()=>reject(request.error);
+    });
 }
 
-function requestEmailOtp(){
-demoEmailOtp=generateOtp();
-alert("DEMO OTP: "+demoEmailOtp);
-toast("Demo OTP sent.")
+
+function deleteMedia(id){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction =
+            db.transaction(
+                MEDIA_STORE,
+                "readwrite"
+            );
+
+        transaction
+            .objectStore(MEDIA_STORE)
+            .delete(id);
+
+        transaction.oncomplete =
+            ()=>resolve();
+
+        transaction.onerror =
+            ()=>reject(transaction.error);
+    });
 }
 
-function verifyEmailOtp(){
-if(document.getElementById("emailOtp").value===demoEmailOtp)showReset();
-else toast("Incorrect OTP.")
+
+/* =====================================================
+   POSTS DB
+===================================================== */
+
+function getAllPosts(){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction =
+            db.transaction(
+                POST_STORE,
+                "readonly"
+            );
+
+        const request =
+            transaction
+            .objectStore(POST_STORE)
+            .getAll();
+
+        request.onsuccess =
+            ()=>resolve(
+                request.result || []
+            );
+
+        request.onerror =
+            ()=>reject(request.error);
+    });
 }
 
-function resetPassword(){
-if(!recoveryVerified){toast("Verify your account first.");return}
-const p=document.getElementById("resetNew").value;
-const c=document.getElementById("resetConfirm").value;
-if(!validPassword(p)){toast("Password must be at least 6 characters.");return}
-if(p!==c){toast("Passwords do not match.");return}
-const accounts=getAccounts();
-const i=accounts.findIndex(a=>a.ymid===recoveryUser.ymid);
-if(i<0)return;
-accounts[i].password=p;
-saveAccounts(accounts);
-toast("Password reset successfully.");
-recoveryUser=null;recoveryVerified=false;
-setTimeout(()=>showPage("loginPage"),700)
+
+function savePost(post){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction =
+            db.transaction(
+                POST_STORE,
+                "readwrite"
+            );
+
+        transaction
+            .objectStore(POST_STORE)
+            .put(post);
+
+        transaction.oncomplete =
+            ()=>resolve();
+
+        transaction.onerror =
+            ()=>reject(transaction.error);
+    });
 }
 
-/* PROFILE STORAGE */
+
+function removePost(postId){
+
+    return new Promise((resolve,reject)=>{
+
+        const transaction =
+            db.transaction(
+                POST_STORE,
+                "readwrite"
+            );
+
+        transaction
+            .objectStore(POST_STORE)
+            .delete(postId);
+
+        transaction.oncomplete =
+            ()=>resolve();
+
+        transaction.onerror =
+            ()=>reject(transaction.error);
+    });
+}
+
+
+/* =====================================================
+   PROFILE PHOTO
+===================================================== */
+
+async function uploadProfile(input){
+
+    const file =
+        input.files[0];
+
+    if(!file){
+        return;
+    }
+
+
+    if(!file.type.startsWith("image/")){
+
+        toast("Please choose an image.");
+        input.value = "";
+        return;
+    }
+
+
+    try{
+
+        const id =
+            "profile_" +
+            Date.now();
+
+
+        await saveMedia(
+            id,
+            file
+        );
+
+
+        if(profileData.profileMediaId){
+
+            await deleteMedia(
+                profileData.profileMediaId
+            );
+        }
+
+
+        profileData.profileMediaId =
+            id;
+
+
+        saveCurrentProfile();
+
+        await renderProfile();
+        await renderHomeUser();
+
+        toast(
+            "Profile photo updated."
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        toast(
+            "Profile photo failed."
+        );
+    }
+
+
+    input.value = "";
+}
+
+
+/* =====================================================
+   COVER
+===================================================== */
+
+async function uploadCover(input){
+
+    const file =
+        input.files[0];
+
+    if(!file){
+        return;
+    }
+
+
+    if(!file.type.startsWith("image/")){
+
+        toast("Please choose an image.");
+        input.value = "";
+        return;
+    }
+
+
+    try{
+
+        const id =
+            "cover_" +
+            Date.now();
+
+
+        await saveMedia(
+            id,
+            file
+        );
+
+
+        if(profileData.coverMediaId){
+
+            await deleteMedia(
+                profileData.coverMediaId
+            );
+        }
+
+
+        profileData.coverMediaId =
+            id;
+
+
+        saveCurrentProfile();
+
+        await renderProfile();
+
+        toast(
+            "Cover photo updated."
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        toast(
+            "Cover photo failed."
+        );
+    }
+
+
+    input.value = "";
+}
+
+
+/* =====================================================
+   SAVE PROFILE
+===================================================== */
 
 function saveCurrentProfile(){
-const p=getProfiles();
-p[currentUser]=profileData;
-saveProfiles(p)
+
+    const profiles =
+        getProfiles();
+
+    profiles[currentUser] =
+        profileData;
+
+    saveProfiles(profiles);
 }
 
-function renderProfile(){
-if(!currentUser)return;
-const profiles=getProfiles();
-profileData=profiles[currentUser];
-if(!profileData)return;
-
-document.getElementById("profileName").textContent=profileData.name||"Y-M User";
-document.getElementById("profileYmid").textContent="@"+(profileData.ymid||currentUser);
-document.getElementById("profileBio").textContent=profileData.bio||"Welcome to my Y-M Chat profile.";
-document.getElementById("infoBirthday").textContent=profileData.birthday||"Not set";
-document.getElementById("infoBirthplace").textContent=profileData.birthplace||"Not set";
-document.getElementById("infoSchool").textContent=profileData.school||"Not set";
-document.getElementById("infoCountry").textContent=profileData.country||"Not set";
-
-const img=document.getElementById("profileImage");
-const text=document.getElementById("avatarText");
-
-if(profileData.profileMediaId){
-img.src=profileData.profileMediaId;
-img.style.display="block";
-text.style.display="none"
-}else{
-img.style.display="none";
-text.style.display="block";
-text.textContent=initial(profileData.name)
-}
-
-const cover=document.getElementById("coverImage");
-if(profileData.coverMediaId){
-cover.src=profileData.coverMediaId;
-cover.style.display="block"
-}else cover.style.display="none";
-
-renderPosts()
-}
-
-/* PROFILE PHOTO */
-
-function uploadProfile(input){
-const file=input.files[0];
-if(!file)return;
-if(!file.type.startsWith("image/")){toast("Please choose an image.");input.value="";return}
-const reader=new FileReader();
-reader.onload=e=>{
-profileData.profileMediaId=e.target.result;
-saveCurrentProfile();
-renderProfile();
-toast("Profile photo updated.")
-};
-reader.readAsDataURL(file);
-input.value=""
-}
-
-/* COVER */
-
-function uploadCover(input){
-const file=input.files[0];
-if(!file)return;
-if(!file.type.startsWith("image/")){toast("Please choose an image.");input.value="";return}
-const reader=new FileReader();
-reader.onload=e=>{
-profileData.coverMediaId=e.target.result;
-saveCurrentProfile();
-renderProfile();
-toast("Cover photo updated.")
-};
-reader.readAsDataURL(file);
-input.value=""
-}
-
-/* EDIT PROFILE */
 
 function openEditProfile(){
-closeMenu();
-document.getElementById("editName").value=profileData.name||"";
-document.getElementById("editBirthday").value=profileData.birthday||"";
-document.getElementById("editBirthplace").value=profileData.birthplace||"";
-document.getElementById("editSchool").value=profileData.school||"";
-document.getElementById("editCountry").value=profileData.country||"";
-document.getElementById("editBio").value=profileData.bio||"";
-document.getElementById("editModal").style.display="flex"
+
+    closeMenu();
+
+
+    document.getElementById(
+        "editName"
+    ).value =
+        profileData.name || "";
+
+
+    document.getElementById(
+        "editBirthday"
+    ).value =
+        profileData.birthday || "";
+
+
+    document.getElementById(
+        "editBirthplace"
+    ).value =
+        profileData.birthplace || "";
+
+
+    document.getElementById(
+        "editSchool"
+    ).value =
+        profileData.school || "";
+
+
+    document.getElementById(
+        "editCountry"
+    ).value =
+        profileData.country || "";
+
+
+    document.getElementById(
+        "editBio"
+    ).value =
+        profileData.bio || "";
+
+
+    document.getElementById(
+        "editModal"
+    ).style.display = "flex";
 }
 
-function saveProfile(){
-const name=document.getElementById("editName").value.trim();
-if(!name){toast("Name cannot be empty.");return}
 
-profileData.name=name;
-profileData.birthday=document.getElementById("editBirthday").value;
-profileData.birthplace=document.getElementById("editBirthplace").value.trim();
-profileData.school=document.getElementById("editSchool").value.trim();
-profileData.country=document.getElementById("editCountry").value.trim();
-profileData.bio=document.getElementById("editBio").value.trim();
+async function saveProfile(){
 
-saveCurrentProfile();
+    const name =
+        document.getElementById(
+            "editName"
+        ).value.trim();
 
-const accounts=getAccounts();
-const i=accounts.findIndex(a=>a.ymid===currentUser);
-if(i>=0){
-accounts[i].name=name;
-accounts[i].country=profileData.country;
-saveAccounts(accounts)
+
+    if(!name){
+
+        toast(
+            "Name cannot be empty."
+        );
+
+        return;
+    }
+
+
+    profileData.name =
+        name;
+
+    profileData.birthday =
+        document.getElementById(
+            "editBirthday"
+        ).value;
+
+    profileData.birthplace =
+        document.getElementById(
+            "editBirthplace"
+        ).value.trim();
+
+    profileData.school =
+        document.getElementById(
+            "editSchool"
+        ).value.trim();
+
+    profileData.country =
+        document.getElementById(
+            "editCountry"
+        ).value.trim();
+
+    profileData.bio =
+        document.getElementById(
+            "editBio"
+        ).value.trim();
+
+
+    saveCurrentProfile();
+
+
+    const accounts =
+        getAccounts();
+
+    const index =
+        accounts.findIndex(
+            a => a.ymid === currentUser
+        );
+
+
+    if(index !== -1){
+
+        accounts[index].name =
+            profileData.name;
+
+        accounts[index].country =
+            profileData.country;
+
+        saveAccounts(accounts);
+    }
+
+
+    await renderProfile();
+    await renderHomeUser();
+
+    closeModal(
+        "editModal"
+    );
+
+    toast(
+        "Profile updated."
+    );
 }
 
-setHomeUser(accounts[i]||{name,ymid:currentUser});
-renderProfile();
-closeModal("editModal");
-toast("Profile updated.")
-}
 
-/* PROFILE PASSWORD */
+/* =====================================================
+   PASSWORD PROFILE
+===================================================== */
 
 function openPasswordModal(){
-closeMenu();
-document.getElementById("currentPassword").value="";
-document.getElementById("newPassword").value="";
-document.getElementById("confirmPassword").value="";
-document.getElementById("passwordModal").style.display="flex"
+
+    closeMenu();
+
+    document.getElementById(
+        "currentPassword"
+    ).value = "";
+
+    document.getElementById(
+        "newPassword"
+    ).value = "";
+
+    document.getElementById(
+        "confirmPassword"
+    ).value = "";
+
+    document.getElementById(
+        "passwordModal"
+    ).style.display = "flex";
 }
 
-function changeProfilePassword(){
-const current=document.getElementById("currentPassword").value;
-const next=document.getElementById("newPassword").value;
-const confirm=document.getElementById("confirmPassword").value;
-const accounts=getAccounts();
-const i=accounts.findIndex(a=>a.ymid===currentUser);
 
-if(i<0){toast("Account not found.");return}
-if(accounts[i].password!==current){toast("Current password is incorrect.");return}
-if(!validPassword(next)){toast("Password must be at least 6 characters.");return}
-if(next!==confirm){toast("Passwords do not match.");return}
+function changePassword(){
 
-accounts[i].password=next;
-saveAccounts(accounts);
-closeModal("passwordModal");
-toast("Password changed successfully.")
+    const current =
+        document.getElementById(
+            "currentPassword"
+        ).value;
+
+    const next =
+        document.getElementById(
+            "newPassword"
+        ).value;
+
+    const confirm =
+        document.getElementById(
+            "confirmPassword"
+        ).value;
+
+
+    if(!current || !next || !confirm){
+
+        toast(
+            "Please complete all fields."
+        );
+
+        return;
+    }
+
+
+    if(next !== confirm){
+
+        toast(
+            "New passwords do not match."
+        );
+
+        return;
+    }
+
+
+    if(next.length < 6){
+
+        toast(
+            "Password must be at least 6 characters."
+        );
+
+        return;
+    }
+
+
+    const accounts =
+        getAccounts();
+
+
+    const index =
+        accounts.findIndex(
+            a => a.ymid === currentUser
+        );
+
+
+    if(index === -1){
+
+        toast(
+            "Account not found."
+        );
+
+        return;
+    }
+
+
+    if(
+        accounts[index].password !==
+        current
+    ){
+
+        toast(
+            "Current password is incorrect."
+        );
+
+        return;
+    }
+
+
+    accounts[index].password =
+        next;
+
+    saveAccounts(accounts);
+
+
+    closeModal(
+        "passwordModal"
+    );
+
+    toast(
+        "Password changed successfully."
+    );
 }
 
-/* EMAIL */
+
+/* =====================================================
+   FRONT CHANGE PASSWORD
+===================================================== */
+
+function changePasswordFromFront(){
+
+    const id =
+        document.getElementById(
+            "changeId"
+        ).value.trim();
+
+    const current =
+        document.getElementById(
+            "changeCurrent"
+        ).value;
+
+    const next =
+        document.getElementById(
+            "changeNew"
+        ).value;
+
+    const confirm =
+        document.getElementById(
+            "changeConfirm"
+        ).value;
+
+    const message =
+        document.getElementById(
+            "changeMessage"
+        );
+
+
+    if(!id || !current || !next || !confirm){
+
+        message.textContent =
+            "Please complete all fields.";
+
+        return;
+    }
+
+
+    const account =
+        findAccount(id);
+
+
+    if(!account){
+
+        message.textContent =
+            "Account not found.";
+
+        return;
+    }
+
+
+    if(account.password !== current){
+
+        message.textContent =
+            "Current password is incorrect.";
+
+        return;
+    }
+
+
+    if(next.length < 6){
+
+        message.textContent =
+            "Password must be at least 6 characters.";
+
+        return;
+    }
+
+
+    if(next !== confirm){
+
+        message.textContent =
+            "Passwords do not match.";
+
+        return;
+    }
+
+
+    account.password =
+        next;
+
+
+    const accounts =
+        getAccounts();
+
+    const index =
+        accounts.findIndex(
+            a => a.ymid === account.ymid
+        );
+
+    accounts[index] =
+        account;
+
+    saveAccounts(accounts);
+
+
+    message.className =
+        "message success-message";
+
+    message.textContent =
+        "Password changed successfully.";
+}
+
+
+/* =====================================================
+   SECURITY SETTINGS
+===================================================== */
+
+function saveSecurity(){
+
+    const id =
+        document.getElementById(
+            "securityId"
+        ).value.trim();
+
+    const q1 =
+        document.getElementById(
+            "securityEditQ1"
+        ).value;
+
+    const a1 =
+        document.getElementById(
+            "securityEditA1"
+        ).value.trim();
+
+    const q2 =
+        document.getElementById(
+            "securityEditQ2"
+        ).value;
+
+    const a2 =
+        document.getElementById(
+            "securityEditA2"
+        ).value.trim();
+
+    const message =
+        document.getElementById(
+            "securityMessage"
+        );
+
+
+    const account =
+        findAccount(id);
+
+
+    if(
+        !account ||
+        !a1 ||
+        !a2
+    ){
+
+        message.textContent =
+            "Please enter valid account and answers.";
+
+        return;
+    }
+
+
+    account.securityQ1 =
+        q1;
+
+    account.securityA1 =
+        a1.toLowerCase();
+
+    account.securityQ2 =
+        q2;
+
+    account.securityA2 =
+        a2.toLowerCase();
+
+
+    const accounts =
+        getAccounts();
+
+    const index =
+        accounts.findIndex(
+            a => a.ymid === account.ymid
+        );
+
+    accounts[index] =
+        account;
+
+    saveAccounts(accounts);
+
+
+    message.className =
+        "message success-message";
+
+    message.textContent =
+        "Security settings saved.";
+}
+
+
+/* =====================================================
+   RECOVERY
+===================================================== */
+
+function findRecoveryAccount(){
+
+    const value =
+        document.getElementById(
+            "recoveryId"
+        ).value.trim();
+
+    const message =
+        document.getElementById(
+            "recoveryMessage"
+        );
+
+
+    recoveryAccount =
+        findAccount(value);
+
+
+    if(!recoveryAccount){
+
+        message.textContent =
+            "Account not found.";
+
+        document.getElementById(
+            "recoveryQuestions"
+        ).style.display = "none";
+
+        return;
+    }
+
+
+    const language =
+        localStorage.getItem(
+            LANGUAGE_KEY
+        ) || "en";
+
+    const list =
+        securityQuestions[language] ||
+        securityQuestions.en;
+
+
+    document.getElementById(
+        "recoveryQuestion1"
+    ).textContent =
+        list[
+            Number(
+                recoveryAccount.securityQ1
+            )
+        ] || "Security Question 1";
+
+
+    document.getElementById(
+        "recoveryQuestion2"
+    ).textContent =
+        list[
+            Number(
+                recoveryAccount.securityQ2
+            )
+        ] || "Security Question 2";
+
+
+    document.getElementById(
+        "recoveryAnswer1"
+    ).value = "";
+
+    document.getElementById(
+        "recoveryAnswer2"
+    ).value = "";
+
+
+    document.getElementById(
+        "recoveryQuestions"
+    ).style.display = "block";
+
+
+    message.textContent =
+        "Account found. Verify your security answers.";
+}
+
+
+function verifyRecoveryQuestions(){
+
+    if(!recoveryAccount){
+        return;
+    }
+
+
+    const a1 =
+        document.getElementById(
+            "recoveryAnswer1"
+        ).value.trim().toLowerCase();
+
+    const a2 =
+        document.getElementById(
+            "recoveryAnswer2"
+        ).value.trim().toLowerCase();
+
+
+    if(
+        a1 !==
+        String(
+            recoveryAccount.securityA1
+        ).toLowerCase() ||
+
+        a2 !==
+        String(
+            recoveryAccount.securityA2
+        ).toLowerCase()
+    ){
+
+        document.getElementById(
+            "recoveryMessage"
+        ).textContent =
+            "Security answers are incorrect.";
+
+        return;
+    }
+
+
+    document.getElementById(
+        "recoveryMessage"
+    ).className =
+        "message success-message";
+
+    document.getElementById(
+        "recoveryMessage"
+    ).textContent =
+        "Verification successful. Create a new password.";
+
+    document.getElementById(
+        "resetArea"
+    ).style.display = "block";
+}
+
+
+/* =====================================================
+   DEMO PHONE / EMAIL RECOVERY
+===================================================== */
+
+function demoPhoneRecovery(){
+
+    if(!recoveryAccount){
+        toast("Find your account first.");
+        return;
+    }
+
+
+    alert(
+        "Demo OTP: 123456\n\n" +
+        "In the real Y-M Chat server, this will be replaced " +
+        "with real SMS/WhatsApp verification."
+    );
+
+
+    document.getElementById(
+        "resetArea"
+    ).style.display = "block";
+}
+
+
+function demoEmailRecovery(){
+
+    if(!recoveryAccount){
+        toast("Find your account first.");
+        return;
+    }
+
+
+    alert(
+        "Demo email verification code: 123456\n\n" +
+        "Real email verification will be connected " +
+        "when the Y-M Chat server is built."
+    );
+
+
+    document.getElementById(
+        "resetArea"
+    ).style.display = "block";
+}
+
+
+function resetRecoveredPassword(){
+
+    if(!recoveryAccount){
+        return;
+    }
+
+
+    const next =
+        document.getElementById(
+            "recoveryNewPassword"
+        ).value;
+
+    const confirm =
+        document.getElementById(
+            "recoveryConfirmPassword"
+        ).value;
+
+
+    if(!next || !confirm){
+
+        toast(
+            "Please complete both password fields."
+        );
+
+        return;
+    }
+
+
+    if(next.length < 6){
+
+        toast(
+            "Password must be at least 6 characters."
+        );
+
+        return;
+    }
+
+
+    if(next !== confirm){
+
+        toast(
+            "Passwords do not match."
+        );
+
+        return;
+    }
+
+
+    const accounts =
+        getAccounts();
+
+
+    const index =
+        accounts.findIndex(
+            a => a.ymid === recoveryAccount.ymid
+        );
+
+
+    if(index === -1){
+        return;
+    }
+
+
+    accounts[index].password =
+        next;
+
+
+    saveAccounts(accounts);
+
+
+    recoveryAccount = null;
+
+
+    document.getElementById(
+        "recoveryQuestions"
+    ).style.display = "none";
+
+    document.getElementById(
+        "resetArea"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "recoveryNewPassword"
+    ).value = "";
+
+    document.getElementById(
+        "recoveryConfirmPassword"
+    ).value = "";
+
+
+    document.getElementById(
+        "recoveryMessage"
+    ).className =
+        "message success-message";
+
+    document.getElementById(
+        "recoveryMessage"
+    ).textContent =
+        "Password reset successfully. You can now login.";
+}
+
+
+/* =====================================================
+   EMAIL
+===================================================== */
 
 function openEmailModal(){
-closeMenu();
-const email=profileData.email||"";
-document.getElementById("newEmail").value=email;
-document.getElementById("confirmEmail").value=email;
-document.getElementById("emailModal").style.display="flex"
+
+    closeMenu();
+
+    document.getElementById(
+        "newEmail"
+    ).value =
+        profileData.email || "";
+
+    document.getElementById(
+        "confirmEmail"
+    ).value =
+        profileData.email || "";
+
+    document.getElementById(
+        "emailModal"
+    ).style.display = "flex";
 }
+
 
 function changeEmail(){
-const email=document.getElementById("newEmail").value.trim();
-const confirm=document.getElementById("confirmEmail").value.trim();
 
-if(!email||!email.includes("@")){toast("Enter a valid email.");return}
-if(email!==confirm){toast("Emails do not match.");return}
+    const email =
+        document.getElementById(
+            "newEmail"
+        ).value.trim();
 
-profileData.email=email;
-saveCurrentProfile();
+    const confirm =
+        document.getElementById(
+            "confirmEmail"
+        ).value.trim();
 
-const accounts=getAccounts();
-const i=accounts.findIndex(a=>a.ymid===currentUser);
-if(i>=0){accounts[i].email=email;saveAccounts(accounts)}
 
-closeModal("emailModal");
-toast("Email updated.")
+    if(!email || !confirm){
+
+        toast(
+            "Please enter the email."
+        );
+
+        return;
+    }
+
+
+    if(email !== confirm){
+
+        toast(
+            "Emails do not match."
+        );
+
+        return;
+    }
+
+
+    if(!email.includes("@")){
+
+        toast(
+            "Please enter a valid email."
+        );
+
+        return;
+    }
+
+
+    profileData.email =
+        email;
+
+    saveCurrentProfile();
+
+
+    const accounts =
+        getAccounts();
+
+
+    const index =
+        accounts.findIndex(
+            a => a.ymid === currentUser
+        );
+
+
+    if(index !== -1){
+
+        accounts[index].email =
+            email;
+
+        saveAccounts(accounts);
+    }
+
+
+    closeModal(
+        "emailModal"
+    );
+
+    toast(
+        "Email updated."
+    );
 }
 
-/* PROFILE MENU */
+
+/* =====================================================
+   PROFILE MENU
+===================================================== */
 
 function toggleMenu(){
-const box=document.getElementById("menuBox");
-box.style.display=box.style.display==="block"?"none":"block"
+
+    const box =
+        document.getElementById(
+            "menuBox"
+        );
+
+
+    box.style.display =
+        box.style.display === "block"
+        ? "none"
+        : "block";
 }
+
 
 function closeMenu(){
-document.getElementById("menuBox").style.display="none"
+
+    document.getElementById(
+        "menuBox"
+    ).style.display =
+        "none";
 }
+
+
+/* =====================================================
+   MODALS
+===================================================== */
 
 function closeModal(id){
-document.getElementById(id).style.display="none"
+
+    const modal =
+        document.getElementById(id);
+
+    if(modal){
+        modal.style.display = "none";
+    }
 }
 
-document.querySelectorAll(".modal").forEach(m=>{
-m.addEventListener("click",e=>{
-if(e.target===m)m.style.display="none"
-})
+
+document
+.querySelectorAll(".modal")
+.forEach(modal=>{
+
+    modal.addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === modal){
+
+                modal.style.display =
+                    "none";
+            }
+
+        }
+    );
+
 });
 
-/* POSTS */
 
-function chooseImage(){document.getElementById("postImageInput").click()}
-function chooseVideo(){document.getElementById("postVideoInput").click()}
+/* =====================================================
+   POST MEDIA
+===================================================== */
+
+function chooseImage(){
+
+    document.getElementById(
+        "postImageInput"
+    ).click();
+}
+
+
+function chooseVideo(){
+
+    document.getElementById(
+        "postVideoInput"
+    ).click();
+}
+
 
 function selectImage(input){
-const f=input.files[0];
-if(!f)return;
-if(!f.type.startsWith("image/")){toast("Please choose an image.");return}
-selectedImage=f;selectedVideo=null;
-document.getElementById("postVideoInput").value="";
-document.getElementById("selectedFile").textContent="📷 Selected: "+f.name
+
+    const file =
+        input.files[0];
+
+    if(!file){
+        return;
+    }
+
+
+    if(!file.type.startsWith("image/")){
+
+        toast(
+            "Please choose an image."
+        );
+
+        input.value = "";
+
+        return;
+    }
+
+
+    selectedImage =
+        file;
+
+    selectedVideo =
+        null;
+
+
+    document.getElementById(
+        "postVideoInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "selectedFile"
+    ).textContent =
+        "📷 Selected: " +
+        file.name;
 }
+
 
 function selectVideo(input){
-const f=input.files[0];
-if(!f)return;
-if(!f.type.startsWith("video/")){toast("Please choose a video.");return}
-selectedVideo=f;selectedImage=null;
-document.getElementById("postImageInput").value="";
-document.getElementById("selectedFile").textContent="🎥 Selected: "+f.name
+
+    const file =
+        input.files[0];
+
+    if(!file){
+        return;
+    }
+
+
+    if(!file.type.startsWith("video/")){
+
+        toast(
+            "Please choose a video."
+        );
+
+        input.value = "";
+
+        return;
+    }
+
+
+    selectedVideo =
+        file;
+
+    selectedImage =
+        null;
+
+
+    document.getElementById(
+        "postImageInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "selectedFile"
+    ).textContent =
+        "🎥 Selected: " +
+        file.name;
 }
+
 
 function clearMedia(){
-selectedImage=null;
-selectedVideo=null;
-document.getElementById("postImageInput").value="";
-document.getElementById("postVideoInput").value="";
-document.getElementById("selectedFile").textContent=""
+
+    selectedImage = null;
+    selectedVideo = null;
+
+
+    document.getElementById(
+        "postImageInput"
+    ).value = "";
+
+    document.getElementById(
+        "postVideoInput"
+    ).value = "";
+
+    document.getElementById(
+        "selectedFile"
+    ).textContent = "";
 }
 
-function fileToDataURL(file){
-return new Promise((resolve,reject)=>{
-const r=new FileReader();
-r.onload=()=>resolve(r.result);
-r.onerror=reject;
-r.readAsDataURL(file)
-})
+
+/* =====================================================
+   PROFILE POST
+===================================================== */
+
+async function createPost(){
+
+    const text =
+        document.getElementById(
+            "postText"
+        ).value.trim();
+
+
+    if(
+        !text &&
+        !selectedImage &&
+        !selectedVideo
+    ){
+
+        toast(
+            "Write something or choose media."
+        );
+
+        return;
+    }
+
+
+    const postId =
+        "post_" +
+        Date.now() +
+        "_" +
+        Math.random()
+            .toString(16)
+            .slice(2);
+
+
+    const post = {
+
+        id:postId,
+
+        user:
+            currentUser ||
+            "demo-user",
+
+        name:
+            profileData.name ||
+            "Y-M User",
+
+        text:text,
+
+        mediaId:null,
+
+        mediaType:null,
+
+        likes:[],
+
+        comments:[],
+
+        hidden:false,
+
+        createdAt:
+            new Date().toLocaleString()
+    };
+
+
+    try{
+
+        if(selectedImage){
+
+            const mediaId =
+                "media_" +
+                postId;
+
+            await saveMedia(
+                mediaId,
+                selectedImage
+            );
+
+            post.mediaId =
+                mediaId;
+
+            post.mediaType =
+                "image";
+        }
+
+
+        if(selectedVideo){
+
+            const mediaId =
+                "media_" +
+                postId;
+
+            await saveMedia(
+                mediaId,
+                selectedVideo
+            );
+
+            post.mediaId =
+                mediaId;
+
+            post.mediaType =
+                "video";
+        }
+
+
+        await savePost(post);
+
+
+        document.getElementById(
+            "postText"
+        ).value = "";
+
+        clearMedia();
+
+        await renderPosts();
+
+        toast(
+            "Post published successfully."
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        toast(
+            "Post could not be saved."
+        );
+    }
 }
 
-async function createProfilePost(){
-const text=document.getElementById("postText").value.trim();
-if(!text&&!selectedImage&&!selectedVideo){
-toast("Write something or choose media.");return
-}
 
-let media=null;
-let mediaType=null;
-
-if(selectedImage){
-media=await fileToDataURL(selectedImage);
-mediaType="image"
-}
-if(selectedVideo){
-media=await fileToDataURL(selectedVideo);
-mediaType="video"
-}
-
-const posts=getPosts();
-posts.unshift({
-id:"post_"+Date.now()+"_"+Math.random().toString(16).slice(2),
-user:currentUser,
-name:profileData.name,
-text,
-media,
-mediaType,
-likes:[],
-comments:[],
-hidden:false,
-createdAt:new Date().toLocaleString()
-});
-savePosts(posts);
-
-document.getElementById("postText").value="";
-clearMedia();
-renderPosts();
-toast("Post published successfully.")
-}
+/* =====================================================
+   HOME POST
+===================================================== */
 
 function createHomePost(){
-const text=document.getElementById("homePostText").value.trim();
-if(!text){toast("Write something first.");return}
 
-const posts=getPosts();
-posts.unshift({
-id:"post_"+Date.now(),
-user:currentUser,
-name:profileData?profileData.name:"Y-M User",
-text,
-media:null,
-mediaType:null,
-likes:[],
-comments:[],
-hidden:false,
-createdAt:new Date().toLocaleString()
-});
-savePosts(posts);
-document.getElementById("homePostText").value="";
-renderHomeFeed();
-toast("Post published successfully.")
+    const text =
+        document.getElementById(
+            "homePostText"
+        ).value.trim();
+
+
+    if(!text){
+
+        toast(
+            "Write something first."
+        );
+
+        return;
+    }
+
+
+    if(!db){
+
+        toast(
+            "Storage unavailable."
+        );
+
+        return;
+    }
+
+
+    const post = {
+
+        id:
+            "home_" +
+            Date.now() +
+            "_" +
+            Math.random()
+                .toString(16)
+                .slice(2),
+
+        user:
+            currentUser,
+
+        name:
+            profileData.name,
+
+        text:text,
+
+        mediaId:null,
+
+        mediaType:null,
+
+        likes:[],
+
+        comments:[],
+
+        hidden:false,
+
+        createdAt:
+            new Date().toLocaleString()
+    };
+
+
+    savePost(post)
+    .then(()=>{
+
+        document.getElementById(
+            "homePostText"
+        ).value = "";
+
+        toast(
+            "Post published."
+        );
+
+    })
+    .catch(()=>{
+
+        toast(
+            "Post could not be saved."
+        );
+    });
 }
 
-function renderPosts(){
-const container=document.getElementById("postsContainer");
-if(!container)return;
-container.innerHTML="";
 
-const posts=getPosts().filter(p=>!p.hidden&&p.user===currentUser);
+/* =====================================================
+   RENDER POSTS
+===================================================== */
 
-if(!posts.length){
-container.innerHTML='<div style="text-align:center;padding:30px;color:#777">No posts yet.<br>Write something above.</div>';
-return
+async function renderPosts(){
+
+    if(!db){
+        return;
+    }
+
+
+    const container =
+        document.getElementById(
+            "postsContainer"
+        );
+
+
+    if(!container){
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    let posts =
+        await getAllPosts();
+
+
+    posts =
+        posts
+        .filter(post => !post.hidden)
+        .sort(
+            (a,b)=>
+                String(b.createdAt)
+                .localeCompare(
+                    String(a.createdAt)
+                )
+        );
+
+
+    if(posts.length === 0){
+
+        container.innerHTML = `
+            <div style="
+                text-align:center;
+                padding:30px 10px;
+                color:#777;
+            ">
+                No posts yet.<br>
+                Write something above.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    for(const post of posts){
+
+        const element =
+            await buildPostElement(post);
+
+        container.appendChild(element);
+    }
 }
 
-posts.forEach(p=>container.appendChild(buildPost(p)))
+
+/* =====================================================
+   BUILD POST
+===================================================== */
+
+async function buildPostElement(post){
+
+    const element =
+        document.createElement("div");
+
+    element.className =
+        "post";
+
+
+    const user =
+        currentUser ||
+        "demo-user";
+
+
+    if(!Array.isArray(post.likes)){
+        post.likes = [];
+    }
+
+
+    if(!Array.isArray(post.comments)){
+        post.comments = [];
+    }
+
+
+    const liked =
+        post.likes.includes(user);
+
+
+    let mediaHTML = "";
+
+
+    if(post.mediaId){
+
+        try{
+
+            const blob =
+                await getMedia(
+                    post.mediaId
+                );
+
+
+            if(blob){
+
+                const url =
+                    URL.createObjectURL(blob);
+
+
+                if(
+                    post.mediaType ===
+                    "image"
+                ){
+
+                    mediaHTML = `
+                        <img
+                            class="post-media"
+                            src="${url}"
+                            alt="Post image"
+                        >
+                    `;
+
+                }else if(
+                    post.mediaType ===
+                    "video"
+                ){
+
+                    mediaHTML = `
+                        <video
+                            class="post-media"
+                            controls
+                            playsinline
+                            preload="metadata"
+                        >
+                            <source src="${url}">
+                        </video>
+                    `;
+                }
+            }
+
+        }catch(error){}
+    }
+
+
+    let commentsHTML = "";
+
+
+    for(
+        const comment
+        of post.comments
+    ){
+
+        if(comment.hidden){
+            continue;
+        }
+
+
+        const own =
+            comment.user === user;
+
+
+        commentsHTML += `
+
+            <div class="comment">
+
+                <div class="comment-top">
+
+                    <div class="comment-body">
+
+                        <strong>
+                            ${escapeHTML(
+                                comment.name
+                            )}
+                        </strong>
+
+                        <div>
+                            ${escapeHTML(
+                                comment.text
+                            )}
+                        </div>
+
+                    </div>
+
+                    <div class="comment-buttons">
+
+                        ${
+                            own
+                            ?
+                            `
+                            <button
+                                onclick="
+                                    deleteComment(
+                                        '${post.id}',
+                                        '${comment.id}'
+                                    )
+                                "
+                            >
+                                🗑️
+                            </button>
+                            `
+                            :
+                            `
+                            <button
+                                onclick="
+                                    hideComment(
+                                        '${post.id}',
+                                        '${comment.id}'
+                                    )
+                                "
+                            >
+                                🙈
+                            </button>
+                            `
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+    }
+
+
+    element.innerHTML = `
+
+        <div class="post-header">
+
+            <div class="post-avatar">
+                ${escapeHTML(
+                    initial(post.name)
+                )}
+            </div>
+
+            <div class="post-user">
+
+                <strong>
+                    ${escapeHTML(post.name)}
+                </strong>
+
+                <small>
+                    ${escapeHTML(
+                        post.createdAt
+                    )}
+                </small>
+
+            </div>
+
+            <button
+                class="post-menu"
+                onclick="
+                    postMenu('${post.id}')
+                "
+            >
+                ⋮
+            </button>
+
+        </div>
+
+
+        ${
+            post.text
+            ?
+            `
+            <div class="post-content">
+                ${escapeHTML(post.text)}
+            </div>
+            `
+            :
+            ""
+        }
+
+
+        ${mediaHTML}
+
+
+        <div class="post-actions">
+
+            <button
+                class="${
+                    liked
+                    ? "like-active"
+                    : ""
+                }"
+                onclick="
+                    toggleLike('${post.id}')
+                "
+            >
+                ${liked ? "❤️" : "🤍"}
+                Like (${post.likes.length})
+            </button>
+
+            <button
+                onclick="
+                    focusComment('${post.id}')
+                "
+            >
+                💬 Comment
+            </button>
+
+            <button
+                onclick="
+                    sharePost('${post.id}')
+                "
+            >
+                📤 Share
+            </button>
+
+        </div>
+
+
+        <div class="comments">
+
+            ${commentsHTML}
+
+
+            <input
+                id="comment-${post.id}"
+                class="comment-input"
+                placeholder="Write a comment..."
+                onkeydown="
+                    commentKey(
+                        event,
+                        '${post.id}'
+                    )
+                "
+            >
+
+
+            <button
+                class="comment-send"
+                onclick="
+                    addComment('${post.id}')
+                "
+            >
+                Send Comment
+            </button>
+
+        </div>
+    `;
+
+
+    return element;
 }
 
-function renderHomeFeed(){
-const container=document.getElementById("homeFeed");
-if(!container)return;
-container.innerHTML="";
 
-const posts=getPosts().filter(p=>!p.hidden).slice(0,20);
+/* =====================================================
+   LIKE
+===================================================== */
 
-if(!posts.length){
-container.innerHTML='<div style="text-align:center;padding:25px;color:#777">No posts yet.</div>';
-return
+async function toggleLike(postId){
+
+    const posts =
+        await getAllPosts();
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+
+    if(!post){
+        return;
+    }
+
+
+    if(!Array.isArray(post.likes)){
+        post.likes = [];
+    }
+
+
+    const user =
+        currentUser ||
+        "demo-user";
+
+
+    const index =
+        post.likes.indexOf(user);
+
+
+    if(index === -1){
+
+        post.likes.push(user);
+
+    }else{
+
+        post.likes.splice(
+            index,
+            1
+        );
+    }
+
+
+    await savePost(post);
+
+    await renderPosts();
 }
 
-posts.forEach(p=>container.appendChild(buildPost(p)))
+
+/* =====================================================
+   COMMENTS
+===================================================== */
+
+function focusComment(postId){
+
+    const input =
+        document.getElementById(
+            "comment-" +
+            postId
+        );
+
+
+    if(input){
+
+        input.focus();
+
+        input.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+    }
 }
 
-function buildPost(post){
-const el=document.createElement("div");
-el.className="post-card";
 
-const liked=(post.likes||[]).includes(currentUser);
+function commentKey(event,postId){
 
-let media="";
-if(post.media){
-if(post.mediaType==="image"){
-media='<img class="post-media" src="'+post.media+'" alt="Post image">'
-}else{
-media='<video class="post-media" controls playsinline><source src="'+post.media+'"></video>'
-}
+    if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        addComment(postId);
+    }
 }
 
-let comments="";
-(post.comments||[]).forEach(c=>{
-if(c.hidden)return;
-comments+=`
-<div class="comment">
-<div class="comment-top">
-<div class="comment-body">
-<strong>${escapeHTML(c.name)}</strong>
-<div>${escapeHTML(c.text)}</div>
-</div>
-<div class="comment-buttons">
-${c.user===currentUser?
-`<button onclick="deleteComment('${post.id}','${c.id}')">🗑️</button>`:
-`<button onclick="hideComment('${post.id}','${c.id}')">🙈</button>`}
-</div>
-</div>
-</div>`
-});
 
-el.innerHTML=`
-<div class="post-header">
-<div class="post-avatar">${escapeHTML(initial(post.name))}</div>
-<div class="post-user">
-<strong>${escapeHTML(post.name)}</strong>
-<small>${escapeHTML(post.createdAt)}</small>
-</div>
-<button class="post-menu" onclick="postMenu('${post.id}')">⋮</button>
-</div>
-${post.text?`<div class="post-content">${escapeHTML(post.text)}</div>`:""}
-${media}
-<div class="post-actions">
-<button onclick="toggleLike('${post.id}')">${liked?"❤️":"🤍"} Like (${(post.likes||[]).length})</button>
-<button onclick="focusComment('${post.id}')">💬 Comment</button>
-<button onclick="sharePost('${post.id}')">📤 Share</button>
-</div>
-<div class="comments">
-${comments}
-<input id="comment-${post.id}" class="comment-input" placeholder="Write a comment..." onkeydown="commentKey(event,'${post.id}')">
-<button class="comment-send" onclick="addComment('${post.id}')">Send Comment</button>
-</div>`;
+async function addComment(postId){
 
-return el
+    const input =
+        document.getElementById(
+            "comment-" +
+            postId
+        );
+
+
+    if(!input){
+        return;
+    }
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text){
+        return;
+    }
+
+
+    const posts =
+        await getAllPosts();
+
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+
+    if(!post){
+        return;
+    }
+
+
+    if(!Array.isArray(post.comments)){
+        post.comments = [];
+    }
+
+
+    post.comments.push({
+
+        id:
+            "comment_" +
+            Date.now() +
+            "_" +
+            Math.random()
+                .toString(16)
+                .slice(2),
+
+        user:
+            currentUser,
+
+        name:
+            profileData.name,
+
+        text:text,
+
+        hidden:false
+    });
+
+
+    await savePost(post);
+
+    await renderPosts();
+
+    toast(
+        "Comment added."
+    );
 }
 
-function toggleLike(id){
-const posts=getPosts();
-const p=posts.find(x=>x.id===id);
-if(!p)return;
-p.likes=p.likes||[];
-const i=p.likes.indexOf(currentUser);
-if(i<0)p.likes.push(currentUser);
-else p.likes.splice(i,1);
-savePosts(posts);
-renderPosts();
-renderHomeFeed()
+
+/* =====================================================
+   DELETE COMMENT
+===================================================== */
+
+async function deleteComment(
+    postId,
+    commentId
+){
+
+    const posts =
+        await getAllPosts();
+
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+
+    if(!post){
+        return;
+    }
+
+
+    const comment =
+        post.comments.find(
+            c => c.id === commentId
+        );
+
+
+    if(!comment){
+        return;
+    }
+
+
+    if(comment.user !== currentUser){
+
+        toast(
+            "You can only delete your comment."
+        );
+
+        return;
+    }
+
+
+    post.comments =
+        post.comments.filter(
+            c => c.id !== commentId
+        );
+
+
+    await savePost(post);
+
+    await renderPosts();
+
+    toast(
+        "Comment deleted."
+    );
 }
 
-function focusComment(id){
-const e=document.getElementById("comment-"+id);
-if(e){e.focus();e.scrollIntoView({behavior:"smooth",block:"center"})}
+
+/* =====================================================
+   HIDE COMMENT
+===================================================== */
+
+async function hideComment(
+    postId,
+    commentId
+){
+
+    const posts =
+        await getAllPosts();
+
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+
+    if(!post){
+        return;
+    }
+
+
+    const comment =
+        post.comments.find(
+            c => c.id === commentId
+        );
+
+
+    if(!comment){
+        return;
+    }
+
+
+    comment.hidden =
+        true;
+
+
+    await savePost(post);
+
+    await renderPosts();
+
+    toast(
+        "Comment hidden."
+    );
 }
 
-function commentKey(e,id){
-if(e.key==="Enter"){e.preventDefault();addComment(id)}
+
+/* =====================================================
+   POST MENU
+===================================================== */
+
+async function postMenu(postId){
+
+    const posts =
+        await getAllPosts();
+
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+
+    if(!post){
+        return;
+    }
+
+
+    if(post.user === currentUser){
+
+        const yes =
+            confirm(
+                "Delete this post?"
+            );
+
+
+        if(!yes){
+            return;
+        }
+
+
+        if(post.mediaId){
+
+            await deleteMedia(
+                post.mediaId
+            );
+        }
+
+
+        await removePost(
+            post.id
+        );
+
+
+        await renderPosts();
+
+        toast(
+            "Post deleted."
+        );
+
+    }else{
+
+        const yes =
+            confirm(
+                "Hide this post?"
+            );
+
+
+        if(!yes){
+            return;
+        }
+
+
+        post.hidden =
+            true;
+
+
+        await savePost(post);
+
+        await renderPosts();
+
+        toast(
+            "Post hidden."
+        );
+    }
 }
 
-function addComment(id){
-const input=document.getElementById("comment-"+id);
-if(!input)return;
-const text=input.value.trim();
-if(!text)return;
 
-const posts=getPosts();
-const p=posts.find(x=>x.id===id);
-if(!p)return;
-p.comments=p.comments||[];
-p.comments.push({
-id:"comment_"+Date.now(),
-user:currentUser,
-name:profileData?profileData.name:"Y-M User",
-text,hidden:false
-});
-savePosts(posts);
-renderPosts();
-renderHomeFeed();
-toast("Comment added.")
+/* =====================================================
+   SHARE
+===================================================== */
+
+async function sharePost(postId){
+
+    const posts =
+        await getAllPosts();
+
+
+    const post =
+        posts.find(
+            p => p.id === postId
+        );
+
+
+    if(!post){
+        return;
+    }
+
+
+    const text =
+        post.name +
+        ": " +
+        (
+            post.text ||
+            "Y-M Chat post"
+        );
+
+
+    if(navigator.share){
+
+        try{
+
+            await navigator.share({
+                title:"Y-M Chat",
+                text:text
+            });
+
+        }catch(e){}
+
+        return;
+    }
+
+
+    if(navigator.clipboard){
+
+        try{
+
+            await navigator.clipboard.writeText(
+                text
+            );
+
+            toast(
+                "Post copied."
+            );
+
+        }catch(e){
+
+            toast(
+                "Share unavailable."
+            );
+        }
+
+        return;
+    }
+
+
+    toast(
+        "Share unavailable."
+    );
 }
 
-function deleteComment(pid,cid){
-const posts=getPosts();
-const p=posts.find(x=>x.id===pid);
-if(!p)return;
-p.comments=(p.comments||[]).filter(c=>c.id!==cid||c.user!==currentUser);
-savePosts(posts);
-renderPosts();
-renderHomeFeed();
-toast("Comment deleted.")
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+    closeMenu();
+
+
+    const yes =
+        confirm(
+            "Are you sure you want to log out?"
+        );
+
+
+    if(!yes){
+        return;
+    }
+
+
+    localStorage.removeItem(
+        CURRENT_USER_KEY
+    );
+
+
+    currentUser = null;
+    profileData = null;
+
+
+    document.getElementById(
+        "bottomNav"
+    ).style.display = "none";
+
+
+    toast(
+        "Logged out."
+    );
+
+
+    setTimeout(()=>{
+
+        showPage("frontPage");
+
+    },500);
 }
 
-function hideComment(pid,cid){
-const posts=getPosts();
-const p=posts.find(x=>x.id===pid);
-if(!p)return;
-const c=(p.comments||[]).find(x=>x.id===cid);
-if(c)c.hidden=true;
-savePosts(posts);
-renderPosts();
-renderHomeFeed();
-toast("Comment hidden.")
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+async function initialize(){
+
+    fillCountries();
+
+    fillSecurityQuestions();
+
+
+    const savedLanguage =
+        localStorage.getItem(
+            LANGUAGE_KEY
+        ) || "en";
+
+
+    document.getElementById(
+        "languageSelect"
+    ).value =
+        savedLanguage;
+
+
+    try{
+
+        await openDatabase();
+
+    }catch(error){
+
+        console.error(error);
+
+        toast(
+            "Browser storage unavailable."
+        );
+    }
+
+
+    currentUser =
+        localStorage.getItem(
+            CURRENT_USER_KEY
+        );
+
+
+    if(currentUser){
+
+        await ensureProfile();
+
+        await renderProfile();
+
+        await renderHomeUser();
+
+        showAppPage(
+            "homePage",
+            "navHome"
+        );
+
+    }else{
+
+        showPage(
+            "frontPage"
+        );
+    }
 }
 
-function postMenu(id){
-const posts=getPosts();
-const p=posts.find(x=>x.id===id);
-if(!p)return;
 
-if(p.user===currentUser){
-if(confirm("Delete this post?")){
-savePosts(posts.filter(x=>x.id!==id));
-renderPosts();renderHomeFeed();toast("Post deleted.")
-}
-}else{
-if(confirm("Hide this post?")){
-p.hidden=true;savePosts(posts);renderPosts();renderHomeFeed();toast("Post hidden.")
-}
-}
-}
+/* =====================================================
+   START
+===================================================== */
 
-async function sharePost(id){
-const p=getPosts().find(x=>x.id===id);
-if(!p)return;
-const text=p.name+": "+(p.text||"Y-M Chat post");
+document.addEventListener(
+    "DOMContentLoaded",
+    initialize
+);
 
-if(navigator.share){
-try{await navigator.share({title:"Y-M Chat",text})}catch(e){}
-}else if(navigator.clipboard){
-try{
-await navigator.clipboard.writeText(text);
-toast("Post copied.")
-}catch(e){toast("Share unavailable.")}
-}else toast("Share unavailable.")
-}
-
-/* START */
-
-function initializeApp(){
-document.getElementById("language").value=currentLanguage;
-fillCountries();
-fillSecurityQuestions();
-applyLanguage();
-
-const saved=localStorage.getItem(CURRENT_USER_KEY);
-
-if(saved){
-const accounts=getAccounts();
-const account=accounts.find(a=>a.ymid===saved);
-
-if(account){
-currentUser=saved;
-ensureProfile(account);
-setHomeUser(account);
-showAppPage("homePage","navHome");
-return
-}
-}
-
-showPage("frontPage")
-}
-
-document.addEventListener("DOMContentLoaded",initializeApp);
 </script>
 
 </body>
