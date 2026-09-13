@@ -23,10 +23,7 @@ body{
     color:#222;
 }
 
-button,
-input,
-textarea,
-select{
+button,input,textarea,select{
     font-family:Arial,sans-serif;
 }
 
@@ -42,10 +39,6 @@ button{
     background:#fff;
     padding-bottom:78px;
 }
-
-/* =====================================================
-   COMMON
-===================================================== */
 
 .page{
     display:none;
@@ -103,7 +96,7 @@ button{
     border-radius:8px;
     padding:11px;
     outline:none;
-    background:white;
+    background:#fff;
 }
 
 .form-group textarea{
@@ -117,23 +110,25 @@ button{
     border-color:#1976d2;
 }
 
-.primary-btn{
+.primary-btn,
+.secondary-btn,
+.link-btn{
     width:100%;
-    padding:12px;
     border:0;
     border-radius:8px;
+}
+
+.primary-btn{
+    padding:12px;
     background:#1976d2;
-    color:white;
+    color:#fff;
     font-size:15px;
     font-weight:bold;
     margin-top:5px;
 }
 
 .secondary-btn{
-    width:100%;
     padding:11px;
-    border:0;
-    border-radius:8px;
     background:#e8edf2;
     color:#333;
     font-size:14px;
@@ -141,8 +136,6 @@ button{
 }
 
 .link-btn{
-    width:100%;
-    border:0;
     background:transparent;
     color:#1976d2;
     padding:9px;
@@ -161,9 +154,7 @@ button{
     color:#2e7d32;
 }
 
-/* =====================================================
-   FRONT PAGE
-===================================================== */
+/* FRONT */
 
 .front-language{
     display:flex;
@@ -193,12 +184,12 @@ button{
 
 .btn-login{
     background:#1976d2;
-    color:white;
+    color:#fff;
 }
 
 .btn-register{
     background:#42a5f5;
-    color:white;
+    color:#fff;
 }
 
 .btn-light{
@@ -206,14 +197,12 @@ button{
     color:#333;
 }
 
-/* =====================================================
-   TOP BAR
-===================================================== */
+/* TOP */
 
 .topbar{
     height:58px;
     background:#1976d2;
-    color:white;
+    color:#fff;
     display:flex;
     align-items:center;
     padding:0 16px;
@@ -228,33 +217,22 @@ button{
     flex:1;
 }
 
-.topbar button{
-    border:0;
-    background:transparent;
-    color:white;
-    font-size:22px;
-}
-
-/* =====================================================
-   HOME
-===================================================== */
+/* HOME */
 
 .home-cover{
     height:155px;
     background:linear-gradient(135deg,#1976d2,#64b5f6);
-    position:relative;
 }
 
 .home-user{
     padding:0 15px;
-    position:relative;
 }
 
 .home-avatar{
     width:88px;
     height:88px;
     margin-top:-42px;
-    border:4px solid white;
+    border:4px solid #fff;
     border-radius:50%;
     background:#dcecff;
     color:#1976d2;
@@ -263,7 +241,6 @@ button{
     justify-content:center;
     font-size:34px;
     font-weight:bold;
-    position:relative;
     overflow:hidden;
 }
 
@@ -298,7 +275,7 @@ button{
     font-size:11px;
 }
 
-.home-actions button span{
+.home-actions span{
     display:block;
     font-size:21px;
     margin-bottom:4px;
@@ -309,7 +286,7 @@ button{
 }
 
 .home-section h3{
-    margin:8px 0 10px;
+    margin:15px 0 10px;
     font-size:18px;
 }
 
@@ -319,7 +296,7 @@ button{
     border-radius:11px;
     padding:13px;
     margin-bottom:12px;
-    background:white;
+    background:#fff;
 }
 
 .home-placeholder{
@@ -327,13 +304,10 @@ button{
     text-align:center;
 }
 
-/* HOME POST */
-
 .home-post-box{
     border:1px solid #e0e5ea;
     border-radius:12px;
     padding:13px;
-    margin-bottom:15px;
 }
 
 .home-post-box textarea{
@@ -350,18 +324,12 @@ button{
     margin-top:8px;
     border:0;
     background:#1976d2;
-    color:white;
+    color:#fff;
     padding:10px 15px;
     border-radius:8px;
 }
 
-/* =====================================================
-   PROFILE
-===================================================== */
-
-.profile-page{
-    background:white;
-}
+/* PROFILE */
 
 .profile-cover{
     height:205px;
@@ -390,7 +358,6 @@ button{
     border:0;
     border-radius:50%;
     background:rgba(255,255,255,.94);
-    color:#222;
     font-size:27px;
     box-shadow:0 2px 7px rgba(0,0,0,.25);
 }
@@ -401,7 +368,7 @@ button{
     top:50px;
     right:0;
     width:220px;
-    background:white;
+    background:#fff;
     border-radius:10px;
     overflow:hidden;
     box-shadow:0 4px 16px rgba(0,0,0,.25);
@@ -411,7 +378,7 @@ button{
     width:100%;
     border:0;
     border-bottom:1px solid #eee;
-    background:white;
+    background:#fff;
     padding:14px;
     text-align:left;
     font-size:15px;
@@ -425,9 +392,8 @@ button{
     height:43px;
     border:0;
     border-radius:50%;
-    background:white;
+    background:#fff;
     font-size:20px;
-    box-shadow:0 2px 7px rgba(0,0,0,.25);
 }
 
 .profile-area{
@@ -449,7 +415,7 @@ button{
     width:120px;
     height:120px;
     border-radius:50%;
-    border:5px solid white;
+    border:5px solid #fff;
     background:#dcecff;
     overflow:hidden;
     display:flex;
@@ -478,9 +444,9 @@ button{
     width:37px;
     height:37px;
     border-radius:50%;
-    border:3px solid white;
+    border:3px solid #fff;
     background:#1976d2;
-    color:white;
+    color:#fff;
 }
 
 .profile-info{
@@ -582,7 +548,7 @@ button{
     border:0;
     border-radius:8px;
     background:#1976d2;
-    color:white;
+    color:#fff;
     font-size:15px;
     font-weight:bold;
 }
@@ -597,7 +563,7 @@ button{
     border-radius:12px;
     margin-bottom:15px;
     overflow:hidden;
-    background:white;
+    background:#fff;
 }
 
 .post-header{
@@ -611,7 +577,7 @@ button{
     height:43px;
     border-radius:50%;
     background:#1976d2;
-    color:white;
+    color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -672,7 +638,7 @@ button{
 .post-actions button{
     flex:1;
     border:0;
-    background:white;
+    background:#fff;
     padding:10px 4px;
     font-size:13px;
 }
@@ -702,37 +668,40 @@ button{
     flex:1;
 }
 
-.comment-buttons{
-    white-space:nowrap;
-}
-
 .comment-buttons button{
     border:0;
     background:transparent;
-    font-size:13px;
 }
 
-.comment-input{
+/* SIMPLE MODULES */
+
+.module{
+    padding:20px;
+}
+
+.module-card{
+    border:1px solid #e0e5ea;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:12px;
+}
+
+.module-card button{
     width:100%;
-    padding:9px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    outline:none;
-    margin-top:5px;
-}
-
-.comment-send{
-    margin-top:6px;
-    padding:8px 13px;
+    margin-top:8px;
+    padding:11px;
     border:0;
-    border-radius:7px;
-    background:#1976d2;
-    color:white;
+    border-radius:8px;
+    background:#f0f3f6;
+    text-align:left;
 }
 
-/* =====================================================
-   BOTTOM NAV
-===================================================== */
+.online{
+    color:#2e7d32;
+    font-size:12px;
+}
+
+/* NAV */
 
 .bottom-nav{
     display:none;
@@ -743,7 +712,7 @@ button{
     width:100%;
     max-width:480px;
     height:65px;
-    background:white;
+    background:#fff;
     border-top:1px solid #ddd;
     z-index:50;
 }
@@ -751,7 +720,7 @@ button{
 .bottom-nav button{
     flex:1;
     border:0;
-    background:white;
+    background:#fff;
     color:#555;
     font-size:11px;
 }
@@ -767,9 +736,7 @@ button{
     font-weight:bold;
 }
 
-/* =====================================================
-   MODALS
-===================================================== */
+/* MODAL */
 
 .modal{
     display:none;
@@ -787,7 +754,7 @@ button{
     max-width:450px;
     max-height:90vh;
     overflow-y:auto;
-    background:white;
+    background:#fff;
     border-radius:14px;
     padding:18px;
 }
@@ -812,7 +779,7 @@ button{
 
 .save{
     background:#1976d2;
-    color:white;
+    color:#fff;
 }
 
 .cancel{
@@ -827,7 +794,7 @@ button{
     transform:translateX(-50%);
     z-index:200;
     background:#222;
-    color:white;
+    color:#fff;
     padding:10px 16px;
     border-radius:8px;
     font-size:14px;
@@ -835,12 +802,15 @@ button{
     text-align:center;
 }
 
-/* =====================================================
-   HIDDEN FILE INPUT
-===================================================== */
-
 .hidden-input{
     display:none;
+}
+
+.room-message{
+    padding:10px;
+    background:#f1f4f7;
+    border-radius:8px;
+    margin-top:8px;
 }
 </style>
 </head>
@@ -849,9 +819,7 @@ button{
 
 <div class="app">
 
-<!-- ===================================================
-     FRONT
-=================================================== -->
+<!-- FRONT -->
 
 <section id="frontPage" class="page active center-page">
 
@@ -903,9 +871,7 @@ button{
 </section>
 
 
-<!-- ===================================================
-     LOGIN
-=================================================== -->
+<!-- LOGIN -->
 
 <section id="loginPage" class="page center-page">
 
@@ -919,15 +885,18 @@ button{
         <div id="loginMessage" class="message"></div>
 
         <div class="form-group">
-            <label>Y-M ID / Username</label>
-            <input id="loginId" type="text" autocomplete="username">
+            <label>Y-M ID / Username / Email / Phone</label>
+            <input id="loginId"
+                   type="text"
+                   autocomplete="username">
         </div>
 
         <div class="form-group">
             <label>Password</label>
             <input id="loginPassword"
                    type="password"
-                   autocomplete="current-password">
+                   autocomplete="current-password"
+                   onkeydown="if(event.key==='Enter') login()">
         </div>
 
         <button class="primary-btn"
@@ -950,9 +919,7 @@ button{
 </section>
 
 
-<!-- ===================================================
-     REGISTER
-=================================================== -->
+<!-- REGISTER -->
 
 <section id="registerPage" class="page center-page">
 
@@ -1042,9 +1009,7 @@ button{
 </section>
 
 
-<!-- ===================================================
-     CHANGE PASSWORD
-=================================================== -->
+<!-- CHANGE PASSWORD -->
 
 <section id="changePasswordPage" class="page center-page">
 
@@ -1058,7 +1023,7 @@ button{
         <div id="changeMessage" class="message"></div>
 
         <div class="form-group">
-            <label>Y-M ID / Username</label>
+            <label>Y-M ID / Username / Email / Phone</label>
             <input id="changeId" type="text">
         </div>
 
@@ -1092,9 +1057,7 @@ button{
 </section>
 
 
-<!-- ===================================================
-     SECURITY
-=================================================== -->
+<!-- SECURITY -->
 
 <section id="securityPage" class="page center-page">
 
@@ -1147,9 +1110,7 @@ button{
 </section>
 
 
-<!-- ===================================================
-     RECOVERY
-=================================================== -->
+<!-- RECOVERY -->
 
 <section id="recoveryPage" class="page center-page">
 
@@ -1234,9 +1195,7 @@ button{
 </section>
 
 
-<!-- ===================================================
-     HOME
-=================================================== -->
+<!-- HOME -->
 
 <section id="homePage" class="page">
 
@@ -1309,13 +1268,13 @@ button{
         <h3>Popular Rooms</h3>
 
         <div class="home-placeholder">
-            🌎 Country & State rooms will be connected here.
+            🌎 Country & State rooms are being built step-by-step.
         </div>
 
         <h3>Market</h3>
 
         <div class="home-placeholder">
-            🛒 Y-M Chat Marketplace will be connected here.
+            🛒 Y-M Marketplace will be connected later.
         </div>
 
     </div>
@@ -1323,9 +1282,7 @@ button{
 </section>
 
 
-<!-- ===================================================
-     CHATS
-=================================================== -->
+<!-- CHATS -->
 
 <section id="chatsPage" class="page">
 
@@ -1333,76 +1290,43 @@ button{
         <h2>Chats</h2>
     </div>
 
-    <div style="padding:20px;">
-        <div class="card">
-            <h3>💬 Chats</h3>
-            <p style="margin-top:10px;color:#777;">
-                Private chat module will be connected here.
-            </p>
+    <div class="module">
+
+        <div class="module-card">
+            <h3>💬 Private Chats</h3>
+
+            <button onclick="openDemoChat('Ahmad')">
+                👤 Ahmad
+                <span class="online">● Online</span>
+            </button>
+
+            <button onclick="openDemoChat('Siti')">
+                👤 Siti
+            </button>
+
+            <button onclick="openDemoChat('John')">
+                👤 John
+            </button>
         </div>
-    </div>
 
-</section>
+        <div id="chatBox"
+             class="module-card"
+             style="display:none;">
 
+            <h3 id="chatTitle">Chat</h3>
 
-<!-- ===================================================
-     FRIENDS
-=================================================== -->
+            <div id="chatMessages"></div>
 
-<section id="friendsPage" class="page">
+            <div style="display:flex;gap:6px;margin-top:10px;">
 
-    <div class="topbar">
-        <h2>Friends</h2>
-    </div>
+                <input id="chatInput"
+                       type="text"
+                       placeholder="Write message..."
+                       style="flex:1;padding:10px;border:1px solid #ddd;border-radius:8px;">
 
-    <div style="padding:20px;">
-        <div class="card">
-            <h3>👥 Friends</h3>
-            <p style="margin-top:10px;color:#777;">
-                Friends module will be connected here.
-            </p>
-        </div>
-    </div>
-
-</section>
-
-
-<!-- ===================================================
-     ROOMS
-=================================================== -->
-
-<section id="roomsPage" class="page">
-
-    <div class="topbar">
-        <h2>Rooms</h2>
-    </div>
-
-    <div style="padding:20px;">
-
-        <div class="card">
-
-            <h3>🌎 Y-M Chat Rooms</h3>
-
-            <div style="margin-top:15px;">
-
-                <button class="secondary-btn">
-                    🇲🇾 Malaysia
-                </button>
-
-                <button class="secondary-btn">
-                    🇵🇭 Philippines
-                </button>
-
-                <button class="secondary-btn">
-                    🇮🇩 Indonesia
-                </button>
-
-                <button class="secondary-btn">
-                    🇸🇬 Singapore
-                </button>
-
-                <button class="secondary-btn">
-                    🌎 World
+                <button onclick="sendChatMessage()"
+                        style="border:0;border-radius:8px;background:#1976d2;color:#fff;padding:10px 14px;">
+                    Send
                 </button>
 
             </div>
@@ -1414,25 +1338,46 @@ button{
 </section>
 
 
-<!-- ===================================================
-     MARKET
-=================================================== -->
+<!-- FRIENDS -->
 
-<section id="marketPage" class="page">
+<section id="friendsPage" class="page">
 
     <div class="topbar">
-        <h2>Market</h2>
+        <h2>Friends</h2>
     </div>
 
-    <div style="padding:20px;">
+    <div class="module">
 
-        <div class="card">
+        <div class="module-card">
+            <h3>👥 My Friends</h3>
 
-            <h3>🛒 Y-M Marketplace</h3>
+            <button>
+                👤 Ahmad
+                <span class="online">● Online</span>
+            </button>
 
-            <p style="color:#777;margin-top:10px;">
-                Marketplace module will be connected later.
-            </p>
+            <button>
+                👤 Siti
+            </button>
+
+            <button>
+                👤 John
+            </button>
+        </div>
+
+        <div class="module-card">
+
+            <h3>➕ Add Friend</h3>
+
+            <input id="friendInput"
+                   type="text"
+                   placeholder="Enter Y-M ID"
+                   style="width:100%;padding:11px;border:1px solid #ddd;border-radius:8px;margin-top:10px;">
+
+            <button onclick="addFriend()"
+                    style="background:#1976d2;color:#fff;text-align:center;">
+                ADD FRIEND
+            </button>
 
         </div>
 
@@ -1441,11 +1386,114 @@ button{
 </section>
 
 
-<!-- ===================================================
-     PROFILE
-=================================================== -->
+<!-- ROOMS -->
 
-<section id="profilePage" class="page profile-page">
+<section id="roomsPage" class="page">
+
+    <div class="topbar">
+        <h2>Rooms</h2>
+    </div>
+
+    <div class="module">
+
+        <div class="module-card">
+
+            <h3>🌎 Y-M Chat Rooms</h3>
+
+            <button onclick="openRoom('🇲🇾 Malaysia')">
+                🇲🇾 Malaysia
+            </button>
+
+            <button onclick="openRoom('🌴 Sabah')">
+                🌴 Sabah
+            </button>
+
+            <button onclick="openRoom('🚗 Automotif')">
+                🚗 Automotif
+            </button>
+
+            <button onclick="openRoom('🇵🇭 Philippines')">
+                🇵🇭 Philippines
+            </button>
+
+            <button onclick="openRoom('🇮🇩 Indonesia')">
+                🇮🇩 Indonesia
+            </button>
+
+            <button onclick="openRoom('🇸🇬 Singapore')">
+                🇸🇬 Singapore
+            </button>
+
+            <button onclick="openRoom('🇧🇳 Brunei')">
+                🇧🇳 Brunei
+            </button>
+
+            <button onclick="openRoom('🌎 World')">
+                🌎 World
+            </button>
+
+        </div>
+
+        <div id="roomBox"
+             class="module-card"
+             style="display:none;">
+
+            <h3 id="roomTitle">Room</h3>
+
+            <div id="roomMessages"></div>
+
+            <div style="display:flex;gap:6px;margin-top:10px;">
+
+                <input id="roomInput"
+                       type="text"
+                       placeholder="Write in room..."
+                       style="flex:1;padding:10px;border:1px solid #ddd;border-radius:8px;">
+
+                <button onclick="sendRoomMessage()"
+                        style="border:0;border-radius:8px;background:#1976d2;color:#fff;padding:10px 14px;">
+                    Send
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MARKET -->
+
+<section id="marketPage" class="page">
+
+    <div class="topbar">
+        <h2>Market</h2>
+    </div>
+
+    <div class="module">
+
+        <div class="module-card">
+            <h3>🛒 Y-M Marketplace</h3>
+
+            <p style="color:#777;margin-top:10px;">
+                Buy and sell module will be connected later.
+            </p>
+
+            <button onclick="toast('Marketplace module coming later.')">
+                ➕ Create Listing
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section id="profilePage" class="page">
 
     <div class="topbar">
         <h2>Profile</h2>
@@ -1453,7 +1501,8 @@ button{
 
     <div class="profile-cover">
 
-        <img id="coverImage" alt="Cover Photo">
+        <img id="coverImage"
+             alt="Cover Photo">
 
         <div class="cover-menu">
 
@@ -1462,7 +1511,8 @@ button{
                 ⋮
             </button>
 
-            <div class="menu-box" id="menuBox">
+            <div class="menu-box"
+                 id="menuBox">
 
                 <button onclick="openEditProfile()">
                     ✏️ Edit Profile
@@ -1496,7 +1546,6 @@ button{
                onchange="uploadCover(this)">
 
     </div>
-
 
     <div class="profile-area">
 
@@ -1547,43 +1596,37 @@ button{
 
         </div>
 
-
         <div class="info-card">
 
             <div class="info-row">
                 <div class="info-label">🎂 Birthday</div>
-                <div class="info-value"
-                     id="infoBirthday">
+                <div class="info-value" id="infoBirthday">
                     Not set
                 </div>
             </div>
 
             <div class="info-row">
                 <div class="info-label">📍 Birthplace</div>
-                <div class="info-value"
-                     id="infoBirthplace">
+                <div class="info-value" id="infoBirthplace">
                     Not set
                 </div>
             </div>
 
             <div class="info-row">
                 <div class="info-label">🎓 School</div>
-                <div class="info-value"
-                     id="infoSchool">
+                <div class="info-value" id="infoSchool">
                     Not set
                 </div>
             </div>
 
             <div class="info-row">
                 <div class="info-label">🌏 Country</div>
-                <div class="info-value"
-                     id="infoCountry">
+                <div class="info-value" id="infoCountry">
                     Malaysia
                 </div>
             </div>
 
         </div>
-
 
         <div class="post-box">
 
@@ -1631,7 +1674,6 @@ button{
 
         </div>
 
-
         <h2 class="section-title">
             My Posts
         </h2>
@@ -1645,9 +1687,7 @@ button{
 </div>
 
 
-<!-- ===================================================
-     BOTTOM NAV
-=================================================== -->
+<!-- BOTTOM NAV -->
 
 <div class="bottom-nav" id="bottomNav">
 
@@ -1684,9 +1724,7 @@ button{
 </div>
 
 
-<!-- ===================================================
-     EDIT PROFILE MODAL
-=================================================== -->
+<!-- EDIT PROFILE -->
 
 <div class="modal" id="editModal">
 
@@ -1743,9 +1781,7 @@ button{
 </div>
 
 
-<!-- ===================================================
-     PASSWORD MODAL
-=================================================== -->
+<!-- PASSWORD MODAL -->
 
 <div class="modal" id="passwordModal">
 
@@ -1755,20 +1791,17 @@ button{
 
         <div class="form-group">
             <label>Current Password</label>
-            <input id="currentPassword"
-                   type="password">
+            <input id="currentPassword" type="password">
         </div>
 
         <div class="form-group">
             <label>New Password</label>
-            <input id="newPassword"
-                   type="password">
+            <input id="newPassword" type="password">
         </div>
 
         <div class="form-group">
             <label>Confirm New Password</label>
-            <input id="confirmPassword"
-                   type="password">
+            <input id="confirmPassword" type="password">
         </div>
 
         <div class="modal-buttons">
@@ -1790,9 +1823,7 @@ button{
 </div>
 
 
-<!-- ===================================================
-     EMAIL MODAL
-=================================================== -->
+<!-- EMAIL MODAL -->
 
 <div class="modal" id="emailModal">
 
@@ -1802,14 +1833,12 @@ button{
 
         <div class="form-group">
             <label>New Email</label>
-            <input id="newEmail"
-                   type="email">
+            <input id="newEmail" type="email">
         </div>
 
         <div class="form-group">
             <label>Confirm New Email</label>
-            <input id="confirmEmail"
-                   type="email">
+            <input id="confirmEmail" type="email">
         </div>
 
         <div class="modal-buttons">
@@ -1837,19 +1866,25 @@ button{
 <script>
 
 /* =====================================================
-   Y-M CHAT
-   SECURITY CORE + HOME + PROFILE
+   Y-M CHAT SECURITY CORE
+   STABLE STORAGE VERSION
 ===================================================== */
 
-const ACCOUNT_KEY = "ym_accounts";
-const CURRENT_USER_KEY = "ym_current_user";
-const PROFILE_KEY = "ym_profiles";
+const ACCOUNT_KEY = "ym_accounts_v2";
+const OLD_ACCOUNT_KEY = "ym_accounts";
+
+const CURRENT_USER_KEY = "ym_current_user_v2";
+const OLD_CURRENT_USER_KEY = "ym_current_user";
+
+const PROFILE_KEY = "ym_profiles_v2";
+const OLD_PROFILE_KEY = "ym_profiles";
+
 const LANGUAGE_KEY = "ym_language";
 
-const DB_NAME = "YMChatProfileDB";
-const DB_VERSION = 1;
-const MEDIA_STORE = "media";
-const POST_STORE = "posts";
+const POSTS_KEY = "ym_posts_v2";
+const CHATS_KEY = "ym_chats_v2";
+const ROOMS_KEY = "ym_rooms_v2";
+const FRIENDS_KEY = "ym_friends_v2";
 
 let currentUser = null;
 let profileData = null;
@@ -1858,7 +1893,8 @@ let recoveryAccount = null;
 let selectedImage = null;
 let selectedVideo = null;
 
-let db = null;
+let currentChatUser = null;
+let currentRoom = null;
 
 
 /* =====================================================
@@ -1914,42 +1950,322 @@ const securityQuestions = {
 
 
 /* =====================================================
-   BASIC STORAGE
+   SAFE JSON
+===================================================== */
+
+function safeJSON(value,fallback){
+
+    try{
+
+        if(value === null ||
+           value === undefined ||
+           value === ""){
+
+            return fallback;
+        }
+
+        const result =
+            JSON.parse(value);
+
+        return result;
+
+    }catch(error){
+
+        console.warn(
+            "Y-M Chat storage read error:",
+            error
+        );
+
+        return fallback;
+    }
+}
+
+
+/* =====================================================
+   NORMALIZE ACCOUNT
+===================================================== */
+
+function normalizeAccount(account){
+
+    if(!account ||
+       typeof account !== "object"){
+
+        return null;
+    }
+
+
+    const ymid =
+        String(
+            account.ymid ||
+            account.username ||
+            account.id ||
+            ""
+        ).trim();
+
+
+    if(!ymid){
+        return null;
+    }
+
+
+    return {
+
+        ymid:ymid,
+
+        username:
+            String(
+                account.username ||
+                ymid
+            ),
+
+        name:
+            String(
+                account.name ||
+                ymid
+            ),
+
+        password:
+            String(
+                account.password ||
+                ""
+            ),
+
+        country:
+            String(
+                account.country ||
+                "Malaysia"
+            ),
+
+        phone:
+            String(
+                account.phone ||
+                ""
+            ),
+
+        email:
+            String(
+                account.email ||
+                ""
+            ),
+
+        securityQ1:
+            String(
+                account.securityQ1 ??
+                "0"
+            ),
+
+        securityA1:
+            String(
+                account.securityA1 ||
+                ""
+            ).toLowerCase(),
+
+        securityQ2:
+            String(
+                account.securityQ2 ??
+                "1"
+            ),
+
+        securityA2:
+            String(
+                account.securityA2 ||
+                ""
+            ).toLowerCase(),
+
+        createdAt:
+            account.createdAt ||
+            new Date().toLocaleString()
+
+    };
+}
+
+
+/* =====================================================
+   GET ACCOUNTS
+   FIX FOR OLD / BROKEN STORAGE
 ===================================================== */
 
 function getAccounts(){
 
     try{
 
-        return JSON.parse(
-            localStorage.getItem(ACCOUNT_KEY)
-        ) || [];
+        let raw =
+            localStorage.getItem(
+                ACCOUNT_KEY
+            );
 
-    }catch(e){
+
+        /*
+         If the new key does not exist,
+         check the old Y-M Chat key.
+        */
+
+        if(raw === null){
+
+            raw =
+                localStorage.getItem(
+                    OLD_ACCOUNT_KEY
+                );
+        }
+
+
+        if(raw === null){
+
+            return [];
+        }
+
+
+        const parsed =
+            safeJSON(raw,null);
+
+
+        if(Array.isArray(parsed)){
+
+            return parsed
+                .map(normalizeAccount)
+                .filter(Boolean);
+        }
+
+
+        /*
+         Some old versions may have stored
+         one account as an object.
+        */
+
+        if(
+            parsed &&
+            typeof parsed === "object"
+        ){
+
+            if(
+                Array.isArray(
+                    parsed.accounts
+                )
+            ){
+
+                return parsed.accounts
+                    .map(normalizeAccount)
+                    .filter(Boolean);
+            }
+
+
+            const single =
+                normalizeAccount(parsed);
+
+
+            if(single){
+                return [single];
+            }
+        }
+
+
+        return [];
+
+    }catch(error){
+
+        console.error(
+            "getAccounts error:",
+            error
+        );
 
         return [];
     }
 }
 
 
+/* =====================================================
+   SAVE ACCOUNTS
+===================================================== */
+
 function saveAccounts(accounts){
 
-    localStorage.setItem(
-        ACCOUNT_KEY,
-        JSON.stringify(accounts)
-    );
+    try{
+
+        const clean =
+            Array.isArray(accounts)
+            ? accounts
+                .map(normalizeAccount)
+                .filter(Boolean)
+            : [];
+
+        localStorage.setItem(
+            ACCOUNT_KEY,
+            JSON.stringify(clean)
+        );
+
+        return true;
+
+    }catch(error){
+
+        console.error(
+            "saveAccounts error:",
+            error
+        );
+
+        return false;
+    }
 }
 
+
+/* =====================================================
+   MIGRATE ACCOUNTS
+===================================================== */
+
+function migrateAccounts(){
+
+    const accounts =
+        getAccounts();
+
+
+    if(accounts.length > 0){
+
+        saveAccounts(accounts);
+    }
+
+    return accounts;
+}
+
+
+/* =====================================================
+   PROFILES
+===================================================== */
 
 function getProfiles(){
 
     try{
 
-        return JSON.parse(
-            localStorage.getItem(PROFILE_KEY)
-        ) || {};
+        let raw =
+            localStorage.getItem(
+                PROFILE_KEY
+            );
 
-    }catch(e){
+
+        if(raw === null){
+
+            raw =
+                localStorage.getItem(
+                    OLD_PROFILE_KEY
+                );
+        }
+
+
+        const data =
+            safeJSON(raw,{});
+
+
+        if(
+            data &&
+            typeof data === "object" &&
+            !Array.isArray(data)
+        ){
+
+            return data;
+        }
+
+
+        return {};
+
+    }catch(error){
 
         return {};
     }
@@ -1958,10 +2274,21 @@ function getProfiles(){
 
 function saveProfiles(data){
 
-    localStorage.setItem(
-        PROFILE_KEY,
-        JSON.stringify(data)
-    );
+    try{
+
+        localStorage.setItem(
+            PROFILE_KEY,
+            JSON.stringify(data)
+        );
+
+        return true;
+
+    }catch(error){
+
+        console.error(error);
+
+        return false;
+    }
 }
 
 
@@ -1971,9 +2298,14 @@ function saveProfiles(data){
 
 function escapeHTML(text){
 
-    if(text === null || text === undefined){
+    if(
+        text === null ||
+        text === undefined
+    ){
+
         return "";
     }
+
 
     return String(text)
         .replace(/&/g,"&amp;")
@@ -1990,7 +2322,8 @@ function initial(name){
         return "N";
     }
 
-    return name
+
+    return String(name)
         .trim()
         .charAt(0)
         .toUpperCase() || "N";
@@ -2000,19 +2333,41 @@ function initial(name){
 function toast(message){
 
     const box =
-        document.getElementById("toast");
+        document.getElementById(
+            "toast"
+        );
 
-    box.textContent = message;
-    box.style.display = "block";
 
-    clearTimeout(window.toastTimer);
+    if(!box){
+        return;
+    }
+
+
+    box.textContent =
+        message;
+
+    box.style.display =
+        "block";
+
+
+    clearTimeout(
+        window.toastTimer
+    );
+
 
     window.toastTimer =
         setTimeout(()=>{
-            box.style.display = "none";
-        },2200);
+
+            box.style.display =
+                "none";
+
+        },2300);
 }
 
+
+/* =====================================================
+   FIND ACCOUNT
+===================================================== */
 
 function findAccount(value){
 
@@ -2021,45 +2376,68 @@ function findAccount(value){
         .trim()
         .toLowerCase();
 
-    return getAccounts().find(account =>
 
-        String(account.ymid || "")
-            .toLowerCase() === text ||
+    if(!text){
+        return null;
+    }
 
-        String(account.username || "")
-            .toLowerCase() === text ||
 
-        String(account.name || "")
-            .toLowerCase() === text ||
+    const accounts =
+        getAccounts();
 
-        String(account.email || "")
-            .toLowerCase() === text ||
 
-        String(account.phone || "")
-            .toLowerCase() === text
+    return accounts.find(
+        account => {
 
-    );
+            return [
+
+                account.ymid,
+                account.username,
+                account.name,
+                account.email,
+                account.phone
+
+            ].some(item =>
+
+                String(item || "")
+                .trim()
+                .toLowerCase() === text
+
+            );
+
+        }
+    ) || null;
 }
 
 
 /* =====================================================
-   PAGE NAVIGATION
+   PAGE
 ===================================================== */
 
 function showPage(id){
 
     document
         .querySelectorAll(".page")
-        .forEach(page=>{
-            page.classList.remove("active");
+        .forEach(page => {
+
+            page.classList.remove(
+                "active"
+            );
+
         });
+
 
     const page =
         document.getElementById(id);
 
+
     if(page){
-        page.classList.add("active");
+
+        page.classList.add(
+            "active"
+        );
     }
+
 
     if([
         "frontPage",
@@ -2072,58 +2450,93 @@ function showPage(id){
 
         document.getElementById(
             "bottomNav"
-        ).style.display = "none";
+        ).style.display =
+            "none";
     }
-
 }
 
+
+/* =====================================================
+   APP PAGE
+===================================================== */
 
 function showAppPage(id,navId){
 
     if(!currentUser){
 
-        showPage("loginPage");
+        showPage(
+            "loginPage"
+        );
+
         return;
     }
 
+
     document
         .querySelectorAll(".page")
-        .forEach(page=>{
-            page.classList.remove("active");
+        .forEach(page => {
+
+            page.classList.remove(
+                "active"
+            );
+
         });
+
 
     const page =
         document.getElementById(id);
 
+
     if(page){
-        page.classList.add("active");
+
+        page.classList.add(
+            "active"
+        );
     }
+
 
     document.getElementById(
         "bottomNav"
-    ).style.display = "flex";
+    ).style.display =
+        "flex";
+
 
     document
-        .querySelectorAll(".bottom-nav button")
-        .forEach(button=>{
-            button.classList.remove("active");
+        .querySelectorAll(
+            ".bottom-nav button"
+        )
+        .forEach(button => {
+
+            button.classList.remove(
+                "active"
+            );
+
         });
 
+
     const nav =
-        document.getElementById(navId);
+        document.getElementById(
+            navId
+        );
+
 
     if(nav){
-        nav.classList.add("active");
+
+        nav.classList.add(
+            "active"
+        );
     }
 
+
     if(id === "homePage"){
+
         renderHomeUser();
     }
+
 
     if(id === "profilePage"){
 
         renderProfile();
-
         renderPosts();
     }
 }
@@ -2139,7 +2552,7 @@ function goHome(){
 
 
 /* =====================================================
-   COUNTRY + QUESTIONS
+   COUNTRIES
 ===================================================== */
 
 function fillCountries(){
@@ -2149,18 +2562,39 @@ function fillCountries(){
             "registerCountry"
         );
 
-    countries.forEach(country=>{
+
+    if(!select){
+        return;
+    }
+
+
+    select.innerHTML =
+        '<option value="">Select country</option>';
+
+
+    countries.forEach(country => {
 
         const option =
-            document.createElement("option");
+            document.createElement(
+                "option"
+            );
 
-        option.value = country;
-        option.textContent = country;
+        option.value =
+            country;
 
-        select.appendChild(option);
+        option.textContent =
+            country;
+
+        select.appendChild(
+            option
+        );
     });
 }
 
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
 
 function fillSecurityQuestions(){
 
@@ -2169,59 +2603,78 @@ function fillSecurityQuestions(){
             LANGUAGE_KEY
         ) || "en";
 
+
     const list =
         securityQuestions[language] ||
         securityQuestions.en;
 
-    const ids = [
+
+    [
         "securityQ1",
         "securityQ2",
         "securityEditQ1",
         "securityEditQ2"
-    ];
-
-    ids.forEach(id=>{
+    ].forEach(id => {
 
         const select =
             document.getElementById(id);
+
 
         if(!select){
             return;
         }
 
+
         select.innerHTML = "";
 
-        list.forEach((question,index)=>{
 
-            const option =
-                document.createElement("option");
+        list.forEach(
+            (question,index) => {
 
-            option.value =
-                String(index);
+                const option =
+                    document.createElement(
+                        "option"
+                    );
 
-            option.textContent =
-                question;
+                option.value =
+                    String(index);
 
-            select.appendChild(option);
-        });
+                option.textContent =
+                    question;
 
+                select.appendChild(
+                    option
+                );
+            }
+        );
     });
 }
 
 
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
 function changeLanguage(){
 
-    const language =
+    const select =
         document.getElementById(
             "languageSelect"
-        ).value;
+        );
+
+
+    const language =
+        select.value;
+
 
     localStorage.setItem(
         LANGUAGE_KEY,
         language
     );
 
+
     fillSecurityQuestions();
+
 
     toast(
         language === "ms"
@@ -2237,73 +2690,86 @@ function changeLanguage(){
 
 function register(){
 
-    const name =
-        document.getElementById(
-            "registerName"
-        ).value.trim();
-
-    const ymid =
-        document.getElementById(
-            "registerId"
-        ).value.trim();
-
-    const password =
-        document.getElementById(
-            "registerPassword"
-        ).value;
-
-    const confirm =
-        document.getElementById(
-            "registerConfirm"
-        ).value;
-
-    const country =
-        document.getElementById(
-            "registerCountry"
-        ).value;
-
-    const phone =
-        document.getElementById(
-            "registerPhone"
-        ).value.trim();
-
-    const email =
-        document.getElementById(
-            "registerEmail"
-        ).value.trim();
-
-    const emailConfirm =
-        document.getElementById(
-            "registerEmailConfirm"
-        ).value.trim();
-
-    const q1 =
-        document.getElementById(
-            "securityQ1"
-        ).value;
-
-    const a1 =
-        document.getElementById(
-            "securityA1"
-        ).value.trim();
-
-    const q2 =
-        document.getElementById(
-            "securityQ2"
-        ).value;
-
-    const a2 =
-        document.getElementById(
-            "securityA2"
-        ).value.trim();
-
     const message =
         document.getElementById(
             "registerMessage"
         );
 
 
-    message.className = "message";
+    message.className =
+        "message";
+
+
+    const name =
+        document.getElementById(
+            "registerName"
+        ).value.trim();
+
+
+    const ymid =
+        document.getElementById(
+            "registerId"
+        ).value.trim();
+
+
+    const password =
+        document.getElementById(
+            "registerPassword"
+        ).value;
+
+
+    const confirm =
+        document.getElementById(
+            "registerConfirm"
+        ).value;
+
+
+    const country =
+        document.getElementById(
+            "registerCountry"
+        ).value;
+
+
+    const phone =
+        document.getElementById(
+            "registerPhone"
+        ).value.trim();
+
+
+    const email =
+        document.getElementById(
+            "registerEmail"
+        ).value.trim();
+
+
+    const emailConfirm =
+        document.getElementById(
+            "registerEmailConfirm"
+        ).value.trim();
+
+
+    const q1 =
+        document.getElementById(
+            "securityQ1"
+        ).value;
+
+
+    const a1 =
+        document.getElementById(
+            "securityA1"
+        ).value.trim();
+
+
+    const q2 =
+        document.getElementById(
+            "securityQ2"
+        ).value;
+
+
+    const a2 =
+        document.getElementById(
+            "securityA2"
+        ).value.trim();
 
 
     if(
@@ -2321,6 +2787,15 @@ function register(){
 
         message.textContent =
             "Please complete all fields.";
+
+        return;
+    }
+
+
+    if(ymid.length < 3){
+
+        message.textContent =
+            "Y-M ID must contain at least 3 characters.";
 
         return;
     }
@@ -2366,17 +2841,24 @@ function register(){
         getAccounts();
 
 
-    const exists =
-        accounts.some(account =>
+    const duplicate =
+        accounts.some(
+            account => {
 
-            String(account.ymid || "")
-                .toLowerCase() ===
-            ymid.toLowerCase()
+                const id =
+                    String(
+                        account.ymid || ""
+                    ).toLowerCase();
 
+
+                return id ===
+                    ymid.toLowerCase();
+
+            }
         );
 
 
-    if(exists){
+    if(duplicate){
 
         message.textContent =
             "This Y-M ID already exists.";
@@ -2388,28 +2870,46 @@ function register(){
     const account = {
 
         ymid:ymid,
+
         username:ymid,
+
         name:name,
+
         password:password,
+
         country:country,
+
         phone:phone,
+
         email:email,
 
         securityQ1:q1,
-        securityA1:a1.toLowerCase(),
+
+        securityA1:
+            a1.toLowerCase(),
 
         securityQ2:q2,
-        securityA2:a2.toLowerCase(),
+
+        securityA2:
+            a2.toLowerCase(),
 
         createdAt:
             new Date().toLocaleString()
-
     };
 
 
-    accounts.push(account);
+    accounts.push(
+        account
+    );
 
-    saveAccounts(accounts);
+
+    if(!saveAccounts(accounts)){
+
+        message.textContent =
+            "Unable to save account on this browser.";
+
+        return;
+    }
 
 
     const profiles =
@@ -2419,10 +2919,13 @@ function register(){
     profiles[ymid] = {
 
         name:name,
+
         ymid:ymid,
 
         birthday:"",
+
         birthplace:"",
+
         school:"",
 
         country:country,
@@ -2431,17 +2934,22 @@ function register(){
             "Welcome to my Y-M Chat profile.",
 
         profileMediaId:null,
+
         coverMediaId:null,
 
         email:email
+
     };
 
 
-    saveProfiles(profiles);
+    saveProfiles(
+        profiles
+    );
 
 
     message.className =
         "message success-message";
+
 
     message.textContent =
         "Y-M ID created successfully. You can now login.";
@@ -2451,28 +2959,46 @@ function register(){
         "registerPassword"
     ).value = "";
 
+
     document.getElementById(
         "registerConfirm"
     ).value = "";
 
+
+    setTimeout(()=>{
+
+        document.getElementById(
+            "loginId"
+        ).value =
+            ymid;
+
+
+        showPage(
+            "loginPage"
+        );
+
+
+        document.getElementById(
+            "loginMessage"
+        ).className =
+            "message success-message";
+
+
+        document.getElementById(
+            "loginMessage"
+        ).textContent =
+            "Account created. Please enter your password.";
+
+    },700);
 }
 
 
 /* =====================================================
    LOGIN
+   MAIN FIX
 ===================================================== */
 
-async function login(){
-
-    const id =
-        document.getElementById(
-            "loginId"
-        ).value.trim();
-
-    const password =
-        document.getElementById(
-            "loginPassword"
-        ).value;
+function login(){
 
     const message =
         document.getElementById(
@@ -2480,70 +3006,166 @@ async function login(){
         );
 
 
-    message.className = "message";
+    message.className =
+        "message";
 
 
-    if(!id || !password){
+    try{
+
+        const id =
+            document.getElementById(
+                "loginId"
+            ).value.trim();
+
+
+        const password =
+            document.getElementById(
+                "loginPassword"
+            ).value;
+
+
+        if(!id || !password){
+
+            message.textContent =
+                "Please enter your Y-M ID and password.";
+
+            return;
+        }
+
+
+        /*
+         Always read fresh account data.
+        */
+
+        const accounts =
+            getAccounts();
+
+
+        if(!Array.isArray(accounts)){
+
+            message.textContent =
+                "Account storage error.";
+
+            return;
+        }
+
+
+        const account =
+            accounts.find(
+                item => {
+
+                    const identifiers = [
+
+                        item.ymid,
+                        item.username,
+                        item.name,
+                        item.email,
+                        item.phone
+
+                    ];
+
+
+                    return identifiers.some(
+                        value =>
+
+                        String(
+                            value || ""
+                        )
+                        .trim()
+                        .toLowerCase() ===
+                        id.toLowerCase()
+
+                    );
+                }
+            );
+
+
+        if(!account){
+
+            message.textContent =
+                "Y-M ID, username, email or phone was not found.";
+
+            return;
+        }
+
+
+        if(
+            String(account.password) !==
+            String(password)
+        ){
+
+            message.textContent =
+                "Y-M ID or password is incorrect.";
+
+            return;
+        }
+
+
+        /*
+         Login confirmed.
+        */
+
+        currentUser =
+            account.ymid;
+
+
+        localStorage.setItem(
+            CURRENT_USER_KEY,
+            currentUser
+        );
+
+
+        /*
+         Remove stale old current-user
+         so old versions cannot interfere.
+        */
+
+        localStorage.removeItem(
+            OLD_CURRENT_USER_KEY
+        );
+
+
+        ensureProfile();
+
+
+        document.getElementById(
+            "loginId"
+        ).value = "";
+
+
+        document.getElementById(
+            "loginPassword"
+        ).value = "";
+
 
         message.textContent =
-            "Please enter your Y-M ID and password.";
-
-        return;
-    }
+            "";
 
 
-    const account =
-        findAccount(id);
+        toast(
+            "Login successful."
+        );
 
 
-    if(!account){
+        setTimeout(()=>{
+
+            goHome();
+
+        },300);
+
+
+    }catch(error){
+
+        console.error(
+            "LOGIN ERROR:",
+            error
+        );
+
 
         message.textContent =
-            "Y-M ID or password is incorrect.";
+            "Login error. Please try again.";
 
-        return;
     }
-
-
-    if(account.password !== password){
-
-        message.textContent =
-            "Y-M ID or password is incorrect.";
-
-        return;
-    }
-
-
-    currentUser =
-        account.ymid;
-
-
-    localStorage.setItem(
-        CURRENT_USER_KEY,
-        currentUser
-    );
-
-
-    await ensureProfile();
-
-
-    document.getElementById(
-        "loginId"
-    ).value = "";
-
-    document.getElementById(
-        "loginPassword"
-    ).value = "";
-
-
-    message.textContent = "";
-
-    toast("Login successful.");
-
-    setTimeout(()=>{
-        goHome();
-    },250);
-
 }
 
 
@@ -2551,13 +3173,44 @@ async function login(){
    ENSURE PROFILE
 ===================================================== */
 
-async function ensureProfile(){
+function ensureProfile(){
+
+    if(!currentUser){
+
+        profileData = null;
+
+        return;
+    }
+
 
     const profiles =
         getProfiles();
 
+
+    const accounts =
+        getAccounts();
+
+
     const account =
-        findAccount(currentUser);
+        accounts.find(
+            a =>
+            String(a.ymid).toLowerCase() ===
+            String(currentUser).toLowerCase()
+        );
+
+
+    if(!account){
+
+        currentUser = null;
+
+        localStorage.removeItem(
+            CURRENT_USER_KEY
+        );
+
+        profileData = null;
+
+        return;
+    }
 
 
     if(!profiles[currentUser]){
@@ -2565,34 +3218,38 @@ async function ensureProfile(){
         profiles[currentUser] = {
 
             name:
-                account?.name ||
-                currentUser ||
-                "Y-M User",
+                account.name ||
+                currentUser,
 
             ymid:
-                account?.ymid ||
-                currentUser ||
-                "@user",
+                account.ymid ||
+                currentUser,
 
             birthday:"",
+
             birthplace:"",
+
             school:"",
 
             country:
-                account?.country ||
+                account.country ||
                 "Malaysia",
 
             bio:
                 "Welcome to my Y-M Chat profile.",
 
             profileMediaId:null,
+
             coverMediaId:null,
 
             email:
-                account?.email || ""
+                account.email || ""
         };
 
-        saveProfiles(profiles);
+
+        saveProfiles(
+            profiles
+        );
     }
 
 
@@ -2602,26 +3259,35 @@ async function ensureProfile(){
 
 
 /* =====================================================
-   HOME USER
+   HOME
 ===================================================== */
 
-async function renderHomeUser(){
+function renderHomeUser(){
+
+    ensureProfile();
+
 
     if(!profileData){
-        await ensureProfile();
+        return;
     }
 
 
     document.getElementById(
         "homeUserName"
     ).textContent =
-        profileData.name || "Y-M User";
+        profileData.name ||
+        "Y-M User";
 
 
     document.getElementById(
         "homeUserId"
     ).textContent =
-        profileData.ymid || "@user";
+        "@" +
+        String(
+            profileData.ymid ||
+            currentUser ||
+            "user"
+        ).replace(/^@/,"");
 
 
     const image =
@@ -2629,71 +3295,73 @@ async function renderHomeUser(){
             "homeAvatarImage"
         );
 
+
     const text =
         document.getElementById(
             "homeAvatarText"
         );
 
 
-    if(
-        profileData.profileMediaId &&
-        db
-    ){
+    /*
+     Home photo uses data URL stored in profile.
+     */
 
-        try{
+    if(profileData.profilePhoto){
 
-            const blob =
-                await getMedia(
-                    profileData.profileMediaId
-                );
+        image.src =
+            profileData.profilePhoto;
 
-            if(blob){
+        image.style.display =
+            "block";
 
-                const url =
-                    URL.createObjectURL(blob);
+        text.style.display =
+            "none";
 
-                image.src = url;
-                image.style.display = "block";
-                text.style.display = "none";
+    }else{
 
-                image.onload =
-                    ()=>URL.revokeObjectURL(url);
+        image.style.display =
+            "none";
 
-                return;
-            }
+        text.style.display =
+            "block";
 
-        }catch(e){}
+        text.textContent =
+            initial(
+                profileData.name
+            );
     }
-
-
-    image.style.display = "none";
-    text.style.display = "block";
-    text.textContent =
-        initial(profileData.name);
 }
 
 
 /* =====================================================
-   PROFILE RENDER
+   PROFILE
 ===================================================== */
 
-async function renderProfile(){
+function renderProfile(){
+
+    ensureProfile();
+
 
     if(!profileData){
-        await ensureProfile();
+        return;
     }
 
 
     document.getElementById(
         "profileName"
     ).textContent =
-        profileData.name || "Y-M User";
+        profileData.name ||
+        "Y-M User";
 
 
     document.getElementById(
         "profileYmid"
     ).textContent =
-        profileData.ymid || "@user";
+        "@" +
+        String(
+            profileData.ymid ||
+            currentUser
+        ).replace(/^@/,"");
 
 
     document.getElementById(
@@ -2706,25 +3374,29 @@ async function renderProfile(){
     document.getElementById(
         "infoBirthday"
     ).textContent =
-        profileData.birthday || "Not set";
+        profileData.birthday ||
+        "Not set";
 
 
     document.getElementById(
         "infoBirthplace"
     ).textContent =
-        profileData.birthplace || "Not set";
+        profileData.birthplace ||
+        "Not set";
 
 
     document.getElementById(
         "infoSchool"
     ).textContent =
-        profileData.school || "Not set";
+        profileData.school ||
+        "Not set";
 
 
     document.getElementById(
         "infoCountry"
     ).textContent =
-        profileData.country || "Not set";
+        profileData.country ||
+        "Not set";
 
 
     const avatar =
@@ -2732,44 +3404,36 @@ async function renderProfile(){
             "profileImage"
         );
 
+
     const avatarText =
         document.getElementById(
             "avatarText"
         );
 
 
-    if(profileData.profileMediaId){
+    if(profileData.profilePhoto){
 
-        try{
+        avatar.src =
+            profileData.profilePhoto;
 
-            const blob =
-                await getMedia(
-                    profileData.profileMediaId
-                );
+        avatar.style.display =
+            "block";
 
-            if(blob){
-
-                const url =
-                    URL.createObjectURL(blob);
-
-                avatar.src = url;
-                avatar.style.display = "block";
-                avatarText.style.display = "none";
-
-                avatar.onload =
-                    ()=>URL.revokeObjectURL(url);
-
-            }
-
-        }catch(e){}
+        avatarText.style.display =
+            "none";
 
     }else{
 
-        avatar.style.display = "none";
-        avatarText.style.display = "block";
+        avatar.style.display =
+            "none";
+
+        avatarText.style.display =
+            "block";
 
         avatarText.textContent =
-            initial(profileData.name);
+            initial(
+                profileData.name
+            );
     }
 
 
@@ -2779,269 +3443,65 @@ async function renderProfile(){
         );
 
 
-    if(profileData.coverMediaId){
+    if(profileData.coverPhoto){
 
-        try{
+        cover.src =
+            profileData.coverPhoto;
 
-            const blob =
-                await getMedia(
-                    profileData.coverMediaId
-                );
-
-            if(blob){
-
-                const url =
-                    URL.createObjectURL(blob);
-
-                cover.src = url;
-                cover.style.display = "block";
-
-                cover.onload =
-                    ()=>URL.revokeObjectURL(url);
-            }
-
-        }catch(e){}
+        cover.style.display =
+            "block";
 
     }else{
 
-        cover.style.display = "none";
+        cover.style.display =
+            "none";
     }
 }
 
 
 /* =====================================================
-   INDEXED DB
+   IMAGE FILE TO DATA URL
 ===================================================== */
 
-function openDatabase(){
+function fileToDataURL(file){
 
-    return new Promise((resolve,reject)=>{
+    return new Promise(
+        (resolve,reject)=>{
 
-        const request =
-            indexedDB.open(
-                DB_NAME,
-                DB_VERSION
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                ()=>resolve(
+                    reader.result
+                );
+
+
+            reader.onerror =
+                ()=>reject(
+                    reader.error
+                );
+
+
+            reader.readAsDataURL(
+                file
             );
-
-
-        request.onupgradeneeded =
-            function(event){
-
-                const database =
-                    event.target.result;
-
-
-                if(
-                    !database.objectStoreNames
-                    .contains(MEDIA_STORE)
-                ){
-
-                    database.createObjectStore(
-                        MEDIA_STORE,
-                        {keyPath:"id"}
-                    );
-                }
-
-
-                if(
-                    !database.objectStoreNames
-                    .contains(POST_STORE)
-                ){
-
-                    database.createObjectStore(
-                        POST_STORE,
-                        {keyPath:"id"}
-                    );
-                }
-
-            };
-
-
-        request.onsuccess =
-            function(event){
-
-                db =
-                    event.target.result;
-
-                resolve(db);
-            };
-
-
-        request.onerror =
-            function(){
-
-                reject(request.error);
-            };
-
-    });
-}
-
-
-/* =====================================================
-   MEDIA
-===================================================== */
-
-function saveMedia(id,blob){
-
-    return new Promise((resolve,reject)=>{
-
-        const transaction =
-            db.transaction(
-                MEDIA_STORE,
-                "readwrite"
-            );
-
-        transaction
-            .objectStore(MEDIA_STORE)
-            .put({
-                id:id,
-                blob:blob
-            });
-
-        transaction.oncomplete =
-            ()=>resolve();
-
-        transaction.onerror =
-            ()=>reject(transaction.error);
-    });
-}
-
-
-function getMedia(id){
-
-    return new Promise((resolve,reject)=>{
-
-        const transaction =
-            db.transaction(
-                MEDIA_STORE,
-                "readonly"
-            );
-
-        const request =
-            transaction
-            .objectStore(MEDIA_STORE)
-            .get(id);
-
-        request.onsuccess =
-            ()=>resolve(
-                request.result
-                ? request.result.blob
-                : null
-            );
-
-        request.onerror =
-            ()=>reject(request.error);
-    });
-}
-
-
-function deleteMedia(id){
-
-    return new Promise((resolve,reject)=>{
-
-        const transaction =
-            db.transaction(
-                MEDIA_STORE,
-                "readwrite"
-            );
-
-        transaction
-            .objectStore(MEDIA_STORE)
-            .delete(id);
-
-        transaction.oncomplete =
-            ()=>resolve();
-
-        transaction.onerror =
-            ()=>reject(transaction.error);
-    });
-}
-
-
-/* =====================================================
-   POSTS DB
-===================================================== */
-
-function getAllPosts(){
-
-    return new Promise((resolve,reject)=>{
-
-        const transaction =
-            db.transaction(
-                POST_STORE,
-                "readonly"
-            );
-
-        const request =
-            transaction
-            .objectStore(POST_STORE)
-            .getAll();
-
-        request.onsuccess =
-            ()=>resolve(
-                request.result || []
-            );
-
-        request.onerror =
-            ()=>reject(request.error);
-    });
-}
-
-
-function savePost(post){
-
-    return new Promise((resolve,reject)=>{
-
-        const transaction =
-            db.transaction(
-                POST_STORE,
-                "readwrite"
-            );
-
-        transaction
-            .objectStore(POST_STORE)
-            .put(post);
-
-        transaction.oncomplete =
-            ()=>resolve();
-
-        transaction.onerror =
-            ()=>reject(transaction.error);
-    });
-}
-
-
-function removePost(postId){
-
-    return new Promise((resolve,reject)=>{
-
-        const transaction =
-            db.transaction(
-                POST_STORE,
-                "readwrite"
-            );
-
-        transaction
-            .objectStore(POST_STORE)
-            .delete(postId);
-
-        transaction.oncomplete =
-            ()=>resolve();
-
-        transaction.onerror =
-            ()=>reject(transaction.error);
-    });
+        }
+    );
 }
 
 
 /* =====================================================
    PROFILE PHOTO
+   ALWAYS PUBLIC
 ===================================================== */
 
 async function uploadProfile(input){
 
     const file =
         input.files[0];
+
 
     if(!file){
         return;
@@ -3050,41 +3510,31 @@ async function uploadProfile(input){
 
     if(!file.type.startsWith("image/")){
 
-        toast("Please choose an image.");
+        toast(
+            "Please choose an image."
+        );
+
         input.value = "";
+
         return;
     }
 
 
     try{
 
-        const id =
-            "profile_" +
-            Date.now();
-
-
-        await saveMedia(
-            id,
-            file
-        );
-
-
-        if(profileData.profileMediaId){
-
-            await deleteMedia(
-                profileData.profileMediaId
+        profileData.profilePhoto =
+            await fileToDataURL(
+                file
             );
-        }
-
-
-        profileData.profileMediaId =
-            id;
 
 
         saveCurrentProfile();
 
-        await renderProfile();
-        await renderHomeUser();
+
+        renderProfile();
+
+        renderHomeUser();
+
 
         toast(
             "Profile photo updated."
@@ -3105,13 +3555,15 @@ async function uploadProfile(input){
 
 
 /* =====================================================
-   COVER
+   COVER PHOTO
+   ALWAYS PUBLIC
 ===================================================== */
 
 async function uploadCover(input){
 
     const file =
         input.files[0];
+
 
     if(!file){
         return;
@@ -3120,40 +3572,29 @@ async function uploadCover(input){
 
     if(!file.type.startsWith("image/")){
 
-        toast("Please choose an image.");
+        toast(
+            "Please choose an image."
+        );
+
         input.value = "";
+
         return;
     }
 
 
     try{
 
-        const id =
-            "cover_" +
-            Date.now();
-
-
-        await saveMedia(
-            id,
-            file
-        );
-
-
-        if(profileData.coverMediaId){
-
-            await deleteMedia(
-                profileData.coverMediaId
+        profileData.coverPhoto =
+            await fileToDataURL(
+                file
             );
-        }
-
-
-        profileData.coverMediaId =
-            id;
 
 
         saveCurrentProfile();
 
-        await renderProfile();
+
+        renderProfile();
+
 
         toast(
             "Cover photo updated."
@@ -3174,24 +3615,41 @@ async function uploadCover(input){
 
 
 /* =====================================================
-   SAVE PROFILE
+   SAVE CURRENT PROFILE
 ===================================================== */
 
 function saveCurrentProfile(){
 
+    if(!currentUser ||
+       !profileData){
+
+        return false;
+    }
+
+
     const profiles =
         getProfiles();
+
 
     profiles[currentUser] =
         profileData;
 
-    saveProfiles(profiles);
+
+    return saveProfiles(
+        profiles
+    );
 }
 
+
+/* =====================================================
+   EDIT PROFILE
+===================================================== */
 
 function openEditProfile(){
 
     closeMenu();
+
+    ensureProfile();
 
 
     document.getElementById(
@@ -3232,11 +3690,12 @@ function openEditProfile(){
 
     document.getElementById(
         "editModal"
-    ).style.display = "flex";
+    ).style.display =
+        "flex";
 }
 
 
-async function saveProfile(){
+function saveProfile(){
 
     const name =
         document.getElementById(
@@ -3257,25 +3716,30 @@ async function saveProfile(){
     profileData.name =
         name;
 
+
     profileData.birthday =
         document.getElementById(
             "editBirthday"
         ).value;
+
 
     profileData.birthplace =
         document.getElementById(
             "editBirthplace"
         ).value.trim();
 
+
     profileData.school =
         document.getElementById(
             "editSchool"
         ).value.trim();
 
+
     profileData.country =
         document.getElementById(
             "editCountry"
         ).value.trim();
+
 
     profileData.bio =
         document.getElementById(
@@ -3289,9 +3753,11 @@ async function saveProfile(){
     const accounts =
         getAccounts();
 
+
     const index =
         accounts.findIndex(
-            a => a.ymid === currentUser
+            a =>
+            a.ymid === currentUser
         );
 
 
@@ -3303,16 +3769,21 @@ async function saveProfile(){
         accounts[index].country =
             profileData.country;
 
-        saveAccounts(accounts);
+        saveAccounts(
+            accounts
+        );
     }
 
 
-    await renderProfile();
-    await renderHomeUser();
+    renderProfile();
+
+    renderHomeUser();
+
 
     closeModal(
         "editModal"
     );
+
 
     toast(
         "Profile updated."
@@ -3321,28 +3792,33 @@ async function saveProfile(){
 
 
 /* =====================================================
-   PASSWORD PROFILE
+   PROFILE PASSWORD
 ===================================================== */
 
 function openPasswordModal(){
 
     closeMenu();
 
+
     document.getElementById(
         "currentPassword"
     ).value = "";
+
 
     document.getElementById(
         "newPassword"
     ).value = "";
 
+
     document.getElementById(
         "confirmPassword"
     ).value = "";
 
+
     document.getElementById(
         "passwordModal"
-    ).style.display = "flex";
+    ).style.display =
+        "flex";
 }
 
 
@@ -3353,10 +3829,12 @@ function changePassword(){
             "currentPassword"
         ).value;
 
+
     const next =
         document.getElementById(
             "newPassword"
         ).value;
+
 
     const confirm =
         document.getElementById(
@@ -3364,20 +3842,14 @@ function changePassword(){
         ).value;
 
 
-    if(!current || !next || !confirm){
+    if(
+        !current ||
+        !next ||
+        !confirm
+    ){
 
         toast(
             "Please complete all fields."
-        );
-
-        return;
-    }
-
-
-    if(next !== confirm){
-
-        toast(
-            "New passwords do not match."
         );
 
         return;
@@ -3394,13 +3866,24 @@ function changePassword(){
     }
 
 
+    if(next !== confirm){
+
+        toast(
+            "New passwords do not match."
+        );
+
+        return;
+    }
+
+
     const accounts =
         getAccounts();
 
 
     const index =
         accounts.findIndex(
-            a => a.ymid === currentUser
+            a =>
+            a.ymid === currentUser
         );
 
 
@@ -3415,8 +3898,10 @@ function changePassword(){
 
 
     if(
-        accounts[index].password !==
-        current
+        String(
+            accounts[index].password
+        ) !==
+        String(current)
     ){
 
         toast(
@@ -3430,12 +3915,16 @@ function changePassword(){
     accounts[index].password =
         next;
 
-    saveAccounts(accounts);
+
+    saveAccounts(
+        accounts
+    );
 
 
     closeModal(
         "passwordModal"
     );
+
 
     toast(
         "Password changed successfully."
@@ -3444,30 +3933,10 @@ function changePassword(){
 
 
 /* =====================================================
-   FRONT CHANGE PASSWORD
+   FRONT PASSWORD
 ===================================================== */
 
 function changePasswordFromFront(){
-
-    const id =
-        document.getElementById(
-            "changeId"
-        ).value.trim();
-
-    const current =
-        document.getElementById(
-            "changeCurrent"
-        ).value;
-
-    const next =
-        document.getElementById(
-            "changeNew"
-        ).value;
-
-    const confirm =
-        document.getElementById(
-            "changeConfirm"
-        ).value;
 
     const message =
         document.getElementById(
@@ -3475,13 +3944,32 @@ function changePasswordFromFront(){
         );
 
 
-    if(!id || !current || !next || !confirm){
+    message.className =
+        "message";
 
-        message.textContent =
-            "Please complete all fields.";
 
-        return;
-    }
+    const id =
+        document.getElementById(
+            "changeId"
+        ).value.trim();
+
+
+    const current =
+        document.getElementById(
+            "changeCurrent"
+        ).value;
+
+
+    const next =
+        document.getElementById(
+            "changeNew"
+        ).value;
+
+
+    const confirm =
+        document.getElementById(
+            "changeConfirm"
+        ).value;
 
 
     const account =
@@ -3497,7 +3985,10 @@ function changePasswordFromFront(){
     }
 
 
-    if(account.password !== current){
+    if(
+        String(account.password) !==
+        String(current)
+    ){
 
         message.textContent =
             "Current password is incorrect.";
@@ -3524,26 +4015,38 @@ function changePasswordFromFront(){
     }
 
 
-    account.password =
-        next;
-
-
     const accounts =
         getAccounts();
 
+
     const index =
         accounts.findIndex(
-            a => a.ymid === account.ymid
+            a =>
+            a.ymid === account.ymid
         );
 
-    accounts[index] =
-        account;
 
-    saveAccounts(accounts);
+    if(index === -1){
+
+        message.textContent =
+            "Account not found.";
+
+        return;
+    }
+
+
+    accounts[index].password =
+        next;
+
+
+    saveAccounts(
+        accounts
+    );
 
 
     message.className =
         "message success-message";
+
 
     message.textContent =
         "Password changed successfully.";
@@ -3551,40 +4054,49 @@ function changePasswordFromFront(){
 
 
 /* =====================================================
-   SECURITY SETTINGS
+   SECURITY
 ===================================================== */
 
 function saveSecurity(){
+
+    const message =
+        document.getElementById(
+            "securityMessage"
+        );
+
+
+    message.className =
+        "message";
+
 
     const id =
         document.getElementById(
             "securityId"
         ).value.trim();
 
+
     const q1 =
         document.getElementById(
             "securityEditQ1"
         ).value;
+
 
     const a1 =
         document.getElementById(
             "securityEditA1"
         ).value.trim();
 
+
     const q2 =
         document.getElementById(
             "securityEditQ2"
         ).value;
 
+
     const a2 =
         document.getElementById(
             "securityEditA2"
         ).value.trim();
-
-    const message =
-        document.getElementById(
-            "securityMessage"
-        );
 
 
     const account =
@@ -3607,11 +4119,14 @@ function saveSecurity(){
     account.securityQ1 =
         q1;
 
+
     account.securityA1 =
         a1.toLowerCase();
 
+
     account.securityQ2 =
         q2;
+
 
     account.securityA2 =
         a2.toLowerCase();
@@ -3620,19 +4135,35 @@ function saveSecurity(){
     const accounts =
         getAccounts();
 
+
     const index =
         accounts.findIndex(
-            a => a.ymid === account.ymid
+            a =>
+            a.ymid === account.ymid
         );
+
+
+    if(index === -1){
+
+        message.textContent =
+            "Account not found.";
+
+        return;
+    }
+
 
     accounts[index] =
         account;
 
-    saveAccounts(accounts);
+
+    saveAccounts(
+        accounts
+    );
 
 
     message.className =
         "message success-message";
+
 
     message.textContent =
         "Security settings saved.";
@@ -3650,6 +4181,7 @@ function findRecoveryAccount(){
             "recoveryId"
         ).value.trim();
 
+
     const message =
         document.getElementById(
             "recoveryMessage"
@@ -3662,12 +4194,19 @@ function findRecoveryAccount(){
 
     if(!recoveryAccount){
 
+        message.className =
+            "message";
+
+
         message.textContent =
             "Account not found.";
 
+
         document.getElementById(
             "recoveryQuestions"
-        ).style.display = "none";
+        ).style.display =
+            "none";
+
 
         return;
     }
@@ -3677,6 +4216,7 @@ function findRecoveryAccount(){
         localStorage.getItem(
             LANGUAGE_KEY
         ) || "en";
+
 
     const list =
         securityQuestions[language] ||
@@ -3690,7 +4230,8 @@ function findRecoveryAccount(){
             Number(
                 recoveryAccount.securityQ1
             )
-        ] || "Security Question 1";
+        ] ||
+        "Security Question 1";
 
 
     document.getElementById(
@@ -3700,12 +4241,14 @@ function findRecoveryAccount(){
             Number(
                 recoveryAccount.securityQ2
             )
-        ] || "Security Question 2";
+        ] ||
+        "Security Question 2";
 
 
     document.getElementById(
         "recoveryAnswer1"
     ).value = "";
+
 
     document.getElementById(
         "recoveryAnswer2"
@@ -3714,7 +4257,18 @@ function findRecoveryAccount(){
 
     document.getElementById(
         "recoveryQuestions"
-    ).style.display = "block";
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "resetArea"
+    ).style.display =
+        "none";
+
+
+    message.className =
+        "message success-message";
 
 
     message.textContent =
@@ -3725,6 +4279,7 @@ function findRecoveryAccount(){
 function verifyRecoveryQuestions(){
 
     if(!recoveryAccount){
+
         return;
     }
 
@@ -3732,12 +4287,17 @@ function verifyRecoveryQuestions(){
     const a1 =
         document.getElementById(
             "recoveryAnswer1"
-        ).value.trim().toLowerCase();
+        ).value
+        .trim()
+        .toLowerCase();
+
 
     const a2 =
         document.getElementById(
             "recoveryAnswer2"
-        ).value.trim().toLowerCase();
+        ).value
+        .trim()
+        .toLowerCase();
 
 
     if(
@@ -3754,6 +4314,12 @@ function verifyRecoveryQuestions(){
 
         document.getElementById(
             "recoveryMessage"
+        ).className =
+            "message";
+
+
+        document.getElementById(
+            "recoveryMessage"
         ).textContent =
             "Security answers are incorrect.";
 
@@ -3766,66 +4332,80 @@ function verifyRecoveryQuestions(){
     ).className =
         "message success-message";
 
+
     document.getElementById(
         "recoveryMessage"
     ).textContent =
         "Verification successful. Create a new password.";
 
+
     document.getElementById(
         "resetArea"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 }
 
 
 /* =====================================================
-   DEMO PHONE / EMAIL RECOVERY
+   DEMO RECOVERY
 ===================================================== */
 
 function demoPhoneRecovery(){
 
     if(!recoveryAccount){
-        toast("Find your account first.");
+
+        toast(
+            "Find your account first."
+        );
+
         return;
     }
 
 
     alert(
-        "Demo OTP: 123456\n\n" +
-        "In the real Y-M Chat server, this will be replaced " +
-        "with real SMS/WhatsApp verification."
+        "DEMO PHONE VERIFICATION\n\n" +
+        "Demo code: 123456\n\n" +
+        "Real SMS/WhatsApp verification will be connected to the Y-M Chat server later."
     );
 
 
     document.getElementById(
         "resetArea"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 }
 
 
 function demoEmailRecovery(){
 
     if(!recoveryAccount){
-        toast("Find your account first.");
+
+        toast(
+            "Find your account first."
+        );
+
         return;
     }
 
 
     alert(
-        "Demo email verification code: 123456\n\n" +
-        "Real email verification will be connected " +
-        "when the Y-M Chat server is built."
+        "DEMO EMAIL VERIFICATION\n\n" +
+        "Demo code: 123456\n\n" +
+        "Real email verification will be connected to the Y-M Chat server later."
     );
 
 
     document.getElementById(
         "resetArea"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 }
 
 
 function resetRecoveredPassword(){
 
     if(!recoveryAccount){
+
         return;
     }
 
@@ -3835,13 +4415,17 @@ function resetRecoveredPassword(){
             "recoveryNewPassword"
         ).value;
 
+
     const confirm =
         document.getElementById(
             "recoveryConfirmPassword"
         ).value;
 
 
-    if(!next || !confirm){
+    if(
+        !next ||
+        !confirm
+    ){
 
         toast(
             "Please complete both password fields."
@@ -3877,11 +4461,18 @@ function resetRecoveredPassword(){
 
     const index =
         accounts.findIndex(
-            a => a.ymid === recoveryAccount.ymid
+            a =>
+            a.ymid ===
+            recoveryAccount.ymid
         );
 
 
     if(index === -1){
+
+        toast(
+            "Account not found."
+        );
+
         return;
     }
 
@@ -3890,24 +4481,31 @@ function resetRecoveredPassword(){
         next;
 
 
-    saveAccounts(accounts);
+    saveAccounts(
+        accounts
+    );
 
 
-    recoveryAccount = null;
+    recoveryAccount =
+        null;
 
 
     document.getElementById(
         "recoveryQuestions"
-    ).style.display = "none";
+    ).style.display =
+        "none";
+
 
     document.getElementById(
         "resetArea"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     document.getElementById(
         "recoveryNewPassword"
     ).value = "";
+
 
     document.getElementById(
         "recoveryConfirmPassword"
@@ -3918,6 +4516,7 @@ function resetRecoveredPassword(){
         "recoveryMessage"
     ).className =
         "message success-message";
+
 
     document.getElementById(
         "recoveryMessage"
@@ -3934,19 +4533,25 @@ function openEmailModal(){
 
     closeMenu();
 
+    ensureProfile();
+
+
     document.getElementById(
         "newEmail"
     ).value =
         profileData.email || "";
+
 
     document.getElementById(
         "confirmEmail"
     ).value =
         profileData.email || "";
 
+
     document.getElementById(
         "emailModal"
-    ).style.display = "flex";
+    ).style.display =
+        "flex";
 }
 
 
@@ -3957,13 +4562,17 @@ function changeEmail(){
             "newEmail"
         ).value.trim();
 
+
     const confirm =
         document.getElementById(
             "confirmEmail"
         ).value.trim();
 
 
-    if(!email || !confirm){
+    if(
+        !email ||
+        !confirm
+    ){
 
         toast(
             "Please enter the email."
@@ -3996,6 +4605,7 @@ function changeEmail(){
     profileData.email =
         email;
 
+
     saveCurrentProfile();
 
 
@@ -4005,7 +4615,8 @@ function changeEmail(){
 
     const index =
         accounts.findIndex(
-            a => a.ymid === currentUser
+            a =>
+            a.ymid === currentUser
         );
 
 
@@ -4014,13 +4625,16 @@ function changeEmail(){
         accounts[index].email =
             email;
 
-        saveAccounts(accounts);
+        saveAccounts(
+            accounts
+        );
     }
 
 
     closeModal(
         "emailModal"
     );
+
 
     toast(
         "Email updated."
@@ -4029,7 +4643,7 @@ function changeEmail(){
 
 
 /* =====================================================
-   PROFILE MENU
+   MENU
 ===================================================== */
 
 function toggleMenu(){
@@ -4049,15 +4663,22 @@ function toggleMenu(){
 
 function closeMenu(){
 
-    document.getElementById(
-        "menuBox"
-    ).style.display =
-        "none";
+    const box =
+        document.getElementById(
+            "menuBox"
+        );
+
+
+    if(box){
+
+        box.style.display =
+            "none";
+    }
 }
 
 
 /* =====================================================
-   MODALS
+   MODAL
 ===================================================== */
 
 function closeModal(id){
@@ -4065,35 +4686,82 @@ function closeModal(id){
     const modal =
         document.getElementById(id);
 
+
     if(modal){
-        modal.style.display = "none";
+
+        modal.style.display =
+            "none";
     }
 }
 
 
+document.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target.closest &&
+            !event.target.closest(".cover-menu")
+        ){
+
+            closeMenu();
+        }
+    }
+);
+
+
 document
 .querySelectorAll(".modal")
-.forEach(modal=>{
+.forEach(
+    modal => {
 
-    modal.addEventListener(
-        "click",
-        function(event){
+        modal.addEventListener(
+            "click",
+            function(event){
 
-            if(event.target === modal){
+                if(
+                    event.target ===
+                    modal
+                ){
 
-                modal.style.display =
-                    "none";
+                    modal.style.display =
+                        "none";
+                }
             }
-
-        }
-    );
-
-});
+        );
+    }
+);
 
 
 /* =====================================================
-   POST MEDIA
+   POSTS
 ===================================================== */
+
+function getPosts(){
+
+    const data =
+        safeJSON(
+            localStorage.getItem(
+                POSTS_KEY
+            ),
+            []
+        );
+
+
+    return Array.isArray(data)
+        ? data
+        : [];
+}
+
+
+function savePosts(posts){
+
+    localStorage.setItem(
+        POSTS_KEY,
+        JSON.stringify(posts)
+    );
+}
+
 
 function chooseImage(){
 
@@ -4116,6 +4784,7 @@ function selectImage(input){
     const file =
         input.files[0];
 
+
     if(!file){
         return;
     }
@@ -4135,6 +4804,7 @@ function selectImage(input){
 
     selectedImage =
         file;
+
 
     selectedVideo =
         null;
@@ -4158,6 +4828,7 @@ function selectVideo(input){
     const file =
         input.files[0];
 
+
     if(!file){
         return;
     }
@@ -4178,6 +4849,7 @@ function selectVideo(input){
     selectedVideo =
         file;
 
+
     selectedImage =
         null;
 
@@ -4197,17 +4869,23 @@ function selectVideo(input){
 
 function clearMedia(){
 
-    selectedImage = null;
-    selectedVideo = null;
+    selectedImage =
+        null;
+
+
+    selectedVideo =
+        null;
 
 
     document.getElementById(
         "postImageInput"
     ).value = "";
 
+
     document.getElementById(
         "postVideoInput"
     ).value = "";
+
 
     document.getElementById(
         "selectedFile"
@@ -4216,10 +4894,13 @@ function clearMedia(){
 
 
 /* =====================================================
-   PROFILE POST
+   CREATE POST
 ===================================================== */
 
 async function createPost(){
+
+    ensureProfile();
+
 
     const text =
         document.getElementById(
@@ -4241,38 +4922,31 @@ async function createPost(){
     }
 
 
-    const postId =
-        "post_" +
-        Date.now() +
-        "_" +
-        Math.random()
-            .toString(16)
-            .slice(2);
-
-
     const post = {
 
-        id:postId,
+        id:
+            "post_" +
+            Date.now() +
+            "_" +
+            Math.random()
+                .toString(16)
+                .slice(2),
 
         user:
-            currentUser ||
-            "demo-user",
+            currentUser,
 
         name:
-            profileData.name ||
-            "Y-M User",
+            profileData.name,
 
         text:text,
 
-        mediaId:null,
+        media:null,
 
         mediaType:null,
 
         likes:[],
 
         comments:[],
-
-        hidden:false,
 
         createdAt:
             new Date().toLocaleString()
@@ -4283,17 +4957,10 @@ async function createPost(){
 
         if(selectedImage){
 
-            const mediaId =
-                "media_" +
-                postId;
-
-            await saveMedia(
-                mediaId,
-                selectedImage
-            );
-
-            post.mediaId =
-                mediaId;
+            post.media =
+                await fileToDataURL(
+                    selectedImage
+                );
 
             post.mediaType =
                 "image";
@@ -4302,33 +4969,40 @@ async function createPost(){
 
         if(selectedVideo){
 
-            const mediaId =
-                "media_" +
-                postId;
-
-            await saveMedia(
-                mediaId,
-                selectedVideo
-            );
-
-            post.mediaId =
-                mediaId;
+            post.media =
+                await fileToDataURL(
+                    selectedVideo
+                );
 
             post.mediaType =
                 "video";
         }
 
 
-        await savePost(post);
+        const posts =
+            getPosts();
+
+
+        posts.push(
+            post
+        );
+
+
+        savePosts(
+            posts
+        );
 
 
         document.getElementById(
             "postText"
         ).value = "";
 
+
         clearMedia();
 
-        await renderPosts();
+
+        renderPosts();
+
 
         toast(
             "Post published successfully."
@@ -4351,6 +5025,9 @@ async function createPost(){
 
 function createHomePost(){
 
+    ensureProfile();
+
+
     const text =
         document.getElementById(
             "homePostText"
@@ -4367,20 +5044,10 @@ function createHomePost(){
     }
 
 
-    if(!db){
-
-        toast(
-            "Storage unavailable."
-        );
-
-        return;
-    }
-
-
     const post = {
 
         id:
-            "home_" +
+            "post_" +
             Date.now() +
             "_" +
             Math.random()
@@ -4395,7 +5062,7 @@ function createHomePost(){
 
         text:text,
 
-        mediaId:null,
+        media:null,
 
         mediaType:null,
 
@@ -4403,31 +5070,33 @@ function createHomePost(){
 
         comments:[],
 
-        hidden:false,
-
         createdAt:
             new Date().toLocaleString()
     };
 
 
-    savePost(post)
-    .then(()=>{
+    const posts =
+        getPosts();
 
-        document.getElementById(
-            "homePostText"
-        ).value = "";
 
-        toast(
-            "Post published."
-        );
+    posts.push(
+        post
+    );
 
-    })
-    .catch(()=>{
 
-        toast(
-            "Post could not be saved."
-        );
-    });
+    savePosts(
+        posts
+    );
+
+
+    document.getElementById(
+        "homePostText"
+    ).value = "";
+
+
+    toast(
+        "Post published."
+    );
 }
 
 
@@ -4435,12 +5104,7 @@ function createHomePost(){
    RENDER POSTS
 ===================================================== */
 
-async function renderPosts(){
-
-    if(!db){
-        return;
-    }
-
+function renderPosts(){
 
     const container =
         document.getElementById(
@@ -4453,23 +5117,22 @@ async function renderPosts(){
     }
 
 
-    container.innerHTML = "";
-
-
-    let posts =
-        await getAllPosts();
-
-
-    posts =
-        posts
-        .filter(post => !post.hidden)
+    const posts =
+        getPosts()
+        .filter(
+            post =>
+                post.user ===
+                currentUser
+        )
         .sort(
-            (a,b)=>
-                String(b.createdAt)
-                .localeCompare(
-                    String(a.createdAt)
+            (a,b) =>
+                b.id.localeCompare(
+                    a.id
                 )
         );
+
+
+    container.innerHTML = "";
 
 
     if(posts.length === 0){
@@ -4489,13 +5152,17 @@ async function renderPosts(){
     }
 
 
-    for(const post of posts){
+    posts.forEach(
+        post => {
 
-        const element =
-            await buildPostElement(post);
+            container.appendChild(
+                buildPostElement(
+                    post
+                )
+            );
 
-        container.appendChild(element);
-    }
+        }
+    );
 }
 
 
@@ -4503,166 +5170,125 @@ async function renderPosts(){
    BUILD POST
 ===================================================== */
 
-async function buildPostElement(post){
+function buildPostElement(post){
 
     const element =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     element.className =
         "post";
 
 
-    const user =
-        currentUser ||
-        "demo-user";
-
-
-    if(!Array.isArray(post.likes)){
-        post.likes = [];
-    }
-
-
-    if(!Array.isArray(post.comments)){
-        post.comments = [];
-    }
-
-
     const liked =
-        post.likes.includes(user);
+        Array.isArray(post.likes) &&
+        post.likes.includes(
+            currentUser
+        );
+
+
+    const likes =
+        Array.isArray(post.likes)
+        ? post.likes.length
+        : 0;
 
 
     let mediaHTML = "";
 
 
-    if(post.mediaId){
+    if(
+        post.media &&
+        post.mediaType === "image"
+    ){
 
-        try{
-
-            const blob =
-                await getMedia(
-                    post.mediaId
-                );
-
-
-            if(blob){
-
-                const url =
-                    URL.createObjectURL(blob);
+        mediaHTML = `
+            <img
+                class="post-media"
+                src="${post.media}"
+                alt="Post image"
+            >
+        `;
+    }
 
 
-                if(
-                    post.mediaType ===
-                    "image"
-                ){
+    if(
+        post.media &&
+        post.mediaType === "video"
+    ){
 
-                    mediaHTML = `
-                        <img
-                            class="post-media"
-                            src="${url}"
-                            alt="Post image"
-                        >
-                    `;
-
-                }else if(
-                    post.mediaType ===
-                    "video"
-                ){
-
-                    mediaHTML = `
-                        <video
-                            class="post-media"
-                            controls
-                            playsinline
-                            preload="metadata"
-                        >
-                            <source src="${url}">
-                        </video>
-                    `;
-                }
-            }
-
-        }catch(error){}
+        mediaHTML = `
+            <video
+                class="post-media"
+                controls
+                playsinline
+            >
+                <source src="${post.media}">
+            </video>
+        `;
     }
 
 
     let commentsHTML = "";
 
 
-    for(
-        const comment
-        of post.comments
-    ){
-
-        if(comment.hidden){
-            continue;
-        }
+    const comments =
+        Array.isArray(post.comments)
+        ? post.comments
+        : [];
 
 
-        const own =
-            comment.user === user;
+    comments.forEach(
+        comment => {
 
+            commentsHTML += `
 
-        commentsHTML += `
+                <div class="comment">
 
-            <div class="comment">
+                    <div class="comment-top">
 
-                <div class="comment-top">
+                        <div class="comment-body">
 
-                    <div class="comment-body">
+                            <strong>
+                                ${escapeHTML(
+                                    comment.name
+                                )}
+                            </strong>
 
-                        <strong>
-                            ${escapeHTML(
-                                comment.name
-                            )}
-                        </strong>
+                            <div>
+                                ${escapeHTML(
+                                    comment.text
+                                )}
+                            </div>
 
-                        <div>
-                            ${escapeHTML(
-                                comment.text
-                            )}
                         </div>
 
-                    </div>
-
-                    <div class="comment-buttons">
-
                         ${
-                            own
+                            comment.user === currentUser
                             ?
                             `
-                            <button
-                                onclick="
+                            <div>
+                                <button
+                                    onclick="
                                     deleteComment(
                                         '${post.id}',
                                         '${comment.id}'
-                                    )
-                                "
-                            >
-                                🗑️
-                            </button>
+                                    )">
+                                    🗑️
+                                </button>
+                            </div>
                             `
                             :
-                            `
-                            <button
-                                onclick="
-                                    hideComment(
-                                        '${post.id}',
-                                        '${comment.id}'
-                                    )
-                                "
-                            >
-                                🙈
-                            </button>
-                            `
+                            ""
                         }
 
                     </div>
 
                 </div>
-
-            </div>
-        `;
-    }
+            `;
+        }
+    );
 
 
     element.innerHTML = `
@@ -4671,14 +5297,18 @@ async function buildPostElement(post){
 
             <div class="post-avatar">
                 ${escapeHTML(
-                    initial(post.name)
+                    initial(
+                        post.name
+                    )
                 )}
             </div>
 
             <div class="post-user">
 
                 <strong>
-                    ${escapeHTML(post.name)}
+                    ${escapeHTML(
+                        post.name
+                    )}
                 </strong>
 
                 <small>
@@ -4692,70 +5322,67 @@ async function buildPostElement(post){
             <button
                 class="post-menu"
                 onclick="
-                    postMenu('${post.id}')
-                "
-            >
+                    deletePost(
+                        '${post.id}'
+                    )
+                ">
                 ⋮
             </button>
 
         </div>
-
 
         ${
             post.text
             ?
             `
             <div class="post-content">
-                ${escapeHTML(post.text)}
+                ${escapeHTML(
+                    post.text
+                )}
             </div>
             `
             :
             ""
         }
 
-
         ${mediaHTML}
-
 
         <div class="post-actions">
 
             <button
-                class="${
-                    liked
-                    ? "like-active"
-                    : ""
-                }"
+                class="${liked ? "like-active" : ""}"
                 onclick="
-                    toggleLike('${post.id}')
-                "
-            >
+                    toggleLike(
+                        '${post.id}'
+                    )
+                ">
                 ${liked ? "❤️" : "🤍"}
-                Like (${post.likes.length})
+                Like (${likes})
             </button>
 
             <button
                 onclick="
-                    focusComment('${post.id}')
-                "
-            >
+                    focusComment(
+                        '${post.id}'
+                    )
+                ">
                 💬 Comment
             </button>
 
             <button
                 onclick="
-                    sharePost('${post.id}')
-                "
-            >
+                    sharePost(
+                        '${post.id}'
+                    )
+                ">
                 📤 Share
             </button>
 
         </div>
 
-
         <div class="comments">
 
             ${commentsHTML}
-
 
             <input
                 id="comment-${post.id}"
@@ -4769,13 +5396,13 @@ async function buildPostElement(post){
                 "
             >
 
-
             <button
                 class="comment-send"
                 onclick="
-                    addComment('${post.id}')
-                "
-            >
+                    addComment(
+                        '${post.id}'
+                    )
+                ">
                 Send Comment
             </button>
 
@@ -4791,14 +5418,16 @@ async function buildPostElement(post){
    LIKE
 ===================================================== */
 
-async function toggleLike(postId){
+function toggleLike(postId){
 
     const posts =
-        await getAllPosts();
+        getPosts();
+
 
     const post =
         posts.find(
-            p => p.id === postId
+            p =>
+            p.id === postId
         );
 
 
@@ -4808,22 +5437,22 @@ async function toggleLike(postId){
 
 
     if(!Array.isArray(post.likes)){
+
         post.likes = [];
     }
 
 
-    const user =
-        currentUser ||
-        "demo-user";
-
-
     const index =
-        post.likes.indexOf(user);
+        post.likes.indexOf(
+            currentUser
+        );
 
 
     if(index === -1){
 
-        post.likes.push(user);
+        post.likes.push(
+            currentUser
+        );
 
     }else{
 
@@ -4834,14 +5463,17 @@ async function toggleLike(postId){
     }
 
 
-    await savePost(post);
+    savePosts(
+        posts
+    );
 
-    await renderPosts();
+
+    renderPosts();
 }
 
 
 /* =====================================================
-   COMMENTS
+   COMMENT
 ===================================================== */
 
 function focusComment(postId){
@@ -4865,18 +5497,26 @@ function focusComment(postId){
 }
 
 
-function commentKey(event,postId){
+function commentKey(
+    event,
+    postId
+){
 
     if(event.key === "Enter"){
 
         event.preventDefault();
 
-        addComment(postId);
+        addComment(
+            postId
+        );
     }
 }
 
 
-async function addComment(postId){
+function addComment(postId){
+
+    ensureProfile();
+
 
     const input =
         document.getElementById(
@@ -4900,12 +5540,13 @@ async function addComment(postId){
 
 
     const posts =
-        await getAllPosts();
+        getPosts();
 
 
     const post =
         posts.find(
-            p => p.id === postId
+            p =>
+            p.id === postId
         );
 
 
@@ -4915,6 +5556,7 @@ async function addComment(postId){
 
 
     if(!Array.isArray(post.comments)){
+
         post.comments = [];
     }
 
@@ -4923,11 +5565,7 @@ async function addComment(postId){
 
         id:
             "comment_" +
-            Date.now() +
-            "_" +
-            Math.random()
-                .toString(16)
-                .slice(2),
+            Date.now(),
 
         user:
             currentUser,
@@ -4935,15 +5573,18 @@ async function addComment(postId){
         name:
             profileData.name,
 
-        text:text,
+        text:text
 
-        hidden:false
     });
 
 
-    await savePost(post);
+    savePosts(
+        posts
+    );
 
-    await renderPosts();
+
+    renderPosts();
+
 
     toast(
         "Comment added."
@@ -4951,22 +5592,19 @@ async function addComment(postId){
 }
 
 
-/* =====================================================
-   DELETE COMMENT
-===================================================== */
-
-async function deleteComment(
+function deleteComment(
     postId,
     commentId
 ){
 
     const posts =
-        await getAllPosts();
+        getPosts();
 
 
     const post =
         posts.find(
-            p => p.id === postId
+            p =>
+            p.id === postId
         );
 
 
@@ -4975,36 +5613,31 @@ async function deleteComment(
     }
 
 
-    const comment =
-        post.comments.find(
-            c => c.id === commentId
-        );
-
-
-    if(!comment){
-        return;
-    }
-
-
-    if(comment.user !== currentUser){
-
-        toast(
-            "You can only delete your comment."
-        );
-
-        return;
-    }
-
-
     post.comments =
+        Array.isArray(
+            post.comments
+        )
+        ?
         post.comments.filter(
-            c => c.id !== commentId
-        );
+            comment =>
+                !(
+                    comment.id ===
+                    commentId &&
+                    comment.user ===
+                    currentUser
+                )
+        )
+        :
+        [];
 
 
-    await savePost(post);
+    savePosts(
+        posts
+    );
 
-    await renderPosts();
+
+    renderPosts();
+
 
     toast(
         "Comment deleted."
@@ -5013,21 +5646,19 @@ async function deleteComment(
 
 
 /* =====================================================
-   HIDE COMMENT
+   DELETE POST
 ===================================================== */
 
-async function hideComment(
-    postId,
-    commentId
-){
+function deletePost(postId){
 
     const posts =
-        await getAllPosts();
+        getPosts();
 
 
     const post =
         posts.find(
-            p => p.id === postId
+            p =>
+            p.id === postId
         );
 
 
@@ -5036,109 +5667,38 @@ async function hideComment(
     }
 
 
-    const comment =
-        post.comments.find(
-            c => c.id === commentId
+    if(post.user !== currentUser){
+
+        toast(
+            "You can only delete your own post."
         );
 
-
-    if(!comment){
         return;
     }
 
 
-    comment.hidden =
-        true;
+    if(!confirm(
+        "Delete this post?"
+    )){
+
+        return;
+    }
 
 
-    await savePost(post);
+    savePosts(
+        posts.filter(
+            p =>
+            p.id !== postId
+        )
+    );
 
-    await renderPosts();
+
+    renderPosts();
+
 
     toast(
-        "Comment hidden."
+        "Post deleted."
     );
-}
-
-
-/* =====================================================
-   POST MENU
-===================================================== */
-
-async function postMenu(postId){
-
-    const posts =
-        await getAllPosts();
-
-
-    const post =
-        posts.find(
-            p => p.id === postId
-        );
-
-
-    if(!post){
-        return;
-    }
-
-
-    if(post.user === currentUser){
-
-        const yes =
-            confirm(
-                "Delete this post?"
-            );
-
-
-        if(!yes){
-            return;
-        }
-
-
-        if(post.mediaId){
-
-            await deleteMedia(
-                post.mediaId
-            );
-        }
-
-
-        await removePost(
-            post.id
-        );
-
-
-        await renderPosts();
-
-        toast(
-            "Post deleted."
-        );
-
-    }else{
-
-        const yes =
-            confirm(
-                "Hide this post?"
-            );
-
-
-        if(!yes){
-            return;
-        }
-
-
-        post.hidden =
-            true;
-
-
-        await savePost(post);
-
-        await renderPosts();
-
-        toast(
-            "Post hidden."
-        );
-    }
 }
 
 
@@ -5149,12 +5709,13 @@ async function postMenu(postId){
 async function sharePost(postId){
 
     const posts =
-        await getAllPosts();
+        getPosts();
 
 
     const post =
         posts.find(
-            p => p.id === postId
+            p =>
+            p.id === postId
         );
 
 
@@ -5181,7 +5742,7 @@ async function sharePost(postId){
                 text:text
             });
 
-        }catch(e){}
+        }catch(error){}
 
         return;
     }
@@ -5199,7 +5760,7 @@ async function sharePost(postId){
                 "Post copied."
             );
 
-        }catch(e){
+        }catch(error){
 
             toast(
                 "Share unavailable."
@@ -5217,6 +5778,458 @@ async function sharePost(postId){
 
 
 /* =====================================================
+   PRIVATE CHAT
+===================================================== */
+
+function getChats(){
+
+    return safeJSON(
+        localStorage.getItem(
+            CHATS_KEY
+        ),
+        {}
+    );
+}
+
+
+function saveChats(data){
+
+    localStorage.setItem(
+        CHATS_KEY,
+        JSON.stringify(data)
+    );
+}
+
+
+function openDemoChat(name){
+
+    currentChatUser =
+        name;
+
+
+    document.getElementById(
+        "chatBox"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "chatTitle"
+    ).textContent =
+        "💬 " + name;
+
+
+    renderChatMessages();
+}
+
+
+function renderChatMessages(){
+
+    const box =
+        document.getElementById(
+            "chatMessages"
+        );
+
+
+    const chats =
+        getChats();
+
+
+    const key =
+        currentUser +
+        "__" +
+        currentChatUser;
+
+
+    const messages =
+        Array.isArray(
+            chats[key]
+        )
+        ?
+        chats[key]
+        :
+        [];
+
+
+    box.innerHTML = "";
+
+
+    if(messages.length === 0){
+
+        box.innerHTML = `
+            <div style="
+                color:#777;
+                padding:15px 0;
+                text-align:center;
+            ">
+                No messages yet.
+            </div>
+        `;
+    }
+
+
+    messages.forEach(
+        message => {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "room-message";
+
+
+            div.innerHTML = `
+                <strong>
+                    ${escapeHTML(
+                        message.name
+                    )}
+                </strong>
+                <div>
+                    ${escapeHTML(
+                        message.text
+                    )}
+                </div>
+            `;
+
+
+            box.appendChild(
+                div
+            );
+        }
+    );
+}
+
+
+function sendChatMessage(){
+
+    if(!currentChatUser){
+        return;
+    }
+
+
+    const input =
+        document.getElementById(
+            "chatInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text){
+        return;
+    }
+
+
+    const chats =
+        getChats();
+
+
+    const key =
+        currentUser +
+        "__" +
+        currentChatUser;
+
+
+    if(!Array.isArray(
+        chats[key]
+    )){
+
+        chats[key] = [];
+    }
+
+
+    chats[key].push({
+
+        name:
+            profileData.name,
+
+        text:text,
+
+        createdAt:
+            Date.now()
+
+    });
+
+
+    saveChats(
+        chats
+    );
+
+
+    input.value = "";
+
+
+    renderChatMessages();
+}
+
+
+/* =====================================================
+   ROOMS
+===================================================== */
+
+function getRooms(){
+
+    return safeJSON(
+        localStorage.getItem(
+            ROOMS_KEY
+        ),
+        {}
+    );
+}
+
+
+function saveRooms(data){
+
+    localStorage.setItem(
+        ROOMS_KEY,
+        JSON.stringify(data)
+    );
+}
+
+
+function openRoom(room){
+
+    currentRoom =
+        room;
+
+
+    document.getElementById(
+        "roomBox"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "roomTitle"
+    ).textContent =
+        room;
+
+
+    renderRoomMessages();
+}
+
+
+function renderRoomMessages(){
+
+    const box =
+        document.getElementById(
+            "roomMessages"
+        );
+
+
+    const rooms =
+        getRooms();
+
+
+    const messages =
+        Array.isArray(
+            rooms[currentRoom]
+        )
+        ?
+        rooms[currentRoom]
+        :
+        [];
+
+
+    box.innerHTML = "";
+
+
+    if(messages.length === 0){
+
+        box.innerHTML = `
+            <div style="
+                color:#777;
+                padding:15px 0;
+                text-align:center;
+            ">
+                Room is empty. Say hello!
+            </div>
+        `;
+    }
+
+
+    messages.forEach(
+        message => {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "room-message";
+
+
+            div.innerHTML = `
+                <strong>
+                    ${escapeHTML(
+                        message.name
+                    )}
+                </strong>
+                <div>
+                    ${escapeHTML(
+                        message.text
+                    )}
+                </div>
+            `;
+
+
+            box.appendChild(
+                div
+            );
+        }
+    );
+}
+
+
+function sendRoomMessage(){
+
+    if(!currentRoom){
+        return;
+    }
+
+
+    const input =
+        document.getElementById(
+            "roomInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text){
+        return;
+    }
+
+
+    const rooms =
+        getRooms();
+
+
+    if(!Array.isArray(
+        rooms[currentRoom]
+    )){
+
+        rooms[currentRoom] = [];
+    }
+
+
+    rooms[currentRoom].push({
+
+        name:
+            profileData.name,
+
+        text:text,
+
+        createdAt:
+            Date.now()
+    });
+
+
+    saveRooms(
+        rooms
+    );
+
+
+    input.value = "";
+
+
+    renderRoomMessages();
+}
+
+
+/* =====================================================
+   FRIENDS
+===================================================== */
+
+function addFriend(){
+
+    const input =
+        document.getElementById(
+            "friendInput"
+        );
+
+
+    const id =
+        input.value.trim();
+
+
+    if(!id){
+
+        toast(
+            "Enter a Y-M ID."
+        );
+
+        return;
+    }
+
+
+    const account =
+        findAccount(id);
+
+
+    if(!account){
+
+        toast(
+            "Y-M ID not found in this demo."
+        );
+
+        return;
+    }
+
+
+    const friends =
+        safeJSON(
+            localStorage.getItem(
+                FRIENDS_KEY
+            ),
+            []
+        );
+
+
+    const list =
+        Array.isArray(friends)
+        ? friends
+        : [];
+
+
+    if(
+        !list.includes(
+            account.ymid
+        )
+    ){
+
+        list.push(
+            account.ymid
+        );
+    }
+
+
+    localStorage.setItem(
+        FRIENDS_KEY,
+        JSON.stringify(list)
+    );
+
+
+    input.value = "";
+
+
+    toast(
+        account.name +
+        " added as friend."
+    );
+}
+
+
+/* =====================================================
    LOGOUT
 ===================================================== */
 
@@ -5225,13 +6238,10 @@ function logout(){
     closeMenu();
 
 
-    const yes =
-        confirm(
-            "Are you sure you want to log out?"
-        );
+    if(!confirm(
+        "Are you sure you want to log out?"
+    )){
 
-
-    if(!yes){
         return;
     }
 
@@ -5241,13 +6251,30 @@ function logout(){
     );
 
 
-    currentUser = null;
-    profileData = null;
+    /*
+     Do not delete account data.
+     */
+
+    currentUser =
+        null;
+
+
+    profileData =
+        null;
+
+
+    currentChatUser =
+        null;
+
+
+    currentRoom =
+        null;
 
 
     document.getElementById(
         "bottomNav"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     toast(
@@ -5257,9 +6284,11 @@ function logout(){
 
     setTimeout(()=>{
 
-        showPage("frontPage");
+        showPage(
+            "frontPage"
+        );
 
-    },500);
+    },400);
 }
 
 
@@ -5267,14 +6296,16 @@ function logout(){
    INITIALIZE
 ===================================================== */
 
-async function initialize(){
+function initialize(){
 
     fillCountries();
 
     fillSecurityQuestions();
 
+    migrateAccounts();
 
-    const savedLanguage =
+
+    const language =
         localStorage.getItem(
             LANGUAGE_KEY
         ) || "en";
@@ -5283,48 +6314,105 @@ async function initialize(){
     document.getElementById(
         "languageSelect"
     ).value =
-        savedLanguage;
+        language;
 
 
-    try{
+    /*
+     IMPORTANT:
+     Check current login against a real account.
+     */
 
-        await openDatabase();
-
-    }catch(error){
-
-        console.error(error);
-
-        toast(
-            "Browser storage unavailable."
-        );
-    }
-
-
-    currentUser =
+    let savedUser =
         localStorage.getItem(
             CURRENT_USER_KEY
         );
 
 
-    if(currentUser){
+    /*
+     If new current-user key does not exist,
+     check old key.
+     */
 
-        await ensureProfile();
+    if(!savedUser){
 
-        await renderProfile();
-
-        await renderHomeUser();
-
-        showAppPage(
-            "homePage",
-            "navHome"
-        );
-
-    }else{
-
-        showPage(
-            "frontPage"
-        );
+        savedUser =
+            localStorage.getItem(
+                OLD_CURRENT_USER_KEY
+            );
     }
+
+
+    if(savedUser){
+
+        const account =
+            findAccount(
+                savedUser
+            );
+
+
+        if(account){
+
+            currentUser =
+                account.ymid;
+
+
+            localStorage.setItem(
+                CURRENT_USER_KEY,
+                currentUser
+            );
+
+
+            localStorage.removeItem(
+                OLD_CURRENT_USER_KEY
+            );
+
+
+            ensureProfile();
+
+
+            if(currentUser){
+
+                renderProfile();
+
+                renderHomeUser();
+
+                showAppPage(
+                    "homePage",
+                    "navHome"
+                );
+
+                return;
+            }
+
+        }else{
+
+            /*
+             Old/stale current login.
+             Clear it instead of breaking the app.
+            */
+
+            localStorage.removeItem(
+                CURRENT_USER_KEY
+            );
+
+            localStorage.removeItem(
+                OLD_CURRENT_USER_KEY
+            );
+        }
+    }
+
+
+    currentUser =
+        null;
+
+
+    profileData =
+        null;
+
+
+    showPage(
+        "frontPage"
+    );
 }
 
 
