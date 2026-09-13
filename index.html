@@ -4,1064 +4,5421 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Y-M Chat V1.9.3</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
 html,body{width:100%;min-height:100%}
 body{background:#eef3f8;color:#222}
 button,input,textarea,select{font-family:Arial,sans-serif}
 button{cursor:pointer}
-.app{width:100%;max-width:480px;min-height:100vh;margin:auto;background:#fff;padding-bottom:78px}
-.page{display:none}.page.active{display:block}
+
+.app{
+width:100%;
+max-width:480px;
+min-height:100vh;
+margin:auto;
+background:#fff;
+padding-bottom:78px
+}
+
+.page{display:none}
+.page.active{display:block}
+
 .center-page{min-height:100vh;padding:25px 18px}
+
 .logo{text-align:center;padding:25px 0 18px}
 .logo h1{color:#1976d2;font-size:34px;letter-spacing:1px}
 .logo p{color:#777;margin-top:5px;font-size:13px}
-.card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 3px 14px rgba(0,0,0,.1)}
-.form-group{margin-bottom:12px}
-.form-group label{display:block;color:#555;font-size:13px;margin-bottom:5px}
-.form-group input,.form-group textarea,.form-group select{width:100%;border:1px solid #d5dce3;border-radius:8px;padding:11px;outline:none;background:#fff}
-.form-group textarea{min-height:85px;resize:vertical}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:#1976d2}
-.primary-btn,.secondary-btn,.link-btn{width:100%;border:0;border-radius:8px}
-.primary-btn{padding:12px;background:#1976d2;color:#fff;font-size:15px;font-weight:bold;margin-top:5px}
-.secondary-btn{padding:11px;background:#e8edf2;color:#333;font-size:14px;margin-top:8px}
-.link-btn{background:transparent;color:#1976d2;padding:9px;font-size:14px}
-.message{min-height:20px;margin:8px 0;text-align:center;color:#d32f2f;font-size:13px}
-.success-message{color:#2e7d32}
-.front-language{display:flex;justify-content:flex-end;margin-bottom:10px}
-.front-language select{border:1px solid #ddd;border-radius:7px;padding:6px 8px}
-.front-buttons{margin-top:10px}
-.front-buttons button{width:100%;padding:13px;margin-top:9px;border:0;border-radius:9px;font-size:15px;font-weight:bold}
-.btn-login{background:#1976d2;color:#fff}.btn-register{background:#42a5f5;color:#fff}.btn-light{background:#edf2f7;color:#333}
 
-.topbar{height:58px;background:#1976d2;color:#fff;display:flex;align-items:center;padding:0 16px;position:sticky;top:0;z-index:30;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+.card{
+background:#fff;
+border-radius:14px;
+padding:18px;
+box-shadow:0 3px 14px rgba(0,0,0,.1)
+}
+
+.form-group{margin-bottom:12px}
+.form-group label{
+display:block;
+color:#555;
+font-size:13px;
+margin-bottom:5px
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+width:100%;
+border:1px solid #d5dce3;
+border-radius:8px;
+padding:11px;
+outline:none;
+background:#fff
+}
+
+.form-group textarea{
+min-height:85px;
+resize:vertical
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+border-color:#1976d2
+}
+
+.primary-btn,
+.secondary-btn,
+.link-btn{
+width:100%;
+border:0;
+border-radius:8px
+}
+
+.primary-btn{
+padding:12px;
+background:#1976d2;
+color:#fff;
+font-size:15px;
+font-weight:bold;
+margin-top:5px
+}
+
+.secondary-btn{
+padding:11px;
+background:#e8edf2;
+color:#333;
+font-size:14px;
+margin-top:8px
+}
+
+.link-btn{
+background:transparent;
+color:#1976d2;
+padding:9px;
+font-size:14px
+}
+
+.message{
+min-height:20px;
+margin:8px 0;
+text-align:center;
+color:#d32f2f;
+font-size:13px
+}
+
+.success-message{color:#2e7d32}
+
+.front-language{
+display:flex;
+justify-content:flex-end;
+margin-bottom:10px
+}
+
+.front-language select{
+border:1px solid #ddd;
+border-radius:7px;
+padding:6px 8px
+}
+
+.front-buttons{margin-top:10px}
+
+.front-buttons button{
+width:100%;
+padding:13px;
+margin-top:9px;
+border:0;
+border-radius:9px;
+font-size:15px;
+font-weight:bold
+}
+
+.btn-login{background:#1976d2;color:#fff}
+.btn-register{background:#42a5f5;color:#fff}
+.btn-light{background:#edf2f7;color:#333}
+
+.topbar{
+height:58px;
+background:#1976d2;
+color:#fff;
+display:flex;
+align-items:center;
+padding:0 16px;
+position:sticky;
+top:0;
+z-index:30;
+box-shadow:0 2px 6px rgba(0,0,0,.18)
+}
+
 .topbar h2{font-size:20px;flex:1}
 
-.home-cover{height:155px;background:linear-gradient(135deg,#1976d2,#64b5f6)}
+.home-cover{
+height:155px;
+background:linear-gradient(135deg,#1976d2,#64b5f6)
+}
+
 .home-user{padding:0 15px}
-.home-avatar{width:88px;height:88px;margin-top:-42px;border:4px solid #fff;border-radius:50%;background:#dcecff;color:#1976d2;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:bold;overflow:hidden}
-.home-avatar img{width:100%;height:100%;object-fit:cover;display:none}
-.home-user h2{margin-top:8px;font-size:21px}.home-user small{color:#777}
-.home-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:15px}
-.home-actions button{border:1px solid #dce3e9;background:#f7f9fb;border-radius:9px;padding:10px 4px;font-size:11px}
-.home-actions span{display:block;font-size:21px;margin-bottom:4px}
-.home-section{padding:0 15px}.home-section h3{margin:15px 0 10px;font-size:18px}
-.notification-card,.home-placeholder{border:1px solid #e0e5ea;border-radius:11px;padding:13px;margin-bottom:12px;background:#fff}
-.home-placeholder{color:#777;text-align:center}
-.home-post-box{border:1px solid #e0e5ea;border-radius:12px;padding:13px}
-.home-post-box textarea{width:100%;min-height:70px;border:1px solid #ddd;border-radius:8px;padding:10px;resize:none;outline:none}
-.home-post-tools{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
-.home-post-tools button{border:1px solid #d9e0e7;background:#f6f8fa;border-radius:8px;padding:9px 11px}
-.home-post-box .post-btn{margin-top:8px;border:0;background:#1976d2;color:#fff;padding:10px 15px;border-radius:8px}
-.home-selected{margin-top:8px;color:#1976d2;font-size:13px;word-break:break-word}
 
-.profile-cover{height:205px;background:linear-gradient(135deg,#1976d2,#64b5f6);position:relative;overflow:hidden}
-.profile-cover img{width:100%;height:100%;object-fit:cover;display:none}
-.cover-menu{position:absolute;top:12px;right:12px;z-index:10}
-.menu-button{width:43px;height:43px;border:0;border-radius:50%;background:rgba(255,255,255,.94);font-size:27px;box-shadow:0 2px 7px rgba(0,0,0,.25)}
-.menu-box{display:none;position:absolute;top:50px;right:0;width:220px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.25)}
-.menu-box button{width:100%;border:0;border-bottom:1px solid #eee;background:#fff;padding:14px;text-align:left;font-size:15px}
-.cover-camera{position:absolute;right:12px;bottom:12px;width:43px;height:43px;border:0;border-radius:50%;background:#fff;font-size:20px}
-.profile-area{padding:0 15px}.profile-head{position:relative;min-height:135px}
-.avatar-box{position:absolute;left:10px;top:-60px}
-.avatar{width:120px;height:120px;border-radius:50%;border:5px solid #fff;background:#dcecff;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.25)}
-.avatar img{width:100%;height:100%;object-fit:cover;display:none}
-.avatar-text{color:#1976d2;font-size:45px;font-weight:bold}
-.avatar-camera{position:absolute;right:1px;bottom:2px;width:37px;height:37px;border-radius:50%;border:3px solid #fff;background:#1976d2;color:#fff}
-.profile-info{padding-top:68px;padding-left:5px}.profile-info h1{font-size:23px;margin-bottom:4px}
-.ymid{color:#777;font-size:14px}.bio{color:#555;margin-top:9px;line-height:1.4}
-.info-card{margin-top:5px;padding:14px;border-radius:12px;background:#f7f9fc}
-.info-row{padding:8px 0;border-bottom:1px solid #e2e7ec}.info-row:last-child{border-bottom:0}
-.info-label{color:#777;font-size:13px;margin-bottom:3px}.info-value{font-size:14px;font-weight:bold}
+.home-avatar{
+width:88px;
+height:88px;
+margin-top:-42px;
+border:4px solid #fff;
+border-radius:50%;
+background:#dcecff;
+color:#1976d2;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:34px;
+font-weight:bold;
+overflow:hidden
+}
 
-.post-box{margin-top:15px;border:1px solid #e0e5eb;border-radius:12px;padding:13px}
-.post-box h3{font-size:16px;margin-bottom:10px}.post-input{width:100%;min-height:78px;resize:none;border:1px solid #ddd;border-radius:9px;padding:10px;font-size:15px;outline:none}
-.post-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.post-tools button{border:1px solid #d9e0e7;background:#f6f8fa;border-radius:8px;padding:9px 12px}
-.selected-file{margin-top:9px;color:#1976d2;font-size:13px;word-break:break-word}
-.publish{width:100%;margin-top:10px;padding:11px;border:0;border-radius:8px;background:#1976d2;color:#fff;font-size:15px;font-weight:bold}
+.home-avatar img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:none
+}
 
-.section-title{margin:20px 0 10px;font-size:18px}
-.post{border:1px solid #e0e5ea;border-radius:12px;margin-bottom:15px;overflow:hidden;background:#fff}
-.post-header{display:flex;align-items:center;padding:11px}
-.post-avatar{width:43px;height:43px;border-radius:50%;background:#1976d2;color:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;font-weight:bold;margin-right:10px}
-.post-avatar img{width:100%;height:100%;object-fit:cover}
-.post-user{flex:1}.post-user strong{display:block;font-size:14px}.post-user small{display:block;margin-top:3px;color:#777;font-size:11px}
-.post-menu{border:0;background:transparent;font-size:23px}
-.post-content{padding:0 12px 12px;line-height:1.45;white-space:pre-wrap;word-break:break-word}
-.post-media{display:block;width:100%;max-height:430px;object-fit:cover;background:#111}
-.post-actions{display:flex;border-top:1px solid #eee;border-bottom:1px solid #eee}
-.post-actions button{flex:1;border:0;background:#fff;padding:10px 4px;font-size:13px}
+.home-user h2{
+margin-top:8px;
+font-size:21px
+}
+
+.home-user small{color:#777}
+
+.home-actions{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:7px;
+padding:15px
+}
+
+.home-actions button{
+border:1px solid #dce3e9;
+background:#f7f9fb;
+border-radius:9px;
+padding:10px 4px;
+font-size:11px
+}
+
+.home-actions span{
+display:block;
+font-size:21px;
+margin-bottom:4px
+}
+
+.home-section{padding:0 15px}
+
+.home-section h3{
+margin:15px 0 10px;
+font-size:18px
+}
+
+.notification-card,
+.home-placeholder{
+border:1px solid #e0e5ea;
+border-radius:11px;
+padding:13px;
+margin-bottom:12px;
+background:#fff
+}
+
+.home-placeholder{
+color:#777;
+text-align:center
+}
+
+.home-post-box{
+border:1px solid #e0e5ea;
+border-radius:12px;
+padding:13px
+}
+
+.home-post-box textarea{
+width:100%;
+min-height:70px;
+border:1px solid #ddd;
+border-radius:8px;
+padding:10px;
+resize:none;
+outline:none
+}
+
+.home-post-tools{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+margin-top:8px
+}
+
+.home-post-tools button{
+border:1px solid #d9e0e7;
+background:#f6f8fa;
+border-radius:8px;
+padding:9px 11px
+}
+
+.home-post-box .post-btn{
+margin-top:8px;
+border:0;
+background:#1976d2;
+color:#fff;
+padding:10px 15px;
+border-radius:8px
+}
+
+.home-selected{
+margin-top:8px;
+color:#1976d2;
+font-size:13px;
+word-break:break-word
+}
+
+/* PROFILE */
+
+.profile-cover{
+height:205px;
+background:linear-gradient(135deg,#1976d2,#64b5f6);
+position:relative;
+overflow:hidden
+}
+
+.profile-cover img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:none
+}
+
+.cover-menu{
+position:absolute;
+top:12px;
+right:12px;
+z-index:10
+}
+
+.menu-button{
+width:43px;
+height:43px;
+border:0;
+border-radius:50%;
+background:rgba(255,255,255,.94);
+font-size:27px;
+box-shadow:0 2px 7px rgba(0,0,0,.25)
+}
+
+.menu-box{
+display:none;
+position:absolute;
+top:50px;
+right:0;
+width:220px;
+background:#fff;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 4px 16px rgba(0,0,0,.25)
+}
+
+.menu-box button{
+width:100%;
+border:0;
+border-bottom:1px solid #eee;
+background:#fff;
+padding:14px;
+text-align:left;
+font-size:15px
+}
+
+.cover-camera{
+position:absolute;
+right:12px;
+bottom:12px;
+width:43px;
+height:43px;
+border:0;
+border-radius:50%;
+background:#fff;
+font-size:20px
+}
+
+.profile-area{padding:0 15px}
+
+.profile-head{
+position:relative;
+min-height:135px
+}
+
+.avatar-box{
+position:absolute;
+left:10px;
+top:-60px
+}
+
+.avatar{
+width:120px;
+height:120px;
+border-radius:50%;
+border:5px solid #fff;
+background:#dcecff;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 2px 8px rgba(0,0,0,.25)
+}
+
+.avatar img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:none
+}
+
+.avatar-text{
+color:#1976d2;
+font-size:45px;
+font-weight:bold
+}
+
+.avatar-camera{
+position:absolute;
+right:1px;
+bottom:2px;
+width:37px;
+height:37px;
+border-radius:50%;
+border:3px solid #fff;
+background:#1976d2;
+color:#fff
+}
+
+.profile-info{
+padding-top:68px;
+padding-left:5px
+}
+
+.profile-info h1{
+font-size:23px;
+margin-bottom:4px
+}
+
+.ymid{
+color:#777;
+font-size:14px
+}
+
+.bio{
+color:#555;
+margin-top:9px;
+line-height:1.4
+}
+
+.info-card{
+margin-top:5px;
+padding:14px;
+border-radius:12px;
+background:#f7f9fc
+}
+
+.info-row{
+padding:8px 0;
+border-bottom:1px solid #e2e7ec
+}
+
+.info-row:last-child{border-bottom:0}
+
+.info-label{
+color:#777;
+font-size:13px;
+margin-bottom:3px
+}
+
+.info-value{
+font-size:14px;
+font-weight:bold
+}
+
+/* POST */
+
+.post-box{
+margin-top:15px;
+border:1px solid #e0e5eb;
+border-radius:12px;
+padding:13px
+}
+
+.post-box h3{
+font-size:16px;
+margin-bottom:10px
+}
+
+.post-input{
+width:100%;
+min-height:78px;
+resize:none;
+border:1px solid #ddd;
+border-radius:9px;
+padding:10px;
+font-size:15px;
+outline:none
+}
+
+.post-tools{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:10px
+}
+
+.post-tools button{
+border:1px solid #d9e0e7;
+background:#f6f8fa;
+border-radius:8px;
+padding:9px 12px
+}
+
+.selected-file{
+margin-top:9px;
+color:#1976d2;
+font-size:13px;
+word-break:break-word
+}
+
+.publish{
+width:100%;
+margin-top:10px;
+padding:11px;
+border:0;
+border-radius:8px;
+background:#1976d2;
+color:#fff;
+font-size:15px;
+font-weight:bold
+}
+
+.media-preview{
+margin-top:10px;
+border-radius:9px;
+overflow:hidden;
+background:#f2f4f6;
+display:none
+}
+
+.media-preview img,
+.media-preview video{
+display:block;
+width:100%;
+max-height:300px;
+object-fit:contain
+}
+
+.section-title{
+margin:20px 0 10px;
+font-size:18px
+}
+
+.post{
+border:1px solid #e0e5ea;
+border-radius:12px;
+margin-bottom:15px;
+overflow:hidden;
+background:#fff
+}
+
+.post-header{
+display:flex;
+align-items:center;
+padding:11px
+}
+
+.post-avatar{
+width:43px;
+height:43px;
+border-radius:50%;
+background:#1976d2;
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+font-weight:bold;
+margin-right:10px
+}
+
+.post-avatar img{
+width:100%;
+height:100%;
+object-fit:cover
+}
+
+.post-user{flex:1}
+
+.post-user strong{
+display:block;
+font-size:14px
+}
+
+.post-user small{
+display:block;
+margin-top:3px;
+color:#777;
+font-size:11px
+}
+
+.post-menu{
+border:0;
+background:transparent;
+font-size:23px
+}
+
+.post-content{
+padding:0 12px 12px;
+line-height:1.45;
+white-space:pre-wrap;
+word-break:break-word
+}
+
+.post-media{
+display:block;
+width:100%;
+max-height:430px;
+object-fit:cover;
+background:#111
+}
+
+.media-loading{
+padding:25px;
+text-align:center;
+color:#777;
+background:#f4f6f8
+}
+
+.post-actions{
+display:flex;
+border-top:1px solid #eee;
+border-bottom:1px solid #eee
+}
+
+.post-actions button{
+flex:1;
+border:0;
+background:#fff;
+padding:10px 4px;
+font-size:13px
+}
+
 .like-active{font-weight:bold}
-.comments{padding:10px 12px}.comment{background:#f1f3f5;border-radius:9px;padding:8px 10px;margin-bottom:7px;font-size:13px}
-.comment-top{display:flex;gap:8px}.comment-body{flex:1}.comment-buttons button{border:0;background:transparent}
-.comment-input{width:100%;padding:9px;border:1px solid #ddd;border-radius:8px;margin-top:4px}
-.comment-send{margin-top:7px;border:0;background:#1976d2;color:#fff;border-radius:7px;padding:8px 12px}
 
-.module{padding:20px}.module-card{border:1px solid #e0e5ea;border-radius:12px;padding:15px;margin-bottom:12px}
-.module-card button{width:100%;margin-top:8px;padding:11px;border:0;border-radius:8px;background:#f0f3f6;text-align:left}
-.online{color:#2e7d32;font-size:12px}.room-message{padding:10px;background:#f1f4f7;border-radius:8px;margin-top:8px}
+.comments{padding:10px 12px}
 
-.bottom-nav{display:none;position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:480px;height:65px;background:#fff;border-top:1px solid #ddd;z-index:50}
-.bottom-nav button{flex:1;border:0;background:#fff;color:#555;font-size:11px}
-.bottom-nav button span{display:block;font-size:22px;margin-bottom:2px}.bottom-nav .active{color:#1976d2;font-weight:bold}
+.comment{
+background:#f1f3f5;
+border-radius:9px;
+padding:8px 10px;
+margin-bottom:7px;
+font-size:13px
+}
 
-.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:15px}
-.modal-content{width:100%;max-width:450px;max-height:90vh;overflow-y:auto;background:#fff;border-radius:14px;padding:18px}
-.modal-content h2{color:#1976d2;margin-bottom:15px}.modal-buttons{display:flex;gap:8px;margin-top:15px}
-.modal-buttons button{flex:1;padding:11px;border:0;border-radius:8px}.save{background:#1976d2;color:#fff}.cancel{background:#e8edf2}
-.toast{display:none;position:fixed;left:50%;bottom:82px;transform:translateX(-50%);z-index:200;background:#222;color:#fff;padding:10px 16px;border-radius:8px;font-size:14px;max-width:90%;text-align:center}
+.comment-top{
+display:flex;
+gap:8px
+}
+
+.comment-body{flex:1}
+
+.comment-top button{
+border:0;
+background:transparent
+}
+
+.comment-input{
+width:100%;
+padding:9px;
+border:1px solid #ddd;
+border-radius:8px;
+margin-top:4px
+}
+
+.comment-send{
+margin-top:7px;
+border:0;
+background:#1976d2;
+color:#fff;
+border-radius:7px;
+padding:8px 12px
+}
+
+/* MODULES */
+
+.module{padding:20px}
+
+.module-card{
+border:1px solid #e0e5ea;
+border-radius:12px;
+padding:15px;
+margin-bottom:12px
+}
+
+.module-card button{
+width:100%;
+margin-top:8px;
+padding:11px;
+border:0;
+border-radius:8px;
+background:#f0f3f6;
+text-align:left
+}
+
+.online{
+color:#2e7d32;
+font-size:12px
+}
+
+.room-message{
+padding:10px;
+background:#f1f4f7;
+border-radius:8px;
+margin-top:8px
+}
+
+/* NAV */
+
+.bottom-nav{
+display:none;
+position:fixed;
+left:50%;
+bottom:0;
+transform:translateX(-50%);
+width:100%;
+max-width:480px;
+height:65px;
+background:#fff;
+border-top:1px solid #ddd;
+z-index:50
+}
+
+.bottom-nav button{
+flex:1;
+border:0;
+background:#fff;
+color:#555;
+font-size:11px
+}
+
+.bottom-nav button span{
+display:block;
+font-size:22px;
+margin-bottom:2px
+}
+
+.bottom-nav .active{
+color:#1976d2;
+font-weight:bold
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+z-index:100;
+background:rgba(0,0,0,.55);
+align-items:center;
+justify-content:center;
+padding:15px
+}
+
+.modal-content{
+width:100%;
+max-width:450px;
+max-height:90vh;
+overflow-y:auto;
+background:#fff;
+border-radius:14px;
+padding:18px
+}
+
+.modal-content h2{
+color:#1976d2;
+margin-bottom:15px
+}
+
+.modal-buttons{
+display:flex;
+gap:8px;
+margin-top:15px
+}
+
+.modal-buttons button{
+flex:1;
+padding:11px;
+border:0;
+border-radius:8px
+}
+
+.save{
+background:#1976d2;
+color:#fff
+}
+
+.cancel{
+background:#e8edf2
+}
+
+.toast{
+display:none;
+position:fixed;
+left:50%;
+bottom:82px;
+transform:translateX(-50%);
+z-index:200;
+background:#222;
+color:#fff;
+padding:10px 16px;
+border-radius:8px;
+font-size:14px;
+max-width:90%;
+text-align:center
+}
+
 .hidden-input{display:none}
-.feed-title{margin:20px 0 10px;font-size:18px}
+
+.feed-title{
+margin:20px 0 10px;
+font-size:18px
+}
 </style>
 </head>
+
 <body>
 
 <div class="app">
 
+<!-- ================= FRONT ================= -->
+
 <section id="frontPage" class="page active center-page">
-<div class="front-language"><select id="languageSelect" onchange="changeLanguage()"><option value="en">English</option><option value="ms">Bahasa Melayu</option></select></div>
-<div class="logo"><h1>Y-M Chat</h1><p>Connect. Chat. Share.</p></div>
-<div class="card"><div class="front-buttons">
-<button class="btn-login" onclick="showPage('loginPage')">LOGIN</button>
-<button class="btn-register" onclick="showPage('registerPage')">REGISTER Y-M ID</button>
-<button class="btn-light" onclick="showPage('changePasswordPage')">CHANGE PASSWORD</button>
-<button class="btn-light" onclick="showPage('securityPage')">SECURITY SETTINGS</button>
-<button class="btn-light" onclick="showPage('recoveryPage')">FORGOT PASSWORD / RECOVERY</button>
-</div></div>
+
+<div class="front-language">
+<select id="languageSelect" onchange="changeLanguage()">
+<option value="en">English</option>
+<option value="ms">Bahasa Melayu</option>
+</select>
+</div>
+
+<div class="logo">
+<h1>Y-M Chat</h1>
+<p>Connect. Chat. Share.</p>
+</div>
+
+<div class="card">
+<div class="front-buttons">
+
+<button class="btn-login" onclick="showPage('loginPage')">
+LOGIN
+</button>
+
+<button class="btn-register" onclick="showPage('registerPage')">
+REGISTER Y-M ID
+</button>
+
+<button class="btn-light" onclick="showPage('changePasswordPage')">
+CHANGE PASSWORD
+</button>
+
+<button class="btn-light" onclick="showPage('securityPage')">
+SECURITY SETTINGS
+</button>
+
+<button class="btn-light" onclick="showPage('recoveryPage')">
+FORGOT PASSWORD / RECOVERY
+</button>
+
+</div>
+</div>
+
 </section>
+
+<!-- ================= LOGIN ================= -->
 
 <section id="loginPage" class="page center-page">
-<div class="logo"><h1>Y-M Chat</h1><p>Login to your account</p></div>
+
+<div class="logo">
+<h1>Y-M Chat</h1>
+<p>Login to your account</p>
+</div>
+
 <div class="card">
+
 <div id="loginMessage" class="message"></div>
-<div class="form-group"><label>Y-M ID / Username / Email / Phone</label><input id="loginId" type="text" autocomplete="username"></div>
-<div class="form-group"><label>Password</label><input id="loginPassword" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()"></div>
+
+<div class="form-group">
+<label>Y-M ID / Username / Email / Phone</label>
+<input id="loginId" type="text" autocomplete="username">
+</div>
+
+<div class="form-group">
+<label>Password</label>
+<input id="loginPassword"
+type="password"
+autocomplete="current-password"
+onkeydown="if(event.key==='Enter')login()">
+</div>
+
 <button class="primary-btn" onclick="login()">LOGIN</button>
-<button class="link-btn" onclick="showPage('recoveryPage')">Forgot password?</button>
-<button class="secondary-btn" onclick="showPage('frontPage')">Back</button>
+
+<button class="link-btn" onclick="showPage('recoveryPage')">
+Forgot password?
+</button>
+
+<button class="secondary-btn" onclick="showPage('frontPage')">
+Back
+</button>
+
 </div>
 </section>
+
+<!-- ================= REGISTER ================= -->
 
 <section id="registerPage" class="page center-page">
-<div class="logo"><h1>Y-M Chat</h1><p>Create your Y-M ID</p></div>
+
+<div class="logo">
+<h1>Y-M Chat</h1>
+<p>Create your Y-M ID</p>
+</div>
+
 <div class="card">
+
 <div id="registerMessage" class="message"></div>
-<div class="form-group"><label>Name</label><input id="registerName"></div>
-<div class="form-group"><label>Y-M ID / Username</label><input id="registerId"></div>
-<div class="form-group"><label>Password</label><input id="registerPassword" type="password"></div>
-<div class="form-group"><label>Confirm Password</label><input id="registerConfirm" type="password"></div>
-<div class="form-group"><label>Country</label><select id="registerCountry"><option value="">Select country</option></select></div>
-<div class="form-group"><label>Phone</label><input id="registerPhone" type="tel"></div>
-<div class="form-group"><label>Email</label><input id="registerEmail" type="email"></div>
-<div class="form-group"><label>Confirm Email</label><input id="registerEmailConfirm" type="email"></div>
-<div class="form-group"><label>Security Question 1</label><select id="securityQ1"></select></div>
-<div class="form-group"><label>Answer 1</label><input id="securityA1"></div>
-<div class="form-group"><label>Security Question 2</label><select id="securityQ2"></select></div>
-<div class="form-group"><label>Answer 2</label><input id="securityA2"></div>
-<button class="primary-btn" onclick="register()">CREATE Y-M ID</button>
-<button class="secondary-btn" onclick="showPage('frontPage')">Back</button>
+
+<div class="form-group">
+<label>Name</label>
+<input id="registerName">
+</div>
+
+<div class="form-group">
+<label>Y-M ID / Username</label>
+<input id="registerId">
+</div>
+
+<div class="form-group">
+<label>Password</label>
+<input id="registerPassword" type="password">
+</div>
+
+<div class="form-group">
+<label>Confirm Password</label>
+<input id="registerConfirm" type="password">
+</div>
+
+<div class="form-group">
+<label>Country</label>
+<select id="registerCountry">
+<option value="">Select country</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Phone</label>
+<input id="registerPhone" type="tel">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input id="registerEmail" type="email">
+</div>
+
+<div class="form-group">
+<label>Confirm Email</label>
+<input id="registerEmailConfirm" type="email">
+</div>
+
+<div class="form-group">
+<label>Security Question 1</label>
+<select id="securityQ1"></select>
+</div>
+
+<div class="form-group">
+<label>Answer 1</label>
+<input id="securityA1">
+</div>
+
+<div class="form-group">
+<label>Security Question 2</label>
+<select id="securityQ2"></select>
+</div>
+
+<div class="form-group">
+<label>Answer 2</label>
+<input id="securityA2">
+</div>
+
+<button class="primary-btn" onclick="register()">
+CREATE Y-M ID
+</button>
+
+<button class="secondary-btn" onclick="showPage('frontPage')">
+Back
+</button>
+
 </div>
 </section>
+
+<!-- ================= CHANGE PASSWORD ================= -->
 
 <section id="changePasswordPage" class="page center-page">
-<div class="logo"><h1>Y-M Chat</h1><p>Change password</p></div>
+
+<div class="logo">
+<h1>Y-M Chat</h1>
+<p>Change password</p>
+</div>
+
 <div class="card">
+
 <div id="changeMessage" class="message"></div>
-<div class="form-group"><label>Y-M ID / Username / Email / Phone</label><input id="changeId"></div>
-<div class="form-group"><label>Current Password</label><input id="changeCurrent" type="password"></div>
-<div class="form-group"><label>New Password</label><input id="changeNew" type="password"></div>
-<div class="form-group"><label>Confirm New Password</label><input id="changeConfirm" type="password"></div>
-<button class="primary-btn" onclick="changePasswordFromFront()">CHANGE PASSWORD</button>
-<button class="secondary-btn" onclick="showPage('frontPage')">Back</button>
+
+<div class="form-group">
+<label>Y-M ID / Username / Email / Phone</label>
+<input id="changeId">
+</div>
+
+<div class="form-group">
+<label>Current Password</label>
+<input id="changeCurrent" type="password">
+</div>
+
+<div class="form-group">
+<label>New Password</label>
+<input id="changeNew" type="password">
+</div>
+
+<div class="form-group">
+<label>Confirm New Password</label>
+<input id="changeConfirm" type="password">
+</div>
+
+<button class="primary-btn" onclick="changePasswordFromFront()">
+CHANGE PASSWORD
+</button>
+
+<button class="secondary-btn" onclick="showPage('frontPage')">
+Back
+</button>
+
 </div>
 </section>
+
+<!-- ================= SECURITY ================= -->
 
 <section id="securityPage" class="page center-page">
-<div class="logo"><h1>Y-M Chat</h1><p>Security settings</p></div>
+
+<div class="logo">
+<h1>Y-M Chat</h1>
+<p>Security settings</p>
+</div>
+
 <div class="card">
+
 <div id="securityMessage" class="message"></div>
-<div class="form-group"><label>Y-M ID / Username</label><input id="securityId"></div>
-<div class="form-group"><label>Security Question 1</label><select id="securityEditQ1"></select></div>
-<div class="form-group"><label>Answer 1</label><input id="securityEditA1"></div>
-<div class="form-group"><label>Security Question 2</label><select id="securityEditQ2"></select></div>
-<div class="form-group"><label>Answer 2</label><input id="securityEditA2"></div>
-<button class="primary-btn" onclick="saveSecurity()">SAVE SECURITY</button>
-<button class="secondary-btn" onclick="showPage('frontPage')">Back</button>
+
+<div class="form-group">
+<label>Y-M ID / Username</label>
+<input id="securityId">
+</div>
+
+<div class="form-group">
+<label>Security Question 1</label>
+<select id="securityEditQ1"></select>
+</div>
+
+<div class="form-group">
+<label>Answer 1</label>
+<input id="securityEditA1">
+</div>
+
+<div class="form-group">
+<label>Security Question 2</label>
+<select id="securityEditQ2"></select>
+</div>
+
+<div class="form-group">
+<label>Answer 2</label>
+<input id="securityEditA2">
+</div>
+
+<button class="primary-btn" onclick="saveSecurity()">
+SAVE SECURITY
+</button>
+
+<button class="secondary-btn" onclick="showPage('frontPage')">
+Back
+</button>
+
 </div>
 </section>
+
+<!-- ================= RECOVERY ================= -->
 
 <section id="recoveryPage" class="page center-page">
-<div class="logo"><h1>Y-M Chat</h1><p>Account recovery</p></div>
+
+<div class="logo">
+<h1>Y-M Chat</h1>
+<p>Account recovery</p>
+</div>
+
 <div class="card">
+
 <div id="recoveryMessage" class="message"></div>
-<div class="form-group"><label>Y-M ID / Username / Email / Phone</label><input id="recoveryId"></div>
-<button class="primary-btn" onclick="findRecoveryAccount()">FIND ACCOUNT</button>
+
+<div class="form-group">
+<label>Y-M ID / Username / Email / Phone</label>
+<input id="recoveryId">
+</div>
+
+<button class="primary-btn" onclick="findRecoveryAccount()">
+FIND ACCOUNT
+</button>
+
 <div id="recoveryQuestions" style="display:none;margin-top:15px">
-<div class="form-group"><label id="recoveryQuestion1"></label><input id="recoveryAnswer1"></div>
-<div class="form-group"><label id="recoveryQuestion2"></label><input id="recoveryAnswer2"></div>
-<button class="primary-btn" onclick="verifyRecoveryQuestions()">VERIFY ANSWERS</button>
-<button class="secondary-btn" onclick="demoPhoneRecovery()">Recover by Phone SMS</button>
-<button class="secondary-btn" onclick="demoEmailRecovery()">Recover by Email</button>
+
+<div class="form-group">
+<label id="recoveryQuestion1"></label>
+<input id="recoveryAnswer1">
 </div>
+
+<div class="form-group">
+<label id="recoveryQuestion2"></label>
+<input id="recoveryAnswer2">
+</div>
+
+<button class="primary-btn" onclick="verifyRecoveryQuestions()">
+VERIFY ANSWERS
+</button>
+
+<button class="secondary-btn" onclick="demoPhoneRecovery()">
+Recover by Phone SMS
+</button>
+
+<button class="secondary-btn" onclick="demoEmailRecovery()">
+Recover by Email
+</button>
+
+</div>
+
 <div id="resetArea" style="display:none;margin-top:15px">
-<div class="form-group"><label>New Password</label><input id="recoveryNewPassword" type="password"></div>
-<div class="form-group"><label>Confirm Password</label><input id="recoveryConfirmPassword" type="password"></div>
-<button class="primary-btn" onclick="resetRecoveredPassword()">RESET PASSWORD</button>
+
+<div class="form-group">
+<label>New Password</label>
+<input id="recoveryNewPassword" type="password">
 </div>
-<button class="secondary-btn" onclick="showPage('frontPage')">Back</button>
+
+<div class="form-group">
+<label>Confirm Password</label>
+<input id="recoveryConfirmPassword" type="password">
+</div>
+
+<button class="primary-btn" onclick="resetRecoveredPassword()">
+RESET PASSWORD
+</button>
+
+</div>
+
+<button class="secondary-btn" onclick="showPage('frontPage')">
+Back
+</button>
+
 </div>
 </section>
 
-<!-- HOME -->
+<!-- ================= HOME ================= -->
+
 <section id="homePage" class="page">
-<div class="topbar"><h2>Y-M Chat</h2></div>
+
+<div class="topbar">
+<h2>Y-M Chat</h2>
+</div>
+
 <div class="home-cover"></div>
+
 <div class="home-user">
-<div class="home-avatar"><img id="homeAvatarImage"><span id="homeAvatarText">N</span></div>
-<h2 id="homeUserName">Y-M User</h2><small id="homeUserId">@user</small>
+
+<div class="home-avatar">
+<img id="homeAvatarImage" alt="Profile Photo">
+<span id="homeAvatarText">N</span>
+</div>
+
+<h2 id="homeUserName">Y-M User</h2>
+<small id="homeUserId">@user</small>
+
 </div>
 
 <div class="home-actions">
-<button onclick="showAppPage('chatsPage','navChats')"><span>💬</span>Chats</button>
-<button onclick="showAppPage('friendsPage','navFriends')"><span>👥</span>Friends</button>
-<button onclick="showAppPage('roomsPage','navRooms')"><span>🌎</span>Rooms</button>
-<button onclick="showAppPage('marketPage','navHome')"><span>🛒</span>Market</button>
+
+<button onclick="showAppPage('chatsPage','navChats')">
+<span>💬</span>Chats
+</button>
+
+<button onclick="showAppPage('friendsPage','navFriends')">
+<span>👥</span>Friends
+</button>
+
+<button onclick="showAppPage('roomsPage','navRooms')">
+<span>🌎</span>Rooms
+</button>
+
+<button onclick="showAppPage('marketPage','navHome')">
+<span>🛒</span>Market
+</button>
+
 </div>
 
 <div class="home-section">
-<div class="notification-card">🔔 <strong>Notifications</strong><p style="color:#777;margin-top:5px">Welcome to Y-M Chat.</p></div>
+
+<div class="notification-card">
+🔔 <strong>Notifications</strong>
+<p style="color:#777;margin-top:5px">
+Welcome to Y-M Chat.
+</p>
+</div>
+
+<!-- HOME POST -->
 
 <div class="home-post-box">
-<textarea id="homePostText" placeholder="What's on your mind?"></textarea>
+
+<textarea
+id="homePostText"
+placeholder="What's on your mind?">
+</textarea>
+
 <div class="home-post-tools">
-<button onclick="chooseHomeImage()">📷 Photo</button>
-<button onclick="chooseHomeVideo()">🎥 Video</button>
-<button onclick="clearHomeMedia()">✖ Clear</button>
+
+<button onclick="chooseHomeImage()">
+📷 Photo
+</button>
+
+<button onclick="chooseHomeVideo()">
+🎥 Video
+</button>
+
+<button onclick="clearHomeMedia()">
+✖ Clear
+</button>
+
 </div>
-<input id="homeImageInput" class="hidden-input" type="file" accept="image/*" onchange="selectHomeImage(this)">
-<input id="homeVideoInput" class="hidden-input" type="file" accept="video/*" onchange="selectHomeVideo(this)">
+
+<input
+id="homeImageInput"
+class="hidden-input"
+type="file"
+accept="image/*"
+onchange="selectHomeImage(this)">
+
+<input
+id="homeVideoInput"
+class="hidden-input"
+type="file"
+accept="video/*"
+onchange="selectHomeVideo(this)">
+
 <div id="homeSelectedFile" class="home-selected"></div>
-<button class="post-btn" onclick="createHomePost()">POST</button>
+
+<div id="homeMediaPreview" class="media-preview"></div>
+
+<button class="post-btn" onclick="createHomePost()">
+POST
+</button>
+
 </div>
 
 <h3>Y-M Feed</h3>
+
 <div id="homeFeed"></div>
 
 <h3>Popular Rooms</h3>
-<div class="home-placeholder">🌎 Country & State rooms are being built step-by-step.</div>
+
+<div class="home-placeholder">
+🌎 Country & State rooms are being built step-by-step.
+</div>
+
 <h3>Market</h3>
-<div class="home-placeholder">🛒 Y-M Marketplace will be connected later.</div>
+
+<div class="home-placeholder">
+🛒 Y-M Marketplace will be connected later.
+</div>
+
 </div>
 </section>
 
-<!-- CHATS -->
+<!-- ================= CHATS ================= -->
+
 <section id="chatsPage" class="page">
-<div class="topbar"><h2>Chats</h2></div>
-<div class="module">
-<div class="module-card"><h3>💬 Private Chats</h3>
-<button onclick="openDemoChat('Ahmad')">👤 Ahmad <span class="online">● Online</span></button>
-<button onclick="openDemoChat('Siti')">👤 Siti</button>
-<button onclick="openDemoChat('John')">👤 John</button>
+
+<div class="topbar">
+<h2>Chats</h2>
 </div>
+
+<div class="module">
+
+<div class="module-card">
+
+<h3>💬 Private Chats</h3>
+
+<button onclick="openDemoChat('Ahmad')">
+👤 Ahmad <span class="online">● Online</span>
+</button>
+
+<button onclick="openDemoChat('Siti')">
+👤 Siti
+</button>
+
+<button onclick="openDemoChat('John')">
+👤 John
+</button>
+
+</div>
+
 <div id="chatBox" class="module-card" style="display:none">
-<h3 id="chatTitle">Chat</h3><div id="chatMessages"></div>
-<div style="display:flex;gap:6px;margin-top:10px"><input id="chatInput" placeholder="Write message..." style="flex:1;padding:10px;border:1px solid #ddd;border-radius:8px"><button onclick="sendChatMessage()" style="border:0;border-radius:8px;background:#1976d2;color:#fff;padding:10px 14px">Send</button></div>
+
+<h3 id="chatTitle">Chat</h3>
+
+<div id="chatMessages"></div>
+
+<div style="display:flex;gap:6px;margin-top:10px">
+
+<input
+id="chatInput"
+placeholder="Write message..."
+style="flex:1;padding:10px;border:1px solid #ddd;border-radius:8px">
+
+<button
+onclick="sendChatMessage()"
+style="border:0;border-radius:8px;background:#1976d2;color:#fff;padding:10px 14px">
+Send
+</button>
+
 </div>
+</div>
+
 </div>
 </section>
 
-<!-- FRIENDS -->
+<!-- ================= FRIENDS ================= -->
+
 <section id="friendsPage" class="page">
-<div class="topbar"><h2>Friends</h2></div>
+
+<div class="topbar">
+<h2>Friends</h2>
+</div>
+
 <div class="module">
-<div class="module-card"><h3>👥 My Friends</h3>
-<button>👤 Ahmad <span class="online">● Online</span></button>
-<button>👤 Siti</button><button>👤 John</button>
+
+<div class="module-card">
+
+<h3>👥 My Friends</h3>
+
+<button>
+👤 Ahmad <span class="online">● Online</span>
+</button>
+
+<button>👤 Siti</button>
+<button>👤 John</button>
+
 </div>
-<div class="module-card"><h3>➕ Add Friend</h3>
-<input id="friendInput" placeholder="Enter Y-M ID" style="width:100%;padding:11px;border:1px solid #ddd;border-radius:8px;margin-top:10px">
-<button onclick="addFriend()" style="background:#1976d2;color:#fff;text-align:center">ADD FRIEND</button>
+
+<div class="module-card">
+
+<h3>➕ Add Friend</h3>
+
+<input
+id="friendInput"
+placeholder="Enter Y-M ID"
+style="width:100%;padding:11px;border:1px solid #ddd;border-radius:8px;margin-top:10px">
+
+<button
+onclick="addFriend()"
+style="background:#1976d2;color:#fff;text-align:center">
+ADD FRIEND
+</button>
+
 </div>
+
 </div>
 </section>
 
-<!-- ROOMS -->
+<!-- ================= ROOMS ================= -->
+
 <section id="roomsPage" class="page">
-<div class="topbar"><h2>Rooms</h2></div>
+
+<div class="topbar">
+<h2>Rooms</h2>
+</div>
+
 <div class="module">
-<div class="module-card"><h3>🌎 Y-M Chat Rooms</h3>
-<button onclick="openRoom('🇲🇾 Malaysia')">🇲🇾 Malaysia</button>
-<button onclick="openRoom('🌴 Sabah')">🌴 Sabah</button>
-<button onclick="openRoom('🚗 Automotif')">🚗 Automotif</button>
-<button onclick="openRoom('🇵🇭 Philippines')">🇵🇭 Philippines</button>
-<button onclick="openRoom('🇮🇩 Indonesia')">🇮🇩 Indonesia</button>
-<button onclick="openRoom('🇸🇬 Singapore')">🇸🇬 Singapore</button>
-<button onclick="openRoom('🇧🇳 Brunei')">🇧🇳 Brunei</button>
-<button onclick="openRoom('🌎 World')">🌎 World</button>
+
+<div class="module-card">
+
+<h3>🌎 Y-M Chat Rooms</h3>
+
+<button onclick="openRoom('🇲🇾 Malaysia')">
+🇲🇾 Malaysia
+</button>
+
+<button onclick="openRoom('🌴 Sabah')">
+🌴 Sabah
+</button>
+
+<button onclick="openRoom('🚗 Automotif')">
+🚗 Automotif
+</button>
+
+<button onclick="openRoom('🇵🇭 Philippines')">
+🇵🇭 Philippines
+</button>
+
+<button onclick="openRoom('🇮🇩 Indonesia')">
+🇮🇩 Indonesia
+</button>
+
+<button onclick="openRoom('🇸🇬 Singapore')">
+🇸🇬 Singapore
+</button>
+
+<button onclick="openRoom('🇧🇳 Brunei')">
+🇧🇳 Brunei
+</button>
+
+<button onclick="openRoom('🌎 World')">
+🌎 World
+</button>
+
 </div>
+
 <div id="roomBox" class="module-card" style="display:none">
-<h3 id="roomTitle">Room</h3><div id="roomMessages"></div>
-<div style="display:flex;gap:6px;margin-top:10px"><input id="roomInput" placeholder="Write in room..." style="flex:1;padding:10px;border:1px solid #ddd;border-radius:8px"><button onclick="sendRoomMessage()" style="border:0;border-radius:8px;background:#1976d2;color:#fff;padding:10px 14px">Send</button></div>
+
+<h3 id="roomTitle">Room</h3>
+
+<div id="roomMessages"></div>
+
+<div style="display:flex;gap:6px;margin-top:10px">
+
+<input
+id="roomInput"
+placeholder="Write in room..."
+style="flex:1;padding:10px;border:1px solid #ddd;border-radius:8px">
+
+<button
+onclick="sendRoomMessage()"
+style="border:0;border-radius:8px;background:#1976d2;color:#fff;padding:10px 14px">
+Send
+</button>
+
 </div>
+</div>
+
 </div>
 </section>
 
-<!-- MARKET -->
+<!-- ================= MARKET ================= -->
+
 <section id="marketPage" class="page">
-<div class="topbar"><h2>Market</h2></div>
-<div class="module"><div class="module-card"><h3>🛒 Y-M Marketplace</h3>
-<p style="color:#777;margin-top:10px">Buy and sell module will be connected later.</p>
-<button onclick="toast('Marketplace module coming later.')">➕ Create Listing</button>
-</div></div>
+
+<div class="topbar">
+<h2>Market</h2>
+</div>
+
+<div class="module">
+
+<div class="module-card">
+
+<h3>🛒 Y-M Marketplace</h3>
+
+<p style="color:#777;margin-top:10px">
+Buy and sell module will be connected later.
+</p>
+
+<button onclick="toast('Marketplace module coming later.')">
+➕ Create Listing
+</button>
+
+</div>
+
+</div>
 </section>
 
-<!-- PROFILE -->
+<!-- ================= PROFILE ================= -->
+
 <section id="profilePage" class="page">
-<div class="topbar"><h2>Profile</h2></div>
+
+<div class="topbar">
+<h2>Profile</h2>
+</div>
+
 <div class="profile-cover">
+
 <img id="coverImage" alt="Cover Photo">
+
 <div class="cover-menu">
-<button class="menu-button" onclick="toggleMenu()">⋮</button>
+
+<button class="menu-button" onclick="toggleMenu()">
+⋮
+</button>
+
 <div class="menu-box" id="menuBox">
-<button onclick="openEditProfile()">✏️ Edit Profile</button>
-<button onclick="openPasswordModal()">🔐 Change Password</button>
-<button onclick="openEmailModal()">📧 Change Email</button>
-<button onclick="logout()">🚪 Log Out</button>
+
+<button onclick="openEditProfile()">
+✏️ Edit Profile
+</button>
+
+<button onclick="openPasswordModal()">
+🔐 Change Password
+</button>
+
+<button onclick="openEmailModal()">
+📧 Change Email
+</button>
+
+<!-- LOG OUT KEKAL DI TIGA TITIK -->
+<button onclick="logout()">
+🚪 Log Out
+</button>
+
 </div>
 </div>
-<button class="cover-camera" onclick="document.getElementById('coverInput').click()">📷</button>
-<input id="coverInput" class="hidden-input" type="file" accept="image/*" onchange="uploadCover(this)">
+
+<button
+class="cover-camera"
+onclick="document.getElementById('coverInput').click()">
+📷
+</button>
+
+<input
+id="coverInput"
+class="hidden-input"
+type="file"
+accept="image/*"
+onchange="uploadCover(this)">
+
 </div>
 
 <div class="profile-area">
+
 <div class="profile-head">
+
 <div class="avatar-box">
-<div class="avatar"><img id="profileImage"><span id="avatarText" class="avatar-text">N</span></div>
-<button class="avatar-camera" onclick="document.getElementById('profileInput').click()">📷</button>
-<input id="profileInput" class="hidden-input" type="file" accept="image/*" onchange="uploadProfile(this)">
+
+<div class="avatar">
+
+<img id="profileImage" alt="Profile Photo">
+
+<span id="avatarText" class="avatar-text">
+N
+</span>
+
 </div>
+
+<button
+class="avatar-camera"
+onclick="document.getElementById('profileInput').click()">
+📷
+</button>
+
+<input
+id="profileInput"
+class="hidden-input"
+type="file"
+accept="image/*"
+onchange="uploadProfile(this)">
+
+</div>
+
 <div class="profile-info">
-<h1 id="profileName">Y-M User</h1>
-<div id="profileYmid" class="ymid">@user</div>
-<div id="profileBio" class="bio">Welcome to my Y-M Chat profile.</div>
+
+<h1 id="profileName">
+Y-M User
+</h1>
+
+<div id="profileYmid" class="ymid">
+@user
+</div>
+
+<div id="profileBio" class="bio">
+Welcome to my Y-M Chat profile.
+</div>
+
 </div>
 </div>
 
 <div class="info-card">
-<div class="info-row"><div class="info-label">🎂 Birthday</div><div class="info-value" id="infoBirthday">Not set</div></div>
-<div class="info-row"><div class="info-label">📍 Birthplace</div><div class="info-value" id="infoBirthplace">Not set</div></div>
-<div class="info-row"><div class="info-label">🎓 School</div><div class="info-value" id="infoSchool">Not set</div></div>
-<div class="info-row"><div class="info-label">🌏 Country</div><div class="info-value" id="infoCountry">Malaysia</div></div>
+
+<div class="info-row">
+<div class="info-label">🎂 Birthday</div>
+<div class="info-value" id="infoBirthday">
+Not set
 </div>
+</div>
+
+<div class="info-row">
+<div class="info-label">📍 Birthplace</div>
+<div class="info-value" id="infoBirthplace">
+Not set
+</div>
+</div>
+
+<div class="info-row">
+<div class="info-label">🎓 School</div>
+<div class="info-value" id="infoSchool">
+Not set
+</div>
+</div>
+
+<div class="info-row">
+<div class="info-label">🌏 Country</div>
+<div class="info-value" id="infoCountry">
+Malaysia
+</div>
+</div>
+
+</div>
+
+<!-- PROFILE POST -->
 
 <div class="post-box">
+
 <h3>What's on your mind?</h3>
-<textarea id="postText" class="post-input" placeholder="Write something..."></textarea>
+
+<textarea
+id="postText"
+class="post-input"
+placeholder="Write something...">
+</textarea>
+
 <div class="post-tools">
-<button onclick="chooseImage()">📷 Photo</button>
-<button onclick="chooseVideo()">🎥 Video</button>
-<button onclick="clearMedia()">✖ Clear</button>
-</div>
-<input id="postImageInput" class="hidden-input" type="file" accept="image/*" onchange="selectImage(this)">
-<input id="postVideoInput" class="hidden-input" type="file" accept="video/*" onchange="selectVideo(this)">
-<div id="selectedFile" class="selected-file"></div>
-<button class="publish" onclick="createPost()">POST</button>
+
+<button onclick="chooseImage()">
+📷 Photo
+</button>
+
+<button onclick="chooseVideo()">
+🎥 Video
+</button>
+
+<button onclick="clearMedia()">
+✖ Clear
+</button>
+
 </div>
 
-<h2 class="section-title">My Posts</h2>
+<input
+id="postImageInput"
+class="hidden-input"
+type="file"
+accept="image/*"
+onchange="selectImage(this)">
+
+<input
+id="postVideoInput"
+class="hidden-input"
+type="file"
+accept="video/*"
+onchange="selectVideo(this)">
+
+<div id="selectedFile" class="selected-file"></div>
+
+<div id="profileMediaPreview" class="media-preview"></div>
+
+<button class="publish" onclick="createPost()">
+POST
+</button>
+
+</div>
+
+<h2 class="section-title">
+My Posts
+</h2>
+
 <div id="postsContainer"></div>
+
 </div>
 </section>
 
 </div>
 
-<!-- NAV -->
+<!-- ================= NAV ================= -->
+
 <div class="bottom-nav" id="bottomNav">
-<button id="navHome" onclick="showAppPage('homePage','navHome')"><span>🏠</span>Home</button>
-<button id="navChats" onclick="showAppPage('chatsPage','navChats')"><span>💬</span>Chats</button>
-<button id="navFriends" onclick="showAppPage('friendsPage','navFriends')"><span>👥</span>Friends</button>
-<button id="navRooms" onclick="showAppPage('roomsPage','navRooms')"><span>🌎</span>Rooms</button>
-<button id="navProfile" onclick="showAppPage('profilePage','navProfile')"><span>👤</span>Profile</button>
+
+<button
+id="navHome"
+onclick="showAppPage('homePage','navHome')">
+<span>🏠</span>Home
+</button>
+
+<button
+id="navChats"
+onclick="showAppPage('chatsPage','navChats')">
+<span>💬</span>Chats
+</button>
+
+<button
+id="navFriends"
+onclick="showAppPage('friendsPage','navFriends')">
+<span>👥</span>Friends
+</button>
+
+<button
+id="navRooms"
+onclick="showAppPage('roomsPage','navRooms')">
+<span>🌎</span>Rooms
+</button>
+
+<button
+id="navProfile"
+onclick="showAppPage('profilePage','navProfile')">
+<span>👤</span>Profile
+</button>
+
 </div>
 
-<!-- EDIT PROFILE -->
-<div class="modal" id="editModal"><div class="modal-content">
+<!-- ================= EDIT PROFILE ================= -->
+
+<div class="modal" id="editModal">
+
+<div class="modal-content">
+
 <h2>✏️ Edit Profile</h2>
-<div class="form-group"><label>Name</label><input id="editName"></div>
-<div class="form-group"><label>Birthday</label><input id="editBirthday" type="date"></div>
-<div class="form-group"><label>Birthplace</label><input id="editBirthplace"></div>
-<div class="form-group"><label>School</label><input id="editSchool"></div>
-<div class="form-group"><label>Country</label><input id="editCountry"></div>
-<div class="form-group"><label>Bio</label><textarea id="editBio"></textarea></div>
-<div class="modal-buttons"><button class="cancel" onclick="closeModal('editModal')">Cancel</button><button class="save" onclick="saveProfile()">Save</button></div>
-</div></div>
 
-<!-- PASSWORD -->
-<div class="modal" id="passwordModal"><div class="modal-content">
+<div class="form-group">
+<label>Name</label>
+<input id="editName">
+</div>
+
+<div class="form-group">
+<label>Birthday</label>
+<input id="editBirthday" type="date">
+</div>
+
+<div class="form-group">
+<label>Birthplace</label>
+<input id="editBirthplace">
+</div>
+
+<div class="form-group">
+<label>School</label>
+<input id="editSchool">
+</div>
+
+<div class="form-group">
+<label>Country</label>
+<input id="editCountry">
+</div>
+
+<div class="form-group">
+<label>Bio</label>
+<textarea id="editBio"></textarea>
+</div>
+
+<div class="modal-buttons">
+
+<button
+class="cancel"
+onclick="closeModal('editModal')">
+Cancel
+</button>
+
+<button
+class="save"
+onclick="saveProfile()">
+Save
+</button>
+
+</div>
+
+</div>
+</div>
+
+<!-- ================= PASSWORD ================= -->
+
+<div class="modal" id="passwordModal">
+
+<div class="modal-content">
+
 <h2>🔐 Change Password</h2>
-<div class="form-group"><label>Current Password</label><input id="currentPassword" type="password"></div>
-<div class="form-group"><label>New Password</label><input id="newPassword" type="password"></div>
-<div class="form-group"><label>Confirm New Password</label><input id="confirmPassword" type="password"></div>
-<div class="modal-buttons"><button class="cancel" onclick="closeModal('passwordModal')">Cancel</button><button class="save" onclick="changePassword()">Change</button></div>
-</div></div>
 
-<!-- EMAIL -->
-<div class="modal" id="emailModal"><div class="modal-content">
+<div class="form-group">
+<label>Current Password</label>
+<input id="currentPassword" type="password">
+</div>
+
+<div class="form-group">
+<label>New Password</label>
+<input id="newPassword" type="password">
+</div>
+
+<div class="form-group">
+<label>Confirm New Password</label>
+<input id="confirmPassword" type="password">
+</div>
+
+<div class="modal-buttons">
+
+<button
+class="cancel"
+onclick="closeModal('passwordModal')">
+Cancel
+</button>
+
+<button
+class="save"
+onclick="changePassword()">
+Change
+</button>
+
+</div>
+
+</div>
+</div>
+
+<!-- ================= EMAIL ================= -->
+
+<div class="modal" id="emailModal">
+
+<div class="modal-content">
+
 <h2>📧 Change Email</h2>
-<div class="form-group"><label>New Email</label><input id="newEmail" type="email"></div>
-<div class="form-group"><label>Confirm New Email</label><input id="confirmEmail" type="email"></div>
-<div class="modal-buttons"><button class="cancel" onclick="closeModal('emailModal')">Cancel</button><button class="save" onclick="changeEmail()">Save Email</button></div>
-</div></div>
+
+<div class="form-group">
+<label>New Email</label>
+<input id="newEmail" type="email">
+</div>
+
+<div class="form-group">
+<label>Confirm New Email</label>
+<input id="confirmEmail" type="email">
+</div>
+
+<div class="modal-buttons">
+
+<button
+class="cancel"
+onclick="closeModal('emailModal')">
+Cancel
+</button>
+
+<button
+class="save"
+onclick="changeEmail()">
+Save Email
+</button>
+
+</div>
+
+</div>
+</div>
 
 <div id="toast" class="toast"></div>
 
 <script>
-const ACCOUNT_KEY="ym_accounts_v2",OLD_ACCOUNT_KEY="ym_accounts";
-const CURRENT_USER_KEY="ym_current_user_v2",OLD_CURRENT_USER_KEY="ym_current_user";
-const PROFILE_KEY="ym_profiles_v2",OLD_PROFILE_KEY="ym_profiles";
-const POSTS_KEY="ym_posts_v2",CHATS_KEY="ym_chats_v2",ROOMS_KEY="ym_rooms_v2",FRIENDS_KEY="ym_friends_v2";
 
-let currentUser=null,profileData=null,recoveryAccount=null;
-let selectedImage=null,selectedVideo=null;
-let homeSelectedImage=null,homeSelectedVideo=null;
-let currentChatUser=null,currentRoom=null;
+/* =========================================================
+   Y-M CHAT V1.9.3
+   MEDIA STORAGE FIX
+   ========================================================= */
 
-const countries=["Malaysia","Indonesia","Singapore","Brunei","Philippines","Thailand","Vietnam","Cambodia","Myanmar","United States","United Kingdom","Australia","New Zealand","Japan","South Korea","China","India","Canada","Other"];
+const ACCOUNT_KEY="ym_accounts_v2";
+const OLD_ACCOUNT_KEY="ym_accounts";
+
+const CURRENT_USER_KEY="ym_current_user_v2";
+const OLD_CURRENT_USER_KEY="ym_current_user";
+
+const PROFILE_KEY="ym_profiles_v2";
+const OLD_PROFILE_KEY="ym_profiles";
+
+const POSTS_KEY="ym_posts_v2";
+const CHATS_KEY="ym_chats_v2";
+const ROOMS_KEY="ym_rooms_v2";
+const FRIENDS_KEY="ym_friends_v2";
+
+/* IndexedDB media */
+const MEDIA_DB_NAME="ym_chat_media_v1";
+const MEDIA_STORE="media";
+
+let currentUser=null;
+let profileData=null;
+let recoveryAccount=null;
+
+let selectedImage=null;
+let selectedVideo=null;
+
+let homeSelectedImage=null;
+let homeSelectedVideo=null;
+
+let currentChatUser=null;
+let currentRoom=null;
+
+/* Object URLs */
+window.ymObjectUrls=[];
+
+const countries=[
+"Malaysia",
+"Indonesia",
+"Singapore",
+"Brunei",
+"Philippines",
+"Thailand",
+"Vietnam",
+"Cambodia",
+"Myanmar",
+"United States",
+"United Kingdom",
+"Australia",
+"New Zealand",
+"Japan",
+"South Korea",
+"China",
+"India",
+"Canada",
+"Other"
+];
 
 const securityQuestions={
-en:["What is your favorite color?","What is the name of your first school?","What city were you born in?","What is your favorite food?","What is your favorite animal?"],
-ms:["Apakah warna kegemaran anda?","Apakah nama sekolah pertama anda?","Di bandar manakah anda dilahirkan?","Apakah makanan kegemaran anda?","Apakah haiwan kegemaran anda?"]
+en:[
+"What is your favorite color?",
+"What is the name of your first school?",
+"What city were you born in?",
+"What is your favorite food?",
+"What is your favorite animal?"
+],
+ms:[
+"Apakah warna kegemaran anda?",
+"Apakah nama sekolah pertama anda?",
+"Di bandar manakah anda dilahirkan?",
+"Apakah makanan kegemaran anda?",
+"Apakah haiwan kegemaran anda?"
+]
 };
 
-function safeJSON(v,f){try{if(v===null||v===undefined||v==="")return f;return JSON.parse(v)}catch(e){return f}}
+/* =========================================================
+   BASIC HELPERS
+   ========================================================= */
+
+function safeJSON(v,f){
+try{
+if(v===null||v===undefined||v==="")return f;
+return JSON.parse(v)
+}catch(e){
+return f
+}
+}
+
+function escapeHTML(t){
+return String(t??"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;")
+}
+
+function initial(n){
+return String(n||"N").trim().charAt(0).toUpperCase()||"N"
+}
+
+function toast(m){
+let b=document.getElementById("toast");
+if(!b)return;
+
+b.textContent=m;
+b.style.display="block";
+
+clearTimeout(window.toastTimer);
+
+window.toastTimer=setTimeout(()=>{
+b.style.display="none"
+},2300)
+}
+
+/* =========================================================
+   INDEXED DB MEDIA
+   ========================================================= */
+
+function openMediaDB(){
+
+return new Promise((resolve,reject)=>{
+
+if(!window.indexedDB){
+reject(new Error("IndexedDB unavailable"));
+return
+}
+
+let request=indexedDB.open(MEDIA_DB_NAME,1);
+
+request.onupgradeneeded=function(e){
+
+let db=e.target.result;
+
+if(!db.objectStoreNames.contains(MEDIA_STORE)){
+db.createObjectStore(MEDIA_STORE,{keyPath:"id"})
+}
+
+};
+
+request.onsuccess=function(e){
+resolve(e.target.result)
+};
+
+request.onerror=function(){
+reject(request.error)
+};
+
+})
+}
+
+async function saveMediaFile(id,file){
+
+try{
+
+let db=await openMediaDB();
+
+return await new Promise((resolve,reject)=>{
+
+let tx=db.transaction(MEDIA_STORE,"readwrite");
+let store=tx.objectStore(MEDIA_STORE);
+
+store.put({
+id:id,
+blob:file,
+type:file.type||"",
+name:file.name||""
+});
+
+tx.oncomplete=()=>{
+db.close();
+resolve(true)
+};
+
+tx.onerror=()=>{
+db.close();
+reject(tx.error)
+};
+
+})
+
+}catch(e){
+
+console.error("saveMediaFile:",e);
+return false
+
+}
+}
+
+async function getMediaFile(id){
+
+try{
+
+let db=await openMediaDB();
+
+return await new Promise((resolve,reject)=>{
+
+let tx=db.transaction(MEDIA_STORE,"readonly");
+let store=tx.objectStore(MEDIA_STORE);
+let request=store.get(id);
+
+request.onsuccess=()=>{
+let result=request.result;
+db.close();
+resolve(result||null)
+};
+
+request.onerror=()=>{
+db.close();
+reject(request.error)
+};
+
+})
+
+}catch(e){
+
+console.error("getMediaFile:",e);
+return null
+
+}
+}
+
+async function deleteMediaFile(id){
+
+if(!id)return;
+
+try{
+
+let db=await openMediaDB();
+
+await new Promise((resolve,reject)=>{
+
+let tx=db.transaction(MEDIA_STORE,"readwrite");
+
+tx.objectStore(MEDIA_STORE).delete(id);
+
+tx.oncomplete=()=>{
+db.close();
+resolve()
+};
+
+tx.onerror=()=>{
+db.close();
+reject(tx.error)
+};
+
+})
+
+}catch(e){
+
+console.error("deleteMediaFile:",e)
+
+}
+}
+
+async function createMediaId(prefix="media"){
+
+return prefix+"_"+Date.now()+"_"+Math.random()
+.toString(16)
+.slice(2)
+}
+
+function rememberObjectURL(url){
+
+if(url){
+window.ymObjectUrls.push(url)
+}
+
+return url
+}
+
+/* =========================================================
+   ACCOUNTS
+   ========================================================= */
 
 function normalizeAccount(a){
+
 if(!a||typeof a!=="object")return null;
-let y=String(a.ymid||a.username||a.id||"").trim();if(!y)return null;
+
+let y=String(
+a.ymid||a.username||a.id||""
+).trim();
+
+if(!y)return null;
+
 return{
-ymid:y,username:String(a.username||y),name:String(a.name||y),
-password:String(a.password||""),country:String(a.country||"Malaysia"),
-phone:String(a.phone||""),email:String(a.email||""),
-securityQ1:String(a.securityQ1??"0"),securityA1:String(a.securityA1||"").toLowerCase(),
-securityQ2:String(a.securityQ2??"1"),securityA2:String(a.securityA2||"").toLowerCase(),
+ymid:y,
+username:String(a.username||y),
+name:String(a.name||y),
+password:String(a.password||""),
+country:String(a.country||"Malaysia"),
+phone:String(a.phone||""),
+email:String(a.email||""),
+securityQ1:String(a.securityQ1??"0"),
+securityA1:String(a.securityA1||"").toLowerCase(),
+securityQ2:String(a.securityQ2??"1"),
+securityA2:String(a.securityA2||"").toLowerCase(),
 createdAt:a.createdAt||new Date().toLocaleString()
-}}
+}
+
+}
 
 function getAccounts(){
+
 let raw=localStorage.getItem(ACCOUNT_KEY);
-if(raw===null)raw=localStorage.getItem(OLD_ACCOUNT_KEY);
-let p=safeJSON(raw,[]);
-if(Array.isArray(p))return p.map(normalizeAccount).filter(Boolean);
-if(p&&typeof p==="object"){
-if(Array.isArray(p.accounts))return p.accounts.map(normalizeAccount).filter(Boolean);
-let x=normalizeAccount(p);return x?[x]:[];
+
+if(raw===null){
+raw=localStorage.getItem(OLD_ACCOUNT_KEY)
 }
+
+let p=safeJSON(raw,[]);
+
+if(Array.isArray(p)){
+return p.map(normalizeAccount).filter(Boolean)
+}
+
+if(p&&typeof p==="object"){
+
+if(Array.isArray(p.accounts)){
+return p.accounts.map(normalizeAccount).filter(Boolean)
+}
+
+let x=normalizeAccount(p);
+
+return x?[x]:[]
+}
+
 return[]
 }
 
 function saveAccounts(a){
-try{localStorage.setItem(ACCOUNT_KEY,JSON.stringify(a.map(normalizeAccount).filter(Boolean)));return true}catch(e){return false}
+
+try{
+
+localStorage.setItem(
+ACCOUNT_KEY,
+JSON.stringify(
+a.map(normalizeAccount).filter(Boolean)
+)
+);
+
+return true
+
+}catch(e){
+
+return false
+
+}
 }
 
-function migrateAccounts(){let a=getAccounts();if(a.length)saveAccounts(a);return a}
+function migrateAccounts(){
 
-function getProfiles(){
-let raw=localStorage.getItem(PROFILE_KEY);
-if(raw===null)raw=localStorage.getItem(OLD_PROFILE_KEY);
-let d=safeJSON(raw,{});
-return d&&typeof d==="object"&&!Array.isArray(d)?d:{}
-}
+let a=getAccounts();
 
-function saveProfiles(d){try{localStorage.setItem(PROFILE_KEY,JSON.stringify(d));return true}catch(e){return false}}
+if(a.length)saveAccounts(a);
 
-function escapeHTML(t){return String(t??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
-function initial(n){return String(n||"N").trim().charAt(0).toUpperCase()||"N"}
-
-function toast(m){
-let b=document.getElementById("toast");if(!b)return;
-b.textContent=m;b.style.display="block";clearTimeout(window.toastTimer);
-window.toastTimer=setTimeout(()=>b.style.display="none",2300)
+return a
 }
 
 function findAccount(v){
-let x=String(v||"").trim().toLowerCase();if(!x)return null;
-return getAccounts().find(a=>[a.ymid,a.username,a.name,a.email,a.phone].some(i=>String(i||"").trim().toLowerCase()===x))||null
+
+let x=String(v||"")
+.trim()
+.toLowerCase();
+
+if(!x)return null;
+
+return getAccounts().find(a=>
+[
+a.ymid,
+a.username,
+a.name,
+a.email,
+a.phone
+]
+.some(i=>
+String(i||"")
+.trim()
+.toLowerCase()===x
+)
+)||null
 }
 
-function showPage(id){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-let p=document.getElementById(id);if(p)p.classList.add("active");
-if(["frontPage","loginPage","registerPage","changePasswordPage","securityPage","recoveryPage"].includes(id))
-document.getElementById("bottomNav").style.display="none"
+/* =========================================================
+   PROFILE STORAGE
+   ========================================================= */
+
+function getProfiles(){
+
+let raw=localStorage.getItem(PROFILE_KEY);
+
+if(raw===null){
+raw=localStorage.getItem(OLD_PROFILE_KEY)
 }
 
-function showAppPage(id,navId){
-if(!currentUser){showPage("loginPage");return}
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-let p=document.getElementById(id);if(p)p.classList.add("active");
-document.getElementById("bottomNav").style.display="flex";
-document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.remove("active"));
-let n=document.getElementById(navId);if(n)n.classList.add("active");
-if(id==="homePage"){renderHomeUser();renderHomeFeed()}
-if(id==="profilePage"){renderProfile();renderPosts()}
+let d=safeJSON(raw,{});
+
+return d&&typeof d==="object"&&!Array.isArray(d)
+?d:{}
 }
 
-function goHome(){showAppPage("homePage","navHome")}
+function saveProfiles(d){
 
-function fillCountries(){
-let s=document.getElementById("registerCountry");s.innerHTML='<option value="">Select country</option>';
-countries.forEach(c=>{let o=document.createElement("option");o.value=c;o.textContent=c;s.appendChild(o)})
+try{
+
+localStorage.setItem(
+PROFILE_KEY,
+JSON.stringify(d)
+);
+
+return true
+
+}catch(e){
+
+console.error(e);
+return false
+
 }
-
-function fillSecurityQuestions(){
-let lang=localStorage.getItem("ym_language")||"en",list=securityQuestions[lang]||securityQuestions.en;
-["securityQ1","securityQ2","securityEditQ1","securityEditQ2"].forEach(id=>{
-let s=document.getElementById(id);if(!s)return;s.innerHTML="";
-list.forEach((q,i)=>{let o=document.createElement("option");o.value=i;o.textContent=q;s.appendChild(o)})
-})
-}
-
-function changeLanguage(){
-let l=document.getElementById("languageSelect").value;
-localStorage.setItem("ym_language",l);fillSecurityQuestions();
-toast(l==="ms"?"Bahasa Melayu dipilih.":"English selected.")
-}
-
-function register(){
-let m=document.getElementById("registerMessage");m.className="message";
-let name=document.getElementById("registerName").value.trim();
-let y=document.getElementById("registerId").value.trim();
-let pw=document.getElementById("registerPassword").value;
-let cf=document.getElementById("registerConfirm").value;
-let country=document.getElementById("registerCountry").value;
-let phone=document.getElementById("registerPhone").value.trim();
-let email=document.getElementById("registerEmail").value.trim();
-let ec=document.getElementById("registerEmailConfirm").value.trim();
-let q1=document.getElementById("securityQ1").value,a1=document.getElementById("securityA1").value.trim();
-let q2=document.getElementById("securityQ2").value,a2=document.getElementById("securityA2").value.trim();
-
-if(!name||!y||!pw||!cf||!country||!phone||!email||!ec||!a1||!a2){m.textContent="Please complete all fields.";return}
-if(y.length<3){m.textContent="Y-M ID must contain at least 3 characters.";return}
-if(pw.length<6){m.textContent="Password must be at least 6 characters.";return}
-if(pw!==cf){m.textContent="Passwords do not match.";return}
-if(email!==ec){m.textContent="Emails do not match.";return}
-if(!email.includes("@")){m.textContent="Please enter a valid email.";return}
-
-let accounts=getAccounts();
-if(accounts.some(a=>a.ymid.toLowerCase()===y.toLowerCase())){m.textContent="This Y-M ID already exists.";return}
-
-accounts.push({ymid:y,username:y,name,password:pw,country,phone,email,
-securityQ1:q1,securityA1:a1.toLowerCase(),securityQ2:q2,securityA2:a2.toLowerCase(),createdAt:new Date().toLocaleString()});
-saveAccounts(accounts);
-
-let profiles=getProfiles();
-profiles[y]={name,ymid:y,birthday:"",birthplace:"",school:"",country,bio:"Welcome to my Y-M Chat profile.",profilePhoto:null,coverPhoto:null,email};
-saveProfiles(profiles);
-
-m.className="message success-message";m.textContent="Y-M ID created successfully. You can now login.";
-document.getElementById("registerPassword").value="";
-document.getElementById("registerConfirm").value="";
-setTimeout(()=>{
-document.getElementById("loginId").value=y;showPage("loginPage");
-document.getElementById("loginMessage").className="message success-message";
-document.getElementById("loginMessage").textContent="Account created. Please enter your password."
-},700)
-}
-
-function login(){
-let m=document.getElementById("loginMessage");m.className="message";
-let id=document.getElementById("loginId").value.trim(),pw=document.getElementById("loginPassword").value;
-if(!id||!pw){m.textContent="Please enter your Y-M ID and password.";return}
-let a=findAccount(id);
-if(!a){m.textContent="Y-M ID, username, email or phone was not found.";return}
-if(String(a.password)!==String(pw)){m.textContent="Y-M ID or password is incorrect.";return}
-currentUser=a.ymid;localStorage.setItem(CURRENT_USER_KEY,currentUser);localStorage.removeItem(OLD_CURRENT_USER_KEY);
-ensureProfile();document.getElementById("loginId").value="";document.getElementById("loginPassword").value="";
-toast("Login successful.");setTimeout(goHome,300)
 }
 
 function ensureProfile(){
-if(!currentUser){profileData=null;return}
-let profiles=getProfiles(),accounts=getAccounts();
-let a=accounts.find(x=>String(x.ymid).toLowerCase()===String(currentUser).toLowerCase());
-if(!a){currentUser=null;localStorage.removeItem(CURRENT_USER_KEY);profileData=null;return}
+
+if(!currentUser){
+profileData=null;
+return
+}
+
+let profiles=getProfiles();
+let accounts=getAccounts();
+
+let a=accounts.find(x=>
+String(x.ymid).toLowerCase()===
+String(currentUser).toLowerCase()
+);
+
+if(!a){
+
+currentUser=null;
+localStorage.removeItem(CURRENT_USER_KEY);
+profileData=null;
+
+return
+}
+
 if(!profiles[currentUser]){
-profiles[currentUser]={name:a.name,ymid:a.ymid,birthday:"",birthplace:"",school:"",country:a.country||"Malaysia",bio:"Welcome to my Y-M Chat profile.",profilePhoto:null,coverPhoto:null,email:a.email||""};
+
+profiles[currentUser]={
+name:a.name,
+ymid:a.ymid,
+birthday:"",
+birthplace:"",
+school:"",
+country:a.country||"Malaysia",
+bio:"Welcome to my Y-M Chat profile.",
+profilePhoto:null,
+coverPhoto:null,
+profilePhotoId:null,
+coverPhotoId:null,
+email:a.email||""
+};
+
 saveProfiles(profiles)
+
 }
+
 profileData=profiles[currentUser]
-}
 
-function renderHomeUser(){
-ensureProfile();if(!profileData)return;
-document.getElementById("homeUserName").textContent=profileData.name||"Y-M User";
-document.getElementById("homeUserId").textContent="@"+String(profileData.ymid||currentUser).replace(/^@/,"");
-let img=document.getElementById("homeAvatarImage"),txt=document.getElementById("homeAvatarText");
-if(profileData.profilePhoto){img.src=profileData.profilePhoto;img.style.display="block";txt.style.display="none"}
-else{img.style.display="none";txt.style.display="block";txt.textContent=initial(profileData.name)}
-}
-
-function renderProfile(){
-ensureProfile();if(!profileData)return;
-document.getElementById("profileName").textContent=profileData.name||"Y-M User";
-document.getElementById("profileYmid").textContent="@"+String(profileData.ymid||currentUser).replace(/^@/,"");
-document.getElementById("profileBio").textContent=profileData.bio||"Welcome to my Y-M Chat profile.";
-document.getElementById("infoBirthday").textContent=profileData.birthday||"Not set";
-document.getElementById("infoBirthplace").textContent=profileData.birthplace||"Not set";
-document.getElementById("infoSchool").textContent=profileData.school||"Not set";
-document.getElementById("infoCountry").textContent=profileData.country||"Not set";
-
-let a=document.getElementById("profileImage"),at=document.getElementById("avatarText");
-if(profileData.profilePhoto){a.src=profileData.profilePhoto;a.style.display="block";at.style.display="none"}
-else{a.style.display="none";at.style.display="block";at.textContent=initial(profileData.name)}
-
-let c=document.getElementById("coverImage");
-if(profileData.coverPhoto){c.src=profileData.coverPhoto;c.style.display="block"}else c.style.display="none"
-}
-
-function fileToDataURL(file){
-return new Promise((resolve,reject)=>{
-let r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(r.error);r.readAsDataURL(file)
-})
-}
-
-async function uploadProfile(input){
-let f=input.files[0];if(!f)return;
-if(!f.type.startsWith("image/")){toast("Please choose an image.");input.value="";return}
-try{
-profileData.profilePhoto=await fileToDataURL(f);saveCurrentProfile();renderProfile();renderHomeUser();renderPosts();renderHomeFeed();toast("Profile photo updated.")
-}catch(e){toast("Profile photo failed.")}
-input.value=""
-}
-
-async function uploadCover(input){
-let f=input.files[0];if(!f)return;
-if(!f.type.startsWith("image/")){toast("Please choose an image.");input.value="";return}
-try{profileData.coverPhoto=await fileToDataURL(f);saveCurrentProfile();renderProfile();toast("Cover photo updated.")}
-catch(e){toast("Cover photo failed.")}
-input.value=""
 }
 
 function saveCurrentProfile(){
+
 if(!currentUser||!profileData)return false;
-let p=getProfiles();p[currentUser]=profileData;return saveProfiles(p)
+
+let p=getProfiles();
+
+p[currentUser]=profileData;
+
+return saveProfiles(p)
+
 }
 
+/* =========================================================
+   PAGE CONTROL
+   ========================================================= */
+
+function showPage(id){
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+let p=document.getElementById(id);
+
+if(p)p.classList.add("active");
+
+if([
+"frontPage",
+"loginPage",
+"registerPage",
+"changePasswordPage",
+"securityPage",
+"recoveryPage"
+].includes(id)){
+
+document.getElementById("bottomNav")
+.style.display="none"
+
+}
+
+}
+
+function showAppPage(id,navId){
+
+if(!currentUser){
+showPage("loginPage");
+return
+}
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+let p=document.getElementById(id);
+
+if(p)p.classList.add("active");
+
+document.getElementById("bottomNav")
+.style.display="flex";
+
+document.querySelectorAll(".bottom-nav button")
+.forEach(b=>b.classList.remove("active"));
+
+let n=document.getElementById(navId);
+
+if(n)n.classList.add("active");
+
+if(id==="homePage"){
+
+renderHomeUser();
+renderHomeFeed()
+
+}
+
+if(id==="profilePage"){
+
+renderProfile();
+renderPosts()
+
+}
+
+}
+
+function goHome(){
+showAppPage("homePage","navHome")
+}
+
+/* =========================================================
+   COUNTRIES / SECURITY
+   ========================================================= */
+
+function fillCountries(){
+
+let s=document.getElementById("registerCountry");
+
+s.innerHTML=
+'<option value="">Select country</option>';
+
+countries.forEach(c=>{
+
+let o=document.createElement("option");
+
+o.value=c;
+o.textContent=c;
+
+s.appendChild(o)
+
+})
+
+}
+
+function fillSecurityQuestions(){
+
+let lang=
+localStorage.getItem("ym_language")||"en";
+
+let list=
+securityQuestions[lang]||
+securityQuestions.en;
+
+[
+"securityQ1",
+"securityQ2",
+"securityEditQ1",
+"securityEditQ2"
+].forEach(id=>{
+
+let s=document.getElementById(id);
+
+if(!s)return;
+
+s.innerHTML="";
+
+list.forEach((q,i)=>{
+
+let o=document.createElement("option");
+
+o.value=i;
+o.textContent=q;
+
+s.appendChild(o)
+
+})
+
+})
+
+}
+
+function changeLanguage(){
+
+let l=
+document.getElementById("languageSelect").value;
+
+localStorage.setItem("ym_language",l);
+
+fillSecurityQuestions();
+
+toast(
+l==="ms"
+?"Bahasa Melayu dipilih."
+:"English selected."
+)
+
+}
+
+/* =========================================================
+   REGISTER
+   ========================================================= */
+
+function register(){
+
+let m=document.getElementById("registerMessage");
+
+m.className="message";
+
+let name=
+document.getElementById("registerName").value.trim();
+
+let y=
+document.getElementById("registerId").value.trim();
+
+let pw=
+document.getElementById("registerPassword").value;
+
+let cf=
+document.getElementById("registerConfirm").value;
+
+let country=
+document.getElementById("registerCountry").value;
+
+let phone=
+document.getElementById("registerPhone").value.trim();
+
+let email=
+document.getElementById("registerEmail").value.trim();
+
+let ec=
+document.getElementById("registerEmailConfirm").value.trim();
+
+let q1=
+document.getElementById("securityQ1").value;
+
+let a1=
+document.getElementById("securityA1").value.trim();
+
+let q2=
+document.getElementById("securityQ2").value;
+
+let a2=
+document.getElementById("securityA2").value.trim();
+
+if(
+!name||!y||!pw||!cf||
+!country||!phone||!email||!ec||
+!a1||!a2
+){
+
+m.textContent="Please complete all fields.";
+return
+
+}
+
+if(y.length<3){
+
+m.textContent=
+"Y-M ID must contain at least 3 characters.";
+
+return
+}
+
+if(pw.length<6){
+
+m.textContent=
+"Password must be at least 6 characters.";
+
+return
+}
+
+if(pw!==cf){
+
+m.textContent="Passwords do not match.";
+return
+}
+
+if(email!==ec){
+
+m.textContent="Emails do not match.";
+return
+}
+
+if(!email.includes("@")){
+
+m.textContent="Please enter a valid email.";
+return
+}
+
+let accounts=getAccounts();
+
+if(accounts.some(a=>
+a.ymid.toLowerCase()===
+y.toLowerCase()
+)){
+
+m.textContent=
+"This Y-M ID already exists.";
+
+return
+}
+
+accounts.push({
+ymid:y,
+username:y,
+name,
+password:pw,
+country,
+phone,
+email,
+securityQ1:q1,
+securityA1:a1.toLowerCase(),
+securityQ2:q2,
+securityA2:a2.toLowerCase(),
+createdAt:new Date().toLocaleString()
+});
+
+if(!saveAccounts(accounts)){
+
+m.textContent="Account could not be saved.";
+return
+
+}
+
+let profiles=getProfiles();
+
+profiles[y]={
+name,
+ymid:y,
+birthday:"",
+birthplace:"",
+school:"",
+country,
+bio:"Welcome to my Y-M Chat profile.",
+profilePhoto:null,
+coverPhoto:null,
+profilePhotoId:null,
+coverPhotoId:null,
+email
+};
+
+saveProfiles(profiles);
+
+m.className="message success-message";
+
+m.textContent=
+"Y-M ID created successfully. You can now login.";
+
+document.getElementById("registerPassword").value="";
+document.getElementById("registerConfirm").value="";
+
+setTimeout(()=>{
+
+document.getElementById("loginId").value=y;
+
+showPage("loginPage");
+
+document.getElementById("loginMessage").className=
+"message success-message";
+
+document.getElementById("loginMessage").textContent=
+"Account created. Please enter your password."
+
+},700)
+
+}
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+function login(){
+
+let m=document.getElementById("loginMessage");
+
+m.className="message";
+
+let id=
+document.getElementById("loginId").value.trim();
+
+let pw=
+document.getElementById("loginPassword").value;
+
+if(!id||!pw){
+
+m.textContent=
+"Please enter your Y-M ID and password.";
+
+return
+}
+
+let a=findAccount(id);
+
+if(!a){
+
+m.textContent=
+"Y-M ID, username, email or phone was not found.";
+
+return
+}
+
+if(String(a.password)!==String(pw)){
+
+m.textContent=
+"Y-M ID or password is incorrect.";
+
+return
+}
+
+currentUser=a.ymid;
+
+localStorage.setItem(
+CURRENT_USER_KEY,
+currentUser
+);
+
+localStorage.removeItem(
+OLD_CURRENT_USER_KEY
+);
+
+ensureProfile();
+
+document.getElementById("loginId").value="";
+document.getElementById("loginPassword").value="";
+
+toast("Login successful.");
+
+setTimeout(goHome,300)
+
+}
+
+/* =========================================================
+   HOME PROFILE DISPLAY
+   ========================================================= */
+
+async function loadHomeAvatar(){
+
+ensureProfile();
+
+if(!profileData)return;
+
+let img=
+document.getElementById("homeAvatarImage");
+
+let txt=
+document.getElementById("homeAvatarText");
+
+if(profileData.profilePhotoId){
+
+let item=
+await getMediaFile(profileData.profilePhotoId);
+
+if(item){
+
+let url=
+rememberObjectURL(
+URL.createObjectURL(item.blob)
+);
+
+img.src=url;
+img.style.display="block";
+txt.style.display="none";
+
+return
+
+}
+
+}
+
+if(profileData.profilePhoto){
+
+img.src=profileData.profilePhoto;
+img.style.display="block";
+txt.style.display="none";
+
+return
+
+}
+
+img.removeAttribute("src");
+img.style.display="none";
+txt.style.display="block";
+txt.textContent=initial(profileData.name)
+
+}
+
+function renderHomeUser(){
+
+ensureProfile();
+
+if(!profileData)return;
+
+document.getElementById("homeUserName")
+.textContent=
+profileData.name||"Y-M User";
+
+document.getElementById("homeUserId")
+.textContent=
+"@"+
+String(
+profileData.ymid||currentUser
+).replace(/^@/,"");
+
+loadHomeAvatar()
+
+}
+
+/* =========================================================
+   PROFILE DISPLAY
+   ========================================================= */
+
+async function loadProfilePhoto(){
+
+if(!profileData)return;
+
+let a=document.getElementById("profileImage");
+let at=document.getElementById("avatarText");
+
+if(profileData.profilePhotoId){
+
+let item=
+await getMediaFile(profileData.profilePhotoId);
+
+if(item){
+
+let url=
+rememberObjectURL(
+URL.createObjectURL(item.blob)
+);
+
+a.src=url;
+a.style.display="block";
+at.style.display="none";
+
+return
+
+}
+
+}
+
+if(profileData.profilePhoto){
+
+a.src=profileData.profilePhoto;
+a.style.display="block";
+at.style.display="none";
+
+return
+
+}
+
+a.removeAttribute("src");
+a.style.display="none";
+at.style.display="block";
+at.textContent=initial(profileData.name)
+
+}
+
+async function loadCoverPhoto(){
+
+if(!profileData)return;
+
+let c=document.getElementById("coverImage");
+
+if(profileData.coverPhotoId){
+
+let item=
+await getMediaFile(profileData.coverPhotoId);
+
+if(item){
+
+let url=
+rememberObjectURL(
+URL.createObjectURL(item.blob)
+);
+
+c.src=url;
+c.style.display="block";
+
+return
+
+}
+
+}
+
+if(profileData.coverPhoto){
+
+c.src=profileData.coverPhoto;
+c.style.display="block";
+
+return
+
+}
+
+c.removeAttribute("src");
+c.style.display="none"
+
+}
+
+function renderProfile(){
+
+ensureProfile();
+
+if(!profileData)return;
+
+document.getElementById("profileName")
+.textContent=
+profileData.name||"Y-M User";
+
+document.getElementById("profileYmid")
+.textContent=
+"@"+
+String(
+profileData.ymid||currentUser
+).replace(/^@/,"");
+
+document.getElementById("profileBio")
+.textContent=
+profileData.bio||
+"Welcome to my Y-M Chat profile.";
+
+document.getElementById("infoBirthday")
+.textContent=
+profileData.birthday||"Not set";
+
+document.getElementById("infoBirthplace")
+.textContent=
+profileData.birthplace||"Not set";
+
+document.getElementById("infoSchool")
+.textContent=
+profileData.school||"Not set";
+
+document.getElementById("infoCountry")
+.textContent=
+profileData.country||"Not set";
+
+loadProfilePhoto();
+loadCoverPhoto()
+
+}
+
+/* =========================================================
+   PROFILE PHOTO
+   ========================================================= */
+
+async function uploadProfile(input){
+
+let f=input.files[0];
+
+if(!f)return;
+
+if(!f.type.startsWith("image/")){
+
+toast("Please choose an image.");
+
+input.value="";
+
+return
+}
+
+/*
+ Image limit for demo.
+ IndexedDB allows much more than localStorage,
+ but mobile browsers still have storage limits.
+*/
+
+if(f.size>10*1024*1024){
+
+toast("Image is too large. Maximum 10MB.");
+
+input.value="";
+
+return
+}
+
+try{
+
+ensureProfile();
+
+let oldId=
+profileData.profilePhotoId||null;
+
+let id=
+await createMediaId("profile");
+
+let saved=
+await saveMediaFile(id,f);
+
+if(!saved){
+
+toast("Profile photo could not be saved.");
+input.value="";
+return
+
+}
+
+profileData.profilePhotoId=id;
+
+/* old V1.9.3 Data URL is cleared */
+profileData.profilePhoto=null;
+
+if(!saveCurrentProfile()){
+
+await deleteMediaFile(id);
+
+toast("Profile photo could not be saved.");
+
+input.value="";
+
+return
+}
+
+if(oldId){
+await deleteMediaFile(oldId)
+}
+
+renderProfile();
+renderHomeUser();
+renderPosts();
+renderHomeFeed();
+
+toast("Profile photo updated.");
+
+}catch(e){
+
+console.error(e);
+toast("Profile photo failed.")
+
+}
+
+input.value=""
+
+}
+
+/* =========================================================
+   COVER PHOTO
+   ========================================================= */
+
+async function uploadCover(input){
+
+let f=input.files[0];
+
+if(!f)return;
+
+if(!f.type.startsWith("image/")){
+
+toast("Please choose an image.");
+
+input.value="";
+
+return
+}
+
+if(f.size>10*1024*1024){
+
+toast("Image is too large. Maximum 10MB.");
+
+input.value="";
+
+return
+}
+
+try{
+
+ensureProfile();
+
+let oldId=
+profileData.coverPhotoId||null;
+
+let id=
+await createMediaId("cover");
+
+let saved=
+await saveMediaFile(id,f);
+
+if(!saved){
+
+toast("Cover photo could not be saved.");
+
+input.value="";
+
+return
+}
+
+profileData.coverPhotoId=id;
+profileData.coverPhoto=null;
+
+if(!saveCurrentProfile()){
+
+await deleteMediaFile(id);
+
+toast("Cover photo could not be saved.");
+
+input.value="";
+
+return
+}
+
+if(oldId){
+await deleteMediaFile(oldId)
+}
+
+renderProfile();
+
+toast("Cover photo updated.")
+
+}catch(e){
+
+console.error(e);
+toast("Cover photo failed.")
+
+}
+
+input.value=""
+
+}
+
+/* =========================================================
+   EDIT PROFILE
+   ========================================================= */
+
 function openEditProfile(){
-closeMenu();ensureProfile();
-document.getElementById("editName").value=profileData.name||"";
-document.getElementById("editBirthday").value=profileData.birthday||"";
-document.getElementById("editBirthplace").value=profileData.birthplace||"";
-document.getElementById("editSchool").value=profileData.school||"";
-document.getElementById("editCountry").value=profileData.country||"";
-document.getElementById("editBio").value=profileData.bio||"";
-document.getElementById("editModal").style.display="flex"
+
+closeMenu();
+ensureProfile();
+
+document.getElementById("editName").value=
+profileData.name||"";
+
+document.getElementById("editBirthday").value=
+profileData.birthday||"";
+
+document.getElementById("editBirthplace").value=
+profileData.birthplace||"";
+
+document.getElementById("editSchool").value=
+profileData.school||"";
+
+document.getElementById("editCountry").value=
+profileData.country||"";
+
+document.getElementById("editBio").value=
+profileData.bio||"";
+
+document.getElementById("editModal")
+.style.display="flex"
+
 }
 
 function saveProfile(){
-let name=document.getElementById("editName").value.trim();
-if(!name){toast("Name cannot be empty.");return}
-profileData.name=name;
-profileData.birthday=document.getElementById("editBirthday").value;
-profileData.birthplace=document.getElementById("editBirthplace").value.trim();
-profileData.school=document.getElementById("editSchool").value.trim();
-profileData.country=document.getElementById("editCountry").value.trim();
-profileData.bio=document.getElementById("editBio").value.trim();
-saveCurrentProfile();
 
-let a=getAccounts(),i=a.findIndex(x=>x.ymid===currentUser);
-if(i!==-1){a[i].name=name;a[i].country=profileData.country;saveAccounts(a)}
-renderProfile();renderHomeUser();renderPosts();renderHomeFeed();closeModal("editModal");toast("Profile updated.")
+let name=
+document.getElementById("editName")
+.value.trim();
+
+if(!name){
+
+toast("Name cannot be empty.");
+return
+
 }
 
+profileData.name=name;
+
+profileData.birthday=
+document.getElementById("editBirthday").value;
+
+profileData.birthplace=
+document.getElementById("editBirthplace")
+.value.trim();
+
+profileData.school=
+document.getElementById("editSchool")
+.value.trim();
+
+profileData.country=
+document.getElementById("editCountry")
+.value.trim();
+
+profileData.bio=
+document.getElementById("editBio")
+.value.trim();
+
+saveCurrentProfile();
+
+let a=getAccounts();
+
+let i=a.findIndex(x=>
+x.ymid===currentUser
+);
+
+if(i!==-1){
+
+a[i].name=name;
+a[i].country=profileData.country;
+
+saveAccounts(a)
+
+}
+
+renderProfile();
+renderHomeUser();
+renderPosts();
+renderHomeFeed();
+
+closeModal("editModal");
+
+toast("Profile updated.")
+
+}
+
+/* =========================================================
+   PASSWORD
+   ========================================================= */
+
 function openPasswordModal(){
-closeMenu();["currentPassword","newPassword","confirmPassword"].forEach(id=>document.getElementById(id).value="");
-document.getElementById("passwordModal").style.display="flex"
+
+closeMenu();
+
+[
+"currentPassword",
+"newPassword",
+"confirmPassword"
+].forEach(id=>
+document.getElementById(id).value=""
+);
+
+document.getElementById("passwordModal")
+.style.display="flex"
+
 }
 
 function changePassword(){
-let c=document.getElementById("currentPassword").value,n=document.getElementById("newPassword").value,x=document.getElementById("confirmPassword").value;
-if(!c||!n||!x){toast("Please complete all fields.");return}
-if(n.length<6){toast("Password must be at least 6 characters.");return}
-if(n!==x){toast("New passwords do not match.");return}
-let a=getAccounts(),i=a.findIndex(z=>z.ymid===currentUser);
-if(i===-1){toast("Account not found.");return}
-if(String(a[i].password)!==String(c)){toast("Current password is incorrect.");return}
-a[i].password=n;saveAccounts(a);closeModal("passwordModal");toast("Password changed successfully.")
+
+let c=
+document.getElementById("currentPassword").value;
+
+let n=
+document.getElementById("newPassword").value;
+
+let x=
+document.getElementById("confirmPassword").value;
+
+if(!c||!n||!x){
+
+toast("Please complete all fields.");
+return
+
+}
+
+if(n.length<6){
+
+toast("Password must be at least 6 characters.");
+return
+
+}
+
+if(n!==x){
+
+toast("New passwords do not match.");
+return
+
+}
+
+let a=getAccounts();
+
+let i=a.findIndex(z=>
+z.ymid===currentUser
+);
+
+if(i===-1){
+
+toast("Account not found.");
+return
+
+}
+
+if(String(a[i].password)!==String(c)){
+
+toast("Current password is incorrect.");
+return
+
+}
+
+a[i].password=n;
+
+if(!saveAccounts(a)){
+
+toast("Password could not be saved.");
+return
+
+}
+
+closeModal("passwordModal");
+
+toast("Password changed successfully.")
+
 }
 
 function changePasswordFromFront(){
-let m=document.getElementById("changeMessage");m.className="message";
-let a=findAccount(document.getElementById("changeId").value.trim());
-let c=document.getElementById("changeCurrent").value,n=document.getElementById("changeNew").value,x=document.getElementById("changeConfirm").value;
-if(!a){m.textContent="Account not found.";return}
-if(String(a.password)!==String(c)){m.textContent="Current password is incorrect.";return}
-if(n.length<6){m.textContent="Password must be at least 6 characters.";return}
-if(n!==x){m.textContent="Passwords do not match.";return}
-let all=getAccounts(),i=all.findIndex(z=>z.ymid===a.ymid);all[i].password=n;saveAccounts(all);
-m.className="message success-message";m.textContent="Password changed successfully."
+
+let m=
+document.getElementById("changeMessage");
+
+m.className="message";
+
+let a=
+findAccount(
+document.getElementById("changeId")
+.value.trim()
+);
+
+let c=
+document.getElementById("changeCurrent").value;
+
+let n=
+document.getElementById("changeNew").value;
+
+let x=
+document.getElementById("changeConfirm").value;
+
+if(!a){
+
+m.textContent="Account not found.";
+return
 }
+
+if(String(a.password)!==String(c)){
+
+m.textContent=
+"Current password is incorrect.";
+
+return
+}
+
+if(n.length<6){
+
+m.textContent=
+"Password must be at least 6 characters.";
+
+return
+}
+
+if(n!==x){
+
+m.textContent=
+"Passwords do not match.";
+
+return
+}
+
+let all=getAccounts();
+
+let i=all.findIndex(z=>
+z.ymid===a.ymid
+);
+
+all[i].password=n;
+
+if(!saveAccounts(all)){
+
+m.textContent=
+"Password could not be saved.";
+
+return
+}
+
+m.className="message success-message";
+
+m.textContent=
+"Password changed successfully."
+
+}
+
+/* =========================================================
+   SECURITY
+   ========================================================= */
 
 function saveSecurity(){
-let m=document.getElementById("securityMessage");m.className="message";
-let a=findAccount(document.getElementById("securityId").value.trim());
-let q1=document.getElementById("securityEditQ1").value,a1=document.getElementById("securityEditA1").value.trim();
-let q2=document.getElementById("securityEditQ2").value,a2=document.getElementById("securityEditA2").value.trim();
-if(!a||!a1||!a2){m.textContent="Please enter valid account and answers.";return}
-a.securityQ1=q1;a.securityA1=a1.toLowerCase();a.securityQ2=q2;a.securityA2=a2.toLowerCase();
-let all=getAccounts(),i=all.findIndex(z=>z.ymid===a.ymid);if(i===-1){m.textContent="Account not found.";return}
-all[i]=a;saveAccounts(all);m.className="message success-message";m.textContent="Security settings saved."
+
+let m=
+document.getElementById("securityMessage");
+
+m.className="message";
+
+let a=
+findAccount(
+document.getElementById("securityId")
+.value.trim()
+);
+
+let q1=
+document.getElementById("securityEditQ1").value;
+
+let a1=
+document.getElementById("securityEditA1")
+.value.trim();
+
+let q2=
+document.getElementById("securityEditQ2").value;
+
+let a2=
+document.getElementById("securityEditA2")
+.value.trim();
+
+if(!a||!a1||!a2){
+
+m.textContent=
+"Please enter valid account and answers.";
+
+return
 }
 
+a.securityQ1=q1;
+a.securityA1=a1.toLowerCase();
+
+a.securityQ2=q2;
+a.securityA2=a2.toLowerCase();
+
+let all=getAccounts();
+
+let i=all.findIndex(z=>
+z.ymid===a.ymid
+);
+
+if(i===-1){
+
+m.textContent="Account not found.";
+return
+}
+
+all[i]=a;
+
+if(!saveAccounts(all)){
+
+m.textContent=
+"Security settings could not be saved.";
+
+return
+}
+
+m.className="message success-message";
+
+m.textContent=
+"Security settings saved."
+
+}
+
+/* =========================================================
+   RECOVERY
+   ========================================================= */
+
 function findRecoveryAccount(){
-recoveryAccount=findAccount(document.getElementById("recoveryId").value.trim());
-let m=document.getElementById("recoveryMessage");
-if(!recoveryAccount){m.className="message";m.textContent="Account not found.";document.getElementById("recoveryQuestions").style.display="none";return}
-let list=securityQuestions[localStorage.getItem("ym_language")||"en"]||securityQuestions.en;
-document.getElementById("recoveryQuestion1").textContent=list[Number(recoveryAccount.securityQ1)]||"Security Question 1";
-document.getElementById("recoveryQuestion2").textContent=list[Number(recoveryAccount.securityQ2)]||"Security Question 2";
-document.getElementById("recoveryAnswer1").value="";document.getElementById("recoveryAnswer2").value="";
-document.getElementById("recoveryQuestions").style.display="block";document.getElementById("resetArea").style.display="none";
-m.className="message success-message";m.textContent="Account found. Verify your security answers."
+
+recoveryAccount=
+findAccount(
+document.getElementById("recoveryId")
+.value.trim()
+);
+
+let m=
+document.getElementById("recoveryMessage");
+
+if(!recoveryAccount){
+
+m.className="message";
+
+m.textContent=
+"Account not found.";
+
+document.getElementById("recoveryQuestions")
+.style.display="none";
+
+return
+}
+
+let list=
+securityQuestions[
+localStorage.getItem("ym_language")||"en"
+]||securityQuestions.en;
+
+document.getElementById("recoveryQuestion1")
+.textContent=
+list[
+Number(recoveryAccount.securityQ1)
+]||"Security Question 1";
+
+document.getElementById("recoveryQuestion2")
+.textContent=
+list[
+Number(recoveryAccount.securityQ2)
+]||"Security Question 2";
+
+document.getElementById("recoveryAnswer1").value="";
+document.getElementById("recoveryAnswer2").value="";
+
+document.getElementById("recoveryQuestions")
+.style.display="block";
+
+document.getElementById("resetArea")
+.style.display="none";
+
+m.className="message success-message";
+
+m.textContent=
+"Account found. Verify your security answers."
+
 }
 
 function verifyRecoveryQuestions(){
+
 if(!recoveryAccount)return;
-let a=document.getElementById("recoveryAnswer1").value.trim().toLowerCase();
-let b=document.getElementById("recoveryAnswer2").value.trim().toLowerCase();
-if(a!==recoveryAccount.securityA1||b!==recoveryAccount.securityA2){
-document.getElementById("recoveryMessage").className="message";
-document.getElementById("recoveryMessage").textContent="Security answers are incorrect.";return
+
+let a=
+document.getElementById("recoveryAnswer1")
+.value.trim().toLowerCase();
+
+let b=
+document.getElementById("recoveryAnswer2")
+.value.trim().toLowerCase();
+
+if(
+a!==recoveryAccount.securityA1||
+b!==recoveryAccount.securityA2
+){
+
+document.getElementById("recoveryMessage")
+.className="message";
+
+document.getElementById("recoveryMessage")
+.textContent=
+"Security answers are incorrect.";
+
+return
 }
-document.getElementById("recoveryMessage").className="message success-message";
-document.getElementById("recoveryMessage").textContent="Verification successful. Create a new password.";
-document.getElementById("resetArea").style.display="block"
+
+document.getElementById("recoveryMessage")
+.className=
+"message success-message";
+
+document.getElementById("recoveryMessage")
+.textContent=
+"Verification successful. Create a new password.";
+
+document.getElementById("resetArea")
+.style.display="block"
+
 }
 
 function demoPhoneRecovery(){
-if(!recoveryAccount){toast("Find your account first.");return}
-alert("DEMO PHONE VERIFICATION\n\nDemo code: 123456\n\nReal SMS/WhatsApp verification will be connected later.");
-document.getElementById("resetArea").style.display="block"
+
+if(!recoveryAccount){
+
+toast("Find your account first.");
+return
+
+}
+
+alert(
+"DEMO PHONE VERIFICATION\n\n"+
+"Demo code: 123456\n\n"+
+"Real SMS/WhatsApp verification will be connected later."
+);
+
+document.getElementById("resetArea")
+.style.display="block"
+
 }
 
 function demoEmailRecovery(){
-if(!recoveryAccount){toast("Find your account first.");return}
-alert("DEMO EMAIL VERIFICATION\n\nDemo code: 123456\n\nReal email verification will be connected later.");
-document.getElementById("resetArea").style.display="block"
+
+if(!recoveryAccount){
+
+toast("Find your account first.");
+return
+
+}
+
+alert(
+"DEMO EMAIL VERIFICATION\n\n"+
+"Demo code: 123456\n\n"+
+"Real email verification will be connected later."
+);
+
+document.getElementById("resetArea")
+.style.display="block"
+
 }
 
 function resetRecoveredPassword(){
+
 if(!recoveryAccount)return;
-let n=document.getElementById("recoveryNewPassword").value,x=document.getElementById("recoveryConfirmPassword").value;
-if(!n||!x){toast("Please complete both password fields.");return}
-if(n.length<6){toast("Password must be at least 6 characters.");return}
-if(n!==x){toast("Passwords do not match.");return}
-let a=getAccounts(),i=a.findIndex(z=>z.ymid===recoveryAccount.ymid);
-if(i===-1){toast("Account not found.");return}
-a[i].password=n;saveAccounts(a);recoveryAccount=null;
-document.getElementById("recoveryQuestions").style.display="none";
-document.getElementById("resetArea").style.display="none";
-document.getElementById("recoveryMessage").className="message success-message";
-document.getElementById("recoveryMessage").textContent="Password reset successfully. You can now login."
+
+let n=
+document.getElementById("recoveryNewPassword").value;
+
+let x=
+document.getElementById("recoveryConfirmPassword").value;
+
+if(!n||!x){
+
+toast("Please complete both password fields.");
+return
+
 }
 
+if(n.length<6){
+
+toast("Password must be at least 6 characters.");
+return
+
+}
+
+if(n!==x){
+
+toast("Passwords do not match.");
+return
+
+}
+
+let a=getAccounts();
+
+let i=a.findIndex(z=>
+z.ymid===recoveryAccount.ymid
+);
+
+if(i===-1){
+
+toast("Account not found.");
+return
+
+}
+
+a[i].password=n;
+
+if(!saveAccounts(a)){
+
+toast("Password could not be saved.");
+return
+}
+
+recoveryAccount=null;
+
+document.getElementById("recoveryQuestions")
+.style.display="none";
+
+document.getElementById("resetArea")
+.style.display="none";
+
+document.getElementById("recoveryMessage")
+.className=
+"message success-message";
+
+document.getElementById("recoveryMessage")
+.textContent=
+"Password reset successfully. You can now login."
+
+}
+
+/* =========================================================
+   EMAIL
+   ========================================================= */
+
 function openEmailModal(){
-closeMenu();ensureProfile();
-document.getElementById("newEmail").value=profileData.email||"";
-document.getElementById("confirmEmail").value=profileData.email||"";
-document.getElementById("emailModal").style.display="flex"
+
+closeMenu();
+ensureProfile();
+
+document.getElementById("newEmail").value=
+profileData.email||"";
+
+document.getElementById("confirmEmail").value=
+profileData.email||"";
+
+document.getElementById("emailModal")
+.style.display="flex"
+
 }
 
 function changeEmail(){
-let e=document.getElementById("newEmail").value.trim(),c=document.getElementById("confirmEmail").value.trim();
-if(!e||!c){toast("Please enter the email.");return}
-if(e!==c){toast("Emails do not match.");return}
-if(!e.includes("@")){toast("Please enter a valid email.");return}
-profileData.email=e;saveCurrentProfile();
-let a=getAccounts(),i=a.findIndex(z=>z.ymid===currentUser);if(i!==-1){a[i].email=e;saveAccounts(a)}
-closeModal("emailModal");toast("Email updated.")
+
+let e=
+document.getElementById("newEmail")
+.value.trim();
+
+let c=
+document.getElementById("confirmEmail")
+.value.trim();
+
+if(!e||!c){
+
+toast("Please enter the email.");
+return
+
 }
+
+if(e!==c){
+
+toast("Emails do not match.");
+return
+
+}
+
+if(!e.includes("@")){
+
+toast("Please enter a valid email.");
+return
+
+}
+
+profileData.email=e;
+
+saveCurrentProfile();
+
+let a=getAccounts();
+
+let i=a.findIndex(z=>
+z.ymid===currentUser
+);
+
+if(i!==-1){
+
+a[i].email=e;
+saveAccounts(a)
+
+}
+
+closeModal("emailModal");
+
+toast("Email updated.")
+
+}
+
+/* =========================================================
+   THREE DOT MENU
+   ========================================================= */
 
 function toggleMenu(){
-let b=document.getElementById("menuBox");b.style.display=b.style.display==="block"?"none":"block"
+
+let b=
+document.getElementById("menuBox");
+
+b.style.display=
+b.style.display==="block"
+?"none"
+:"block"
+
 }
-function closeMenu(){let b=document.getElementById("menuBox");if(b)b.style.display="none"}
-function closeModal(id){let m=document.getElementById(id);if(m)m.style.display="none"}
 
-document.addEventListener("click",e=>{if(e.target.closest&&!e.target.closest(".cover-menu"))closeMenu()});
-document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.style.display="none"}));
+function closeMenu(){
 
-/* ================= POSTS ================= */
+let b=
+document.getElementById("menuBox");
 
-function getPosts(){let d=safeJSON(localStorage.getItem(POSTS_KEY),[]);return Array.isArray(d)?d:[]}
-function savePosts(p){localStorage.setItem(POSTS_KEY,JSON.stringify(p))}
+if(b)b.style.display="none"
 
-function chooseImage(){document.getElementById("postImageInput").click()}
-function chooseVideo(){document.getElementById("postVideoInput").click()}
+}
+
+function closeModal(id){
+
+let m=document.getElementById(id);
+
+if(m)m.style.display="none"
+
+}
+
+document.addEventListener("click",e=>{
+
+if(
+e.target.closest &&
+!e.target.closest(".cover-menu")
+){
+closeMenu()
+}
+
+});
+
+document.querySelectorAll(".modal")
+.forEach(m=>
+m.addEventListener("click",e=>{
+if(e.target===m)m.style.display="none"
+})
+);
+
+/* =========================================================
+   FILE PREVIEW
+   ========================================================= */
+
+function showPreview(file,containerId,type){
+
+let box=
+document.getElementById(containerId);
+
+if(!box)return;
+
+box.innerHTML="";
+box.style.display="none";
+
+if(!file)return;
+
+let url=
+URL.createObjectURL(file);
+
+rememberObjectURL(url);
+
+if(type==="image"){
+
+let img=document.createElement("img");
+
+img.src=url;
+img.alt="Selected photo";
+
+box.appendChild(img);
+box.style.display="block";
+
+}
+
+if(type==="video"){
+
+let video=document.createElement("video");
+
+video.src=url;
+video.controls=true;
+video.playsInline=true;
+
+box.appendChild(video);
+box.style.display="block";
+
+}
+
+}
+
+/* =========================================================
+   POSTS
+   ========================================================= */
+
+function getPosts(){
+
+let d=
+safeJSON(
+localStorage.getItem(POSTS_KEY),
+[]
+);
+
+return Array.isArray(d)?d:[]
+
+}
+
+function savePosts(p){
+
+try{
+
+localStorage.setItem(
+POSTS_KEY,
+JSON.stringify(p)
+);
+
+return true
+
+}catch(e){
+
+console.error("savePosts:",e);
+
+return false
+
+}
+}
+
+/* PROFILE POST SELECT */
+
+function chooseImage(){
+
+document.getElementById("postImageInput")
+.click()
+
+}
+
+function chooseVideo(){
+
+document.getElementById("postVideoInput")
+.click()
+
+}
 
 function selectImage(input){
-let f=input.files[0];if(!f)return;
-if(!f.type.startsWith("image/")){toast("Please choose an image.");input.value="";return}
-selectedImage=f;selectedVideo=null;document.getElementById("postVideoInput").value="";
-document.getElementById("selectedFile").textContent="📷 Selected: "+f.name
+
+let f=input.files[0];
+
+if(!f)return;
+
+if(!f.type.startsWith("image/")){
+
+toast("Please choose an image.");
+
+input.value="";
+
+return
+}
+
+if(f.size>10*1024*1024){
+
+toast("Image is too large. Maximum 10MB.");
+
+input.value="";
+
+return
+}
+
+selectedImage=f;
+selectedVideo=null;
+
+document.getElementById("postVideoInput")
+.value="";
+
+document.getElementById("selectedFile")
+.textContent=
+"📷 Selected: "+f.name;
+
+showPreview(
+f,
+"profileMediaPreview",
+"image"
+)
+
 }
 
 function selectVideo(input){
-let f=input.files[0];if(!f)return;
-if(!f.type.startsWith("video/")){toast("Please choose a video.");input.value="";return}
-selectedVideo=f;selectedImage=null;document.getElementById("postImageInput").value="";
-document.getElementById("selectedFile").textContent="🎥 Selected: "+f.name
+
+let f=input.files[0];
+
+if(!f)return;
+
+if(!f.type.startsWith("video/")){
+
+toast("Please choose a video.");
+
+input.value="";
+
+return
+}
+
+if(f.size>50*1024*1024){
+
+toast("Video is too large. Maximum 50MB.");
+
+input.value="";
+
+return
+}
+
+selectedVideo=f;
+selectedImage=null;
+
+document.getElementById("postImageInput")
+.value="";
+
+document.getElementById("selectedFile")
+.textContent=
+"🎥 Selected: "+f.name;
+
+showPreview(
+f,
+"profileMediaPreview",
+"video"
+)
+
 }
 
 function clearMedia(){
-selectedImage=null;selectedVideo=null;
-document.getElementById("postImageInput").value="";
-document.getElementById("postVideoInput").value="";
-document.getElementById("selectedFile").textContent=""
+
+selectedImage=null;
+selectedVideo=null;
+
+document.getElementById("postImageInput")
+.value="";
+
+document.getElementById("postVideoInput")
+.value="";
+
+document.getElementById("selectedFile")
+.textContent="";
+
+let box=
+document.getElementById("profileMediaPreview");
+
+if(box){
+
+box.innerHTML="";
+box.style.display="none"
+
 }
+
+}
+
+/* =========================================================
+   CREATE PROFILE POST
+   ========================================================= */
 
 async function createPost(){
-ensureProfile();
-let text=document.getElementById("postText").value.trim();
-if(!text&&!selectedImage&&!selectedVideo){toast("Write something or choose media.");return}
 
-let p={id:"post_"+Date.now()+"_"+Math.random().toString(16).slice(2),user:currentUser,name:profileData.name,text,media:null,mediaType:null,likes:[],comments:[],createdAt:new Date().toLocaleString()};
-try{
-if(selectedImage){p.media=await fileToDataURL(selectedImage);p.mediaType="image"}
-if(selectedVideo){p.media=await fileToDataURL(selectedVideo);p.mediaType="video"}
-let all=getPosts();all.push(p);savePosts(all);
-document.getElementById("postText").value="";clearMedia();renderPosts();renderHomeFeed();toast("Post published successfully.")
-}catch(e){console.error(e);toast("Post could not be saved.")}
+ensureProfile();
+
+let text=
+document.getElementById("postText")
+.value.trim();
+
+if(
+!text&&
+!selectedImage&&
+!selectedVideo
+){
+
+toast("Write something or choose media.");
+return
+
 }
 
-/* ================= HOME MEDIA POST ================= */
+let p={
+id:"post_"+Date.now()+"_"+
+Math.random().toString(16).slice(2),
+user:currentUser,
+name:profileData.name,
+text,
+media:null,
+mediaType:null,
+mediaId:null,
+likes:[],
+comments:[],
+createdAt:new Date().toLocaleString()
+};
 
-function chooseHomeImage(){document.getElementById("homeImageInput").click()}
-function chooseHomeVideo(){document.getElementById("homeVideoInput").click()}
+let savedMediaId=null;
+
+try{
+
+if(selectedImage){
+
+savedMediaId=
+await createMediaId("post");
+
+let ok=
+await saveMediaFile(
+savedMediaId,
+selectedImage
+);
+
+if(!ok){
+
+toast("Photo could not be saved.");
+return
+
+}
+
+p.mediaId=savedMediaId;
+p.mediaType="image";
+
+}
+
+if(selectedVideo){
+
+savedMediaId=
+await createMediaId("post");
+
+let ok=
+await saveMediaFile(
+savedMediaId,
+selectedVideo
+);
+
+if(!ok){
+
+toast("Video could not be saved.");
+return
+
+}
+
+p.mediaId=savedMediaId;
+p.mediaType="video";
+
+}
+
+let all=getPosts();
+
+all.push(p);
+
+if(!savePosts(all)){
+
+if(savedMediaId){
+await deleteMediaFile(savedMediaId)
+}
+
+toast("Post could not be saved.");
+return
+
+}
+
+document.getElementById("postText").value="";
+
+clearMedia();
+
+renderPosts();
+renderHomeFeed();
+
+toast("Post published successfully.")
+
+}catch(e){
+
+console.error(e);
+
+if(savedMediaId){
+await deleteMediaFile(savedMediaId)
+}
+
+toast("Post could not be saved.")
+
+}
+
+}
+
+/* =========================================================
+   HOME MEDIA
+   ========================================================= */
+
+function chooseHomeImage(){
+
+document.getElementById("homeImageInput")
+.click()
+
+}
+
+function chooseHomeVideo(){
+
+document.getElementById("homeVideoInput")
+.click()
+
+}
 
 function selectHomeImage(input){
-let f=input.files[0];if(!f)return;
-if(!f.type.startsWith("image/")){toast("Please choose an image.");input.value="";return}
-homeSelectedImage=f;homeSelectedVideo=null;document.getElementById("homeVideoInput").value="";
-document.getElementById("homeSelectedFile").textContent="📷 Selected: "+f.name
+
+let f=input.files[0];
+
+if(!f)return;
+
+if(!f.type.startsWith("image/")){
+
+toast("Please choose an image.");
+
+input.value="";
+
+return
+}
+
+if(f.size>10*1024*1024){
+
+toast("Image is too large. Maximum 10MB.");
+
+input.value="";
+
+return
+}
+
+homeSelectedImage=f;
+homeSelectedVideo=null;
+
+document.getElementById("homeVideoInput")
+.value="";
+
+document.getElementById("homeSelectedFile")
+.textContent=
+"📷 Selected: "+f.name;
+
+showPreview(
+f,
+"homeMediaPreview",
+"image"
+)
+
 }
 
 function selectHomeVideo(input){
-let f=input.files[0];if(!f)return;
-if(!f.type.startsWith("video/")){toast("Please choose a video.");input.value="";return}
-homeSelectedVideo=f;homeSelectedImage=null;document.getElementById("homeImageInput").value="";
-document.getElementById("homeSelectedFile").textContent="🎥 Selected: "+f.name
+
+let f=input.files[0];
+
+if(!f)return;
+
+if(!f.type.startsWith("video/")){
+
+toast("Please choose a video.");
+
+input.value="";
+
+return
+}
+
+if(f.size>50*1024*1024){
+
+toast("Video is too large. Maximum 50MB.");
+
+input.value="";
+
+return
+}
+
+homeSelectedVideo=f;
+homeSelectedImage=null;
+
+document.getElementById("homeImageInput")
+.value="";
+
+document.getElementById("homeSelectedFile")
+.textContent=
+"🎥 Selected: "+f.name;
+
+showPreview(
+f,
+"homeMediaPreview",
+"video"
+)
+
 }
 
 function clearHomeMedia(){
-homeSelectedImage=null;homeSelectedVideo=null;
-document.getElementById("homeImageInput").value="";
-document.getElementById("homeVideoInput").value="";
-document.getElementById("homeSelectedFile").textContent=""
+
+homeSelectedImage=null;
+homeSelectedVideo=null;
+
+document.getElementById("homeImageInput")
+.value="";
+
+document.getElementById("homeVideoInput")
+.value="";
+
+document.getElementById("homeSelectedFile")
+.textContent="";
+
+let box=
+document.getElementById("homeMediaPreview");
+
+if(box){
+
+box.innerHTML="";
+box.style.display="none"
+
 }
+
+}
+
+/* =========================================================
+   CREATE HOME POST
+   ========================================================= */
 
 async function createHomePost(){
-ensureProfile();
-let text=document.getElementById("homePostText").value.trim();
-if(!text&&!homeSelectedImage&&!homeSelectedVideo){toast("Write something or choose media.");return}
 
-let p={id:"post_"+Date.now()+"_"+Math.random().toString(16).slice(2),user:currentUser,name:profileData.name,text,media:null,mediaType:null,likes:[],comments:[],createdAt:new Date().toLocaleString()};
-try{
-if(homeSelectedImage){p.media=await fileToDataURL(homeSelectedImage);p.mediaType="image"}
-if(homeSelectedVideo){p.media=await fileToDataURL(homeSelectedVideo);p.mediaType="video"}
-let all=getPosts();all.push(p);savePosts(all);
-document.getElementById("homePostText").value="";clearHomeMedia();renderHomeFeed();renderPosts();toast("Post published.")
-}catch(e){toast("Post could not be saved.")}
+ensureProfile();
+
+let text=
+document.getElementById("homePostText")
+.value.trim();
+
+if(
+!text&&
+!homeSelectedImage&&
+!homeSelectedVideo
+){
+
+toast("Write something or choose media.");
+return
+
 }
 
-/* ================= POST UI ================= */
+let p={
+id:"post_"+Date.now()+"_"+
+Math.random().toString(16).slice(2),
+user:currentUser,
+name:profileData.name,
+text,
+media:null,
+mediaType:null,
+mediaId:null,
+likes:[],
+comments:[],
+createdAt:new Date().toLocaleString()
+};
+
+let savedMediaId=null;
+
+try{
+
+if(homeSelectedImage){
+
+savedMediaId=
+await createMediaId("post");
+
+let ok=
+await saveMediaFile(
+savedMediaId,
+homeSelectedImage
+);
+
+if(!ok){
+
+toast("Photo could not be saved.");
+return
+
+}
+
+p.mediaId=savedMediaId;
+p.mediaType="image";
+
+}
+
+if(homeSelectedVideo){
+
+savedMediaId=
+await createMediaId("post");
+
+let ok=
+await saveMediaFile(
+savedMediaId,
+homeSelectedVideo
+);
+
+if(!ok){
+
+toast("Video could not be saved.");
+return
+
+}
+
+p.mediaId=savedMediaId;
+p.mediaType="video";
+
+}
+
+let all=getPosts();
+
+all.push(p);
+
+if(!savePosts(all)){
+
+if(savedMediaId){
+await deleteMediaFile(savedMediaId)
+}
+
+toast("Post could not be saved.");
+return
+
+}
+
+document.getElementById("homePostText")
+.value="";
+
+clearHomeMedia();
+
+renderHomeFeed();
+renderPosts();
+
+toast("Post published.")
+
+}catch(e){
+
+console.error(e);
+
+if(savedMediaId){
+await deleteMediaFile(savedMediaId)
+}
+
+toast("Post could not be saved.")
+
+}
+
+}
+
+/* =========================================================
+   POST MEDIA LOADER
+   ========================================================= */
+
+async function loadPostMedia(container){
+
+if(!container)return;
+
+let items=
+container.querySelectorAll(
+"[data-media-id]"
+);
+
+for(let el of items){
+
+let id=el.getAttribute("data-media-id");
+
+if(!id)continue;
+
+let item=
+await getMediaFile(id);
+
+if(!item){
+
+el.outerHTML=
+'<div class="media-loading">Media unavailable.</div>';
+
+continue
+
+}
+
+let url=
+rememberObjectURL(
+URL.createObjectURL(item.blob)
+);
+
+if(el.tagName==="IMG"){
+
+el.src=url;
+
+}
+
+if(el.tagName==="VIDEO"){
+
+el.src=url;
+
+}
+
+}
+
+}
+
+/* =========================================================
+   BUILD POST
+   ========================================================= */
 
 function buildPostElement(post,homeMode=false){
-let el=document.createElement("div");el.className="post";
-let liked=Array.isArray(post.likes)&&post.likes.includes(currentUser);
-let likes=Array.isArray(post.likes)?post.likes.length:0;
-let prof=getProfiles()[post.user]||{};
-let avatar=prof.profilePhoto||"";
+
+let el=
+document.createElement("div");
+
+el.className="post";
+
+let liked=
+Array.isArray(post.likes)&&
+post.likes.includes(currentUser);
+
+let likes=
+Array.isArray(post.likes)
+?post.likes.length
+:0;
+
+let prof=
+getProfiles()[post.user]||{};
+
+let avatar=
+prof.profilePhoto||"";
+
 let media="";
 
-if(post.mediaType==="image"&&post.media)media='<img class="post-media" src="'+post.media+'" alt="Post image">';
-if(post.mediaType==="video"&&post.media)media='<video class="post-media" controls playsinline><source src="'+post.media+'"></video>';
+if(
+post.mediaType==="image"&&
+post.mediaId
+){
 
-let comments="";
-(Array.isArray(post.comments)?post.comments:[]).forEach(c=>{
-comments+=`<div class="comment"><div class="comment-top"><div class="comment-body"><strong>${escapeHTML(c.name)}</strong><div>${escapeHTML(c.text)}</div></div>${c.user===currentUser?`<button onclick="deleteComment('${post.id}','${c.id}')">🗑️</button>`:""}</div></div>`
-});
+media=
+'<div class="media-loading" '+
+'data-media-wrapper="'+
+escapeHTML(post.mediaId)+
+'">Loading photo...</div>';
 
-el.innerHTML=`
-<div class="post-header">
-<div class="post-avatar">${avatar?`<img src="${avatar}" alt="">`:escapeHTML(initial(post.name))}</div>
-<div class="post-user"><strong>${escapeHTML(post.name)}</strong><small>${escapeHTML(post.createdAt)}</small></div>
-<button class="post-menu" onclick="deletePost('${post.id}')">⋮</button>
-</div>
-${post.text?`<div class="post-content">${escapeHTML(post.text)}</div>`:""}
-${media}
-<div class="post-actions">
-<button class="${liked?"like-active":""}" onclick="toggleLike('${post.id}')">${liked?"❤️":"🤍"} Like (${likes})</button>
-<button onclick="focusComment('${post.id}')">💬 Comment</button>
-<button onclick="sharePost('${post.id}')">📤 Share</button>
-</div>
-<div class="comments">${comments}
-<input id="comment-${post.id}" class="comment-input" placeholder="Write a comment..." onkeydown="commentKey(event,'${post.id}')">
-<button class="comment-send" onclick="addComment('${post.id}')">Send Comment</button>
-</div>`;
-return el
 }
 
+else if(
+post.mediaType==="video"&&
+post.mediaId
+){
+
+media=
+'<div class="media-loading" '+
+'data-media-wrapper="'+
+escapeHTML(post.mediaId)+
+'">Loading video...</div>';
+
+}
+
+else if(
+post.mediaType==="image"&&
+post.media
+){
+
+media=
+'<img class="post-media" '+
+'src="'+post.media+'" alt="Post image">';
+
+}
+
+else if(
+post.mediaType==="video"&&
+post.media
+){
+
+media=
+'<video class="post-media" controls playsinline>'+
+'<source src="'+post.media+'">'+
+'</video>';
+
+}
+
+/* comments */
+
+let comments="";
+
+(
+Array.isArray(post.comments)
+?post.comments
+:[]
+).forEach(c=>{
+
+comments+=
+`<div class="comment">
+<div class="comment-top">
+<div class="comment-body">
+<strong>${escapeHTML(c.name)}</strong>
+<div>${escapeHTML(c.text)}</div>
+</div>
+${
+c.user===currentUser
+?`<button onclick="deleteComment('${post.id}','${c.id}')">🗑️</button>`
+:""
+}
+</div>
+</div>`
+
+});
+
+/* avatar */
+
+let avatarHTML="";
+
+if(avatar){
+
+avatarHTML=
+`<img src="${avatar}" alt="">`
+
+}else{
+
+avatarHTML=
+escapeHTML(initial(post.name))
+
+}
+
+el.innerHTML=`
+
+<div class="post-header">
+
+<div class="post-avatar">
+${avatarHTML}
+</div>
+
+<div class="post-user">
+
+<strong>
+${escapeHTML(post.name)}
+</strong>
+
+<small>
+${escapeHTML(post.createdAt)}
+</small>
+
+</div>
+
+<button
+class="post-menu"
+onclick="deletePost('${post.id}')">
+⋮
+</button>
+
+</div>
+
+${
+post.text
+?`<div class="post-content">
+${escapeHTML(post.text)}
+</div>`
+:""
+}
+
+${media}
+
+<div class="post-actions">
+
+<button
+class="${liked?"like-active":""}"
+onclick="toggleLike('${post.id}')">
+${liked?"❤️":"🤍"} Like (${likes})
+</button>
+
+<button
+onclick="focusComment('${post.id}')">
+💬 Comment
+</button>
+
+<button
+onclick="sharePost('${post.id}')">
+📤 Share
+</button>
+
+</div>
+
+<div class="comments">
+
+${comments}
+
+<input
+id="comment-${post.id}"
+class="comment-input"
+placeholder="Write a comment..."
+onkeydown="commentKey(event,'${post.id}')">
+
+<button
+class="comment-send"
+onclick="addComment('${post.id}')">
+Send Comment
+</button>
+
+</div>
+`;
+
+if(post.mediaId){
+
+let mediaBox=
+el.querySelector(
+'[data-media-wrapper="'+
+CSS.escape(post.mediaId)+
+'"]'
+);
+
+if(mediaBox){
+
+getMediaFile(post.mediaId)
+.then(item=>{
+
+if(!item){
+
+mediaBox.textContent=
+"Media unavailable.";
+
+return
+
+}
+
+let url=
+rememberObjectURL(
+URL.createObjectURL(item.blob)
+);
+
+if(post.mediaType==="image"){
+
+let img=
+document.createElement("img");
+
+img.className="post-media";
+img.src=url;
+img.alt="Post image";
+
+mediaBox.replaceWith(img)
+
+}
+
+else if(post.mediaType==="video"){
+
+let video=
+document.createElement("video");
+
+video.className="post-media";
+video.controls=true;
+video.playsInline=true;
+video.src=url;
+
+mediaBox.replaceWith(video)
+
+}
+
+})
+.catch(()=>{
+
+mediaBox.textContent=
+"Media unavailable."
+
+})
+
+}
+
+}
+
+return el
+
+}
+
+/* =========================================================
+   RENDER POSTS
+   ========================================================= */
+
 function renderPosts(){
-let box=document.getElementById("postsContainer");if(!box)return;
-let posts=getPosts().filter(p=>p.user===currentUser).sort((a,b)=>b.id.localeCompare(a.id));
+
+let box=
+document.getElementById("postsContainer");
+
+if(!box)return;
+
+let posts=
+getPosts()
+.filter(p=>p.user===currentUser)
+.sort((a,b)=>
+String(b.id).localeCompare(String(a.id))
+);
+
 box.innerHTML="";
-if(!posts.length){box.innerHTML='<div style="text-align:center;padding:30px 10px;color:#777">No posts yet.<br>Write something above.</div>';return}
-posts.forEach(p=>box.appendChild(buildPostElement(p)))
+
+if(!posts.length){
+
+box.innerHTML=
+'<div style="text-align:center;padding:30px 10px;color:#777">'+
+'No posts yet.<br>Write something above.'+
+'</div>';
+
+return
+
+}
+
+posts.forEach(p=>
+box.appendChild(
+buildPostElement(p)
+)
+)
+
 }
 
 /* HOME FEED = ALL POSTS */
+
 function renderHomeFeed(){
-let box=document.getElementById("homeFeed");if(!box)return;
-let posts=getPosts().sort((a,b)=>b.id.localeCompare(a.id));
+
+let box=
+document.getElementById("homeFeed");
+
+if(!box)return;
+
+let posts=
+getPosts()
+.sort((a,b)=>
+String(b.id).localeCompare(String(a.id))
+);
+
 box.innerHTML="";
-if(!posts.length){box.innerHTML='<div class="home-placeholder">No posts yet. Be the first to post.</div>';return}
-posts.forEach(p=>box.appendChild(buildPostElement(p,true)))
+
+if(!posts.length){
+
+box.innerHTML=
+'<div class="home-placeholder">'+
+'No posts yet. Be the first to post.'+
+'</div>';
+
+return
+
 }
+
+posts.forEach(p=>
+box.appendChild(
+buildPostElement(p,true)
+)
+)
+
+}
+
+/* =========================================================
+   LIKE
+   ========================================================= */
 
 function toggleLike(id){
-let all=getPosts(),p=all.find(x=>x.id===id);if(!p)return;
-if(!Array.isArray(p.likes))p.likes=[];
-let i=p.likes.indexOf(currentUser);
-if(i===-1)p.likes.push(currentUser);else p.likes.splice(i,1);
-savePosts(all);renderPosts();renderHomeFeed()
+
+let all=getPosts();
+
+let p=
+all.find(x=>x.id===id);
+
+if(!p)return;
+
+if(!Array.isArray(p.likes)){
+p.likes=[]
 }
+
+let i=
+p.likes.indexOf(currentUser);
+
+if(i===-1){
+p.likes.push(currentUser)
+}else{
+p.likes.splice(i,1)
+}
+
+if(!savePosts(all)){
+
+toast("Could not save like.");
+return
+}
+
+renderPosts();
+renderHomeFeed()
+
+}
+
+/* =========================================================
+   COMMENT
+   ========================================================= */
 
 function focusComment(id){
-let x=document.getElementById("comment-"+id);
-if(x){x.focus();x.scrollIntoView({behavior:"smooth",block:"center"})}
+
+let x=
+document.getElementById(
+"comment-"+id
+);
+
+if(x){
+
+x.focus();
+
+x.scrollIntoView({
+behavior:"smooth",
+block:"center"
+})
+
 }
 
-function commentKey(e,id){if(e.key==="Enter"){e.preventDefault();addComment(id)}}
+}
+
+function commentKey(e,id){
+
+if(e.key==="Enter"){
+
+e.preventDefault();
+
+addComment(id)
+
+}
+
+}
 
 function addComment(id){
-ensureProfile();let input=document.getElementById("comment-"+id);if(!input)return;
-let text=input.value.trim();if(!text)return;
-let all=getPosts(),p=all.find(x=>x.id===id);if(!p)return;
-if(!Array.isArray(p.comments))p.comments=[];
-p.comments.push({id:"comment_"+Date.now(),user:currentUser,name:profileData.name,text});
-savePosts(all);renderPosts();renderHomeFeed();toast("Comment added.")
+
+ensureProfile();
+
+let input=
+document.getElementById(
+"comment-"+id
+);
+
+if(!input)return;
+
+let text=
+input.value.trim();
+
+if(!text)return;
+
+let all=getPosts();
+
+let p=
+all.find(x=>x.id===id);
+
+if(!p)return;
+
+if(!Array.isArray(p.comments)){
+p.comments=[]
+}
+
+p.comments.push({
+id:"comment_"+Date.now(),
+user:currentUser,
+name:profileData.name,
+text
+});
+
+if(!savePosts(all)){
+
+toast("Comment could not be saved.");
+return
+}
+
+renderPosts();
+renderHomeFeed();
+
+toast("Comment added.")
+
 }
 
 function deleteComment(pid,cid){
-let all=getPosts(),p=all.find(x=>x.id===pid);if(!p)return;
-p.comments=(p.comments||[]).filter(c=>!(c.id===cid&&c.user===currentUser));
-savePosts(all);renderPosts();renderHomeFeed();toast("Comment deleted.")
+
+let all=getPosts();
+
+let p=
+all.find(x=>x.id===pid);
+
+if(!p)return;
+
+p.comments=
+(p.comments||[])
+.filter(c=>
+!(c.id===cid&&c.user===currentUser)
+);
+
+savePosts(all);
+
+renderPosts();
+renderHomeFeed();
+
+toast("Comment deleted.")
+
 }
 
-function deletePost(id){
-let all=getPosts(),p=all.find(x=>x.id===id);if(!p)return;
-if(p.user!==currentUser){toast("You can only delete your own post.");return}
-if(!confirm("Delete this post?"))return;
-savePosts(all.filter(x=>x.id!==id));renderPosts();renderHomeFeed();toast("Post deleted.")
+/* =========================================================
+   DELETE POST
+   ========================================================= */
+
+async function deletePost(id){
+
+let all=getPosts();
+
+let p=
+all.find(x=>x.id===id);
+
+if(!p)return;
+
+if(p.user!==currentUser){
+
+toast("You can only delete your own post.");
+return
+
 }
+
+if(!confirm("Delete this post?"))return;
+
+let mediaId=p.mediaId||null;
+
+let ok=
+savePosts(
+all.filter(x=>x.id!==id)
+);
+
+if(!ok){
+
+toast("Post could not be deleted.");
+return
+}
+
+if(mediaId){
+
+await deleteMediaFile(mediaId)
+
+}
+
+renderPosts();
+renderHomeFeed();
+
+toast("Post deleted.")
+
+}
+
+/* =========================================================
+   SHARE
+   ========================================================= */
 
 async function sharePost(id){
-let p=getPosts().find(x=>x.id===id);if(!p)return;
-let text=p.name+": "+(p.text||"Y-M Chat post");
-if(navigator.share){try{await navigator.share({title:"Y-M Chat",text})}catch(e){}}
-else if(navigator.clipboard){try{await navigator.clipboard.writeText(text);toast("Post copied.")}catch(e){toast("Share unavailable.")}}
-else toast("Share unavailable.")
+
+let p=
+getPosts().find(x=>x.id===id);
+
+if(!p)return;
+
+let text=
+p.name+": "+
+(p.text||"Y-M Chat post");
+
+if(navigator.share){
+
+try{
+
+await navigator.share({
+title:"Y-M Chat",
+text
+})
+
+}catch(e){}
+
 }
 
-/* ================= CHAT ================= */
+else if(navigator.clipboard){
 
-function getChats(){return safeJSON(localStorage.getItem(CHATS_KEY),{})}
-function saveChats(d){localStorage.setItem(CHATS_KEY,JSON.stringify(d))}
+try{
+
+await navigator.clipboard.writeText(text);
+
+toast("Post copied.")
+
+}catch(e){
+
+toast("Share unavailable.")
+
+}
+
+}
+
+else{
+
+toast("Share unavailable.")
+
+}
+
+}
+
+/* =========================================================
+   CHAT
+   ========================================================= */
+
+function getChats(){
+
+return safeJSON(
+localStorage.getItem(CHATS_KEY),
+{}
+)
+
+}
+
+function saveChats(d){
+
+try{
+
+localStorage.setItem(
+CHATS_KEY,
+JSON.stringify(d)
+);
+
+return true
+
+}catch(e){
+
+return false
+
+}
+
+}
 
 function openDemoChat(name){
-currentChatUser=name;document.getElementById("chatBox").style.display="block";
-document.getElementById("chatTitle").textContent="💬 "+name;renderChatMessages()
+
+currentChatUser=name;
+
+document.getElementById("chatBox")
+.style.display="block";
+
+document.getElementById("chatTitle")
+.textContent="💬 "+name;
+
+renderChatMessages()
+
 }
 
 function renderChatMessages(){
-let box=document.getElementById("chatMessages"),ch=getChats(),key=currentUser+"__"+currentChatUser,msg=Array.isArray(ch[key])?ch[key]:[];
+
+let box=
+document.getElementById("chatMessages");
+
+let ch=getChats();
+
+let key=
+currentUser+
+"__"+
+currentChatUser;
+
+let msg=
+Array.isArray(ch[key])
+?ch[key]
+:[];
+
 box.innerHTML="";
-if(!msg.length){box.innerHTML='<div style="color:#777;padding:15px 0;text-align:center">No messages yet.</div>'}
-msg.forEach(m=>{let d=document.createElement("div");d.className="room-message";d.innerHTML="<strong>"+escapeHTML(m.name)+"</strong><div>"+escapeHTML(m.text)+"</div>";box.appendChild(d)})
+
+if(!msg.length){
+
+box.innerHTML=
+'<div style="color:#777;padding:15px 0;text-align:center">'+
+'No messages yet.'+
+'</div>'
+
+}
+
+msg.forEach(m=>{
+
+let d=
+document.createElement("div");
+
+d.className="room-message";
+
+d.innerHTML=
+"<strong>"+
+escapeHTML(m.name)+
+"</strong><div>"+
+escapeHTML(m.text)+
+"</div>";
+
+box.appendChild(d)
+
+})
+
 }
 
 function sendChatMessage(){
+
 if(!currentChatUser)return;
-let i=document.getElementById("chatInput"),t=i.value.trim();if(!t)return;
-let c=getChats(),k=currentUser+"__"+currentChatUser;if(!Array.isArray(c[k]))c[k]=[];
-c[k].push({name:profileData.name,text:t,createdAt:Date.now()});saveChats(c);i.value="";renderChatMessages()
+
+let i=
+document.getElementById("chatInput");
+
+let t=i.value.trim();
+
+if(!t)return;
+
+let c=getChats();
+
+let k=
+currentUser+
+"__"+
+currentChatUser;
+
+if(!Array.isArray(c[k])){
+c[k]=[]
 }
 
-/* ================= ROOMS ================= */
+c[k].push({
+name:profileData.name,
+text:t,
+createdAt:Date.now()
+});
 
-function getRooms(){return safeJSON(localStorage.getItem(ROOMS_KEY),{})}
-function saveRooms(d){localStorage.setItem(ROOMS_KEY,JSON.stringify(d))}
-function openRoom(r){currentRoom=r;document.getElementById("roomBox").style.display="block";document.getElementById("roomTitle").textContent=r;renderRoomMessages()}
+saveChats(c);
+
+i.value="";
+
+renderChatMessages()
+
+}
+
+/* =========================================================
+   ROOMS
+   ========================================================= */
+
+function getRooms(){
+
+return safeJSON(
+localStorage.getItem(ROOMS_KEY),
+{}
+)
+
+}
+
+function saveRooms(d){
+
+try{
+
+localStorage.setItem(
+ROOMS_KEY,
+JSON.stringify(d)
+);
+
+return true
+
+}catch(e){
+
+return false
+
+}
+
+}
+
+function openRoom(r){
+
+currentRoom=r;
+
+document.getElementById("roomBox")
+.style.display="block";
+
+document.getElementById("roomTitle")
+.textContent=r;
+
+renderRoomMessages()
+
+}
 
 function renderRoomMessages(){
-let box=document.getElementById("roomMessages"),rooms=getRooms(),m=Array.isArray(rooms[currentRoom])?rooms[currentRoom]:[];
+
+let box=
+document.getElementById("roomMessages");
+
+let rooms=getRooms();
+
+let m=
+Array.isArray(rooms[currentRoom])
+?rooms[currentRoom]
+:[];
+
 box.innerHTML="";
-if(!m.length)box.innerHTML='<div style="color:#777;padding:15px 0;text-align:center">Room is empty. Say hello!</div>';
-m.forEach(x=>{let d=document.createElement("div");d.className="room-message";d.innerHTML="<strong>"+escapeHTML(x.name)+"</strong><div>"+escapeHTML(x.text)+"</div>";box.appendChild(d)})
+
+if(!m.length){
+
+box.innerHTML=
+'<div style="color:#777;padding:15px 0;text-align:center">'+
+'Room is empty. Say hello!'+
+'</div>';
+
+}
+
+m.forEach(x=>{
+
+let d=
+document.createElement("div");
+
+d.className="room-message";
+
+d.innerHTML=
+"<strong>"+
+escapeHTML(x.name)+
+"</strong><div>"+
+escapeHTML(x.text)+
+"</div>";
+
+box.appendChild(d)
+
+})
+
 }
 
 function sendRoomMessage(){
+
 if(!currentRoom)return;
-let i=document.getElementById("roomInput"),t=i.value.trim();if(!t)return;
-let r=getRooms();if(!Array.isArray(r[currentRoom]))r[currentRoom]=[];
-r[currentRoom].push({name:profileData.name,text:t,createdAt:Date.now()});saveRooms(r);i.value="";renderRoomMessages()
+
+let i=
+document.getElementById("roomInput");
+
+let t=i.value.trim();
+
+if(!t)return;
+
+let r=getRooms();
+
+if(!Array.isArray(r[currentRoom])){
+r[currentRoom]=[]
 }
 
-/* ================= FRIENDS ================= */
+r[currentRoom].push({
+name:profileData.name,
+text:t,
+createdAt:Date.now()
+});
+
+saveRooms(r);
+
+i.value="";
+
+renderRoomMessages()
+
+}
+
+/* =========================================================
+   FRIENDS
+   ========================================================= */
 
 function addFriend(){
-let i=document.getElementById("friendInput"),id=i.value.trim();if(!id){toast("Enter a Y-M ID.");return}
-let a=findAccount(id);if(!a){toast("Y-M ID not found in this demo.");return}
-let l=safeJSON(localStorage.getItem(FRIENDS_KEY),[]);if(!Array.isArray(l))l=[];
-if(!l.includes(a.ymid))l.push(a.ymid);
-localStorage.setItem(FRIENDS_KEY,JSON.stringify(l));i.value="";toast(a.name+" added as friend.")
+
+let i=
+document.getElementById("friendInput");
+
+let id=i.value.trim();
+
+if(!id){
+
+toast("Enter a Y-M ID.");
+return
 }
 
-/* ================= LOGOUT ================= */
+let a=findAccount(id);
+
+if(!a){
+
+toast("Y-M ID not found in this demo.");
+return
+}
+
+let l=
+safeJSON(
+localStorage.getItem(FRIENDS_KEY),
+[]
+);
+
+if(!Array.isArray(l))l=[];
+
+if(!l.includes(a.ymid)){
+l.push(a.ymid)
+}
+
+localStorage.setItem(
+FRIENDS_KEY,
+JSON.stringify(l)
+);
+
+i.value="";
+
+toast(a.name+" added as friend.")
+
+}
+
+/* =========================================================
+   LOG OUT
+   ========================================================= */
 
 function logout(){
-closeMenu();if(!confirm("Are you sure you want to log out?"))return;
-localStorage.removeItem(CURRENT_USER_KEY);currentUser=null;profileData=null;currentChatUser=null;currentRoom=null;
-document.getElementById("bottomNav").style.display="none";toast("Logged out.");
-setTimeout(()=>showPage("frontPage"),400)
+
+/*
+ Log Out remains inside Profile three-dot menu.
+*/
+
+closeMenu();
+
+if(!confirm("Are you sure you want to log out?")){
+return
 }
 
-/* ================= INIT ================= */
+localStorage.removeItem(
+CURRENT_USER_KEY
+);
+
+currentUser=null;
+profileData=null;
+currentChatUser=null;
+currentRoom=null;
+
+document.getElementById("bottomNav")
+.style.display="none";
+
+toast("Logged out.");
+
+setTimeout(()=>{
+showPage("frontPage")
+},400)
+
+}
+
+/* =========================================================
+   CLEAN OBJECT URLS
+   ========================================================= */
+
+function cleanupObjectURLs(){
+
+if(!window.ymObjectUrls)return;
+
+window.ymObjectUrls.forEach(url=>{
+
+try{
+URL.revokeObjectURL(url)
+}catch(e){}
+
+});
+
+window.ymObjectUrls=[]
+
+}
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
 
 function initialize(){
-fillCountries();fillSecurityQuestions();migrateAccounts();
-let lang=localStorage.getItem("ym_language")||"en";
-document.getElementById("languageSelect").value=lang;
 
-let saved=localStorage.getItem(CURRENT_USER_KEY);
-if(!saved)saved=localStorage.getItem(OLD_CURRENT_USER_KEY);
+fillCountries();
+fillSecurityQuestions();
+migrateAccounts();
+
+let lang=
+localStorage.getItem("ym_language")||"en";
+
+document.getElementById("languageSelect")
+.value=lang;
+
+let saved=
+localStorage.getItem(CURRENT_USER_KEY);
+
+if(!saved){
+
+saved=
+localStorage.getItem(
+OLD_CURRENT_USER_KEY
+)
+
+}
 
 if(saved){
+
 let a=findAccount(saved);
+
 if(a){
-currentUser=a.ymid;localStorage.setItem(CURRENT_USER_KEY,currentUser);localStorage.removeItem(OLD_CURRENT_USER_KEY);
+
+currentUser=a.ymid;
+
+localStorage.setItem(
+CURRENT_USER_KEY,
+currentUser
+);
+
+localStorage.removeItem(
+OLD_CURRENT_USER_KEY
+);
+
 ensureProfile();
-if(currentUser){renderProfile();renderHomeUser();renderHomeFeed();showAppPage("homePage","navHome");return}
-}else{
-localStorage.removeItem(CURRENT_USER_KEY);localStorage.removeItem(OLD_CURRENT_USER_KEY)
-}
-}
-currentUser=null;profileData=null;showPage("frontPage")
+
+if(currentUser){
+
+renderProfile();
+renderHomeUser();
+renderHomeFeed();
+
+showAppPage(
+"homePage",
+"navHome"
+);
+
+return
+
 }
 
-document.addEventListener("DOMContentLoaded",initialize);
+}else{
+
+localStorage.removeItem(
+CURRENT_USER_KEY
+);
+
+localStorage.removeItem(
+OLD_CURRENT_USER_KEY
+)
+
+}
+
+}
+
+currentUser=null;
+profileData=null;
+
+showPage("frontPage")
+
+}
+
+window.addEventListener(
+"beforeunload",
+cleanupObjectURLs
+);
+
+document.addEventListener(
+"DOMContentLoaded",
+initialize
+);
+
 </script>
+
 </body>
 </html>
