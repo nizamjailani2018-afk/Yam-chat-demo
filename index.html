@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Y-M Chat V1.9.3</title>
+<title>Y-M Chat V1.9.4</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
@@ -330,6 +330,12 @@ background:#fff;
 padding:14px;
 text-align:left;
 font-size:15px
+}
+
+.menu-box button:last-child{
+border-bottom:0;
+color:#d32f2f;
+font-weight:bold
 }
 
 .cover-camera{
@@ -1462,7 +1468,9 @@ Buy and sell module will be connected later.
 
 <div class="cover-menu">
 
-<button class="menu-button" onclick="toggleMenu()">
+<button
+class="menu-button"
+onclick="toggleMenu()">
 ⋮
 </button>
 
@@ -1480,7 +1488,6 @@ Buy and sell module will be connected later.
 📧 Change Email
 </button>
 
-<!-- LOG OUT KEKAL DI TIGA TITIK -->
 <button onclick="logout()">
 🚪 Log Out
 </button>
@@ -1511,9 +1518,13 @@ onchange="uploadCover(this)">
 
 <div class="avatar">
 
-<img id="profileImage" alt="Profile Photo">
+<img
+id="profileImage"
+alt="Profile Photo">
 
-<span id="avatarText" class="avatar-text">
+<span
+id="avatarText"
+class="avatar-text">
 N
 </span>
 
@@ -1629,7 +1640,9 @@ onchange="selectVideo(this)">
 
 <div id="profileMediaPreview" class="media-preview"></div>
 
-<button class="publish" onclick="createPost()">
+<button
+class="publish"
+onclick="createPost()">
 POST
 </button>
 
@@ -1823,8 +1836,9 @@ Save Email
 <script>
 
 /* =========================================================
-   Y-M CHAT V1.9.3
-   MEDIA STORAGE FIX
+   Y-M CHAT V1.9.4
+   PROFILE / COVER SAVE FIX
+   POST MEDIA KEPT
    ========================================================= */
 
 const ACCOUNT_KEY="ym_accounts_v2";
@@ -1841,7 +1855,6 @@ const CHATS_KEY="ym_chats_v2";
 const ROOMS_KEY="ym_rooms_v2";
 const FRIENDS_KEY="ym_friends_v2";
 
-/* IndexedDB media */
 const MEDIA_DB_NAME="ym_chat_media_v1";
 const MEDIA_STORE="media";
 
@@ -1858,7 +1871,6 @@ let homeSelectedVideo=null;
 let currentChatUser=null;
 let currentRoom=null;
 
-/* Object URLs */
 window.ymObjectUrls=[];
 
 const countries=[
@@ -1905,29 +1917,45 @@ ms:[
    ========================================================= */
 
 function safeJSON(v,f){
+
 try{
+
 if(v===null||v===undefined||v==="")return f;
-return JSON.parse(v)
+
+return JSON.parse(v);
+
 }catch(e){
-return f
+
+return f;
+
 }
+
 }
 
 function escapeHTML(t){
+
 return String(t??"")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
 .replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;")
+.replace(/'/g,"&#039;");
+
 }
 
 function initial(n){
-return String(n||"N").trim().charAt(0).toUpperCase()||"N"
+
+return String(n||"N")
+.trim()
+.charAt(0)
+.toUpperCase()||"N";
+
 }
 
 function toast(m){
+
 let b=document.getElementById("toast");
+
 if(!b)return;
 
 b.textContent=m;
@@ -1936,12 +1964,15 @@ b.style.display="block";
 clearTimeout(window.toastTimer);
 
 window.toastTimer=setTimeout(()=>{
-b.style.display="none"
-},2300)
+
+b.style.display="none";
+
+},2300);
+
 }
 
 /* =========================================================
-   INDEXED DB MEDIA
+   INDEXED DB
    ========================================================= */
 
 function openMediaDB(){
@@ -1949,31 +1980,47 @@ function openMediaDB(){
 return new Promise((resolve,reject)=>{
 
 if(!window.indexedDB){
+
 reject(new Error("IndexedDB unavailable"));
-return
+
+return;
+
 }
 
-let request=indexedDB.open(MEDIA_DB_NAME,1);
+let request=indexedDB.open(
+MEDIA_DB_NAME,
+1
+);
 
 request.onupgradeneeded=function(e){
 
 let db=e.target.result;
 
 if(!db.objectStoreNames.contains(MEDIA_STORE)){
-db.createObjectStore(MEDIA_STORE,{keyPath:"id"})
+
+db.createObjectStore(
+MEDIA_STORE,
+{keyPath:"id"}
+);
+
 }
 
 };
 
 request.onsuccess=function(e){
-resolve(e.target.result)
+
+resolve(e.target.result);
+
 };
 
 request.onerror=function(){
-reject(request.error)
+
+reject(request.error);
+
 };
 
-})
+});
+
 }
 
 async function saveMediaFile(id,file){
@@ -1984,34 +2031,49 @@ let db=await openMediaDB();
 
 return await new Promise((resolve,reject)=>{
 
-let tx=db.transaction(MEDIA_STORE,"readwrite");
+let tx=db.transaction(
+MEDIA_STORE,
+"readwrite"
+);
+
 let store=tx.objectStore(MEDIA_STORE);
 
 store.put({
+
 id:id,
 blob:file,
 type:file.type||"",
 name:file.name||""
+
 });
 
 tx.oncomplete=()=>{
+
 db.close();
-resolve(true)
+resolve(true);
+
 };
 
 tx.onerror=()=>{
+
 db.close();
-reject(tx.error)
+reject(tx.error);
+
 };
 
-})
+});
 
 }catch(e){
 
-console.error("saveMediaFile:",e);
-return false
+console.error(
+"saveMediaFile:",
+e
+);
+
+return false;
 
 }
+
 }
 
 async function getMediaFile(id){
@@ -2022,29 +2084,46 @@ let db=await openMediaDB();
 
 return await new Promise((resolve,reject)=>{
 
-let tx=db.transaction(MEDIA_STORE,"readonly");
+let tx=db.transaction(
+MEDIA_STORE,
+"readonly"
+);
+
 let store=tx.objectStore(MEDIA_STORE);
+
 let request=store.get(id);
 
 request.onsuccess=()=>{
+
 let result=request.result;
+
 db.close();
-resolve(result||null)
+
+resolve(result||null);
+
 };
 
 request.onerror=()=>{
+
 db.close();
-reject(request.error)
+
+reject(request.error);
+
 };
 
-})
+});
 
 }catch(e){
 
-console.error("getMediaFile:",e);
-return null
+console.error(
+"getMediaFile:",
+e
+);
+
+return null;
 
 }
+
 }
 
 async function deleteMediaFile(id){
@@ -2057,43 +2136,61 @@ let db=await openMediaDB();
 
 await new Promise((resolve,reject)=>{
 
-let tx=db.transaction(MEDIA_STORE,"readwrite");
+let tx=db.transaction(
+MEDIA_STORE,
+"readwrite"
+);
 
-tx.objectStore(MEDIA_STORE).delete(id);
+tx.objectStore(MEDIA_STORE)
+.delete(id);
 
 tx.oncomplete=()=>{
+
 db.close();
-resolve()
+resolve();
+
 };
 
 tx.onerror=()=>{
+
 db.close();
-reject(tx.error)
+reject(tx.error);
+
 };
 
-})
+});
 
 }catch(e){
 
-console.error("deleteMediaFile:",e)
+console.error(
+"deleteMediaFile:",
+e
+);
 
 }
+
 }
 
 async function createMediaId(prefix="media"){
 
-return prefix+"_"+Date.now()+"_"+Math.random()
+return prefix+
+"_"+Date.now()+
+"_"+Math.random()
 .toString(16)
-.slice(2)
+.slice(2);
+
 }
 
 function rememberObjectURL(url){
 
 if(url){
-window.ymObjectUrls.push(url)
+
+window.ymObjectUrls.push(url);
+
 }
 
-return url
+return url;
+
 }
 
 /* =========================================================
@@ -2102,57 +2199,114 @@ return url
 
 function normalizeAccount(a){
 
-if(!a||typeof a!=="object")return null;
+if(!a||typeof a!=="object")
+return null;
 
 let y=String(
-a.ymid||a.username||a.id||""
+a.ymid||
+a.username||
+a.id||
+""
 ).trim();
 
 if(!y)return null;
 
 return{
+
 ymid:y,
-username:String(a.username||y),
-name:String(a.name||y),
-password:String(a.password||""),
-country:String(a.country||"Malaysia"),
-phone:String(a.phone||""),
-email:String(a.email||""),
-securityQ1:String(a.securityQ1??"0"),
-securityA1:String(a.securityA1||"").toLowerCase(),
-securityQ2:String(a.securityQ2??"1"),
-securityA2:String(a.securityA2||"").toLowerCase(),
-createdAt:a.createdAt||new Date().toLocaleString()
-}
+
+username:String(
+a.username||y
+),
+
+name:String(
+a.name||y
+),
+
+password:String(
+a.password||""
+),
+
+country:String(
+a.country||"Malaysia"
+),
+
+phone:String(
+a.phone||""
+),
+
+email:String(
+a.email||""
+),
+
+securityQ1:String(
+a.securityQ1??"0"
+),
+
+securityA1:String(
+a.securityA1||""
+).toLowerCase(),
+
+securityQ2:String(
+a.securityQ2??"1"
+),
+
+securityA2:String(
+a.securityA2||""
+).toLowerCase(),
+
+createdAt:
+a.createdAt||
+new Date().toLocaleString()
+
+};
 
 }
 
 function getAccounts(){
 
-let raw=localStorage.getItem(ACCOUNT_KEY);
+let raw=
+localStorage.getItem(
+ACCOUNT_KEY
+);
 
 if(raw===null){
-raw=localStorage.getItem(OLD_ACCOUNT_KEY)
+
+raw=
+localStorage.getItem(
+OLD_ACCOUNT_KEY
+);
+
 }
 
 let p=safeJSON(raw,[]);
 
 if(Array.isArray(p)){
-return p.map(normalizeAccount).filter(Boolean)
+
+return p
+.map(normalizeAccount)
+.filter(Boolean);
+
 }
 
 if(p&&typeof p==="object"){
 
 if(Array.isArray(p.accounts)){
-return p.accounts.map(normalizeAccount).filter(Boolean)
+
+return p.accounts
+.map(normalizeAccount)
+.filter(Boolean);
+
 }
 
 let x=normalizeAccount(p);
 
-return x?[x]:[]
+return x?[x]:[];
+
 }
 
-return[]
+return[];
+
 }
 
 function saveAccounts(a){
@@ -2162,26 +2316,35 @@ try{
 localStorage.setItem(
 ACCOUNT_KEY,
 JSON.stringify(
-a.map(normalizeAccount).filter(Boolean)
+a.map(normalizeAccount)
+.filter(Boolean)
 )
 );
 
-return true
+return true;
 
 }catch(e){
 
-return false
+console.error(e);
+
+return false;
 
 }
+
 }
 
 function migrateAccounts(){
 
 let a=getAccounts();
 
-if(a.length)saveAccounts(a);
+if(a.length){
 
-return a
+saveAccounts(a);
+
+}
+
+return a;
+
 }
 
 function findAccount(v){
@@ -2193,6 +2356,7 @@ let x=String(v||"")
 if(!x)return null;
 
 return getAccounts().find(a=>
+
 [
 a.ymid,
 a.username,
@@ -2201,11 +2365,15 @@ a.email,
 a.phone
 ]
 .some(i=>
+
 String(i||"")
 .trim()
 .toLowerCase()===x
+
 )
-)||null
+
+)||null;
+
 }
 
 /* =========================================================
@@ -2214,16 +2382,27 @@ String(i||"")
 
 function getProfiles(){
 
-let raw=localStorage.getItem(PROFILE_KEY);
+let raw=
+localStorage.getItem(
+PROFILE_KEY
+);
 
 if(raw===null){
-raw=localStorage.getItem(OLD_PROFILE_KEY)
+
+raw=
+localStorage.getItem(
+OLD_PROFILE_KEY
+);
+
 }
 
 let d=safeJSON(raw,{});
 
-return d&&typeof d==="object"&&!Array.isArray(d)
-?d:{}
+return d&&
+typeof d==="object"&&
+!Array.isArray(d)
+?d:{};
+
 }
 
 function saveProfiles(d){
@@ -2235,74 +2414,124 @@ PROFILE_KEY,
 JSON.stringify(d)
 );
 
-return true
+return true;
 
 }catch(e){
 
 console.error(e);
-return false
+
+return false;
 
 }
+
 }
 
 function ensureProfile(){
 
 if(!currentUser){
+
 profileData=null;
-return
+
+return;
+
 }
 
 let profiles=getProfiles();
 let accounts=getAccounts();
 
 let a=accounts.find(x=>
+
 String(x.ymid).toLowerCase()===
 String(currentUser).toLowerCase()
+
 );
 
 if(!a){
 
 currentUser=null;
-localStorage.removeItem(CURRENT_USER_KEY);
+
+localStorage.removeItem(
+CURRENT_USER_KEY
+);
+
 profileData=null;
 
-return
+return;
+
 }
 
 if(!profiles[currentUser]){
 
 profiles[currentUser]={
+
 name:a.name,
+
 ymid:a.ymid,
+
 birthday:"",
+
 birthplace:"",
+
 school:"",
+
 country:a.country||"Malaysia",
-bio:"Welcome to my Y-M Chat profile.",
+
+bio:
+"Welcome to my Y-M Chat profile.",
+
 profilePhoto:null,
+
 coverPhoto:null,
+
 profilePhotoId:null,
+
 coverPhotoId:null,
+
 email:a.email||""
+
 };
 
-saveProfiles(profiles)
+saveProfiles(profiles);
 
 }
 
-profileData=profiles[currentUser]
+profileData=profiles[currentUser];
+
+/*
+ Make sure old profiles have the new
+ media ID fields.
+*/
+
+if(!Object.prototype.hasOwnProperty.call(
+profileData,
+"profilePhotoId"
+)){
+
+profileData.profilePhotoId=null;
+
+}
+
+if(!Object.prototype.hasOwnProperty.call(
+profileData,
+"coverPhotoId"
+)){
+
+profileData.coverPhotoId=null;
+
+}
 
 }
 
 function saveCurrentProfile(){
 
-if(!currentUser||!profileData)return false;
+if(!currentUser||!profileData)
+return false;
 
 let p=getProfiles();
 
 p[currentUser]=profileData;
 
-return saveProfiles(p)
+return saveProfiles(p);
 
 }
 
@@ -2313,23 +2542,32 @@ return saveProfiles(p)
 function showPage(id){
 
 document.querySelectorAll(".page")
-.forEach(p=>p.classList.remove("active"));
+.forEach(p=>
+p.classList.remove("active")
+);
 
 let p=document.getElementById(id);
 
-if(p)p.classList.add("active");
+if(p){
+
+p.classList.add("active");
+
+}
 
 if([
+
 "frontPage",
 "loginPage",
 "registerPage",
 "changePasswordPage",
 "securityPage",
 "recoveryPage"
+
 ].includes(id)){
 
-document.getElementById("bottomNav")
-.style.display="none"
+document.getElementById(
+"bottomNav"
+).style.display="none";
 
 }
 
@@ -2338,45 +2576,68 @@ document.getElementById("bottomNav")
 function showAppPage(id,navId){
 
 if(!currentUser){
+
 showPage("loginPage");
-return
+
+return;
+
 }
 
 document.querySelectorAll(".page")
-.forEach(p=>p.classList.remove("active"));
+.forEach(p=>
+p.classList.remove("active")
+);
 
 let p=document.getElementById(id);
 
-if(p)p.classList.add("active");
+if(p){
 
-document.getElementById("bottomNav")
-.style.display="flex";
+p.classList.add("active");
 
-document.querySelectorAll(".bottom-nav button")
-.forEach(b=>b.classList.remove("active"));
+}
+
+document.getElementById(
+"bottomNav"
+).style.display="flex";
+
+document.querySelectorAll(
+".bottom-nav button"
+)
+.forEach(b=>
+b.classList.remove("active")
+);
 
 let n=document.getElementById(navId);
 
-if(n)n.classList.add("active");
+if(n){
+
+n.classList.add("active");
+
+}
 
 if(id==="homePage"){
 
 renderHomeUser();
-renderHomeFeed()
+renderHomeFeed();
 
 }
 
 if(id==="profilePage"){
 
 renderProfile();
-renderPosts()
+renderPosts();
 
 }
 
 }
 
 function goHome(){
-showAppPage("homePage","navHome")
+
+showAppPage(
+"homePage",
+"navHome"
+);
+
 }
 
 /* =========================================================
@@ -2385,28 +2646,36 @@ showAppPage("homePage","navHome")
 
 function fillCountries(){
 
-let s=document.getElementById("registerCountry");
+let s=document.getElementById(
+"registerCountry"
+);
+
+if(!s)return;
 
 s.innerHTML=
 '<option value="">Select country</option>';
 
 countries.forEach(c=>{
 
-let o=document.createElement("option");
+let o=document.createElement(
+"option"
+);
 
 o.value=c;
 o.textContent=c;
 
-s.appendChild(o)
+s.appendChild(o);
 
-})
+});
 
 }
 
 function fillSecurityQuestions(){
 
 let lang=
-localStorage.getItem("ym_language")||"en";
+localStorage.getItem(
+"ym_language"
+)||"en";
 
 let list=
 securityQuestions[lang]||
@@ -2427,25 +2696,32 @@ s.innerHTML="";
 
 list.forEach((q,i)=>{
 
-let o=document.createElement("option");
+let o=document.createElement(
+"option"
+);
 
 o.value=i;
 o.textContent=q;
 
-s.appendChild(o)
+s.appendChild(o);
 
-})
+});
 
-})
+});
 
 }
 
 function changeLanguage(){
 
 let l=
-document.getElementById("languageSelect").value;
+document.getElementById(
+"languageSelect"
+).value;
 
-localStorage.setItem("ym_language",l);
+localStorage.setItem(
+"ym_language",
+l
+);
 
 fillSecurityQuestions();
 
@@ -2453,7 +2729,7 @@ toast(
 l==="ms"
 ?"Bahasa Melayu dipilih."
 :"English selected."
-)
+);
 
 }
 
@@ -2463,45 +2739,72 @@ l==="ms"
 
 function register(){
 
-let m=document.getElementById("registerMessage");
+let m=
+document.getElementById(
+"registerMessage"
+);
 
 m.className="message";
 
 let name=
-document.getElementById("registerName").value.trim();
+document.getElementById(
+"registerName"
+).value.trim();
 
 let y=
-document.getElementById("registerId").value.trim();
+document.getElementById(
+"registerId"
+).value.trim();
 
 let pw=
-document.getElementById("registerPassword").value;
+document.getElementById(
+"registerPassword"
+).value;
 
 let cf=
-document.getElementById("registerConfirm").value;
+document.getElementById(
+"registerConfirm"
+).value;
 
 let country=
-document.getElementById("registerCountry").value;
+document.getElementById(
+"registerCountry"
+).value;
 
 let phone=
-document.getElementById("registerPhone").value.trim();
+document.getElementById(
+"registerPhone"
+).value.trim();
 
 let email=
-document.getElementById("registerEmail").value.trim();
+document.getElementById(
+"registerEmail"
+).value.trim();
 
 let ec=
-document.getElementById("registerEmailConfirm").value.trim();
+document.getElementById(
+"registerEmailConfirm"
+).value.trim();
 
 let q1=
-document.getElementById("securityQ1").value;
+document.getElementById(
+"securityQ1"
+).value;
 
 let a1=
-document.getElementById("securityA1").value.trim();
+document.getElementById(
+"securityA1"
+).value.trim();
 
 let q2=
-document.getElementById("securityQ2").value;
+document.getElementById(
+"securityQ2"
+).value;
 
 let a2=
-document.getElementById("securityA2").value.trim();
+document.getElementById(
+"securityA2"
+).value.trim();
 
 if(
 !name||!y||!pw||!cf||
@@ -2509,8 +2812,10 @@ if(
 !a1||!a2
 ){
 
-m.textContent="Please complete all fields.";
-return
+m.textContent=
+"Please complete all fields.";
+
+return;
 
 }
 
@@ -2519,7 +2824,8 @@ if(y.length<3){
 m.textContent=
 "Y-M ID must contain at least 3 characters.";
 
-return
+return;
+
 }
 
 if(pw.length<6){
@@ -2527,25 +2833,35 @@ if(pw.length<6){
 m.textContent=
 "Password must be at least 6 characters.";
 
-return
+return;
+
 }
 
 if(pw!==cf){
 
-m.textContent="Passwords do not match.";
-return
+m.textContent=
+"Passwords do not match.";
+
+return;
+
 }
 
 if(email!==ec){
 
-m.textContent="Emails do not match.";
-return
+m.textContent=
+"Emails do not match.";
+
+return;
+
 }
 
 if(!email.includes("@")){
 
-m.textContent="Please enter a valid email.";
-return
+m.textContent=
+"Please enter a valid email.";
+
+return;
+
 }
 
 let accounts=getAccounts();
@@ -2558,71 +2874,90 @@ y.toLowerCase()
 m.textContent=
 "This Y-M ID already exists.";
 
-return
+return;
+
 }
 
 accounts.push({
+
 ymid:y,
 username:y,
-name,
+name:name,
 password:pw,
-country,
-phone,
-email,
+country:country,
+phone:phone,
+email:email,
 securityQ1:q1,
 securityA1:a1.toLowerCase(),
 securityQ2:q2,
 securityA2:a2.toLowerCase(),
 createdAt:new Date().toLocaleString()
+
 });
 
 if(!saveAccounts(accounts)){
 
-m.textContent="Account could not be saved.";
-return
+m.textContent=
+"Account could not be saved.";
+
+return;
 
 }
 
 let profiles=getProfiles();
 
 profiles[y]={
-name,
+
+name:name,
 ymid:y,
 birthday:"",
 birthplace:"",
 school:"",
-country,
+country:country,
 bio:"Welcome to my Y-M Chat profile.",
 profilePhoto:null,
 coverPhoto:null,
 profilePhotoId:null,
 coverPhotoId:null,
-email
+email:email
+
 };
 
 saveProfiles(profiles);
 
-m.className="message success-message";
+m.className=
+"message success-message";
 
 m.textContent=
 "Y-M ID created successfully. You can now login.";
 
-document.getElementById("registerPassword").value="";
-document.getElementById("registerConfirm").value="";
+document.getElementById(
+"registerPassword"
+).value="";
+
+document.getElementById(
+"registerConfirm"
+).value="";
 
 setTimeout(()=>{
 
-document.getElementById("loginId").value=y;
+document.getElementById(
+"loginId"
+).value=y;
 
 showPage("loginPage");
 
-document.getElementById("loginMessage").className=
+document.getElementById(
+"loginMessage"
+).className=
 "message success-message";
 
-document.getElementById("loginMessage").textContent=
-"Account created. Please enter your password."
+document.getElementById(
+"loginMessage"
+).textContent=
+"Account created. Please enter your password.";
 
-},700)
+},700);
 
 }
 
@@ -2632,22 +2967,30 @@ document.getElementById("loginMessage").textContent=
 
 function login(){
 
-let m=document.getElementById("loginMessage");
+let m=
+document.getElementById(
+"loginMessage"
+);
 
 m.className="message";
 
 let id=
-document.getElementById("loginId").value.trim();
+document.getElementById(
+"loginId"
+).value.trim();
 
 let pw=
-document.getElementById("loginPassword").value;
+document.getElementById(
+"loginPassword"
+).value;
 
 if(!id||!pw){
 
 m.textContent=
 "Please enter your Y-M ID and password.";
 
-return
+return;
+
 }
 
 let a=findAccount(id);
@@ -2657,15 +3000,18 @@ if(!a){
 m.textContent=
 "Y-M ID, username, email or phone was not found.";
 
-return
+return;
+
 }
 
-if(String(a.password)!==String(pw)){
+if(String(a.password)!==
+String(pw)){
 
 m.textContent=
 "Y-M ID or password is incorrect.";
 
-return
+return;
+
 }
 
 currentUser=a.ymid;
@@ -2681,12 +3027,17 @@ OLD_CURRENT_USER_KEY
 
 ensureProfile();
 
-document.getElementById("loginId").value="";
-document.getElementById("loginPassword").value="";
+document.getElementById(
+"loginId"
+).value="";
+
+document.getElementById(
+"loginPassword"
+).value="";
 
 toast("Login successful.");
 
-setTimeout(goHome,300)
+setTimeout(goHome,300);
 
 }
 
@@ -2701,15 +3052,21 @@ ensureProfile();
 if(!profileData)return;
 
 let img=
-document.getElementById("homeAvatarImage");
+document.getElementById(
+"homeAvatarImage"
+);
 
 let txt=
-document.getElementById("homeAvatarText");
+document.getElementById(
+"homeAvatarText"
+);
 
 if(profileData.profilePhotoId){
 
 let item=
-await getMediaFile(profileData.profilePhotoId);
+await getMediaFile(
+profileData.profilePhotoId
+);
 
 if(item){
 
@@ -2722,11 +3079,13 @@ img.src=url;
 img.style.display="block";
 txt.style.display="none";
 
-return
+return;
 
 }
 
 }
+
+/* Legacy fallback */
 
 if(profileData.profilePhoto){
 
@@ -2734,14 +3093,16 @@ img.src=profileData.profilePhoto;
 img.style.display="block";
 txt.style.display="none";
 
-return
+return;
 
 }
 
 img.removeAttribute("src");
 img.style.display="none";
+
 txt.style.display="block";
-txt.textContent=initial(profileData.name)
+txt.textContent=
+initial(profileData.name);
 
 }
 
@@ -2751,36 +3112,48 @@ ensureProfile();
 
 if(!profileData)return;
 
-document.getElementById("homeUserName")
-.textContent=
-profileData.name||"Y-M User";
+document.getElementById(
+"homeUserName"
+).textContent=
+profileData.name||
+"Y-M User";
 
-document.getElementById("homeUserId")
-.textContent=
+document.getElementById(
+"homeUserId"
+).textContent=
 "@"+
 String(
 profileData.ymid||currentUser
 ).replace(/^@/,"");
 
-loadHomeAvatar()
+loadHomeAvatar();
 
 }
 
 /* =========================================================
-   PROFILE DISPLAY
+   PROFILE PHOTO DISPLAY
    ========================================================= */
 
 async function loadProfilePhoto(){
 
 if(!profileData)return;
 
-let a=document.getElementById("profileImage");
-let at=document.getElementById("avatarText");
+let a=
+document.getElementById(
+"profileImage"
+);
+
+let at=
+document.getElementById(
+"avatarText"
+);
 
 if(profileData.profilePhotoId){
 
 let item=
-await getMediaFile(profileData.profilePhotoId);
+await getMediaFile(
+profileData.profilePhotoId
+);
 
 if(item){
 
@@ -2793,11 +3166,13 @@ a.src=url;
 a.style.display="block";
 at.style.display="none";
 
-return
+return;
 
 }
 
 }
+
+/* Legacy Data URL */
 
 if(profileData.profilePhoto){
 
@@ -2805,27 +3180,40 @@ a.src=profileData.profilePhoto;
 a.style.display="block";
 at.style.display="none";
 
-return
+return;
 
 }
 
 a.removeAttribute("src");
 a.style.display="none";
+
 at.style.display="block";
-at.textContent=initial(profileData.name)
+at.textContent=
+initial(profileData.name);
 
 }
+
+/* =========================================================
+   COVER PHOTO DISPLAY
+   ========================================================= */
 
 async function loadCoverPhoto(){
 
 if(!profileData)return;
 
-let c=document.getElementById("coverImage");
+let c=
+document.getElementById(
+"coverImage"
+);
+
+if(!c)return;
 
 if(profileData.coverPhotoId){
 
 let item=
-await getMediaFile(profileData.coverPhotoId);
+await getMediaFile(
+profileData.coverPhotoId
+);
 
 if(item){
 
@@ -2837,66 +3225,86 @@ URL.createObjectURL(item.blob)
 c.src=url;
 c.style.display="block";
 
-return
+return;
 
 }
 
 }
+
+/* Legacy Data URL */
 
 if(profileData.coverPhoto){
 
 c.src=profileData.coverPhoto;
 c.style.display="block";
 
-return
+return;
 
 }
 
 c.removeAttribute("src");
-c.style.display="none"
+c.style.display="none";
 
 }
 
-function renderProfile(){
+/* =========================================================
+   RENDER PROFILE
+   ========================================================= */
+
+async function renderProfile(){
 
 ensureProfile();
 
 if(!profileData)return;
 
-document.getElementById("profileName")
-.textContent=
-profileData.name||"Y-M User";
+document.getElementById(
+"profileName"
+).textContent=
+profileData.name||
+"Y-M User";
 
-document.getElementById("profileYmid")
-.textContent=
+document.getElementById(
+"profileYmid"
+).textContent=
 "@"+
 String(
 profileData.ymid||currentUser
 ).replace(/^@/,"");
 
-document.getElementById("profileBio")
-.textContent=
+document.getElementById(
+"profileBio"
+).textContent=
 profileData.bio||
 "Welcome to my Y-M Chat profile.";
 
-document.getElementById("infoBirthday")
-.textContent=
-profileData.birthday||"Not set";
+document.getElementById(
+"infoBirthday"
+).textContent=
+profileData.birthday||
+"Not set";
 
-document.getElementById("infoBirthplace")
-.textContent=
-profileData.birthplace||"Not set";
+document.getElementById(
+"infoBirthplace"
+).textContent=
+profileData.birthplace||
+"Not set";
 
-document.getElementById("infoSchool")
-.textContent=
-profileData.school||"Not set";
+document.getElementById(
+"infoSchool"
+).textContent=
+profileData.school||
+"Not set";
 
-document.getElementById("infoCountry")
-.textContent=
-profileData.country||"Not set";
+document.getElementById(
+"infoCountry"
+).textContent=
+profileData.country||
+"Not set";
 
-loadProfilePhoto();
+await Promise.all([
+loadProfilePhoto(),
 loadCoverPhoto()
+]);
 
 }
 
@@ -2906,90 +3314,152 @@ loadCoverPhoto()
 
 async function uploadProfile(input){
 
-let f=input.files[0];
+const f=
+input.files &&
+input.files[0];
 
 if(!f)return;
 
-if(!f.type.startsWith("image/")){
+if(
+!f.type||
+!f.type.startsWith("image/")
+){
 
-toast("Please choose an image.");
+toast(
+"Please choose an image."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
-/*
- Image limit for demo.
- IndexedDB allows much more than localStorage,
- but mobile browsers still have storage limits.
-*/
+if(f.size>
+10*1024*1024){
 
-if(f.size>10*1024*1024){
-
-toast("Image is too large. Maximum 10MB.");
+toast(
+"Image is too large. Maximum 10MB."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
 try{
 
 ensureProfile();
 
-let oldId=
-profileData.profilePhotoId||null;
+if(!currentUser||
+!profileData){
 
-let id=
-await createMediaId("profile");
+toast(
+"Profile is not ready."
+);
 
-let saved=
-await saveMediaFile(id,f);
+input.value="";
+
+return;
+
+}
+
+const oldId=
+profileData.profilePhotoId||
+null;
+
+const id=
+await createMediaId(
+"profile"
+);
+
+const saved=
+await saveMediaFile(
+id,
+f
+);
 
 if(!saved){
 
-toast("Profile photo could not be saved.");
+toast(
+"Profile photo could not be saved."
+);
+
 input.value="";
-return
+
+return;
 
 }
+
+/*
+ Store only IndexedDB ID in profile.
+*/
 
 profileData.profilePhotoId=id;
 
-/* old V1.9.3 Data URL is cleared */
+/*
+ Remove old localStorage Data URL.
+*/
+
 profileData.profilePhoto=null;
 
-if(!saveCurrentProfile()){
+const profileSaved=
+saveCurrentProfile();
+
+if(!profileSaved){
 
 await deleteMediaFile(id);
 
-toast("Profile photo could not be saved.");
+toast(
+"Profile photo could not be saved."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
-if(oldId){
-await deleteMediaFile(oldId)
+/*
+ Delete old photo only after
+new photo has been successfully saved.
+*/
+
+if(oldId&&oldId!==id){
+
+await deleteMediaFile(oldId);
+
 }
 
-renderProfile();
+/*
+ Refresh UI immediately.
+*/
+
+await renderProfile();
+
 renderHomeUser();
 renderPosts();
 renderHomeFeed();
 
-toast("Profile photo updated.");
+toast(
+"Profile photo saved successfully."
+);
 
 }catch(e){
 
-console.error(e);
-toast("Profile photo failed.")
+console.error(
+"uploadProfile:",
+e
+);
+
+toast(
+"Profile photo could not be saved."
+);
 
 }
 
-input.value=""
+input.value="";
 
 }
 
@@ -2999,80 +3469,131 @@ input.value=""
 
 async function uploadCover(input){
 
-let f=input.files[0];
+const f=
+input.files &&
+input.files[0];
 
 if(!f)return;
 
-if(!f.type.startsWith("image/")){
+if(
+!f.type||
+!f.type.startsWith("image/")
+){
 
-toast("Please choose an image.");
+toast(
+"Please choose an image."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
-if(f.size>10*1024*1024){
+if(f.size>
+10*1024*1024){
 
-toast("Image is too large. Maximum 10MB.");
+toast(
+"Image is too large. Maximum 10MB."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
 try{
 
 ensureProfile();
 
-let oldId=
-profileData.coverPhotoId||null;
+if(!currentUser||
+!profileData){
 
-let id=
-await createMediaId("cover");
+toast(
+"Profile is not ready."
+);
 
-let saved=
-await saveMediaFile(id,f);
+input.value="";
+
+return;
+
+}
+
+const oldId=
+profileData.coverPhotoId||
+null;
+
+const id=
+await createMediaId(
+"cover"
+);
+
+const saved=
+await saveMediaFile(
+id,
+f
+);
 
 if(!saved){
 
-toast("Cover photo could not be saved.");
+toast(
+"Cover photo could not be saved."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
 profileData.coverPhotoId=id;
+
 profileData.coverPhoto=null;
 
-if(!saveCurrentProfile()){
+const profileSaved=
+saveCurrentProfile();
+
+if(!profileSaved){
 
 await deleteMediaFile(id);
 
-toast("Cover photo could not be saved.");
+toast(
+"Cover photo could not be saved."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
-if(oldId){
-await deleteMediaFile(oldId)
+if(oldId&&oldId!==id){
+
+await deleteMediaFile(oldId);
+
 }
 
-renderProfile();
+await renderProfile();
 
-toast("Cover photo updated.")
+toast(
+"Cover photo saved successfully."
+);
 
 }catch(e){
 
-console.error(e);
-toast("Cover photo failed.")
+console.error(
+"uploadCover:",
+e
+);
+
+toast(
+"Cover photo could not be saved."
+);
 
 }
 
-input.value=""
+input.value="";
 
 }
 
@@ -3083,64 +3604,98 @@ input.value=""
 function openEditProfile(){
 
 closeMenu();
+
 ensureProfile();
 
-document.getElementById("editName").value=
+if(!profileData)return;
+
+document.getElementById(
+"editName"
+).value=
 profileData.name||"";
 
-document.getElementById("editBirthday").value=
+document.getElementById(
+"editBirthday"
+).value=
 profileData.birthday||"";
 
-document.getElementById("editBirthplace").value=
+document.getElementById(
+"editBirthplace"
+).value=
 profileData.birthplace||"";
 
-document.getElementById("editSchool").value=
+document.getElementById(
+"editSchool"
+).value=
 profileData.school||"";
 
-document.getElementById("editCountry").value=
+document.getElementById(
+"editCountry"
+).value=
 profileData.country||"";
 
-document.getElementById("editBio").value=
+document.getElementById(
+"editBio"
+).value=
 profileData.bio||"";
 
-document.getElementById("editModal")
-.style.display="flex"
+document.getElementById(
+"editModal"
+).style.display="flex";
 
 }
 
 function saveProfile(){
 
+if(!profileData){
+
+toast("Profile not ready.");
+
+return;
+
+}
+
 let name=
-document.getElementById("editName")
-.value.trim();
+document.getElementById(
+"editName"
+).value.trim();
 
 if(!name){
 
-toast("Name cannot be empty.");
-return
+toast(
+"Name cannot be empty."
+);
+
+return;
 
 }
 
 profileData.name=name;
 
 profileData.birthday=
-document.getElementById("editBirthday").value;
+document.getElementById(
+"editBirthday"
+).value;
 
 profileData.birthplace=
-document.getElementById("editBirthplace")
-.value.trim();
+document.getElementById(
+"editBirthplace"
+).value.trim();
 
 profileData.school=
-document.getElementById("editSchool")
-.value.trim();
+document.getElementById(
+"editSchool"
+).value.trim();
 
 profileData.country=
-document.getElementById("editCountry")
-.value.trim();
+document.getElementById(
+"editCountry"
+).value.trim();
 
 profileData.bio=
-document.getElementById("editBio")
-.value.trim();
+document.getElementById(
+"editBio"
+).value.trim();
 
 saveCurrentProfile();
 
@@ -3153,9 +3708,10 @@ x.ymid===currentUser
 if(i!==-1){
 
 a[i].name=name;
-a[i].country=profileData.country;
+a[i].country=
+profileData.country;
 
-saveAccounts(a)
+saveAccounts(a);
 
 }
 
@@ -3166,7 +3722,9 @@ renderHomeFeed();
 
 closeModal("editModal");
 
-toast("Profile updated.")
+toast(
+"Profile updated."
+);
 
 }
 
@@ -3183,43 +3741,62 @@ closeMenu();
 "newPassword",
 "confirmPassword"
 ].forEach(id=>
-document.getElementById(id).value=""
+
+document.getElementById(id)
+.value=""
+
 );
 
-document.getElementById("passwordModal")
-.style.display="flex"
+document.getElementById(
+"passwordModal"
+).style.display="flex";
 
 }
 
 function changePassword(){
 
 let c=
-document.getElementById("currentPassword").value;
+document.getElementById(
+"currentPassword"
+).value;
 
 let n=
-document.getElementById("newPassword").value;
+document.getElementById(
+"newPassword"
+).value;
 
 let x=
-document.getElementById("confirmPassword").value;
+document.getElementById(
+"confirmPassword"
+).value;
 
 if(!c||!n||!x){
 
-toast("Please complete all fields.");
-return
+toast(
+"Please complete all fields."
+);
+
+return;
 
 }
 
 if(n.length<6){
 
-toast("Password must be at least 6 characters.");
-return
+toast(
+"Password must be at least 6 characters."
+);
+
+return;
 
 }
 
 if(n!==x){
 
-toast("New passwords do not match.");
-return
+toast(
+"New passwords do not match."
+);
+
+return;
 
 }
 
@@ -3231,15 +3808,22 @@ z.ymid===currentUser
 
 if(i===-1){
 
-toast("Account not found.");
-return
+toast(
+"Account not found."
+);
+
+return;
 
 }
 
-if(String(a[i].password)!==String(c)){
+if(String(a[i].password)!==
+String(c)){
 
-toast("Current password is incorrect.");
-return
+toast(
+"Current password is incorrect."
+);
+
+return;
 
 }
 
@@ -3247,51 +3831,71 @@ a[i].password=n;
 
 if(!saveAccounts(a)){
 
-toast("Password could not be saved.");
-return
+toast(
+"Password could not be saved."
+);
+
+return;
 
 }
 
-closeModal("passwordModal");
+closeModal(
+"passwordModal"
+);
 
-toast("Password changed successfully.")
+toast(
+"Password changed successfully."
+);
 
 }
 
 function changePasswordFromFront(){
 
 let m=
-document.getElementById("changeMessage");
+document.getElementById(
+"changeMessage"
+);
 
 m.className="message";
 
-let a=
-findAccount(
-document.getElementById("changeId")
-.value.trim()
+let a=findAccount(
+document.getElementById(
+"changeId"
+).value.trim()
 );
 
 let c=
-document.getElementById("changeCurrent").value;
+document.getElementById(
+"changeCurrent"
+).value;
 
 let n=
-document.getElementById("changeNew").value;
+document.getElementById(
+"changeNew"
+).value;
 
 let x=
-document.getElementById("changeConfirm").value;
+document.getElementById(
+"changeConfirm"
+).value;
 
 if(!a){
 
-m.textContent="Account not found.";
-return
+m.textContent=
+"Account not found.";
+
+return;
+
 }
 
-if(String(a.password)!==String(c)){
+if(String(a.password)!==
+String(c)){
 
 m.textContent=
 "Current password is incorrect.";
 
-return
+return;
+
 }
 
 if(n.length<6){
@@ -3299,7 +3903,8 @@ if(n.length<6){
 m.textContent=
 "Password must be at least 6 characters.";
 
-return
+return;
+
 }
 
 if(n!==x){
@@ -3307,7 +3912,8 @@ if(n!==x){
 m.textContent=
 "Passwords do not match.";
 
-return
+return;
+
 }
 
 let all=getAccounts();
@@ -3323,13 +3929,15 @@ if(!saveAccounts(all)){
 m.textContent=
 "Password could not be saved.";
 
-return
+return;
+
 }
 
-m.className="message success-message";
+m.className=
+"message success-message";
 
 m.textContent=
-"Password changed successfully."
+"Password changed successfully.";
 
 }
 
@@ -3340,43 +3948,54 @@ m.textContent=
 function saveSecurity(){
 
 let m=
-document.getElementById("securityMessage");
+document.getElementById(
+"securityMessage"
+);
 
 m.className="message";
 
-let a=
-findAccount(
-document.getElementById("securityId")
-.value.trim()
+let a=findAccount(
+document.getElementById(
+"securityId"
+).value.trim()
 );
 
 let q1=
-document.getElementById("securityEditQ1").value;
+document.getElementById(
+"securityEditQ1"
+).value;
 
 let a1=
-document.getElementById("securityEditA1")
-.value.trim();
+document.getElementById(
+"securityEditA1"
+).value.trim();
 
 let q2=
-document.getElementById("securityEditQ2").value;
+document.getElementById(
+"securityEditQ2"
+).value;
 
 let a2=
-document.getElementById("securityEditA2")
-.value.trim();
+document.getElementById(
+"securityEditA2"
+).value.trim();
 
 if(!a||!a1||!a2){
 
 m.textContent=
 "Please enter valid account and answers.";
 
-return
+return;
+
 }
 
 a.securityQ1=q1;
-a.securityA1=a1.toLowerCase();
+a.securityA1=
+a1.toLowerCase();
 
 a.securityQ2=q2;
-a.securityA2=a2.toLowerCase();
+a.securityA2=
+a2.toLowerCase();
 
 let all=getAccounts();
 
@@ -3386,8 +4005,11 @@ z.ymid===a.ymid
 
 if(i===-1){
 
-m.textContent="Account not found.";
-return
+m.textContent=
+"Account not found.";
+
+return;
+
 }
 
 all[i]=a;
@@ -3397,13 +4019,15 @@ if(!saveAccounts(all)){
 m.textContent=
 "Security settings could not be saved.";
 
-return
+return;
+
 }
 
-m.className="message success-message";
+m.className=
+"message success-message";
 
 m.textContent=
-"Security settings saved."
+"Security settings saved.";
 
 }
 
@@ -3415,12 +4039,15 @@ function findRecoveryAccount(){
 
 recoveryAccount=
 findAccount(
-document.getElementById("recoveryId")
-.value.trim()
+document.getElementById(
+"recoveryId"
+).value.trim()
 );
 
 let m=
-document.getElementById("recoveryMessage");
+document.getElementById(
+"recoveryMessage"
+);
 
 if(!recoveryAccount){
 
@@ -3429,42 +4056,63 @@ m.className="message";
 m.textContent=
 "Account not found.";
 
-document.getElementById("recoveryQuestions")
-.style.display="none";
+document.getElementById(
+"recoveryQuestions"
+).style.display="none";
 
-return
+return;
+
 }
 
 let list=
 securityQuestions[
-localStorage.getItem("ym_language")||"en"
-]||securityQuestions.en;
+localStorage.getItem(
+"ym_language"
+)||"en"
+]||
+securityQuestions.en;
 
-document.getElementById("recoveryQuestion1")
-.textContent=
+document.getElementById(
+"recoveryQuestion1"
+).textContent=
 list[
-Number(recoveryAccount.securityQ1)
-]||"Security Question 1";
+Number(
+recoveryAccount.securityQ1
+)
+]||
+"Security Question 1";
 
-document.getElementById("recoveryQuestion2")
-.textContent=
+document.getElementById(
+"recoveryQuestion2"
+).textContent=
 list[
-Number(recoveryAccount.securityQ2)
-]||"Security Question 2";
+Number(
+recoveryAccount.securityQ2
+)
+]||
+"Security Question 2";
 
-document.getElementById("recoveryAnswer1").value="";
-document.getElementById("recoveryAnswer2").value="";
+document.getElementById(
+"recoveryAnswer1"
+).value="";
 
-document.getElementById("recoveryQuestions")
-.style.display="block";
+document.getElementById(
+"recoveryAnswer2"
+).value="";
 
-document.getElementById("resetArea")
-.style.display="none";
+document.getElementById(
+"recoveryQuestions"
+).style.display="block";
 
-m.className="message success-message";
+document.getElementById(
+"resetArea"
+).style.display="none";
+
+m.className=
+"message success-message";
 
 m.textContent=
-"Account found. Verify your security answers."
+"Account found. Verify your security answers.";
 
 }
 
@@ -3473,38 +4121,46 @@ function verifyRecoveryQuestions(){
 if(!recoveryAccount)return;
 
 let a=
-document.getElementById("recoveryAnswer1")
-.value.trim().toLowerCase();
+document.getElementById(
+"recoveryAnswer1"
+).value.trim().toLowerCase();
 
 let b=
-document.getElementById("recoveryAnswer2")
-.value.trim().toLowerCase();
+document.getElementById(
+"recoveryAnswer2"
+).value.trim().toLowerCase();
 
 if(
 a!==recoveryAccount.securityA1||
 b!==recoveryAccount.securityA2
 ){
 
-document.getElementById("recoveryMessage")
-.className="message";
+document.getElementById(
+"recoveryMessage"
+).className="message";
 
-document.getElementById("recoveryMessage")
-.textContent=
+document.getElementById(
+"recoveryMessage"
+).textContent=
 "Security answers are incorrect.";
 
-return
+return;
+
 }
 
-document.getElementById("recoveryMessage")
-.className=
+document.getElementById(
+"recoveryMessage"
+).className=
 "message success-message";
 
-document.getElementById("recoveryMessage")
-.textContent=
+document.getElementById(
+"recoveryMessage"
+).textContent=
 "Verification successful. Create a new password.";
 
-document.getElementById("resetArea")
-.style.display="block"
+document.getElementById(
+"resetArea"
+).style.display="block";
 
 }
 
@@ -3512,8 +4168,11 @@ function demoPhoneRecovery(){
 
 if(!recoveryAccount){
 
-toast("Find your account first.");
-return
+toast(
+"Find your account first."
+);
+
+return;
 
 }
 
@@ -3523,8 +4182,9 @@ alert(
 "Real SMS/WhatsApp verification will be connected later."
 );
 
-document.getElementById("resetArea")
-.style.display="block"
+document.getElementById(
+"resetArea"
+).style.display="block";
 
 }
 
@@ -3532,8 +4192,11 @@ function demoEmailRecovery(){
 
 if(!recoveryAccount){
 
-toast("Find your account first.");
-return
+toast(
+"Find your account first."
+);
+
+return;
 
 }
 
@@ -3543,8 +4206,9 @@ alert(
 "Real email verification will be connected later."
 );
 
-document.getElementById("resetArea")
-.style.display="block"
+document.getElementById(
+"resetArea"
+).style.display="block";
 
 }
 
@@ -3553,29 +4217,42 @@ function resetRecoveredPassword(){
 if(!recoveryAccount)return;
 
 let n=
-document.getElementById("recoveryNewPassword").value;
+document.getElementById(
+"recoveryNewPassword"
+).value;
 
 let x=
-document.getElementById("recoveryConfirmPassword").value;
+document.getElementById(
+"recoveryConfirmPassword"
+).value;
 
 if(!n||!x){
 
-toast("Please complete both password fields.");
-return
+toast(
+"Please complete both password fields."
+);
+
+return;
 
 }
 
 if(n.length<6){
 
-toast("Password must be at least 6 characters.");
-return
+toast(
+"Password must be at least 6 characters."
+);
+
+return;
 
 }
 
 if(n!==x){
 
-toast("Passwords do not match.");
-return
+toast(
+"Passwords do not match."
+);
+
+return;
 
 }
 
@@ -3587,8 +4264,11 @@ z.ymid===recoveryAccount.ymid
 
 if(i===-1){
 
-toast("Account not found.");
-return
+toast(
+"Account not found."
+);
+
+return;
 
 }
 
@@ -3596,25 +4276,33 @@ a[i].password=n;
 
 if(!saveAccounts(a)){
 
-toast("Password could not be saved.");
-return
+toast(
+"Password could not be saved."
+);
+
+return;
+
 }
 
 recoveryAccount=null;
 
-document.getElementById("recoveryQuestions")
-.style.display="none";
+document.getElementById(
+"recoveryQuestions"
+).style.display="none";
 
-document.getElementById("resetArea")
-.style.display="none";
+document.getElementById(
+"resetArea"
+).style.display="none";
 
-document.getElementById("recoveryMessage")
-.className=
+document.getElementById(
+"recoveryMessage"
+).className=
 "message success-message";
 
-document.getElementById("recoveryMessage")
-.textContent=
-"Password reset successfully. You can now login."
+document.getElementById(
+"recoveryMessage"
+).textContent=
+"Password reset successfully. You can now login.";
 
 }
 
@@ -3627,45 +4315,63 @@ function openEmailModal(){
 closeMenu();
 ensureProfile();
 
-document.getElementById("newEmail").value=
+if(!profileData)return;
+
+document.getElementById(
+"newEmail"
+).value=
 profileData.email||"";
 
-document.getElementById("confirmEmail").value=
+document.getElementById(
+"confirmEmail"
+).value=
 profileData.email||"";
 
-document.getElementById("emailModal")
-.style.display="flex"
+document.getElementById(
+"emailModal"
+).style.display="flex";
 
 }
 
 function changeEmail(){
 
 let e=
-document.getElementById("newEmail")
-.value.trim();
+document.getElementById(
+"newEmail"
+).value.trim();
 
 let c=
-document.getElementById("confirmEmail")
-.value.trim();
+document.getElementById(
+"confirmEmail"
+).value.trim();
 
 if(!e||!c){
 
-toast("Please enter the email.");
-return
+toast(
+"Please enter the email."
+);
+
+return;
 
 }
 
 if(e!==c){
 
-toast("Emails do not match.");
-return
+toast(
+"Emails do not match."
+);
+
+return;
 
 }
 
 if(!e.includes("@")){
 
-toast("Please enter a valid email.");
-return
+toast(
+"Please enter a valid email."
+);
+
+return;
 
 }
 
@@ -3682,13 +4388,16 @@ z.ymid===currentUser
 if(i!==-1){
 
 a[i].email=e;
-saveAccounts(a)
+
+saveAccounts(a);
 
 }
 
 closeModal("emailModal");
 
-toast("Email updated.")
+toast(
+"Email updated."
+);
 
 }
 
@@ -3699,58 +4408,95 @@ toast("Email updated.")
 function toggleMenu(){
 
 let b=
-document.getElementById("menuBox");
+document.getElementById(
+"menuBox"
+);
+
+if(!b)return;
 
 b.style.display=
 b.style.display==="block"
 ?"none"
-:"block"
+:"block";
 
 }
 
 function closeMenu(){
 
 let b=
-document.getElementById("menuBox");
+document.getElementById(
+"menuBox"
+);
 
-if(b)b.style.display="none"
+if(b){
+
+b.style.display="none";
+
+}
 
 }
 
 function closeModal(id){
 
-let m=document.getElementById(id);
+let m=
+document.getElementById(id);
 
-if(m)m.style.display="none"
+if(m){
+
+m.style.display="none";
 
 }
 
-document.addEventListener("click",e=>{
+}
+
+document.addEventListener(
+"click",
+e=>{
 
 if(
 e.target.closest &&
 !e.target.closest(".cover-menu")
 ){
-closeMenu()
+
+closeMenu();
+
 }
 
-});
+}
+);
 
-document.querySelectorAll(".modal")
-.forEach(m=>
-m.addEventListener("click",e=>{
-if(e.target===m)m.style.display="none"
-})
+document.querySelectorAll(
+".modal"
+).forEach(m=>
+
+m.addEventListener(
+"click",
+e=>{
+
+if(e.target===m){
+
+m.style.display="none";
+
+}
+
+}
+)
 );
 
 /* =========================================================
    FILE PREVIEW
    ========================================================= */
 
-function showPreview(file,containerId,type){
+function showPreview(
+file,
+containerId,
+type
+){
 
 let box=
-document.getElementById(containerId);
+document.getElementById(
+containerId
+);
 
 if(!box)return;
 
@@ -3766,25 +4512,29 @@ rememberObjectURL(url);
 
 if(type==="image"){
 
-let img=document.createElement("img");
+let img=
+document.createElement("img");
 
 img.src=url;
 img.alt="Selected photo";
 
 box.appendChild(img);
+
 box.style.display="block";
 
 }
 
 if(type==="video"){
 
-let video=document.createElement("video");
+let video=
+document.createElement("video");
 
 video.src=url;
 video.controls=true;
 video.playsInline=true;
 
 box.appendChild(video);
+
 box.style.display="block";
 
 }
@@ -3799,11 +4549,13 @@ function getPosts(){
 
 let d=
 safeJSON(
-localStorage.getItem(POSTS_KEY),
+localStorage.getItem(
+POSTS_KEY
+),
 []
 );
 
-return Array.isArray(d)?d:[]
+return Array.isArray(d)?d:[];
 
 }
 
@@ -3816,30 +4568,38 @@ POSTS_KEY,
 JSON.stringify(p)
 );
 
-return true
+return true;
 
 }catch(e){
 
-console.error("savePosts:",e);
+console.error(
+"savePosts:",
+e
+);
 
-return false
+return false;
 
 }
+
 }
 
-/* PROFILE POST SELECT */
+/* =========================================================
+   PROFILE POST SELECT
+   ========================================================= */
 
 function chooseImage(){
 
-document.getElementById("postImageInput")
-.click()
+document.getElementById(
+"postImageInput"
+).click();
 
 }
 
 function chooseVideo(){
 
-document.getElementById("postVideoInput")
-.click()
+document.getElementById(
+"postVideoInput"
+).click();
 
 }
 
@@ -3851,37 +4611,46 @@ if(!f)return;
 
 if(!f.type.startsWith("image/")){
 
-toast("Please choose an image.");
+toast(
+"Please choose an image."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
-if(f.size>10*1024*1024){
+if(f.size>
+10*1024*1024){
 
-toast("Image is too large. Maximum 10MB.");
+toast(
+"Image is too large. Maximum 10MB."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
 selectedImage=f;
 selectedVideo=null;
 
-document.getElementById("postVideoInput")
-.value="";
+document.getElementById(
+"postVideoInput"
+).value="";
 
-document.getElementById("selectedFile")
-.textContent=
+document.getElementById(
+"selectedFile"
+).textContent=
 "📷 Selected: "+f.name;
 
 showPreview(
 f,
 "profileMediaPreview",
 "image"
-)
+);
 
 }
 
@@ -3893,37 +4662,46 @@ if(!f)return;
 
 if(!f.type.startsWith("video/")){
 
-toast("Please choose a video.");
+toast(
+"Please choose a video."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
-if(f.size>50*1024*1024){
+if(f.size>
+50*1024*1024){
 
-toast("Video is too large. Maximum 50MB.");
+toast(
+"Video is too large. Maximum 50MB."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
 selectedVideo=f;
 selectedImage=null;
 
-document.getElementById("postImageInput")
-.value="";
+document.getElementById(
+"postImageInput"
+).value="";
 
-document.getElementById("selectedFile")
-.textContent=
+document.getElementById(
+"selectedFile"
+).textContent=
 "🎥 Selected: "+f.name;
 
 showPreview(
 f,
 "profileMediaPreview",
 "video"
-)
+);
 
 }
 
@@ -3932,22 +4710,27 @@ function clearMedia(){
 selectedImage=null;
 selectedVideo=null;
 
-document.getElementById("postImageInput")
-.value="";
+document.getElementById(
+"postImageInput"
+).value="";
 
-document.getElementById("postVideoInput")
-.value="";
+document.getElementById(
+"postVideoInput"
+).value="";
 
-document.getElementById("selectedFile")
-.textContent="";
+document.getElementById(
+"selectedFile"
+).textContent="";
 
 let box=
-document.getElementById("profileMediaPreview");
+document.getElementById(
+"profileMediaPreview"
+);
 
 if(box){
 
 box.innerHTML="";
-box.style.display="none"
+box.style.display="none";
 
 }
 
@@ -3962,8 +4745,9 @@ async function createPost(){
 ensureProfile();
 
 let text=
-document.getElementById("postText")
-.value.trim();
+document.getElementById(
+"postText"
+).value.trim();
 
 if(
 !text&&
@@ -3971,23 +4755,41 @@ if(
 !selectedVideo
 ){
 
-toast("Write something or choose media.");
-return
+toast(
+"Write something or choose media."
+);
+
+return;
 
 }
 
 let p={
-id:"post_"+Date.now()+"_"+
-Math.random().toString(16).slice(2),
+
+id:
+"post_"+Date.now()+"_"+
+Math.random()
+.toString(16)
+.slice(2),
+
 user:currentUser,
+
 name:profileData.name,
-text,
+
+text:text,
+
 media:null,
+
 mediaType:null,
+
 mediaId:null,
+
 likes:[],
+
 comments:[],
-createdAt:new Date().toLocaleString()
+
+createdAt:
+new Date().toLocaleString()
+
 };
 
 let savedMediaId=null;
@@ -4007,13 +4809,19 @@ selectedImage
 
 if(!ok){
 
-toast("Photo could not be saved.");
-return
+toast(
+"Photo could not be saved."
+);
+
+return;
 
 }
 
-p.mediaId=savedMediaId;
-p.mediaType="image";
+p.mediaId=
+savedMediaId;
+
+p.mediaType=
+"image";
 
 }
 
@@ -4030,13 +4838,19 @@ selectedVideo
 
 if(!ok){
 
-toast("Video could not be saved.");
-return
+toast(
+"Video could not be saved."
+);
+
+return;
 
 }
 
-p.mediaId=savedMediaId;
-p.mediaType="video";
+p.mediaId=
+savedMediaId;
+
+p.mediaType=
+"video";
 
 }
 
@@ -4047,32 +4861,49 @@ all.push(p);
 if(!savePosts(all)){
 
 if(savedMediaId){
-await deleteMediaFile(savedMediaId)
+
+await deleteMediaFile(
+savedMediaId
+);
+
 }
 
-toast("Post could not be saved.");
-return
+toast(
+"Post could not be saved."
+);
+
+return;
 
 }
 
-document.getElementById("postText").value="";
+document.getElementById(
+"postText"
+).value="";
 
 clearMedia();
 
 renderPosts();
 renderHomeFeed();
 
-toast("Post published successfully.")
+toast(
+"Post published successfully."
+);
 
 }catch(e){
 
 console.error(e);
 
 if(savedMediaId){
-await deleteMediaFile(savedMediaId)
+
+await deleteMediaFile(
+savedMediaId
+);
+
 }
 
-toast("Post could not be saved.")
+toast(
+"Post could not be saved."
+);
 
 }
 
@@ -4084,15 +4915,17 @@ toast("Post could not be saved.")
 
 function chooseHomeImage(){
 
-document.getElementById("homeImageInput")
-.click()
+document.getElementById(
+"homeImageInput"
+).click();
 
 }
 
 function chooseHomeVideo(){
 
-document.getElementById("homeVideoInput")
-.click()
+document.getElementById(
+"homeVideoInput"
+).click();
 
 }
 
@@ -4104,37 +4937,46 @@ if(!f)return;
 
 if(!f.type.startsWith("image/")){
 
-toast("Please choose an image.");
+toast(
+"Please choose an image."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
-if(f.size>10*1024*1024){
+if(f.size>
+10*1024*1024){
 
-toast("Image is too large. Maximum 10MB.");
+toast(
+"Image is too large. Maximum 10MB."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
 homeSelectedImage=f;
 homeSelectedVideo=null;
 
-document.getElementById("homeVideoInput")
-.value="";
+document.getElementById(
+"homeVideoInput"
+).value="";
 
-document.getElementById("homeSelectedFile")
-.textContent=
+document.getElementById(
+"homeSelectedFile"
+).textContent=
 "📷 Selected: "+f.name;
 
 showPreview(
 f,
 "homeMediaPreview",
 "image"
-)
+);
 
 }
 
@@ -4146,37 +4988,46 @@ if(!f)return;
 
 if(!f.type.startsWith("video/")){
 
-toast("Please choose a video.");
+toast(
+"Please choose a video."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
-if(f.size>50*1024*1024){
+if(f.size>
+50*1024*1024){
 
-toast("Video is too large. Maximum 50MB.");
+toast(
+"Video is too large. Maximum 50MB."
+);
 
 input.value="";
 
-return
+return;
+
 }
 
 homeSelectedVideo=f;
 homeSelectedImage=null;
 
-document.getElementById("homeImageInput")
-.value="";
+document.getElementById(
+"homeImageInput"
+).value="";
 
-document.getElementById("homeSelectedFile")
-.textContent=
+document.getElementById(
+"homeSelectedFile"
+).textContent=
 "🎥 Selected: "+f.name;
 
 showPreview(
 f,
 "homeMediaPreview",
 "video"
-)
+);
 
 }
 
@@ -4185,22 +5036,27 @@ function clearHomeMedia(){
 homeSelectedImage=null;
 homeSelectedVideo=null;
 
-document.getElementById("homeImageInput")
-.value="";
+document.getElementById(
+"homeImageInput"
+).value="";
 
-document.getElementById("homeVideoInput")
-.value="";
+document.getElementById(
+"homeVideoInput"
+).value="";
 
-document.getElementById("homeSelectedFile")
-.textContent="";
+document.getElementById(
+"homeSelectedFile"
+).textContent="";
 
 let box=
-document.getElementById("homeMediaPreview");
+document.getElementById(
+"homeMediaPreview"
+);
 
 if(box){
 
 box.innerHTML="";
-box.style.display="none"
+box.style.display="none";
 
 }
 
@@ -4215,8 +5071,9 @@ async function createHomePost(){
 ensureProfile();
 
 let text=
-document.getElementById("homePostText")
-.value.trim();
+document.getElementById(
+"homePostText"
+).value.trim();
 
 if(
 !text&&
@@ -4224,23 +5081,41 @@ if(
 !homeSelectedVideo
 ){
 
-toast("Write something or choose media.");
-return
+toast(
+"Write something or choose media."
+);
+
+return;
 
 }
 
 let p={
-id:"post_"+Date.now()+"_"+
-Math.random().toString(16).slice(2),
+
+id:
+"post_"+Date.now()+"_"+
+Math.random()
+.toString(16)
+.slice(2),
+
 user:currentUser,
+
 name:profileData.name,
-text,
+
+text:text,
+
 media:null,
+
 mediaType:null,
+
 mediaId:null,
+
 likes:[],
+
 comments:[],
-createdAt:new Date().toLocaleString()
+
+createdAt:
+new Date().toLocaleString()
+
 };
 
 let savedMediaId=null;
@@ -4260,13 +5135,19 @@ homeSelectedImage
 
 if(!ok){
 
-toast("Photo could not be saved.");
-return
+toast(
+"Photo could not be saved."
+);
+
+return;
 
 }
 
-p.mediaId=savedMediaId;
-p.mediaType="image";
+p.mediaId=
+savedMediaId;
+
+p.mediaType=
+"image";
 
 }
 
@@ -4283,13 +5164,19 @@ homeSelectedVideo
 
 if(!ok){
 
-toast("Video could not be saved.");
-return
+toast(
+"Video could not be saved."
+);
+
+return;
 
 }
 
-p.mediaId=savedMediaId;
-p.mediaType="video";
+p.mediaId=
+savedMediaId;
+
+p.mediaType=
+"video";
 
 }
 
@@ -4300,85 +5187,49 @@ all.push(p);
 if(!savePosts(all)){
 
 if(savedMediaId){
-await deleteMediaFile(savedMediaId)
+
+await deleteMediaFile(
+savedMediaId
+);
+
 }
 
-toast("Post could not be saved.");
-return
+toast(
+"Post could not be saved."
+);
+
+return;
 
 }
 
-document.getElementById("homePostText")
-.value="";
+document.getElementById(
+"homePostText"
+).value="";
 
 clearHomeMedia();
 
 renderHomeFeed();
 renderPosts();
 
-toast("Post published.")
+toast(
+"Post published."
+);
 
 }catch(e){
 
 console.error(e);
 
 if(savedMediaId){
-await deleteMediaFile(savedMediaId)
-}
 
-toast("Post could not be saved.")
-
-}
-
-}
-
-/* =========================================================
-   POST MEDIA LOADER
-   ========================================================= */
-
-async function loadPostMedia(container){
-
-if(!container)return;
-
-let items=
-container.querySelectorAll(
-"[data-media-id]"
+await deleteMediaFile(
+savedMediaId
 );
 
-for(let el of items){
-
-let id=el.getAttribute("data-media-id");
-
-if(!id)continue;
-
-let item=
-await getMediaFile(id);
-
-if(!item){
-
-el.outerHTML=
-'<div class="media-loading">Media unavailable.</div>';
-
-continue
-
 }
 
-let url=
-rememberObjectURL(
-URL.createObjectURL(item.blob)
+toast(
+"Post could not be saved."
 );
-
-if(el.tagName==="IMG"){
-
-el.src=url;
-
-}
-
-if(el.tagName==="VIDEO"){
-
-el.src=url;
-
-}
 
 }
 
@@ -4388,7 +5239,10 @@ el.src=url;
    BUILD POST
    ========================================================= */
 
-function buildPostElement(post,homeMode=false){
+function buildPostElement(
+post,
+homeMode=false
+){
 
 let el=
 document.createElement("div");
@@ -4445,7 +5299,9 @@ post.media
 
 media=
 '<img class="post-media" '+
-'src="'+post.media+'" alt="Post image">';
+'src="'+
+post.media+
+'" alt="Post image">';
 
 }
 
@@ -4456,12 +5312,12 @@ post.media
 
 media=
 '<video class="post-media" controls playsinline>'+
-'<source src="'+post.media+'">'+
+'<source src="'+
+post.media+
+'">'+
 '</video>';
 
 }
-
-/* comments */
 
 let comments="";
 
@@ -4484,23 +5340,23 @@ c.user===currentUser
 :""
 }
 </div>
-</div>`
+</div>`;
 
 });
-
-/* avatar */
 
 let avatarHTML="";
 
 if(avatar){
 
 avatarHTML=
-`<img src="${avatar}" alt="">`
+`<img src="${avatar}" alt="">`;
 
 }else{
 
 avatarHTML=
-escapeHTML(initial(post.name))
+escapeHTML(
+initial(post.name)
+);
 
 }
 
@@ -4600,7 +5456,7 @@ if(!item){
 mediaBox.textContent=
 "Media unavailable.";
 
-return
+return;
 
 }
 
@@ -4614,25 +5470,37 @@ if(post.mediaType==="image"){
 let img=
 document.createElement("img");
 
-img.className="post-media";
-img.src=url;
-img.alt="Post image";
+img.className=
+"post-media";
 
-mediaBox.replaceWith(img)
+img.src=url;
+
+img.alt=
+"Post image";
+
+mediaBox.replaceWith(img);
 
 }
 
-else if(post.mediaType==="video"){
+else if(
+post.mediaType==="video"
+){
 
 let video=
-document.createElement("video");
+document.createElement(
+"video"
+);
 
-video.className="post-media";
+video.className=
+"post-media";
+
 video.controls=true;
 video.playsInline=true;
 video.src=url;
 
-mediaBox.replaceWith(video)
+mediaBox.replaceWith(
+video
+);
 
 }
 
@@ -4640,15 +5508,15 @@ mediaBox.replaceWith(video)
 .catch(()=>{
 
 mediaBox.textContent=
-"Media unavailable."
+"Media unavailable.";
 
-})
-
-}
+});
 
 }
 
-return el
+}
+
+return el;
 
 }
 
@@ -4659,15 +5527,22 @@ return el
 function renderPosts(){
 
 let box=
-document.getElementById("postsContainer");
+document.getElementById(
+"postsContainer"
+);
 
 if(!box)return;
 
 let posts=
 getPosts()
-.filter(p=>p.user===currentUser)
+.filter(p=>
+p.user===currentUser
+)
 .sort((a,b)=>
-String(b.id).localeCompare(String(a.id))
+String(b.id)
+.localeCompare(
+String(a.id)
+)
 );
 
 box.innerHTML="";
@@ -4679,31 +5554,36 @@ box.innerHTML=
 'No posts yet.<br>Write something above.'+
 '</div>';
 
-return
+return;
 
 }
 
 posts.forEach(p=>
+
 box.appendChild(
 buildPostElement(p)
 )
-)
+
+);
 
 }
-
-/* HOME FEED = ALL POSTS */
 
 function renderHomeFeed(){
 
 let box=
-document.getElementById("homeFeed");
+document.getElementById(
+"homeFeed"
+);
 
 if(!box)return;
 
 let posts=
 getPosts()
 .sort((a,b)=>
-String(b.id).localeCompare(String(a.id))
+String(b.id)
+.localeCompare(
+String(a.id)
+)
 );
 
 box.innerHTML="";
@@ -4715,15 +5595,20 @@ box.innerHTML=
 'No posts yet. Be the first to post.'+
 '</div>';
 
-return
+return;
 
 }
 
 posts.forEach(p=>
+
 box.appendChild(
-buildPostElement(p,true)
+buildPostElement(
+p,
+true
 )
 )
+
+);
 
 }
 
@@ -4741,31 +5626,45 @@ all.find(x=>x.id===id);
 if(!p)return;
 
 if(!Array.isArray(p.likes)){
-p.likes=[]
+
+p.likes=[];
+
 }
 
 let i=
-p.likes.indexOf(currentUser);
+p.likes.indexOf(
+currentUser
+);
 
 if(i===-1){
-p.likes.push(currentUser)
+
+p.likes.push(
+currentUser
+);
+
 }else{
-p.likes.splice(i,1)
+
+p.likes.splice(i,1);
+
 }
 
 if(!savePosts(all)){
 
-toast("Could not save like.");
-return
+toast(
+"Could not save like."
+);
+
+return;
+
 }
 
 renderPosts();
-renderHomeFeed()
+renderHomeFeed();
 
 }
 
 /* =========================================================
-   COMMENT
+   COMMENTS
    ========================================================= */
 
 function focusComment(id){
@@ -4780,9 +5679,11 @@ if(x){
 x.focus();
 
 x.scrollIntoView({
+
 behavior:"smooth",
 block:"center"
-})
+
+});
 
 }
 
@@ -4794,7 +5695,7 @@ if(e.key==="Enter"){
 
 e.preventDefault();
 
-addComment(id)
+addComment(id);
 
 }
 
@@ -4824,30 +5725,47 @@ all.find(x=>x.id===id);
 if(!p)return;
 
 if(!Array.isArray(p.comments)){
-p.comments=[]
+
+p.comments=[];
+
 }
 
 p.comments.push({
-id:"comment_"+Date.now(),
+
+id:
+"comment_"+Date.now(),
+
 user:currentUser,
+
 name:profileData.name,
-text
+
+text:text
+
 });
 
 if(!savePosts(all)){
 
-toast("Comment could not be saved.");
-return
+toast(
+"Comment could not be saved."
+);
+
+return;
+
 }
 
 renderPosts();
 renderHomeFeed();
 
-toast("Comment added.")
+toast(
+"Comment added."
+);
 
 }
 
-function deleteComment(pid,cid){
+function deleteComment(
+pid,
+cid
+){
 
 let all=getPosts();
 
@@ -4859,7 +5777,10 @@ if(!p)return;
 p.comments=
 (p.comments||[])
 .filter(c=>
-!(c.id===cid&&c.user===currentUser)
+!(
+c.id===cid&&
+c.user===currentUser
+)
 );
 
 savePosts(all);
@@ -4867,7 +5788,9 @@ savePosts(all);
 renderPosts();
 renderHomeFeed();
 
-toast("Comment deleted.")
+toast(
+"Comment deleted."
+);
 
 }
 
@@ -4886,36 +5809,52 @@ if(!p)return;
 
 if(p.user!==currentUser){
 
-toast("You can only delete your own post.");
-return
+toast(
+"You can only delete your own post."
+);
+
+return;
 
 }
 
-if(!confirm("Delete this post?"))return;
+if(!confirm(
+"Delete this post?"
+))return;
 
-let mediaId=p.mediaId||null;
+let mediaId=
+p.mediaId||null;
 
 let ok=
 savePosts(
-all.filter(x=>x.id!==id)
+all.filter(
+x=>x.id!==id
+)
 );
 
 if(!ok){
 
-toast("Post could not be deleted.");
-return
+toast(
+"Post could not be deleted."
+);
+
+return;
+
 }
 
 if(mediaId){
 
-await deleteMediaFile(mediaId)
+await deleteMediaFile(
+mediaId
+);
 
 }
 
 renderPosts();
 renderHomeFeed();
 
-toast("Post deleted.")
+toast(
+"Post deleted."
+);
 
 }
 
@@ -4926,22 +5865,29 @@ toast("Post deleted.")
 async function sharePost(id){
 
 let p=
-getPosts().find(x=>x.id===id);
+getPosts().find(
+x=>x.id===id
+);
 
 if(!p)return;
 
 let text=
 p.name+": "+
-(p.text||"Y-M Chat post");
+(
+p.text||
+"Y-M Chat post"
+);
 
 if(navigator.share){
 
 try{
 
 await navigator.share({
+
 title:"Y-M Chat",
-text
-})
+text:text
+
+});
 
 }catch(e){}
 
@@ -4951,21 +5897,27 @@ else if(navigator.clipboard){
 
 try{
 
-await navigator.clipboard.writeText(text);
+await navigator.clipboard.writeText(
+text
+);
 
-toast("Post copied.")
+toast(
+"Post copied."
+);
 
 }catch(e){
 
-toast("Share unavailable.")
+toast(
+"Share unavailable."
+);
 
 }
 
-}
+}else{
 
-else{
-
-toast("Share unavailable.")
+toast(
+"Share unavailable."
+);
 
 }
 
@@ -4978,9 +5930,11 @@ toast("Share unavailable.")
 function getChats(){
 
 return safeJSON(
-localStorage.getItem(CHATS_KEY),
+localStorage.getItem(
+CHATS_KEY
+),
 {}
-)
+);
 
 }
 
@@ -4993,11 +5947,11 @@ CHATS_KEY,
 JSON.stringify(d)
 );
 
-return true
+return true;
 
 }catch(e){
 
-return false
+return false;
 
 }
 
@@ -5007,20 +5961,25 @@ function openDemoChat(name){
 
 currentChatUser=name;
 
-document.getElementById("chatBox")
-.style.display="block";
+document.getElementById(
+"chatBox"
+).style.display="block";
 
-document.getElementById("chatTitle")
-.textContent="💬 "+name;
+document.getElementById(
+"chatTitle"
+).textContent=
+"💬 "+name;
 
-renderChatMessages()
+renderChatMessages();
 
 }
 
 function renderChatMessages(){
 
 let box=
-document.getElementById("chatMessages");
+document.getElementById(
+"chatMessages"
+);
 
 let ch=getChats();
 
@@ -5041,7 +6000,7 @@ if(!msg.length){
 box.innerHTML=
 '<div style="color:#777;padding:15px 0;text-align:center">'+
 'No messages yet.'+
-'</div>'
+'</div>';
 
 }
 
@@ -5050,7 +6009,8 @@ msg.forEach(m=>{
 let d=
 document.createElement("div");
 
-d.className="room-message";
+d.className=
+"room-message";
 
 d.innerHTML=
 "<strong>"+
@@ -5059,9 +6019,9 @@ escapeHTML(m.name)+
 escapeHTML(m.text)+
 "</div>";
 
-box.appendChild(d)
+box.appendChild(d);
 
-})
+});
 
 }
 
@@ -5070,7 +6030,9 @@ function sendChatMessage(){
 if(!currentChatUser)return;
 
 let i=
-document.getElementById("chatInput");
+document.getElementById(
+"chatInput"
+);
 
 let t=i.value.trim();
 
@@ -5084,20 +6046,24 @@ currentUser+
 currentChatUser;
 
 if(!Array.isArray(c[k])){
-c[k]=[]
+
+c[k]=[];
+
 }
 
 c[k].push({
+
 name:profileData.name,
 text:t,
 createdAt:Date.now()
+
 });
 
 saveChats(c);
 
 i.value="";
 
-renderChatMessages()
+renderChatMessages();
 
 }
 
@@ -5108,9 +6074,11 @@ renderChatMessages()
 function getRooms(){
 
 return safeJSON(
-localStorage.getItem(ROOMS_KEY),
+localStorage.getItem(
+ROOMS_KEY
+),
 {}
-)
+);
 
 }
 
@@ -5123,11 +6091,11 @@ ROOMS_KEY,
 JSON.stringify(d)
 );
 
-return true
+return true;
 
 }catch(e){
 
-return false
+return false;
 
 }
 
@@ -5137,25 +6105,31 @@ function openRoom(r){
 
 currentRoom=r;
 
-document.getElementById("roomBox")
-.style.display="block";
+document.getElementById(
+"roomBox"
+).style.display="block";
 
-document.getElementById("roomTitle")
-.textContent=r;
+document.getElementById(
+"roomTitle"
+).textContent=r;
 
-renderRoomMessages()
+renderRoomMessages();
 
 }
 
 function renderRoomMessages(){
 
 let box=
-document.getElementById("roomMessages");
+document.getElementById(
+"roomMessages"
+);
 
 let rooms=getRooms();
 
 let m=
-Array.isArray(rooms[currentRoom])
+Array.isArray(
+rooms[currentRoom]
+)
 ?rooms[currentRoom]
 :[];
 
@@ -5175,7 +6149,8 @@ m.forEach(x=>{
 let d=
 document.createElement("div");
 
-d.className="room-message";
+d.className=
+"room-message";
 
 d.innerHTML=
 "<strong>"+
@@ -5184,9 +6159,9 @@ escapeHTML(x.name)+
 escapeHTML(x.text)+
 "</div>";
 
-box.appendChild(d)
+box.appendChild(d);
 
-})
+});
 
 }
 
@@ -5195,7 +6170,9 @@ function sendRoomMessage(){
 if(!currentRoom)return;
 
 let i=
-document.getElementById("roomInput");
+document.getElementById(
+"roomInput"
+);
 
 let t=i.value.trim();
 
@@ -5203,21 +6180,27 @@ if(!t)return;
 
 let r=getRooms();
 
-if(!Array.isArray(r[currentRoom])){
-r[currentRoom]=[]
+if(!Array.isArray(
+r[currentRoom]
+)){
+
+r[currentRoom]=[];
+
 }
 
 r[currentRoom].push({
+
 name:profileData.name,
 text:t,
 createdAt:Date.now()
+
 });
 
 saveRooms(r);
 
 i.value="";
 
-renderRoomMessages()
+renderRoomMessages();
 
 }
 
@@ -5228,34 +6211,52 @@ renderRoomMessages()
 function addFriend(){
 
 let i=
-document.getElementById("friendInput");
+document.getElementById(
+"friendInput"
+);
 
 let id=i.value.trim();
 
 if(!id){
 
-toast("Enter a Y-M ID.");
-return
+toast(
+"Enter a Y-M ID."
+);
+
+return;
+
 }
 
 let a=findAccount(id);
 
 if(!a){
 
-toast("Y-M ID not found in this demo.");
-return
+toast(
+"Y-M ID not found in this demo."
+);
+
+return;
+
 }
 
 let l=
 safeJSON(
-localStorage.getItem(FRIENDS_KEY),
+localStorage.getItem(
+FRIENDS_KEY
+),
 []
 );
 
-if(!Array.isArray(l))l=[];
+if(!Array.isArray(l)){
+
+l=[];
+
+}
 
 if(!l.includes(a.ymid)){
-l.push(a.ymid)
+
+l.push(a.ymid);
+
 }
 
 localStorage.setItem(
@@ -5265,7 +6266,10 @@ JSON.stringify(l)
 
 i.value="";
 
-toast(a.name+" added as friend.")
+toast(
+a.name+
+" added as friend."
+);
 
 }
 
@@ -5276,32 +6280,113 @@ toast(a.name+" added as friend.")
 function logout(){
 
 /*
- Log Out remains inside Profile three-dot menu.
+ Log Out stays inside the
+ Profile three-dot menu.
+
+ IMPORTANT:
+ Only the current SESSION is removed.
+ Account/profile/photos/posts stay saved.
 */
 
 closeMenu();
 
-if(!confirm("Are you sure you want to log out?")){
-return
+if(!confirm(
+"Are you sure you want to log out?"
+)){
+
+return;
+
 }
+
+/*
+ Remove login session.
+*/
 
 localStorage.removeItem(
 CURRENT_USER_KEY
 );
+
+localStorage.removeItem(
+OLD_CURRENT_USER_KEY
+);
+
+/*
+ Clear runtime session variables.
+*/
 
 currentUser=null;
 profileData=null;
 currentChatUser=null;
 currentRoom=null;
 
-document.getElementById("bottomNav")
-.style.display="none";
+/*
+ Hide bottom navigation.
+*/
 
-toast("Logged out.");
+const nav=
+document.getElementById(
+"bottomNav"
+);
 
-setTimeout(()=>{
-showPage("frontPage")
-},400)
+if(nav){
+
+nav.style.display="none";
+
+}
+
+/*
+ Close any open modal.
+*/
+
+document.querySelectorAll(
+".modal"
+).forEach(m=>{
+
+m.style.display="none";
+
+});
+
+/*
+ Return to front page.
+*/
+
+document.querySelectorAll(
+".page"
+).forEach(p=>
+
+p.classList.remove("active")
+
+);
+
+const front=
+document.getElementById(
+"frontPage"
+);
+
+if(front){
+
+front.classList.add("active");
+
+}
+
+/*
+ Clear login password.
+*/
+
+const loginPassword=
+document.getElementById(
+"loginPassword"
+);
+
+if(loginPassword){
+
+loginPassword.value="";
+
+}
+
+toast(
+"Logged out successfully."
+);
 
 }
 
@@ -5311,17 +6396,20 @@ showPage("frontPage")
 
 function cleanupObjectURLs(){
 
-if(!window.ymObjectUrls)return;
+if(!window.ymObjectUrls)
+return;
 
 window.ymObjectUrls.forEach(url=>{
 
 try{
-URL.revokeObjectURL(url)
+
+URL.revokeObjectURL(url);
+
 }catch(e){}
 
 });
 
-window.ymObjectUrls=[]
+window.ymObjectUrls=[];
 
 }
 
@@ -5329,27 +6417,34 @@ window.ymObjectUrls=[]
    INITIALIZE
    ========================================================= */
 
-function initialize(){
+async function initialize(){
 
 fillCountries();
+
 fillSecurityQuestions();
+
 migrateAccounts();
 
 let lang=
-localStorage.getItem("ym_language")||"en";
+localStorage.getItem(
+"ym_language"
+)||"en";
 
-document.getElementById("languageSelect")
-.value=lang;
+document.getElementById(
+"languageSelect"
+).value=lang;
 
 let saved=
-localStorage.getItem(CURRENT_USER_KEY);
+localStorage.getItem(
+CURRENT_USER_KEY
+);
 
 if(!saved){
 
 saved=
 localStorage.getItem(
 OLD_CURRENT_USER_KEY
-)
+);
 
 }
 
@@ -5374,8 +6469,10 @@ ensureProfile();
 
 if(currentUser){
 
-renderProfile();
+await renderProfile();
+
 renderHomeUser();
+
 renderHomeFeed();
 
 showAppPage(
@@ -5383,7 +6480,24 @@ showAppPage(
 "navHome"
 );
 
-return
+/*
+ Extra refresh after IndexedDB
+ media is ready.
+*/
+
+setTimeout(async()=>{
+
+if(!currentUser)return;
+
+await renderProfile();
+
+renderHomeUser();
+
+renderHomeFeed();
+
+},200);
+
+return;
 
 }
 
@@ -5395,7 +6509,7 @@ CURRENT_USER_KEY
 
 localStorage.removeItem(
 OLD_CURRENT_USER_KEY
-)
+);
 
 }
 
@@ -5404,7 +6518,9 @@ OLD_CURRENT_USER_KEY
 currentUser=null;
 profileData=null;
 
-showPage("frontPage")
+showPage(
+"frontPage"
+);
 
 }
 
